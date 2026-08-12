@@ -1,0 +1,32 @@
+Không toang 😄. Thầy đang hỏi **problem statement / target user / ý nghĩa thực tế**. Mày trả lời theo hướng này là đẹp:
+
+### Câu trả lời để nói với thầy
+
+> **Nhóm em xây dựng một hệ thống quản lý vận hành căn hộ dành cho người quản lý tòa nhà/chủ căn hộ, thay vì dành trực tiếp cho cư dân.**
+>
+> Hiện nay việc quản lý nhiều căn hộ thường phải theo dõi nhiều thứ riêng lẻ như thông tin căn hộ, cư dân, hợp đồng thuê, tiền thuê, chi phí, bảo trì và giấy tờ. Vì vậy nhóm em muốn gom các nghiệp vụ này vào một hệ thống duy nhất để người quản lý có thể theo dõi tình trạng toàn bộ tòa nhà và xử lý công việc nhanh hơn.
+>
+> **Đối tượng sử dụng chính** là:
+>
+> * Quản lý tòa nhà / Property Manager: theo dõi tổng thể, căn hộ, cư dân, hợp đồng, doanh thu, công nợ.
+> * Nhân viên vận hành: xử lý các vấn đề hằng ngày như hợp đồng, cư dân, căn hộ và yêu cầu bảo trì.
+> * Nhân viên kế toán: theo dõi tiền thuê, thanh toán, chi phí và báo cáo.
+> * Nhân viên kỹ thuật: tiếp nhận và xử lý các yêu cầu bảo trì.
+>
+> **Ví dụ:** Khi một hợp đồng sắp hết hạn, hệ thống tự hiển thị cảnh báo; khi một căn hộ chưa thanh toán tiền thuê, người quản lý có thể nhìn thấy ngay khoản đang quá hạn; khi có sự cố trong căn hộ, nhân viên kỹ thuật nhận được work order và cập nhật trạng thái xử lý.
+>
+> **Ý nghĩa của hệ thống** là biến việc quản lý từ kiểu theo dõi thủ công bằng Excel, giấy tờ và nhiều nguồn dữ liệu riêng lẻ thành một **bảng điều khiển vận hành tập trung**, giúp người quản lý biết *căn nào đang có vấn đề, vấn đề gì và cần xử lý gì tiếp theo*.
+
+### Nếu thầy hỏi: “Tại sao phải làm cái này?”
+
+Nói ngắn:
+
+> **Vì bài toán của nhóm em không phải chỉ là lưu thông tin căn hộ, mà là hỗ trợ người quản lý ra quyết định và xử lý công việc hằng ngày.** Ví dụ nhìn vào Dashboard có thể biết ngay tỷ lệ lấp đầy, tiền thuê đã thu, công nợ, hợp đồng sắp hết hạn và yêu cầu bảo trì đang tồn đọng.
+
+### Nếu thầy hỏi “AI để làm gì?”
+
+> AI trong hệ thống đóng vai trò **Property Copilot**, không phải chatbot chung chung. Người quản lý có thể hỏi bằng ngôn ngữ tự nhiên như *“Những căn nào sắp hết hợp đồng trong 60 ngày?”*, *“Hiện đang có bao nhiêu tiền thuê quá hạn?”* hoặc yêu cầu AI soạn thông báo nhắc thanh toán.
+
+**Cái này đủ để thầy hiểu sản phẩm của nhóm là gì, ai dùng, dùng để làm gì và tại sao cần nó.**
+
+Còn vụ giao diện sáng: **đúng, nó chưa toàn diện** — hero vẫn đang bị dark overlay quá mạnh, typography trên ảnh bị chìm. Nhưng **đừng vội sửa trước khi thuyết trình**; giờ ưu tiên chốt được *problem + user + use case* đã.
