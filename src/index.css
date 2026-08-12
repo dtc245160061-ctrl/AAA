@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'Cinzel', 'Playfair Display', serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #0B0C0E;
+    color: #E5E7EB;
+    overflow-x: hidden;
+  }
+}
+
+/* Editorial-meets-Technologist Design System Tokens */
+.font-serif-editorial {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+
+.font-mono-tech {
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+/* Ultra-Sheer Glass Surface Container */
+.editorial-surface {
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-surface-hover:hover {
+  background: rgba(255, 255, 255, 0.045);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Atmospheric Ambient Background Glow Orbs */
+.ambient-glow-gold {
+  position: absolute;
+  width: 650px;
+  height: 650px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(217, 119, 6, 0.07) 0%, rgba(0, 0, 0, 0) 70%);
+  filter: blur(140px);
+  pointer-events: none;
+}
+
+.ambient-glow-cyan {
+  position: absolute;
+  width: 750px;
+  height: 750px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+  filter: blur(160px);
+  pointer-events: none;
+}
+
+.ambient-glow-rose {
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(225, 29, 72, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+  filter: blur(130px);
+  pointer-events: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0C0E;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
