@@ -1,199 +1,116 @@
-# PROJECT HANDOFF
+# Project Handoff Document — Property Operations Platform
 
-## 1. Project Overview
-- **Application Name**: Property Operations (Apartment Management System).
-- **Purpose**: A modern, web-based property operations platform built for property managers, building administrators, and landlords to handle residential buildings, tenant records, lease contracts, rent collections, expenses, maintenance work orders, documents, reports, and AI-assisted data querying.
-- **Target Audience**: Property Managers, Building Administrators, Operations Staff, Financial Accountants.
-- **Current Product Scope**: Focused on a high-efficiency administration web platform covering 12 core operational modules (Dashboard, Buildings, Units, Tenants, Contracts, Rent & Payments, Expenses, Maintenance, Documents, Reports, Notifications, and AI Assistant).
-
----
-
-## 2. Instructor / Project Requirements
-
-### Source Context:
-Course templates located at `D:\AAA\Ứng dụng trí tuệ nhân tạo KHMT K23A-20260805T083400Z-1-001`:
-1. `01_GenAI_SoftwareDevelopment_project-plan.docx`
-2. `02_GenAI_SoftwareDevelopment_requirements-qa.docx`
-3. `03_GenAI_SoftwareDevelopment_requirements-specification.docx`
-
-### Academic Course Requirements (Instructor Framework):
-- **Course**: Ứng dụng Trí tuệ Nhân tạo KHMT K23A (2026).
-- **Timeline**: 9 weeks (July 27, 2026 – September 27, 2026).
-- **Team Size**: 2 Students per group.
-- **Core Course Deliverables**:
-  - Problem Survey & Requirements Clarification Q&A.
-  - Software Requirements Specification (SRS v1.0) with Use Case Modeling, Actor Definitions, UC Descriptions (UC001, UC002...), Activity & Sequence Diagrams.
-  - Integration of Generative AI capabilities inside a web application.
-
-### Distinction: Instructor Requirements vs. Our Product & Design Decisions:
-- **Instructor Framework**: Mandates the academic submission structure (9-week timeline, SRS document, Use Case diagrams, functional/non-functional constraints, and AI integration).
-- **Our Product Decisions**: Selecting the "Apartment / Property Management" domain, establishing the 12-module operational scope, adopting an Origin-inspired editorial visual language, excluding non-essential MVP scope (no resident mobile apps, no smart locks, no 3D WebGL models), and choosing a modern React 19 + TypeScript + Vite stack.
+**Project Directory**: `D:\AAA`  
+**GitHub Repository**: `https://github.com/dtc245160061-ctrl/AAA` *(PRIVATE)*  
+**Production URL**: `https://aaa-jade-two.vercel.app`  
+**Current Branch**: `main`  
+**Deployment Pipeline**: GitHub → Vercel Automatic Deployment  
 
 ---
 
-## 3. Current Product Decisions
+## A. PROJECT OVERVIEW
 
-### Primary Users & Role-Based Access Control (RBAC):
-1. **Property Admin / General Manager**: Full portfolio access across all buildings, financials, staff assignments, reports, and AI capabilities.
-2. **Operations Manager**: Full access to Buildings, Units, Tenants, Contracts, Maintenance, and Documents; read-only access to financial summaries.
-3. **Maintenance Technician**: Access to view assigned Work Orders and log repair notes/expenses.
-4. **Accountant / Financial Clerk**: Access to Rent & Payments, Expenses, Invoices, and Reports modules.
+This application is a **React 19 + TypeScript + Vite + Tailwind CSS v4** single-page web application (SPA) built with an editorial, botanical luxury design system inspired by Origin ([useorigin.com](https://useorigin.com/)).
 
-### Main Operational Workflows:
-1. **Tenant Onboarding & Lease Binding**: Select Unit -> Input Tenant Details -> Define Contract Terms -> Change Unit Status to *Occupied*.
-2. **Rent Collection Lifecycle**: System generates monthly invoices -> Track payment status (*Paid*, *Unpaid*, *Overdue*) -> Record received payments -> Issue receipts.
-3. **Maintenance Work Orders**: Log issue -> Assign staff -> Record repair cost -> Resolve ticket.
-4. **AI Property Assistant**: Natural language querying of tenant contracts, overdue rent summaries, and notice drafting.
+### Core Tech Stack
+- **Frontend Framework**: React 19 + TypeScript + Vite v8.2
+- **Styling**: Vanilla CSS custom tokens + Tailwind CSS v4 (`src/index.css`)
+- **Icons**: Lucide React (`lucide-react`)
+- **Typography**: Google Fonts — `Cinzel` (Editorial Serif), `JetBrains Mono` (Technical Code), `Plus Jakarta Sans` (Body)
+- **Deployment Platform**: Vercel SPA Automatic Pipeline (`vercel.json` rewrite rule: `/(.*)` → `/index.html`)
 
-### MVP Exclusions (Non-Goals):
-- ❌ No resident-facing mobile apps or resident portal logins.
-- ❌ No IoT / Smart Lock hardware integration.
-- ❌ No luxury concierge / sky amenity booking engines.
-- ❌ No 3D WebGL isometric building renders.
-- ❌ No real estate investment yield / capitalization modeling.
+### Application Architecture
+- **Layout Shell**: `src/App.tsx` controls global theme, active module state (`dashboard`, `buildings`, `units`, `unit_detail`, `tenants`, `contracts`, `payments`, `expenses`, `maintenance`, `documents`, `reports`, `notifications`), drawer modals, and demo reset logic.
+- **Header**: `src/components/Topbar.tsx` contains UTC clock, `STAGING / DEMO` indicator, search bar, AI Copilot trigger, Quick Action button, Theme / Demo reset dropdown, and profile badge.
+- **Navigation**: `src/components/Sidebar.tsx` quiet left sidebar with active building selector and 11 module links.
+- **Domain Types & Mock Data**: `src/types/apartment.ts` and `src/data/mockData.ts`.
 
 ---
 
-## 4. Visual Direction (Origin-Inspired DNA)
+## B. CURRENT PRODUCT DIRECTION & PENDING DECISION
 
-### Visual Goal:
-The visual goal is **NOT** a "dark SaaS dashboard + glassmorphism + loud gold accents + serif fonts everywhere". 
-
-The goal is an **editorial, cinematic, art-directed digital product experience** inspired by the visual storytelling and restraint of **Origin** (`https://useorigin.com/`), translated into property operations: **"Editorial Architecture meets Real-Time Operational Telemetry"**.
-
-### Visual Specifications & Design Rules:
-- **Composition Principles**: Low-density editorial headers with 64px+ section gaps. Avoid cramped 4-column metric card walls. Content flows in a cinematic story sequence.
-- **Typography Pairing**:
-  - *Editorial Display Serif*: `Cinzel` / `Playfair Display` (light weight 300) with italicized highlights (`*Grand Tower* Residence`, `*Portfolio* Overview`).
-  - *Technical Monospace*: `JetBrains Mono` / `ui-monospace` (11px–13px) for unit codes (`PH-2401`), financial metrics (`$148,500`), and telemetry badges (`Pin 92%`).
-  - *Neutral Body Sans-Serif*: `Plus Jakarta Sans` for body text and navigation labels.
-- **Atmosphere & Color Philosophy**:
-  - Base Canvas: Deep midnight charcoal (`#0B0C0E`).
-  - Atmospheric Orbs: Soft background color fields (`filter: blur(140px)`) positioned behind data sections (Amber `#D97706` for revenue, Cyan `#0284C7` for occupancy, Rose `#E11D48` for maintenance).
-- **Surfaces & Hairlines**: Ultra-sheer glass panels (`bg-white/[0.025]`) with hairline structural borders (`border border-white/[0.07]`) and generous padding (32px).
-- **Data Visualization**: Delicate SVG curve lines with 15% opacity gradient fill underneath, monospaced axis labels, and glowing dots on hover.
-- **What We Explicitly DO NOT Want**:
-  - ❌ Generic 4-column SaaS metric-card grids as the main layout structure.
-  - ❌ Heavy glassmorphism or thick white glowing borders.
-  - ❌ Excessive gold or loud solid color buttons.
-  - ❌ Huge neon numbers everywhere.
-  - ❌ Generic AI chatbot templates.
+> [!IMPORTANT]
+> **CRITICAL UNRESOLVED QUESTION — PRODUCT DIRECTION**
+> 
+> The application is currently built as a **Property Operations / Property Management System** for property managers and building operations teams (B2B Admin Dashboard).
+> 
+> However, stakeholder / teacher feedback suggests that the actual requirement for this project might be an **Apartment Rental Marketplace** (similar to Airbnb), where end users search for apartments by city/dates/guests, browse listings, view unit details, and book/rent residences.
+> 
+> **Instructions for the Next Agent**:
+> 1. **Do NOT delete or pivot the existing code architecture** until the product direction is officially confirmed by the user/stakeholder.
+> 2. If the user confirms a pivot to **Apartment Rental Marketplace**, **DO NOT start from scratch**. Reuse the existing UI components (`UnitsView`, `UnitDetailView`, hero assets, Liquid Glass surfaces, and mock datasets).
 
 ---
 
-## 5. Current Implementation
+## C. COMPLETED FEATURES
 
-### Tech Stack & Core Libraries:
-- **Framework**: React 19 + TypeScript + Vite (`vite.config.ts`, `tsconfig.json`).
-- **Styling**: Tailwind CSS v4 (`@tailwindcss/vite` integrated, custom tokens in `src/index.css`).
-- **Icon Library**: `lucide-react`.
+The following features exist and are fully implemented in the code:
 
-### Codebase Structure (`D:\AAA`):
-```
-D:\AAA\
-├── handoff.md                   # THIS HANDOFF DOCUMENT
-├── PRODUCT_DESIGN.md            # Product Vision, Workflows, 12 Modules, UX Specs
-├── DESIGN_SYSTEM.md             # Visual Language & Token Specs
-├── APP_ARCHITECTURE.md          # 10 TypeScript Data Schemas & Layout Architecture
-├── ORIGIN_VISUAL_ANALYSIS.md    # 12 Visual Observations from useorigin.com
-├── APARTMENT_VISUAL_DIRECTION.md# Revised Editorial Visual Direction Spec
-├── index.html                   # HTML Entry Shell (Cinzel & Plus Jakarta Sans Fonts)
-├── vite.config.ts               # Vite Configuration with @tailwindcss/vite
-└── src/
-    ├── types/
-    │   └── apartment.ts         # TypeScript Domain Interfaces
-    ├── data/
-    │   └── mockData.ts          # Realistic Domain Dataset (Units, Tenants, WorkOrders)
-    ├── components/
-    │   ├── Sidebar.tsx          # Quiet Navigation Sidebar with Building Switcher
-    │   ├── Topbar.tsx           # Global Search, Live Clock, Action Triggers
-    │   ├── DashboardView.tsx    # Editorial Storytelling Dashboard Visual Prototype
-    │   ├── AiCopilotDrawer.tsx  # Property AI Copilot Slide-Over Drawer
-    │   └── QuickActionModal.tsx # High-frequency Operations Form Modal
-    ├── index.css                # Custom CSS Design Tokens & Atmospheric Orbs
-    ├── App.tsx                  # Root Routing Container & State Provider
-    └── main.tsx                 # React Root Entry Point
-```
+1. **Dashboard** (`src/components/DashboardView.tsx`): Hero landscape photograph with gradient overlay, operational telemetry band, revenue growth chart, maintenance queue, expiring lease list, and activity feed.
+2. **Buildings** (`src/components/BuildingsView.tsx`): Building overview with an **Interactive Floor Elevation Matrix** (visual grid from Floor 24 down to Floor 1 with color-coded unit statuses).
+3. **Apartments / Units** (`src/components/UnitsView.tsx`): Searchable & filterable unit directory (Grid & Table list toggle, floor/status filters) with direct links to inspect unit details.
+4. **Tenants / Residents** (`src/components/TenantsView.tsx`): Verified resident directory with profile cards, contact info, lease dates, auto-pay badges, and unit links.
+5. **Lease Contracts** (`src/components/ContractsView.tsx`): Agreement lifecycle manager, deposit escrow tracking, 60-day expiration alerts, and renewal actions.
+6. **Rent & Collections** (`src/components/PaymentsView.tsx`): Invoicing ledger, target collection velocity metrics, paid/pending/overdue filters, and payment recording.
+7. **Property Expenses** (`src/components/ExpensesView.tsx`): Categorized expense logging, vendor audit breakdown, and monthly budget progress.
+8. **Work Orders** (`src/components/MaintenanceView.tsx`): Dispatch hub with Kanban Board (Open / In Progress / Resolved) and Table view toggle, status mutations, and technician assignment.
+9. **Documents Library** (`src/components/DocumentsView.tsx`): Centralized repository for signed leases, resident IDs, receipts, and building bylaws with download CTAs.
+10. **Analytics Reports** (`src/components/ReportsView.tsx`): Executive cash flow velocity SVG chart and NOI metrics workspace.
+11. **Alerts Center** (`src/components/AlertsView.tsx`): Operational notification center with unread/read toggles and deep links to units.
+12. **AI Copilot Drawer** (`src/components/AiCopilotDrawer.tsx`): Interactive assistant drawer answering operational queries ("Show overdue rent", "Which leases expire in 60 days?", "Show unresolved maintenance issues", "Give me a summary of PH-2401").
+13. **Quick Action Dispatcher** (`src/components/QuickActionModal.tsx`): Modal form for state mutations (Record Payment, Add Resident, Create Lease, Log Work Order).
+14. **Signature Unit Detail View** (`src/components/UnitDetailView.tsx`): Penthouse Sky Residence profile with 5 Liquid Glass tabs (`Resident Spotlight`, `Climate & IoT`, `Payment Ledger`, `Work Orders`, `Documents`).
+15. **Global Theme System**: Dark, Light, and System modes with `localStorage` persistence and `prefers-color-scheme` reactive auto-detection.
+16. **Liquid Glass System**: Custom backdrop-blurred optical surfaces (`.liquid-glass`, `.atmospheric-panel`, `.product-ui-card`).
+17. **Approved Visual Identity**: Natural botanical landscape photograph (`public/images/property-hero.png`).
+18. **Demo Reset Action**: Topbar menu action to clear local state and restore initial mock data.
 
 ---
 
-## 6. What Has Already Been Completed
+## D. CURRENT VISUAL DIRECTION
 
-The following items are **100% complete, verified, and present in the codebase**:
-
-- [x] **Product Specification** (`PRODUCT_DESIGN.md`)
-- [x] **Architecture & Data Schema Specification** (`APP_ARCHITECTURE.md`)
-- [x] **Design System Specification** (`DESIGN_SYSTEM.md`)
-- [x] **Origin Visual Analysis** (`ORIGIN_VISUAL_ANALYSIS.md`)
-- [x] **Apartment Visual Direction** (`APARTMENT_VISUAL_DIRECTION.md`)
-- [x] **Recomposed Editorial Dashboard Prototype** (`src/components/DashboardView.tsx`)
-- [x] **Quiet Sidebar Navigation with Building Switcher** (`src/components/Sidebar.tsx`)
-- [x] **Topbar Header with Live Clock & Search Line** (`src/components/Topbar.tsx`)
-- [x] **Property AI Copilot Slide-Over Drawer UI** (`src/components/AiCopilotDrawer.tsx`)
-- [x] **Quick Action Operations Modal** (`src/components/QuickActionModal.tsx`)
-- [x] **Clean Production Build Verification** (`npm run build` succeeds with 0 errors)
+- **Identity**: *"Luxury residential nature + editorial technology + real operational precision."*
+- **Color Palette**: Deep natural forest green (`#10B981`), sky blue (`#0284C7`), warm off-white canvas in Light Mode (`#F5F7F6`), dark slate canvas in Dark Mode (`#0A0D12`).
+- **Typography**: `Cinzel` serif display headlines, `JetBrains Mono` technical data, `Plus Jakarta Sans` body.
+- **Light Mode Status**: Implemented across all 11 modules, but requires further refinement to eliminate subtle dark mode visual biases on certain borders and badges.
+- **Visual Richness**: Dashboard and `PH-2401` Penthouse view are highly art-directed; secondary modules should be audited to ensure consistent visual polish.
 
 ---
 
-## 7. Current Dashboard Description
+## E. DEPLOYMENT WORKFLOW
 
-The implemented **Dashboard** (`src/components/DashboardView.tsx`) is designed as a 6-part visual story:
-
-1. **Hero Header & Editorial Title**:
-   - Features `PORTFOLIO OVERVIEW • 24 FLOORS` badge and italicized display title:
-     > *"Managing **Grand Tower Residence** with clarity & operational velocity."*
-   - Includes an embedded command prompt bar (*"Query property data or type a command..."*) with an `Ask AI` button.
-
-2. **Key Operational Telemetry (3-Column Performance Overview)**:
-   - *June Rent Collection Velocity*: `$148,500` (+12.4% vs May).
-   - *Portfolio Occupancy Rate*: `93.8%` (30 / 32 Units Leased).
-   - *Outstanding Overdue Rent*: `$12,400` across 2 late accounts.
-
-3. **Financial Telemetry Visualization**:
-   - Embedded SVG line chart tracking 6-month revenue growth ($112k to $148.5k) with 12% opacity gradient fill underneath, delicate 4% dashed gridlines, and monospaced month axis labels.
-
-4. **Operational Action Queues**:
-   - *Active Maintenance Work Orders*: Urgent tasks (*Urgent* rose tag for Smart Lock battery warnings, assigned technicians).
-   - *Expiring Lease Contracts*: Contracts expiring in 30–60 days with countdown days and renewal CTAs.
-
-5. **Logs & Intelligence**:
-   - Real-time operational activity stream log + AI Assistant Copilot launcher card.
+- **Pipeline**: `Local Code` → `Git Commit` → `git push origin main` → `GitHub PRIVATE repo` → `Vercel Automatic Deployment` → `Production URL`.
+- **Production URL**: [https://aaa-jade-two.vercel.app](https://aaa-jade-two.vercel.app)
+- **Rule**: Do **NOT** run `npx vercel --prod` for normal development. Automatic deployment triggers on `git push origin main`.
+- **Publishing Rule**: Only push/deploy when the user explicitly requests *"PUBLISH CURRENT BUILD"*.
 
 ---
 
-## 8. Known Problems & Technical Debt
+## F. TESTING & TEAM ACCESS
 
-1. **Mock Data Layer**:
-   - Current datasets in `src/data/mockData.ts` are hardcoded static objects. Needs a persistent backend or local database state store.
-2. **Placeholder Module Views**:
-   - Modules other than Dashboard (`buildings`, `units`, `tenants`, `contracts`, `payments`, `expenses`, `maintenance`, `documents`, `reports`, `notifications`) display a placeholder spec message.
-3. **Global Search Input**:
-   - The Topbar search bar is visually implemented but does not filter data across screens yet.
+- **Staging / Demo URL**: [https://aaa-jade-two.vercel.app](https://aaa-jade-two.vercel.app)
+- **Tester Permissions**: Teammates access the website as end-user testers. The GitHub repository remains **PRIVATE**, and testers have **NO write access** to the source code.
+- **Demo Data Behavior**: Uses frontend mock dataset with in-memory and `localStorage` persistence. Testers can click **Reset Demo Data** in the topbar dropdown to restore initial mock data anytime.
 
 ---
 
-## 9. Immediate Next Steps & Prioritized Roadmap
+## G. KNOWN ISSUES & OPEN QUESTIONS
 
-When starting in the new chat/session:
-
-1. **Step 1: Implement the Apartment / Unit Detail Screen (✨ Signature Product View)**
-   - Build the 3-column inspection view for an individual unit (`PH-2401`) as specified in `PRODUCT_DESIGN.md` (Specs, Resident Spotlight, Payment & Maintenance history).
-2. **Step 2: Implement Buildings & Units List Views**
-   - Build the Building Floor Plan Matrix and Unit filterable directory.
-3. **Step 3: Wire Up State Mutations**
-   - Connect real state updates for recording rent payments and resolving work orders.
-
-### What Should NOT Be Touched Yet:
-- ❌ Do **NOT** rewrite or scrap the current Dashboard visual style.
-- ❌ Do **NOT** replace the visual direction with a generic SaaS card template.
+1. **Product Direction**: Unresolved choice between Property Management System (B2B Admin) vs. Apartment Rental Marketplace (B2C Airbnb-style).
+2. **Rental Marketplace Flow**: If pivoting, primary user journeys (search by city/dates/guests, booking flow) need to be defined.
+3. **Light Mode Polish**: Further visual polish needed on light mode contrasts, borders, and input controls.
+4. **Visual Richness**: Secondary modules require auditing to match the visual depth of the Dashboard.
+5. **Backend Data Scope**: No production database, authentication service, or payment gateway backend exists; the app operates entirely on a structured frontend mock dataset.
 
 ---
 
-## 10. Handoff Instructions for the Next Coding Agent
+## H. NEXT RECOMMENDED STEPS
 
-Dear Next Coding Agent:
-1. **READ THIS FILE FIRST** (`handoff.md`).
-2. **Do NOT restart the project.** The codebase in `D:\AAA` is cleanly structured, fully compiled, and running.
-3. **Do NOT replace the current visual direction** with generic dark SaaS dashboards, glassmorphism, or heavy glowing cards. Preserve the **Origin-inspired visual DNA** (`ORIGIN_VISUAL_ANALYSIS.md` & `APARTMENT_VISUAL_DIRECTION.md`).
-4. Continue directly with **Step 1 of the Roadmap** (building the **Apartment / Unit Detail View**).
-5. Ask for user clarification only when genuinely necessary.
+1. **Clarify Product Direction**: Confirm with the user/stakeholder whether to maintain Property Operations Management or pivot to an Apartment Rental Marketplace.
+2. **If Pivoting to Marketplace**:
+   - Re-architect primary user journeys (Search bar for City/Dates/Guests, Listing Cards, Booking Flow).
+   - Maximize code reuse (`UnitsView`, `UnitDetailView`, Liquid Glass components, mock data).
+3. **If Maintaining Management System**:
+   - Refine Light Mode contrast and visual consistency across secondary modules.
+   - Audit interactive forms and AI Copilot responses.
+4. **Deploy Control**: Only execute `git push origin main` when the user asks to *"PUBLISH CURRENT BUILD"*.
