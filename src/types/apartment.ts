@@ -23,8 +23,21 @@ export interface IoTSensors {
   securityAlarmDisarmed: boolean;
 }
 
+export interface EnvironmentalData {
+  weatherNotes: string;
+  floodNotes: string;
+  powerNotes: string;
+  trafficNotes: string;
+}
+
+export interface AIInsights {
+  whyFit: string[];
+  worthConsidering: string[];
+}
+
 export interface ApartmentUnit {
-  id: string; // e.g. "PH-2401", "SK-2002", "EX-1403"
+  id: string; // e.g. "HN-PH-01", "PH-2401", "SG-EX-02"
+  name?: string; // Title e.g. "Tay Ho Westlake Botanical Penthouse"
   floor: number;
   unitNumber: string;
   type: UnitType;
@@ -33,9 +46,32 @@ export interface ApartmentUnit {
   bathrooms: number;
   status: UnitStatus;
   monthlyRentUSD: number;
+  monthlyRentVND: number;
+  city: 'Hanoi' | 'Ho Chi Minh City' | 'Da Nang';
+  district: string;
+  address?: string;
+  images: string[];
+  hasCarParking: boolean;
+  hasMotorbikeParking: boolean;
+  hasElevator: boolean;
+  hasBackupPower: boolean;
+  floodingRisk: 'Low' | 'Moderate' | 'High';
+  noiseLevel: 'Quiet' | 'Moderate' | 'Busy';
+  trafficDensity: 'Low' | 'Moderate' | 'Heavy';
+  petFriendly: boolean;
+  furnished: boolean;
+  balcony: boolean;
+  airConditioning: boolean;
+  washingMachine: boolean;
+  kitchen: boolean;
+  wifi: boolean;
+  rating: number;
+  reviewCount: number;
+  aiInsights: AIInsights;
+  environmentalData: EnvironmentalData;
   resident?: Resident;
   sensors: IoTSensors;
-  viewType: 'Ocean Skyline' | 'City Sunset' | 'Park Horizon' | 'River Bend';
+  viewType: 'Ocean Skyline' | 'City Sunset' | 'Park Horizon' | 'River Bend' | 'West Lake Panorama' | 'Hanoi Skyline' | 'Saigon River';
 }
 
 export interface MaintenanceTicket {
@@ -60,3 +96,4 @@ export interface Amenity {
   pricePerHourUSD: number;
   availableSlotsToday: string[];
 }
+

@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Bell, Sparkles, Plus, Clock, Moon, Sun, Monitor, RotateCcw } from 'lucide-react';
+import { Search, Sparkles, Plus, Clock, Moon, Sun, Monitor, RotateCcw, Bookmark } from 'lucide-react';
 import type { ThemeMode } from '../App';
 
 interface TopbarProps {
+  isAdminView?: boolean;
+  savedCount?: number;
+  onOpenSaved?: () => void;
   onOpenAiCopilot: () => void;
-  onOpenQuickAction: () => void;
-  selectedBuilding: string;
+  onOpenQuickAction?: () => void;
+  selectedBuilding?: string;
   themeMode?: ThemeMode;
   onThemeChange?: (mode: ThemeMode) => void;
   onResetDemoData?: () => void;
 }
 
 export const Topbar: React.FC<TopbarProps> = ({
+  isAdminView = false,
+  savedCount = 0,
+  onOpenSaved,
   onOpenAiCopilot,
   onOpenQuickAction,
-  selectedBuilding,
+  selectedBuilding = 'Grand Tower Residence',
   themeMode = 'dark',
   onThemeChange,
   onResetDemoData,
@@ -65,11 +71,13 @@ export const Topbar: React.FC<TopbarProps> = ({
       )}
 
       <div className="flex items-center justify-between gap-4">
-        {/* Left: Building Context Breadcrumb & Live UTC Clock + STAGING / DEMO Indicator */}
+        {/* Left: App Identity & Time Indicator */}
         <div className="flex items-center gap-4">
           <div>
             <div className="flex items-center gap-2 text-[10px] font-mono-tech text-slate-400">
-              <span className="uppercase tracking-widest text-slate-300">PORTFOLIO ASSET</span>
+              <span className="uppercase tracking-widest text-slate-300">
+                {isAdminView ? 'PROPERTY OPERATIONS' : 'HAVEN RESIDENTIAL'}
+              </span>
               <span>•</span>
               <span className="flex items-center gap-1 text-slate-300">
                 <Clock className="w-3 h-3 text-slate-400" />
@@ -77,44 +85,57 @@ export const Topbar: React.FC<TopbarProps> = ({
               </span>
               <span>•</span>
               <span className="px-2 py-0.5 rounded-full bg-emerald-950/80 text-emerald-300 border border-emerald-500/40 text-[9px] font-bold tracking-wider uppercase">
-                STAGING / DEMO
+                {isAdminView ? 'OPERATOR PREVIEW' : 'CONSUMER SANCTUARY'}
               </span>
             </div>
             <h2 className="text-base font-bold text-white font-serif-editorial mt-0.5">
-              {selectedBuilding}
+              {isAdminView ? selectedBuilding : 'HAVEN — Find a place that fits your life'}
             </h2>
           </div>
         </div>
 
-        {/* Right: Global Search, Quick Action, Notifications, Theme Control, Profile */}
+        {/* Right: Saved Bookmark Counter, Global Search, AI Advisor, Theme Control */}
         <div className="flex items-center gap-3">
+          {/* Saved Units Shortcut for Consumer View */}
+          {!isAdminView && (
+            <button
+              onClick={onOpenSaved}
+              className="flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono text-emerald-300 bg-emerald-950/40 border border-emerald-500/30 rounded-lg hover:bg-emerald-900/40 transition-all relative"
+            >
+              <Bookmark className="w-3.5 h-3.5 fill-current" />
+              <span>Saved ({savedCount})</span>
+            </button>
+          )}
+
           {/* Global Search Bar */}
           <div className="relative hidden md:block">
             <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
-              placeholder="Search units, tenants, contracts (⌘K)..."
-              className="w-64 pl-9 pr-4 py-1.5 text-xs bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-200 placeholder-slate-400 focus:outline-none focus:border-slate-500 transition-all font-mono-tech"
+              placeholder={isAdminView ? "Search units, tenants..." : "Search city, budget, beds..."}
+              className="w-60 pl-9 pr-4 py-1.5 text-xs bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-200 placeholder-slate-400 focus:outline-none focus:border-slate-500 transition-all font-mono-tech"
             />
           </div>
 
-          {/* AI Copilot Quick Button */}
+          {/* AI Advisor / Copilot Button */}
           <button
             onClick={onOpenAiCopilot}
             className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-200 bg-slate-900/80 border border-slate-700/80 rounded-lg hover:bg-slate-800 transition-all"
           >
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span className="hidden sm:inline">AI Copilot</span>
+            <span className="hidden sm:inline">{isAdminView ? 'AI Copilot' : 'AI Housing Advisor'}</span>
           </button>
 
-          {/* Quick Action Button */}
-          <button
-            onClick={onOpenQuickAction}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-slate-950 bg-emerald-400 hover:bg-emerald-300 rounded-lg transition-all shadow-sm"
-          >
-            <Plus className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Action</span>
-          </button>
+          {/* Quick Action Button for Admin */}
+          {isAdminView && onOpenQuickAction && (
+            <button
+              onClick={onOpenQuickAction}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-slate-950 bg-emerald-400 hover:bg-emerald-300 rounded-lg transition-all shadow-sm"
+            >
+              <Plus className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Action</span>
+            </button>
+          )}
 
           {/* Theme & Demo Switcher Control */}
           <div className="relative">
@@ -169,17 +190,11 @@ export const Topbar: React.FC<TopbarProps> = ({
             )}
           </div>
 
-          {/* Notification Bell */}
-          <button className="p-2 text-slate-300 hover:text-white bg-slate-900/80 border border-slate-700/80 rounded-lg hover:bg-slate-800 transition-all relative">
-            <Bell className="w-3.5 h-3.5" />
-            <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-rose-400 rounded-full" />
-          </button>
-
           {/* Profile */}
           <div className="pl-2 border-l border-slate-800/80">
             <img
               src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150"
-              alt="Admin Profile"
+              alt="Profile"
               className="w-7 h-7 rounded-lg object-cover border border-slate-700"
             />
           </div>
@@ -188,4 +203,5 @@ export const Topbar: React.FC<TopbarProps> = ({
     </header>
   );
 };
+
 

@@ -1,50 +1,45 @@
-# Walkthrough — Property Operations Platform
+# HAVEN — Product Direction & User Experience Transformation
 
-Completed the transformation of the property management application into a cohesive, production-ready **Property Operations Platform** spanning all 11 core modules, powered by an origin-inspired **Liquid Glass** design system, full **Dark / Light / System** theme switching with calibrated contrast, conversational **AI Copilot**, and **Quick Action** state mutations.
+We have transformed the application into **HAVEN — Find a place that fits your life**, a consumer-focused apartment discovery platform with AI environmental intelligence, while preserving the existing Property Operations Admin platform as an operator preview layer.
 
----
+## Key Changes Made
 
-## Key Achievements
+### 1. Dual-Mode Experience & Architecture
+- **Topbar & Sidebar Navigation**: Added a **Consumer Preview (User Mode)** vs **Admin Preview (Operator Mode)** role switcher.
+- **Consumer Navigation**: `HAVEN Home`, `Explore & Search`, `Saved & Compare`, and `AI Housing Advisor`.
+- **Admin Navigation**: Retained all original 11 property operations modules (`Dashboard`, `Buildings`, `Units`, `Tenants`, `Contracts`, `Payments`, `Expenses`, `Maintenance`, `Documents`, `Reports`, `Alerts`).
 
-### 1. Global Visual System & Light Mode Contrast Polish
-- **Calibrated Hero Text Mask**: Implemented `.hero-gradient-mask` and `.hero-title-text` in `src/index.css` to guarantee high text contrast over natural photography in both Light and Dark modes.
-- **Refined Liquid Glass Surfaces**: Standardized `.liquid-glass` tokens across light and dark backgrounds with optical backdrop blur (`blur(28px)`), translucent borders, soft drop shadows, and clean readability underneath.
-- **Atmospheric Palette**: Enforced mature forest green (`#10B981`), sky blue (`#0284C7`), warm off-white canvas (`#F5F7F6` in light mode, `#0A0D12` in dark mode), and editorial serif typography (`Cinzel`).
+### 2. Expanded Vietnamese Market Domain & Mock Data
+- Extended `ApartmentUnit` in [apartment.ts](file:///d:/AAA/src/types/apartment.ts) and [mockData.ts](file:///d:/AAA/src/data/mockData.ts) to support:
+  - **Cities & Districts**: Hanoi (Tay Ho, Hoan Kiem), Ho Chi Minh City (District 1, Thao Dien / D2, D7), Da Nang (Son Tra, My Khe).
+  - **Vietnamese Rental Pricing**: Prices displayed in `M VND / month` alongside `~USD` equivalent.
+  - **Vietnam Specific Criteria**: Car Parking, Motorbike Bays, Flooding Risk (`Low` / `Moderate` / `High`), 100% Backup Power Generator, Pet Friendly, High Floor preferences.
 
----
+### 3. AI Housing Advisor & Natural Language Engine
+- Created [aiAdvisorService.ts](file:///d:/AAA/src/services/aiAdvisorService.ts):
+  - **Natural Language Parsing**: Parses queries such as *"2 bedrooms in Hanoi under 18M VND with car parking, high floor"* into structured filters.
+  - **AI Filter Synchronization**: Automatically sets filters in `UserSearchView` and explains what it understood.
+  - **Match Score Engine**: Calculates match score percentage (e.g. `94% AI Match`) and lists top reasons.
+  - **AI Trade-off & Comparison**: Side-by-side comparative analysis detailing advantages, disadvantages, and top AI recommendations.
 
-### 2. Complete 11-Module Front-End Architecture
-
-```
-1. Dashboard            - Portfolio overview, telemetry, financial charts, activity stream
-2. Buildings            - Interactive Floor Elevation Matrix (T24 to T1 color-coded unit grid)
-3. Apartments / Units   - Filterable & searchable unit directory + signature PH-2401 inspection
-4. Tenants / Residents  - Resident directory, profiles, contacts, and unit bindings
-5. Lease Contracts      - Lifecycle agreement manager, deposit escrow, expiration countdowns
-6. Rent & Collections   - Financial invoicing ledger, paid/pending/overdue targets
-7. Property Expenses    - Operational expense ledger & category breakdown
-8. Work Orders          - Kanban board (Open / In Progress / Resolved) & technician dispatch
-9. Documents Library    - Central document repository (signed leases, IDs, bylaws)
-10. Analytics Reports   - Financial cash flow & occupancy trend workspace
-11. Alerts Center       - Operational alert center with read/unread toggles & deep links
-```
-
----
-
-### 3. Global Interactivity & Intelligence
-- **Interactive AI Copilot**: Fully wired `AiCopilotDrawer.tsx` to handle real operational prompts ("Show overdue rent", "Which leases expire in 60 days?", "Show unresolved maintenance issues", "Give me a summary of PH-2401").
-- **Quick Action Dispatcher**: Updated `QuickActionModal.tsx` to execute state updates (`Record Payment`, `Add Resident`, `Create Lease`, `Log Work Order`).
-- **Global Navigation & Unit Deep-Linking**: Clicking any unit across any view (Buildings elevation matrix, Tenants list, Contracts table, Payments ledger, Alerts) deep-links directly into the signature `PH-2401` residence inspection profile.
+### 4. Consumer Discovery Views
+- **`UserHomeView.tsx`**: Editorial botanical hero with tagline *"Find a place that fits your life"*, AI natural search bar, city destination cards, featured listings, and environmental intelligence spotlight.
+- **`UserSearchView.tsx`**: Comprehensive Vietnam-market search filters + live AI prompt bar + grid/list property cards.
+- **`UserUnitDetailView.tsx`**: Consumer apartment detail experience featuring high-res photo gallery, **AI Apartment Insight Panel** (*"Why this fits you"* & *"Worth considering"*), and **Environmental Intelligence Section** (weather/microclimate, flood risk, backup generator reliability, traffic).
+- **`UserCompareView.tsx`**: Side-by-side comparison matrix for saved units + AI trade-off analyzer.
+- **`UserAiAdvisorDrawer.tsx`**: Conversational housing advisor slide-over drawer.
 
 ---
 
-## Verification Results
+## Verification & Build Results
 
-### Automated Build Verification
+### Automated Build Check
+- Executed `npm run build` (`tsc -b && vite build`):
 ```bash
-npm run build
+vite v8.2.1 building client environment for production...
+✓ 1817 modules transformed.
+dist/assets/index-BJnwaXfC.css   83.54 kB │ gzip:  12.62 kB
+dist/assets/index-DR1UvOfm.js   409.78 kB │ gzip: 102.64 kB
+✓ built in 1.24s
 ```
-- **Result**: `✓ built in 398ms` with **0 TypeScript compiler errors** (`tsc -b`) and **0 Vite bundling warnings**.
-
-### Browser Inspection
-- Verified all 11 modules, sidebar navigation, topbar header, live UTC clock, theme switcher (`Dark`, `Light`, `System`), AI Copilot drawer, and quick action dispatcher in the browser at `http://localhost:3001/`.
+- **Status**: Clean compilation with 0 TypeScript and 0 JSX errors.
