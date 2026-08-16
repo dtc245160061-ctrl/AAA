@@ -1,193 +1,209 @@
 import React, { useState } from 'react';
 import { 
-  TrendingUp, 
   Search, 
-  CheckCircle2, 
-  AlertTriangle, 
-  Download, 
-  Plus
+  Receipt,
+  Check
 } from 'lucide-react';
+import type { RentalInvoice, InvoiceStatus } from '../types/apartment';
 
 interface PaymentsViewProps {
-  onOpenQuickAction: () => void;
+  invoices: RentalInvoice[];
+  onMarkInvoicePaid: (id: string) => void;
   onSelectUnit: (unitId: string) => void;
+  onOpenQuickAction?: () => void;
 }
 
 export const PaymentsView: React.FC<PaymentsViewProps> = ({
-  onOpenQuickAction,
+  invoices,
+  onMarkInvoicePaid,
   onSelectUnit,
 }) => {
   const [statusFilter, setStatusFilter] = useState<string>('all');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
-  // Sample invoices ledger
-  const invoices = [
-    { id: 'INV-2026-0601', unitId: 'PH-2401', resident: 'Alexander Vance', period: 'June 2026', amount: 14500, status: 'paid', dueDate: '2026-06-01', paidDate: '2026-06-01', method: 'Bank Transfer' },
-    { id: 'INV-2026-0602', unitId: 'SV-2001', resident: 'Sophia Chen', period: 'June 2026', amount: 8900, status: 'paid', dueDate: '2026-06-01', paidDate: '2026-06-01', method: 'Auto-Pay' },
-    { id: 'INV-2026-0603', unitId: 'SV-2002', resident: 'Marcus Sterling', period: 'June 2026', amount: 8750, status: 'overdue', dueDate: '2026-06-01', paidDate: '-', method: 'Pending' },
-    { id: 'INV-2026-0604', unitId: 'EX-1601', resident: 'Elena Rostova', period: 'June 2026', amount: 5600, status: 'paid', dueDate: '2026-06-01', paidDate: '2026-06-02', method: 'Credit Card' },
-    { id: 'INV-2026-0605', unitId: 'DL-1201', resident: 'David & Hannah Miller', period: 'June 2026', amount: 3900, status: 'paid', dueDate: '2026-06-01', paidDate: '2026-06-01', method: 'Auto-Pay' },
-    { id: 'INV-2026-0606', unitId: 'DL-0801', resident: 'Kenji Takahashi', period: 'June 2026', amount: 3650, status: 'overdue', dueDate: '2026-06-01', paidDate: '-', method: 'Pending' },
-  ];
+  const totalCollectedVND = invoices
+    .filter(i => i.status === 'paid')
+    .reduce((acc, curr) => acc + curr.totalAmountVND, 0);
 
-  const filteredInvoices = invoices.filter((inv) => {
-    const matchesSearch = 
-      inv.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      inv.unitId.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      inv.resident.toLowerCase().includes(searchTerm.toLowerCase());
+  const pendingRevenueVND = invoices
+    .filter(i => i.status === 'pending')
+    .reduce((acc, curr) => acc + curr.totalAmountVND, 0);
 
+  const overdueRevenueVND = invoices
+    .filter(i => i.status === 'overdue')
+    .reduce((acc, curr) => acc + curr.totalAmountVND, 0);
+
+  const filteredInvoices = invoices.filter(inv => {
     const matchesStatus = statusFilter === 'all' || inv.status === statusFilter;
-
-    return matchesSearch && matchesStatus;
+    const matchesSearch = inv.tenantName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          inv.invoiceCode.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          inv.unitName.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesStatus && matchesSearch;
   });
 
+  const getStatusBadge = (status: InvoiceStatus) => {
+    switch (status) {
+      case 'paid':
+        return <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[11px] font-mono font-medium">Đã thanh toán</span>;
+      case 'pending':
+        return <span className="px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[11px] font-mono font-medium">Chờ thanh toán</span>;
+      case 'overdue':
+        return <span className="px-2.5 py-1 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30 text-[11px] font-mono font-medium">Quá hạn nợ</span>;
+    }
+  };
+
   return (
-    <div className="space-y-8 text-left relative z-10 pb-16">
-      {/* Header */}
-      <div className="flex flex-wrap items-end justify-between gap-4 border-b border-slate-800/80 pb-4">
-        <div>
-          <span className="text-[11px] font-mono-tech uppercase tracking-widest text-slate-400 font-medium block">
-            FINANCIAL TELEMETRY / RENT COLLECTION LEDGER
-          </span>
-          <h1 className="text-3xl sm:text-4xl font-serif-editorial text-white mt-1">
-            Rent Collections & Payments
-          </h1>
-        </div>
-
-        <button
-          onClick={onOpenQuickAction}
-          className="px-4 py-2.5 text-xs font-mono-tech font-semibold text-slate-950 bg-emerald-400 hover:bg-emerald-300 rounded-xl transition-all shadow-md flex items-center gap-2"
-        >
-          <Plus className="w-4 h-4" />
-          <span>+ Record Payment</span>
-        </button>
-      </div>
-
-      {/* Financial Summary Strip (Liquid Glass) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="liquid-glass p-6 space-y-2">
-          <span className="text-[10px] font-mono-tech uppercase text-slate-400">COLLECTED THIS MONTH</span>
-          <div className="flex items-baseline justify-between">
-            <span className="text-3xl font-mono-tech font-semibold text-white">$148,500</span>
-            <span className="text-xs font-mono-tech text-emerald-400 flex items-center gap-1">
-              <TrendingUp className="w-3 h-3" /> +12.4%
-            </span>
+    <div className="space-y-8 text-left pb-16 animate-in fade-in duration-300">
+      {/* Header Banner */}
+      <div className="p-8 rounded-3xl atmospheric-panel border border-emerald-500/30 space-y-6 shadow-2xl backdrop-blur-2xl">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
+              <Receipt className="w-4 h-4 text-emerald-400" />
+              <span>Sổ Quỹ Thu Tiền Thuê Nhà & Hóa Đơn Dịch Vụ (Rent Ledger)</span>
+            </div>
+            <h1 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold">
+              Thu Tiền Nhà & Hóa Đơn
+            </h1>
+            <p className="text-sm text-slate-400">
+              Kiểm soát dòng tiền thực thu hàng tháng, tiền điện nước dịch vụ và đôn đốc thanh toán đúng hạn.
+            </p>
           </div>
-          <p className="text-xs text-slate-400 font-sans">92.3% of total monthly target collected</p>
         </div>
 
-        <div className="liquid-glass p-6 space-y-2">
-          <span className="text-[10px] font-mono-tech uppercase text-slate-400">OUTSTANDING OVERDUE</span>
-          <div className="flex items-baseline justify-between">
-            <span className="text-3xl font-mono-tech font-semibold text-rose-400">$12,400</span>
-            <span className="text-xs font-mono-tech text-rose-400">2 Accounts</span>
+        {/* 3 Cashflow Highlights */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-slate-800/80">
+          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+            <div className="text-slate-400 text-xs font-mono">ĐÃ THU (THÁNG HIỆN TẠI)</div>
+            <div className="text-2xl font-serif font-bold text-emerald-400 mt-2">
+              {(totalCollectedVND / 1000000).toFixed(0)} Triệu VNĐ
+            </div>
+            <div className="text-[11px] text-slate-500 mt-1 font-mono">
+              {invoices.filter(i => i.status === 'paid').length} hóa đơn đã hoàn tất
+            </div>
           </div>
-          <p className="text-xs text-slate-400 font-sans">Requires payment reminder dispatch</p>
-        </div>
 
-        <div className="liquid-glass p-6 space-y-2">
-          <span className="text-[10px] font-mono-tech uppercase text-slate-400">AUTO-PAY ADOPTION</span>
-          <div className="flex items-baseline justify-between">
-            <span className="text-3xl font-mono-tech font-semibold text-sky-400">86.6%</span>
-            <span className="text-xs font-mono-tech text-sky-300">26 / 30 Units</span>
+          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+            <div className="text-slate-400 text-xs font-mono">CHỜ THU TRONG KỲ</div>
+            <div className="text-2xl font-serif font-bold text-amber-400 mt-2">
+              {(pendingRevenueVND / 1000000).toFixed(0)} Triệu VNĐ
+            </div>
+            <div className="text-[11px] text-slate-500 mt-1 font-mono">
+              {invoices.filter(i => i.status === 'pending').length} căn đến hạn
+            </div>
           </div>
-          <p className="text-xs text-slate-400 font-sans">Direct bank escrow auto-debit enabled</p>
-        </div>
-      </div>
 
-      {/* Filter Bar */}
-      <div className="liquid-glass p-4 flex flex-wrap items-center justify-between gap-4">
-        <div className="relative flex-1 min-w-[280px]">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-          <input
-            type="text"
-            placeholder="Search by invoice ID, unit, or tenant name..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 text-xs bg-slate-900/80 border border-slate-700/80 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500/60 font-mono-tech"
-          />
+          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+            <div className="text-slate-400 text-xs font-mono">NỢ QUÁ HẠN CẦN THU HỒI</div>
+            <div className="text-2xl font-serif font-bold text-rose-400 mt-2">
+              {(overdueRevenueVND / 1000000).toFixed(0)} Triệu VNĐ
+            </div>
+            <div className="text-[11px] text-slate-500 mt-1 font-mono">
+              {invoices.filter(i => i.status === 'overdue').length} hóa đơn quá hạn
+            </div>
+          </div>
         </div>
 
-        <div className="flex items-center gap-1 bg-slate-900/80 p-1 rounded-xl border border-slate-700/80 text-xs font-mono-tech">
-          {['all', 'paid', 'overdue'].map((st) => (
-            <button
-              key={st}
-              onClick={() => setStatusFilter(st)}
-              className={`px-3 py-1 rounded-lg capitalize transition-all ${
-                statusFilter === st
-                  ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-semibold'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              {st}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Ledger Table (Liquid Glass) */}
-      <div className="liquid-glass p-6 overflow-x-auto">
-        <table className="w-full text-left border-collapse font-mono-tech text-xs">
-          <thead>
-            <tr className="border-b border-slate-800 text-slate-400 text-[11px] uppercase tracking-wider">
-              <th className="py-3 px-4">Invoice ID</th>
-              <th className="py-3 px-4">Residence & Resident</th>
-              <th className="py-3 px-4">Billing Period</th>
-              <th className="py-3 px-4">Amount</th>
-              <th className="py-3 px-4">Payment Method</th>
-              <th className="py-3 px-4">Status</th>
-              <th className="py-3 px-4 text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-800/80">
-            {filteredInvoices.map((inv) => (
-              <tr key={inv.id} className="hover:bg-slate-900/40 transition-colors">
-                <td className="py-4 px-4 font-bold text-white text-sm">{inv.id}</td>
-                <td className="py-4 px-4">
-                  <span className="text-white block font-semibold">{inv.resident}</span>
-                  <button 
-                    onClick={() => onSelectUnit(inv.unitId)}
-                    className="text-emerald-400 hover:underline text-[11px]"
-                  >
-                    Unit {inv.unitId}
-                  </button>
-                </td>
-                <td className="py-4 px-4 text-slate-300">{inv.period}</td>
-                <td className="py-4 px-4 font-semibold text-white text-sm">
-                  ${inv.amount.toLocaleString()}
-                </td>
-                <td className="py-4 px-4 text-slate-400">{inv.method}</td>
-                <td className="py-4 px-4">
-                  {inv.status === 'paid' ? (
-                    <span className="px-2.5 py-1 text-[10px] uppercase rounded bg-emerald-950/80 text-emerald-300 border border-emerald-500/40 flex items-center gap-1 w-fit">
-                      <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-                      Paid
-                    </span>
-                  ) : (
-                    <span className="px-2.5 py-1 text-[10px] uppercase rounded bg-rose-950/80 text-rose-300 border border-rose-500/40 flex items-center gap-1 w-fit">
-                      <AlertTriangle className="w-3 h-3 text-rose-400" />
-                      Overdue
-                    </span>
-                  )}
-                </td>
-                <td className="py-4 px-4 text-right">
-                  {inv.status === 'overdue' ? (
-                    <button
-                      onClick={onOpenQuickAction}
-                      className="px-3 py-1.5 rounded-lg bg-rose-950/80 hover:bg-rose-900 text-rose-200 border border-rose-500/40 transition-all text-[11px]"
-                    >
-                      Record Payment
-                    </button>
-                  ) : (
-                    <button className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors">
-                      <Download className="w-3.5 h-3.5" />
-                    </button>
-                  )}
-                </td>
-              </tr>
+        {/* Filter Tabs */}
+        <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
+          <div className="flex items-center gap-2">
+            {[
+              { id: 'all', label: `Tất cả (${invoices.length})` },
+              { id: 'paid', label: 'Đã thanh toán' },
+              { id: 'pending', label: 'Chờ thanh toán' },
+              { id: 'overdue', label: 'Quá hạn' },
+            ].map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => setStatusFilter(tab.id)}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-mono transition-all border ${
+                  statusFilter === tab.id
+                    ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300 font-semibold'
+                    : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                {tab.label}
+              </button>
             ))}
-          </tbody>
-        </table>
+          </div>
+
+          <div className="relative">
+            <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Tìm theo tên khách, phòng, mã HĐ..."
+              className="pl-9 pr-4 py-1.5 text-xs bg-slate-900/80 border border-slate-700 rounded-xl text-slate-200 placeholder:text-slate-500 font-mono focus:outline-none focus:border-emerald-500"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Invoices Ledger Table */}
+      <div className="atmospheric-panel rounded-3xl overflow-hidden border border-slate-800 shadow-2xl">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs font-mono">
+            <thead className="bg-slate-900/90 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
+              <tr>
+                <th className="p-4">Mã Thu / Kỳ Hạn</th>
+                <th className="p-4">Người Thuê</th>
+                <th className="p-4">Căn Hộ</th>
+                <th className="p-4">Tiền Thuê</th>
+                <th className="p-4">Dịch Vụ & Điện Nước</th>
+                <th className="p-4">Tổng Thu</th>
+                <th className="p-4">Trạng Thái</th>
+                <th className="p-4 text-right">Thao Tác</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-800/60 text-slate-300">
+              {filteredInvoices.map(inv => (
+                <tr key={inv.id} className="hover:bg-slate-900/40 transition-colors">
+                  <td className="p-4">
+                    <div className="font-bold text-emerald-400">{inv.invoiceCode}</div>
+                    <div className="text-slate-500 text-[10px]">{inv.monthYear} • Hạn {inv.dueDate}</div>
+                  </td>
+                  <td className="p-4">
+                    <div className="font-serif font-bold text-slate-100 text-sm">{inv.tenantName}</div>
+                  </td>
+                  <td className="p-4 cursor-pointer" onClick={() => onSelectUnit(inv.unitId)}>
+                    <div className="font-bold text-slate-200 hover:text-emerald-400 transition-colors line-clamp-1">{inv.unitName}</div>
+                    <div className="text-slate-500">{inv.unitId}</div>
+                  </td>
+                  <td className="p-4 text-slate-200">
+                    {(inv.rentAmountVND / 1000000).toFixed(0)} Tr
+                  </td>
+                  <td className="p-4 text-slate-400">
+                    <div>DV: {(inv.serviceFeeVND / 1000000).toFixed(1)} Tr</div>
+                    <div className="text-[10px] text-slate-500">Đ/N: {(inv.electricityWaterVND / 1000000).toFixed(1)} Tr</div>
+                  </td>
+                  <td className="p-4 font-bold text-emerald-400 text-sm">
+                    {(inv.totalAmountVND / 1000000).toFixed(1)} Triệu
+                  </td>
+                  <td className="p-4">
+                    {getStatusBadge(inv.status)}
+                    {inv.paidDate && (
+                      <div className="text-[10px] text-slate-500 mt-1 font-mono">Đã thu: {inv.paidDate}</div>
+                    )}
+                  </td>
+                  <td className="p-4 text-right">
+                    {inv.status !== 'paid' ? (
+                      <button
+                        onClick={() => onMarkInvoicePaid(inv.id)}
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 text-[11px] font-mono transition-all font-semibold"
+                      >
+                        <Check className="w-3.5 h-3.5" />
+                        <span>Thu Tiền</span>
+                      </button>
+                    ) : (
+                      <span className="text-[11px] text-slate-500 font-mono">Hoàn tất</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

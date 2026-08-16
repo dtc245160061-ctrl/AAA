@@ -69,41 +69,46 @@ export function parseNaturalLanguageQuery(queryText: string): AIParsedQuery {
   // 1. City Detection
   if (normalized.includes('hanoi')) {
     filters.city = 'Hanoi';
-    classification.preferred.push('City: Hanoi');
+    classification.preferred.push('Thành phố: Hà Nội');
   } else if (normalized.includes('hcmc')) {
     filters.city = 'Ho Chi Minh City';
-    classification.preferred.push('City: Ho Chi Minh City');
+    classification.preferred.push('Thành phố: TP. Hồ Chí Minh');
   } else if (normalized.includes('danang')) {
     filters.city = 'Da Nang';
-    classification.preferred.push('City: Da Nang');
+    classification.preferred.push('Thành phố: Đà Nẵng');
   }
 
   // 2. District & Location Shorthand
   if (raw.includes('tây hồ') || raw.includes('tay ho') || raw.includes('west lake')) {
-    filters.district = 'Tay Ho';
+    filters.district = 'Tây Hồ';
     if (!filters.city) filters.city = 'Hanoi';
-    classification.preferred.push('District: Tay Ho (Hanoi)');
+    classification.preferred.push('Khu vực: Quận Tây Hồ (Hà Nội)');
   } else if (raw.includes('hoàn kiếm') || raw.includes('hoan kiem')) {
-    filters.district = 'Hoan Kiem';
+    filters.district = 'Hoàn Kiếm';
     if (!filters.city) filters.city = 'Hanoi';
-    classification.preferred.push('District: Hoan Kiem (Hanoi)');
+    classification.preferred.push('Khu vực: Quận Hoàn Kiếm (Hà Nội)');
   } else if (raw.includes('cầu giấy') || raw.includes('cau giay')) {
+    filters.district = 'Cầu Giấy';
     if (!filters.city) filters.city = 'Hanoi';
-    classification.preferred.push('Convenient access to Cau Giay workplace');
+    classification.preferred.push('Khu vực: Quận Cầu Giấy (Hà Nội)');
   } else if (raw.includes('thảo điền') || raw.includes('thao dien') || raw.includes('quận 2') || raw.includes('district 2')) {
-    filters.district = 'Thu Duc / District 2';
+    filters.district = 'Thủ Đức';
     if (!filters.city) filters.city = 'Ho Chi Minh City';
-    classification.preferred.push('District: Thao Dien / D2 (HCMC)');
+    classification.preferred.push('Khu vực: Thảo Điền / TP. Thủ Đức (TP.HCM)');
   } else if (raw.includes('quận 1') || raw.includes('district 1') || raw.includes('q1')) {
-    filters.district = 'District 1';
+    filters.district = 'Quận 1';
     if (!filters.city) filters.city = 'Ho Chi Minh City';
-    classification.preferred.push('District: District 1 (HCMC)');
+    classification.preferred.push('Khu vực: Quận 1 (TP.HCM)');
+  } else if (raw.includes('quận 7') || raw.includes('district 7') || raw.includes('q7') || raw.includes('phú mỹ hưng')) {
+    filters.district = 'Quận 7';
+    if (!filters.city) filters.city = 'Ho Chi Minh City';
+    classification.preferred.push('Khu vực: Quận 7 / Phú Mỹ Hưng (TP.HCM)');
   } else if (raw.includes('sơn trà') || raw.includes('son tra') || raw.includes('mỹ khê') || raw.includes('my khe')) {
-    filters.district = 'Son Tra';
+    filters.district = 'Sơn Trà';
     if (!filters.city) filters.city = 'Da Nang';
-    classification.preferred.push('District: Son Tra Beachfront (Da Nang)');
+    classification.preferred.push('Khu vực: Sơn Trà / Biển Mỹ Khê (Đà Nẵng)');
   } else if (raw.includes('trung tâm') || raw.includes('central')) {
-    classification.preferred.push('Convenient commute to City Center');
+    classification.preferred.push('Gần trung tâm thành phố');
   }
 
   // 3. Bedrooms Detection ("2pn", "2 phòng", "2 phong ngu", "2 vợ chồng 1 con")
@@ -111,10 +116,10 @@ export function parseNaturalLanguageQuery(queryText: string): AIParsedQuery {
   if (pnMatch) {
     const beds = parseInt(pnMatch[1], 10);
     filters.minBedrooms = beds;
-    classification.required.push(`${beds}+ Bedrooms`);
+    classification.required.push(`Từ ${beds} phòng ngủ trở lên`);
   } else if (raw.includes('vợ chồng 1 con') || raw.includes('hai vợ chồng') || raw.includes('gia đình') || raw.includes('family')) {
     filters.minBedrooms = 2;
-    classification.preferred.push('2+ Bedrooms suitable for family setup');
+    classification.preferred.push('Từ 2 phòng ngủ trở lên (phù hợp gia đình)');
   }
 
   // 4. Budget Regex (e.g. "tầm 18 củ", "dưới 20 củ", "duoi 20tr", "18m", "15 triệu")
@@ -122,60 +127,60 @@ export function parseNaturalLanguageQuery(queryText: string): AIParsedQuery {
   if (cuMatch) {
     const num = parseInt(cuMatch[2], 10);
     filters.maxRentVND = num * 1000000;
-    classification.preferred.push(`Max Budget: ~${num}M VND (${(num * 1000000 / 25000).toLocaleString('en-US')} USD)/mo`);
+    classification.preferred.push(`Ngân sách tối đa: ~${num} Triệu VNĐ/tháng`);
   }
 
   // 5. Car Parking ("oto", "đỗ xe ô tô", "de oto", "car")
   if (normalized.includes('oto') || raw.includes('car parking') || raw.includes('đỗ xe')) {
     filters.hasCarParking = true;
-    classification.required.push('Car Parking Slot Required');
+    classification.required.push('Có chỗ đỗ ô tô định danh');
   }
 
   // 6. Elevator ("thangmay", "thang máy", "elevator")
   if (normalized.includes('thangmay')) {
     filters.hasElevator = true;
-    classification.required.push('Elevator Building Access');
+    classification.required.push('Có thang máy di chuyển');
   }
 
   // 7. Floor Height Preference ("tầng cao", "không tầng thấp", "đừng tầng thấp quá")
   if (normalized.includes('tầng cao') || normalized.includes('không tầng thấp') || normalized.includes('đừng tầng thấp')) {
     filters.minFloor = 5;
-    classification.preferred.push('Higher Floors (Floor 5+)');
-    classification.avoid.push('Low Ground Floors');
+    classification.preferred.push('Tầng cao thoáng mát (Tầng 5 trở lên)');
+    classification.avoid.push('Tránh tầng thấp sát mặt đất');
   }
 
   // 8. Flooding & Monsoon Rain ("không ngập", "đừng ngập", "mưa")
   if (normalized.includes('ngập') || normalized.includes('mưa') || normalized.includes('flood')) {
     filters.floodingRisk = 'Low';
-    classification.avoid.push('Monsoon Street Flooding Risk');
+    classification.avoid.push('Tránh khu vực ngập úng khi mưa to / triều cường');
   }
 
   // 9. Quietness, Natural Light & Greenery ("yên tĩnh", "chill chill", "nhiều cây", "sáng sáng")
   if (normalized.includes('yên tĩnh') || normalized.includes('chill') || normalized.includes('cây') || normalized.includes('sáng')) {
-    classification.preferred.push('Quiet Environment, Natural Light & Greenery');
-    classification.avoid.push('Heavy Street Traffic Noise');
+    classification.preferred.push('Không gian yên tĩnh, nhiều cây xanh & ánh sáng');
+    classification.avoid.push('Tiếng ồn xe cộ đường lớn');
   }
 
   // Formatted Explanation Summary for User UI
-  let formattedSummary = `HAVEN AI understood your search preferences:\n`;
+  let formattedSummary = `Trợ lý AI HAVEN đã phân tích các tiêu chí của bạn:\n`;
   if (classification.required.length > 0) {
-    formattedSummary += `\n• REQUIRED: ${classification.required.join(' • ')}`;
+    formattedSummary += `\n• BẮT BUỘC: ${classification.required.join(' • ')}`;
   }
   if (classification.preferred.length > 0) {
-    formattedSummary += `\n• PREFERRED: ${classification.preferred.join(' • ')}`;
+    formattedSummary += `\n• ƯU TIÊN: ${classification.preferred.join(' • ')}`;
   }
   if (classification.avoid.length > 0) {
-    formattedSummary += `\n• AVOID: ${classification.avoid.join(' • ')}`;
+    formattedSummary += `\n• TRÁNH: ${classification.avoid.join(' • ')}`;
   }
 
   // Follow-up question if critical context is missing
   let followUpQuestion: string | undefined = undefined;
   if (!filters.city && !filters.district) {
-    followUpQuestion = "Which city or neighborhood are you prioritizing (e.g., Hanoi, Ho Chi Minh City, or Da Nang)?";
+    followUpQuestion = "Bạn ưu tiên tìm căn hộ tại thành phố nào (Hà Nội, TP. Hồ Chí Minh hay Đà Nẵng)?";
   } else if (!filters.maxRentVND) {
-    followUpQuestion = "What monthly budget limit in VND or USD would fit your setup best?";
+    followUpQuestion = "Mức ngân sách thuê hàng tháng phù hợp với bạn là bao nhiêu Triệu/tháng?";
   } else if (!filters.minBedrooms) {
-    followUpQuestion = "How many bedrooms do you need for your stay?";
+    followUpQuestion = "Bạn đang cần tìm căn hộ có mấy phòng ngủ?";
   }
 
   return {
@@ -193,52 +198,58 @@ export function calculateMatchScore(unit: ApartmentUnit, filters: ConsumerFilter
   let score = 100;
   const matchReasons: string[] = [];
 
+  const cityNameMap: Record<string, string> = {
+    'Hanoi': 'Hà Nội',
+    'Ho Chi Minh City': 'TP. Hồ Chí Minh',
+    'Da Nang': 'Đà Nẵng'
+  };
+
   if (filters.city && filters.city !== 'All' && unit.city !== filters.city) {
     score -= 50;
   } else if (filters.city && unit.city === filters.city) {
-    matchReasons.push(`Matches target city (${unit.city})`);
+    matchReasons.push(`Chuẩn địa điểm ${cityNameMap[unit.city] || unit.city}`);
   }
 
   if (filters.district && !unit.district.toLowerCase().includes(filters.district.toLowerCase())) {
     score -= 15;
   } else if (filters.district) {
-    matchReasons.push(`Located in target area (${unit.district})`);
+    matchReasons.push(`Nằm ngay khu vực ${unit.district}`);
   }
 
   if (filters.minBedrooms && unit.bedrooms < filters.minBedrooms) {
     score -= 30;
   } else if (filters.minBedrooms && unit.bedrooms >= filters.minBedrooms) {
-    matchReasons.push(`${unit.bedrooms} bedrooms fit your size requirement`);
+    matchReasons.push(`${unit.bedrooms} phòng ngủ đúng nhu cầu`);
   }
 
   if (filters.maxRentVND && unit.monthlyRentVND > filters.maxRentVND) {
     const diffRatio = (unit.monthlyRentVND - filters.maxRentVND) / filters.maxRentVND;
     if (diffRatio <= 0.2) {
       score -= 15;
-      matchReasons.push(`Slightly above budget (+${Math.round(diffRatio * 100)}%) but high quality match`);
+      matchReasons.push(`Cao hơn ngân sách (${Math.round(diffRatio * 100)}%) nhưng chất lượng vượt trội`);
     } else {
       score -= 35;
     }
   } else if (filters.maxRentVND && unit.monthlyRentVND <= filters.maxRentVND) {
-    matchReasons.push(`Fits target budget (${(unit.monthlyRentVND / 1000000).toFixed(0)}M VND)`);
+    matchReasons.push(`Ngân sách tối ưu (${(unit.monthlyRentVND / 1000000).toFixed(0)} Tr/tháng)`);
   }
 
   if (filters.hasCarParking && unit.hasCarParking) {
-    matchReasons.push('Guaranteed basement car parking available');
+    matchReasons.push('Có sẵn chỗ đỗ ô tô trong hầm');
   } else if (filters.hasCarParking && !unit.hasCarParking) {
     score -= 25;
   }
 
   if (filters.hasElevator && unit.hasElevator) {
-    matchReasons.push('Elevator building access');
+    matchReasons.push('Tòa nhà trang bị thang máy tốc độ cao');
   }
 
   if (filters.minFloor && unit.floor >= filters.minFloor) {
-    matchReasons.push(`Floor ${unit.floor} matches higher floor preference`);
+    matchReasons.push(`Tầng ${unit.floor} cao ráo, thoáng mát`);
   }
 
   if (filters.floodingRisk === 'Low' && unit.floodingRisk === 'Low') {
-    matchReasons.push('Low historical street flooding risk');
+    matchReasons.push('Không ngập lụt, hạ tầng cao ráo');
   }
 
   const finalScore = Math.max(35, Math.min(99, score));
@@ -251,9 +262,9 @@ export function calculateMatchScore(unit: ApartmentUnit, filters: ConsumerFilter
 export function compareApartments(units: ApartmentUnit[]): ComparisonResult {
   if (units.length === 0) {
     return {
-      headline: 'No apartments selected for comparison.',
+      headline: 'Chưa có căn hộ nào được chọn để so sánh.',
       recommendedUnitId: '',
-      reasoning: 'Please select at least 2 apartments to compare.',
+      reasoning: 'Vui lòng chọn ít nhất 2 căn hộ từ danh sách yêu thích để phân tích.',
       tradeOffs: []
     };
   }
@@ -265,22 +276,22 @@ export function compareApartments(units: ApartmentUnit[]): ComparisonResult {
     unitId: u.id,
     unitName: u.name || u.id,
     pros: [
-      `${u.bedrooms} Bedrooms, ${u.sqm} sqm layout`,
-      u.hasCarParking ? 'Dedicated car parking space' : 'Motorbike bay available',
-      `Rating: ${u.rating} ⭐ (${u.reviewCount} reviews)`,
+      `${u.bedrooms} Phòng ngủ • Diện tích ${u.sqm} m²`,
+      u.hasCarParking ? 'Có chỗ đỗ ô tô định danh' : 'Bãi đỗ xe máy rộng rãi',
+      `Đánh giá: ${u.rating} ⭐ (${u.reviewCount} lượt đánh giá)`,
       ...u.aiInsights.whyFit.slice(0, 2)
     ],
     cons: [
-      u.floodingRisk !== 'Low' ? `Flooding Risk: ${u.floodingRisk} during monsoon rains` : '',
-      u.noiseLevel === 'Busy' ? 'Located near main road with traffic noise' : '',
+      u.floodingRisk !== 'Low' ? `Nguy cơ ngập đường: Mức ${u.floodingRisk === 'Moderate' ? 'Trung bình' : 'Cao'} khi triều cường/mưa lớn` : '',
+      u.noiseLevel === 'Busy' || u.noiseLevel === 'Moderate' ? 'Mật độ xe cộ đường chính giờ tan tầm khá đông' : '',
       ...u.aiInsights.worthConsidering.slice(0, 2)
     ].filter(Boolean)
   }));
 
   return {
-    headline: `AI Recommendation: ${best.name || best.id} offers the strongest overall balance.`,
+    headline: `Gợi ý từ AI: ${best.name || best.id} là lựa chọn cân bằng và xuất sắc nhất.`,
     recommendedUnitId: best.id,
-    reasoning: `Based on location quality in ${best.district}, floor area (${best.sqm} sqm), car parking, and low environmental flood risk, ${best.name || best.id} provides the most comfortable residential experience.`,
+    reasoning: `Dựa trên vị trí đắc địa tại ${best.district}, diện tích rộng rãi (${best.sqm} m²), chỗ đỗ ô tô riêng biệt và điểm an toàn ngập lụt tối ưu, ${best.name || best.id} mang lại trải nghiệm sống tiện nghi nhất cho bạn.`,
     tradeOffs
   };
 }

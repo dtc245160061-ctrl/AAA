@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Sparkles, SlidersHorizontal, MapPin, Grid, List, Check, Bookmark, X, AlertTriangle, ShieldCheck, Car, CloudRain, Zap, RefreshCw } from 'lucide-react';
+import { Sparkles, SlidersHorizontal, MapPin, Grid, List, Check, Bookmark, AlertTriangle, ShieldCheck, Car, CloudRain, Zap, RefreshCw } from 'lucide-react';
 import type { ApartmentUnit } from '../types/apartment';
 import { type ConsumerFilters, parseNaturalLanguageQuery, calculateMatchScore } from '../services/aiAdvisorService';
 
@@ -99,7 +99,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
         if (cityFilter !== 'All' && item.unit.city !== cityFilter) return false;
         if (districtFilter && !item.unit.district.toLowerCase().includes(districtFilter.toLowerCase())) return false;
         if (bedroomsFilter > 0 && item.unit.bedrooms < bedroomsFilter) return false;
-        if (maxRentVND < 450000000 && item.unit.monthlyRentVND > maxRentVND) return false;
+        if (item.unit.monthlyRentVND > maxRentVND) return false;
         if (carParkingOnly && !item.unit.hasCarParking) return false;
         if (lowFloodOnly && item.unit.floodingRisk !== 'Low') return false;
         if (backupPowerOnly && !item.unit.hasBackupPower) return false;
@@ -118,75 +118,103 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     setLowFloodOnly(false);
     setBackupPowerOnly(false);
     setPetFriendlyOnly(false);
-    setAiPromptInput('');
     setAiUnderstoodText(null);
     setAiFollowUp(null);
+    setAiPromptInput('');
+  };
+
+  const getCityDisplayName = (city: string) => {
+    switch (city) {
+      case 'Hanoi': return 'Hà Nội';
+      case 'Ho Chi Minh City': return 'TP. Hồ Chí Minh';
+      case 'Da Nang': return 'Đà Nẵng';
+      default: return city;
+    }
   };
 
   return (
     <div className="space-y-8 pb-16 animate-in fade-in duration-300">
-      {/* Header Title */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-serif text-slate-100 tracking-tight">Explore Residences</h1>
-          <p className="text-slate-400 text-sm mt-1">Search apartments across Vietnam manually or describe your criteria to AI.</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => setViewMode(viewMode === 'grid' ? 'list' : 'grid')}
-            className="p-2.5 rounded-xl border border-slate-800 bg-slate-900/60 text-slate-300 hover:text-white transition-colors"
-            title="Toggle Grid / List View"
-          >
-            {viewMode === 'grid' ? <List className="w-4 h-4" /> : <Grid className="w-4 h-4" />}
-          </button>
-          <button
-            onClick={handleResetFilters}
-            className="px-3.5 py-2 rounded-xl border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-slate-200 text-xs font-mono transition-colors flex items-center gap-2"
-          >
-            <RefreshCw className="w-3.5 h-3.5" />
-            <span>Reset Filters</span>
-          </button>
-        </div>
-      </div>
-
-      {/* AI Natural Language Bar */}
-      <div className="rounded-2xl liquid-glass border border-emerald-500/30 p-4 space-y-3 backdrop-blur-xl shadow-xl">
-        <form onSubmit={handleAiFormSubmit} className="flex items-center gap-2">
-          <div className="pl-2 text-emerald-400">
-            <Sparkles className="w-5 h-5" />
+      {/* Top Section: AI Natural Search Header */}
+      <div className="p-6 md:p-8 rounded-3xl atmospheric-panel border border-emerald-500/30 space-y-5 shadow-2xl backdrop-blur-2xl">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
+              <Sparkles className="w-4 h-4 text-emerald-400 animate-pulse" />
+              <span>Tìm Kiếm Bằng Ngôn Ngữ Tự Nhiên & Dữ Liệu Sống</span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold">
+              Khám Phá Kho Căn Hộ Tuyển Chọn ({units.length} Căn)
+            </h2>
           </div>
-          <input
-            type="text"
-            value={aiPromptInput}
-            onChange={(e) => setAiPromptInput(e.target.value)}
-            placeholder='Describe what you need e.g. "I need a 2-bedroom in Hanoi around 16M VND, car parking, low flood risk"'
-            className="flex-1 bg-transparent border-none text-slate-100 placeholder:text-slate-400 text-sm focus:outline-none focus:ring-0 px-3 py-2"
-          />
-          <button
-            type="submit"
-            className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-medium text-xs font-mono transition-all shadow-md shadow-emerald-500/20 shrink-0"
-          >
-            Update AI Filters
-          </button>
+
+          <div className="flex items-center gap-2 self-start md:self-auto">
+            <button
+              onClick={() => setViewMode('grid')}
+              className={`p-2.5 rounded-xl border transition-all ${
+                viewMode === 'grid'
+                  ? 'bg-emerald-500/20 border-emerald-400 text-emerald-300'
+                  : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Grid className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => setViewMode('list')}
+              className={`p-2.5 rounded-xl border transition-all ${
+                viewMode === 'list'
+                  ? 'bg-emerald-500/20 border-emerald-400 text-emerald-300'
+                  : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <List className="w-4 h-4" />
+            </button>
+            <button
+              onClick={handleResetFilters}
+              title="Đặt lại bộ lọc"
+              className="p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 text-slate-400 hover:text-rose-400 transition-all flex items-center gap-1 text-xs font-mono"
+            >
+              <RefreshCw className="w-4 h-4" />
+              <span className="hidden sm:inline">Đặt lại</span>
+            </button>
+          </div>
+        </div>
+
+        {/* AI Prompt Input Form */}
+        <form onSubmit={handleAiFormSubmit} className="relative">
+          <div className="relative flex items-center rounded-2xl bg-slate-950/80 border border-emerald-500/40 p-2 shadow-xl backdrop-blur-xl group focus-within:border-emerald-400 transition-all">
+            <div className="pl-3 pr-2 text-emerald-400">
+              <Sparkles className="w-4 h-4" />
+            </div>
+            <input
+              type="text"
+              value={aiPromptInput}
+              onChange={(e) => setAiPromptInput(e.target.value)}
+              placeholder='Ví dụ: "căn 2 phòng ngủ ở Tây Hồ tầm 20 củ, có chỗ đỗ ô tô, tầng cao yên tĩnh"'
+              className="w-full bg-transparent border-none text-slate-100 placeholder:text-slate-400 text-sm focus:outline-none focus:ring-0 pr-4 py-2 font-sans"
+            />
+            <button
+              type="submit"
+              className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-medium text-xs font-mono transition-all shrink-0 hover:scale-[1.02] active:scale-[0.98]"
+            >
+              Phân Tích AI
+            </button>
+          </div>
         </form>
 
-        {/* AI Understood Banner */}
+        {/* AI Parsed Understanding Alert Box */}
         {aiUnderstoodText && (
-          <div className="p-3.5 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-xs space-y-1.5 animate-in fade-in duration-300">
-            <div className="flex items-center justify-between">
-              <span className="font-mono text-emerald-300 font-semibold flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5" /> AI Interpretation:
-              </span>
-              <button onClick={() => setAiUnderstoodText(null)} className="text-slate-400 hover:text-slate-200">
-                <X className="w-3.5 h-3.5" />
-              </button>
+          <div className="p-4 rounded-2xl bg-emerald-950/30 border border-emerald-500/40 space-y-2 text-xs">
+            <div className="flex items-center gap-2 text-emerald-400 font-mono font-medium">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>HAVEN AI đã phân tích nhu cầu:</span>
             </div>
-            <p className="text-slate-200 font-sans leading-relaxed">{aiUnderstoodText}</p>
+            <p className="text-slate-200 font-sans leading-relaxed">
+              {aiUnderstoodText}
+            </p>
             {aiFollowUp && (
-              <div className="pt-1.5 border-t border-emerald-500/20 text-sky-300 font-sans flex items-center gap-2">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-sky-400">Follow-up Tip:</span>
-                <span>{aiFollowUp}</span>
-              </div>
+              <p className="text-emerald-300/90 font-mono text-[11px] pt-1">
+                💡 Gợi ý thêm: {aiFollowUp}
+              </p>
             )}
           </div>
         )}
@@ -196,38 +224,41 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         {/* Left Filter Sidebar */}
         <div className="space-y-6 lg:col-span-1">
-          <div className="p-6 rounded-2xl bg-slate-950/70 border border-slate-800 space-y-6">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-              <h3 className="font-serif text-lg text-slate-100 flex items-center gap-2">
+          <div className="p-6 rounded-2xl atmospheric-panel border border-slate-800 space-y-6 shadow-xl">
+            <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
+              <h3 className="font-serif text-lg text-slate-100 flex items-center gap-2 font-bold">
                 <SlidersHorizontal className="w-4 h-4 text-emerald-400" />
-                <span>Search Filters</span>
+                <span>Bộ Lọc Tìm Kiếm</span>
               </h3>
-              <span className="text-xs font-mono text-slate-500">{filteredUnits.length} found</span>
+              <span className="text-xs font-mono text-emerald-400 font-semibold">{filteredUnits.length} căn hộ</span>
             </div>
 
             {/* City Filter */}
             <div className="space-y-2">
-              <label className="text-xs font-mono text-slate-400 uppercase tracking-wider">City Location</label>
+              <label className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">Thành Phố</label>
               <div className="grid grid-cols-2 gap-2">
-                {(['All', 'Hanoi', 'Ho Chi Minh City', 'Da Nang'] as const).map(c => (
-                  <button
-                    key={c}
-                    onClick={() => setCityFilter(c)}
-                    className={`px-3 py-2 rounded-xl text-xs font-mono transition-all border text-left truncate ${
-                      cityFilter === c
-                        ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300 font-semibold'
-                        : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-slate-200'
-                    }`}
-                  >
-                    {c === 'Ho Chi Minh City' ? 'HCMC' : c}
-                  </button>
-                ))}
+                {(['All', 'Hanoi', 'Ho Chi Minh City', 'Da Nang'] as const).map(c => {
+                  const label = c === 'All' ? 'Tất cả' : c === 'Hanoi' ? 'Hà Nội' : c === 'Ho Chi Minh City' ? 'TP.HCM' : 'Đà Nẵng';
+                  return (
+                    <button
+                      key={c}
+                      onClick={() => setCityFilter(c)}
+                      className={`px-3 py-2 rounded-xl text-xs font-mono transition-all border text-left truncate ${
+                        cityFilter === c
+                          ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400 font-semibold'
+                          : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200'
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
             {/* Bedrooms Filter */}
             <div className="space-y-2">
-              <label className="text-xs font-mono text-slate-400 uppercase tracking-wider">Bedrooms</label>
+              <label className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">Số Phòng Ngủ</label>
               <div className="flex items-center gap-2">
                 {[0, 1, 2, 3, 4].map(b => (
                   <button
@@ -235,11 +266,11 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                     onClick={() => setBedroomsFilter(b)}
                     className={`flex-1 py-2 rounded-xl text-xs font-mono transition-all border ${
                       bedroomsFilter === b
-                        ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300 font-semibold'
-                        : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-slate-200'
+                        ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400 font-semibold'
+                        : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200'
                     }`}
                   >
-                    {b === 0 ? 'Any' : `${b}+`}
+                    {b === 0 ? 'Tất cả' : `${b}+ PN`}
                   </button>
                 ))}
               </div>
@@ -248,35 +279,35 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
             {/* Maximum Rent VND Slider */}
             <div className="space-y-2">
               <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-slate-400 uppercase tracking-wider">Max Budget (VND)</span>
-                <span className="text-emerald-400 font-semibold">
-                  {maxRentVND >= 450000000 ? 'Any Budget' : `${(maxRentVND / 1000000).toFixed(0)}M VND`}
+                <span className="text-slate-400 uppercase tracking-wider font-semibold">Ngân Sách Tối Đa</span>
+                <span className="text-emerald-500 font-bold">
+                  {maxRentVND >= 450000000 ? 'Không giới hạn' : `${(maxRentVND / 1000000).toFixed(0)} Triệu/tháng`}
                 </span>
               </div>
               <input
                 type="range"
-                min={10000000}
+                min={8000000}
                 max={450000000}
-                step={5000000}
+                step={2000000}
                 value={maxRentVND}
                 onChange={(e) => setMaxRentVND(Number(e.target.value))}
                 className="w-full accent-emerald-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer"
               />
-              <div className="flex justify-between text-[10px] font-mono text-slate-500">
-                <span>10M VND</span>
-                <span>200M VND</span>
-                <span>450M+ VND</span>
+              <div className="flex justify-between text-[10px] font-mono text-slate-400">
+                <span>8 Tr</span>
+                <span>100 Tr</span>
+                <span>450 Tr+</span>
               </div>
             </div>
 
-            {/* Vietnam Criteria Toggles */}
-            <div className="space-y-3 pt-4 border-t border-slate-800">
-              <label className="text-xs font-mono text-slate-400 uppercase tracking-wider">Residential Features</label>
+            {/* Residential Features Toggles */}
+            <div className="space-y-3 pt-4 border-t border-slate-800/80">
+              <label className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">Tiêu Chuẩn Môi Trường</label>
 
-              <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer p-2 rounded-lg hover:bg-slate-900 transition-colors">
+              <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer p-2 rounded-lg hover:bg-slate-900/60 transition-colors">
                 <span className="flex items-center gap-2">
                   <Car className="w-3.5 h-3.5 text-sky-400" />
-                  <span>Car Parking Required</span>
+                  <span>Chỗ đỗ xe ô tô trong hầm</span>
                 </span>
                 <input
                   type="checkbox"
@@ -286,10 +317,10 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                 />
               </label>
 
-              <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer p-2 rounded-lg hover:bg-slate-900 transition-colors">
+              <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer p-2 rounded-lg hover:bg-slate-900/60 transition-colors">
                 <span className="flex items-center gap-2">
                   <CloudRain className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Low Flooding Risk Only</span>
+                  <span>Không lo ngập lụt mùa mưa</span>
                 </span>
                 <input
                   type="checkbox"
@@ -299,10 +330,10 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                 />
               </label>
 
-              <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer p-2 rounded-lg hover:bg-slate-900 transition-colors">
+              <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer p-2 rounded-lg hover:bg-slate-900/60 transition-colors">
                 <span className="flex items-center gap-2">
                   <Zap className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Full Backup Power</span>
+                  <span>Máy phát điện dự phòng 100%</span>
                 </span>
                 <input
                   type="checkbox"
@@ -312,10 +343,10 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                 />
               </label>
 
-              <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer p-2 rounded-lg hover:bg-slate-900 transition-colors">
+              <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer p-2 rounded-lg hover:bg-slate-900/60 transition-colors">
                 <span className="flex items-center gap-2">
                   <ShieldCheck className="w-3.5 h-3.5 text-purple-400" />
-                  <span>Pet Friendly Residence</span>
+                  <span>Cho phép nuôi thú cưng</span>
                 </span>
                 <input
                   type="checkbox"
@@ -331,17 +362,17 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
         {/* Right Property Results Listing */}
         <div className="lg:col-span-3 space-y-6">
           {filteredUnits.length === 0 ? (
-            <div className="p-12 text-center rounded-2xl border border-slate-800 bg-slate-950/60 space-y-4">
+            <div className="p-12 text-center rounded-2xl border border-slate-800 atmospheric-panel space-y-4">
               <AlertTriangle className="w-10 h-10 text-amber-400 mx-auto" />
-              <h3 className="text-xl font-serif text-slate-200">No Residences Match Exact Criteria</h3>
+              <h3 className="text-xl font-serif text-slate-100 font-bold">Không Tìm Thấy Căn Hộ Khớp Chính Xác</h3>
               <p className="text-sm text-slate-400 max-w-md mx-auto">
-                Try relaxing budget limits, city filters, or parking toggles, or ask AI to find alternative options.
+                Hãy thử mở rộng khoảng ngân sách, chọn thêm thành phố hoặc dùng trợ lý AI để đề xuất lựa chọn thay thế phù hợp.
               </p>
               <button
                 onClick={handleResetFilters}
-                className="px-6 py-2.5 rounded-xl bg-emerald-500 text-slate-950 font-mono text-xs font-medium"
+                className="px-6 py-2.5 rounded-xl bg-emerald-500 text-slate-950 font-mono text-xs font-medium hover:bg-emerald-400 transition-colors"
               >
-                Reset All Filters
+                Đặt Lại Toàn Bộ Bộ Lọc
               </button>
             </div>
           ) : (
@@ -351,7 +382,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                 return (
                   <div
                     key={unit.id}
-                    className={`group product-ui-card rounded-2xl overflow-hidden border border-slate-800 hover:border-emerald-500/40 transition-all duration-300 ${
+                    className={`group product-ui-card rounded-2xl overflow-hidden shadow-lg hover:-translate-y-1 ${
                       viewMode === 'list' ? 'flex flex-col sm:flex-row' : 'flex flex-col justify-between'
                     }`}
                   >
@@ -370,8 +401,8 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
 
                       <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
-                        <span className="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-emerald-500/30 text-emerald-300 text-[11px] font-mono font-medium">
-                          {score}% Match
+                        <span className="px-2.5 py-1 rounded-full bg-slate-950/85 backdrop-blur-md border border-emerald-500/30 text-emerald-300 text-[11px] font-mono font-medium always-white">
+                          {score}% Tương thích
                         </span>
                         <button
                           onClick={(e) => {
@@ -381,20 +412,20 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                           className={`p-2 rounded-full backdrop-blur-md border transition-all ${
                             isSaved
                               ? 'bg-emerald-500 border-emerald-400 text-slate-950'
-                              : 'bg-slate-950/60 border-slate-700 text-slate-300 hover:text-white'
+                              : 'bg-slate-950/60 border-slate-700 text-slate-200 hover:text-white'
                           }`}
                         >
                           <Bookmark className="w-4 h-4 fill-current" />
                         </button>
                       </div>
 
-                      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono text-slate-300">
+                      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono text-slate-200 always-white">
                         <span className="flex items-center gap-1">
                           <MapPin className="w-3.5 h-3.5 text-emerald-400" />
-                          {unit.district}, {unit.city}
+                          {unit.district}, {getCityDisplayName(unit.city)}
                         </span>
-                        <span className="px-2 py-0.5 rounded bg-slate-900/80 border border-slate-800">
-                          Fl. {unit.floor}
+                        <span className="px-2 py-0.5 rounded bg-slate-900/90 border border-slate-700">
+                          Tầng {unit.floor}
                         </span>
                       </div>
                     </div>
@@ -402,23 +433,23 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                     {/* Content Details */}
                     <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                       <div className="space-y-2 cursor-pointer" onClick={() => onSelectUnit(unit.id)}>
-                        <h3 className="font-serif text-lg text-slate-100 group-hover:text-emerald-300 transition-colors line-clamp-1">
+                        <h3 className="font-serif text-lg text-slate-100 group-hover:text-emerald-500 transition-colors line-clamp-1 font-semibold">
                           {unit.name || unit.id}
                         </h3>
 
                         <div className="flex items-center gap-3 text-xs font-mono text-slate-400">
-                          <span>{unit.bedrooms} Bedrooms</span>
+                          <span>{unit.bedrooms} Phòng ngủ</span>
                           <span>•</span>
-                          <span>{unit.bathrooms} Baths</span>
+                          <span>{unit.bathrooms} WC</span>
                           <span>•</span>
-                          <span>{unit.sqm} sqm</span>
+                          <span>{unit.sqm} m²</span>
                         </div>
                       </div>
 
                       {/* AI Match Reasons */}
-                      <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80 text-xs space-y-1">
-                        <span className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider font-semibold">
-                          AI Compatibility Highlight:
+                      <div className="p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/20 text-xs space-y-1">
+                        <span className="text-[11px] font-mono text-emerald-500 uppercase tracking-wider font-semibold">
+                          Điểm Khớp Với Tiêu Chí:
                         </span>
                         <ul className="space-y-1 text-slate-300 font-sans">
                           {matchReasons.map((reason, idx) => (
@@ -433,20 +464,20 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                       {/* Pricing & CTA */}
                       <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between">
                         <div>
-                          <div className="text-lg font-serif font-semibold text-emerald-400">
-                            {(unit.monthlyRentVND / 1000000).toFixed(0)}M VND
-                            <span className="text-xs text-slate-400 font-sans font-normal"> /mo</span>
+                          <div className="text-lg font-serif font-bold text-emerald-500">
+                            {(unit.monthlyRentVND / 1000000).toFixed(0)} Triệu
+                            <span className="text-xs text-slate-400 font-sans font-normal"> /tháng</span>
                           </div>
-                          <div className="text-[11px] font-mono text-slate-500">
-                            ~${unit.monthlyRentUSD.toLocaleString()} USD
+                          <div className="text-[11px] font-mono text-slate-400">
+                            Giá thuê niêm yết
                           </div>
                         </div>
 
                         <button
                           onClick={() => onSelectUnit(unit.id)}
-                          className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-200 text-xs font-mono transition-all duration-200"
+                          className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-200 text-xs font-mono transition-all duration-200 font-medium"
                         >
-                          View Details
+                          Xem Chi Tiết
                         </button>
                       </div>
                     </div>

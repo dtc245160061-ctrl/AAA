@@ -1,116 +1,103 @@
-# Project Handoff Document — Property Operations Platform
+# HAVEN — Project State & Architectural Handoff Context
 
-**Project Directory**: `D:\AAA`  
-**GitHub Repository**: `https://github.com/dtc245160061-ctrl/AAA` *(PRIVATE)*  
-**Production URL**: `https://aaa-jade-two.vercel.app`  
-**Current Branch**: `main`  
-**Deployment Pipeline**: GitHub → Vercel Automatic Deployment  
+> **Tài liệu bàn giao toàn diện dành cho phiên làm việc mới (New Chat Session)**
+> Cập nhật lần cuối: 16/08/2026
 
 ---
 
-## A. PROJECT OVERVIEW
+## 1. TỔNG QUAN DỰ ÁN & PRODUCT IDENTITY
 
-This application is a **React 19 + TypeScript + Vite + Tailwind CSS v4** single-page web application (SPA) built with an editorial, botanical luxury design system inspired by Origin ([useorigin.com](https://useorigin.com/)).
-
-### Core Tech Stack
-- **Frontend Framework**: React 19 + TypeScript + Vite v8.2
-- **Styling**: Vanilla CSS custom tokens + Tailwind CSS v4 (`src/index.css`)
-- **Icons**: Lucide React (`lucide-react`)
-- **Typography**: Google Fonts — `Cinzel` (Editorial Serif), `JetBrains Mono` (Technical Code), `Plus Jakarta Sans` (Body)
-- **Deployment Platform**: Vercel SPA Automatic Pipeline (`vercel.json` rewrite rule: `/(.*)` → `/index.html`)
-
-### Application Architecture
-- **Layout Shell**: `src/App.tsx` controls global theme, active module state (`dashboard`, `buildings`, `units`, `unit_detail`, `tenants`, `contracts`, `payments`, `expenses`, `maintenance`, `documents`, `reports`, `notifications`), drawer modals, and demo reset logic.
-- **Header**: `src/components/Topbar.tsx` contains UTC clock, `STAGING / DEMO` indicator, search bar, AI Copilot trigger, Quick Action button, Theme / Demo reset dropdown, and profile badge.
-- **Navigation**: `src/components/Sidebar.tsx` quiet left sidebar with active building selector and 11 module links.
-- **Domain Types & Mock Data**: `src/types/apartment.ts` and `src/data/mockData.ts`.
+* **Tên dự án**: **HAVEN** — Nền tảng Tìm kiếm & Vận hành Căn hộ Cao cấp Chuẩn Sanctuary (High-End Living & PropTech Management Platform).
+* **Vị trí thư mục gốc**: `D:\AAA`
+* **Triết lý Thiết kế (Design Direction)**:
+  * Chuẩn **Liquid Glass UI** (lấy cảm hứng từ *useorigin.com* và *10k-websites*), hiệu ứng mờ nhám `backdrop-blur-2xl`, viền phát quang ngọc lục bảo `border-emerald-500/30`, nền tối sâu `#0B0C0E` phối ánh sáng ambient dạ quang.
+  * Hỗ trợ đầy đủ **Dark / Light / System Mode** thông qua CSS Variables (`--canvas-bg`, `--panel-bg`, `--text-primary`, v.v.).
 
 ---
 
-## B. CURRENT PRODUCT DIRECTION & PENDING DECISION
+## 2. TECH STACK & CƠ CẤU THƯ VIỆN
 
-> [!IMPORTANT]
-> **CRITICAL UNRESOLVED QUESTION — PRODUCT DIRECTION**
-> 
-> The application is currently built as a **Property Operations / Property Management System** for property managers and building operations teams (B2B Admin Dashboard).
-> 
-> However, stakeholder / teacher feedback suggests that the actual requirement for this project might be an **Apartment Rental Marketplace** (similar to Airbnb), where end users search for apartments by city/dates/guests, browse listings, view unit details, and book/rent residences.
-> 
-> **Instructions for the Next Agent**:
-> 1. **Do NOT delete or pivot the existing code architecture** until the product direction is officially confirmed by the user/stakeholder.
-> 2. If the user confirms a pivot to **Apartment Rental Marketplace**, **DO NOT start from scratch**. Reuse the existing UI components (`UnitsView`, `UnitDetailView`, hero assets, Liquid Glass surfaces, and mock datasets).
+* **Core**: React 19, TypeScript 5.x, Vite 8.x.
+* **Styling**: Tailwind CSS v4, Vanilla CSS Custom Design Tokens (`src/index.css`).
+* **Icons**: `lucide-react`.
+* **State Management**: Reactive Central Store (`src/data/apartmentStore.ts`) đồng bộ tự động với `localStorage`, đảm bảo tương tác 2 chiều mượt mà giữa khách thuê (Consumer) và ban quản lý (Admin).
+* **Deployment**: GitHub `main` branch $\rightarrow$ Vercel Auto-Deployment CI/CD.
 
 ---
 
-## C. COMPLETED FEATURES
+## 3. QUYẾT ĐỊNH KIẾN TRÚC ĐÃ CHỐT (ARCHITECTURAL DECISIONS)
 
-The following features exist and are fully implemented in the code:
+### A. Phân Tách Hai Phân Hệ Sạch Sẽ (Consumer vs Admin)
+1. **Giao diện Khách Thuê (HAVEN Consumer)** — `http://localhost:5173/` hoặc `?view=user`:
+   * `user_home`: Hero cinematic, Bộ lọc phong cách sống (Lifestyle Tuning Dials), Thẻ thành phố & Căn hộ tiêu biểu.
+   * `user_search`: Tìm kiếm & lọc đa tiêu chí (giá, số phòng, tầng, hướng ban công).
+   * `user_detail`: Xem chi tiết căn hộ, thư viện ảnh, phân tích rủi ro môi trường (vi khí hậu, ngập lụt, điện dự phòng), nút Chat trực tiếp và Đặt lịch xem phòng.
+   * `user_compare`: Ma trận so sánh trực quan các căn đã lưu.
+   * `user_subscriptions`: Giao diện **Hội Viên Cư Dân (Resident Prime Club)** với đặc quyền 0đ tiền cọc và dọn phòng định kỳ.
+   * `user_services`: **Chợ Tiện Ích Đời Sống (VAS Marketplace)** đặt dọn dẹp, chuyển nhà, khóa cửa IoT, bảo hiểm.
 
-1. **Dashboard** (`src/components/DashboardView.tsx`): Hero landscape photograph with gradient overlay, operational telemetry band, revenue growth chart, maintenance queue, expiring lease list, and activity feed.
-2. **Buildings** (`src/components/BuildingsView.tsx`): Building overview with an **Interactive Floor Elevation Matrix** (visual grid from Floor 24 down to Floor 1 with color-coded unit statuses).
-3. **Apartments / Units** (`src/components/UnitsView.tsx`): Searchable & filterable unit directory (Grid & Table list toggle, floor/status filters) with direct links to inspect unit details.
-4. **Tenants / Residents** (`src/components/TenantsView.tsx`): Verified resident directory with profile cards, contact info, lease dates, auto-pay badges, and unit links.
-5. **Lease Contracts** (`src/components/ContractsView.tsx`): Agreement lifecycle manager, deposit escrow tracking, 60-day expiration alerts, and renewal actions.
-6. **Rent & Collections** (`src/components/PaymentsView.tsx`): Invoicing ledger, target collection velocity metrics, paid/pending/overdue filters, and payment recording.
-7. **Property Expenses** (`src/components/ExpensesView.tsx`): Categorized expense logging, vendor audit breakdown, and monthly budget progress.
-8. **Work Orders** (`src/components/MaintenanceView.tsx`): Dispatch hub with Kanban Board (Open / In Progress / Resolved) and Table view toggle, status mutations, and technician assignment.
-9. **Documents Library** (`src/components/DocumentsView.tsx`): Centralized repository for signed leases, resident IDs, receipts, and building bylaws with download CTAs.
-10. **Analytics Reports** (`src/components/ReportsView.tsx`): Executive cash flow velocity SVG chart and NOI metrics workspace.
-11. **Alerts Center** (`src/components/AlertsView.tsx`): Operational notification center with unread/read toggles and deep links to units.
-12. **AI Copilot Drawer** (`src/components/AiCopilotDrawer.tsx`): Interactive assistant drawer answering operational queries ("Show overdue rent", "Which leases expire in 60 days?", "Show unresolved maintenance issues", "Give me a summary of PH-2401").
-13. **Quick Action Dispatcher** (`src/components/QuickActionModal.tsx`): Modal form for state mutations (Record Payment, Add Resident, Create Lease, Log Work Order).
-14. **Signature Unit Detail View** (`src/components/UnitDetailView.tsx`): Penthouse Sky Residence profile with 5 Liquid Glass tabs (`Resident Spotlight`, `Climate & IoT`, `Payment Ledger`, `Work Orders`, `Documents`).
-15. **Global Theme System**: Dark, Light, and System modes with `localStorage` persistence and `prefers-color-scheme` reactive auto-detection.
-16. **Liquid Glass System**: Custom backdrop-blurred optical surfaces (`.liquid-glass`, `.atmospheric-panel`, `.product-ui-card`).
-17. **Approved Visual Identity**: Natural botanical landscape photograph (`public/images/property-hero.png`).
-18. **Demo Reset Action**: Topbar menu action to clear local state and restore initial mock data.
+2. **Giao diện Quản Trị & Vận Hành (HAVEN Admin & Operations)** — `http://localhost:5173/?view=admin`:
+   * `dashboard`: Báo cáo tài chính, tỷ lệ lấp đầy, biểu đồ dòng tiền & KPI vận hành.
+   * `units`: Quản lý kho căn hộ và tình trạng phòng (*Trống / Đang thuê / Bảo trì*).
+   * `leads`: Quản lý yêu cầu thuê & đặt lịch xem nhà từ web khách.
+   * `inbox`: **Hộp thư Chat 2 chiều (Shopee-Style Messaging Hub)** với khách thuê, tích hợp mẫu trả lời nhanh và 1-Click lập hợp đồng.
+   * `contracts`: Quản lý hợp đồng thuê, tính hoa hồng sàn, kích hoạt hợp đồng mới.
+   * `billing`: Quản lý hóa đơn thu tiền nhà, tính phí bảo chứng take-rate 5%.
+   * `subscriptions`: **Ma trận định giá SaaS** (Starter 0đ, Pro 499k, Enterprise 1.999k) và phân tích cơ cấu doanh thu.
+   * `services`: Quản lý đơn dịch vụ gia tăng và lịch hẹn của cư dân.
 
----
-
-## D. CURRENT VISUAL DIRECTION
-
-- **Identity**: *"Luxury residential nature + editorial technology + real operational precision."*
-- **Color Palette**: Deep natural forest green (`#10B981`), sky blue (`#0284C7`), warm off-white canvas in Light Mode (`#F5F7F6`), dark slate canvas in Dark Mode (`#0A0D12`).
-- **Typography**: `Cinzel` serif display headlines, `JetBrains Mono` technical data, `Plus Jakarta Sans` body.
-- **Light Mode Status**: Implemented across all 11 modules, but requires further refinement to eliminate subtle dark mode visual biases on certain borders and badges.
-- **Visual Richness**: Dashboard and `PH-2401` Penthouse view are highly art-directed; secondary modules should be audited to ensure consistent visual polish.
+3. **Hệ Thống Developer Preview Độc Lập**:
+   * Toàn bộ logic preview được cô lập trong `src/devtools/preview/DevPreviewLauncher.tsx` (nằm gọn ở góc trái dưới màn hình), không làm ô nhiễm Topbar/Sidebar chính của sản phẩm.
 
 ---
 
-## E. DEPLOYMENT WORKFLOW
+## 4. TÍNH NĂNG ĐÃ HOÀN THÀNH & KIỂM THỬ THỰC TẾ
 
-- **Pipeline**: `Local Code` → `Git Commit` → `git push origin main` → `GitHub PRIVATE repo` → `Vercel Automatic Deployment` → `Production URL`.
-- **Production URL**: [https://aaa-jade-two.vercel.app](https://aaa-jade-two.vercel.app)
-- **Rule**: Do **NOT** run `npx vercel --prod` for normal development. Automatic deployment triggers on `git push origin main`.
-- **Publishing Rule**: Only push/deploy when the user explicitly requests *"PUBLISH CURRENT BUILD"*.
+1. **Shopee-Style In-App Chat & Auto-Reply Bot**:
+   * Nút chat trực tiếp trên trang chi tiết căn hộ [`UserUnitDetailView.tsx`](file:///d:/AAA/src/components/UserUnitDetailView.tsx).
+   * Khung chat nổi [`ChatModal.tsx`](file:///d:/AAA/src/components/ChatModal.tsx) có sẵn Quick Chips (*"📅 Xem lịch phòng còn trống"*, *"💰 Tiền cọc & Điều khoản thuê"*, *"🚗 Chỗ đỗ ô tô"*).
+   * Bot tự động trả lời thông minh sau 800ms dựa theo ngữ cảnh.
+   * Hộp thư quản trị 2 cột [`AdminInboxView.tsx`](file:///d:/AAA/src/components/AdminInboxView.tsx) cho chủ nhà trả lời và tạo hợp đồng trực tiếp từ chat.
 
----
+2. **Cơ Cấu Tạo Doanh Thu PropTech Thương Mại (Monetization Engine)**:
+   * **Phí môi giới chốt khách**: 50% - 100% tiền nhà tháng đầu.
+   * **Thuê bao SaaS hàng tháng (MRR)**: Gói Pro 499.000đ/tháng, Enterprise 1.999.000đ/tháng.
+   * **Phí giao dịch bảo chứng (Take-Rate)**: 5% trên mỗi hóa đơn thu tiền thuê.
+   * **Hoa hồng dịch vụ gia tăng (VAS)**: 15% - 20% chiết khấu từ các đối tác vệ sinh buồng phòng, HAVEN Move, khóa thông minh IoT, bảo hiểm cháy nổ.
 
-## F. TESTING & TEAM ACCESS
+3. **Vòng Đời Thuê Nhà 5 Trụ Cột Hoàn Chỉnh (Full Rental Lifecycle)**:
+   * Khách gửi Inquiry $\rightarrow$ Tạo Lead mới $\rightarrow$ Chủ nhà duyệt lịch $\rightarrow$ Chuyển thành Hợp đồng $\rightarrow$ Căn hộ tự đổi sang trạng thái *Đang thuê* $\rightarrow$ Tự sinh Hóa đơn thu tiền.
 
-- **Staging / Demo URL**: [https://aaa-jade-two.vercel.app](https://aaa-jade-two.vercel.app)
-- **Tester Permissions**: Teammates access the website as end-user testers. The GitHub repository remains **PRIVATE**, and testers have **NO write access** to the source code.
-- **Demo Data Behavior**: Uses frontend mock dataset with in-memory and `localStorage` persistence. Testers can click **Reset Demo Data** in the topbar dropdown to restore initial mock data anytime.
-
----
-
-## G. KNOWN ISSUES & OPEN QUESTIONS
-
-1. **Product Direction**: Unresolved choice between Property Management System (B2B Admin) vs. Apartment Rental Marketplace (B2C Airbnb-style).
-2. **Rental Marketplace Flow**: If pivoting, primary user journeys (search by city/dates/guests, booking flow) need to be defined.
-3. **Light Mode Polish**: Further visual polish needed on light mode contrasts, borders, and input controls.
-4. **Visual Richness**: Secondary modules require auditing to match the visual depth of the Dashboard.
-5. **Backend Data Scope**: No production database, authentication service, or payment gateway backend exists; the app operates entirely on a structured frontend mock dataset.
+4. **Trợ Lý AI Tìm Nhà Thông Minh (User AI Advisor)**:
+   * Ngăn kéo trượt [`UserAiAdvisorDrawer.tsx`](file:///d:/AAA/src/components/UserAiAdvisorDrawer.tsx) phân tích nhu cầu bằng tiếng Việt tự nhiên và trích xuất căn hộ phù hợp nhất.
 
 ---
 
-## H. NEXT RECOMMENDED STEPS
+## 5. CẤU TRÚC FILE CHÍNH CẦN NẮM
 
-1. **Clarify Product Direction**: Confirm with the user/stakeholder whether to maintain Property Operations Management or pivot to an Apartment Rental Marketplace.
-2. **If Pivoting to Marketplace**:
-   - Re-architect primary user journeys (Search bar for City/Dates/Guests, Listing Cards, Booking Flow).
-   - Maximize code reuse (`UnitsView`, `UnitDetailView`, Liquid Glass components, mock data).
-3. **If Maintaining Management System**:
-   - Refine Light Mode contrast and visual consistency across secondary modules.
-   - Audit interactive forms and AI Copilot responses.
-4. **Deploy Control**: Only execute `git push origin main` when the user asks to *"PUBLISH CURRENT BUILD"*.
+* `src/App.tsx`: Bộ điều phối view trung tâm, quản lý state và popup modals.
+* `src/types/apartment.ts`: Định nghĩa toàn bộ Data Models (Units, Leads, Contracts, Invoices, Chat, Subscriptions, Services).
+* `src/data/apartmentStore.ts`: Store trung tâm quản lý CRUD và lưu trữ `localStorage`.
+* `src/components/Sidebar.tsx` & `Topbar.tsx`: Thanh điều hướng phân hệ thông minh kèm badges đếm số lượng tin nhắn chưa đọc / leads mới.
+* `src/components/ChatModal.tsx`: Popup chat Shopee-style dành cho khách thuê.
+* `src/components/AdminInboxView.tsx`: Trung tâm xử lý tin nhắn dành cho ban quản trị.
+* `src/components/SubscriptionsView.tsx`: Bảng giá SaaS và phân tích mô hình kinh doanh.
+* `src/components/ServicesMarketplaceView.tsx`: Sàn tiện ích đời sống & dịch vụ cư dân.
+* `src/devtools/preview/DevPreviewLauncher.tsx`: Công cụ chuyển đổi môi trường kiểm thử cho lập trình viên.
+
+---
+
+## 6. ĐỀ XUẤT HƯỚNG PHÁT TRIỂN TIẾP THEO (NEXT STEPS)
+
+1. **Dynamic Code-Splitting (React.lazy / Suspense)**:
+   * Tách các module lớn (`AdminInboxView`, `SubscriptionsView`, `ServicesMarketplaceView`) để tối ưu kích thước bundle JavaScript dưới 400kB.
+2. **Ký Hợp Đồng Điện Tử Trực Tiếp (E-Signature Canvas)**:
+   * Tích hợp khung vẽ chữ ký điện tử trực tiếp trên màn hình khi chủ nhà/khách thuê ký hợp đồng tại `ContractsView`.
+3. **Xuất Bản Hợp Đồng & Hóa Đơn Ra File PDF (jsPDF / html2canvas)**:
+   * Hỗ trợ tải về bản hợp đồng thuê nhà chuẩn pháp lý và phiếu thu tiền có mộc điện tử.
+4. **Mô Phỏng WebSocket / Webhook Real-Time**:
+   * Tạo cơ chế giả lập nhận tin nhắn từ nhiều người dùng ảo để trình diễn live-demo.
+
+---
+
+> 🚀 **Ghi chú**: Dự án đã được build thành công (`npm run build` pass 100%), không có lỗi TypeScript hay linter. Mọi thứ đã sẵn sàng để tiếp tục phát triển trong phiên chat mới!

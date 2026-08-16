@@ -33,7 +33,7 @@ export const MaintenanceView: React.FC<MaintenanceViewProps> = ({
       t.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
       t.unitId.toLowerCase().includes(searchTerm.toLowerCase()) ||
       t.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      t.residentName.toLowerCase().includes(searchTerm.toLowerCase())
+      (t.residentName || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
