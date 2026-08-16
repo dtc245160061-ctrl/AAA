@@ -18,6 +18,7 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
   units,
   onSelectUnit,
   onUpdateUnitStatus,
+  onOpenQuickAction
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [cityFilter, setCityFilter] = useState<'All' | 'Hanoi' | 'Ho Chi Minh City' | 'Da Nang'>('All');
@@ -67,8 +68,15 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
             </p>
           </div>
 
-          {/* Quick Metrics */}
-          <div className="flex items-center gap-2 font-mono text-xs">
+          {/* Quick Metrics & AI Listing Button */}
+          <div className="flex items-center gap-2 font-mono text-xs flex-wrap">
+            <button
+              onClick={onOpenQuickAction}
+              className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold shadow-lg shadow-emerald-500/25 transition-all flex items-center gap-1.5 hover:scale-105"
+            >
+              <span className="text-sm">✨</span>
+              <span>Đăng Tin Mới Bằng AI</span>
+            </button>
             <span className="px-3 py-1.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               {vacantCount} Trống
             </span>

@@ -5,9 +5,11 @@ import {
   Phone, 
   Search,
   Download,
-  X
+  X,
+  PenTool
 } from 'lucide-react';
 import type { LeaseContract, ContractStatus, ApartmentUnit } from '../types/apartment';
+import { SignContractModal } from './SignContractModal';
 
 interface ContractsViewProps {
   contracts: LeaseContract[];
@@ -28,6 +30,7 @@ export const ContractsView: React.FC<ContractsViewProps> = ({
   onClearLeadContractData,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(!!initialLeadContractData);
+  const [signingContract, setSigningContract] = useState<LeaseContract | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
 
@@ -189,13 +192,24 @@ export const ContractsView: React.FC<ContractsViewProps> = ({
                   </td>
                   <td className="p-4">{getStatusBadge(contract.status)}</td>
                   <td className="p-4 text-right">
-                    <button
-                      onClick={() => alert(`Xem file điện tử hợp đồng: ${contract.contractNumber}`)}
-                      className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
-                      title="Xem & Tải Hợp Đồng"
-                    >
-                      <Download className="w-4 h-4" />
-                    </button>
+                    <div className="flex items-center justify-end gap-2">
+                      <button
+                        onClick={() => setSigningContract(contract)}
+                        className="px-3 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-slate-950 text-xs font-mono font-bold border border-emerald-500/40 transition-all flex items-center gap-1 shadow-sm"
+                        title="Vẽ chữ ký điện tử trên màn hình"
+                      >
+                        <PenTool className="w-3.5 h-3.5" />
+                        <span>Ký Số E-Sign</span>
+                      </button>
+
+                      <button
+                        onClick={() => alert(`Xem file điện tử hợp đồng: ${contract.contractNumber}`)}
+                        className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
+                        title="Xem & Tải Hợp Đồng"
+                      >
+                        <Download className="w-4 h-4" />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -374,6 +388,19 @@ export const ContractsView: React.FC<ContractsViewProps> = ({
             </form>
           </div>
         </div>
+      )}
+
+      {/* Interactive E-Signature Modal */}
+      {signingContract && (
+        <SignContractModal
+          contract={signingContract}
+          isOpen={!!signingContract}
+          onClose={() => setSigningContract(null)}
+          onConfirmSign={(_, hash) => {
+            alert(`✅ Ký số thành công cho hợp đồng ${signingContract.contractNumber}!\n🔒 Mã bảo chứng băm: ${hash}`);
+            setSigningContract(null);
+          }}
+        />
       )}
     </div>
   );

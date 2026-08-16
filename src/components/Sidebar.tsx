@@ -13,6 +13,11 @@ import {
   MessageSquare,
   Crown,
   ShoppingBag,
+  Layers,
+  ClipboardCheck,
+  Compass,
+  FolderLock,
+  Activity,
   type LucideIcon
 } from 'lucide-react';
 
@@ -47,7 +52,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const userNavItems: NavItem[] = [
     { id: 'user_home', label: 'Trang Chủ HAVEN', icon: Home },
     { id: 'user_search', label: 'Tìm Kiếm Căn Hộ', icon: Search },
-    { id: 'user_compare', label: `Đã Lưu & So Sánh (${savedCount})`, icon: Bookmark },
+    { id: 'user_neighborhoods', label: 'Cẩm Nang Khu Vực', icon: Compass },
+    { id: 'user_map', label: 'Bản Đồ An Tâm (PCCC/Ngập)', icon: Layers },
+    { id: 'user_compare', label: `Đấu Trường So Sánh (${savedCount})`, icon: Bookmark },
+    { id: 'user_checklist', label: 'Biên Bản Bàn Giao (15 Mục)', icon: ClipboardCheck },
+    { id: 'user_documents', label: 'Kho Tài Liệu & Hợp Đồng', icon: FolderLock },
     { id: 'user_services', label: 'Dịch Vụ Cư Dân (VAS)', icon: ShoppingBag },
     { id: 'user_subscriptions', label: 'Hội Viên Prime Club (0đ Cọc)', icon: Crown },
   ];
@@ -69,6 +78,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
     },
     { id: 'contracts', label: 'Hợp Đồng Cho Thuê', icon: FileText },
     { id: 'billing', label: 'Thu Tiền & Hóa Đơn', icon: Receipt },
+    { id: 'admin_health', label: 'Kiểm Duyệt & Sức Khỏe Sàn', icon: Activity },
+    { id: 'admin_documents', label: 'Kho Pháp Lý & PCCC', icon: FolderLock },
     { id: 'subscriptions', label: 'Gói SaaS Quản Trị', icon: Crown },
     { id: 'services', label: 'Chợ Dịch Vụ Gia Tăng', icon: ShoppingBag },
   ];

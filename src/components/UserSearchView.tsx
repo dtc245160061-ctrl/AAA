@@ -1,5 +1,23 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Sparkles, SlidersHorizontal, MapPin, Grid, List, Check, Bookmark, AlertTriangle, ShieldCheck, Car, CloudRain, Zap, RefreshCw } from 'lucide-react';
+import { 
+  Sparkles, 
+  SlidersHorizontal, 
+  MapPin, 
+  Grid, 
+  List, 
+  Check, 
+  Bookmark, 
+  AlertTriangle, 
+  ShieldCheck, 
+  Car, 
+  CloudRain, 
+  Zap, 
+  RefreshCw, 
+  Calculator, 
+  Flame, 
+  Star, 
+  CheckCircle2 
+} from 'lucide-react';
 import type { ApartmentUnit } from '../types/apartment';
 import { type ConsumerFilters, parseNaturalLanguageQuery, calculateMatchScore } from '../services/aiAdvisorService';
 
@@ -27,11 +45,15 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
   const [cityFilter, setCityFilter] = useState<'All' | 'Hanoi' | 'Ho Chi Minh City' | 'Da Nang'>('All');
   const [districtFilter, setDistrictFilter] = useState<string>('');
   const [bedroomsFilter, setBedroomsFilter] = useState<number>(0);
+  const [filterMode, setFilterMode] = useState<'baseRent' | 'trueCost'>('trueCost'); // Default to True Cost
   const [maxRentVND, setMaxRentVND] = useState<number>(450000000); // 450M max default
+  const [maxTrueCostVND, setMaxTrueCostVND] = useState<number>(480000000);
   const [carParkingOnly, setCarParkingOnly] = useState<boolean>(false);
   const [lowFloodOnly, setLowFloodOnly] = useState<boolean>(false);
   const [backupPowerOnly, setBackupPowerOnly] = useState<boolean>(false);
   const [petFriendlyOnly, setPetFriendlyOnly] = useState<boolean>(false);
+  const [pcccCertifiedOnly, setPcccCertifiedOnly] = useState<boolean>(false);
+  const [verifiedLandlordOnly, setVerifiedLandlordOnly] = useState<boolean>(false);
 
   // Process initial AI query on mount if passed
   useEffect(() => {
@@ -57,6 +79,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     }
     if (parsed.extractedFilters.maxRentVND) {
       setMaxRentVND(parsed.extractedFilters.maxRentVND);
+      setMaxTrueCostVND(Math.round(parsed.extractedFilters.maxRentVND * 1.15));
     }
     if (parsed.extractedFilters.hasCarParking) {
       setCarParkingOnly(true);
@@ -99,25 +122,55 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
         if (cityFilter !== 'All' && item.unit.city !== cityFilter) return false;
         if (districtFilter && !item.unit.district.toLowerCase().includes(districtFilter.toLowerCase())) return false;
         if (bedroomsFilter > 0 && item.unit.bedrooms < bedroomsFilter) return false;
-        if (item.unit.monthlyRentVND > maxRentVND) return false;
+        
+        // Filter by True Cost or Base Rent
+        if (filterMode === 'trueCost') {
+          const totalCost = item.unit.trueCost?.totalMonthlyEstimatedVND || item.unit.monthlyRentVND;
+          if (totalCost > maxTrueCostVND) return false;
+        } else {
+          if (item.unit.monthlyRentVND > maxRentVND) return false;
+        }
+
         if (carParkingOnly && !item.unit.hasCarParking) return false;
         if (lowFloodOnly && item.unit.floodingRisk !== 'Low') return false;
         if (backupPowerOnly && !item.unit.hasBackupPower) return false;
         if (petFriendlyOnly && !item.unit.petFriendly) return false;
+        if (pcccCertifiedOnly && item.unit.pcccReport?.inspectionCertificateStatus !== 'certified') return false;
+        if (verifiedLandlordOnly && item.unit.verificationLevel === 'unverified') return false;
+
         return true;
       })
       .sort((a, b) => b.score - a.score);
-  }, [units, activeFiltersObj, cityFilter, districtFilter, bedroomsFilter, maxRentVND, carParkingOnly, lowFloodOnly, backupPowerOnly, petFriendlyOnly]);
+  }, [
+    units, 
+    activeFiltersObj, 
+    cityFilter, 
+    districtFilter, 
+    bedroomsFilter, 
+    filterMode, 
+    maxRentVND, 
+    maxTrueCostVND, 
+    carParkingOnly, 
+    lowFloodOnly, 
+    backupPowerOnly, 
+    petFriendlyOnly,
+    pcccCertifiedOnly,
+    verifiedLandlordOnly
+  ]);
 
   const handleResetFilters = () => {
     setCityFilter('All');
     setDistrictFilter('');
     setBedroomsFilter(0);
+    setFilterMode('trueCost');
     setMaxRentVND(450000000);
+    setMaxTrueCostVND(480000000);
     setCarParkingOnly(false);
     setLowFloodOnly(false);
     setBackupPowerOnly(false);
     setPetFriendlyOnly(false);
+    setPcccCertifiedOnly(false);
+    setVerifiedLandlordOnly(false);
     setAiUnderstoodText(null);
     setAiFollowUp(null);
     setAiPromptInput('');
@@ -129,6 +182,31 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
       case 'Ho Chi Minh City': return 'TP. Hồ Chí Minh';
       case 'Da Nang': return 'Đà Nẵng';
       default: return city;
+    }
+  };
+
+  const renderVerificationBadge = (level?: string) => {
+    switch (level) {
+      case 'full_ownership_verified':
+        return (
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-950/90 border border-emerald-400 text-emerald-300 text-[10px] font-mono font-bold backdrop-blur-md shadow-lg shadow-emerald-500/20">
+            <ShieldCheck className="w-3 h-3 text-emerald-400 shrink-0" />
+            <span>✓✓ Sổ Đỏ & Ảnh Thật</span>
+          </span>
+        );
+      case 'id_verified':
+        return (
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-sky-950/90 border border-sky-400 text-sky-300 text-[10px] font-mono font-bold backdrop-blur-md shadow-lg">
+            <CheckCircle2 className="w-3 h-3 text-sky-400 shrink-0" />
+            <span>✓ Xác Minh CCCD</span>
+          </span>
+        );
+      default:
+        return (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-900/90 border border-slate-700 text-slate-400 text-[10px] font-mono">
+            <span>Chờ Xác Minh</span>
+          </span>
+        );
     }
   };
 
@@ -276,56 +354,141 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
               </div>
             </div>
 
-            {/* Maximum Rent VND Slider */}
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-slate-400 uppercase tracking-wider font-semibold">Ngân Sách Tối Đa</span>
-                <span className="text-emerald-500 font-bold">
-                  {maxRentVND >= 450000000 ? 'Không giới hạn' : `${(maxRentVND / 1000000).toFixed(0)} Triệu/tháng`}
-                </span>
+            {/* Budget & True Cost Filter Toggle */}
+            <div className="space-y-3 pt-2">
+              <div className="flex items-center justify-between">
+                <label className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">Chế Độ Ngân Sách</label>
+                <div className="flex p-0.5 rounded-lg bg-slate-900 border border-slate-800 text-[10px] font-mono">
+                  <button
+                    onClick={() => setFilterMode('trueCost')}
+                    className={`px-2 py-1 rounded-md transition-all ${
+                      filterMode === 'trueCost'
+                        ? 'bg-emerald-500 text-slate-950 font-bold shadow'
+                        : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                  >
+                    Tổng Chi Phí Thật
+                  </button>
+                  <button
+                    onClick={() => setFilterMode('baseRent')}
+                    className={`px-2 py-1 rounded-md transition-all ${
+                      filterMode === 'baseRent'
+                        ? 'bg-emerald-500 text-slate-950 font-bold shadow'
+                        : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                  >
+                    Giá Thuê Gốc
+                  </button>
+                </div>
               </div>
-              <input
-                type="range"
-                min={8000000}
-                max={450000000}
-                step={2000000}
-                value={maxRentVND}
-                onChange={(e) => setMaxRentVND(Number(e.target.value))}
-                className="w-full accent-emerald-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer"
-              />
-              <div className="flex justify-between text-[10px] font-mono text-slate-400">
-                <span>8 Tr</span>
-                <span>100 Tr</span>
-                <span>450 Tr+</span>
-              </div>
+
+              {filterMode === 'trueCost' ? (
+                <div className="space-y-2 p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/30">
+                  <div className="flex items-center justify-between text-xs font-mono">
+                    <span className="text-emerald-400 font-semibold flex items-center gap-1">
+                      <Calculator className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Tổng CP Tối Đa:</span>
+                    </span>
+                    <span className="text-emerald-400 font-bold">
+                      {maxTrueCostVND >= 480000000 ? 'Không giới hạn' : `${(maxTrueCostVND / 1000000).toFixed(0)} Triệu/tháng`}
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min={10000000}
+                    max={480000000}
+                    step={2000000}
+                    value={maxTrueCostVND}
+                    onChange={(e) => setMaxTrueCostVND(Number(e.target.value))}
+                    className="w-full accent-emerald-400 bg-slate-800 h-1.5 rounded-lg cursor-pointer"
+                  />
+                  <div className="flex justify-between text-[10px] font-mono text-slate-400">
+                    <span>10 Tr</span>
+                    <span>120 Tr</span>
+                    <span>480 Tr+</span>
+                  </div>
+                  <p className="text-[10px] font-mono text-slate-400 pt-1 leading-tight">
+                    💡 Đã gồm: Tiền thuê + Điện nước ước tính + Internet + Phí QL + Gửi xe.
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-xs font-mono">
+                    <span className="text-slate-400 uppercase tracking-wider font-semibold">Giá Thuê Tối Đa</span>
+                    <span className="text-emerald-400 font-bold">
+                      {maxRentVND >= 450000000 ? 'Không giới hạn' : `${(maxRentVND / 1000000).toFixed(0)} Triệu/tháng`}
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min={8000000}
+                    max={450000000}
+                    step={2000000}
+                    value={maxRentVND}
+                    onChange={(e) => setMaxRentVND(Number(e.target.value))}
+                    className="w-full accent-emerald-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer"
+                  />
+                  <div className="flex justify-between text-[10px] font-mono text-slate-400">
+                    <span>8 Tr</span>
+                    <span>100 Tr</span>
+                    <span>450 Tr+</span>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Residential Features Toggles */}
             <div className="space-y-3 pt-4 border-t border-slate-800/80">
-              <label className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">Tiêu Chuẩn Môi Trường</label>
+              <label className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">Tiêu Chuẩn An Toàn & Môi Trường</label>
 
               <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer p-2 rounded-lg hover:bg-slate-900/60 transition-colors">
                 <span className="flex items-center gap-2">
-                  <Car className="w-3.5 h-3.5 text-sky-400" />
-                  <span>Chỗ đỗ xe ô tô trong hầm</span>
+                  <Flame className="w-3.5 h-3.5 text-rose-400" />
+                  <span>Đã nghiệm thu an toàn PCCC</span>
                 </span>
                 <input
                   type="checkbox"
-                  checked={carParkingOnly}
-                  onChange={(e) => setCarParkingOnly(e.target.checked)}
+                  checked={pcccCertifiedOnly}
+                  onChange={(e) => setPcccCertifiedOnly(e.target.checked)}
                   className="rounded border-slate-700 bg-slate-900 text-emerald-500 focus:ring-emerald-500/20"
                 />
               </label>
 
               <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer p-2 rounded-lg hover:bg-slate-900/60 transition-colors">
                 <span className="flex items-center gap-2">
-                  <CloudRain className="w-3.5 h-3.5 text-emerald-400" />
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Chủ nhà đã xác minh uy tín</span>
+                </span>
+                <input
+                  type="checkbox"
+                  checked={verifiedLandlordOnly}
+                  onChange={(e) => setVerifiedLandlordOnly(e.target.checked)}
+                  className="rounded border-slate-700 bg-slate-900 text-emerald-500 focus:ring-emerald-500/20"
+                />
+              </label>
+
+              <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer p-2 rounded-lg hover:bg-slate-900/60 transition-colors">
+                <span className="flex items-center gap-2">
+                  <CloudRain className="w-3.5 h-3.5 text-sky-400" />
                   <span>Không lo ngập lụt mùa mưa</span>
                 </span>
                 <input
                   type="checkbox"
                   checked={lowFloodOnly}
                   onChange={(e) => setLowFloodOnly(e.target.checked)}
+                  className="rounded border-slate-700 bg-slate-900 text-emerald-500 focus:ring-emerald-500/20"
+                />
+              </label>
+
+              <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer p-2 rounded-lg hover:bg-slate-900/60 transition-colors">
+                <span className="flex items-center gap-2">
+                  <Car className="w-3.5 h-3.5 text-indigo-400" />
+                  <span>Chỗ đỗ xe ô tô trong hầm</span>
+                </span>
+                <input
+                  type="checkbox"
+                  checked={carParkingOnly}
+                  onChange={(e) => setCarParkingOnly(e.target.checked)}
                   className="rounded border-slate-700 bg-slate-900 text-emerald-500 focus:ring-emerald-500/20"
                 />
               </label>
@@ -379,6 +542,9 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
             <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 gap-6' : 'space-y-4'}>
               {filteredUnits.map(({ unit, score, matchReasons }) => {
                 const isSaved = savedUnitIds.includes(unit.id);
+                const trueCostTotal = unit.trueCost?.totalMonthlyEstimatedVND || unit.monthlyRentVND;
+                const extraFees = trueCostTotal - unit.monthlyRentVND;
+
                 return (
                   <div
                     key={unit.id}
@@ -389,7 +555,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                     {/* Image Area */}
                     <div
                       className={`relative bg-slate-900 cursor-pointer overflow-hidden ${
-                        viewMode === 'list' ? 'sm:w-64 h-56 shrink-0' : 'h-56'
+                        viewMode === 'list' ? 'sm:w-64 h-60 shrink-0' : 'h-60'
                       }`}
                       onClick={() => onSelectUnit(unit.id)}
                     >
@@ -400,40 +566,63 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
 
-                      <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
-                        <span className="px-2.5 py-1 rounded-full bg-slate-950/85 backdrop-blur-md border border-emerald-500/30 text-emerald-300 text-[11px] font-mono font-medium always-white">
-                          {score}% Tương thích
-                        </span>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            onToggleSaveUnit(unit.id);
-                          }}
-                          className={`p-2 rounded-full backdrop-blur-md border transition-all ${
-                            isSaved
-                              ? 'bg-emerald-500 border-emerald-400 text-slate-950'
-                              : 'bg-slate-950/60 border-slate-700 text-slate-200 hover:text-white'
-                          }`}
-                        >
-                          <Bookmark className="w-4 h-4 fill-current" />
-                        </button>
+                      {/* Top Badges Overlay */}
+                      <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          {renderVerificationBadge(unit.verificationLevel)}
+                          {score > 70 && (
+                            <span className="px-2 py-0.5 rounded-full bg-emerald-500/30 backdrop-blur-md border border-emerald-400 text-emerald-200 text-[10px] font-mono font-semibold">
+                              {score}% Khớp
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="flex items-center gap-1.5">
+                          <span className="px-2 py-1 rounded-full bg-slate-950/85 backdrop-blur-md border border-amber-500/30 text-amber-300 text-[10px] font-mono font-bold flex items-center gap-0.5">
+                            <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
+                            <span>{unit.landlord?.trustScore || 4.8}★</span>
+                          </span>
+
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onToggleSaveUnit(unit.id);
+                            }}
+                            className={`p-1.5 rounded-full backdrop-blur-md border transition-all ${
+                              isSaved
+                                ? 'bg-emerald-500 border-emerald-400 text-slate-950'
+                                : 'bg-slate-950/60 border-slate-700 text-slate-200 hover:text-white'
+                            }`}
+                          >
+                            <Bookmark className="w-3.5 h-3.5 fill-current" />
+                          </button>
+                        </div>
                       </div>
 
+                      {/* Bottom Info Bar Overlay */}
                       <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono text-slate-200 always-white">
-                        <span className="flex items-center gap-1">
-                          <MapPin className="w-3.5 h-3.5 text-emerald-400" />
+                        <span className="flex items-center gap-1 text-[11px]">
+                          <MapPin className="w-3 h-3 text-emerald-400" />
                           {unit.district}, {getCityDisplayName(unit.city)}
                         </span>
-                        <span className="px-2 py-0.5 rounded bg-slate-900/90 border border-slate-700">
-                          Tầng {unit.floor}
-                        </span>
+                        
+                        <div className="flex items-center gap-1 text-[10px]">
+                          {unit.pcccReport?.inspectionCertificateStatus === 'certified' && (
+                            <span className="px-1.5 py-0.5 rounded bg-rose-950/80 border border-rose-500/40 text-rose-300 flex items-center gap-0.5">
+                              <Flame className="w-2.5 h-2.5 text-rose-400" /> PCCC ✓
+                            </span>
+                          )}
+                          <span className="px-1.5 py-0.5 rounded bg-slate-900/90 border border-slate-700">
+                            Tầng {unit.floor}
+                          </span>
+                        </div>
                       </div>
                     </div>
 
                     {/* Content Details */}
                     <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                       <div className="space-y-2 cursor-pointer" onClick={() => onSelectUnit(unit.id)}>
-                        <h3 className="font-serif text-lg text-slate-100 group-hover:text-emerald-500 transition-colors line-clamp-1 font-semibold">
+                        <h3 className="font-serif text-lg text-slate-100 group-hover:text-emerald-400 transition-colors line-clamp-1 font-semibold">
                           {unit.name || unit.id}
                         </h3>
 
@@ -448,36 +637,43 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
 
                       {/* AI Match Reasons */}
                       <div className="p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/20 text-xs space-y-1">
-                        <span className="text-[11px] font-mono text-emerald-500 uppercase tracking-wider font-semibold">
-                          Điểm Khớp Với Tiêu Chí:
+                        <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-wider font-semibold flex items-center gap-1">
+                          <Sparkles className="w-3 h-3 text-emerald-400" />
+                          <span>Điểm Khớp Nhu Cầu:</span>
                         </span>
-                        <ul className="space-y-1 text-slate-300 font-sans">
-                          {matchReasons.map((reason, idx) => (
+                        <ul className="space-y-1 text-slate-300 font-sans text-[11px]">
+                          {matchReasons.slice(0, 2).map((reason, idx) => (
                             <li key={idx} className="flex items-center gap-1.5">
                               <Check className="w-3 h-3 text-emerald-400 shrink-0" />
-                              <span>{reason}</span>
+                              <span className="truncate">{reason}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
 
-                      {/* Pricing & CTA */}
+                      {/* True Cost Breakdown vs Rent Pricing */}
                       <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between">
                         <div>
-                          <div className="text-lg font-serif font-bold text-emerald-500">
-                            {(unit.monthlyRentVND / 1000000).toFixed(0)} Triệu
-                            <span className="text-xs text-slate-400 font-sans font-normal"> /tháng</span>
+                          <div className="flex items-baseline gap-1">
+                            <span className="text-xl font-serif font-bold text-emerald-400">
+                              {(trueCostTotal / 1000000).toFixed(1)} Tr
+                            </span>
+                            <span className="text-xs text-slate-400 font-mono font-normal">/tháng</span>
+                            <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 font-medium">
+                              Tổng Chi Phí Thật
+                            </span>
                           </div>
-                          <div className="text-[11px] font-mono text-slate-400">
-                            Giá thuê niêm yết
+                          
+                          <div className="text-[11px] font-mono text-slate-400 pt-0.5">
+                            Giá thuê gốc: <span className="line-through text-slate-400">{(unit.monthlyRentVND / 1000000).toFixed(0)} Tr</span> (+{(extraFees / 1000000).toFixed(1)} Tr điện/nước/DV)
                           </div>
                         </div>
 
                         <button
                           onClick={() => onSelectUnit(unit.id)}
-                          className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-200 text-xs font-mono transition-all duration-200 font-medium"
+                          className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-200 text-xs font-mono transition-all duration-200 font-medium hover:shadow-lg shadow-emerald-500/10"
                         >
-                          Xem Chi Tiết
+                          Bóc Tách Chi Phí
                         </button>
                       </div>
                     </div>

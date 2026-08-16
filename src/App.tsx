@@ -6,7 +6,17 @@ import { UserHomeView } from './components/UserHomeView';
 import { UserSearchView } from './components/UserSearchView';
 import { UserUnitDetailView } from './components/UserUnitDetailView';
 import { UserCompareView } from './components/UserCompareView';
+import { ConfidenceMapView } from './components/ConfidenceMapView';
+import { MoveInChecklistView } from './components/MoveInChecklistView';
 import { UserAiAdvisorDrawer } from './components/UserAiAdvisorDrawer';
+import { NeighborhoodGuideView } from './components/NeighborhoodGuideView';
+import { DocumentVaultView } from './components/DocumentVaultView';
+import { MarketplaceHealthView } from './components/MarketplaceHealthView';
+import { CommuteSimulatorModal } from './components/CommuteSimulatorModal';
+import { DepositEscrowModal } from './components/DepositEscrowModal';
+import { VirtualTourModal } from './components/VirtualTourModal';
+import { LandlordProfileModal } from './components/LandlordProfileModal';
+import { SmartListingCreatorModal } from './components/SmartListingCreatorModal';
 import { DashboardView } from './components/DashboardView';
 import { UnitsView } from './components/UnitsView';
 import { LeadsView } from './components/LeadsView';
@@ -28,7 +38,8 @@ import type {
   RentalInvoice, 
   LeadStatus, 
   UnitStatus,
-  ChatConversation
+  ChatConversation,
+  LandlordProfile
 } from './types/apartment';
 
 export type ThemeMode = 'dark' | 'light' | 'system';
@@ -75,6 +86,11 @@ export function App() {
   const [isQuickActionOpen, setIsQuickActionOpen] = useState<boolean>(false);
   const [bookingUnit, setBookingUnit] = useState<ApartmentUnit | null>(null);
   const [activeChatUnit, setActiveChatUnit] = useState<ApartmentUnit | null>(null);
+  const [activeCommuteUnit, setActiveCommuteUnit] = useState<ApartmentUnit | null>(null);
+  const [activeEscrowUnit, setActiveEscrowUnit] = useState<ApartmentUnit | null>(null);
+  const [activeVirtualTourUnit, setActiveVirtualTourUnit] = useState<ApartmentUnit | null>(null);
+  const [activeLandlordProfile, setActiveLandlordProfile] = useState<LandlordProfile | null>(null);
+  const [isSmartListingOpen, setIsSmartListingOpen] = useState<boolean>(false);
 
   // Form fields for Booking Modal
   const [bookingName, setBookingName] = useState('');
@@ -344,6 +360,32 @@ export function App() {
                 setBookingNotes('');
               }}
               onOpenChat={(u) => setActiveChatUnit(u)}
+              onOpenCommuteSimulator={(u) => setActiveCommuteUnit(u)}
+              onOpenDepositEscrow={(u) => setActiveEscrowUnit(u)}
+              onOpenVirtualTour={(u) => setActiveVirtualTourUnit(u)}
+              onOpenLandlordProfile={(l) => setActiveLandlordProfile(l)}
+            />
+          )}
+
+          {!isAdminView && activeModule === 'user_neighborhoods' && (
+            <NeighborhoodGuideView
+              units={units}
+              onSelectUnit={handleInspectUnit}
+              onNavigateSearchDistrict={(district) => {
+                setInitialAiQuery(district);
+                setActiveModule('user_search');
+              }}
+            />
+          )}
+
+          {!isAdminView && activeModule === 'user_map' && (
+            <ConfidenceMapView
+              units={units}
+              onSelectUnit={(id) => {
+                setSelectedUnitId(id);
+                setActiveModule('user_detail');
+              }}
+              onBackToDirectory={() => setActiveModule('user_search')}
             />
           )}
 
@@ -354,6 +396,26 @@ export function App() {
               onRemoveFromSaved={handleToggleSaveUnit}
               onSelectUnit={handleInspectUnit}
               onBackToDirectory={() => setActiveModule('user_search')}
+              onAddSampleUnitsToCompare={(sampleIds) => {
+                setSavedUnitIds(sampleIds);
+                ApartmentStore.saveSavedUnitIds(sampleIds);
+                showToast('info', 'Đã nạp 3 căn mẫu', 'Bảng so sánh và biểu đồ Radar đã sẵn sàng.');
+              }}
+            />
+          )}
+
+          {!isAdminView && activeModule === 'user_checklist' && (
+            <MoveInChecklistView
+              unit={currentUnit}
+              units={units}
+              onBackToDirectory={() => setActiveModule('user_search')}
+            />
+          )}
+
+          {!isAdminView && activeModule === 'user_documents' && (
+            <DocumentVaultView
+              units={units}
+              isAdminView={false}
             />
           )}
 
@@ -371,7 +433,7 @@ export function App() {
             />
           )}
 
-          {/* ADMIN MODE OPERATIONAL VIEWS - 5 CORE PILLARS + CHAT & SAAS */}
+          {/* ADMIN MODE OPERATIONAL VIEWS - 5 CORE PILLARS + CHAT, SAAS & GOVERNANCE */}
           {isAdminView && activeModule === 'dashboard' && (
             <DashboardView
               units={units}
@@ -389,7 +451,7 @@ export function App() {
               units={units}
               onSelectUnit={handleInspectUnit}
               onUpdateUnitStatus={handleUpdateUnitStatus}
-              onOpenQuickAction={() => setIsQuickActionOpen(true)}
+              onOpenQuickAction={() => setIsSmartListingOpen(true)}
             />
           )}
 
@@ -429,6 +491,17 @@ export function App() {
               onMarkInvoicePaid={handleMarkInvoicePaid}
               onSelectUnit={handleInspectUnit}
               onOpenQuickAction={() => setIsQuickActionOpen(true)}
+            />
+          )}
+
+          {isAdminView && activeModule === 'admin_health' && (
+            <MarketplaceHealthView />
+          )}
+
+          {isAdminView && activeModule === 'admin_documents' && (
+            <DocumentVaultView
+              units={units}
+              isAdminView={true}
             />
           )}
 
@@ -595,6 +668,117 @@ export function App() {
             </form>
           </div>
         </div>
+      )}
+
+      {/* Commute Simulator Modal */}
+      {activeCommuteUnit && (
+        <CommuteSimulatorModal
+          unit={activeCommuteUnit}
+          isOpen={!!activeCommuteUnit}
+          onClose={() => setActiveCommuteUnit(null)}
+        />
+      )}
+
+      {/* Deposit Escrow Safety Flow Modal */}
+      {activeEscrowUnit && (
+        <DepositEscrowModal
+          unit={activeEscrowUnit}
+          isOpen={!!activeEscrowUnit}
+          onClose={() => setActiveEscrowUnit(null)}
+          onConfirmEscrow={() => {
+            showToast('success', 'Đã bảo chứng tiền cọc', `Tiền cọc căn ${activeEscrowUnit.name || activeEscrowUnit.id} đã được khóa bảo vệ bởi HAVEN Escrow.`);
+          }}
+        />
+      )}
+
+      {/* 360 Virtual Tour Modal */}
+      {activeVirtualTourUnit && (
+        <VirtualTourModal
+          unit={activeVirtualTourUnit}
+          isOpen={!!activeVirtualTourUnit}
+          onClose={() => setActiveVirtualTourUnit(null)}
+        />
+      )}
+
+      {/* Landlord Profile Full Modal */}
+      {activeLandlordProfile && (
+        <LandlordProfileModal
+          landlord={activeLandlordProfile}
+          units={units}
+          isOpen={!!activeLandlordProfile}
+          onClose={() => setActiveLandlordProfile(null)}
+          onSelectUnit={(id) => {
+            setSelectedUnitId(id);
+            setActiveModule('user_detail');
+          }}
+          onOpenChat={() => setActiveChatUnit(currentUnit)}
+        />
+      )}
+
+      {/* Smart Listing Creator Modal (AI Powered) */}
+      {isSmartListingOpen && (
+        <SmartListingCreatorModal
+          isOpen={isSmartListingOpen}
+          onClose={() => setIsSmartListingOpen(false)}
+          onListingCreated={(newUnit) => {
+            const created = ApartmentStore.addUnit({
+              floor: 8,
+              unitNumber: '802',
+              type: 'Executive Suite',
+              sqm: newUnit.sqm || 85,
+              bedrooms: newUnit.bedrooms || 2,
+              bathrooms: 2,
+              status: 'vacant',
+              monthlyRentUSD: Math.round((newUnit.monthlyRentVND || 18000000) / 25000),
+              monthlyRentVND: newUnit.monthlyRentVND || 18000000,
+              city: newUnit.city || 'Ho Chi Minh City',
+              district: newUnit.district || 'Quận 7',
+              name: newUnit.name || 'Căn Hộ Đăng Mới AI',
+              images: [
+                'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1000',
+                'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1000'
+              ],
+              hasCarParking: true,
+              hasMotorbikeParking: true,
+              hasElevator: true,
+              hasBackupPower: true,
+              floodingRisk: 'Low',
+              noiseLevel: 'Quiet',
+              trafficDensity: 'Low',
+              petFriendly: true,
+              furnished: true,
+              balcony: true,
+              airConditioning: true,
+              washingMachine: true,
+              kitchen: true,
+              wifi: true,
+              rating: 4.9,
+              reviewCount: 1,
+              viewType: 'City View',
+              isVerifiedPlus: true,
+              sensors: {
+                smartLockBattery: 95,
+                hvacStatus: 'Optimal',
+                targetTempC: 24,
+                energyConsumptionKwh: 120,
+                waterUsageLiters: 450,
+                securityAlarmDisarmed: true
+              },
+              environmentalData: {
+                weatherNotes: 'Đón gió mát, không nắng gắt.',
+                floodNotes: 'Đường cao ráo, hệ thống thoát nước hoàn chỉnh.',
+                powerNotes: 'Trạm biến áp riêng.',
+                trafficNotes: 'Gần đường lớn, không tắc nghẽn.'
+              },
+              aiInsights: {
+                whyFit: ['Vị trí đắc địa', 'Chuẩn an toàn PCCC'],
+                worthConsidering: ['Nên đăng ký chỗ gửi ô tô sớm']
+              }
+            });
+            setUnits(ApartmentStore.getUnits());
+            showToast('success', 'Đã xuất bản tin đăng AI', `Căn hộ "${created.name}" đã được đưa lên sàn.`);
+          }}
+        />
       )}
 
       {/* ISOLATED DEVELOPER PREVIEW SYSTEM */}

@@ -62,10 +62,28 @@ export const ChatModal: React.FC<ChatModalProps> = ({
     // Simulate smart bot response after 800ms
     setTimeout(() => {
       let botResponse = 'Cảm ơn bạn đã nhắn tin! Ban Quản Trị đã nhận được thông tin và sẽ phản hồi bạn trong 5 phút nữa.';
-      if (text.includes('lịch') || text.includes('xem')) {
-        botResponse = `Lịch xem căn ${unit.name || unit.id} đang mở từ 09:00 - 18:00 hàng ngày. Bạn có thể nhấn nút "Đặt Lịch Xem Ngay" bên dưới để chọn giờ nhé!`;
-      } else if (text.includes('cọc') || text.includes('hợp đồng') || text.includes('giá')) {
-        botResponse = `Căn ${unit.name || unit.id} có giá ${(unit.monthlyRentVND / 1000000).toFixed(0)} Triệu/tháng, tiền cọc 02 tháng, ký hợp đồng tối thiểu 6-12 tháng.`;
+      const lower = text.toLowerCase();
+
+      if (lower.includes('lịch') || lower.includes('xem')) {
+        botResponse = `Lịch xem căn ${unit.name || unit.id} đang mở từ 09:00 - 18:00 hàng ngày. Bạn có thể nhấn nút "Đặt Lịch Xem Ngay" bên dưới để chọn khung giờ thuận tiện nhất nhé!`;
+      } else if (lower.includes('cọc') || lower.includes('hoàn cọc')) {
+        const months = unit.depositTerms?.months || 2;
+        const depositM = ((unit.depositTerms?.amountVND || unit.monthlyRentVND * months) / 1000000).toFixed(0);
+        botResponse = `Căn này có mức đặt cọc là ${months} tháng (${depositM} Triệu). HAVEN cam kết hoàn cọc minh bạch qua chuyển khoản trong vòng 72 giờ sau khi trả phòng theo đúng biên bản hiện trạng ban đầu.`;
+      } else if (lower.includes('điện') || lower.includes('phí') || lower.includes('chi phí') || lower.includes('nước')) {
+        const trueCostTotal = ((unit.trueCost?.totalMonthlyEstimatedVND || unit.monthlyRentVND) / 1000000).toFixed(1);
+        botResponse = `Tổng chi phí thực tế ước tính của căn này là ${trueCostTotal} Triệu/tháng (đã gồm: thuê ${(unit.monthlyRentVND / 1000000).toFixed(0)} Tr + điện ước tính ~850k + nước + cáp quang 250k + phí QL tòa nhà). Không có chi phí ẩn phát sinh.`;
+      } else if (lower.includes('pccc') || lower.includes('cháy') || lower.includes('thoát hiểm')) {
+        const count = unit.pcccReport?.fireEscapeCount || 2;
+        botResponse = `Tòa nhà đã được thẩm duyệt nghiệm thu PCCC đạt chuẩn QCVN 06:2022, trang bị ${count} thang thoát hiểm điều áp chống khói và hệ thống sprinkler tự động trong từng phòng.`;
+      } else if (lower.includes('thú cưng') || lower.includes('chó') || lower.includes('mèo')) {
+        botResponse = unit.petFriendly 
+          ? `Căn hộ này CHO PHÉP nuôi thú cưng nhỏ (chó/mèo dưới 10kg). Tòa nhà có khuôn viên dạo bộ riêng và không phụ thu phí thú cưng!`
+          : `Rất tiếc, quy chế tòa nhà này hiện KHÔNG cho phép nuôi thú cưng để đảm bảo yên tĩnh tuyệt đối cho cư dân.`;
+      } else if (lower.includes('xe') || lower.includes('ô tô')) {
+        botResponse = unit.hasCarParking
+          ? `Căn hộ CÓ SẴN chỗ đỗ ô tô định danh tại tầng hầm B1/B2 với cổng sạc xe điện EV. Phí gửi ô tô là 1.200.000 đ/tháng.`
+          : `Tòa nhà có bãi đỗ xe máy không giới hạn (120k/tháng), riêng ô tô có thể gửi tại bãi đỗ thương mại cách sảnh 100m.`;
       }
 
       const convs = ApartmentStore.getConversations();
@@ -87,10 +105,12 @@ export const ChatModal: React.FC<ChatModalProps> = ({
     }, 800);
   };
 
-  const quickReplies = [
-    { label: '📅 Xem lịch phòng còn trống', text: 'Cho mình hỏi lịch xem phòng còn trống vào ngày nào?' },
-    { label: '💰 Tiền cọc & Điều khoản thuê', text: 'Căn này tiền đặt cọc và chu kỳ đóng tiền như thế nào?' },
-    { label: '🚗 Chỗ đỗ ô tô & Phí dịch vụ', text: 'Căn hộ có chỗ đỗ ô tô dưới hầm và phí dịch vụ bao nhiêu 1 tháng?' }
+  const dynamicQuickReplies = [
+    { label: '📅 Lịch xem phòng', text: 'Cho mình hỏi lịch xem phòng còn trống vào khung giờ nào?' },
+    { label: '💡 Tổng chi phí điện nước', text: 'Tổng chi phí thực tế gồm điện, nước và phí quản lý hàng tháng là bao nhiêu?' },
+    { label: '🔥 Kiểm tra an toàn PCCC', text: 'Tòa nhà đã nghiệm thu PCCC và có mấy thang thoát hiểm?' },
+    { label: '💰 Điều khoản hoàn cọc', text: 'Chính sách đặt cọc và cam kết hoàn cọc trong 72 giờ như thế nào?' },
+    ...(unit.petFriendly ? [{ label: '🐾 Nuôi thú cưng', text: 'Nuôi mèo hoặc cún nhỏ ở căn này có quy định gì không?' }] : [])
   ];
 
   return (
@@ -189,7 +209,7 @@ export const ChatModal: React.FC<ChatModalProps> = ({
 
         {/* Quick Question Chips (Shopee Style) */}
         <div className="px-4 py-2 bg-slate-900/60 border-t border-slate-800/80 flex items-center gap-2 overflow-x-auto no-scrollbar">
-          {quickReplies.map((chip, idx) => (
+          {dynamicQuickReplies.map((chip, idx) => (
             <button
               key={idx}
               onClick={() => handleSendMessage(chip.text)}
