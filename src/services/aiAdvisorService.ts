@@ -1,7 +1,7 @@
 import type { ApartmentUnit } from '../types/apartment';
 
 export interface ConsumerFilters {
-  city?: 'Hanoi' | 'Ho Chi Minh City' | 'Da Nang' | 'All';
+  city?: string;
   district?: string;
   minBedrooms?: number;
   maxBedrooms?: number;

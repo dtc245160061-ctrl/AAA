@@ -30,7 +30,13 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
   onSelectUnit,
   onBackToDirectory
 }) => {
-  const [selectedCity, setSelectedCity] = useState<'All' | 'Hanoi' | 'Ho Chi Minh City' | 'Da Nang'>('All');
+  const cities = useMemo(() => {
+    const set = new Set<string>();
+    units.forEach(u => { if (u.city) set.add(u.city); });
+    return ['All', ...Array.from(set)];
+  }, [units]);
+
+  const [selectedCity, setSelectedCity] = useState<string>('All');
   const [activeLayers, setActiveLayers] = useState<MapLayerState>({
     floodRisk: true,
     pcccSafety: true,
@@ -57,6 +63,15 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
       case 'Hanoi': return 'Hà Nội';
       case 'Ho Chi Minh City': return 'TP. Hồ Chí Minh';
       case 'Da Nang': return 'Đà Nẵng';
+      case 'Hai Phong': return 'Hải Phòng';
+      case 'Nha Trang': return 'Nha Trang';
+      case 'Can Tho': return 'Cần Thơ';
+      case 'Binh Duong': return 'Bình Dương';
+      case 'Vung Tau': return 'Vũng Tàu';
+      case 'Ha Long': return 'Hạ Long';
+      case 'Da Lat': return 'Đà Lạt';
+      case 'Hue': return 'Huế';
+      case 'Quy Nhon': return 'Quy Nhơn';
       default: return city;
     }
   };
@@ -68,7 +83,7 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
         <div>
           <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
             <Layers className="w-4 h-4 text-emerald-400" />
-            <span>Bản Đồ An Tâm Đa Lớp (Confidence Map)</span>
+            <span>Bản Đồ PCCC & Ngập Lụt Đa Lớp (Environmental & Fire Safety Map)</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-serif text-slate-100 font-bold mt-1">
             Khảo Sát Rủi Ro Môi Trường & PCCC Trước Khi Cọc
@@ -91,9 +106,9 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
       {/* Layer Controls & City Selector Toolbar */}
       <div className="p-5 rounded-2xl atmospheric-panel border border-slate-800 flex flex-wrap items-center justify-between gap-4 shadow-xl">
         {/* City Filter Pills */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           <span className="text-xs font-mono text-slate-400 font-semibold mr-1">Thành Phố:</span>
-          {(['All', 'Hanoi', 'Ho Chi Minh City', 'Da Nang'] as const).map(c => (
+          {cities.slice(0, 8).map(c => (
             <button
               key={c}
               onClick={() => setSelectedCity(c)}
@@ -103,7 +118,7 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
                   : 'bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-slate-200'
               }`}
             >
-              {c === 'All' ? 'Tất cả' : c === 'Hanoi' ? 'Hà Nội' : c === 'Ho Chi Minh City' ? 'TP.HCM' : 'Đà Nẵng'}
+              {c === 'All' ? 'Tất cả' : getCityName(c)}
             </button>
           ))}
         </div>

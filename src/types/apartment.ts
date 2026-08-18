@@ -1,5 +1,5 @@
-export type UnitStatus = 'vacant' | 'occupied' | 'reserved' | 'maintenance';
-export type UnitType = 'Penthouse' | 'Sky Villa' | 'Executive Suite' | 'Deluxe Apartment';
+export type UnitStatus = 'vacant' | 'occupied' | 'reserved' | 'pending_handover' | 'maintenance';
+export type UnitType = 'Penthouse' | 'Sky Villa' | 'Executive Suite' | 'Deluxe Apartment' | 'Studio' | 'Duplex';
 
 export interface Resident {
   id: string;
@@ -7,6 +7,7 @@ export interface Resident {
   avatar: string;
   phone: string;
   email: string;
+  nationality?: 'Vietnamese' | 'Foreigner';
   moveInDate: string;
   leaseEnd: string;
   monthlyRentUSD: number;
@@ -100,7 +101,7 @@ export interface ApartmentUnit {
   status: UnitStatus;
   monthlyRentUSD: number;
   monthlyRentVND: number;
-  city: 'Hanoi' | 'Ho Chi Minh City' | 'Da Nang';
+  city: string;
   district: string;
   address?: string;
   images: string[];

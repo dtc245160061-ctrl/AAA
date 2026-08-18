@@ -42,7 +42,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   // Filter States
-  const [cityFilter, setCityFilter] = useState<'All' | 'Hanoi' | 'Ho Chi Minh City' | 'Da Nang'>('All');
+  const [cityFilter, setCityFilter] = useState<string>('All');
   const [districtFilter, setDistrictFilter] = useState<string>('');
   const [bedroomsFilter, setBedroomsFilter] = useState<number>(0);
   const [filterMode, setFilterMode] = useState<'baseRent' | 'trueCost'>('trueCost'); // Default to True Cost
@@ -181,6 +181,19 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
       case 'Hanoi': return 'Hà Nội';
       case 'Ho Chi Minh City': return 'TP. Hồ Chí Minh';
       case 'Da Nang': return 'Đà Nẵng';
+      case 'Hai Phong': return 'Hải Phòng';
+      case 'Binh Duong': return 'Bình Dương';
+      case 'Nha Trang': return 'Nha Trang';
+      case 'Can Tho': return 'Cần Thơ';
+      case 'Vung Tau': return 'Vũng Tàu';
+      case 'Ha Long': return 'Hạ Long';
+      case 'Da Lat': return 'Đà Lạt';
+      case 'Hue': return 'Huế';
+      case 'Quy Nhon': return 'Quy Nhơn';
+      case 'Bien Hoa': return 'Biên Hòa';
+      case 'Vinh': return 'Vinh';
+      case 'Thanh Hoa': return 'Thanh Hóa';
+      case 'Buon Ma Thuot': return 'Buôn Ma Thuột';
       default: return city;
     }
   };
@@ -314,24 +327,30 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
             {/* City Filter */}
             <div className="space-y-2">
               <label className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">Thành Phố</label>
-              <div className="grid grid-cols-2 gap-2">
-                {(['All', 'Hanoi', 'Ho Chi Minh City', 'Da Nang'] as const).map(c => {
-                  const label = c === 'All' ? 'Tất cả' : c === 'Hanoi' ? 'Hà Nội' : c === 'Ho Chi Minh City' ? 'TP.HCM' : 'Đà Nẵng';
-                  return (
-                    <button
-                      key={c}
-                      onClick={() => setCityFilter(c)}
-                      className={`px-3 py-2 rounded-xl text-xs font-mono transition-all border text-left truncate ${
-                        cityFilter === c
-                          ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400 font-semibold'
-                          : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200'
-                      }`}
-                    >
-                      {label}
-                    </button>
-                  );
-                })}
-              </div>
+              <select
+                value={cityFilter}
+                onChange={(e) => setCityFilter(e.target.value)}
+                aria-label="Chọn thành phố"
+                className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200 focus:outline-none focus:border-emerald-500 transition-colors"
+              >
+                <option value="All">Tất cả thành phố ({units.length} căn)</option>
+                <option value="Hanoi">Hà Nội</option>
+                <option value="Ho Chi Minh City">TP. Hồ Chí Minh</option>
+                <option value="Da Nang">Đà Nẵng</option>
+                <option value="Hai Phong">Hải Phòng</option>
+                <option value="Binh Duong">Bình Dương</option>
+                <option value="Nha Trang">Nha Trang</option>
+                <option value="Can Tho">Cần Thơ</option>
+                <option value="Vung Tau">Vũng Tàu</option>
+                <option value="Ha Long">Hạ Long</option>
+                <option value="Da Lat">Đà Lạt</option>
+                <option value="Hue">Huế</option>
+                <option value="Quy Nhon">Quy Nhơn</option>
+                <option value="Bien Hoa">Biên Hòa</option>
+                <option value="Vinh">Vinh</option>
+                <option value="Thanh Hoa">Thanh Hóa</option>
+                <option value="Buon Ma Thuot">Buôn Ma Thuột</option>
+              </select>
             </div>
 
             {/* Bedrooms Filter */}

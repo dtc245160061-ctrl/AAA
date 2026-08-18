@@ -2,923 +2,135 @@ import type { ApartmentUnit, MaintenanceTicket, Amenity } from '../types/apartme
 
 export const MOCK_UNITS: ApartmentUnit[] = [
   {
-    "id": "HN-TH-2401",
-    "name": "Penthouse Hồ Tây Panorama & Sân Vườn Sinh Thái",
-    "floor": 24,
-    "unitNumber": "2401",
-    "type": "Penthouse",
-    "sqm": 380,
-    "bedrooms": 4,
-    "bathrooms": 4,
-    "status": "vacant",
-    "monthlyRentVND": 350000000,
-    "city": "Hanoi",
-    "district": "Tây Hồ",
-    "address": "58 Từ Hoa, Phường Quảng An, Quận Tây Hồ, Hà Nội",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Low",
-    "petFriendly": true,
-    "viewType": "Panorama Trọn Hồ Tây",
-    "aiInsights": {
-      "whyFit": [
-        "Tầm nhìn Panorama trọn vẹn hoàng hôn Hồ Tây với sân vườn sinh thái riêng biệt",
-        "Chỗ đỗ ô tô cố định dưới hầm có sẵn cổng sạc xe điện EV",
-        "Tầng cao 24 cách âm hoàn hảo, tuyệt đối không tiếng ồn đường phố",
-        "Máy phát điện công nghiệp 24/7 dự phòng 100% công suất toàn căn hộ"
-      ],
-      "worthConsidering": [
-        "Mức giá phân khúc siêu sang phù hợp gia đình cao cấp hoặc chuyên gia quốc tế",
-        "Khu vực đường ven hồ nhộn nhịp vào dịp lễ Tết"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón trọn gió mát tự nhiên từ mặt hồ Tây; hệ thống điều hòa VRV lọc khí tươi hai chiều.",
-      "floodNotes": "Địa thế bờ hồ cao ráo; lịch sử khu vực chưa từng ghi nhận ngập úng khi mưa bão lớn.",
-      "powerNotes": "Trang bị 2 máy phát Caterpillar chuyên dụng, tự động đóng điện sau 3 giây khi mất điện lưới.",
-      "trafficNotes": "Kết nối nhanh ra đường Âu Cơ, Thanh Niên và cầu Nhật Tân thẳng sân bay Nội Bài."
-    },
-    "monthlyRentUSD": 14286,
-    "images": [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.75,
-    "reviewCount": 15,
-    "sensors": {
-      "smartLockBattery": 85,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 24.5,
-      "waterUsageLiters": 110,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "HN-HK-1202",
-    "name": "Căn Hộ Hoàn Kiếm Heritage Executive Suite",
-    "floor": 12,
-    "unitNumber": "1202",
-    "type": "Executive Suite",
-    "sqm": 110,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 16000000,
-    "city": "Hanoi",
-    "district": "Hoàn Kiếm",
-    "address": "18 Tràng Thi, Phường Hàng Trống, Quận Hoàn Kiếm, Hà Nội",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Moderate",
-    "trafficDensity": "Heavy",
-    "petFriendly": false,
-    "viewType": "Phố Cổ & Tháp Rùa",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá cực kỳ hợp lý chỉ 16 Triệu/tháng ngay lõi trung tâm Hoàn Kiếm",
-        "Bước bộ 3 phút ra Hồ Gươm và các phố ẩm thực di sản",
-        "Nội thất phong cách Indochine gỗ tự nhiên sang trọng"
-      ],
-      "worthConsidering": [
-        "Tuyến phố đi bộ cuối tuần cấm xe ô tô vào ban đêm",
-        "Không cho phép nuôi thú cưng"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Rợp bóng cây cổ thụ đường Tràng Thi, không gian mát mẻ quanh năm.",
-      "floodNotes": "Khu vực trung tâm cao ráo, hệ thống cống ngầm thời Pháp thoát nước cực nhanh.",
-      "powerNotes": "Ưu tiên cấp điện tuyến trung tâm hành chính quốc gia, tỷ lệ mất điện 0%.",
-      "trafficNotes": "Lưu lượng xe cộ đông vào giờ tan tầm; thuận tiện đi bộ và xe máy."
-    },
-    "monthlyRentUSD": 653,
-    "images": [
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.76,
-    "reviewCount": 16,
-    "sensors": {
-      "smartLockBattery": 86,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 25.5,
-      "waterUsageLiters": 111,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "HN-CG-1405",
-    "name": "Căn Hộ Cao Cấp Cầu Giấy Garden View",
-    "floor": 14,
-    "unitNumber": "1405",
-    "type": "Deluxe Apartment",
-    "sqm": 95,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 18000000,
-    "city": "Hanoi",
-    "district": "Cầu Giấy",
-    "address": "122 Xuân Thủy, Phường Dịch Vọng Hậu, Quận Cầu Giấy, Hà Nội",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Công Viên Cầu Giấy",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 18 Triệu/tháng chuẩn xác theo nhu cầu căn 2 phòng ngủ tại Cầu Giấy",
-        "Có sẵn chỗ đỗ ô tô định danh tại hầm B2 và cổng sạc xe điện",
-        "Tầng 14 cách âm kính hộp 2 lớp Low-E cực kỳ yên tĩnh"
-      ],
-      "worthConsidering": [
-        "Trục đường Xuân Thủy có mật độ giao thông đông vào giờ cao điểm",
-        "Cách ga Metro Nhổn - Ga Hà Nội 300m đi bộ"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Hướng ban công Đông Nam mát mẻ, đón gió lành buổi sáng.",
-      "floodNotes": "Đường Xuân Thủy đoạn tòa nhà đã hoàn thiện nâng cấp cống hộp, không đọng nước.",
-      "powerNotes": "Hệ thống điện dự phòng tòa nhà duy trì liên tục cho thang máy và chiếu sáng.",
-      "trafficNotes": "Đi bộ 3 phút tới trạm Metro trên cao, di chuyển vào trung tâm chỉ mất 12 phút."
-    },
-    "monthlyRentUSD": 735,
-    "images": [
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.77,
-    "reviewCount": 17,
-    "sensors": {
-      "smartLockBattery": 87,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 26.5,
-      "waterUsageLiters": 112,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "HN-TH-1803",
-    "name": "Căn Hộ Tây Hồ Sunrise Vista",
-    "floor": 18,
-    "unitNumber": "1803",
-    "type": "Deluxe Apartment",
-    "sqm": 105,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 19500000,
-    "city": "Hanoi",
-    "district": "Tây Hồ",
-    "address": "699 Lạc Long Quân, Phường Xuân La, Quận Tây Hồ, Hà Nội",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Low",
-    "petFriendly": true,
-    "viewType": "Trọn View Hồ Tây & Cầu Nhật Tân",
-    "aiInsights": {
-      "whyFit": [
-        "Chỉ 19.5 Triệu/tháng cho căn hộ 2PN tầng 18 sát Lotte Mall Tây Hồ",
-        "View trực diện mặt nước Hồ Tây, không gian trong lành nhất Hà Nội",
-        "Cho phép nuôi thú cưng nhỏ, khuôn viên tản bộ rộng rãi"
-      ],
-      "worthConsidering": [
-        "Cuối tuần khách tham quan Lotte Mall đông, nên đi lối ngõ phụ"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Gió hồ mát rượi, độ ẩm ổn định, chất lượng không khí trong lành.",
-      "floodNotes": "Địa hình Xuân La - Lạc Long Quân cao thoáng, không ngập úng.",
-      "powerNotes": "Tòa nhà mới bàn giao 2024, máy phát điện tự động Cummins 100%.",
-      "trafficNotes": "Trục đường 40m kết nối thẳng sân bay Nội Bài trong 18 phút."
-    },
-    "monthlyRentUSD": 796,
-    "images": [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.78,
-    "reviewCount": 18,
-    "sensors": {
-      "smartLockBattery": 88,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 27.5,
-      "waterUsageLiters": 113,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "HN-BD-0902",
-    "name": "Căn Hộ Ba Đình Botanical Living",
-    "floor": 9,
-    "unitNumber": "0902",
-    "type": "Executive Suite",
-    "sqm": 85,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 15500000,
-    "city": "Hanoi",
-    "district": "Ba Đình",
-    "address": "29 Liễu Giai, Phường Ngọc Khánh, Quận Ba Đình, Hà Nội",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": false,
-    "viewType": "Hồ Ngọc Khánh & Lotte Center",
-    "aiInsights": {
-      "whyFit": [
-        "Căn hộ 2PN giá 15.5 Triệu/tháng ngay khu ngoại giao đoàn Liễu Giai - Kim Mã",
-        "An ninh tuyệt đối 24/7 với hệ thống camera AI và thẻ từ phân tầng",
-        "Gần các trường quốc tế và đại sứ quán Nhật Bản, Australia"
-      ],
-      "worthConsidering": [
-        "Không cho phép nuôi thú cưng",
-        "Hầm xe ưu tiên xe sedan và crossover"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Không khí thoáng đãng, nhiều cây xanh ven hồ Ngọc Khánh.",
-      "floodNotes": "Khu vực Liễu Giai địa thế cao, cống ngầm hiện đại không ngập.",
-      "powerNotes": "Điện lưới khu ngoại giao đoàn ổn định bậc nhất thủ đô.",
-      "trafficNotes": "Ngay cạnh ga Metro ngầm Kim Mã - Cát Linh."
-    },
-    "monthlyRentUSD": 633,
-    "images": [
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.79,
-    "reviewCount": 19,
-    "sensors": {
-      "smartLockBattery": 89,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 28.5,
-      "waterUsageLiters": 114,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "HN-NTL-2104",
-    "name": "Căn Hộ Mỹ Đình High-Tech Residence",
-    "floor": 21,
-    "unitNumber": "2104",
-    "type": "Deluxe Apartment",
-    "sqm": 118,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 22000000,
-    "city": "Hanoi",
-    "district": "Nam Từ Liêm",
-    "address": "8 Lê Đức Thọ, Phường Mỹ Đình 2, Quận Nam Từ Liêm, Hà Nội",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Sân Vận Động Mỹ Đình & Skyline",
-    "aiInsights": {
-      "whyFit": [
-        "Căn hộ 3PN rộng 118m² giá 22 Triệu/tháng phù hợp gia đình nhiều thế hệ",
-        "Chỗ đỗ ô tô hầm thông minh 3 tầng rộng rãi",
-        "Tiện ích nội khu đầy đủ: bể bơi bốn mùa, gym, sân chơi trẻ em"
-      ],
-      "worthConsidering": [
-        "Vào các ngày diễn ra sự kiện thể thao lớn cần đi theo hướng Nguyễn Cơ Thạch"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Tầng 21 đón gió Tây Nam mát mẻ, tầm nhìn thoáng không bị chắn.",
-      "floodNotes": "Đường Lê Đức Thọ cao ráo, hệ thống thoát nước hồ điều hòa Mỹ Đình hoạt động tốt.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất cho toàn bộ căn hộ.",
-      "trafficNotes": "Kết nối trực tiếp Đại Lộ Thăng Long và Vành Đai 3."
-    },
-    "monthlyRentUSD": 898,
-    "images": [
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.8,
-    "reviewCount": 20,
-    "sensors": {
-      "smartLockBattery": 90,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 29.5,
-      "waterUsageLiters": 115,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "HN-HBT-1608",
-    "name": "Căn Hộ Times City Park Hill Luxury",
-    "floor": 16,
-    "unitNumber": "1608",
-    "type": "Deluxe Apartment",
-    "sqm": 80,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 16500000,
-    "city": "Hanoi",
-    "district": "Hai Bà Trưng",
-    "address": "458 Minh Khai, Phường Vĩnh Tuy, Quận Hai Bà Trưng, Hà Nội",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Nhạc Nước & Quảng Trường Trung Tâm",
-    "aiInsights": {
-      "whyFit": [
-        "Giá thuê 16.5 Triệu/tháng full nội thất hiện đại sang trọng",
-        "Hệ sinh thái Vinmec, Vinschool và TTTM Mega Mall ngay dưới chân tòa nhà",
-        "Quần thể cây xanh và nhạc nước thư thái mỗi buổi chiều"
-      ],
-      "worthConsidering": [
-        "Cần đăng ký sớm chỗ đỗ ô tô định kỳ với ban quản lý"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Không gian nội khu phủ rợp bóng mát, nhiệt độ thấp hơn ngoài phố 1-2°C.",
-      "floodNotes": "Hầm Times City và trục Minh Khai trên cao không bị ngập.",
-      "powerNotes": "Nguồn điện dự phòng tự động 24/7 tiêu chuẩn Vinhomes.",
-      "trafficNotes": "Đường Vành Đai 2 trên cao thông thoáng chạy thẳng Cầu Giấy - Ngã Tư Sở."
-    },
-    "monthlyRentUSD": 673,
-    "images": [
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.81,
-    "reviewCount": 21,
-    "sensors": {
-      "smartLockBattery": 91,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 30.5,
-      "waterUsageLiters": 116,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "HN-TH-0801",
-    "name": "Căn Hộ Studio Tây Hồ Eco Retreat",
-    "floor": 8,
-    "unitNumber": "0801",
-    "type": "Executive Suite",
-    "sqm": 55,
+    "id": "HN-TÂ-1001",
+    "name": "Studio Hồ Tây Panorama — Tây Hồ",
+    "floor": 10,
+    "unitNumber": "1001",
+    "type": "Studio",
+    "sqm": 57,
     "bedrooms": 1,
     "bathrooms": 1,
-    "status": "vacant",
-    "monthlyRentVND": 11000000,
+    "status": "occupied",
+    "monthlyRentUSD": 1224,
+    "monthlyRentVND": 30000000,
     "city": "Hanoi",
     "district": "Tây Hồ",
-    "address": "12 Đặng Thai Mai, Phường Quảng An, Quận Tây Hồ, Hà Nội",
+    "address": "Tầng 10, Tòa tháp Haven Luxury, Đường Quảng An, Quận Tây Hồ, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.73,
+    "reviewCount": 50,
+    "viewType": "View Hồ Tây Panorama",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 30000000,
+      "estimatedElectricityVND": 1425000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1254000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 34379000,
+      "depositMonths": 1,
+      "depositVND": 30000000,
+      "moveInTotalRequiredVND": 64379000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Tây Hồ, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,254,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 84,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 29.9,
+      "waterUsageLiters": 160,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1001",
+      "name": "Sarah Jenkins",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 909 234 567",
+      "email": "sarah.j@unicef.org",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-11-15",
+      "leaseEnd": "2026-11-15",
+      "monthlyRentUSD": 1224,
+      "monthlyRentVND": 30000000,
+      "autoPayActive": false,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "HN-HO-0303",
+    "name": "Deluxe Apartment Phố Cổ & Tràng Tiền — Hoàn Kiếm",
+    "floor": 3,
+    "unitNumber": "0303",
+    "type": "Deluxe Apartment",
+    "sqm": 78,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 2469,
+    "monthlyRentVND": 60500000,
+    "city": "Hanoi",
+    "district": "Hoàn Kiếm",
+    "address": "Tầng 3, Tòa tháp Haven Luxury, Đường Hàng Bài, Quận Hoàn Kiếm, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+    ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
     "hasElevator": true,
     "hasBackupPower": true,
     "floodingRisk": "Low",
     "noiseLevel": "Quiet",
-    "trafficDensity": "Low",
-    "petFriendly": true,
-    "viewType": "Vườn Sen & Biệt Thự Quảng An",
-    "aiInsights": {
-      "whyFit": [
-        "Giá chỉ 11 Triệu/tháng cực kỳ lý tưởng cho người đi làm độc thân hoặc freelancer",
-        "Khu phố Tây văn minh, nhiều quán cà phê nghệ thuật và nhà hàng Âu",
-        "Bếp mở hiện đại đầy đủ lò nướng và máy giặt sấy riêng"
-      ],
-      "worthConsidering": [
-        "Chỉ có chỗ đỗ xe máy, không có chỗ đỗ xe ô tô trong nhà"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Bán đảo Quảng An ba mặt giáp hồ, vi khí hậu mát mẻ quanh năm.",
-      "floodNotes": "Đồi cát Quảng An cao hơn mực nước hồ 4 mét, an toàn tuyệt đối.",
-      "powerNotes": "Hệ thống điện ổn định, có máy phát dự phòng cho chiếu sáng và wifi.",
-      "trafficNotes": "Đường Đặng Thai Mai yên tĩnh, không gian đi bộ đạp xe lý tưởng."
-    },
-    "monthlyRentUSD": 449,
-    "images": [
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.82,
-    "reviewCount": 22,
-    "sensors": {
-      "smartLockBattery": 92,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 31.5,
-      "waterUsageLiters": 117,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "HN-CG-2501",
-    "name": "Sky Villa Cầu Giấy Penthouse Duplex",
-    "floor": 25,
-    "unitNumber": "2501",
-    "type": "Sky Villa",
-    "sqm": 290,
-    "bedrooms": 4,
-    "bathrooms": 4,
-    "status": "vacant",
-    "monthlyRentVND": 68000000,
-    "city": "Hanoi",
-    "district": "Cầu Giấy",
-    "address": "2 Duy Tân, Phường Dịch Vọng Hậu, Quận Cầu Giấy, Hà Nội",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Low",
-    "petFriendly": true,
-    "viewType": "Skyline Phía Tây Hà Nội 360 Độ",
-    "aiInsights": {
-      "whyFit": [
-        "Thiết kế thông tầng Duplex 6 mét trần kính ngắm hoàng hôn rực rỡ",
-        "Có 2 chỗ đỗ ô tô cố định dưới hầm kèm trạm sạc nhanh EV riêng",
-        "Hồ bơi jacuzzi nước ấm trên ban công riêng biệt"
-      ],
-      "worthConsidering": [
-        "Phù hợp phân khúc quản lý cấp cao, CEO doanh nghiệp công nghệ"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Hệ kính hộp 3 lớp Saint-Gobain cách nhiệt cách âm tối ưu.",
-      "floodNotes": "Khu công nghệ Duy Tân hạ tầng ngầm đồng bộ.",
-      "powerNotes": "2 máy phát Kohler dự phòng 100% full tải.",
-      "trafficNotes": "Ngay trung tâm thung lũng Silicon Hà Nội, 5 phút ra bến xe Mỹ Đình."
-    },
-    "monthlyRentUSD": 2776,
-    "images": [
-      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2da9c40f?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.83,
-    "reviewCount": 23,
-    "sensors": {
-      "smartLockBattery": 93,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 32.5,
-      "waterUsageLiters": 118,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "HN-BD-1502",
-    "name": "Căn Hộ Grandeur Palace Giảng Võ",
-    "floor": 15,
-    "unitNumber": "1502",
-    "type": "Deluxe Apartment",
-    "sqm": 130,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 32000000,
-    "city": "Hanoi",
-    "district": "Ba Đình",
-    "address": "138 Giảng Võ, Phường Kim Mã, Quận Ba Đình, Hà Nội",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": false,
-    "viewType": "Hồ Giảng Võ & Núi Ba Vì Từ Xa",
-    "aiInsights": {
-      "whyFit": [
-        "Căn hộ 3PN đẳng cấp 5 sao tại Ba Đình với nội thất nhập khẩu Ý",
-        "Sảnh thang máy riêng tới từng căn hộ, bảo mật vân tay tối tân",
-        "Chỗ đỗ ô tô thông minh tự động nâng hạ hiện đại"
-      ],
-      "worthConsidering": [
-        "Quy định nghiêm ngặt về trật tự và giờ giấc tòa nhà"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió hồ Giảng Võ trong lành, không bị nắng gắt chiếu thẳng.",
-      "floodNotes": "Hệ thống bơm ngầm chống ngập công suất lớn bảo vệ hầm 24/7.",
-      "powerNotes": "Nguồn điện chất lượng cao cấp riêng cho khu tổ hợp hạng A.",
-      "trafficNotes": "Mặt đường Giảng Võ 6 làn xe, nối thẳng đường Cát Linh."
-    },
-    "monthlyRentUSD": 1306,
-    "images": [
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2da9c40f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.84,
-    "reviewCount": 24,
-    "sensors": {
-      "smartLockBattery": 94,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 33.5,
-      "waterUsageLiters": 119,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "SG-D1-1601",
-    "name": "Căn Hộ Masterise Grand Marina Saigon View Sông",
-    "floor": 16,
-    "unitNumber": "1601",
-    "type": "Executive Suite",
-    "sqm": 92,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 38000000,
-    "city": "Ho Chi Minh City",
-    "district": "Quận 1",
-    "address": "2 Tôn Đức Thắng, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
     "trafficDensity": "Moderate",
     "petFriendly": true,
-    "viewType": "Sông Sài Gòn & Cầu Ba Son",
-    "aiInsights": {
-      "whyFit": [
-        "Tầm nhìn trực diện bến du thuyền và sông Sài Gòn tuyệt mỹ",
-        "Thương hiệu quản lý vận hành chuẩn Marriott International",
-        "Ga Metro Ba Son nằm ngay trong khuôn viên dự án"
-      ],
-      "worthConsidering": [
-        "Mức giá 38 Triệu/tháng thuộc phân khúc cao cấp Quận 1"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Gió sông Sài Gòn thổi mát lộng; công viên bờ sông 10ha điều hòa không khí.",
-      "floodNotes": "Cốt nền bờ sông được nâng cao theo tiêu chuẩn chống triều cường thế kỷ.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất chuẩn khách sạn 5 sao quốc tế.",
-      "trafficNotes": "Qua cầu Ba Son chỉ 2 phút là sang khu đô thị mới Thủ Thiêm."
-    },
-    "monthlyRentUSD": 1551,
-    "images": [
-      "https://images.unsplash.com/photo-1502005229762-ee1b2da9c40f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.85,
-    "reviewCount": 25,
-    "sensors": {
-      "smartLockBattery": 95,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 34.5,
-      "waterUsageLiters": 120,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "SG-D2-1104",
-    "name": "Căn Hộ Thảo Điền Green Riverside Garden",
-    "floor": 11,
-    "unitNumber": "1104",
-    "type": "Deluxe Apartment",
-    "sqm": 88,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 21000000,
-    "city": "Ho Chi Minh City",
-    "district": "Quận 2",
-    "address": "192 Nguyễn Văn Hưởng, Phường Thảo Điền, Thành phố Thủ Đức, TP. Hồ Chí Minh",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Low",
-    "petFriendly": true,
-    "viewType": "Uốn Lượn Sông Sài Gòn & Bán Đảo Thanh Đa",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 21 Triệu/tháng cực kỳ hấp dẫn tại tâm điểm Thảo Điền",
-        "Tòa nhà cao tầng mới xây với đê bao chống triều cường độc lập",
-        "Cộng đồng cư dân quốc tế thân thiện, nhiều nhà hàng & trường học quốc tế"
-      ],
-      "worthConsidering": [
-        "Tuyến đường Nguyễn Văn Hưởng đoạn ngoài có thể ngập nhẹ vào ngày rằm triều cường lớn"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "3 mặt sông Sài Gòn bao bọc mang lại khí hậu mát dịu quanh năm.",
-      "floodNotes": "Tòa nhà sở hữu trạm bơm riêng và dốc hầm nâng cao +1.5m chống tràn tuyệt đối.",
-      "powerNotes": "Máy phát điện tự động Cummins bảo đảm toàn bộ hệ thống thang máy và căn hộ.",
-      "trafficNotes": "Chạy xe 5 phút ra Xa Lộ Hà Nội và trạm Metro Thảo Điền."
-    },
-    "monthlyRentUSD": 857,
-    "images": [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.86,
-    "reviewCount": 26,
-    "sensors": {
-      "smartLockBattery": 96,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 35.5,
-      "waterUsageLiters": 121,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "SG-D7-1506",
-    "name": "Căn Hộ Midtown Phú Mỹ Hưng Sakura Park",
-    "floor": 15,
-    "unitNumber": "1506",
-    "type": "Deluxe Apartment",
-    "sqm": 110,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 24000000,
-    "city": "Ho Chi Minh City",
-    "district": "Quận 7",
-    "address": "Đường 16, Khu phức hợp Midtown, Tân Phú, Quận 7, TP. Hồ Chí Minh",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Low",
-    "petFriendly": true,
-    "viewType": "Công Viên Hoa Anh Đào & Dòng Sông Cảnh Quan",
-    "aiInsights": {
-      "whyFit": [
-        "Giá thuê 24 Triệu/tháng căn hộ 2PN 110m² view trọn công viên Sakura Park",
-        "Khu đô thị sinh thái xanh chuẩn quốc tế, không khói bụi",
-        "Có sẵn 1 chỗ đỗ ô tô hầm cố định và hồ bơi vô cực ngắm hoàng hôn"
-      ],
-      "worthConsidering": [
-        "Di chuyển vào Quận 1 khoảng 20-25 phút vào giờ cao điểm"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Mảng xanh bao phủ 60% diện tích, không khí trong lành mát mẻ.",
-      "floodNotes": "Hạ tầng Phú Mỹ Hưng thiết kế chống ngập chuẩn Singapore, không ngập nước.",
-      "powerNotes": "Trạm điện trung tâm dự phòng hoạt động tự động.",
-      "trafficNotes": "Đại lộ Nguyễn Lương Bằng 8 làn xe thông thoáng, cây xanh rợp bóng."
-    },
-    "monthlyRentUSD": 980,
-    "images": [
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.87,
-    "reviewCount": 27,
-    "sensors": {
-      "smartLockBattery": 97,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 36.5,
-      "waterUsageLiters": 122,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "SG-BT-2802",
-    "name": "Căn Hộ Landmark 81 Luxury Sky Suite",
-    "floor": 28,
-    "unitNumber": "2802",
-    "type": "Sky Villa",
-    "sqm": 145,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "status": "vacant",
-    "monthlyRentVND": 48000000,
-    "city": "Ho Chi Minh City",
-    "district": "Bình Thạnh",
-    "address": "720A Điện Biên Phủ, Phường 22, Quận Bình Thạnh, TP. Hồ Chí Minh",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Toàn Cảnh Sông Sài Gòn & Landmark 81",
-    "aiInsights": {
-      "whyFit": [
-        "Trải nghiệm sống đỉnh cao tại biểu tượng kiến trúc Landmark 81",
-        "Công viên ven sông 14 hecta lớn nhất trung tâm thành phố",
-        "Chỗ đỗ ô tô thông minh tầng hầm liên thông 3 tòa nhà"
-      ],
-      "worthConsidering": [
-        "Khu vực trung tâm thương mại đông đúc vào các dịp cuối tuần"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Tầng 28 view thoáng đãng, đón gió mát từ sông Sài Gòn.",
-      "floodNotes": "Được tôn cao nền hoàn chỉnh, đường nội bộ chống ngập toàn diện.",
-      "powerNotes": "Hệ thống điện dự phòng 100% tự động đóng cắt.",
-      "trafficNotes": "Ga Metro Tân Cảng kết nối trực tiếp trong bán kính 300 mét."
-    },
-    "monthlyRentUSD": 1959,
-    "images": [
-      "https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.88,
-    "reviewCount": 28,
-    "sensors": {
-      "smartLockBattery": 98,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 37.5,
-      "waterUsageLiters": 123,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "SG-D3-0901",
-    "name": "Căn Hộ Léman Luxury Paul Cézanne Suite",
-    "floor": 9,
-    "unitNumber": "0901",
-    "type": "Executive Suite",
-    "sqm": 75,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 26000000,
-    "city": "Ho Chi Minh City",
-    "district": "Quận 3",
-    "address": "117 Nguyễn Đình Chiểu, Phường 6, Quận 3, TP. Hồ Chí Minh",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": false,
-    "viewType": "Hàng Cây Dầu Cổ Thụ & Biệt Thự Cổ Quận 3",
-    "aiInsights": {
-      "whyFit": [
-        "Vị trí tâm điểm Quận 3 yên bình, rợp bóng cây cổ thụ trăm tuổi",
-        "Nội thất phong cách Thụy Sỹ tinh tế, sang trọng",
-        "Hồ bơi tràn trên sân thượng nhìn trọn trung tâm Sài Gòn"
-      ],
-      "worthConsidering": [
-        "Đường một chiều Nguyễn Đình Chiểu cần chú ý khi lái ô tô"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Những rặng cây dầu xanh mát làm dịu cái nóng nhiệt đới.",
-      "floodNotes": "Khu vực gò đất cao trung tâm Quận 3 chưa bao giờ ngập nước.",
-      "powerNotes": "Tòa nhà văn phòng - căn hộ cao cấp trang bị 2 nguồn điện kép.",
-      "trafficNotes": "Đi bộ 7 phút sang Dinh Độc Lập và công viên Tao Đàn."
-    },
-    "monthlyRentUSD": 1061,
-    "images": [
-      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200"
-    ],
     "furnished": true,
     "balcony": true,
     "airConditioning": true,
@@ -926,561 +138,189 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "kitchen": true,
     "wifi": true,
     "rating": 4.89,
-    "reviewCount": 29,
-    "sensors": {
-      "smartLockBattery": 85,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 38.5,
-      "waterUsageLiters": 124,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "SG-D2-2201",
-    "name": "Sky Villa Đảo Kim Cương Diamond Island",
-    "floor": 22,
-    "unitNumber": "2201",
-    "type": "Sky Villa",
-    "sqm": 260,
-    "bedrooms": 4,
-    "bathrooms": 4,
-    "status": "vacant",
-    "monthlyRentVND": 95000000,
-    "city": "Ho Chi Minh City",
-    "district": "Quận 2",
-    "address": "1 Đường số 104, Phường Bình Trưng Tây, Thành phố Thủ Đức, TP. Hồ Chí Minh",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Low",
-    "petFriendly": true,
-    "viewType": "Hòn Đảo 4 Mặt Sông & Bến Du Thuyền Riêng",
+    "reviewCount": 46,
+    "viewType": "View Phố Cổ & Tràng Tiền",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 60500000,
+      "estimatedElectricityVND": 1950000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1716000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 65866000,
+      "depositMonths": 2,
+      "depositVND": 121000000,
+      "moveInTotalRequiredVND": 186866000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
     "aiInsights": {
       "whyFit": [
-        "Dự án đảo tự nhiên duy nhất tại TP.HCM với 85% diện tích cây xanh mặt nước",
-        "Hồ bơi khoáng muối resort 2300m² và bến đậu du thuyền sang trọng",
-        "2 chỗ đỗ ô tô riêng dưới hầm thông minh có trạm sạc xe điện"
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Hoàn Kiếm, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
       ],
       "worthConsidering": [
-        "Môi trường cực kỳ biệt lập, thích hợp nghỉ dưỡng và gia đình thượng lưu"
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,716,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
       ]
     },
     "environmentalData": {
-      "weatherNotes": "Được bao bọc bởi hợp lưu sông Sài Gòn và sông Giồng Ông Tố, nhiệt độ luôn thấp hơn phố.",
-      "floodNotes": "Toàn bộ đảo được đắp đê bao kiên cố và hệ thống cống xả một chiều.",
-      "powerNotes": "Nguồn điện dự phòng cao cấp đạt chuẩn quốc tế.",
-      "trafficNotes": "Cầu Thời Đại kết nối đại lộ Mai Chí Thọ thông suốt không kẹt xe."
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
     },
-    "monthlyRentUSD": 3878,
-    "images": [
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.9,
-    "reviewCount": 30,
-    "sensors": {
-      "smartLockBattery": 86,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 24.5,
-      "waterUsageLiters": 125,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "SG-D7-0803",
-    "name": "Căn Hộ Scenic Valley Phú Mỹ Hưng Garden",
-    "floor": 8,
-    "unitNumber": "0803",
-    "type": "Deluxe Apartment",
-    "sqm": 77,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 14500000,
-    "city": "Ho Chi Minh City",
-    "district": "Quận 7",
-    "address": "Đường Tôn Dật Tiên, Tân Phú, Quận 7, TP. Hồ Chí Minh",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Low",
-    "petFriendly": true,
-    "viewType": "Sân Golf Nam Sài Gòn & Dòng Sông Thầy Tiêu",
-    "aiInsights": {
-      "whyFit": [
-        "Giá chỉ 14.5 Triệu/tháng cực tốt cho căn hộ 2 phòng ngủ tại Phú Mỹ Hưng",
-        "Đi bộ 3 phút sang bệnh viện FV và trung tâm thương mại Crescent Mall",
-        "Khu dân cư an ninh, yên tĩnh, cộng đồng văn minh"
-      ],
-      "worthConsidering": [
-        "Hầm xe máy giờ cao điểm cần lưu ý xếp xe gọn gàng"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "View sân golf xanh mướt mang đến bầu không khí trong lành.",
-      "floodNotes": "Đô thị Phú Mỹ Hưng cốt nền đạt chuẩn không ngập nước.",
-      "powerNotes": "Hệ thống điện tòa nhà vận hành an toàn ổn định.",
-      "trafficNotes": "Đường nội khu vỉa hè rộng 6m thích hợp chạy bộ mỗi sáng."
-    },
-    "monthlyRentUSD": 592,
-    "images": [
-      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.91,
-    "reviewCount": 31,
-    "sensors": {
-      "smartLockBattery": 87,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 25.5,
-      "waterUsageLiters": 126,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "DN-ST-2201",
-    "name": "Sky Villa Biển Mỹ Khê Sơn Trà Ocean Retreat",
-    "floor": 22,
-    "unitNumber": "2201",
-    "type": "Sky Villa",
-    "sqm": 230,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "status": "vacant",
-    "monthlyRentVND": 42000000,
-    "city": "Da Nang",
-    "district": "Sơn Trà",
-    "address": "120 Võ Nguyên Giáp, Phường Phước Mỹ, Quận Sơn Trà, Đà Nẵng",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Low",
-    "petFriendly": true,
-    "viewType": "Biển Mỹ Khê & Bán Đảo Sơn Trà",
-    "aiInsights": {
-      "whyFit": [
-        "Căn hộ góc Sky Villa view ôm trọn bờ biển Mỹ Khê - một trong những bãi biển đẹp nhất hành tinh",
-        "Chỗ đỗ ô tô hầm thông thoáng, chỉ mất 1 phút đi bộ ra bãi cát tắm biển",
-        "Tầng 22 đón trọn gió biển trong lành, ngắm chùa Linh Ứng từ ban công"
-      ],
-      "worthConsidering": [
-        "Mùa mưa bão miền Trung cần đóng chặt cửa sổ hướng biển theo hướng dẫn BQL"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Khí hậu biển ôn hòa, gió đông nam mát rượi suốt mùa hè.",
-      "floodNotes": "Tuyến đường ven biển Võ Nguyên Giáp cao ráo thoát nước trực tiếp ra biển.",
-      "powerNotes": "Trang bị máy phát điện công nghiệp chịu mặn, bảo đảm nguồn điện liên tục.",
-      "trafficNotes": "Đại lộ ven biển rộng 40m kết nối nhanh qua cầu Rồng sang trung tâm Hải Châu."
-    },
-    "monthlyRentUSD": 1714,
-    "images": [
-      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.92,
-    "reviewCount": 32,
-    "sensors": {
-      "smartLockBattery": 88,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 26.5,
-      "waterUsageLiters": 127,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "DN-HC-1102",
-    "name": "Căn Hộ Bạch Đằng Riverside View Cầu Rồng",
-    "floor": 11,
-    "unitNumber": "1102",
-    "type": "Executive Suite",
-    "sqm": 86,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 17000000,
-    "city": "Da Nang",
-    "district": "Hải Châu",
-    "address": "36 Bạch Đằng, Phường Thạch Thang, Quận Hải Châu, Đà Nẵng",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": false,
-    "viewType": "Sông Hàn, Cầu Quay & Cầu Rồng Phun Lửa",
-    "aiInsights": {
-      "whyFit": [
-        "Giá thuê 17 Triệu/tháng cực kỳ hợp lý ngay trung tâm phố đi bộ Bạch Đằng",
-        "Xem trực tiếp Cầu Rồng phun lửa và pháo hoa quốc tế DIFF từ phòng khách",
-        "Bao quanh bởi các quán cà phê, nhà hàng và trung tâm hành chính Đà Nẵng"
-      ],
-      "worthConsidering": [
-        "Tối cuối tuần đường Bạch Đằng đông vui náo nhiệt"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Mặt nước sông Hàn làm dịu không khí, đón gió biển từ vịnh Đà Nẵng.",
-      "floodNotes": "Đường Bạch Đằng kè đá kiên cố, không bị ngập úng.",
-      "powerNotes": "Tòa nhà sử dụng trạm biến áp trung tâm quận Hải Châu ổn định 100%.",
-      "trafficNotes": "Thuận tiện di chuyển ra sân bay quốc tế Đà Nẵng chỉ trong 7 phút."
-    },
-    "monthlyRentUSD": 694,
-    "images": [
-      "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.93,
-    "reviewCount": 33,
-    "sensors": {
-      "smartLockBattery": 89,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 27.5,
-      "waterUsageLiters": 128,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "DN-NHS-0705",
-    "name": "Căn Hộ Biển Ngũ Hành Sơn Coastal Garden",
-    "floor": 7,
-    "unitNumber": "0705",
-    "type": "Deluxe Apartment",
-    "sqm": 72,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 12500000,
-    "city": "Da Nang",
-    "district": "Ngũ Hành Sơn",
-    "address": "55 Trường Sa, Phường Khuê Mỹ, Quận Ngũ Hành Sơn, Đà Nẵng",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Low",
-    "petFriendly": true,
-    "viewType": "Vườn Nhiệt Đới & Núi Ngũ Hành Sơn",
-    "aiInsights": {
-      "whyFit": [
-        "Chỉ 12.5 Triệu/tháng cho căn hộ 2 phòng ngủ gần kề các resort 5 sao",
-        "Khu phố An Thượng sôi động với nhiều chuyên gia nước ngoài và người du mục số",
-        "Khuôn viên có hồ bơi người lớn & trẻ em, sân chơi thể thao"
-      ],
-      "worthConsidering": [
-        "Khoảng cách vào trung tâm Hải Châu tầm 6km (10 phút đi xe máy)"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Gần núi Ngũ Hành Sơn và bãi biển Non Nước, không khí vô cùng mát mẻ.",
-      "floodNotes": "Đồi cát tự nhiên địa hình cao ráo, cống thoát nước lớn.",
-      "powerNotes": "Máy phát điện dự phòng vận hành êm ái khi có sự cố lưới.",
-      "trafficNotes": "Trục đường Trường Sa thẳng tiến phố cổ Hội An trong 20 phút."
-    },
-    "monthlyRentUSD": 510,
-    "images": [
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.94,
-    "reviewCount": 34,
     "sensors": {
       "smartLockBattery": 90,
       "hvacStatus": "Optimal",
       "targetTempC": 22,
-      "energyConsumptionKwh": 28.5,
-      "waterUsageLiters": 129,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "DN-NGH-505",
-    "name": "Căn Hộ Ngũ Hành Sơn Deluxe Apartment DN-NGH-505",
-    "floor": 5,
-    "unitNumber": "505",
-    "type": "Deluxe Apartment",
-    "sqm": 95,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 15000000,
-    "city": "Da Nang",
-    "district": "Ngũ Hành Sơn",
-    "address": "102 Phan Chu Trinh, Phường Phước Mỹ, Quận Ngũ Hành Sơn, Đà Nẵng",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Moderate",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Bờ Biển Mỹ Khê & Bán Đảo Sơn Trà",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 15 Triệu/tháng tương thích hoàn hảo với khu vực Ngũ Hành Sơn",
-        "Căn hộ tầng 5 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Ngũ Hành Sơn",
-        "Thuận tiện di chuyển thang bộ khi cần"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Ngũ Hành Sơn.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 612,
-    "images": [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.95,
-    "reviewCount": 35,
-    "sensors": {
-      "smartLockBattery": 91,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 29.5,
-      "waterUsageLiters": 130,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "HN-HON-606",
-    "name": "Căn Hộ Hoàn Kiếm Deluxe Apartment HN-HON-606",
-    "floor": 6,
-    "unitNumber": "606",
-    "type": "Deluxe Apartment",
-    "sqm": 96,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 16000000,
-    "city": "Hanoi",
-    "district": "Hoàn Kiếm",
-    "address": "149 Trần Duy Hưng, Phường Trung Tâm, Quận Hoàn Kiếm, Hà Nội",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Moderate",
-    "trafficDensity": "Moderate",
-    "petFriendly": false,
-    "viewType": "Toàn Cảnh Thành Phố & Trục Đường Trần Duy Hưng",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 16 Triệu/tháng tương thích hoàn hảo với khu vực Hoàn Kiếm",
-        "Căn hộ tầng 6 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Hoàn Kiếm",
-        "Thuận tiện di chuyển thang bộ khi cần"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Hoàn Kiếm.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 653,
-    "images": [
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.96,
-    "reviewCount": 36,
-    "sensors": {
-      "smartLockBattery": 92,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 30.5,
+      "energyConsumptionKwh": 41.9,
       "waterUsageLiters": 131,
       "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1002",
+      "name": "Emily Watson",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 976 456 789",
+      "email": "emily.watson@grab.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-06-15",
+      "leaseEnd": "2026-06-15",
+      "monthlyRentUSD": 2469,
+      "monthlyRentVND": 60500000,
+      "autoPayActive": true,
+      "occupantsCount": 2
     }
   },
   {
-    "id": "SG-QUN-707",
-    "name": "Căn Hộ Quận 3 Deluxe Apartment SG-QUN-707",
-    "floor": 7,
-    "unitNumber": "707",
-    "type": "Deluxe Apartment",
-    "sqm": 97,
-    "bedrooms": 2,
+    "id": "HN-BA-1502",
+    "name": "Executive Suite Lotte Center & Ngoại Giao Đoàn — Ba Đình",
+    "floor": 15,
+    "unitNumber": "1502",
+    "type": "Executive Suite",
+    "sqm": 123,
+    "bedrooms": 3,
     "bathrooms": 2,
     "status": "vacant",
-    "monthlyRentVND": 17000000,
-    "city": "Ho Chi Minh City",
-    "district": "Quận 3",
-    "address": "244 Nguyễn Hữu Thọ, Phường An Cư, Quận 3, TP. Hồ Chí Minh",
+    "monthlyRentUSD": 2449,
+    "monthlyRentVND": 60000000,
+    "city": "Hanoi",
+    "district": "Ba Đình",
+    "address": "Tầng 15, Tòa tháp Haven Luxury, Đường Ngọc Khánh, Quận Ba Đình, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+    ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
     "hasElevator": true,
     "hasBackupPower": true,
     "floodingRisk": "Low",
-    "noiseLevel": "Moderate",
+    "noiseLevel": "Quiet",
     "trafficDensity": "Moderate",
     "petFriendly": true,
-    "viewType": "Sông Sài Gòn & Skyline Quận 3",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 17 Triệu/tháng tương thích hoàn hảo với khu vực Quận 3",
-        "Căn hộ tầng 7 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Quận 3",
-        "Thuận tiện di chuyển thang bộ khi cần"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Quận 3.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 694,
-    "images": [
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
-    ],
     "furnished": true,
     "balcony": true,
     "airConditioning": true,
     "washingMachine": true,
     "kitchen": true,
     "wifi": true,
-    "rating": 4.97,
-    "reviewCount": 37,
+    "rating": 4.78,
+    "reviewCount": 41,
+    "viewType": "View Lotte Center & Ngoại Giao Đoàn",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 60000000,
+      "estimatedElectricityVND": 3075000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2706000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 68081000,
+      "depositMonths": 2,
+      "depositVND": 120000000,
+      "moveInTotalRequiredVND": 188081000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Ba Đình, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,706,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
     "sensors": {
-      "smartLockBattery": 93,
+      "smartLockBattery": 89,
       "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 31.5,
-      "waterUsageLiters": 132,
+      "targetTempC": 23,
+      "energyConsumptionKwh": 35.3,
+      "waterUsageLiters": 111,
       "securityAlarmDisarmed": true
     }
   },
   {
-    "id": "DN-NGH-808",
-    "name": "Căn Hộ Ngũ Hành Sơn Deluxe Apartment DN-NGH-808",
-    "floor": 8,
-    "unitNumber": "808",
-    "type": "Deluxe Apartment",
-    "sqm": 98,
+    "id": "HN-CẦ-0703",
+    "name": "Sky Villa Khu Công Nghệ Duy Tân & Keangnam — Cầu Giấy",
+    "floor": 7,
+    "unitNumber": "0703",
+    "type": "Sky Villa",
+    "sqm": 183,
     "bedrooms": 3,
-    "bathrooms": 2,
+    "bathrooms": 3,
     "status": "vacant",
-    "monthlyRentVND": 18000000,
-    "city": "Da Nang",
-    "district": "Ngũ Hành Sơn",
-    "address": "117 Lê Duẩn, Phường Phước Mỹ, Quận Ngũ Hành Sơn, Đà Nẵng",
+    "monthlyRentUSD": 8245,
+    "monthlyRentVND": 202000000,
+    "city": "Hanoi",
+    "district": "Cầu Giấy",
+    "address": "Tầng 7, Tòa tháp Haven Luxury, Đường Yên Hòa, Quận Cầu Giấy, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+    ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
     "hasElevator": true,
     "hasBackupPower": true,
     "floodingRisk": "Low",
-    "noiseLevel": "Moderate",
+    "noiseLevel": "Quiet",
     "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Cầu Sông Hàn & Vịnh Đà Nẵng",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 18 Triệu/tháng tương thích hoàn hảo với khu vực Ngũ Hành Sơn",
-        "Căn hộ tầng 8 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Ngũ Hành Sơn",
-        "Thuận tiện di chuyển thang bộ khi cần"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Ngũ Hành Sơn.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 735,
-    "images": [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
-    ],
+    "petFriendly": false,
     "furnished": true,
     "balcony": true,
     "airConditioning": true,
@@ -1488,30 +328,269 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "kitchen": true,
     "wifi": true,
     "rating": 4.98,
-    "reviewCount": 38,
+    "reviewCount": 52,
+    "viewType": "View Khu Công Nghệ Duy Tân & Keangnam",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 202000000,
+      "estimatedElectricityVND": 4575000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 4026000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 212901000,
+      "depositMonths": 2,
+      "depositVND": 404000000,
+      "moveInTotalRequiredVND": 616901000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Cầu Giấy, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (4,026,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
     "sensors": {
-      "smartLockBattery": 94,
+      "smartLockBattery": 85,
       "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 32.5,
-      "waterUsageLiters": 133,
+      "targetTempC": 24,
+      "energyConsumptionKwh": 52.3,
+      "waterUsageLiters": 92,
       "securityAlarmDisarmed": true
     }
   },
   {
-    "id": "HN-TYH-901",
-    "name": "Căn Hộ Tây Hồ Deluxe Apartment HN-TYH-901",
-    "floor": 9,
-    "unitNumber": "901",
-    "type": "Deluxe Apartment",
-    "sqm": 99,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 19000000,
+    "id": "HN-NA-0506",
+    "name": "Penthouse The Manor & Mỹ Đình Stadium — Nam Từ Liêm",
+    "floor": 5,
+    "unitNumber": "0506",
+    "type": "Penthouse",
+    "sqm": 322,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "status": "occupied",
+    "monthlyRentUSD": 13653,
+    "monthlyRentVND": 334500000,
     "city": "Hanoi",
-    "district": "Tây Hồ",
-    "address": "170 Lý Thường Kiệt, Phường Trung Tâm, Quận Tây Hồ, Hà Nội",
+    "district": "Nam Từ Liêm",
+    "address": "Tầng 5, Tòa tháp Haven Luxury, Đường Mỹ Đình 2, Quận Nam Từ Liêm, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.74,
+    "reviewCount": 27,
+    "viewType": "View The Manor & Mỹ Đình Stadium",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 334500000,
+      "estimatedElectricityVND": 8050000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 7084000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 351934000,
+      "depositMonths": 2,
+      "depositVND": 669000000,
+      "moveInTotalRequiredVND": 1020934000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Penthouse tại vị trí đắc địa Nam Từ Liêm, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (7,084,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 95,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 48.9,
+      "waterUsageLiters": 139,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1005",
+      "name": "Liam Tanaka",
+      "avatar": "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 905 012 345",
+      "email": "liam.tanaka@rakuten.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-12-15",
+      "leaseEnd": "2026-08-15",
+      "monthlyRentUSD": 13653,
+      "monthlyRentVND": 334500000,
+      "autoPayActive": true,
+      "occupantsCount": 4
+    }
+  },
+  {
+    "id": "HN-HA-2806",
+    "name": "Duplex Times City & Vincom Bà Triệu — Hai Bà Trưng",
+    "floor": 28,
+    "unitNumber": "2806",
+    "type": "Duplex",
+    "sqm": 153,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "maintenance",
+    "monthlyRentUSD": 3796,
+    "monthlyRentVND": 93000000,
+    "city": "Hanoi",
+    "district": "Hai Bà Trưng",
+    "address": "Tầng 28, Tòa tháp Haven Luxury, Đường Lê Đại Hành, Quận Hai Bà Trưng, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.93,
+    "reviewCount": 21,
+    "viewType": "View Times City & Vincom Bà Triệu",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 93000000,
+      "estimatedElectricityVND": 3825000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3366000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 101891000,
+      "depositMonths": 2,
+      "depositVND": 186000000,
+      "moveInTotalRequiredVND": 287891000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Duplex tại vị trí đắc địa Hai Bà Trưng, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,366,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 91,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 35.9,
+      "waterUsageLiters": 144,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "HN-ĐỐ-1901",
+    "name": "Studio Hoàng Cầu & Giảng Võ — Đống Đa",
+    "floor": 19,
+    "unitNumber": "1901",
+    "type": "Studio",
+    "sqm": 53,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "vacant",
+    "monthlyRentUSD": 959,
+    "monthlyRentVND": 23500000,
+    "city": "Hanoi",
+    "district": "Đống Đa",
+    "address": "Tầng 19, Tòa tháp Haven Luxury, Đường Ô Chợ Dừa, Quận Đống Đa, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+    ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
     "hasElevator": true,
@@ -1520,61 +599,86 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "noiseLevel": "Moderate",
     "trafficDensity": "Moderate",
     "petFriendly": false,
-    "viewType": "Hồ Tây & Công Viên Cây Xanh Tây Hồ",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 19 Triệu/tháng tương thích hoàn hảo với khu vực Tây Hồ",
-        "Căn hộ tầng 9 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Tây Hồ",
-        "Thuận tiện di chuyển thang bộ khi cần"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Tây Hồ.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 776,
-    "images": [
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
-    ],
     "furnished": true,
     "balcony": true,
     "airConditioning": true,
     "washingMachine": true,
     "kitchen": true,
     "wifi": true,
-    "rating": 4.99,
-    "reviewCount": 39,
+    "rating": 4.79,
+    "reviewCount": 41,
+    "viewType": "View Hoàng Cầu & Giảng Võ",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 23500000,
+      "estimatedElectricityVND": 1325000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1166000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 27691000,
+      "depositMonths": 1,
+      "depositVND": 23500000,
+      "moveInTotalRequiredVND": 51191000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Đống Đa, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,166,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
     "sensors": {
-      "smartLockBattery": 95,
+      "smartLockBattery": 86,
       "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 33.5,
-      "waterUsageLiters": 134,
+      "targetTempC": 23,
+      "energyConsumptionKwh": 40.3,
+      "waterUsageLiters": 98,
       "securityAlarmDisarmed": true
     }
   },
   {
-    "id": "SG-QUN-1302",
-    "name": "Căn Hộ Quận 1 Deluxe Apartment SG-QUN-1302",
-    "floor": 13,
-    "unitNumber": "1302",
+    "id": "HN-TÂ-2204",
+    "name": "Deluxe Apartment Hồ Tây Panorama — Tây Hồ",
+    "floor": 22,
+    "unitNumber": "2204",
     "type": "Deluxe Apartment",
-    "sqm": 45,
+    "sqm": 90,
     "bedrooms": 2,
-    "bathrooms": 1,
-    "status": "vacant",
-    "monthlyRentVND": 12000000,
-    "city": "Ho Chi Minh City",
-    "district": "Quận 1",
-    "address": "27 Đồng Khởi, Phường An Cư, Quận 1, TP. Hồ Chí Minh",
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 1531,
+    "monthlyRentVND": 37500000,
+    "city": "Hanoi",
+    "district": "Tây Hồ",
+    "address": "Tầng 22, Tòa tháp Haven Luxury, Đường Yên Phụ, Quận Tây Hồ, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+    ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
     "hasElevator": true,
@@ -1583,30 +687,2856 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "noiseLevel": "Quiet",
     "trafficDensity": "Moderate",
     "petFriendly": true,
-    "viewType": "Khu Đô Thị Sinh Thái Quận 1",
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.67,
+    "reviewCount": 68,
+    "viewType": "View Hồ Tây Panorama",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 37500000,
+      "estimatedElectricityVND": 2250000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1980000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 43430000,
+      "depositMonths": 1,
+      "depositVND": 37500000,
+      "moveInTotalRequiredVND": 80930000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
     "aiInsights": {
       "whyFit": [
-        "Mức giá 12 Triệu/tháng tương thích hoàn hảo với khu vực Quận 1",
-        "Căn hộ tầng 13 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Chỗ đỗ xe máy thuận tiện, quản lý an ninh thẻ từ 24/7"
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Tây Hồ, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
       ],
       "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Quận 1",
-        "Thuận tiện di chuyển thang bộ khi cần"
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,980,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
       ]
     },
     "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Quận 1.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
     },
-    "monthlyRentUSD": 490,
+    "sensors": {
+      "smartLockBattery": 80,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 48.3,
+      "waterUsageLiters": 93,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1008",
+      "name": "Chloe Martin",
+      "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 966 901 234",
+      "email": "chloe.m@loreal.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-01-15",
+      "leaseEnd": "2026-10-15",
+      "monthlyRentUSD": 1531,
+      "monthlyRentVND": 37500000,
+      "autoPayActive": true,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "HN-HO-1103",
+    "name": "Executive Suite Phố Cổ & Tràng Tiền — Hoàn Kiếm",
+    "floor": 11,
+    "unitNumber": "1103",
+    "type": "Executive Suite",
+    "sqm": 122,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 4551,
+    "monthlyRentVND": 111500000,
+    "city": "Hanoi",
+    "district": "Hoàn Kiếm",
+    "address": "Tầng 11, Tòa tháp Haven Luxury, Đường Tràng Tiền, Quận Hoàn Kiếm, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.89,
+    "reviewCount": 37,
+    "viewType": "View Phố Cổ & Tràng Tiền",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 111500000,
+      "estimatedElectricityVND": 3050000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2684000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 119534000,
+      "depositMonths": 2,
+      "depositVND": 223000000,
+      "moveInTotalRequiredVND": 342534000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Hoàn Kiếm, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,684,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 98,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 37.8,
+      "waterUsageLiters": 151,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1009",
+      "name": "Hoàng Đức Anh",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
+      "phone": "0944556677",
+      "email": "ducanh.hoang@shopee.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-09-15",
+      "leaseEnd": "2026-12-15",
+      "monthlyRentUSD": 4551,
+      "monthlyRentVND": 111500000,
+      "autoPayActive": false,
+      "occupantsCount": 4
+    }
+  },
+  {
+    "id": "HN-BA-1004",
+    "name": "Sky Villa Lotte Center & Ngoại Giao Đoàn — Ba Đình",
+    "floor": 10,
+    "unitNumber": "1004",
+    "type": "Sky Villa",
+    "sqm": 189,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 6122,
+    "monthlyRentVND": 150000000,
+    "city": "Hanoi",
+    "district": "Ba Đình",
+    "address": "Tầng 10, Tòa tháp Haven Luxury, Đường Giảng Võ, Quận Ba Đình, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.73,
+    "reviewCount": 14,
+    "viewType": "View Lotte Center & Ngoại Giao Đoàn",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 150000000,
+      "estimatedElectricityVND": 4725000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 4158000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 161183000,
+      "depositMonths": 2,
+      "depositVND": 300000000,
+      "moveInTotalRequiredVND": 461183000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Ba Đình, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (4,158,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 80,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 32.0,
+      "waterUsageLiters": 147,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1010",
+      "name": "Chloe Martin",
+      "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 966 901 234",
+      "email": "chloe.m@loreal.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-04-15",
+      "leaseEnd": "2026-10-15",
+      "monthlyRentUSD": 6122,
+      "monthlyRentVND": 150000000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "HN-CẦ-3703",
+    "name": "Penthouse Khu Công Nghệ Duy Tân & Keangnam — Cầu Giấy",
+    "floor": 37,
+    "unitNumber": "3703",
+    "type": "Penthouse",
+    "sqm": 321,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "status": "pending_handover",
+    "monthlyRentUSD": 18061,
+    "monthlyRentVND": 442500000,
+    "city": "Hanoi",
+    "district": "Cầu Giấy",
+    "address": "Tầng 37, Tòa tháp Haven Luxury, Đường Trung Hòa, Quận Cầu Giấy, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.77,
+    "reviewCount": 38,
+    "viewType": "View Khu Công Nghệ Duy Tân & Keangnam",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 442500000,
+      "estimatedElectricityVND": 8025000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 7062000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 459887000,
+      "depositMonths": 2,
+      "depositVND": 885000000,
+      "moveInTotalRequiredVND": 1344887000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Penthouse tại vị trí đắc địa Cầu Giấy, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (7,062,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 79,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 24.2,
+      "waterUsageLiters": 128,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1011",
+      "name": "Bùi Tiến Dũng",
+      "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200",
+      "phone": "0918776655",
+      "email": "tiendung.bui@vingroup.net",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-04-15",
+      "leaseEnd": "2026-12-15",
+      "monthlyRentUSD": 18061,
+      "monthlyRentVND": 442500000,
+      "autoPayActive": true,
+      "occupantsCount": 4
+    }
+  },
+  {
+    "id": "HN-NA-1804",
+    "name": "Duplex The Manor & Mỹ Đình Stadium — Nam Từ Liêm",
+    "floor": 18,
+    "unitNumber": "1804",
+    "type": "Duplex",
+    "sqm": 138,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "vacant",
+    "monthlyRentUSD": 3694,
+    "monthlyRentVND": 90500000,
+    "city": "Hanoi",
+    "district": "Nam Từ Liêm",
+    "address": "Tầng 18, Tòa tháp Haven Luxury, Đường Mễ Trì, Quận Nam Từ Liêm, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.73,
+    "reviewCount": 16,
+    "viewType": "View The Manor & Mỹ Đình Stadium",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 90500000,
+      "estimatedElectricityVND": 3450000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3036000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 98686000,
+      "depositMonths": 2,
+      "depositVND": 181000000,
+      "moveInTotalRequiredVND": 279686000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Duplex tại vị trí đắc địa Nam Từ Liêm, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,036,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 95,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 23.8,
+      "waterUsageLiters": 154,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "HN-HA-0804",
+    "name": "Studio Times City & Vincom Bà Triệu — Hai Bà Trưng",
+    "floor": 8,
+    "unitNumber": "0804",
+    "type": "Studio",
+    "sqm": 37,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "occupied",
+    "monthlyRentUSD": 1041,
+    "monthlyRentVND": 25500000,
+    "city": "Hanoi",
+    "district": "Hai Bà Trưng",
+    "address": "Tầng 8, Tòa tháp Haven Luxury, Đường Minh Khai, Quận Hai Bà Trưng, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.88,
+    "reviewCount": 58,
+    "viewType": "View Times City & Vincom Bà Triệu",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 25500000,
+      "estimatedElectricityVND": 925000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 814000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 28939000,
+      "depositMonths": 1,
+      "depositVND": 25500000,
+      "moveInTotalRequiredVND": 54439000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Hai Bà Trưng, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (814,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 95,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 27.6,
+      "waterUsageLiters": 122,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1013",
+      "name": "Đỗ Phương Linh",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200",
+      "phone": "0977223344",
+      "email": "phuonglinh.do@vietcombank.com.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-01-15",
+      "leaseEnd": "2026-07-15",
+      "monthlyRentUSD": 1041,
+      "monthlyRentVND": 25500000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "HN-ĐỐ-0601",
+    "name": "Deluxe Apartment Hoàng Cầu & Giảng Võ — Đống Đa",
+    "floor": 6,
+    "unitNumber": "0601",
+    "type": "Deluxe Apartment",
+    "sqm": 76,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 2551,
+    "monthlyRentVND": 62500000,
+    "city": "Hanoi",
+    "district": "Đống Đa",
+    "address": "Tầng 6, Tòa tháp Haven Luxury, Đường Láng Hạ, Quận Đống Đa, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.85,
+    "reviewCount": 55,
+    "viewType": "View Hoàng Cầu & Giảng Võ",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 62500000,
+      "estimatedElectricityVND": 1900000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1672000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 67772000,
+      "depositMonths": 2,
+      "depositVND": 125000000,
+      "moveInTotalRequiredVND": 192772000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Đống Đa, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,672,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 90,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 55.9,
+      "waterUsageLiters": 157,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1014",
+      "name": "Oliver Hansen",
+      "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 917 890 123",
+      "email": "o.hansen@lego.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-09-15",
+      "leaseEnd": "2026-12-15",
+      "monthlyRentUSD": 2551,
+      "monthlyRentVND": 62500000,
+      "autoPayActive": false,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "HN-TÂ-0502",
+    "name": "Executive Suite Hồ Tây Panorama — Tây Hồ",
+    "floor": 5,
+    "unitNumber": "0502",
+    "type": "Executive Suite",
+    "sqm": 112,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "vacant",
+    "monthlyRentUSD": 3714,
+    "monthlyRentVND": 91000000,
+    "city": "Hanoi",
+    "district": "Tây Hồ",
+    "address": "Tầng 5, Tòa tháp Haven Luxury, Đường Nhật Tân, Quận Tây Hồ, Hà Nội",
     "images": [
       "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
     ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.73,
+    "reviewCount": 37,
+    "viewType": "View Hồ Tây Panorama",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 91000000,
+      "estimatedElectricityVND": 2800000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2464000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 98564000,
+      "depositMonths": 2,
+      "depositVND": 182000000,
+      "moveInTotalRequiredVND": 280564000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Tây Hồ, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,464,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 98,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 38.5,
+      "waterUsageLiters": 94,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "HN-HO-3202",
+    "name": "Sky Villa Phố Cổ & Tràng Tiền — Hoàn Kiếm",
+    "floor": 32,
+    "unitNumber": "3202",
+    "type": "Sky Villa",
+    "sqm": 175,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "vacant",
+    "monthlyRentUSD": 5082,
+    "monthlyRentVND": 124500000,
+    "city": "Hanoi",
+    "district": "Hoàn Kiếm",
+    "address": "Tầng 32, Tòa tháp Haven Luxury, Đường Phan Chu Trinh, Quận Hoàn Kiếm, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.94,
+    "reviewCount": 35,
+    "viewType": "View Phố Cổ & Tràng Tiền",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 124500000,
+      "estimatedElectricityVND": 4375000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3850000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 135025000,
+      "depositMonths": 2,
+      "depositVND": 249000000,
+      "moveInTotalRequiredVND": 384025000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Hoàn Kiếm, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,850,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 92,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 44.0,
+      "waterUsageLiters": 152,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "HN-BA-3805",
+    "name": "Penthouse Lotte Center & Ngoại Giao Đoàn — Ba Đình",
+    "floor": 38,
+    "unitNumber": "3805",
+    "type": "Penthouse",
+    "sqm": 315,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "status": "occupied",
+    "monthlyRentUSD": 17245,
+    "monthlyRentVND": 422500000,
+    "city": "Hanoi",
+    "district": "Ba Đình",
+    "address": "Tầng 38, Tòa tháp Haven Luxury, Đường Kim Mã, Quận Ba Đình, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.89,
+    "reviewCount": 25,
+    "viewType": "View Lotte Center & Ngoại Giao Đoàn",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 422500000,
+      "estimatedElectricityVND": 7875000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 6930000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 439605000,
+      "depositMonths": 2,
+      "depositVND": 845000000,
+      "moveInTotalRequiredVND": 1284605000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Penthouse tại vị trí đắc địa Ba Đình, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (6,930,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 86,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 31.0,
+      "waterUsageLiters": 91,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1017",
+      "name": "Hoàng Đức Anh",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
+      "phone": "0944556677",
+      "email": "ducanh.hoang@shopee.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-02-15",
+      "leaseEnd": "2026-06-15",
+      "monthlyRentUSD": 17245,
+      "monthlyRentVND": 422500000,
+      "autoPayActive": false,
+      "occupantsCount": 5
+    }
+  },
+  {
+    "id": "HN-CẦ-3005",
+    "name": "Duplex Khu Công Nghệ Duy Tân & Keangnam — Cầu Giấy",
+    "floor": 30,
+    "unitNumber": "3005",
+    "type": "Duplex",
+    "sqm": 137,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 3204,
+    "monthlyRentVND": 78500000,
+    "city": "Hanoi",
+    "district": "Cầu Giấy",
+    "address": "Tầng 30, Tòa tháp Haven Luxury, Đường Nghĩa Đô, Quận Cầu Giấy, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.93,
+    "reviewCount": 49,
+    "viewType": "View Khu Công Nghệ Duy Tân & Keangnam",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 78500000,
+      "estimatedElectricityVND": 3425000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3014000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 86639000,
+      "depositMonths": 2,
+      "depositVND": 157000000,
+      "moveInTotalRequiredVND": 243639000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Duplex tại vị trí đắc địa Cầu Giấy, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,014,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 91,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 23.5,
+      "waterUsageLiters": 131,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1018",
+      "name": "Hoàng Đức Anh",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
+      "phone": "0944556677",
+      "email": "ducanh.hoang@shopee.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-03-15",
+      "leaseEnd": "2026-11-15",
+      "monthlyRentUSD": 3204,
+      "monthlyRentVND": 78500000,
+      "autoPayActive": true,
+      "occupantsCount": 4
+    }
+  },
+  {
+    "id": "HN-NA-2504",
+    "name": "Studio The Manor & Mỹ Đình Stadium — Nam Từ Liêm",
+    "floor": 25,
+    "unitNumber": "2504",
+    "type": "Studio",
+    "sqm": 38,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "vacant",
+    "monthlyRentUSD": 1184,
+    "monthlyRentVND": 29000000,
+    "city": "Hanoi",
+    "district": "Nam Từ Liêm",
+    "address": "Tầng 25, Tòa tháp Haven Luxury, Đường Mỹ Đình 1, Quận Nam Từ Liêm, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.94,
+    "reviewCount": 63,
+    "viewType": "View The Manor & Mỹ Đình Stadium",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 29000000,
+      "estimatedElectricityVND": 950000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 836000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 32486000,
+      "depositMonths": 1,
+      "depositVND": 29000000,
+      "moveInTotalRequiredVND": 61486000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Nam Từ Liêm, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (836,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 91,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 28.5,
+      "waterUsageLiters": 127,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "HN-HA-1805",
+    "name": "Deluxe Apartment Times City & Vincom Bà Triệu — Hai Bà Trưng",
+    "floor": 18,
+    "unitNumber": "1805",
+    "type": "Deluxe Apartment",
+    "sqm": 83,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "vacant",
+    "monthlyRentUSD": 1531,
+    "monthlyRentVND": 37500000,
+    "city": "Hanoi",
+    "district": "Hai Bà Trưng",
+    "address": "Tầng 18, Tòa tháp Haven Luxury, Đường Bạch Đằng, Quận Hai Bà Trưng, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.72,
+    "reviewCount": 41,
+    "viewType": "View Times City & Vincom Bà Triệu",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 37500000,
+      "estimatedElectricityVND": 2075000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1826000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 43101000,
+      "depositMonths": 1,
+      "depositVND": 37500000,
+      "moveInTotalRequiredVND": 80601000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Hai Bà Trưng, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,826,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 85,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 22.9,
+      "waterUsageLiters": 109,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "HN-ĐỐ-2405",
+    "name": "Executive Suite Hoàng Cầu & Giảng Võ — Đống Đa",
+    "floor": 24,
+    "unitNumber": "2405",
+    "type": "Executive Suite",
+    "sqm": 117,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "maintenance",
+    "monthlyRentUSD": 2531,
+    "monthlyRentVND": 62000000,
+    "city": "Hanoi",
+    "district": "Đống Đa",
+    "address": "Tầng 24, Tòa tháp Haven Luxury, Đường Cát Linh, Quận Đống Đa, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.87,
+    "reviewCount": 65,
+    "viewType": "View Hoàng Cầu & Giảng Võ",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 62000000,
+      "estimatedElectricityVND": 2925000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2574000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 69799000,
+      "depositMonths": 2,
+      "depositVND": 124000000,
+      "moveInTotalRequiredVND": 193799000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Đống Đa, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,574,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 78,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 53.6,
+      "waterUsageLiters": 118,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "HN-TÂ-1901",
+    "name": "Sky Villa Hồ Tây Panorama — Tây Hồ",
+    "floor": 19,
+    "unitNumber": "1901",
+    "type": "Sky Villa",
+    "sqm": 180,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "vacant",
+    "monthlyRentUSD": 5327,
+    "monthlyRentVND": 130500000,
+    "city": "Hanoi",
+    "district": "Tây Hồ",
+    "address": "Tầng 19, Tòa tháp Haven Luxury, Đường Xuân La, Quận Tây Hồ, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.85,
+    "reviewCount": 44,
+    "viewType": "View Hồ Tây Panorama",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 130500000,
+      "estimatedElectricityVND": 4500000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3960000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 141260000,
+      "depositMonths": 2,
+      "depositVND": 261000000,
+      "moveInTotalRequiredVND": 402260000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Tây Hồ, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,960,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 96,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 31.2,
+      "waterUsageLiters": 140,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "HN-HO-3604",
+    "name": "Penthouse Phố Cổ & Tràng Tiền — Hoàn Kiếm",
+    "floor": 36,
+    "unitNumber": "3604",
+    "type": "Penthouse",
+    "sqm": 315,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "status": "occupied",
+    "monthlyRentUSD": 13143,
+    "monthlyRentVND": 322000000,
+    "city": "Hanoi",
+    "district": "Hoàn Kiếm",
+    "address": "Tầng 36, Tòa tháp Haven Luxury, Đường Lý Thái Tổ, Quận Hoàn Kiếm, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.76,
+    "reviewCount": 56,
+    "viewType": "View Phố Cổ & Tràng Tiền",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 322000000,
+      "estimatedElectricityVND": 7875000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 6930000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 339105000,
+      "depositMonths": 2,
+      "depositVND": 644000000,
+      "moveInTotalRequiredVND": 983105000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Penthouse tại vị trí đắc địa Hoàn Kiếm, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (6,930,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 82,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 37.1,
+      "waterUsageLiters": 133,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1023",
+      "name": "Vũ Hải Đăng",
+      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200",
+      "phone": "0968998877",
+      "email": "dang.vu@misa.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-10-15",
+      "leaseEnd": "2026-08-15",
+      "monthlyRentUSD": 13143,
+      "monthlyRentVND": 322000000,
+      "autoPayActive": false,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "HN-BA-2207",
+    "name": "Duplex Lotte Center & Ngoại Giao Đoàn — Ba Đình",
+    "floor": 22,
+    "unitNumber": "2207",
+    "type": "Duplex",
+    "sqm": 140,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "reserved",
+    "monthlyRentUSD": 4918,
+    "monthlyRentVND": 120500000,
+    "city": "Hanoi",
+    "district": "Ba Đình",
+    "address": "Tầng 22, Tòa tháp Haven Luxury, Đường Liễu Giai, Quận Ba Đình, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.8,
+    "reviewCount": 40,
+    "viewType": "View Lotte Center & Ngoại Giao Đoàn",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 120500000,
+      "estimatedElectricityVND": 3500000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3080000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 128780000,
+      "depositMonths": 2,
+      "depositVND": 241000000,
+      "moveInTotalRequiredVND": 369780000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Duplex tại vị trí đắc địa Ba Đình, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,080,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 94,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 50.6,
+      "waterUsageLiters": 106,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "HN-CẦ-2106",
+    "name": "Studio Khu Công Nghệ Duy Tân & Keangnam — Cầu Giấy",
+    "floor": 21,
+    "unitNumber": "2106",
+    "type": "Studio",
+    "sqm": 39,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "reserved",
+    "monthlyRentUSD": 918,
+    "monthlyRentVND": 22500000,
+    "city": "Hanoi",
+    "district": "Cầu Giấy",
+    "address": "Tầng 21, Tòa tháp Haven Luxury, Đường Dịch Vọng Hậu, Quận Cầu Giấy, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.7,
+    "reviewCount": 14,
+    "viewType": "View Khu Công Nghệ Duy Tân & Keangnam",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 22500000,
+      "estimatedElectricityVND": 975000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 858000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 26033000,
+      "depositMonths": 1,
+      "depositVND": 22500000,
+      "moveInTotalRequiredVND": 48533000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Cầu Giấy, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (858,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 93,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 38.4,
+      "waterUsageLiters": 158,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "HN-NA-2708",
+    "name": "Deluxe Apartment The Manor & Mỹ Đình Stadium — Nam Từ Liêm",
+    "floor": 27,
+    "unitNumber": "2708",
+    "type": "Deluxe Apartment",
+    "sqm": 76,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 1959,
+    "monthlyRentVND": 48000000,
+    "city": "Hanoi",
+    "district": "Nam Từ Liêm",
+    "address": "Tầng 27, Tòa tháp Haven Luxury, Đường Mỹ Đình 2, Quận Nam Từ Liêm, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.83,
+    "reviewCount": 66,
+    "viewType": "View The Manor & Mỹ Đình Stadium",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 48000000,
+      "estimatedElectricityVND": 1900000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1672000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 53272000,
+      "depositMonths": 1,
+      "depositVND": 48000000,
+      "moveInTotalRequiredVND": 101272000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Nam Từ Liêm, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,672,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 82,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 46.0,
+      "waterUsageLiters": 156,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1026",
+      "name": "Nguyễn Minh Hoàng",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      "phone": "0903124567",
+      "email": "hoang.nm@gmail.com",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-02-15",
+      "leaseEnd": "2026-12-15",
+      "monthlyRentUSD": 1959,
+      "monthlyRentVND": 48000000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "HN-HA-2308",
+    "name": "Executive Suite Times City & Vincom Bà Triệu — Hai Bà Trưng",
+    "floor": 23,
+    "unitNumber": "2308",
+    "type": "Executive Suite",
+    "sqm": 124,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "reserved",
+    "monthlyRentUSD": 4388,
+    "monthlyRentVND": 107500000,
+    "city": "Hanoi",
+    "district": "Hai Bà Trưng",
+    "address": "Tầng 23, Tòa tháp Haven Luxury, Đường Lê Đại Hành, Quận Hai Bà Trưng, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.9,
+    "reviewCount": 42,
+    "viewType": "View Times City & Vincom Bà Triệu",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 107500000,
+      "estimatedElectricityVND": 3100000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2728000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 115628000,
+      "depositMonths": 2,
+      "depositVND": 215000000,
+      "moveInTotalRequiredVND": 330628000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Hai Bà Trưng, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,728,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 85,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 49.6,
+      "waterUsageLiters": 151,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "HN-ĐỐ-1805",
+    "name": "Sky Villa Hoàng Cầu & Giảng Võ — Đống Đa",
+    "floor": 18,
+    "unitNumber": "1805",
+    "type": "Sky Villa",
+    "sqm": 190,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 7592,
+    "monthlyRentVND": 186000000,
+    "city": "Hanoi",
+    "district": "Đống Đa",
+    "address": "Tầng 18, Tòa tháp Haven Luxury, Đường Ô Chợ Dừa, Quận Đống Đa, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.88,
+    "reviewCount": 57,
+    "viewType": "View Hoàng Cầu & Giảng Võ",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 186000000,
+      "estimatedElectricityVND": 4750000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 4180000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 197230000,
+      "depositMonths": 2,
+      "depositVND": 372000000,
+      "moveInTotalRequiredVND": 569230000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Đống Đa, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (4,180,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 91,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 33.9,
+      "waterUsageLiters": 144,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1028",
+      "name": "Michael Chang",
+      "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 902 567 890",
+      "email": "mchang@standardchartered.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-06-15",
+      "leaseEnd": "2026-08-15",
+      "monthlyRentUSD": 7592,
+      "monthlyRentVND": 186000000,
+      "autoPayActive": false,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "HN-TÂ-0604",
+    "name": "Penthouse Hồ Tây Panorama — Tây Hồ",
+    "floor": 6,
+    "unitNumber": "0604",
+    "type": "Penthouse",
+    "sqm": 328,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "status": "occupied",
+    "monthlyRentUSD": 13898,
+    "monthlyRentVND": 340500000,
+    "city": "Hanoi",
+    "district": "Tây Hồ",
+    "address": "Tầng 6, Tòa tháp Haven Luxury, Đường Quảng An, Quận Tây Hồ, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.83,
+    "reviewCount": 59,
+    "viewType": "View Hồ Tây Panorama",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 340500000,
+      "estimatedElectricityVND": 8200000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 7216000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 358216000,
+      "depositMonths": 2,
+      "depositVND": 681000000,
+      "moveInTotalRequiredVND": 1039216000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Penthouse tại vị trí đắc địa Tây Hồ, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (7,216,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 97,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 39.6,
+      "waterUsageLiters": 119,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1029",
+      "name": "Nguyễn Minh Hoàng",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      "phone": "0903124567",
+      "email": "hoang.nm@gmail.com",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-10-15",
+      "leaseEnd": "2026-09-15",
+      "monthlyRentUSD": 13898,
+      "monthlyRentVND": 340500000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "HN-HO-3401",
+    "name": "Duplex Phố Cổ & Tràng Tiền — Hoàn Kiếm",
+    "floor": 34,
+    "unitNumber": "3401",
+    "type": "Duplex",
+    "sqm": 148,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 4388,
+    "monthlyRentVND": 107500000,
+    "city": "Hanoi",
+    "district": "Hoàn Kiếm",
+    "address": "Tầng 34, Tòa tháp Haven Luxury, Đường Hàng Bài, Quận Hoàn Kiếm, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.86,
+    "reviewCount": 20,
+    "viewType": "View Phố Cổ & Tràng Tiền",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 107500000,
+      "estimatedElectricityVND": 3700000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3256000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 116156000,
+      "depositMonths": 2,
+      "depositVND": 215000000,
+      "moveInTotalRequiredVND": 331156000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Duplex tại vị trí đắc địa Hoàn Kiếm, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,256,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 83,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 31.4,
+      "waterUsageLiters": 126,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1030",
+      "name": "Đỗ Phương Linh",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200",
+      "phone": "0977223344",
+      "email": "phuonglinh.do@vietcombank.com.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-12-15",
+      "leaseEnd": "2026-07-15",
+      "monthlyRentUSD": 4388,
+      "monthlyRentVND": 107500000,
+      "autoPayActive": true,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "SG-QU-3206",
+    "name": "Studio Trung Tâm Landmark & Phố Đi Bộ — Quận 1",
+    "floor": 32,
+    "unitNumber": "3206",
+    "type": "Studio",
+    "sqm": 43,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "vacant",
+    "monthlyRentUSD": 1327,
+    "monthlyRentVND": 32500000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 1",
+    "address": "Tầng 32, Tòa tháp Haven Luxury, Đường Bến Nghé, Quận Quận 1, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.81,
+    "reviewCount": 59,
+    "viewType": "View Trung Tâm Landmark & Phố Đi Bộ",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 32500000,
+      "estimatedElectricityVND": 1075000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 946000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 36221000,
+      "depositMonths": 1,
+      "depositVND": 32500000,
+      "moveInTotalRequiredVND": 68721000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Quận 1, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (946,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 89,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 45.4,
+      "waterUsageLiters": 90,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "SG-TH-1804",
+    "name": "Deluxe Apartment Thảo Điền Expat Village & Empire City — Thủ Đức (Quận 2)",
+    "floor": 18,
+    "unitNumber": "1804",
+    "type": "Deluxe Apartment",
+    "sqm": 70,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 2694,
+    "monthlyRentVND": 66000000,
+    "city": "Ho Chi Minh City",
+    "district": "Thủ Đức (Quận 2)",
+    "address": "Tầng 18, Tòa tháp Haven Luxury, Đường An Phú, Quận Thủ Đức (Quận 2), TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.71,
+    "reviewCount": 50,
+    "viewType": "View Thảo Điền Expat Village & Empire City",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 66000000,
+      "estimatedElectricityVND": 1750000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1540000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 70990000,
+      "depositMonths": 2,
+      "depositVND": 132000000,
+      "moveInTotalRequiredVND": 202990000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Thủ Đức (Quận 2), kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,540,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 81,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 56.7,
+      "waterUsageLiters": 98,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1032",
+      "name": "Kenji Sato",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 918 345 678",
+      "email": "sato.kenji@mitsubishi.co.jp",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-08-15",
+      "leaseEnd": "2026-11-15",
+      "monthlyRentUSD": 2694,
+      "monthlyRentVND": 66000000,
+      "autoPayActive": true,
+      "occupantsCount": 3
+    }
+  },
+  {
+    "id": "SG-QU-0405",
+    "name": "Executive Suite Phú Mỹ Hưng & Crescent Mall — Quận 7",
+    "floor": 4,
+    "unitNumber": "0405",
+    "type": "Executive Suite",
+    "sqm": 123,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "vacant",
+    "monthlyRentUSD": 4265,
+    "monthlyRentVND": 104500000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 7",
+    "address": "Tầng 4, Tòa tháp Haven Luxury, Đường Phú Mỹ, Quận Quận 7, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.68,
+    "reviewCount": 56,
+    "viewType": "View Phú Mỹ Hưng & Crescent Mall",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 104500000,
+      "estimatedElectricityVND": 3075000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2706000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 112581000,
+      "depositMonths": 2,
+      "depositVND": 209000000,
+      "moveInTotalRequiredVND": 321581000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Quận 7, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,706,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 85,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 47.1,
+      "waterUsageLiters": 123,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "SG-BÌ-1001",
+    "name": "Sky Villa Vinhomes Central Park & Landmark 81 — Bình Thạnh",
+    "floor": 10,
+    "unitNumber": "1001",
+    "type": "Sky Villa",
+    "sqm": 194,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "vacant",
+    "monthlyRentUSD": 6959,
+    "monthlyRentVND": 170500000,
+    "city": "Ho Chi Minh City",
+    "district": "Bình Thạnh",
+    "address": "Tầng 10, Tòa tháp Haven Luxury, Đường Phường 22, Quận Bình Thạnh, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.65,
+    "reviewCount": 38,
+    "viewType": "View Vinhomes Central Park & Landmark 81",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 170500000,
+      "estimatedElectricityVND": 4850000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 4268000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 181918000,
+      "depositMonths": 2,
+      "depositVND": 341000000,
+      "moveInTotalRequiredVND": 522918000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Bình Thạnh, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (4,268,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 81,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 56.6,
+      "waterUsageLiters": 143,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "SG-QU-3003",
+    "name": "Penthouse Biệt Thự Cổ & Hồ Con Rùa — Quận 3",
+    "floor": 30,
+    "unitNumber": "3003",
+    "type": "Penthouse",
+    "sqm": 319,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "status": "vacant",
+    "monthlyRentUSD": 18204,
+    "monthlyRentVND": 446000000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 3",
+    "address": "Tầng 30, Tòa tháp Haven Luxury, Đường Phường 6, Quận Quận 3, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.8,
+    "reviewCount": 64,
+    "viewType": "View Biệt Thự Cổ & Hồ Con Rùa",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 446000000,
+      "estimatedElectricityVND": 7975000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 7018000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 463293000,
+      "depositMonths": 2,
+      "depositVND": 892000000,
+      "moveInTotalRequiredVND": 1355293000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Penthouse tại vị trí đắc địa Quận 3, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (7,018,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 86,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 52.7,
+      "waterUsageLiters": 96,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "SG-QU-3104",
+    "name": "Duplex Bến Vân Đồn View Bitexco — Quận 4",
+    "floor": 31,
+    "unitNumber": "3104",
+    "type": "Duplex",
+    "sqm": 143,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 5612,
+    "monthlyRentVND": 137500000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 4",
+    "address": "Tầng 31, Tòa tháp Haven Luxury, Đường Phường 13, Quận Quận 4, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.76,
+    "reviewCount": 68,
+    "viewType": "View Bến Vân Đồn View Bitexco",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 137500000,
+      "estimatedElectricityVND": 3575000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3146000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 145921000,
+      "depositMonths": 2,
+      "depositVND": 275000000,
+      "moveInTotalRequiredVND": 420921000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Duplex tại vị trí đắc địa Quận 4, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,146,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 86,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 40.6,
+      "waterUsageLiters": 109,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1036",
+      "name": "Đỗ Phương Linh",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200",
+      "phone": "0977223344",
+      "email": "phuonglinh.do@vietcombank.com.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-06-15",
+      "leaseEnd": "2026-06-15",
+      "monthlyRentUSD": 5612,
+      "monthlyRentVND": 137500000,
+      "autoPayActive": true,
+      "occupantsCount": 3
+    }
+  },
+  {
+    "id": "SG-PH-1807",
+    "name": "Studio Phan Xích Long Gourmet Street — Phú Nhuận",
+    "floor": 18,
+    "unitNumber": "1807",
+    "type": "Studio",
+    "sqm": 39,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "vacant",
+    "monthlyRentUSD": 1592,
+    "monthlyRentVND": 39000000,
+    "city": "Ho Chi Minh City",
+    "district": "Phú Nhuận",
+    "address": "Tầng 18, Tòa tháp Haven Luxury, Đường Phường 2, Quận Phú Nhuận, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.91,
+    "reviewCount": 17,
+    "viewType": "View Phan Xích Long Gourmet Street",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 39000000,
+      "estimatedElectricityVND": 975000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 858000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 42533000,
+      "depositMonths": 1,
+      "depositVND": 39000000,
+      "moveInTotalRequiredVND": 81533000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Phú Nhuận, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (858,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 90,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 33.0,
+      "waterUsageLiters": 159,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "SG-QU-3306",
+    "name": "Deluxe Apartment Trung Tâm Landmark & Phố Đi Bộ — Quận 1",
+    "floor": 33,
+    "unitNumber": "3306",
+    "type": "Deluxe Apartment",
+    "sqm": 81,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "maintenance",
+    "monthlyRentUSD": 2000,
+    "monthlyRentVND": 49000000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 1",
+    "address": "Tầng 33, Tòa tháp Haven Luxury, Đường Nguyễn Thái Bình, Quận Quận 1, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
     "furnished": true,
     "balcony": true,
     "airConditioning": true,
@@ -1614,30 +3544,4635 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "kitchen": true,
     "wifi": true,
     "rating": 4.75,
-    "reviewCount": 40,
+    "reviewCount": 26,
+    "viewType": "View Trung Tâm Landmark & Phố Đi Bộ",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 49000000,
+      "estimatedElectricityVND": 2025000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1782000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 54507000,
+      "depositMonths": 1,
+      "depositVND": 49000000,
+      "moveInTotalRequiredVND": 103507000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Quận 1, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,782,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
     "sensors": {
-      "smartLockBattery": 96,
+      "smartLockBattery": 84,
       "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 34.5,
-      "waterUsageLiters": 135,
+      "targetTempC": 24,
+      "energyConsumptionKwh": 26.3,
+      "waterUsageLiters": 153,
       "securityAlarmDisarmed": true
     }
   },
   {
-    "id": "DN-NGH-1403",
-    "name": "Căn Hộ Ngũ Hành Sơn Deluxe Apartment DN-NGH-1403",
-    "floor": 14,
-    "unitNumber": "1403",
-    "type": "Deluxe Apartment",
-    "sqm": 46,
+    "id": "SG-TH-1504",
+    "name": "Executive Suite Thảo Điền Expat Village & Empire City — Thủ Đức (Quận 2)",
+    "floor": 15,
+    "unitNumber": "1504",
+    "type": "Executive Suite",
+    "sqm": 110,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 4816,
+    "monthlyRentVND": 118000000,
+    "city": "Ho Chi Minh City",
+    "district": "Thủ Đức (Quận 2)",
+    "address": "Tầng 15, Tòa tháp Haven Luxury, Đường Thảo Điền, Quận Thủ Đức (Quận 2), TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.75,
+    "reviewCount": 57,
+    "viewType": "View Thảo Điền Expat Village & Empire City",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 118000000,
+      "estimatedElectricityVND": 2750000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2420000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 125470000,
+      "depositMonths": 2,
+      "depositVND": 236000000,
+      "moveInTotalRequiredVND": 361470000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Thủ Đức (Quận 2), kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,420,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 86,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 57.1,
+      "waterUsageLiters": 155,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1039",
+      "name": "Ngô Bảo Châu",
+      "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200",
+      "phone": "0908334455",
+      "email": "chau.ngo@fpt.com",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-10-15",
+      "leaseEnd": "2026-08-15",
+      "monthlyRentUSD": 4816,
+      "monthlyRentVND": 118000000,
+      "autoPayActive": true,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "SG-QU-1108",
+    "name": "Sky Villa Phú Mỹ Hưng & Crescent Mall — Quận 7",
+    "floor": 11,
+    "unitNumber": "1108",
+    "type": "Sky Villa",
+    "sqm": 184,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "reserved",
+    "monthlyRentUSD": 5286,
+    "monthlyRentVND": 129500000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 7",
+    "address": "Tầng 11, Tòa tháp Haven Luxury, Đường Tân Phong, Quận Quận 7, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.76,
+    "reviewCount": 15,
+    "viewType": "View Phú Mỹ Hưng & Crescent Mall",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 129500000,
+      "estimatedElectricityVND": 4600000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 4048000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 140448000,
+      "depositMonths": 2,
+      "depositVND": 259000000,
+      "moveInTotalRequiredVND": 399448000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Quận 7, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (4,048,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 93,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 51.6,
+      "waterUsageLiters": 136,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "SG-BÌ-0701",
+    "name": "Penthouse Vinhomes Central Park & Landmark 81 — Bình Thạnh",
+    "floor": 7,
+    "unitNumber": "0701",
+    "type": "Penthouse",
+    "sqm": 330,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "status": "occupied",
+    "monthlyRentUSD": 10224,
+    "monthlyRentVND": 250500000,
+    "city": "Ho Chi Minh City",
+    "district": "Bình Thạnh",
+    "address": "Tầng 7, Tòa tháp Haven Luxury, Đường Phường 19, Quận Bình Thạnh, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.91,
+    "reviewCount": 36,
+    "viewType": "View Vinhomes Central Park & Landmark 81",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 250500000,
+      "estimatedElectricityVND": 8250000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 7260000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 268310000,
+      "depositMonths": 2,
+      "depositVND": 501000000,
+      "moveInTotalRequiredVND": 769310000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Penthouse tại vị trí đắc địa Bình Thạnh, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (7,260,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 92,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 53.0,
+      "waterUsageLiters": 139,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1041",
+      "name": "Hoàng Đức Anh",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
+      "phone": "0944556677",
+      "email": "ducanh.hoang@shopee.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-02-15",
+      "leaseEnd": "2026-07-15",
+      "monthlyRentUSD": 10224,
+      "monthlyRentVND": 250500000,
+      "autoPayActive": true,
+      "occupantsCount": 5
+    }
+  },
+  {
+    "id": "SG-QU-0602",
+    "name": "Duplex Biệt Thự Cổ & Hồ Con Rùa — Quận 3",
+    "floor": 6,
+    "unitNumber": "0602",
+    "type": "Duplex",
+    "sqm": 144,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 5653,
+    "monthlyRentVND": 138500000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 3",
+    "address": "Tầng 6, Tòa tháp Haven Luxury, Đường Phường 7, Quận Quận 3, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.75,
+    "reviewCount": 26,
+    "viewType": "View Biệt Thự Cổ & Hồ Con Rùa",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 138500000,
+      "estimatedElectricityVND": 3600000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3168000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 146968000,
+      "depositMonths": 2,
+      "depositVND": 277000000,
+      "moveInTotalRequiredVND": 423968000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Duplex tại vị trí đắc địa Quận 3, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,168,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 87,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 24.6,
+      "waterUsageLiters": 114,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1042",
+      "name": "Sarah Jenkins",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 909 234 567",
+      "email": "sarah.j@unicef.org",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-03-15",
+      "leaseEnd": "2026-07-15",
+      "monthlyRentUSD": 5653,
+      "monthlyRentVND": 138500000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "SG-QU-1507",
+    "name": "Studio Bến Vân Đồn View Bitexco — Quận 4",
+    "floor": 15,
+    "unitNumber": "1507",
+    "type": "Studio",
+    "sqm": 45,
     "bedrooms": 1,
     "bathrooms": 1,
     "status": "vacant",
-    "monthlyRentVND": 13000000,
+    "monthlyRentUSD": 959,
+    "monthlyRentVND": 23500000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 4",
+    "address": "Tầng 15, Tòa tháp Haven Luxury, Đường Phường 1, Quận Quận 4, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.7,
+    "reviewCount": 31,
+    "viewType": "View Bến Vân Đồn View Bitexco",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 23500000,
+      "estimatedElectricityVND": 1125000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 990000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 27315000,
+      "depositMonths": 1,
+      "depositVND": 23500000,
+      "moveInTotalRequiredVND": 50815000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Quận 4, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (990,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 96,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 37.8,
+      "waterUsageLiters": 144,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "SG-PH-2805",
+    "name": "Deluxe Apartment Phan Xích Long Gourmet Street — Phú Nhuận",
+    "floor": 28,
+    "unitNumber": "2805",
+    "type": "Deluxe Apartment",
+    "sqm": 79,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "vacant",
+    "monthlyRentUSD": 2122,
+    "monthlyRentVND": 52000000,
+    "city": "Ho Chi Minh City",
+    "district": "Phú Nhuận",
+    "address": "Tầng 28, Tòa tháp Haven Luxury, Đường Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.89,
+    "reviewCount": 50,
+    "viewType": "View Phan Xích Long Gourmet Street",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 52000000,
+      "estimatedElectricityVND": 1975000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1738000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 57413000,
+      "depositMonths": 2,
+      "depositVND": 104000000,
+      "moveInTotalRequiredVND": 161413000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Phú Nhuận, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,738,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 80,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 56.6,
+      "waterUsageLiters": 158,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "SG-QU-0405",
+    "name": "Executive Suite Trung Tâm Landmark & Phố Đi Bộ — Quận 1",
+    "floor": 4,
+    "unitNumber": "0405",
+    "type": "Executive Suite",
+    "sqm": 123,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 4265,
+    "monthlyRentVND": 104500000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 1",
+    "address": "Tầng 4, Tòa tháp Haven Luxury, Đường Đa Kao, Quận Quận 1, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.97,
+    "reviewCount": 42,
+    "viewType": "View Trung Tâm Landmark & Phố Đi Bộ",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 104500000,
+      "estimatedElectricityVND": 3075000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2706000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 112581000,
+      "depositMonths": 2,
+      "depositVND": 209000000,
+      "moveInTotalRequiredVND": 321581000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Quận 1, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,706,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 88,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 46.1,
+      "waterUsageLiters": 105,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1045",
+      "name": "Bùi Tiến Dũng",
+      "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200",
+      "phone": "0918776655",
+      "email": "tiendung.bui@vingroup.net",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-09-15",
+      "leaseEnd": "2026-11-15",
+      "monthlyRentUSD": 4265,
+      "monthlyRentVND": 104500000,
+      "autoPayActive": true,
+      "occupantsCount": 3
+    }
+  },
+  {
+    "id": "SG-TH-2908",
+    "name": "Sky Villa Thảo Điền Expat Village & Empire City — Thủ Đức (Quận 2)",
+    "floor": 29,
+    "unitNumber": "2908",
+    "type": "Sky Villa",
+    "sqm": 185,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "vacant",
+    "monthlyRentUSD": 6551,
+    "monthlyRentVND": 160500000,
+    "city": "Ho Chi Minh City",
+    "district": "Thủ Đức (Quận 2)",
+    "address": "Tầng 29, Tòa tháp Haven Luxury, Đường Bình An, Quận Thủ Đức (Quận 2), TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.68,
+    "reviewCount": 28,
+    "viewType": "View Thảo Điền Expat Village & Empire City",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 160500000,
+      "estimatedElectricityVND": 4625000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 4070000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 171495000,
+      "depositMonths": 2,
+      "depositVND": 321000000,
+      "moveInTotalRequiredVND": 492495000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Thủ Đức (Quận 2), kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (4,070,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 90,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 45.7,
+      "waterUsageLiters": 154,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "SG-QU-2901",
+    "name": "Penthouse Phú Mỹ Hưng & Crescent Mall — Quận 7",
+    "floor": 29,
+    "unitNumber": "2901",
+    "type": "Penthouse",
+    "sqm": 329,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "status": "vacant",
+    "monthlyRentUSD": 10714,
+    "monthlyRentVND": 262500000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 7",
+    "address": "Tầng 29, Tòa tháp Haven Luxury, Đường Tân Phú, Quận Quận 7, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.72,
+    "reviewCount": 47,
+    "viewType": "View Phú Mỹ Hưng & Crescent Mall",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 262500000,
+      "estimatedElectricityVND": 8225000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 7238000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 280263000,
+      "depositMonths": 2,
+      "depositVND": 525000000,
+      "moveInTotalRequiredVND": 805263000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Penthouse tại vị trí đắc địa Quận 7, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (7,238,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 87,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 53.7,
+      "waterUsageLiters": 147,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "SG-BÌ-0404",
+    "name": "Duplex Vinhomes Central Park & Landmark 81 — Bình Thạnh",
+    "floor": 4,
+    "unitNumber": "0404",
+    "type": "Duplex",
+    "sqm": 138,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 5490,
+    "monthlyRentVND": 134500000,
+    "city": "Ho Chi Minh City",
+    "district": "Bình Thạnh",
+    "address": "Tầng 4, Tòa tháp Haven Luxury, Đường Phường 25, Quận Bình Thạnh, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.96,
+    "reviewCount": 30,
+    "viewType": "View Vinhomes Central Park & Landmark 81",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 134500000,
+      "estimatedElectricityVND": 3450000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3036000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 142686000,
+      "depositMonths": 2,
+      "depositVND": 269000000,
+      "moveInTotalRequiredVND": 411686000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Duplex tại vị trí đắc địa Bình Thạnh, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,036,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 86,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 52.1,
+      "waterUsageLiters": 145,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1048",
+      "name": "Ngô Bảo Châu",
+      "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200",
+      "phone": "0908334455",
+      "email": "chau.ngo@fpt.com",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-07-15",
+      "leaseEnd": "2026-06-15",
+      "monthlyRentUSD": 5490,
+      "monthlyRentVND": 134500000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "SG-QU-3203",
+    "name": "Studio Biệt Thự Cổ & Hồ Con Rùa — Quận 3",
+    "floor": 32,
+    "unitNumber": "3203",
+    "type": "Studio",
+    "sqm": 44,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "occupied",
+    "monthlyRentUSD": 1408,
+    "monthlyRentVND": 34500000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 3",
+    "address": "Tầng 32, Tòa tháp Haven Luxury, Đường Võ Thị Sáu, Quận Quận 3, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.94,
+    "reviewCount": 40,
+    "viewType": "View Biệt Thự Cổ & Hồ Con Rùa",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 34500000,
+      "estimatedElectricityVND": 1100000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 968000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 38268000,
+      "depositMonths": 1,
+      "depositVND": 34500000,
+      "moveInTotalRequiredVND": 72768000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Quận 3, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (968,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 89,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 41.9,
+      "waterUsageLiters": 154,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1049",
+      "name": "Lê Quốc Bảo",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+      "phone": "0987654321",
+      "email": "bao.le@fintech.io",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-02-15",
+      "leaseEnd": "2026-08-15",
+      "monthlyRentUSD": 1408,
+      "monthlyRentVND": 34500000,
+      "autoPayActive": true,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "SG-QU-3206",
+    "name": "Deluxe Apartment Bến Vân Đồn View Bitexco — Quận 4",
+    "floor": 32,
+    "unitNumber": "3206",
+    "type": "Deluxe Apartment",
+    "sqm": 82,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 2755,
+    "monthlyRentVND": 67500000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 4",
+    "address": "Tầng 32, Tòa tháp Haven Luxury, Đường Phường 12, Quận Quận 4, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.98,
+    "reviewCount": 62,
+    "viewType": "View Bến Vân Đồn View Bitexco",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 67500000,
+      "estimatedElectricityVND": 2050000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1804000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 73054000,
+      "depositMonths": 2,
+      "depositVND": 135000000,
+      "moveInTotalRequiredVND": 208054000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Quận 4, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,804,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 82,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 56.7,
+      "waterUsageLiters": 101,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1050",
+      "name": "Đinh Trọng Hưng",
+      "avatar": "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=200",
+      "phone": "0982334455",
+      "email": "hung.dinh@crypto.global",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-07-15",
+      "leaseEnd": "2026-07-15",
+      "monthlyRentUSD": 2755,
+      "monthlyRentVND": 67500000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "SG-PH-2402",
+    "name": "Executive Suite Phan Xích Long Gourmet Street — Phú Nhuận",
+    "floor": 24,
+    "unitNumber": "2402",
+    "type": "Executive Suite",
+    "sqm": 121,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 3796,
+    "monthlyRentVND": 93000000,
+    "city": "Ho Chi Minh City",
+    "district": "Phú Nhuận",
+    "address": "Tầng 24, Tòa tháp Haven Luxury, Đường Phường 9, Quận Phú Nhuận, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.86,
+    "reviewCount": 37,
+    "viewType": "View Phan Xích Long Gourmet Street",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 93000000,
+      "estimatedElectricityVND": 3025000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2662000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 100987000,
+      "depositMonths": 2,
+      "depositVND": 186000000,
+      "moveInTotalRequiredVND": 286987000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Phú Nhuận, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,662,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 88,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 56.3,
+      "waterUsageLiters": 147,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1051",
+      "name": "Nguyễn Minh Hoàng",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      "phone": "0903124567",
+      "email": "hoang.nm@gmail.com",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-12-15",
+      "leaseEnd": "2026-07-15",
+      "monthlyRentUSD": 3796,
+      "monthlyRentVND": 93000000,
+      "autoPayActive": true,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "SG-QU-0502",
+    "name": "Sky Villa Trung Tâm Landmark & Phố Đi Bộ — Quận 1",
+    "floor": 5,
+    "unitNumber": "0502",
+    "type": "Sky Villa",
+    "sqm": 192,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "vacant",
+    "monthlyRentUSD": 6184,
+    "monthlyRentVND": 151500000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 1",
+    "address": "Tầng 5, Tòa tháp Haven Luxury, Đường Bến Thành, Quận Quận 1, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.79,
+    "reviewCount": 18,
+    "viewType": "View Trung Tâm Landmark & Phố Đi Bộ",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 151500000,
+      "estimatedElectricityVND": 4800000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 4224000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 162824000,
+      "depositMonths": 2,
+      "depositVND": 303000000,
+      "moveInTotalRequiredVND": 465824000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Quận 1, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (4,224,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 81,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 28.0,
+      "waterUsageLiters": 123,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "SG-TH-0506",
+    "name": "Penthouse Thảo Điền Expat Village & Empire City — Thủ Đức (Quận 2)",
+    "floor": 5,
+    "unitNumber": "0506",
+    "type": "Penthouse",
+    "sqm": 315,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "status": "occupied",
+    "monthlyRentUSD": 19061,
+    "monthlyRentVND": 467000000,
+    "city": "Ho Chi Minh City",
+    "district": "Thủ Đức (Quận 2)",
+    "address": "Tầng 5, Tòa tháp Haven Luxury, Đường Thủ Thiêm, Quận Thủ Đức (Quận 2), TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.85,
+    "reviewCount": 36,
+    "viewType": "View Thảo Điền Expat Village & Empire City",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 467000000,
+      "estimatedElectricityVND": 7875000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 6930000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 484105000,
+      "depositMonths": 2,
+      "depositVND": 934000000,
+      "moveInTotalRequiredVND": 1418105000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Penthouse tại vị trí đắc địa Thủ Đức (Quận 2), kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (6,930,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 85,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 54.9,
+      "waterUsageLiters": 103,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1053",
+      "name": "Elena Rostova",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 988 789 012",
+      "email": "elena.rostova@kaspersky.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-03-15",
+      "leaseEnd": "2026-07-15",
+      "monthlyRentUSD": 19061,
+      "monthlyRentVND": 467000000,
+      "autoPayActive": false,
+      "occupantsCount": 4
+    }
+  },
+  {
+    "id": "SG-QU-3205",
+    "name": "Duplex Phú Mỹ Hưng & Crescent Mall — Quận 7",
+    "floor": 32,
+    "unitNumber": "3205",
+    "type": "Duplex",
+    "sqm": 142,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 4633,
+    "monthlyRentVND": 113500000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 7",
+    "address": "Tầng 32, Tòa tháp Haven Luxury, Đường Phú Mỹ, Quận Quận 7, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.88,
+    "reviewCount": 41,
+    "viewType": "View Phú Mỹ Hưng & Crescent Mall",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 113500000,
+      "estimatedElectricityVND": 3550000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3124000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 121874000,
+      "depositMonths": 2,
+      "depositVND": 227000000,
+      "moveInTotalRequiredVND": 348874000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Duplex tại vị trí đắc địa Quận 7, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,124,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 84,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 52.7,
+      "waterUsageLiters": 98,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1054",
+      "name": "Oliver Hansen",
+      "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 917 890 123",
+      "email": "o.hansen@lego.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-05-15",
+      "leaseEnd": "2026-11-15",
+      "monthlyRentUSD": 4633,
+      "monthlyRentVND": 113500000,
+      "autoPayActive": false,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "SG-BÌ-2706",
+    "name": "Studio Vinhomes Central Park & Landmark 81 — Bình Thạnh",
+    "floor": 27,
+    "unitNumber": "2706",
+    "type": "Studio",
+    "sqm": 44,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "occupied",
+    "monthlyRentUSD": 1735,
+    "monthlyRentVND": 42500000,
+    "city": "Ho Chi Minh City",
+    "district": "Bình Thạnh",
+    "address": "Tầng 27, Tòa tháp Haven Luxury, Đường Phường 22, Quận Bình Thạnh, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.91,
+    "reviewCount": 26,
+    "viewType": "View Vinhomes Central Park & Landmark 81",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 42500000,
+      "estimatedElectricityVND": 1100000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 968000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 46268000,
+      "depositMonths": 1,
+      "depositVND": 42500000,
+      "moveInTotalRequiredVND": 88768000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Bình Thạnh, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (968,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 89,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 44.9,
+      "waterUsageLiters": 117,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1055",
+      "name": "Nguyễn Minh Hoàng",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      "phone": "0903124567",
+      "email": "hoang.nm@gmail.com",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-11-15",
+      "leaseEnd": "2026-09-15",
+      "monthlyRentUSD": 1735,
+      "monthlyRentVND": 42500000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "SG-QU-0901",
+    "name": "Deluxe Apartment Biệt Thự Cổ & Hồ Con Rùa — Quận 3",
+    "floor": 9,
+    "unitNumber": "0901",
+    "type": "Deluxe Apartment",
+    "sqm": 74,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "vacant",
+    "monthlyRentUSD": 1796,
+    "monthlyRentVND": 44000000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 3",
+    "address": "Tầng 9, Tòa tháp Haven Luxury, Đường Phường 6, Quận Quận 3, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.95,
+    "reviewCount": 32,
+    "viewType": "View Biệt Thự Cổ & Hồ Con Rùa",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 44000000,
+      "estimatedElectricityVND": 1850000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1628000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 49178000,
+      "depositMonths": 1,
+      "depositVND": 44000000,
+      "moveInTotalRequiredVND": 93178000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Quận 3, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,628,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 83,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 26.8,
+      "waterUsageLiters": 154,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "SG-QU-3605",
+    "name": "Executive Suite Bến Vân Đồn View Bitexco — Quận 4",
+    "floor": 36,
+    "unitNumber": "3605",
+    "type": "Executive Suite",
+    "sqm": 116,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 2857,
+    "monthlyRentVND": 70000000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 4",
+    "address": "Tầng 36, Tòa tháp Haven Luxury, Đường Phường 13, Quận Quận 4, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.93,
+    "reviewCount": 58,
+    "viewType": "View Bến Vân Đồn View Bitexco",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 70000000,
+      "estimatedElectricityVND": 2900000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2552000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 77752000,
+      "depositMonths": 2,
+      "depositVND": 140000000,
+      "moveInTotalRequiredVND": 217752000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Quận 4, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,552,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 90,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 25.3,
+      "waterUsageLiters": 135,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1057",
+      "name": "Bùi Tiến Dũng",
+      "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200",
+      "phone": "0918776655",
+      "email": "tiendung.bui@vingroup.net",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-05-15",
+      "leaseEnd": "2026-11-15",
+      "monthlyRentUSD": 2857,
+      "monthlyRentVND": 70000000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "SG-PH-1902",
+    "name": "Sky Villa Phan Xích Long Gourmet Street — Phú Nhuận",
+    "floor": 19,
+    "unitNumber": "1902",
+    "type": "Sky Villa",
+    "sqm": 175,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 7694,
+    "monthlyRentVND": 188500000,
+    "city": "Ho Chi Minh City",
+    "district": "Phú Nhuận",
+    "address": "Tầng 19, Tòa tháp Haven Luxury, Đường Phường 2, Quận Phú Nhuận, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.66,
+    "reviewCount": 68,
+    "viewType": "View Phan Xích Long Gourmet Street",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 188500000,
+      "estimatedElectricityVND": 4375000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3850000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 199025000,
+      "depositMonths": 2,
+      "depositVND": 377000000,
+      "moveInTotalRequiredVND": 576025000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Phú Nhuận, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,850,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 88,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 45.3,
+      "waterUsageLiters": 144,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1058",
+      "name": "Hoàng Đức Anh",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
+      "phone": "0944556677",
+      "email": "ducanh.hoang@shopee.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-10-15",
+      "leaseEnd": "2026-09-15",
+      "monthlyRentUSD": 7694,
+      "monthlyRentVND": 188500000,
+      "autoPayActive": false,
+      "occupantsCount": 3
+    }
+  },
+  {
+    "id": "SG-QU-2902",
+    "name": "Penthouse Trung Tâm Landmark & Phố Đi Bộ — Quận 1",
+    "floor": 29,
+    "unitNumber": "2902",
+    "type": "Penthouse",
+    "sqm": 324,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "status": "occupied",
+    "monthlyRentUSD": 10061,
+    "monthlyRentVND": 246500000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 1",
+    "address": "Tầng 29, Tòa tháp Haven Luxury, Đường Bến Nghé, Quận Quận 1, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.87,
+    "reviewCount": 59,
+    "viewType": "View Trung Tâm Landmark & Phố Đi Bộ",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 246500000,
+      "estimatedElectricityVND": 8100000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 7128000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 264028000,
+      "depositMonths": 2,
+      "depositVND": 493000000,
+      "moveInTotalRequiredVND": 757028000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Penthouse tại vị trí đắc địa Quận 1, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (7,128,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 95,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 43.1,
+      "waterUsageLiters": 104,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1059",
+      "name": "Oliver Hansen",
+      "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 917 890 123",
+      "email": "o.hansen@lego.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-02-15",
+      "leaseEnd": "2026-06-15",
+      "monthlyRentUSD": 10061,
+      "monthlyRentVND": 246500000,
+      "autoPayActive": true,
+      "occupantsCount": 5
+    }
+  },
+  {
+    "id": "SG-TH-0908",
+    "name": "Duplex Thảo Điền Expat Village & Empire City — Thủ Đức (Quận 2)",
+    "floor": 9,
+    "unitNumber": "0908",
+    "type": "Duplex",
+    "sqm": 148,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 5163,
+    "monthlyRentVND": 126500000,
+    "city": "Ho Chi Minh City",
+    "district": "Thủ Đức (Quận 2)",
+    "address": "Tầng 9, Tòa tháp Haven Luxury, Đường An Phú, Quận Thủ Đức (Quận 2), TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.83,
+    "reviewCount": 53,
+    "viewType": "View Thảo Điền Expat Village & Empire City",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 126500000,
+      "estimatedElectricityVND": 3700000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3256000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 135156000,
+      "depositMonths": 2,
+      "depositVND": 253000000,
+      "moveInTotalRequiredVND": 388156000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Duplex tại vị trí đắc địa Thủ Đức (Quận 2), kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,256,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 90,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 28.8,
+      "waterUsageLiters": 100,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1060",
+      "name": "Nguyễn Minh Hoàng",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      "phone": "0903124567",
+      "email": "hoang.nm@gmail.com",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-12-15",
+      "leaseEnd": "2026-08-15",
+      "monthlyRentUSD": 5163,
+      "monthlyRentVND": 126500000,
+      "autoPayActive": true,
+      "occupantsCount": 4
+    }
+  },
+  {
+    "id": "SG-QU-0804",
+    "name": "Studio Phú Mỹ Hưng & Crescent Mall — Quận 7",
+    "floor": 8,
+    "unitNumber": "0804",
+    "type": "Studio",
+    "sqm": 51,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "occupied",
+    "monthlyRentUSD": 796,
+    "monthlyRentVND": 19500000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 7",
+    "address": "Tầng 8, Tòa tháp Haven Luxury, Đường Tân Phong, Quận Quận 7, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.74,
+    "reviewCount": 21,
+    "viewType": "View Phú Mỹ Hưng & Crescent Mall",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 19500000,
+      "estimatedElectricityVND": 1275000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1122000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 23597000,
+      "depositMonths": 1,
+      "depositVND": 19500000,
+      "moveInTotalRequiredVND": 43097000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Quận 7, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,122,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 95,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 50.7,
+      "waterUsageLiters": 99,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1061",
+      "name": "Kenji Sato",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 918 345 678",
+      "email": "sato.kenji@mitsubishi.co.jp",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-10-15",
+      "leaseEnd": "2026-07-15",
+      "monthlyRentUSD": 796,
+      "monthlyRentVND": 19500000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "SG-BÌ-1101",
+    "name": "Deluxe Apartment Vinhomes Central Park & Landmark 81 — Bình Thạnh",
+    "floor": 11,
+    "unitNumber": "1101",
+    "type": "Deluxe Apartment",
+    "sqm": 70,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "vacant",
+    "monthlyRentUSD": 1878,
+    "monthlyRentVND": 46000000,
+    "city": "Ho Chi Minh City",
+    "district": "Bình Thạnh",
+    "address": "Tầng 11, Tòa tháp Haven Luxury, Đường Phường 19, Quận Bình Thạnh, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.74,
+    "reviewCount": 20,
+    "viewType": "View Vinhomes Central Park & Landmark 81",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 46000000,
+      "estimatedElectricityVND": 1750000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1540000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 50990000,
+      "depositMonths": 1,
+      "depositVND": 46000000,
+      "moveInTotalRequiredVND": 96990000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Bình Thạnh, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,540,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 94,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 48.8,
+      "waterUsageLiters": 145,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "SG-QU-2602",
+    "name": "Executive Suite Biệt Thự Cổ & Hồ Con Rùa — Quận 3",
+    "floor": 26,
+    "unitNumber": "2602",
+    "type": "Executive Suite",
+    "sqm": 119,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "vacant",
+    "monthlyRentUSD": 3837,
+    "monthlyRentVND": 94000000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 3",
+    "address": "Tầng 26, Tòa tháp Haven Luxury, Đường Phường 7, Quận Quận 3, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.8,
+    "reviewCount": 13,
+    "viewType": "View Biệt Thự Cổ & Hồ Con Rùa",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 94000000,
+      "estimatedElectricityVND": 2975000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2618000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 101893000,
+      "depositMonths": 2,
+      "depositVND": 188000000,
+      "moveInTotalRequiredVND": 289893000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Quận 3, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,618,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 93,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 37.3,
+      "waterUsageLiters": 98,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "SG-QU-3102",
+    "name": "Sky Villa Bến Vân Đồn View Bitexco — Quận 4",
+    "floor": 31,
+    "unitNumber": "3102",
+    "type": "Sky Villa",
+    "sqm": 190,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 5143,
+    "monthlyRentVND": 126000000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 4",
+    "address": "Tầng 31, Tòa tháp Haven Luxury, Đường Phường 1, Quận Quận 4, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.8,
+    "reviewCount": 50,
+    "viewType": "View Bến Vân Đồn View Bitexco",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 126000000,
+      "estimatedElectricityVND": 4750000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 4180000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 137230000,
+      "depositMonths": 2,
+      "depositVND": 252000000,
+      "moveInTotalRequiredVND": 389230000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Quận 4, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (4,180,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 81,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 37.5,
+      "waterUsageLiters": 114,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1064",
+      "name": "Kenji Sato",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 918 345 678",
+      "email": "sato.kenji@mitsubishi.co.jp",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-05-15",
+      "leaseEnd": "2026-10-15",
+      "monthlyRentUSD": 5143,
+      "monthlyRentVND": 126000000,
+      "autoPayActive": false,
+      "occupantsCount": 3
+    }
+  },
+  {
+    "id": "SG-PH-2408",
+    "name": "Penthouse Phan Xích Long Gourmet Street — Phú Nhuận",
+    "floor": 24,
+    "unitNumber": "2408",
+    "type": "Penthouse",
+    "sqm": 328,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "status": "occupied",
+    "monthlyRentUSD": 13612,
+    "monthlyRentVND": 333500000,
+    "city": "Ho Chi Minh City",
+    "district": "Phú Nhuận",
+    "address": "Tầng 24, Tòa tháp Haven Luxury, Đường Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.68,
+    "reviewCount": 17,
+    "viewType": "View Phan Xích Long Gourmet Street",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 333500000,
+      "estimatedElectricityVND": 8200000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 7216000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 351216000,
+      "depositMonths": 2,
+      "depositVND": 667000000,
+      "moveInTotalRequiredVND": 1018216000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Penthouse tại vị trí đắc địa Phú Nhuận, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (7,216,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 81,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 51.2,
+      "waterUsageLiters": 156,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1065",
+      "name": "Elena Rostova",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 988 789 012",
+      "email": "elena.rostova@kaspersky.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-06-15",
+      "leaseEnd": "2026-11-15",
+      "monthlyRentUSD": 13612,
+      "monthlyRentVND": 333500000,
+      "autoPayActive": true,
+      "occupantsCount": 3
+    }
+  },
+  {
+    "id": "SG-QU-3806",
+    "name": "Duplex Trung Tâm Landmark & Phố Đi Bộ — Quận 1",
+    "floor": 38,
+    "unitNumber": "3806",
+    "type": "Duplex",
+    "sqm": 136,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 5347,
+    "monthlyRentVND": 131000000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 1",
+    "address": "Tầng 38, Tòa tháp Haven Luxury, Đường Nguyễn Thái Bình, Quận Quận 1, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.87,
+    "reviewCount": 26,
+    "viewType": "View Trung Tâm Landmark & Phố Đi Bộ",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 131000000,
+      "estimatedElectricityVND": 3400000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2992000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 139092000,
+      "depositMonths": 2,
+      "depositVND": 262000000,
+      "moveInTotalRequiredVND": 401092000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Duplex tại vị trí đắc địa Quận 1, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,992,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 89,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 26.1,
+      "waterUsageLiters": 120,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1066",
+      "name": "Elena Rostova",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 988 789 012",
+      "email": "elena.rostova@kaspersky.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-12-15",
+      "leaseEnd": "2026-06-15",
+      "monthlyRentUSD": 5347,
+      "monthlyRentVND": 131000000,
+      "autoPayActive": true,
+      "occupantsCount": 3
+    }
+  },
+  {
+    "id": "SG-TH-1707",
+    "name": "Studio Thảo Điền Expat Village & Empire City — Thủ Đức (Quận 2)",
+    "floor": 17,
+    "unitNumber": "1707",
+    "type": "Studio",
+    "sqm": 55,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "maintenance",
+    "monthlyRentUSD": 1714,
+    "monthlyRentVND": 42000000,
+    "city": "Ho Chi Minh City",
+    "district": "Thủ Đức (Quận 2)",
+    "address": "Tầng 17, Tòa tháp Haven Luxury, Đường Thảo Điền, Quận Thủ Đức (Quận 2), TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.71,
+    "reviewCount": 56,
+    "viewType": "View Thảo Điền Expat Village & Empire City",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 42000000,
+      "estimatedElectricityVND": 1375000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1210000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 46285000,
+      "depositMonths": 1,
+      "depositVND": 42000000,
+      "moveInTotalRequiredVND": 88285000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Thủ Đức (Quận 2), kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,210,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 88,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 22.2,
+      "waterUsageLiters": 103,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "SG-QU-2802",
+    "name": "Deluxe Apartment Phú Mỹ Hưng & Crescent Mall — Quận 7",
+    "floor": 28,
+    "unitNumber": "2802",
+    "type": "Deluxe Apartment",
+    "sqm": 88,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "vacant",
+    "monthlyRentUSD": 1510,
+    "monthlyRentVND": 37000000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 7",
+    "address": "Tầng 28, Tòa tháp Haven Luxury, Đường Tân Phú, Quận Quận 7, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.79,
+    "reviewCount": 33,
+    "viewType": "View Phú Mỹ Hưng & Crescent Mall",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 37000000,
+      "estimatedElectricityVND": 2200000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1936000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 42836000,
+      "depositMonths": 1,
+      "depositVND": 37000000,
+      "moveInTotalRequiredVND": 79836000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Quận 7, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,936,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 87,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 50.0,
+      "waterUsageLiters": 157,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "SG-BÌ-0801",
+    "name": "Executive Suite Vinhomes Central Park & Landmark 81 — Bình Thạnh",
+    "floor": 8,
+    "unitNumber": "0801",
+    "type": "Executive Suite",
+    "sqm": 124,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 2816,
+    "monthlyRentVND": 69000000,
+    "city": "Ho Chi Minh City",
+    "district": "Bình Thạnh",
+    "address": "Tầng 8, Tòa tháp Haven Luxury, Đường Phường 25, Quận Bình Thạnh, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.74,
+    "reviewCount": 60,
+    "viewType": "View Vinhomes Central Park & Landmark 81",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 69000000,
+      "estimatedElectricityVND": 3100000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2728000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 77128000,
+      "depositMonths": 2,
+      "depositVND": 138000000,
+      "moveInTotalRequiredVND": 215128000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Bình Thạnh, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,728,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 89,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 26.0,
+      "waterUsageLiters": 160,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1069",
+      "name": "Trần Thị Mai Anh",
+      "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=200",
+      "phone": "0912456789",
+      "email": "maianh.tran@techcorp.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-05-15",
+      "leaseEnd": "2026-09-15",
+      "monthlyRentUSD": 2816,
+      "monthlyRentVND": 69000000,
+      "autoPayActive": false,
+      "occupantsCount": 4
+    }
+  },
+  {
+    "id": "SG-QU-3605",
+    "name": "Sky Villa Biệt Thự Cổ & Hồ Con Rùa — Quận 3",
+    "floor": 36,
+    "unitNumber": "3605",
+    "type": "Sky Villa",
+    "sqm": 190,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 4898,
+    "monthlyRentVND": 120000000,
+    "city": "Ho Chi Minh City",
+    "district": "Quận 3",
+    "address": "Tầng 36, Tòa tháp Haven Luxury, Đường Võ Thị Sáu, Quận Quận 3, TP. Hồ Chí Minh",
+    "images": [
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.69,
+    "reviewCount": 43,
+    "viewType": "View Biệt Thự Cổ & Hồ Con Rùa",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 120000000,
+      "estimatedElectricityVND": 4750000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 4180000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 131230000,
+      "depositMonths": 2,
+      "depositVND": 240000000,
+      "moveInTotalRequiredVND": 371230000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Quận 3, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (4,180,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 83,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 35.7,
+      "waterUsageLiters": 114,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1070",
+      "name": "Nguyễn Minh Hoàng",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      "phone": "0903124567",
+      "email": "hoang.nm@gmail.com",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-01-15",
+      "leaseEnd": "2026-07-15",
+      "monthlyRentUSD": 4898,
+      "monthlyRentVND": 120000000,
+      "autoPayActive": true,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "DN-SƠ-3806",
+    "name": "Studio Biển Mỹ Khê & Bán Đảo Sơn Trà — Sơn Trà",
+    "floor": 38,
+    "unitNumber": "3806",
+    "type": "Studio",
+    "sqm": 53,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "occupied",
+    "monthlyRentUSD": 633,
+    "monthlyRentVND": 15500000,
+    "city": "Da Nang",
+    "district": "Sơn Trà",
+    "address": "Tầng 38, Tòa tháp Haven Luxury, Đường An Hải Bắc, Quận Sơn Trà, Đà Nẵng",
+    "images": [
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.69,
+    "reviewCount": 13,
+    "viewType": "View Biển Mỹ Khê & Bán Đảo Sơn Trà",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 15500000,
+      "estimatedElectricityVND": 1325000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1166000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 19691000,
+      "depositMonths": 1,
+      "depositVND": 15500000,
+      "moveInTotalRequiredVND": 35191000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Sơn Trà, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,166,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 83,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 52.0,
+      "waterUsageLiters": 131,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1071",
+      "name": "Đỗ Phương Linh",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200",
+      "phone": "0977223344",
+      "email": "phuonglinh.do@vietcombank.com.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-01-15",
+      "leaseEnd": "2026-09-15",
+      "monthlyRentUSD": 633,
+      "monthlyRentVND": 15500000,
+      "autoPayActive": true,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "DN-HẢ-3002",
+    "name": "Deluxe Apartment Bạch Đằng Sông Hàn & Cầu Rồng — Hải Châu",
+    "floor": 30,
+    "unitNumber": "3002",
+    "type": "Deluxe Apartment",
+    "sqm": 72,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 1204,
+    "monthlyRentVND": 29500000,
+    "city": "Da Nang",
+    "district": "Hải Châu",
+    "address": "Tầng 30, Tòa tháp Haven Luxury, Đường Hòa Cường Bắc, Quận Hải Châu, Đà Nẵng",
+    "images": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.82,
+    "reviewCount": 19,
+    "viewType": "View Bạch Đằng Sông Hàn & Cầu Rồng",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 29500000,
+      "estimatedElectricityVND": 1800000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1584000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 34584000,
+      "depositMonths": 1,
+      "depositVND": 29500000,
+      "moveInTotalRequiredVND": 64084000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Hải Châu, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,584,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 84,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 34.6,
+      "waterUsageLiters": 103,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1072",
+      "name": "Trần Thị Mai Anh",
+      "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=200",
+      "phone": "0912456789",
+      "email": "maianh.tran@techcorp.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-07-15",
+      "leaseEnd": "2026-12-15",
+      "monthlyRentUSD": 1204,
+      "monthlyRentVND": 29500000,
+      "autoPayActive": true,
+      "occupantsCount": 3
+    }
+  },
+  {
+    "id": "DN-NG-0903",
+    "name": "Executive Suite An Thượng Foreign Quarter & Non Nước — Ngũ Hành Sơn",
+    "floor": 9,
+    "unitNumber": "0903",
+    "type": "Executive Suite",
+    "sqm": 112,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 2265,
+    "monthlyRentVND": 55500000,
     "city": "Da Nang",
     "district": "Ngũ Hành Sơn",
-    "address": "132 Phan Chu Trinh, Phường Phước Mỹ, Quận Ngũ Hành Sơn, Đà Nẵng",
+    "address": "Tầng 9, Tòa tháp Haven Luxury, Đường Hòa Hải, Quận Ngũ Hành Sơn, Đà Nẵng",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.87,
+    "reviewCount": 68,
+    "viewType": "View An Thượng Foreign Quarter & Non Nước",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 55500000,
+      "estimatedElectricityVND": 2800000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2464000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 63064000,
+      "depositMonths": 2,
+      "depositVND": 111000000,
+      "moveInTotalRequiredVND": 174064000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Ngũ Hành Sơn, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,464,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 98,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 53.1,
+      "waterUsageLiters": 125,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1073",
+      "name": "Trần Thị Mai Anh",
+      "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=200",
+      "phone": "0912456789",
+      "email": "maianh.tran@techcorp.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-03-15",
+      "leaseEnd": "2026-12-15",
+      "monthlyRentUSD": 2265,
+      "monthlyRentVND": 55500000,
+      "autoPayActive": false,
+      "occupantsCount": 4
+    }
+  },
+  {
+    "id": "DN-TH-3102",
+    "name": "Sky Villa Vịnh Đà Nẵng & Nguyễn Tất Thành — Thanh Khê",
+    "floor": 31,
+    "unitNumber": "3102",
+    "type": "Sky Villa",
+    "sqm": 179,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 5612,
+    "monthlyRentVND": 137500000,
+    "city": "Da Nang",
+    "district": "Thanh Khê",
+    "address": "Tầng 31, Tòa tháp Haven Luxury, Đường Chính Gián, Quận Thanh Khê, Đà Nẵng",
+    "images": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.67,
+    "reviewCount": 65,
+    "viewType": "View Vịnh Đà Nẵng & Nguyễn Tất Thành",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 137500000,
+      "estimatedElectricityVND": 4475000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3938000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 148213000,
+      "depositMonths": 2,
+      "depositVND": 275000000,
+      "moveInTotalRequiredVND": 423213000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Thanh Khê, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,938,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 98,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 44.1,
+      "waterUsageLiters": 149,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1074",
+      "name": "Michael Chang",
+      "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 902 567 890",
+      "email": "mchang@standardchartered.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-10-15",
+      "leaseEnd": "2026-06-15",
+      "monthlyRentUSD": 5612,
+      "monthlyRentVND": 137500000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "DN-SƠ-3201",
+    "name": "Penthouse Biển Mỹ Khê & Bán Đảo Sơn Trà — Sơn Trà",
+    "floor": 32,
+    "unitNumber": "3201",
+    "type": "Penthouse",
+    "sqm": 327,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "status": "pending_handover",
+    "monthlyRentUSD": 10306,
+    "monthlyRentVND": 252500000,
+    "city": "Da Nang",
+    "district": "Sơn Trà",
+    "address": "Tầng 32, Tòa tháp Haven Luxury, Đường Phước Mỹ, Quận Sơn Trà, Đà Nẵng",
+    "images": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.92,
+    "reviewCount": 65,
+    "viewType": "View Biển Mỹ Khê & Bán Đảo Sơn Trà",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 252500000,
+      "estimatedElectricityVND": 8175000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 7194000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 270169000,
+      "depositMonths": 2,
+      "depositVND": 505000000,
+      "moveInTotalRequiredVND": 775169000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Penthouse tại vị trí đắc địa Sơn Trà, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (7,194,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 80,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 23.4,
+      "waterUsageLiters": 141,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1075",
+      "name": "Phạm Thu Trang",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
+      "phone": "0938112233",
+      "email": "trang.pham@vng.com.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-06-15",
+      "leaseEnd": "2026-10-15",
+      "monthlyRentUSD": 10306,
+      "monthlyRentVND": 252500000,
+      "autoPayActive": true,
+      "occupantsCount": 5
+    }
+  },
+  {
+    "id": "DN-HẢ-3603",
+    "name": "Duplex Bạch Đằng Sông Hàn & Cầu Rồng — Hải Châu",
+    "floor": 36,
+    "unitNumber": "3603",
+    "type": "Duplex",
+    "sqm": 149,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 3082,
+    "monthlyRentVND": 75500000,
+    "city": "Da Nang",
+    "district": "Hải Châu",
+    "address": "Tầng 36, Tòa tháp Haven Luxury, Đường Thạch Thang, Quận Hải Châu, Đà Nẵng",
+    "images": [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.74,
+    "reviewCount": 58,
+    "viewType": "View Bạch Đằng Sông Hàn & Cầu Rồng",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 75500000,
+      "estimatedElectricityVND": 3725000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3278000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 84203000,
+      "depositMonths": 2,
+      "depositVND": 151000000,
+      "moveInTotalRequiredVND": 235203000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Duplex tại vị trí đắc địa Hải Châu, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,278,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 97,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 34.0,
+      "waterUsageLiters": 159,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1076",
+      "name": "Elena Rostova",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 988 789 012",
+      "email": "elena.rostova@kaspersky.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-06-15",
+      "leaseEnd": "2026-11-15",
+      "monthlyRentUSD": 3082,
+      "monthlyRentVND": 75500000,
+      "autoPayActive": false,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "DN-NG-2505",
+    "name": "Studio An Thượng Foreign Quarter & Non Nước — Ngũ Hành Sơn",
+    "floor": 25,
+    "unitNumber": "2505",
+    "type": "Studio",
+    "sqm": 41,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "occupied",
+    "monthlyRentUSD": 1020,
+    "monthlyRentVND": 25000000,
+    "city": "Da Nang",
+    "district": "Ngũ Hành Sơn",
+    "address": "Tầng 25, Tòa tháp Haven Luxury, Đường Khuê Mỹ, Quận Ngũ Hành Sơn, Đà Nẵng",
+    "images": [
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.82,
+    "reviewCount": 13,
+    "viewType": "View An Thượng Foreign Quarter & Non Nước",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 25000000,
+      "estimatedElectricityVND": 1025000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 902000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 28627000,
+      "depositMonths": 1,
+      "depositVND": 25000000,
+      "moveInTotalRequiredVND": 53627000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Ngũ Hành Sơn, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (902,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 83,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 34.3,
+      "waterUsageLiters": 147,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1077",
+      "name": "Trần Thị Mai Anh",
+      "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=200",
+      "phone": "0912456789",
+      "email": "maianh.tran@techcorp.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-05-15",
+      "leaseEnd": "2026-10-15",
+      "monthlyRentUSD": 1020,
+      "monthlyRentVND": 25000000,
+      "autoPayActive": true,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "DN-TH-1703",
+    "name": "Deluxe Apartment Vịnh Đà Nẵng & Nguyễn Tất Thành — Thanh Khê",
+    "floor": 17,
+    "unitNumber": "1703",
+    "type": "Deluxe Apartment",
+    "sqm": 76,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 1102,
+    "monthlyRentVND": 27000000,
+    "city": "Da Nang",
+    "district": "Thanh Khê",
+    "address": "Tầng 17, Tòa tháp Haven Luxury, Đường Chính Gián, Quận Thanh Khê, Đà Nẵng",
+    "images": [
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.7,
+    "reviewCount": 23,
+    "viewType": "View Vịnh Đà Nẵng & Nguyễn Tất Thành",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 27000000,
+      "estimatedElectricityVND": 1900000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1672000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 32272000,
+      "depositMonths": 1,
+      "depositVND": 27000000,
+      "moveInTotalRequiredVND": 59272000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Thanh Khê, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,672,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 97,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 48.0,
+      "waterUsageLiters": 90,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1078",
+      "name": "Trần Thị Mai Anh",
+      "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=200",
+      "phone": "0912456789",
+      "email": "maianh.tran@techcorp.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-09-15",
+      "leaseEnd": "2026-12-15",
+      "monthlyRentUSD": 1102,
+      "monthlyRentVND": 27000000,
+      "autoPayActive": false,
+      "occupantsCount": 3
+    }
+  },
+  {
+    "id": "DN-SƠ-2604",
+    "name": "Executive Suite Biển Mỹ Khê & Bán Đảo Sơn Trà — Sơn Trà",
+    "floor": 26,
+    "unitNumber": "2604",
+    "type": "Executive Suite",
+    "sqm": 118,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "vacant",
+    "monthlyRentUSD": 2735,
+    "monthlyRentVND": 67000000,
+    "city": "Da Nang",
+    "district": "Sơn Trà",
+    "address": "Tầng 26, Tòa tháp Haven Luxury, Đường Mân Thái, Quận Sơn Trà, Đà Nẵng",
+    "images": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.75,
+    "reviewCount": 63,
+    "viewType": "View Biển Mỹ Khê & Bán Đảo Sơn Trà",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 67000000,
+      "estimatedElectricityVND": 2950000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2596000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 74846000,
+      "depositMonths": 2,
+      "depositVND": 134000000,
+      "moveInTotalRequiredVND": 208846000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Sơn Trà, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,596,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 84,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 46.4,
+      "waterUsageLiters": 158,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "DN-HẢ-3205",
+    "name": "Sky Villa Bạch Đằng Sông Hàn & Cầu Rồng — Hải Châu",
+    "floor": 32,
+    "unitNumber": "3205",
+    "type": "Sky Villa",
+    "sqm": 189,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "vacant",
+    "monthlyRentUSD": 5184,
+    "monthlyRentVND": 127000000,
+    "city": "Da Nang",
+    "district": "Hải Châu",
+    "address": "Tầng 32, Tòa tháp Haven Luxury, Đường Bình Hiên, Quận Hải Châu, Đà Nẵng",
+    "images": [
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.94,
+    "reviewCount": 15,
+    "viewType": "View Bạch Đằng Sông Hàn & Cầu Rồng",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 127000000,
+      "estimatedElectricityVND": 4725000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 4158000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 138183000,
+      "depositMonths": 2,
+      "depositVND": 254000000,
+      "moveInTotalRequiredVND": 392183000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Hải Châu, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (4,158,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 89,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 47.6,
+      "waterUsageLiters": 151,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "DN-NG-2102",
+    "name": "Penthouse An Thượng Foreign Quarter & Non Nước — Ngũ Hành Sơn",
+    "floor": 21,
+    "unitNumber": "2102",
+    "type": "Penthouse",
+    "sqm": 318,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "status": "occupied",
+    "monthlyRentUSD": 13388,
+    "monthlyRentVND": 328000000,
+    "city": "Da Nang",
+    "district": "Ngũ Hành Sơn",
+    "address": "Tầng 21, Tòa tháp Haven Luxury, Đường Mỹ An, Quận Ngũ Hành Sơn, Đà Nẵng",
+    "images": [
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.79,
+    "reviewCount": 37,
+    "viewType": "View An Thượng Foreign Quarter & Non Nước",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 328000000,
+      "estimatedElectricityVND": 7950000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 6996000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 345246000,
+      "depositMonths": 2,
+      "depositVND": 656000000,
+      "moveInTotalRequiredVND": 1001246000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Penthouse tại vị trí đắc địa Ngũ Hành Sơn, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (6,996,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 85,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 57.8,
+      "waterUsageLiters": 132,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1081",
+      "name": "Ngô Bảo Châu",
+      "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200",
+      "phone": "0908334455",
+      "email": "chau.ngo@fpt.com",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-03-15",
+      "leaseEnd": "2026-12-15",
+      "monthlyRentUSD": 13388,
+      "monthlyRentVND": 328000000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "DN-TH-0406",
+    "name": "Duplex Vịnh Đà Nẵng & Nguyễn Tất Thành — Thanh Khê",
+    "floor": 4,
+    "unitNumber": "0406",
+    "type": "Duplex",
+    "sqm": 142,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "reserved",
+    "monthlyRentUSD": 2429,
+    "monthlyRentVND": 59500000,
+    "city": "Da Nang",
+    "district": "Thanh Khê",
+    "address": "Tầng 4, Tòa tháp Haven Luxury, Đường Chính Gián, Quận Thanh Khê, Đà Nẵng",
+    "images": [
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.95,
+    "reviewCount": 42,
+    "viewType": "View Vịnh Đà Nẵng & Nguyễn Tất Thành",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 59500000,
+      "estimatedElectricityVND": 3550000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3124000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 67874000,
+      "depositMonths": 2,
+      "depositVND": 119000000,
+      "moveInTotalRequiredVND": 186874000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Duplex tại vị trí đắc địa Thanh Khê, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,124,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 82,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 38.1,
+      "waterUsageLiters": 85,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "DN-SƠ-0405",
+    "name": "Studio Biển Mỹ Khê & Bán Đảo Sơn Trà — Sơn Trà",
+    "floor": 4,
+    "unitNumber": "0405",
+    "type": "Studio",
+    "sqm": 39,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "reserved",
+    "monthlyRentUSD": 816,
+    "monthlyRentVND": 20000000,
+    "city": "Da Nang",
+    "district": "Sơn Trà",
+    "address": "Tầng 4, Tòa tháp Haven Luxury, Đường An Hải Bắc, Quận Sơn Trà, Đà Nẵng",
+    "images": [
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.69,
+    "reviewCount": 27,
+    "viewType": "View Biển Mỹ Khê & Bán Đảo Sơn Trà",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 20000000,
+      "estimatedElectricityVND": 975000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 858000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 23533000,
+      "depositMonths": 1,
+      "depositVND": 20000000,
+      "moveInTotalRequiredVND": 43533000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Sơn Trà, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (858,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 97,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 24.3,
+      "waterUsageLiters": 148,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "DN-HẢ-3701",
+    "name": "Deluxe Apartment Bạch Đằng Sông Hàn & Cầu Rồng — Hải Châu",
+    "floor": 37,
+    "unitNumber": "3701",
+    "type": "Deluxe Apartment",
+    "sqm": 89,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "vacant",
+    "monthlyRentUSD": 1694,
+    "monthlyRentVND": 41500000,
+    "city": "Da Nang",
+    "district": "Hải Châu",
+    "address": "Tầng 37, Tòa tháp Haven Luxury, Đường Hòa Cường Bắc, Quận Hải Châu, Đà Nẵng",
+    "images": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.65,
+    "reviewCount": 34,
+    "viewType": "View Bạch Đằng Sông Hàn & Cầu Rồng",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 41500000,
+      "estimatedElectricityVND": 2225000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1958000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 47383000,
+      "depositMonths": 1,
+      "depositVND": 41500000,
+      "moveInTotalRequiredVND": 88883000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Hải Châu, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,958,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 91,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 45.9,
+      "waterUsageLiters": 95,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "DN-NG-2602",
+    "name": "Executive Suite An Thượng Foreign Quarter & Non Nước — Ngũ Hành Sơn",
+    "floor": 26,
+    "unitNumber": "2602",
+    "type": "Executive Suite",
+    "sqm": 121,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "vacant",
+    "monthlyRentUSD": 2939,
+    "monthlyRentVND": 72000000,
+    "city": "Da Nang",
+    "district": "Ngũ Hành Sơn",
+    "address": "Tầng 26, Tòa tháp Haven Luxury, Đường Hòa Hải, Quận Ngũ Hành Sơn, Đà Nẵng",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.86,
+    "reviewCount": 35,
+    "viewType": "View An Thượng Foreign Quarter & Non Nước",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 72000000,
+      "estimatedElectricityVND": 3025000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2662000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 79987000,
+      "depositMonths": 2,
+      "depositVND": 144000000,
+      "moveInTotalRequiredVND": 223987000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Ngũ Hành Sơn, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,662,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 78,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 50.4,
+      "waterUsageLiters": 129,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "HP-HỒ-0906",
+    "name": "Studio Trung Tâm Nhà Hát Lớn & Dải Vườn Hoa — Hồng Bàng",
+    "floor": 9,
+    "unitNumber": "0906",
+    "type": "Studio",
+    "sqm": 44,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "occupied",
+    "monthlyRentUSD": 714,
+    "monthlyRentVND": 17500000,
+    "city": "Hai Phong",
+    "district": "Hồng Bàng",
+    "address": "Tầng 9, Tòa tháp Haven Luxury, Đường Hoàng Văn Thụ, Quận Hồng Bàng, Hải Phòng",
+    "images": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+    ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
     "hasElevator": true,
@@ -1646,30 +8181,1086 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "noiseLevel": "Quiet",
     "trafficDensity": "Moderate",
     "petFriendly": true,
-    "viewType": "Bờ Biển Mỹ Khê & Bán Đảo Sơn Trà",
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.75,
+    "reviewCount": 14,
+    "viewType": "View Trung Tâm Nhà Hát Lớn & Dải Vườn Hoa",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 17500000,
+      "estimatedElectricityVND": 1100000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 968000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 21268000,
+      "depositMonths": 1,
+      "depositVND": 17500000,
+      "moveInTotalRequiredVND": 38768000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
     "aiInsights": {
       "whyFit": [
-        "Mức giá 13 Triệu/tháng tương thích hoàn hảo với khu vực Ngũ Hành Sơn",
-        "Căn hộ tầng 14 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Chỗ đỗ xe máy thuận tiện, quản lý an ninh thẻ từ 24/7"
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Hồng Bàng, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
       ],
       "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Ngũ Hành Sơn",
-        "Thuận tiện di chuyển thang bộ khi cần"
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (968,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
       ]
     },
     "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Ngũ Hành Sơn.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
     },
-    "monthlyRentUSD": 531,
+    "sensors": {
+      "smartLockBattery": 79,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 55.6,
+      "waterUsageLiters": 150,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1086",
+      "name": "Lê Quốc Bảo",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+      "phone": "0987654321",
+      "email": "bao.le@fintech.io",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-11-15",
+      "leaseEnd": "2026-09-15",
+      "monthlyRentUSD": 714,
+      "monthlyRentVND": 17500000,
+      "autoPayActive": false,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "HP-NG-3708",
+    "name": "Deluxe Apartment Lạch Tray & Vinhomes Marina — Ngô Quyền",
+    "floor": 37,
+    "unitNumber": "3708",
+    "type": "Deluxe Apartment",
+    "sqm": 82,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 1224,
+    "monthlyRentVND": 30000000,
+    "city": "Hai Phong",
+    "district": "Ngô Quyền",
+    "address": "Tầng 37, Tòa tháp Haven Luxury, Đường Cầu Đất, Quận Ngô Quyền, Hải Phòng",
     "images": [
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
     ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.94,
+    "reviewCount": 59,
+    "viewType": "View Lạch Tray & Vinhomes Marina",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 30000000,
+      "estimatedElectricityVND": 2050000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1804000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 35554000,
+      "depositMonths": 1,
+      "depositVND": 30000000,
+      "moveInTotalRequiredVND": 65554000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Ngô Quyền, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,804,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 90,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 57.1,
+      "waterUsageLiters": 148,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1087",
+      "name": "Hoàng Đức Anh",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
+      "phone": "0944556677",
+      "email": "ducanh.hoang@shopee.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-06-15",
+      "leaseEnd": "2026-12-15",
+      "monthlyRentUSD": 1224,
+      "monthlyRentVND": 30000000,
+      "autoPayActive": true,
+      "occupantsCount": 3
+    }
+  },
+  {
+    "id": "HP-LÊ-2605",
+    "name": "Executive Suite Aeon Mall Lê Chân & Hồ Sen — Lê Chân",
+    "floor": 26,
+    "unitNumber": "2605",
+    "type": "Executive Suite",
+    "sqm": 120,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "vacant",
+    "monthlyRentUSD": 1837,
+    "monthlyRentVND": 45000000,
+    "city": "Hai Phong",
+    "district": "Lê Chân",
+    "address": "Tầng 26, Tòa tháp Haven Luxury, Đường Vĩnh Niệm, Quận Lê Chân, Hải Phòng",
+    "images": [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.83,
+    "reviewCount": 32,
+    "viewType": "View Aeon Mall Lê Chân & Hồ Sen",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 45000000,
+      "estimatedElectricityVND": 3000000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2640000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 52940000,
+      "depositMonths": 1,
+      "depositVND": 45000000,
+      "moveInTotalRequiredVND": 97940000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Lê Chân, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,640,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 88,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 33.0,
+      "waterUsageLiters": 139,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "HP-TH-3106",
+    "name": "Sky Villa Khu Đô Thị Bắc Sông Cấm — Thủy Nguyên",
+    "floor": 31,
+    "unitNumber": "3106",
+    "type": "Sky Villa",
+    "sqm": 180,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 5510,
+    "monthlyRentVND": 135000000,
+    "city": "Hai Phong",
+    "district": "Thủy Nguyên",
+    "address": "Tầng 31, Tòa tháp Haven Luxury, Đường Hoa Động, Quận Thủy Nguyên, Hải Phòng",
+    "images": [
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.77,
+    "reviewCount": 63,
+    "viewType": "View Khu Đô Thị Bắc Sông Cấm",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 135000000,
+      "estimatedElectricityVND": 4500000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3960000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 145760000,
+      "depositMonths": 2,
+      "depositVND": 270000000,
+      "moveInTotalRequiredVND": 415760000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Thủy Nguyên, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,960,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 83,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 27.1,
+      "waterUsageLiters": 141,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1089",
+      "name": "Vũ Hải Đăng",
+      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200",
+      "phone": "0968998877",
+      "email": "dang.vu@misa.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-10-15",
+      "leaseEnd": "2026-09-15",
+      "monthlyRentUSD": 5510,
+      "monthlyRentVND": 135000000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "HP-HỒ-1102",
+    "name": "Penthouse Trung Tâm Nhà Hát Lớn & Dải Vườn Hoa — Hồng Bàng",
+    "floor": 11,
+    "unitNumber": "1102",
+    "type": "Penthouse",
+    "sqm": 316,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "status": "vacant",
+    "monthlyRentUSD": 8204,
+    "monthlyRentVND": 201000000,
+    "city": "Hai Phong",
+    "district": "Hồng Bàng",
+    "address": "Tầng 11, Tòa tháp Haven Luxury, Đường Hoàng Văn Thụ, Quận Hồng Bàng, Hải Phòng",
+    "images": [
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.85,
+    "reviewCount": 55,
+    "viewType": "View Trung Tâm Nhà Hát Lớn & Dải Vườn Hoa",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 201000000,
+      "estimatedElectricityVND": 7900000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 6952000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 218152000,
+      "depositMonths": 2,
+      "depositVND": 402000000,
+      "moveInTotalRequiredVND": 620152000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Penthouse tại vị trí đắc địa Hồng Bàng, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (6,952,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 89,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 38.0,
+      "waterUsageLiters": 94,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "HP-NG-1106",
+    "name": "Duplex Lạch Tray & Vinhomes Marina — Ngô Quyền",
+    "floor": 11,
+    "unitNumber": "1106",
+    "type": "Duplex",
+    "sqm": 153,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 3184,
+    "monthlyRentVND": 78000000,
+    "city": "Hai Phong",
+    "district": "Ngô Quyền",
+    "address": "Tầng 11, Tòa tháp Haven Luxury, Đường Lạch Tray, Quận Ngô Quyền, Hải Phòng",
+    "images": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.88,
+    "reviewCount": 25,
+    "viewType": "View Lạch Tray & Vinhomes Marina",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 78000000,
+      "estimatedElectricityVND": 3825000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3366000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 86891000,
+      "depositMonths": 2,
+      "depositVND": 156000000,
+      "moveInTotalRequiredVND": 242891000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Duplex tại vị trí đắc địa Ngô Quyền, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,366,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 87,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 29.2,
+      "waterUsageLiters": 102,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1091",
+      "name": "Sarah Jenkins",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 909 234 567",
+      "email": "sarah.j@unicef.org",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-01-15",
+      "leaseEnd": "2026-11-15",
+      "monthlyRentUSD": 3184,
+      "monthlyRentVND": 78000000,
+      "autoPayActive": true,
+      "occupantsCount": 4
+    }
+  },
+  {
+    "id": "HP-LÊ-3103",
+    "name": "Studio Aeon Mall Lê Chân & Hồ Sen — Lê Chân",
+    "floor": 31,
+    "unitNumber": "3103",
+    "type": "Studio",
+    "sqm": 39,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "maintenance",
+    "monthlyRentUSD": 1082,
+    "monthlyRentVND": 26500000,
+    "city": "Hai Phong",
+    "district": "Lê Chân",
+    "address": "Tầng 31, Tòa tháp Haven Luxury, Đường Vĩnh Niệm, Quận Lê Chân, Hải Phòng",
+    "images": [
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.94,
+    "reviewCount": 66,
+    "viewType": "View Aeon Mall Lê Chân & Hồ Sen",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 26500000,
+      "estimatedElectricityVND": 975000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 858000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 30033000,
+      "depositMonths": 1,
+      "depositVND": 26500000,
+      "moveInTotalRequiredVND": 56533000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Lê Chân, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (858,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 98,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 50.6,
+      "waterUsageLiters": 150,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "HP-TH-1004",
+    "name": "Deluxe Apartment Khu Đô Thị Bắc Sông Cấm — Thủy Nguyên",
+    "floor": 10,
+    "unitNumber": "1004",
+    "type": "Deluxe Apartment",
+    "sqm": 77,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 1878,
+    "monthlyRentVND": 46000000,
+    "city": "Hai Phong",
+    "district": "Thủy Nguyên",
+    "address": "Tầng 10, Tòa tháp Haven Luxury, Đường Hoa Động, Quận Thủy Nguyên, Hải Phòng",
+    "images": [
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.75,
+    "reviewCount": 57,
+    "viewType": "View Khu Đô Thị Bắc Sông Cấm",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 46000000,
+      "estimatedElectricityVND": 1925000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1694000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 51319000,
+      "depositMonths": 1,
+      "depositVND": 46000000,
+      "moveInTotalRequiredVND": 97319000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Thủy Nguyên, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,694,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 94,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 49.7,
+      "waterUsageLiters": 158,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1093",
+      "name": "Nguyễn Minh Hoàng",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      "phone": "0903124567",
+      "email": "hoang.nm@gmail.com",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-06-15",
+      "leaseEnd": "2026-10-15",
+      "monthlyRentUSD": 1878,
+      "monthlyRentVND": 46000000,
+      "autoPayActive": false,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "HP-HỒ-1106",
+    "name": "Executive Suite Trung Tâm Nhà Hát Lớn & Dải Vườn Hoa — Hồng Bàng",
+    "floor": 11,
+    "unitNumber": "1106",
+    "type": "Executive Suite",
+    "sqm": 107,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 3224,
+    "monthlyRentVND": 79000000,
+    "city": "Hai Phong",
+    "district": "Hồng Bàng",
+    "address": "Tầng 11, Tòa tháp Haven Luxury, Đường Hoàng Văn Thụ, Quận Hồng Bàng, Hải Phòng",
+    "images": [
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.92,
+    "reviewCount": 45,
+    "viewType": "View Trung Tâm Nhà Hát Lớn & Dải Vườn Hoa",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 79000000,
+      "estimatedElectricityVND": 2675000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2354000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 86329000,
+      "depositMonths": 2,
+      "depositVND": 158000000,
+      "moveInTotalRequiredVND": 244329000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Hồng Bàng, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,354,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 83,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 33.6,
+      "waterUsageLiters": 113,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1094",
+      "name": "Ngô Bảo Châu",
+      "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200",
+      "phone": "0908334455",
+      "email": "chau.ngo@fpt.com",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-06-15",
+      "leaseEnd": "2026-07-15",
+      "monthlyRentUSD": 3224,
+      "monthlyRentVND": 79000000,
+      "autoPayActive": false,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "HP-NG-3605",
+    "name": "Sky Villa Lạch Tray & Vinhomes Marina — Ngô Quyền",
+    "floor": 36,
+    "unitNumber": "3605",
+    "type": "Sky Villa",
+    "sqm": 186,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 3694,
+    "monthlyRentVND": 90500000,
+    "city": "Hai Phong",
+    "district": "Ngô Quyền",
+    "address": "Tầng 36, Tòa tháp Haven Luxury, Đường Lạc Viên, Quận Ngô Quyền, Hải Phòng",
+    "images": [
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.85,
+    "reviewCount": 49,
+    "viewType": "View Lạch Tray & Vinhomes Marina",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 90500000,
+      "estimatedElectricityVND": 4650000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 4092000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 101542000,
+      "depositMonths": 2,
+      "depositVND": 181000000,
+      "moveInTotalRequiredVND": 282542000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Ngô Quyền, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (4,092,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 97,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 52.3,
+      "waterUsageLiters": 157,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1095",
+      "name": "Ngô Bảo Châu",
+      "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200",
+      "phone": "0908334455",
+      "email": "chau.ngo@fpt.com",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-05-15",
+      "leaseEnd": "2026-07-15",
+      "monthlyRentUSD": 3694,
+      "monthlyRentVND": 90500000,
+      "autoPayActive": false,
+      "occupantsCount": 3
+    }
+  },
+  {
+    "id": "BD-TH-0402",
+    "name": "Studio Becamex Tower & Phố Tây Chánh Nghĩa — Thủ Dầu Một",
+    "floor": 4,
+    "unitNumber": "0402",
+    "type": "Studio",
+    "sqm": 38,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "pending_handover",
+    "monthlyRentUSD": 592,
+    "monthlyRentVND": 14500000,
+    "city": "Binh Duong",
+    "district": "Thủ Dầu Một",
+    "address": "Tầng 4, Tòa tháp Haven Luxury, Đường Chánh Nghĩa, Quận Thủ Dầu Một, Bình Dương",
+    "images": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.81,
+    "reviewCount": 63,
+    "viewType": "View Becamex Tower & Phố Tây Chánh Nghĩa",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 14500000,
+      "estimatedElectricityVND": 950000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 836000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 17986000,
+      "depositMonths": 1,
+      "depositVND": 14500000,
+      "moveInTotalRequiredVND": 32486000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Thủ Dầu Một, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (836,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 90,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 38.3,
+      "waterUsageLiters": 92,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1096",
+      "name": "Hoàng Đức Anh",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
+      "phone": "0944556677",
+      "email": "ducanh.hoang@shopee.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-11-15",
+      "leaseEnd": "2026-07-15",
+      "monthlyRentUSD": 592,
+      "monthlyRentVND": 14500000,
+      "autoPayActive": false,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "BD-TH-3107",
+    "name": "Deluxe Apartment VSIP 1 & Sân Golf Sông Bé — Thuận An",
+    "floor": 31,
+    "unitNumber": "3107",
+    "type": "Deluxe Apartment",
+    "sqm": 75,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 1510,
+    "monthlyRentVND": 37000000,
+    "city": "Binh Duong",
+    "district": "Thuận An",
+    "address": "Tầng 31, Tòa tháp Haven Luxury, Đường Bình Hòa, Quận Thuận An, Bình Dương",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
     "furnished": true,
     "balcony": true,
     "airConditioning": true,
@@ -1678,785 +9269,180 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "wifi": true,
     "rating": 4.76,
     "reviewCount": 41,
-    "sensors": {
-      "smartLockBattery": 97,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 35.5,
-      "waterUsageLiters": 136,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "HN-HON-1504",
-    "name": "Căn Hộ Hoàn Kiếm Deluxe Apartment HN-HON-1504",
-    "floor": 15,
-    "unitNumber": "1504",
-    "type": "Deluxe Apartment",
-    "sqm": 47,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "status": "vacant",
-    "monthlyRentVND": 14000000,
-    "city": "Hanoi",
-    "district": "Hoàn Kiếm",
-    "address": "11 Xuân Diệu, Phường Trung Tâm, Quận Hoàn Kiếm, Hà Nội",
-    "hasCarParking": false,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": false,
-    "viewType": "Toàn Cảnh Thành Phố & Trục Đường Xuân Diệu",
+    "viewType": "View VSIP 1 & Sân Golf Sông Bé",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 37000000,
+      "estimatedElectricityVND": 1875000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1650000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 42225000,
+      "depositMonths": 1,
+      "depositVND": 37000000,
+      "moveInTotalRequiredVND": 79225000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
     "aiInsights": {
       "whyFit": [
-        "Mức giá 14 Triệu/tháng tương thích hoàn hảo với khu vực Hoàn Kiếm",
-        "Căn hộ tầng 15 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Chỗ đỗ xe máy thuận tiện, quản lý an ninh thẻ từ 24/7"
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Thuận An, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
       ],
       "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Hoàn Kiếm",
-        "Thuận tiện di chuyển thang bộ khi cần"
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,650,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
       ]
     },
     "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Hoàn Kiếm.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
     },
-    "monthlyRentUSD": 571,
-    "images": [
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.77,
-    "reviewCount": 42,
-    "sensors": {
-      "smartLockBattery": 98,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 36.5,
-      "waterUsageLiters": 137,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "SG-QUN-2805",
-    "name": "Căn Hộ Quận 7 Sky Villa SG-QUN-2805",
-    "floor": 28,
-    "unitNumber": "2805",
-    "type": "Sky Villa",
-    "sqm": 158,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "status": "vacant",
-    "monthlyRentVND": 73000000,
-    "city": "Ho Chi Minh City",
-    "district": "Quận 7",
-    "address": "60 Nam Kỳ Khởi Nghĩa, Phường An Cư, Quận 7, TP. Hồ Chí Minh",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Sông Sài Gòn & Skyline Quận 7",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 73 Triệu/tháng tương thích hoàn hảo với khu vực Quận 7",
-        "Căn hộ tầng 28 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Quận 7",
-        "Tầng cao thoáng mát cần lưu ý khóa chốt an toàn ban công"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Quận 7.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 2980,
-    "images": [
-      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2da9c40f?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.78,
-    "reviewCount": 43,
-    "sensors": {
-      "smartLockBattery": 85,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 37.5,
-      "waterUsageLiters": 138,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "DN-NGH-2906",
-    "name": "Căn Hộ Ngũ Hành Sơn Sky Villa DN-NGH-2906",
-    "floor": 29,
-    "unitNumber": "2906",
-    "type": "Sky Villa",
-    "sqm": 159,
-    "bedrooms": 4,
-    "bathrooms": 4,
-    "status": "vacant",
-    "monthlyRentVND": 74000000,
-    "city": "Da Nang",
-    "district": "Ngũ Hành Sơn",
-    "address": "147 Lê Duẩn, Phường Phước Mỹ, Quận Ngũ Hành Sơn, Đà Nẵng",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Cầu Sông Hàn & Vịnh Đà Nẵng",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 74 Triệu/tháng tương thích hoàn hảo với khu vực Ngũ Hành Sơn",
-        "Căn hộ tầng 29 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Ngũ Hành Sơn",
-        "Tầng cao thoáng mát cần lưu ý khóa chốt an toàn ban công"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Ngũ Hành Sơn.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 3020,
-    "images": [
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2da9c40f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.79,
-    "reviewCount": 44,
-    "sensors": {
-      "smartLockBattery": 86,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 38.5,
-      "waterUsageLiters": 139,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "HN-TYH-1507",
-    "name": "Căn Hộ Tây Hồ Deluxe Apartment HN-TYH-1507",
-    "floor": 15,
-    "unitNumber": "1507",
-    "type": "Deluxe Apartment",
-    "sqm": 105,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 25000000,
-    "city": "Hanoi",
-    "district": "Tây Hồ",
-    "address": "32 Trần Duy Hưng, Phường Trung Tâm, Quận Tây Hồ, Hà Nội",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": false,
-    "viewType": "Hồ Tây & Công Viên Cây Xanh Tây Hồ",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 25 Triệu/tháng tương thích hoàn hảo với khu vực Tây Hồ",
-        "Căn hộ tầng 15 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Tây Hồ",
-        "Thuận tiện di chuyển thang bộ khi cần"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Tây Hồ.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 1020,
-    "images": [
-      "https://images.unsplash.com/photo-1502005229762-ee1b2da9c40f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.8,
-    "reviewCount": 45,
-    "sensors": {
-      "smartLockBattery": 87,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 24.5,
-      "waterUsageLiters": 140,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "SG-QUN-1608",
-    "name": "Căn Hộ Quận 2 Deluxe Apartment SG-QUN-1608",
-    "floor": 16,
-    "unitNumber": "1608",
-    "type": "Deluxe Apartment",
-    "sqm": 106,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 26000000,
-    "city": "Ho Chi Minh City",
-    "district": "Quận 2",
-    "address": "93 Ung Văn Khiêm, Phường An Cư, Quận 2, TP. Hồ Chí Minh",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Khu Đô Thị Sinh Thái Quận 2",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 26 Triệu/tháng tương thích hoàn hảo với khu vực Quận 2",
-        "Căn hộ tầng 16 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Quận 2",
-        "Tầng cao thoáng mát cần lưu ý khóa chốt an toàn ban công"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Quận 2.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 1061,
-    "images": [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.81,
-    "reviewCount": 46,
-    "sensors": {
-      "smartLockBattery": 88,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 25.5,
-      "waterUsageLiters": 141,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "DN-NGH-1701",
-    "name": "Căn Hộ Ngũ Hành Sơn Deluxe Apartment DN-NGH-1701",
-    "floor": 17,
-    "unitNumber": "1701",
-    "type": "Deluxe Apartment",
-    "sqm": 107,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 27000000,
-    "city": "Da Nang",
-    "district": "Ngũ Hành Sơn",
-    "address": "12 Phan Chu Trinh, Phường Phước Mỹ, Quận Ngũ Hành Sơn, Đà Nẵng",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Bờ Biển Mỹ Khê & Bán Đảo Sơn Trà",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 27 Triệu/tháng tương thích hoàn hảo với khu vực Ngũ Hành Sơn",
-        "Căn hộ tầng 17 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Ngũ Hành Sơn",
-        "Tầng cao thoáng mát cần lưu ý khóa chốt an toàn ban công"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Ngũ Hành Sơn.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 1102,
-    "images": [
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.82,
-    "reviewCount": 47,
-    "sensors": {
-      "smartLockBattery": 89,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 26.5,
-      "waterUsageLiters": 142,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "HN-HON-1802",
-    "name": "Căn Hộ Hoàn Kiếm Deluxe Apartment HN-HON-1802",
-    "floor": 18,
-    "unitNumber": "1802",
-    "type": "Deluxe Apartment",
-    "sqm": 108,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 28000000,
-    "city": "Hanoi",
-    "district": "Hoàn Kiếm",
-    "address": "53 Lý Thường Kiệt, Phường Trung Tâm, Quận Hoàn Kiếm, Hà Nội",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": false,
-    "viewType": "Toàn Cảnh Thành Phố & Trục Đường Lý Thường Kiệt",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 28 Triệu/tháng tương thích hoàn hảo với khu vực Hoàn Kiếm",
-        "Căn hộ tầng 18 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Hoàn Kiếm",
-        "Tầng cao thoáng mát cần lưu ý khóa chốt an toàn ban công"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Hoàn Kiếm.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 1143,
-    "images": [
-      "https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.83,
-    "reviewCount": 48,
-    "sensors": {
-      "smartLockBattery": 90,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 27.5,
-      "waterUsageLiters": 143,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "SG-BNH-1903",
-    "name": "Căn Hộ Bình Thạnh Deluxe Apartment SG-BNH-1903",
-    "floor": 19,
-    "unitNumber": "1903",
-    "type": "Deluxe Apartment",
-    "sqm": 109,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 29000000,
-    "city": "Ho Chi Minh City",
-    "district": "Bình Thạnh",
-    "address": "126 Xuân Thủy, Phường An Cư, Bình Thạnh, TP. Hồ Chí Minh",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Sông Sài Gòn & Skyline Bình Thạnh",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 29 Triệu/tháng tương thích hoàn hảo với khu vực Bình Thạnh",
-        "Căn hộ tầng 19 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Bình Thạnh",
-        "Tầng cao thoáng mát cần lưu ý khóa chốt an toàn ban công"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Bình Thạnh.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 1184,
-    "images": [
-      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.84,
-    "reviewCount": 49,
-    "sensors": {
-      "smartLockBattery": 91,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 28.5,
-      "waterUsageLiters": 144,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "DN-NGH-804",
-    "name": "Căn Hộ Ngũ Hành Sơn Deluxe Apartment DN-NGH-804",
-    "floor": 8,
-    "unitNumber": "804",
-    "type": "Deluxe Apartment",
-    "sqm": 55,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "status": "vacant",
-    "monthlyRentVND": 8000000,
-    "city": "Da Nang",
-    "district": "Ngũ Hành Sơn",
-    "address": "27 Lê Duẩn, Phường Phước Mỹ, Quận Ngũ Hành Sơn, Đà Nẵng",
-    "hasCarParking": false,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Moderate",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Cầu Sông Hàn & Vịnh Đà Nẵng",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 8 Triệu/tháng tương thích hoàn hảo với khu vực Ngũ Hành Sơn",
-        "Căn hộ tầng 8 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Chỗ đỗ xe máy thuận tiện, quản lý an ninh thẻ từ 24/7"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Ngũ Hành Sơn",
-        "Thuận tiện di chuyển thang bộ khi cần"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Ngũ Hành Sơn.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 327,
-    "images": [
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.85,
-    "reviewCount": 50,
     "sensors": {
       "smartLockBattery": 92,
       "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 29.5,
-      "waterUsageLiters": 145,
+      "targetTempC": 23,
+      "energyConsumptionKwh": 27.1,
+      "waterUsageLiters": 91,
       "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1097",
+      "name": "Kenji Sato",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 918 345 678",
+      "email": "sato.kenji@mitsubishi.co.jp",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-06-15",
+      "leaseEnd": "2026-12-15",
+      "monthlyRentUSD": 1510,
+      "monthlyRentVND": 37000000,
+      "autoPayActive": false,
+      "occupantsCount": 2
     }
   },
   {
-    "id": "HN-TYH-905",
-    "name": "Căn Hộ Tây Hồ Deluxe Apartment HN-TYH-905",
-    "floor": 9,
-    "unitNumber": "905",
-    "type": "Deluxe Apartment",
-    "sqm": 56,
-    "bedrooms": 1,
-    "bathrooms": 1,
-    "status": "vacant",
-    "monthlyRentVND": 9000000,
-    "city": "Hanoi",
-    "district": "Tây Hồ",
-    "address": "74 Xuân Diệu, Phường Trung Tâm, Quận Tây Hồ, Hà Nội",
-    "hasCarParking": false,
+    "id": "BD-DĨ-2707",
+    "name": "Executive Suite Làng Đại Học & Ga Sóng Thần — Dĩ An",
+    "floor": 27,
+    "unitNumber": "2707",
+    "type": "Executive Suite",
+    "sqm": 114,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "maintenance",
+    "monthlyRentUSD": 2245,
+    "monthlyRentVND": 55000000,
+    "city": "Binh Duong",
+    "district": "Dĩ An",
+    "address": "Tầng 27, Tòa tháp Haven Luxury, Đường Đông Hòa, Quận Dĩ An, Bình Dương",
+    "images": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
     "hasMotorbikeParking": true,
     "hasElevator": true,
     "hasBackupPower": true,
     "floodingRisk": "Low",
-    "noiseLevel": "Moderate",
+    "noiseLevel": "Quiet",
     "trafficDensity": "Moderate",
     "petFriendly": false,
-    "viewType": "Hồ Tây & Công Viên Cây Xanh Tây Hồ",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 9 Triệu/tháng tương thích hoàn hảo với khu vực Tây Hồ",
-        "Căn hộ tầng 9 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Chỗ đỗ xe máy thuận tiện, quản lý an ninh thẻ từ 24/7"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Tây Hồ",
-        "Thuận tiện di chuyển thang bộ khi cần"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Tây Hồ.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 367,
-    "images": [
-      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&q=80&w=1200"
-    ],
     "furnished": true,
     "balcony": true,
     "airConditioning": true,
     "washingMachine": true,
     "kitchen": true,
     "wifi": true,
-    "rating": 4.86,
-    "reviewCount": 51,
-    "sensors": {
-      "smartLockBattery": 93,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 30.5,
-      "waterUsageLiters": 146,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "SG-QUN-1006",
-    "name": "Căn Hộ Quận 3 Deluxe Apartment SG-QUN-1006",
-    "floor": 10,
-    "unitNumber": "1006",
-    "type": "Deluxe Apartment",
-    "sqm": 57,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "status": "vacant",
-    "monthlyRentVND": 10000000,
-    "city": "Ho Chi Minh City",
-    "district": "Quận 3",
-    "address": "159 Nguyễn Thị Minh Khai, Phường An Cư, Quận 3, TP. Hồ Chí Minh",
-    "hasCarParking": false,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Moderate",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Khu Đô Thị Sinh Thái Quận 3",
+    "rating": 4.71,
+    "reviewCount": 22,
+    "viewType": "View Làng Đại Học & Ga Sóng Thần",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 55000000,
+      "estimatedElectricityVND": 2850000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2508000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 62658000,
+      "depositMonths": 2,
+      "depositVND": 110000000,
+      "moveInTotalRequiredVND": 172658000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
     "aiInsights": {
       "whyFit": [
-        "Mức giá 10 Triệu/tháng tương thích hoàn hảo với khu vực Quận 3",
-        "Căn hộ tầng 10 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Chỗ đỗ xe máy thuận tiện, quản lý an ninh thẻ từ 24/7"
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Dĩ An, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
       ],
       "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Quận 3",
-        "Thuận tiện di chuyển thang bộ khi cần"
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,508,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
       ]
     },
     "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Quận 3.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
     },
-    "monthlyRentUSD": 408,
-    "images": [
-      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.87,
-    "reviewCount": 52,
     "sensors": {
       "smartLockBattery": 94,
       "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 31.5,
-      "waterUsageLiters": 147,
+      "targetTempC": 25,
+      "energyConsumptionKwh": 40.0,
+      "waterUsageLiters": 124,
       "securityAlarmDisarmed": true
     }
   },
   {
-    "id": "DN-NGH-2007",
-    "name": "Căn Hộ Ngũ Hành Sơn Sky Villa DN-NGH-2007",
-    "floor": 20,
-    "unitNumber": "2007",
+    "id": "BD-TH-0402",
+    "name": "Sky Villa Becamex Tower & Phố Tây Chánh Nghĩa — Thủ Dầu Một",
+    "floor": 4,
+    "unitNumber": "0402",
     "type": "Sky Villa",
-    "sqm": 168,
+    "sqm": 190,
     "bedrooms": 3,
     "bathrooms": 3,
     "status": "vacant",
-    "monthlyRentVND": 83000000,
-    "city": "Da Nang",
-    "district": "Ngũ Hành Sơn",
-    "address": "42 Phan Chu Trinh, Phường Phước Mỹ, Quận Ngũ Hành Sơn, Đà Nẵng",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Bờ Biển Mỹ Khê & Bán Đảo Sơn Trà",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 83 Triệu/tháng tương thích hoàn hảo với khu vực Ngũ Hành Sơn",
-        "Căn hộ tầng 20 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Ngũ Hành Sơn",
-        "Tầng cao thoáng mát cần lưu ý khóa chốt an toàn ban công"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Ngũ Hành Sơn.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 3388,
+    "monthlyRentUSD": 5245,
+    "monthlyRentVND": 128500000,
+    "city": "Binh Duong",
+    "district": "Thủ Dầu Một",
+    "address": "Tầng 4, Tòa tháp Haven Luxury, Đường Chánh Nghĩa, Quận Thủ Dầu Một, Bình Dương",
     "images": [
-      "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
     ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.88,
-    "reviewCount": 53,
-    "sensors": {
-      "smartLockBattery": 95,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 32.5,
-      "waterUsageLiters": 148,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "HN-HON-2108",
-    "name": "Căn Hộ Hoàn Kiếm Sky Villa HN-HON-2108",
-    "floor": 21,
-    "unitNumber": "2108",
-    "type": "Sky Villa",
-    "sqm": 169,
-    "bedrooms": 4,
-    "bathrooms": 4,
-    "status": "vacant",
-    "monthlyRentVND": 84000000,
-    "city": "Hanoi",
-    "district": "Hoàn Kiếm",
-    "address": "95 Trần Duy Hưng, Phường Trung Tâm, Quận Hoàn Kiếm, Hà Nội",
     "hasCarParking": true,
     "hasMotorbikeParking": true,
     "hasElevator": true,
@@ -2465,156 +9451,182 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "noiseLevel": "Quiet",
     "trafficDensity": "Moderate",
     "petFriendly": false,
-    "viewType": "Toàn Cảnh Thành Phố & Trục Đường Trần Duy Hưng",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 84 Triệu/tháng tương thích hoàn hảo với khu vực Hoàn Kiếm",
-        "Căn hộ tầng 21 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Hoàn Kiếm",
-        "Tầng cao thoáng mát cần lưu ý khóa chốt an toàn ban công"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Hoàn Kiếm.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 3429,
-    "images": [
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
-    ],
     "furnished": true,
     "balcony": true,
     "airConditioning": true,
     "washingMachine": true,
     "kitchen": true,
     "wifi": true,
-    "rating": 4.89,
-    "reviewCount": 54,
+    "rating": 4.67,
+    "reviewCount": 30,
+    "viewType": "View Becamex Tower & Phố Tây Chánh Nghĩa",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 128500000,
+      "estimatedElectricityVND": 4750000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 4180000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 139730000,
+      "depositMonths": 2,
+      "depositVND": 257000000,
+      "moveInTotalRequiredVND": 396730000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Thủ Dầu Một, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (4,180,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
     "sensors": {
-      "smartLockBattery": 96,
+      "smartLockBattery": 98,
       "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 33.5,
+      "targetTempC": 25,
+      "energyConsumptionKwh": 32.3,
+      "waterUsageLiters": 86,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "BD-TH-3003",
+    "name": "Penthouse VSIP 1 & Sân Golf Sông Bé — Thuận An",
+    "floor": 30,
+    "unitNumber": "3003",
+    "type": "Penthouse",
+    "sqm": 318,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "status": "vacant",
+    "monthlyRentUSD": 8469,
+    "monthlyRentVND": 207500000,
+    "city": "Binh Duong",
+    "district": "Thuận An",
+    "address": "Tầng 30, Tòa tháp Haven Luxury, Đường Bình Hòa, Quận Thuận An, Bình Dương",
+    "images": [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.67,
+    "reviewCount": 47,
+    "viewType": "View VSIP 1 & Sân Golf Sông Bé",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 207500000,
+      "estimatedElectricityVND": 7950000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 6996000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 224746000,
+      "depositMonths": 2,
+      "depositVND": 415000000,
+      "moveInTotalRequiredVND": 639746000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Penthouse tại vị trí đắc địa Thuận An, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (6,996,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 95,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 24.6,
       "waterUsageLiters": 149,
       "securityAlarmDisarmed": true
     }
   },
   {
-    "id": "SG-QUN-501",
-    "name": "Căn Hộ Quận 1 Deluxe Apartment SG-QUN-501",
-    "floor": 5,
-    "unitNumber": "501",
-    "type": "Deluxe Apartment",
-    "sqm": 80,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 15000000,
-    "city": "Ho Chi Minh City",
-    "district": "Quận 1",
-    "address": "192 Ngô Đức Kế, Phường An Cư, Quận 1, TP. Hồ Chí Minh",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Moderate",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Sông Sài Gòn & Skyline Quận 1",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 15 Triệu/tháng tương thích hoàn hảo với khu vực Quận 1",
-        "Căn hộ tầng 5 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Quận 1",
-        "Thuận tiện di chuyển thang bộ khi cần"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Quận 1.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 612,
-    "images": [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.9,
-    "reviewCount": 15,
-    "sensors": {
-      "smartLockBattery": 97,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 34.5,
-      "waterUsageLiters": 150,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "DN-NGH-602",
-    "name": "Căn Hộ Ngũ Hành Sơn Deluxe Apartment DN-NGH-602",
-    "floor": 6,
-    "unitNumber": "602",
-    "type": "Deluxe Apartment",
-    "sqm": 81,
+    "id": "BD-DĨ-3805",
+    "name": "Duplex Làng Đại Học & Ga Sóng Thần — Dĩ An",
+    "floor": 38,
+    "unitNumber": "3805",
+    "type": "Duplex",
+    "sqm": 149,
     "bedrooms": 3,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 16000000,
-    "city": "Da Nang",
-    "district": "Ngũ Hành Sơn",
-    "address": "57 Lê Duẩn, Phường Phước Mỹ, Quận Ngũ Hành Sơn, Đà Nẵng",
-    "hasCarParking": true,
+    "bathrooms": 3,
+    "status": "maintenance",
+    "monthlyRentUSD": 4224,
+    "monthlyRentVND": 103500000,
+    "city": "Binh Duong",
+    "district": "Dĩ An",
+    "address": "Tầng 38, Tòa tháp Haven Luxury, Đường Tân Đông Hiệp, Quận Dĩ An, Bình Dương",
+    "images": [
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
     "hasMotorbikeParking": true,
     "hasElevator": true,
     "hasBackupPower": true,
     "floodingRisk": "Low",
-    "noiseLevel": "Moderate",
+    "noiseLevel": "Quiet",
     "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Cầu Sông Hàn & Vịnh Đà Nẵng",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 16 Triệu/tháng tương thích hoàn hảo với khu vực Ngũ Hành Sơn",
-        "Căn hộ tầng 6 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Ngũ Hành Sơn",
-        "Thuận tiện di chuyển thang bộ khi cần"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Ngũ Hành Sơn.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 653,
-    "images": [
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
-    ],
+    "petFriendly": false,
     "furnished": true,
     "balcony": true,
     "airConditioning": true,
@@ -2622,440 +9634,87 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "kitchen": true,
     "wifi": true,
     "rating": 4.91,
-    "reviewCount": 16,
-    "sensors": {
-      "smartLockBattery": 98,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 35.5,
-      "waterUsageLiters": 151,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "HN-TYH-703",
-    "name": "Căn Hộ Tây Hồ Deluxe Apartment HN-TYH-703",
-    "floor": 7,
-    "unitNumber": "703",
-    "type": "Deluxe Apartment",
-    "sqm": 82,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 17000000,
-    "city": "Hanoi",
-    "district": "Tây Hồ",
-    "address": "116 Lý Thường Kiệt, Phường Trung Tâm, Quận Tây Hồ, Hà Nội",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Moderate",
-    "trafficDensity": "Moderate",
-    "petFriendly": false,
-    "viewType": "Hồ Tây & Công Viên Cây Xanh Tây Hồ",
+    "reviewCount": 33,
+    "viewType": "View Làng Đại Học & Ga Sóng Thần",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 103500000,
+      "estimatedElectricityVND": 3725000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3278000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 112203000,
+      "depositMonths": 2,
+      "depositVND": 207000000,
+      "moveInTotalRequiredVND": 319203000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
     "aiInsights": {
       "whyFit": [
-        "Mức giá 17 Triệu/tháng tương thích hoàn hảo với khu vực Tây Hồ",
-        "Căn hộ tầng 7 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
+        "Căn hộ thuộc phân khúc Duplex tại vị trí đắc địa Dĩ An, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
       ],
       "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Tây Hồ",
-        "Thuận tiện di chuyển thang bộ khi cần"
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,278,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
       ]
     },
     "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Tây Hồ.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
     },
-    "monthlyRentUSD": 694,
-    "images": [
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.92,
-    "reviewCount": 17,
-    "sensors": {
-      "smartLockBattery": 85,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 36.5,
-      "waterUsageLiters": 152,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "SG-QUN-804",
-    "name": "Căn Hộ Quận 7 Deluxe Apartment SG-QUN-804",
-    "floor": 8,
-    "unitNumber": "804",
-    "type": "Deluxe Apartment",
-    "sqm": 83,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 18000000,
-    "city": "Ho Chi Minh City",
-    "district": "Quận 7",
-    "address": "225 Trần Não, Phường An Cư, Quận 7, TP. Hồ Chí Minh",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Moderate",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Khu Đô Thị Sinh Thái Quận 7",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 18 Triệu/tháng tương thích hoàn hảo với khu vực Quận 7",
-        "Căn hộ tầng 8 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Quận 7",
-        "Thuận tiện di chuyển thang bộ khi cần"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Quận 7.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 735,
-    "images": [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.93,
-    "reviewCount": 18,
-    "sensors": {
-      "smartLockBattery": 86,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 37.5,
-      "waterUsageLiters": 153,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "DN-NGH-905",
-    "name": "Căn Hộ Ngũ Hành Sơn Deluxe Apartment DN-NGH-905",
-    "floor": 9,
-    "unitNumber": "905",
-    "type": "Deluxe Apartment",
-    "sqm": 84,
-    "bedrooms": 2,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 19000000,
-    "city": "Da Nang",
-    "district": "Ngũ Hành Sơn",
-    "address": "72 Phan Chu Trinh, Phường Phước Mỹ, Quận Ngũ Hành Sơn, Đà Nẵng",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Moderate",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Bờ Biển Mỹ Khê & Bán Đảo Sơn Trà",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 19 Triệu/tháng tương thích hoàn hảo với khu vực Ngũ Hành Sơn",
-        "Căn hộ tầng 9 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Ngũ Hành Sơn",
-        "Thuận tiện di chuyển thang bộ khi cần"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Ngũ Hành Sơn.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 776,
-    "images": [
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.94,
-    "reviewCount": 19,
-    "sensors": {
-      "smartLockBattery": 87,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 38.5,
-      "waterUsageLiters": 154,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "HN-HON-306",
-    "name": "Căn Hộ Hoàn Kiếm Deluxe Apartment HN-HON-306",
-    "floor": 3,
-    "unitNumber": "306",
-    "type": "Deluxe Apartment",
-    "sqm": 65,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "status": "vacant",
-    "monthlyRentVND": 11000000,
-    "city": "Hanoi",
-    "district": "Hoàn Kiếm",
-    "address": "137 Xuân Diệu, Phường Trung Tâm, Quận Hoàn Kiếm, Hà Nội",
-    "hasCarParking": false,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Moderate",
-    "trafficDensity": "Moderate",
-    "petFriendly": false,
-    "viewType": "Toàn Cảnh Thành Phố & Trục Đường Xuân Diệu",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 11 Triệu/tháng tương thích hoàn hảo với khu vực Hoàn Kiếm",
-        "Căn hộ tầng 3 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Chỗ đỗ xe máy thuận tiện, quản lý an ninh thẻ từ 24/7"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Hoàn Kiếm",
-        "Thuận tiện di chuyển thang bộ khi cần"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Hoàn Kiếm.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 449,
-    "images": [
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.95,
-    "reviewCount": 20,
-    "sensors": {
-      "smartLockBattery": 88,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 24.5,
-      "waterUsageLiters": 155,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "SG-QUN-407",
-    "name": "Căn Hộ Quận 2 Deluxe Apartment SG-QUN-407",
-    "floor": 4,
-    "unitNumber": "407",
-    "type": "Deluxe Apartment",
-    "sqm": 66,
-    "bedrooms": 1,
-    "bathrooms": 1,
-    "status": "vacant",
-    "monthlyRentVND": 12000000,
-    "city": "Ho Chi Minh City",
-    "district": "Quận 2",
-    "address": "8 Nguyễn Hữu Thọ, Phường An Cư, Quận 2, TP. Hồ Chí Minh",
-    "hasCarParking": false,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Moderate",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Sông Sài Gòn & Skyline Quận 2",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 12 Triệu/tháng tương thích hoàn hảo với khu vực Quận 2",
-        "Căn hộ tầng 4 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Chỗ đỗ xe máy thuận tiện, quản lý an ninh thẻ từ 24/7"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Quận 2",
-        "Thuận tiện di chuyển thang bộ khi cần"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Quận 2.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 490,
-    "images": [
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.96,
-    "reviewCount": 21,
     "sensors": {
       "smartLockBattery": 89,
       "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 25.5,
-      "waterUsageLiters": 156,
+      "targetTempC": 23,
+      "energyConsumptionKwh": 29.2,
+      "waterUsageLiters": 150,
       "securityAlarmDisarmed": true
     }
   },
   {
-    "id": "DN-NGH-508",
-    "name": "Căn Hộ Ngũ Hành Sơn Deluxe Apartment DN-NGH-508",
-    "floor": 5,
-    "unitNumber": "508",
-    "type": "Deluxe Apartment",
-    "sqm": 67,
-    "bedrooms": 2,
+    "id": "BD-TH-3501",
+    "name": "Studio Becamex Tower & Phố Tây Chánh Nghĩa — Thủ Dầu Một",
+    "floor": 35,
+    "unitNumber": "3501",
+    "type": "Studio",
+    "sqm": 49,
+    "bedrooms": 1,
     "bathrooms": 1,
-    "status": "vacant",
-    "monthlyRentVND": 13000000,
-    "city": "Da Nang",
-    "district": "Ngũ Hành Sơn",
-    "address": "87 Lê Duẩn, Phường Phước Mỹ, Quận Ngũ Hành Sơn, Đà Nẵng",
-    "hasCarParking": false,
+    "status": "occupied",
+    "monthlyRentUSD": 592,
+    "monthlyRentVND": 14500000,
+    "city": "Binh Duong",
+    "district": "Thủ Dầu Một",
+    "address": "Tầng 35, Tòa tháp Haven Luxury, Đường Chánh Nghĩa, Quận Thủ Dầu Một, Bình Dương",
+    "images": [
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
     "hasMotorbikeParking": true,
     "hasElevator": true,
     "hasBackupPower": true,
     "floodingRisk": "Low",
     "noiseLevel": "Moderate",
     "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Cầu Sông Hàn & Vịnh Đà Nẵng",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 13 Triệu/tháng tương thích hoàn hảo với khu vực Ngũ Hành Sơn",
-        "Căn hộ tầng 5 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Chỗ đỗ xe máy thuận tiện, quản lý an ninh thẻ từ 24/7"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Ngũ Hành Sơn",
-        "Thuận tiện di chuyển thang bộ khi cần"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Ngũ Hành Sơn.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 531,
-    "images": [
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.97,
-    "reviewCount": 22,
-    "sensors": {
-      "smartLockBattery": 90,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 26.5,
-      "waterUsageLiters": 157,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "HN-TYH-3001",
-    "name": "Căn Hộ Tây Hồ Sky Villa HN-TYH-3001",
-    "floor": 30,
-    "unitNumber": "3001",
-    "type": "Sky Villa",
-    "sqm": 178,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "status": "vacant",
-    "monthlyRentVND": 93000000,
-    "city": "Hanoi",
-    "district": "Tây Hồ",
-    "address": "158 Trần Duy Hưng, Phường Trung Tâm, Quận Tây Hồ, Hà Nội",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
     "petFriendly": false,
-    "viewType": "Hồ Tây & Công Viên Cây Xanh Tây Hồ",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 93 Triệu/tháng tương thích hoàn hảo với khu vực Tây Hồ",
-        "Căn hộ tầng 30 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Tây Hồ",
-        "Tầng cao thoáng mát cần lưu ý khóa chốt an toàn ban công"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Tây Hồ.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 3796,
-    "images": [
-      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2da9c40f?auto=format&fit=crop&q=80&w=1200"
-    ],
     "furnished": true,
     "balcony": true,
     "airConditioning": true,
@@ -3063,156 +9722,93 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "kitchen": true,
     "wifi": true,
     "rating": 4.98,
-    "reviewCount": 23,
-    "sensors": {
-      "smartLockBattery": 91,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 27.5,
-      "waterUsageLiters": 158,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "SG-BNH-3102",
-    "name": "Căn Hộ Bình Thạnh Sky Villa SG-BNH-3102",
-    "floor": 31,
-    "unitNumber": "3102",
-    "type": "Sky Villa",
-    "sqm": 179,
-    "bedrooms": 4,
-    "bathrooms": 4,
-    "status": "vacant",
-    "monthlyRentVND": 94000000,
-    "city": "Ho Chi Minh City",
-    "district": "Bình Thạnh",
-    "address": "41 Đồng Khởi, Phường An Cư, Bình Thạnh, TP. Hồ Chí Minh",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Khu Đô Thị Sinh Thái Bình Thạnh",
+    "reviewCount": 59,
+    "viewType": "View Becamex Tower & Phố Tây Chánh Nghĩa",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 14500000,
+      "estimatedElectricityVND": 1225000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1078000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 18503000,
+      "depositMonths": 1,
+      "depositVND": 14500000,
+      "moveInTotalRequiredVND": 33003000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
     "aiInsights": {
       "whyFit": [
-        "Mức giá 94 Triệu/tháng tương thích hoàn hảo với khu vực Bình Thạnh",
-        "Căn hộ tầng 31 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Thủ Dầu Một, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
       ],
       "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Bình Thạnh",
-        "Tầng cao thoáng mát cần lưu ý khóa chốt an toàn ban công"
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,078,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
       ]
     },
     "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Bình Thạnh.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
     },
-    "monthlyRentUSD": 3837,
-    "images": [
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2da9c40f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.99,
-    "reviewCount": 24,
     "sensors": {
-      "smartLockBattery": 92,
+      "smartLockBattery": 96,
       "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 28.5,
-      "waterUsageLiters": 159,
+      "targetTempC": 24,
+      "energyConsumptionKwh": 40.3,
+      "waterUsageLiters": 150,
       "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1102",
+      "name": "Bùi Tiến Dũng",
+      "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200",
+      "phone": "0918776655",
+      "email": "tiendung.bui@vingroup.net",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-09-15",
+      "leaseEnd": "2026-09-15",
+      "monthlyRentUSD": 592,
+      "monthlyRentVND": 14500000,
+      "autoPayActive": true,
+      "occupantsCount": 1
     }
   },
   {
-    "id": "DN-NGH-1503",
-    "name": "Căn Hộ Ngũ Hành Sơn Deluxe Apartment DN-NGH-1503",
-    "floor": 15,
-    "unitNumber": "1503",
+    "id": "BD-TH-3405",
+    "name": "Deluxe Apartment VSIP 1 & Sân Golf Sông Bé — Thuận An",
+    "floor": 34,
+    "unitNumber": "3405",
     "type": "Deluxe Apartment",
-    "sqm": 90,
+    "sqm": 87,
     "bedrooms": 2,
     "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 25000000,
-    "city": "Da Nang",
-    "district": "Ngũ Hành Sơn",
-    "address": "102 Phan Chu Trinh, Phường Phước Mỹ, Quận Ngũ Hành Sơn, Đà Nẵng",
-    "hasCarParking": true,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Bờ Biển Mỹ Khê & Bán Đảo Sơn Trà",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 25 Triệu/tháng tương thích hoàn hảo với khu vực Ngũ Hành Sơn",
-        "Căn hộ tầng 15 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Ngũ Hành Sơn",
-        "Thuận tiện di chuyển thang bộ khi cần"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Ngũ Hành Sơn.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 1020,
+    "status": "reserved",
+    "monthlyRentUSD": 1490,
+    "monthlyRentVND": 36500000,
+    "city": "Binh Duong",
+    "district": "Thuận An",
+    "address": "Tầng 34, Tòa tháp Haven Luxury, Đường Bình Hòa, Quận Thuận An, Bình Dương",
     "images": [
-      "https://images.unsplash.com/photo-1502005229762-ee1b2da9c40f?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
     ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.75,
-    "reviewCount": 25,
-    "sensors": {
-      "smartLockBattery": 93,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 29.5,
-      "waterUsageLiters": 110,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "HN-HON-1604",
-    "name": "Căn Hộ Hoàn Kiếm Deluxe Apartment HN-HON-1604",
-    "floor": 16,
-    "unitNumber": "1604",
-    "type": "Deluxe Apartment",
-    "sqm": 91,
-    "bedrooms": 3,
-    "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 26000000,
-    "city": "Hanoi",
-    "district": "Hoàn Kiếm",
-    "address": "179 Lý Thường Kiệt, Phường Trung Tâm, Quận Hoàn Kiếm, Hà Nội",
     "hasCarParking": true,
     "hasMotorbikeParking": true,
     "hasElevator": true,
@@ -3221,124 +9817,888 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "noiseLevel": "Quiet",
     "trafficDensity": "Moderate",
     "petFriendly": false,
-    "viewType": "Toàn Cảnh Thành Phố & Trục Đường Lý Thường Kiệt",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 26 Triệu/tháng tương thích hoàn hảo với khu vực Hoàn Kiếm",
-        "Căn hộ tầng 16 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Hoàn Kiếm",
-        "Tầng cao thoáng mát cần lưu ý khóa chốt an toàn ban công"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Hoàn Kiếm.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 1061,
-    "images": [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&q=80&w=1200"
-    ],
     "furnished": true,
     "balcony": true,
     "airConditioning": true,
     "washingMachine": true,
     "kitchen": true,
     "wifi": true,
-    "rating": 4.76,
-    "reviewCount": 26,
+    "rating": 4.84,
+    "reviewCount": 62,
+    "viewType": "View VSIP 1 & Sân Golf Sông Bé",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 36500000,
+      "estimatedElectricityVND": 2175000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1914000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 42289000,
+      "depositMonths": 1,
+      "depositVND": 36500000,
+      "moveInTotalRequiredVND": 78789000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Thuận An, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,914,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
     "sensors": {
-      "smartLockBattery": 94,
+      "smartLockBattery": 98,
       "hvacStatus": "Optimal",
       "targetTempC": 22,
-      "energyConsumptionKwh": 30.5,
-      "waterUsageLiters": 111,
+      "energyConsumptionKwh": 43.5,
+      "waterUsageLiters": 118,
       "securityAlarmDisarmed": true
     }
   },
   {
-    "id": "SG-QUN-1705",
-    "name": "Căn Hộ Quận 3 Deluxe Apartment SG-QUN-1705",
+    "id": "BD-DĨ-1701",
+    "name": "Executive Suite Làng Đại Học & Ga Sóng Thần — Dĩ An",
     "floor": 17,
-    "unitNumber": "1705",
-    "type": "Deluxe Apartment",
-    "sqm": 92,
-    "bedrooms": 2,
+    "unitNumber": "1701",
+    "type": "Executive Suite",
+    "sqm": 125,
+    "bedrooms": 3,
     "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 27000000,
-    "city": "Ho Chi Minh City",
-    "district": "Quận 3",
-    "address": "74 Nam Kỳ Khởi Nghĩa, Phường An Cư, Quận 3, TP. Hồ Chí Minh",
+    "status": "occupied",
+    "monthlyRentUSD": 3082,
+    "monthlyRentVND": 75500000,
+    "city": "Binh Duong",
+    "district": "Dĩ An",
+    "address": "Tầng 17, Tòa tháp Haven Luxury, Đường Đông Hòa, Quận Dĩ An, Bình Dương",
+    "images": [
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+    ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
     "hasElevator": true,
     "hasBackupPower": true,
     "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
+    "noiseLevel": "Moderate",
     "trafficDensity": "Moderate",
     "petFriendly": true,
-    "viewType": "Sông Sài Gòn & Skyline Quận 3",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 27 Triệu/tháng tương thích hoàn hảo với khu vực Quận 3",
-        "Căn hộ tầng 17 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Quận 3",
-        "Tầng cao thoáng mát cần lưu ý khóa chốt an toàn ban công"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Quận 3.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 1102,
-    "images": [
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&q=80&w=1200"
-    ],
     "furnished": true,
     "balcony": true,
     "airConditioning": true,
     "washingMachine": true,
     "kitchen": true,
     "wifi": true,
-    "rating": 4.77,
-    "reviewCount": 27,
+    "rating": 4.71,
+    "reviewCount": 40,
+    "viewType": "View Làng Đại Học & Ga Sóng Thần",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 75500000,
+      "estimatedElectricityVND": 3125000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2750000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 83675000,
+      "depositMonths": 2,
+      "depositVND": 151000000,
+      "moveInTotalRequiredVND": 234675000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Dĩ An, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,750,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 82,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 46.9,
+      "waterUsageLiters": 137,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1104",
+      "name": "Đinh Trọng Hưng",
+      "avatar": "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=200",
+      "phone": "0982334455",
+      "email": "hung.dinh@crypto.global",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-07-15",
+      "leaseEnd": "2026-07-15",
+      "monthlyRentUSD": 3082,
+      "monthlyRentVND": 75500000,
+      "autoPayActive": false,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "BD-TH-3301",
+    "name": "Sky Villa Becamex Tower & Phố Tây Chánh Nghĩa — Thủ Dầu Một",
+    "floor": 33,
+    "unitNumber": "3301",
+    "type": "Sky Villa",
+    "sqm": 191,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "vacant",
+    "monthlyRentUSD": 3980,
+    "monthlyRentVND": 97500000,
+    "city": "Binh Duong",
+    "district": "Thủ Dầu Một",
+    "address": "Tầng 33, Tòa tháp Haven Luxury, Đường Chánh Nghĩa, Quận Thủ Dầu Một, Bình Dương",
+    "images": [
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.75,
+    "reviewCount": 23,
+    "viewType": "View Becamex Tower & Phố Tây Chánh Nghĩa",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 97500000,
+      "estimatedElectricityVND": 4775000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 4202000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 108777000,
+      "depositMonths": 2,
+      "depositVND": 195000000,
+      "moveInTotalRequiredVND": 303777000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Thủ Dầu Một, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (4,202,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
     "sensors": {
       "smartLockBattery": 95,
       "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 31.5,
-      "waterUsageLiters": 112,
+      "targetTempC": 24,
+      "energyConsumptionKwh": 41.7,
+      "waterUsageLiters": 118,
       "securityAlarmDisarmed": true
     }
   },
   {
-    "id": "DN-NGH-1806",
-    "name": "Căn Hộ Ngũ Hành Sơn Deluxe Apartment DN-NGH-1806",
-    "floor": 18,
-    "unitNumber": "1806",
+    "id": "NT-LỘ-3304",
+    "name": "Studio Mặt Biển Trần Phú — Lộc Thọ",
+    "floor": 33,
+    "unitNumber": "3304",
+    "type": "Studio",
+    "sqm": 56,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "occupied",
+    "monthlyRentUSD": 837,
+    "monthlyRentVND": 20500000,
+    "city": "Nha Trang",
+    "district": "Lộc Thọ",
+    "address": "Tầng 33, Tòa tháp Haven Luxury, Đường Trần Phú, Quận Lộc Thọ, Nha Trang",
+    "images": [
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.69,
+    "reviewCount": 55,
+    "viewType": "View Mặt Biển Trần Phú",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 20500000,
+      "estimatedElectricityVND": 1400000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1232000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 24832000,
+      "depositMonths": 1,
+      "depositVND": 20500000,
+      "moveInTotalRequiredVND": 45332000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Lộc Thọ, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,232,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 90,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 56.4,
+      "waterUsageLiters": 103,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1106",
+      "name": "Michael Chang",
+      "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 902 567 890",
+      "email": "mchang@standardchartered.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-05-15",
+      "leaseEnd": "2026-11-15",
+      "monthlyRentUSD": 837,
+      "monthlyRentVND": 20500000,
+      "autoPayActive": true,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "NT-VĨ-0505",
+    "name": "Deluxe Apartment Bến Du Thuyền Ana Marina — Vĩnh Hòa",
+    "floor": 5,
+    "unitNumber": "0505",
     "type": "Deluxe Apartment",
-    "sqm": 93,
+    "sqm": 79,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 1796,
+    "monthlyRentVND": 44000000,
+    "city": "Nha Trang",
+    "district": "Vĩnh Hòa",
+    "address": "Tầng 5, Tòa tháp Haven Luxury, Đường Ba Làng, Quận Vĩnh Hòa, Nha Trang",
+    "images": [
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.69,
+    "reviewCount": 59,
+    "viewType": "View Bến Du Thuyền Ana Marina",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 44000000,
+      "estimatedElectricityVND": 1975000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1738000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 49413000,
+      "depositMonths": 1,
+      "depositVND": 44000000,
+      "moveInTotalRequiredVND": 93413000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Vĩnh Hòa, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,738,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 85,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 46.1,
+      "waterUsageLiters": 152,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1107",
+      "name": "Hoàng Đức Anh",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
+      "phone": "0944556677",
+      "email": "ducanh.hoang@shopee.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-12-15",
+      "leaseEnd": "2026-09-15",
+      "monthlyRentUSD": 1796,
+      "monthlyRentVND": 44000000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "NT-PH-1701",
+    "name": "Executive Suite Khu Đô Thị Mới Ven Sông Quán Trường — Phước Hải",
+    "floor": 17,
+    "unitNumber": "1701",
+    "type": "Executive Suite",
+    "sqm": 112,
     "bedrooms": 3,
     "bathrooms": 2,
-    "status": "vacant",
-    "monthlyRentVND": 28000000,
-    "city": "Da Nang",
-    "district": "Ngũ Hành Sơn",
-    "address": "117 Lê Duẩn, Phường Phước Mỹ, Quận Ngũ Hành Sơn, Đà Nẵng",
+    "status": "occupied",
+    "monthlyRentUSD": 1898,
+    "monthlyRentVND": 46500000,
+    "city": "Nha Trang",
+    "district": "Phước Hải",
+    "address": "Tầng 17, Tòa tháp Haven Luxury, Đường Văn Tiến Dũng, Quận Phước Hải, Nha Trang",
+    "images": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.81,
+    "reviewCount": 24,
+    "viewType": "View Khu Đô Thị Mới Ven Sông Quán Trường",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 46500000,
+      "estimatedElectricityVND": 2800000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2464000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 54064000,
+      "depositMonths": 1,
+      "depositVND": 46500000,
+      "moveInTotalRequiredVND": 100564000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Phước Hải, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,464,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 87,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 32.3,
+      "waterUsageLiters": 92,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1108",
+      "name": "Trần Thị Mai Anh",
+      "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=200",
+      "phone": "0912456789",
+      "email": "maianh.tran@techcorp.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-11-15",
+      "leaseEnd": "2026-12-15",
+      "monthlyRentUSD": 1898,
+      "monthlyRentVND": 46500000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "NT-LỘ-1701",
+    "name": "Sky Villa Mặt Biển Trần Phú — Lộc Thọ",
+    "floor": 17,
+    "unitNumber": "1701",
+    "type": "Sky Villa",
+    "sqm": 177,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 4163,
+    "monthlyRentVND": 102000000,
+    "city": "Nha Trang",
+    "district": "Lộc Thọ",
+    "address": "Tầng 17, Tòa tháp Haven Luxury, Đường Hùng Vương, Quận Lộc Thọ, Nha Trang",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.84,
+    "reviewCount": 18,
+    "viewType": "View Mặt Biển Trần Phú",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 102000000,
+      "estimatedElectricityVND": 4425000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3894000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 112619000,
+      "depositMonths": 2,
+      "depositVND": 204000000,
+      "moveInTotalRequiredVND": 316619000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Lộc Thọ, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,894,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 88,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 38.4,
+      "waterUsageLiters": 154,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1109",
+      "name": "Nguyễn Minh Hoàng",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      "phone": "0903124567",
+      "email": "hoang.nm@gmail.com",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-07-15",
+      "leaseEnd": "2026-12-15",
+      "monthlyRentUSD": 4163,
+      "monthlyRentVND": 102000000,
+      "autoPayActive": true,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "NT-VĨ-3403",
+    "name": "Penthouse Bến Du Thuyền Ana Marina — Vĩnh Hòa",
+    "floor": 34,
+    "unitNumber": "3403",
+    "type": "Penthouse",
+    "sqm": 331,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "status": "occupied",
+    "monthlyRentUSD": 10837,
+    "monthlyRentVND": 265500000,
+    "city": "Nha Trang",
+    "district": "Vĩnh Hòa",
+    "address": "Tầng 34, Tòa tháp Haven Luxury, Đường Phạm Văn Đồng, Quận Vĩnh Hòa, Nha Trang",
+    "images": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.89,
+    "reviewCount": 62,
+    "viewType": "View Bến Du Thuyền Ana Marina",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 265500000,
+      "estimatedElectricityVND": 8275000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 7282000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 283357000,
+      "depositMonths": 2,
+      "depositVND": 531000000,
+      "moveInTotalRequiredVND": 814357000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Penthouse tại vị trí đắc địa Vĩnh Hòa, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (7,282,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 84,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 44.0,
+      "waterUsageLiters": 136,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1110",
+      "name": "Sarah Jenkins",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 909 234 567",
+      "email": "sarah.j@unicef.org",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-06-15",
+      "leaseEnd": "2026-07-15",
+      "monthlyRentUSD": 10837,
+      "monthlyRentVND": 265500000,
+      "autoPayActive": false,
+      "occupantsCount": 4
+    }
+  },
+  {
+    "id": "NT-PH-3506",
+    "name": "Duplex Khu Đô Thị Mới Ven Sông Quán Trường — Phước Hải",
+    "floor": 35,
+    "unitNumber": "3506",
+    "type": "Duplex",
+    "sqm": 148,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 2408,
+    "monthlyRentVND": 59000000,
+    "city": "Nha Trang",
+    "district": "Phước Hải",
+    "address": "Tầng 35, Tòa tháp Haven Luxury, Đường Lê Hồng Phong, Quận Phước Hải, Nha Trang",
+    "images": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.96,
+    "reviewCount": 31,
+    "viewType": "View Khu Đô Thị Mới Ven Sông Quán Trường",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 59000000,
+      "estimatedElectricityVND": 3700000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3256000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 67656000,
+      "depositMonths": 2,
+      "depositVND": 118000000,
+      "moveInTotalRequiredVND": 185656000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Duplex tại vị trí đắc địa Phước Hải, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,256,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 96,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 31.4,
+      "waterUsageLiters": 131,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1111",
+      "name": "Kenji Sato",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 918 345 678",
+      "email": "sato.kenji@mitsubishi.co.jp",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-08-15",
+      "leaseEnd": "2026-08-15",
+      "monthlyRentUSD": 2408,
+      "monthlyRentVND": 59000000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "NT-LỘ-0602",
+    "name": "Studio Mặt Biển Trần Phú — Lộc Thọ",
+    "floor": 6,
+    "unitNumber": "0602",
+    "type": "Studio",
+    "sqm": 44,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "occupied",
+    "monthlyRentUSD": 1122,
+    "monthlyRentVND": 27500000,
+    "city": "Nha Trang",
+    "district": "Lộc Thọ",
+    "address": "Tầng 6, Tòa tháp Haven Luxury, Đường Trần Phú, Quận Lộc Thọ, Nha Trang",
+    "images": [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+    ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
     "hasElevator": true,
@@ -3347,30 +10707,794 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "noiseLevel": "Quiet",
     "trafficDensity": "Moderate",
     "petFriendly": true,
-    "viewType": "Cầu Sông Hàn & Vịnh Đà Nẵng",
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.97,
+    "reviewCount": 42,
+    "viewType": "View Mặt Biển Trần Phú",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 27500000,
+      "estimatedElectricityVND": 1100000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 968000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 31268000,
+      "depositMonths": 1,
+      "depositVND": 27500000,
+      "moveInTotalRequiredVND": 58768000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
     "aiInsights": {
       "whyFit": [
-        "Mức giá 28 Triệu/tháng tương thích hoàn hảo với khu vực Ngũ Hành Sơn",
-        "Căn hộ tầng 18 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Lộc Thọ, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
       ],
       "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Ngũ Hành Sơn",
-        "Tầng cao thoáng mát cần lưu ý khóa chốt an toàn ban công"
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (968,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
       ]
     },
     "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Ngũ Hành Sơn.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
     },
-    "monthlyRentUSD": 1143,
+    "sensors": {
+      "smartLockBattery": 97,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 37.0,
+      "waterUsageLiters": 155,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1112",
+      "name": "Ngô Bảo Châu",
+      "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200",
+      "phone": "0908334455",
+      "email": "chau.ngo@fpt.com",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-12-15",
+      "leaseEnd": "2026-12-15",
+      "monthlyRentUSD": 1122,
+      "monthlyRentVND": 27500000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "NT-VĨ-3704",
+    "name": "Deluxe Apartment Bến Du Thuyền Ana Marina — Vĩnh Hòa",
+    "floor": 37,
+    "unitNumber": "3704",
+    "type": "Deluxe Apartment",
+    "sqm": 85,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 1857,
+    "monthlyRentVND": 45500000,
+    "city": "Nha Trang",
+    "district": "Vĩnh Hòa",
+    "address": "Tầng 37, Tòa tháp Haven Luxury, Đường Ba Làng, Quận Vĩnh Hòa, Nha Trang",
     "images": [
-      "https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.92,
+    "reviewCount": 44,
+    "viewType": "View Bến Du Thuyền Ana Marina",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 45500000,
+      "estimatedElectricityVND": 2125000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1870000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 51195000,
+      "depositMonths": 1,
+      "depositVND": 45500000,
+      "moveInTotalRequiredVND": 96695000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Vĩnh Hòa, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,870,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 95,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 27.9,
+      "waterUsageLiters": 151,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1113",
+      "name": "Trần Thị Mai Anh",
+      "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=200",
+      "phone": "0912456789",
+      "email": "maianh.tran@techcorp.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-09-15",
+      "leaseEnd": "2026-09-15",
+      "monthlyRentUSD": 1857,
+      "monthlyRentVND": 45500000,
+      "autoPayActive": false,
+      "occupantsCount": 3
+    }
+  },
+  {
+    "id": "CT-NI-1004",
+    "name": "Studio Bến Ninh Kiều & Cầu Đi Bộ Ánh Sao — Ninh Kiều",
+    "floor": 10,
+    "unitNumber": "1004",
+    "type": "Studio",
+    "sqm": 51,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "occupied",
+    "monthlyRentUSD": 980,
+    "monthlyRentVND": 24000000,
+    "city": "Can Tho",
+    "district": "Ninh Kiều",
+    "address": "Tầng 10, Tòa tháp Haven Luxury, Đường Tân An, Quận Ninh Kiều, Cần Thơ",
+    "images": [
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
     ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.89,
+    "reviewCount": 37,
+    "viewType": "View Bến Ninh Kiều & Cầu Đi Bộ Ánh Sao",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 24000000,
+      "estimatedElectricityVND": 1275000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1122000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 28097000,
+      "depositMonths": 1,
+      "depositVND": 24000000,
+      "moveInTotalRequiredVND": 52097000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Ninh Kiều, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,122,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 78,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 42.8,
+      "waterUsageLiters": 90,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1114",
+      "name": "Bùi Tiến Dũng",
+      "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200",
+      "phone": "0918776655",
+      "email": "tiendung.bui@vingroup.net",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-01-15",
+      "leaseEnd": "2026-09-15",
+      "monthlyRentUSD": 980,
+      "monthlyRentVND": 24000000,
+      "autoPayActive": true,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "CT-CÁ-2502",
+    "name": "Deluxe Apartment Khu Nam Cần Thơ Ven Sông Hậu — Cái Răng",
+    "floor": 25,
+    "unitNumber": "2502",
+    "type": "Deluxe Apartment",
+    "sqm": 83,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "maintenance",
+    "monthlyRentUSD": 1224,
+    "monthlyRentVND": 30000000,
+    "city": "Can Tho",
+    "district": "Cái Răng",
+    "address": "Tầng 25, Tòa tháp Haven Luxury, Đường Lê Bình, Quận Cái Răng, Cần Thơ",
+    "images": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.71,
+    "reviewCount": 20,
+    "viewType": "View Khu Nam Cần Thơ Ven Sông Hậu",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 30000000,
+      "estimatedElectricityVND": 2075000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1826000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 35601000,
+      "depositMonths": 1,
+      "depositVND": 30000000,
+      "moveInTotalRequiredVND": 65601000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Cái Răng, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,826,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 98,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 35.5,
+      "waterUsageLiters": 133,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "CT-NI-2707",
+    "name": "Executive Suite Bến Ninh Kiều & Cầu Đi Bộ Ánh Sao — Ninh Kiều",
+    "floor": 27,
+    "unitNumber": "2707",
+    "type": "Executive Suite",
+    "sqm": 119,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "vacant",
+    "monthlyRentUSD": 1429,
+    "monthlyRentVND": 35000000,
+    "city": "Can Tho",
+    "district": "Ninh Kiều",
+    "address": "Tầng 27, Tòa tháp Haven Luxury, Đường Xuân Khánh, Quận Ninh Kiều, Cần Thơ",
+    "images": [
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.71,
+    "reviewCount": 46,
+    "viewType": "View Bến Ninh Kiều & Cầu Đi Bộ Ánh Sao",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 35000000,
+      "estimatedElectricityVND": 2975000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2618000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 42893000,
+      "depositMonths": 1,
+      "depositVND": 35000000,
+      "moveInTotalRequiredVND": 77893000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Ninh Kiều, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,618,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 82,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 52.1,
+      "waterUsageLiters": 87,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "CT-CÁ-3207",
+    "name": "Sky Villa Khu Nam Cần Thơ Ven Sông Hậu — Cái Răng",
+    "floor": 32,
+    "unitNumber": "3207",
+    "type": "Sky Villa",
+    "sqm": 184,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 4592,
+    "monthlyRentVND": 112500000,
+    "city": "Can Tho",
+    "district": "Cái Răng",
+    "address": "Tầng 32, Tòa tháp Haven Luxury, Đường Lê Bình, Quận Cái Răng, Cần Thơ",
+    "images": [
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.85,
+    "reviewCount": 68,
+    "viewType": "View Khu Nam Cần Thơ Ven Sông Hậu",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 112500000,
+      "estimatedElectricityVND": 4600000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 4048000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 123448000,
+      "depositMonths": 2,
+      "depositVND": 225000000,
+      "moveInTotalRequiredVND": 348448000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Cái Răng, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (4,048,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 85,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 24.4,
+      "waterUsageLiters": 89,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1117",
+      "name": "Oliver Hansen",
+      "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 917 890 123",
+      "email": "o.hansen@lego.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-06-15",
+      "leaseEnd": "2026-07-15",
+      "monthlyRentUSD": 4592,
+      "monthlyRentVND": 112500000,
+      "autoPayActive": true,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "CT-NI-0604",
+    "name": "Penthouse Bến Ninh Kiều & Cầu Đi Bộ Ánh Sao — Ninh Kiều",
+    "floor": 6,
+    "unitNumber": "0604",
+    "type": "Penthouse",
+    "sqm": 329,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "status": "occupied",
+    "monthlyRentUSD": 10245,
+    "monthlyRentVND": 251000000,
+    "city": "Can Tho",
+    "district": "Ninh Kiều",
+    "address": "Tầng 6, Tòa tháp Haven Luxury, Đường An Khánh, Quận Ninh Kiều, Cần Thơ",
+    "images": [
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.84,
+    "reviewCount": 61,
+    "viewType": "View Bến Ninh Kiều & Cầu Đi Bộ Ánh Sao",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 251000000,
+      "estimatedElectricityVND": 8225000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 7238000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 268763000,
+      "depositMonths": 2,
+      "depositVND": 502000000,
+      "moveInTotalRequiredVND": 770763000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Penthouse tại vị trí đắc địa Ninh Kiều, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (7,238,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 88,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 32.9,
+      "waterUsageLiters": 103,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1118",
+      "name": "Ngô Bảo Châu",
+      "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200",
+      "phone": "0908334455",
+      "email": "chau.ngo@fpt.com",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-04-15",
+      "leaseEnd": "2026-12-15",
+      "monthlyRentUSD": 10245,
+      "monthlyRentVND": 251000000,
+      "autoPayActive": true,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "CT-CÁ-1707",
+    "name": "Duplex Khu Nam Cần Thơ Ven Sông Hậu — Cái Răng",
+    "floor": 17,
+    "unitNumber": "1707",
+    "type": "Duplex",
+    "sqm": 151,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 2286,
+    "monthlyRentVND": 56000000,
+    "city": "Can Tho",
+    "district": "Cái Răng",
+    "address": "Tầng 17, Tòa tháp Haven Luxury, Đường Lê Bình, Quận Cái Răng, Cần Thơ",
+    "images": [
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.88,
+    "reviewCount": 38,
+    "viewType": "View Khu Nam Cần Thơ Ven Sông Hậu",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 56000000,
+      "estimatedElectricityVND": 3775000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3322000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 64797000,
+      "depositMonths": 2,
+      "depositVND": 112000000,
+      "moveInTotalRequiredVND": 176797000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Duplex tại vị trí đắc địa Cái Răng, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,322,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 90,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 49.2,
+      "waterUsageLiters": 145,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1119",
+      "name": "Đinh Trọng Hưng",
+      "avatar": "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=200",
+      "phone": "0982334455",
+      "email": "hung.dinh@crypto.global",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-12-15",
+      "leaseEnd": "2026-07-15",
+      "monthlyRentUSD": 2286,
+      "monthlyRentVND": 56000000,
+      "autoPayActive": false,
+      "occupantsCount": 4
+    }
+  },
+  {
+    "id": "VT-TH-1705",
+    "name": "Studio Bãi Sau Biển Đông — Thắng Tam",
+    "floor": 17,
+    "unitNumber": "1705",
+    "type": "Studio",
+    "sqm": 44,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "reserved",
+    "monthlyRentUSD": 551,
+    "monthlyRentVND": 13500000,
+    "city": "Vung Tau",
+    "district": "Thắng Tam",
+    "address": "Tầng 17, Tòa tháp Haven Luxury, Đường Thùy Vân, Quận Thắng Tam, Vũng Tàu",
+    "images": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
     "furnished": true,
     "balcony": true,
     "airConditioning": true,
@@ -3379,29 +11503,180 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "wifi": true,
     "rating": 4.78,
     "reviewCount": 28,
+    "viewType": "View Bãi Sau Biển Đông",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 13500000,
+      "estimatedElectricityVND": 1100000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 968000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 17268000,
+      "depositMonths": 1,
+      "depositVND": 13500000,
+      "moveInTotalRequiredVND": 30768000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Thắng Tam, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (968,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
     "sensors": {
-      "smartLockBattery": 96,
+      "smartLockBattery": 98,
       "hvacStatus": "Optimal",
       "targetTempC": 22,
-      "energyConsumptionKwh": 32.5,
-      "waterUsageLiters": 113,
+      "energyConsumptionKwh": 55.2,
+      "waterUsageLiters": 132,
       "securityAlarmDisarmed": true
     }
   },
   {
-    "id": "HN-TYH-1907",
-    "name": "Căn Hộ Tây Hồ Deluxe Apartment HN-TYH-1907",
-    "floor": 19,
-    "unitNumber": "1907",
+    "id": "VT-PH-3704",
+    "name": "Deluxe Apartment Bãi Trước & Mũi Nghinh Phong — Phường 1",
+    "floor": 37,
+    "unitNumber": "3704",
     "type": "Deluxe Apartment",
-    "sqm": 94,
+    "sqm": 72,
     "bedrooms": 2,
     "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 755,
+    "monthlyRentVND": 18500000,
+    "city": "Vung Tau",
+    "district": "Phường 1",
+    "address": "Tầng 37, Tòa tháp Haven Luxury, Đường Quang Trung, Quận Phường 1, Vũng Tàu",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.97,
+    "reviewCount": 12,
+    "viewType": "View Bãi Trước & Mũi Nghinh Phong",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 18500000,
+      "estimatedElectricityVND": 1800000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1584000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 23584000,
+      "depositMonths": 1,
+      "depositVND": 18500000,
+      "moveInTotalRequiredVND": 42084000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Phường 1, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,584,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 84,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 48.9,
+      "waterUsageLiters": 146,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1121",
+      "name": "Đinh Trọng Hưng",
+      "avatar": "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=200",
+      "phone": "0982334455",
+      "email": "hung.dinh@crypto.global",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-01-15",
+      "leaseEnd": "2026-12-15",
+      "monthlyRentUSD": 755,
+      "monthlyRentVND": 18500000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "VT-PH-1607",
+    "name": "Executive Suite Ngọn Hải Đăng Vũng Tàu — Phường 2",
+    "floor": 16,
+    "unitNumber": "1607",
+    "type": "Executive Suite",
+    "sqm": 112,
+    "bedrooms": 3,
+    "bathrooms": 2,
     "status": "vacant",
-    "monthlyRentVND": 29000000,
-    "city": "Hanoi",
-    "district": "Tây Hồ",
-    "address": "20 Xuân Diệu, Phường Trung Tâm, Quận Tây Hồ, Hà Nội",
+    "monthlyRentUSD": 1735,
+    "monthlyRentVND": 42500000,
+    "city": "Vung Tau",
+    "district": "Phường 2",
+    "address": "Tầng 16, Tòa tháp Haven Luxury, Đường Phan Chu Trinh, Quận Phường 2, Vũng Tàu",
+    "images": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+    ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
     "hasElevator": true,
@@ -3410,219 +11685,196 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "noiseLevel": "Quiet",
     "trafficDensity": "Moderate",
     "petFriendly": false,
-    "viewType": "Hồ Tây & Công Viên Cây Xanh Tây Hồ",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 29 Triệu/tháng tương thích hoàn hảo với khu vực Tây Hồ",
-        "Căn hộ tầng 19 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Tây Hồ",
-        "Tầng cao thoáng mát cần lưu ý khóa chốt an toàn ban công"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Tây Hồ.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 1184,
-    "images": [
-      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200"
-    ],
     "furnished": true,
     "balcony": true,
     "airConditioning": true,
     "washingMachine": true,
     "kitchen": true,
     "wifi": true,
-    "rating": 4.79,
-    "reviewCount": 29,
+    "rating": 4.75,
+    "reviewCount": 35,
+    "viewType": "View Ngọn Hải Đăng Vũng Tàu",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 42500000,
+      "estimatedElectricityVND": 2800000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2464000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 50064000,
+      "depositMonths": 1,
+      "depositVND": 42500000,
+      "moveInTotalRequiredVND": 92564000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Phường 2, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,464,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
     "sensors": {
-      "smartLockBattery": 97,
+      "smartLockBattery": 93,
       "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 33.5,
-      "waterUsageLiters": 114,
+      "targetTempC": 25,
+      "energyConsumptionKwh": 25.5,
+      "waterUsageLiters": 145,
       "securityAlarmDisarmed": true
     }
   },
   {
-    "id": "SG-QUN-1308",
-    "name": "Căn Hộ Quận 1 Deluxe Apartment SG-QUN-1308",
-    "floor": 13,
-    "unitNumber": "1308",
-    "type": "Deluxe Apartment",
-    "sqm": 50,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "status": "vacant",
-    "monthlyRentVND": 14000000,
-    "city": "Ho Chi Minh City",
-    "district": "Quận 1",
-    "address": "107 Ung Văn Khiêm, Phường An Cư, Quận 1, TP. Hồ Chí Minh",
-    "hasCarParking": false,
+    "id": "VT-TH-1606",
+    "name": "Sky Villa Bãi Sau Biển Đông — Thắng Tam",
+    "floor": 16,
+    "unitNumber": "1606",
+    "type": "Sky Villa",
+    "sqm": 185,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 3755,
+    "monthlyRentVND": 92000000,
+    "city": "Vung Tau",
+    "district": "Thắng Tam",
+    "address": "Tầng 16, Tòa tháp Haven Luxury, Đường Hoàng Hoa Thám, Quận Thắng Tam, Vũng Tàu",
+    "images": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
     "hasMotorbikeParking": true,
     "hasElevator": true,
     "hasBackupPower": true,
-    "floodingRisk": "Low",
+    "floodingRisk": "Moderate",
     "noiseLevel": "Quiet",
     "trafficDensity": "Moderate",
     "petFriendly": true,
-    "viewType": "Khu Đô Thị Sinh Thái Quận 1",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 14 Triệu/tháng tương thích hoàn hảo với khu vực Quận 1",
-        "Căn hộ tầng 13 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Chỗ đỗ xe máy thuận tiện, quản lý an ninh thẻ từ 24/7"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Quận 1",
-        "Thuận tiện di chuyển thang bộ khi cần"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Quận 1.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 571,
-    "images": [
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200"
-    ],
     "furnished": true,
     "balcony": true,
     "airConditioning": true,
     "washingMachine": true,
     "kitchen": true,
     "wifi": true,
-    "rating": 4.8,
-    "reviewCount": 30,
-    "sensors": {
-      "smartLockBattery": 98,
-      "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 34.5,
-      "waterUsageLiters": 115,
-      "securityAlarmDisarmed": true
-    }
-  },
-  {
-    "id": "DN-NGH-1401",
-    "name": "Căn Hộ Ngũ Hành Sơn Deluxe Apartment DN-NGH-1401",
-    "floor": 14,
-    "unitNumber": "1401",
-    "type": "Deluxe Apartment",
-    "sqm": 51,
-    "bedrooms": 1,
-    "bathrooms": 1,
-    "status": "vacant",
-    "monthlyRentVND": 8000000,
-    "city": "Da Nang",
-    "district": "Ngũ Hành Sơn",
-    "address": "132 Phan Chu Trinh, Phường Phước Mỹ, Quận Ngũ Hành Sơn, Đà Nẵng",
-    "hasCarParking": false,
-    "hasMotorbikeParking": true,
-    "hasElevator": true,
-    "hasBackupPower": true,
-    "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
-    "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Bờ Biển Mỹ Khê & Bán Đảo Sơn Trà",
+    "rating": 4.76,
+    "reviewCount": 36,
+    "viewType": "View Bãi Sau Biển Đông",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 92000000,
+      "estimatedElectricityVND": 4625000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 4070000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 102995000,
+      "depositMonths": 2,
+      "depositVND": 184000000,
+      "moveInTotalRequiredVND": 286995000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
     "aiInsights": {
       "whyFit": [
-        "Mức giá 8 Triệu/tháng tương thích hoàn hảo với khu vực Ngũ Hành Sơn",
-        "Căn hộ tầng 14 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Chỗ đỗ xe máy thuận tiện, quản lý an ninh thẻ từ 24/7"
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Thắng Tam, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
       ],
       "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Ngũ Hành Sơn",
-        "Thuận tiện di chuyển thang bộ khi cần"
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (4,070,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
       ]
     },
     "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Ngũ Hành Sơn.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
     },
-    "monthlyRentUSD": 327,
-    "images": [
-      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&q=80&w=1200"
-    ],
-    "furnished": true,
-    "balcony": true,
-    "airConditioning": true,
-    "washingMachine": true,
-    "kitchen": true,
-    "wifi": true,
-    "rating": 4.81,
-    "reviewCount": 31,
     "sensors": {
       "smartLockBattery": 85,
       "hvacStatus": "Optimal",
-      "targetTempC": 22,
-      "energyConsumptionKwh": 35.5,
-      "waterUsageLiters": 116,
+      "targetTempC": 25,
+      "energyConsumptionKwh": 41.8,
+      "waterUsageLiters": 128,
       "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1123",
+      "name": "Phạm Thu Trang",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
+      "phone": "0938112233",
+      "email": "trang.pham@vng.com.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-12-15",
+      "leaseEnd": "2026-07-15",
+      "monthlyRentUSD": 3755,
+      "monthlyRentVND": 92000000,
+      "autoPayActive": true,
+      "occupantsCount": 3
     }
   },
   {
-    "id": "HN-HON-1502",
-    "name": "Căn Hộ Hoàn Kiếm Deluxe Apartment HN-HON-1502",
-    "floor": 15,
-    "unitNumber": "1502",
-    "type": "Deluxe Apartment",
-    "sqm": 52,
-    "bedrooms": 2,
-    "bathrooms": 1,
-    "status": "vacant",
-    "monthlyRentVND": 9000000,
-    "city": "Hanoi",
-    "district": "Hoàn Kiếm",
-    "address": "41 Trần Duy Hưng, Phường Trung Tâm, Quận Hoàn Kiếm, Hà Nội",
-    "hasCarParking": false,
+    "id": "VT-PH-3408",
+    "name": "Penthouse Bãi Trước & Mũi Nghinh Phong — Phường 1",
+    "floor": 34,
+    "unitNumber": "3408",
+    "type": "Penthouse",
+    "sqm": 323,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "status": "occupied",
+    "monthlyRentUSD": 8102,
+    "monthlyRentVND": 198500000,
+    "city": "Vung Tau",
+    "district": "Phường 1",
+    "address": "Tầng 34, Tòa tháp Haven Luxury, Đường Hạ Long, Quận Phường 1, Vũng Tàu",
+    "images": [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
     "hasMotorbikeParking": true,
     "hasElevator": true,
     "hasBackupPower": true,
     "floodingRisk": "Low",
-    "noiseLevel": "Quiet",
+    "noiseLevel": "Moderate",
     "trafficDensity": "Moderate",
-    "petFriendly": false,
-    "viewType": "Toàn Cảnh Thành Phố & Trục Đường Trần Duy Hưng",
-    "aiInsights": {
-      "whyFit": [
-        "Mức giá 9 Triệu/tháng tương thích hoàn hảo với khu vực Hoàn Kiếm",
-        "Căn hộ tầng 15 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Chỗ đỗ xe máy thuận tiện, quản lý an ninh thẻ từ 24/7"
-      ],
-      "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Hoàn Kiếm",
-        "Thuận tiện di chuyển thang bộ khi cần"
-      ]
-    },
-    "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Hoàn Kiếm.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
-    },
-    "monthlyRentUSD": 367,
-    "images": [
-      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200"
-    ],
+    "petFriendly": true,
     "furnished": true,
     "balcony": true,
     "airConditioning": true,
@@ -3630,62 +11882,277 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "kitchen": true,
     "wifi": true,
     "rating": 4.82,
-    "reviewCount": 32,
+    "reviewCount": 65,
+    "viewType": "View Bãi Trước & Mũi Nghinh Phong",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 198500000,
+      "estimatedElectricityVND": 8075000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 7106000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 215981000,
+      "depositMonths": 2,
+      "depositVND": 397000000,
+      "moveInTotalRequiredVND": 612981000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Penthouse tại vị trí đắc địa Phường 1, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (7,106,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
     "sensors": {
-      "smartLockBattery": 86,
+      "smartLockBattery": 79,
       "hvacStatus": "Optimal",
       "targetTempC": 22,
-      "energyConsumptionKwh": 36.5,
-      "waterUsageLiters": 117,
+      "energyConsumptionKwh": 36.8,
+      "waterUsageLiters": 114,
       "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1124",
+      "name": "Lê Quốc Bảo",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+      "phone": "0987654321",
+      "email": "bao.le@fintech.io",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-03-15",
+      "leaseEnd": "2026-11-15",
+      "monthlyRentUSD": 8102,
+      "monthlyRentVND": 198500000,
+      "autoPayActive": false,
+      "occupantsCount": 4
     }
   },
   {
-    "id": "SG-QUN-2203",
-    "name": "Căn Hộ Quận 7 Executive Suite SG-QUN-2203",
-    "floor": 22,
-    "unitNumber": "2203",
-    "type": "Executive Suite",
-    "sqm": 188,
+    "id": "VT-PH-1201",
+    "name": "Duplex Ngọn Hải Đăng Vũng Tàu — Phường 2",
+    "floor": 12,
+    "unitNumber": "1201",
+    "type": "Duplex",
+    "sqm": 137,
     "bedrooms": 3,
     "bathrooms": 3,
     "status": "vacant",
-    "monthlyRentVND": 53000000,
-    "city": "Ho Chi Minh City",
-    "district": "Quận 7",
-    "address": "140 Xuân Thủy, Phường An Cư, Quận 7, TP. Hồ Chí Minh",
-    "hasCarParking": true,
+    "monthlyRentUSD": 2122,
+    "monthlyRentVND": 52000000,
+    "city": "Vung Tau",
+    "district": "Phường 2",
+    "address": "Tầng 12, Tòa tháp Haven Luxury, Đường Võ Thị Sáu, Quận Phường 2, Vũng Tàu",
+    "images": [
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
     "hasMotorbikeParking": true,
     "hasElevator": true,
     "hasBackupPower": true,
     "floodingRisk": "Low",
     "noiseLevel": "Quiet",
     "trafficDensity": "Moderate",
-    "petFriendly": true,
-    "viewType": "Sông Sài Gòn & Skyline Quận 7",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.66,
+    "reviewCount": 46,
+    "viewType": "View Ngọn Hải Đăng Vũng Tàu",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 52000000,
+      "estimatedElectricityVND": 3425000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3014000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 60139000,
+      "depositMonths": 2,
+      "depositVND": 104000000,
+      "moveInTotalRequiredVND": 164139000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
     "aiInsights": {
       "whyFit": [
-        "Mức giá 53 Triệu/tháng tương thích hoàn hảo với khu vực Quận 7",
-        "Căn hộ tầng 22 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
+        "Căn hộ thuộc phân khúc Duplex tại vị trí đắc địa Phường 2, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
       ],
       "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Quận 7",
-        "Tầng cao thoáng mát cần lưu ý khóa chốt an toàn ban công"
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,014,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
       ]
     },
     "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Quận 7.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
     },
-    "monthlyRentUSD": 2163,
+    "sensors": {
+      "smartLockBattery": 78,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 41.1,
+      "waterUsageLiters": 120,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "HL-BÃ-2101",
+    "name": "Studio Sun World & View Vịnh Di Sản — Bãi Cháy",
+    "floor": 21,
+    "unitNumber": "2101",
+    "type": "Studio",
+    "sqm": 54,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "reserved",
+    "monthlyRentUSD": 898,
+    "monthlyRentVND": 22000000,
+    "city": "Ha Long",
+    "district": "Bãi Cháy",
+    "address": "Tầng 21, Tòa tháp Haven Luxury, Đường Hạ Long, Quận Bãi Cháy, Hạ Long",
     "images": [
-      "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
     ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.73,
+    "reviewCount": 51,
+    "viewType": "View Sun World & View Vịnh Di Sản",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 22000000,
+      "estimatedElectricityVND": 1350000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1188000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 26238000,
+      "depositMonths": 1,
+      "depositVND": 22000000,
+      "moveInTotalRequiredVND": 48238000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Bãi Cháy, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,188,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 89,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 50.6,
+      "waterUsageLiters": 95,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "HL-HÒ-2808",
+    "name": "Deluxe Apartment Đường Bao Biển Cột 5 - Cột 8 — Hòn Gai",
+    "floor": 28,
+    "unitNumber": "2808",
+    "type": "Deluxe Apartment",
+    "sqm": 81,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 1245,
+    "monthlyRentVND": 30500000,
+    "city": "Ha Long",
+    "district": "Hòn Gai",
+    "address": "Tầng 28, Tòa tháp Haven Luxury, Đường Hồng Gai, Quận Hòn Gai, Hạ Long",
+    "images": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
     "furnished": true,
     "balcony": true,
     "airConditioning": true,
@@ -3693,30 +12160,589 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "kitchen": true,
     "wifi": true,
     "rating": 4.83,
-    "reviewCount": 33,
+    "reviewCount": 15,
+    "viewType": "View Đường Bao Biển Cột 5 - Cột 8",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 30500000,
+      "estimatedElectricityVND": 2025000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1782000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 36007000,
+      "depositMonths": 1,
+      "depositVND": 30500000,
+      "moveInTotalRequiredVND": 66507000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Hòn Gai, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,782,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
     "sensors": {
-      "smartLockBattery": 87,
+      "smartLockBattery": 83,
       "hvacStatus": "Optimal",
       "targetTempC": 22,
-      "energyConsumptionKwh": 37.5,
-      "waterUsageLiters": 118,
+      "energyConsumptionKwh": 40.0,
+      "waterUsageLiters": 140,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1127",
+      "name": "Hoàng Đức Anh",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
+      "phone": "0944556677",
+      "email": "ducanh.hoang@shopee.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-11-15",
+      "leaseEnd": "2026-12-15",
+      "monthlyRentUSD": 1245,
+      "monthlyRentVND": 30500000,
+      "autoPayActive": true,
+      "occupantsCount": 3
+    }
+  },
+  {
+    "id": "HL-BÃ-2402",
+    "name": "Executive Suite Sun World & View Vịnh Di Sản — Bãi Cháy",
+    "floor": 24,
+    "unitNumber": "2402",
+    "type": "Executive Suite",
+    "sqm": 125,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "pending_handover",
+    "monthlyRentUSD": 2286,
+    "monthlyRentVND": 56000000,
+    "city": "Ha Long",
+    "district": "Bãi Cháy",
+    "address": "Tầng 24, Tòa tháp Haven Luxury, Đường Hạ Long, Quận Bãi Cháy, Hạ Long",
+    "images": [
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.71,
+    "reviewCount": 66,
+    "viewType": "View Sun World & View Vịnh Di Sản",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 56000000,
+      "estimatedElectricityVND": 3125000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2750000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 64175000,
+      "depositMonths": 2,
+      "depositVND": 112000000,
+      "moveInTotalRequiredVND": 176175000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Bãi Cháy, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,750,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 84,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 49.1,
+      "waterUsageLiters": 135,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1128",
+      "name": "Liam Tanaka",
+      "avatar": "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 905 012 345",
+      "email": "liam.tanaka@rakuten.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-08-15",
+      "leaseEnd": "2026-08-15",
+      "monthlyRentUSD": 2286,
+      "monthlyRentVND": 56000000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "HL-HÒ-2203",
+    "name": "Sky Villa Đường Bao Biển Cột 5 - Cột 8 — Hòn Gai",
+    "floor": 22,
+    "unitNumber": "2203",
+    "type": "Sky Villa",
+    "sqm": 177,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 4714,
+    "monthlyRentVND": 115500000,
+    "city": "Ha Long",
+    "district": "Hòn Gai",
+    "address": "Tầng 22, Tòa tháp Haven Luxury, Đường Hồng Gai, Quận Hòn Gai, Hạ Long",
+    "images": [
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.82,
+    "reviewCount": 34,
+    "viewType": "View Đường Bao Biển Cột 5 - Cột 8",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 115500000,
+      "estimatedElectricityVND": 4425000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3894000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 126119000,
+      "depositMonths": 2,
+      "depositVND": 231000000,
+      "moveInTotalRequiredVND": 357119000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Hòn Gai, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,894,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 91,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 52.2,
+      "waterUsageLiters": 128,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1129",
+      "name": "Đỗ Phương Linh",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200",
+      "phone": "0977223344",
+      "email": "phuonglinh.do@vietcombank.com.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-11-15",
+      "leaseEnd": "2026-10-15",
+      "monthlyRentUSD": 4714,
+      "monthlyRentVND": 115500000,
+      "autoPayActive": true,
+      "occupantsCount": 4
+    }
+  },
+  {
+    "id": "HL-BÃ-2806",
+    "name": "Penthouse Sun World & View Vịnh Di Sản — Bãi Cháy",
+    "floor": 28,
+    "unitNumber": "2806",
+    "type": "Penthouse",
+    "sqm": 334,
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "status": "vacant",
+    "monthlyRentUSD": 4796,
+    "monthlyRentVND": 117500000,
+    "city": "Ha Long",
+    "district": "Bãi Cháy",
+    "address": "Tầng 28, Tòa tháp Haven Luxury, Đường Hạ Long, Quận Bãi Cháy, Hạ Long",
+    "images": [
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.83,
+    "reviewCount": 36,
+    "viewType": "View Sun World & View Vịnh Di Sản",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 117500000,
+      "estimatedElectricityVND": 8350000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 7348000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 135498000,
+      "depositMonths": 2,
+      "depositVND": 235000000,
+      "moveInTotalRequiredVND": 370498000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Penthouse tại vị trí đắc địa Bãi Cháy, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (7,348,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 96,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 25.1,
+      "waterUsageLiters": 122,
       "securityAlarmDisarmed": true
     }
   },
   {
-    "id": "DN-NGH-2304",
-    "name": "Căn Hộ Ngũ Hành Sơn Executive Suite DN-NGH-2304",
-    "floor": 23,
-    "unitNumber": "2304",
+    "id": "DL-PH-0702",
+    "name": "Studio Trung Tâm Hồ Xuân Hương & Chợ Đêm — Phường 1",
+    "floor": 7,
+    "unitNumber": "0702",
+    "type": "Studio",
+    "sqm": 44,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "occupied",
+    "monthlyRentUSD": 673,
+    "monthlyRentVND": 16500000,
+    "city": "Da Lat",
+    "district": "Phường 1",
+    "address": "Tầng 7, Tòa tháp Haven Luxury, Đường Nguyễn Chí Thanh, Quận Phường 1, Đà Lạt",
+    "images": [
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.77,
+    "reviewCount": 29,
+    "viewType": "View Trung Tâm Hồ Xuân Hương & Chợ Đêm",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 16500000,
+      "estimatedElectricityVND": 1100000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 968000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 20268000,
+      "depositMonths": 1,
+      "depositVND": 16500000,
+      "moveInTotalRequiredVND": 36768000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Phường 1, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (968,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 80,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 37.5,
+      "waterUsageLiters": 156,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1131",
+      "name": "Lê Quốc Bảo",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+      "phone": "0987654321",
+      "email": "bao.le@fintech.io",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-12-15",
+      "leaseEnd": "2026-09-15",
+      "monthlyRentUSD": 673,
+      "monthlyRentVND": 16500000,
+      "autoPayActive": true,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "DL-PH-3507",
+    "name": "Deluxe Apartment Biệt Thự Rừng Thông & Cung Điện Cổ — Phường 10",
+    "floor": 35,
+    "unitNumber": "3507",
+    "type": "Deluxe Apartment",
+    "sqm": 87,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 796,
+    "monthlyRentVND": 19500000,
+    "city": "Da Lat",
+    "district": "Phường 10",
+    "address": "Tầng 35, Tòa tháp Haven Luxury, Đường Hùng Vương, Quận Phường 10, Đà Lạt",
+    "images": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.89,
+    "reviewCount": 47,
+    "viewType": "View Biệt Thự Rừng Thông & Cung Điện Cổ",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 19500000,
+      "estimatedElectricityVND": 2175000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1914000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 25289000,
+      "depositMonths": 1,
+      "depositVND": 19500000,
+      "moveInTotalRequiredVND": 44789000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Phường 10, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,914,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 85,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 46.7,
+      "waterUsageLiters": 106,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1132",
+      "name": "Sarah Jenkins",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 909 234 567",
+      "email": "sarah.j@unicef.org",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-10-15",
+      "leaseEnd": "2026-10-15",
+      "monthlyRentUSD": 796,
+      "monthlyRentVND": 19500000,
+      "autoPayActive": true,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "DL-PH-2005",
+    "name": "Executive Suite Đèo Prenn & Cáp Treo Đồi Robin — Phường 3",
+    "floor": 20,
+    "unitNumber": "2005",
     "type": "Executive Suite",
-    "sqm": 189,
-    "bedrooms": 4,
-    "bathrooms": 4,
-    "status": "vacant",
-    "monthlyRentVND": 54000000,
-    "city": "Da Nang",
-    "district": "Ngũ Hành Sơn",
-    "address": "147 Lê Duẩn, Phường Phước Mỹ, Quận Ngũ Hành Sơn, Đà Nẵng",
+    "sqm": 109,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 1796,
+    "monthlyRentVND": 44000000,
+    "city": "Da Lat",
+    "district": "Phường 3",
+    "address": "Tầng 20, Tòa tháp Haven Luxury, Đường Đống Đa, Quận Phường 3, Đà Lạt",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+    ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
     "hasElevator": true,
@@ -3725,30 +12751,1100 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "noiseLevel": "Quiet",
     "trafficDensity": "Moderate",
     "petFriendly": true,
-    "viewType": "Cầu Sông Hàn & Vịnh Đà Nẵng",
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.89,
+    "reviewCount": 43,
+    "viewType": "View Đèo Prenn & Cáp Treo Đồi Robin",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 44000000,
+      "estimatedElectricityVND": 2725000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2398000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 51423000,
+      "depositMonths": 1,
+      "depositVND": 44000000,
+      "moveInTotalRequiredVND": 95423000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
     "aiInsights": {
       "whyFit": [
-        "Mức giá 54 Triệu/tháng tương thích hoàn hảo với khu vực Ngũ Hành Sơn",
-        "Căn hộ tầng 23 view thoáng đãng, đón ánh sáng tự nhiên và gió trời trong lành",
-        "Có sẵn chỗ đỗ ô tô hầm thông minh và sạc xe điện EV"
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Phường 3, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
       ],
       "worthConsidering": [
-        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn theo niêm yết ban quản trị Ngũ Hành Sơn",
-        "Tầng cao thoáng mát cần lưu ý khóa chốt an toàn ban công"
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,398,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
       ]
     },
     "environmentalData": {
-      "weatherNotes": "Đón gió đối lưu tự nhiên, không khí trong lành tại khu vực Ngũ Hành Sơn.",
-      "floodNotes": "Khu vực cốt nền cao ráo, cống thoát nước ngầm vận hành ổn định không đọng nước.",
-      "powerNotes": "Máy phát điện dự phòng 100% công suất đảm bảo thang máy và chiếu sáng 24/7.",
-      "trafficNotes": "Đường giao thông thuận lợi, kết nối các trục đường chính và tiện ích xung quanh trong bán kính 500m."
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
     },
-    "monthlyRentUSD": 2204,
+    "sensors": {
+      "smartLockBattery": 84,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 25.9,
+      "waterUsageLiters": 123,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1133",
+      "name": "Elena Rostova",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 988 789 012",
+      "email": "elena.rostova@kaspersky.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-05-15",
+      "leaseEnd": "2026-09-15",
+      "monthlyRentUSD": 1796,
+      "monthlyRentVND": 44000000,
+      "autoPayActive": true,
+      "occupantsCount": 4
+    }
+  },
+  {
+    "id": "DL-PH-2806",
+    "name": "Sky Villa Trung Tâm Hồ Xuân Hương & Chợ Đêm — Phường 1",
+    "floor": 28,
+    "unitNumber": "2806",
+    "type": "Sky Villa",
+    "sqm": 175,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 4939,
+    "monthlyRentVND": 121000000,
+    "city": "Da Lat",
+    "district": "Phường 1",
+    "address": "Tầng 28, Tòa tháp Haven Luxury, Đường Khu Hòa Bình, Quận Phường 1, Đà Lạt",
     "images": [
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.81,
+    "reviewCount": 23,
+    "viewType": "View Trung Tâm Hồ Xuân Hương & Chợ Đêm",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 121000000,
+      "estimatedElectricityVND": 4375000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3850000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 131525000,
+      "depositMonths": 2,
+      "depositVND": 242000000,
+      "moveInTotalRequiredVND": 373525000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Phường 1, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,850,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 88,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 48.5,
+      "waterUsageLiters": 147,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1134",
+      "name": "Bùi Tiến Dũng",
+      "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200",
+      "phone": "0918776655",
+      "email": "tiendung.bui@vingroup.net",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-06-15",
+      "leaseEnd": "2026-09-15",
+      "monthlyRentUSD": 4939,
+      "monthlyRentVND": 121000000,
+      "autoPayActive": false,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "HUE-PH-1806",
+    "name": "Studio Bờ Nam Sông Hương & Cầu Tràng Tiền — Phú Hội",
+    "floor": 18,
+    "unitNumber": "1806",
+    "type": "Studio",
+    "sqm": 55,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "occupied",
+    "monthlyRentUSD": 776,
+    "monthlyRentVND": 19000000,
+    "city": "Hue",
+    "district": "Phú Hội",
+    "address": "Tầng 18, Tòa tháp Haven Luxury, Đường Lê Lợi, Quận Phú Hội, Huế",
+    "images": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.91,
+    "reviewCount": 65,
+    "viewType": "View Bờ Nam Sông Hương & Cầu Tràng Tiền",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 19000000,
+      "estimatedElectricityVND": 1375000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1210000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 23285000,
+      "depositMonths": 1,
+      "depositVND": 19000000,
+      "moveInTotalRequiredVND": 42285000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Phú Hội, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,210,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 91,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 27.0,
+      "waterUsageLiters": 123,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1135",
+      "name": "Vũ Hải Đăng",
+      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200",
+      "phone": "0968998877",
+      "email": "dang.vu@misa.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-02-15",
+      "leaseEnd": "2026-10-15",
+      "monthlyRentUSD": 776,
+      "monthlyRentVND": 19000000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "HUE-VĨ-1903",
+    "name": "Deluxe Apartment Khu Ngoại Giao & Đại Học Y Dược — Vĩnh Ninh",
+    "floor": 19,
+    "unitNumber": "1903",
+    "type": "Deluxe Apartment",
+    "sqm": 77,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 1388,
+    "monthlyRentVND": 34000000,
+    "city": "Hue",
+    "district": "Vĩnh Ninh",
+    "address": "Tầng 19, Tòa tháp Haven Luxury, Đường Hai Bà Trưng, Quận Vĩnh Ninh, Huế",
+    "images": [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.69,
+    "reviewCount": 27,
+    "viewType": "View Khu Ngoại Giao & Đại Học Y Dược",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 34000000,
+      "estimatedElectricityVND": 1925000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1694000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 39319000,
+      "depositMonths": 1,
+      "depositVND": 34000000,
+      "moveInTotalRequiredVND": 73319000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Vĩnh Ninh, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,694,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 89,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 45.3,
+      "waterUsageLiters": 90,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1136",
+      "name": "Oliver Hansen",
+      "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 917 890 123",
+      "email": "o.hansen@lego.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-10-15",
+      "leaseEnd": "2026-09-15",
+      "monthlyRentUSD": 1388,
+      "monthlyRentVND": 34000000,
+      "autoPayActive": false,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "HUE-TH-2806",
+    "name": "Executive Suite Khu Vực Hoàng Thành Đại Nội — Thuận Hòa",
+    "floor": 28,
+    "unitNumber": "2806",
+    "type": "Executive Suite",
+    "sqm": 123,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 2102,
+    "monthlyRentVND": 51500000,
+    "city": "Hue",
+    "district": "Thuận Hòa",
+    "address": "Tầng 28, Tòa tháp Haven Luxury, Đường Lê Duẩn, Quận Thuận Hòa, Huế",
+    "images": [
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.9,
+    "reviewCount": 49,
+    "viewType": "View Khu Vực Hoàng Thành Đại Nội",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 51500000,
+      "estimatedElectricityVND": 3075000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2706000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 59581000,
+      "depositMonths": 2,
+      "depositVND": 103000000,
+      "moveInTotalRequiredVND": 162581000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Thuận Hòa, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,706,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 82,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 57.9,
+      "waterUsageLiters": 146,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1137",
+      "name": "Emily Watson",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 976 456 789",
+      "email": "emily.watson@grab.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-09-15",
+      "leaseEnd": "2026-11-15",
+      "monthlyRentUSD": 2102,
+      "monthlyRentVND": 51500000,
+      "autoPayActive": false,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "HUE-PH-2107",
+    "name": "Sky Villa Bờ Nam Sông Hương & Cầu Tràng Tiền — Phú Hội",
+    "floor": 21,
+    "unitNumber": "2107",
+    "type": "Sky Villa",
+    "sqm": 178,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "status": "occupied",
+    "monthlyRentUSD": 2898,
+    "monthlyRentVND": 71000000,
+    "city": "Hue",
+    "district": "Phú Hội",
+    "address": "Tầng 21, Tòa tháp Haven Luxury, Đường Hùng Vương, Quận Phú Hội, Huế",
+    "images": [
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.81,
+    "reviewCount": 40,
+    "viewType": "View Bờ Nam Sông Hương & Cầu Tràng Tiền",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 71000000,
+      "estimatedElectricityVND": 4450000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 3916000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 81666000,
+      "depositMonths": 2,
+      "depositVND": 142000000,
+      "moveInTotalRequiredVND": 223666000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Sky Villa tại vị trí đắc địa Phú Hội, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (3,916,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 92,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 24.4,
+      "waterUsageLiters": 90,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1138",
+      "name": "Lê Quốc Bảo",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+      "phone": "0987654321",
+      "email": "bao.le@fintech.io",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-06-15",
+      "leaseEnd": "2026-08-15",
+      "monthlyRentUSD": 2898,
+      "monthlyRentVND": 71000000,
+      "autoPayActive": true,
+      "occupantsCount": 4
+    }
+  },
+  {
+    "id": "QN-GH-0406",
+    "name": "Studio Khu Du Lịch Ghềnh Ráng & Bãi Trứng — Ghềnh Ráng",
+    "floor": 4,
+    "unitNumber": "0406",
+    "type": "Studio",
+    "sqm": 40,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "vacant",
+    "monthlyRentUSD": 531,
+    "monthlyRentVND": 13000000,
+    "city": "Quy Nhon",
+    "district": "Ghềnh Ráng",
+    "address": "Tầng 4, Tòa tháp Haven Luxury, Đường An Dương Vương, Quận Ghềnh Ráng, Quy Nhơn",
+    "images": [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.76,
+    "reviewCount": 39,
+    "viewType": "View Khu Du Lịch Ghềnh Ráng & Bãi Trứng",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 13000000,
+      "estimatedElectricityVND": 1000000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 880000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 16580000,
+      "depositMonths": 1,
+      "depositVND": 13000000,
+      "moveInTotalRequiredVND": 29580000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Ghềnh Ráng, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (880,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 85,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 44.7,
+      "waterUsageLiters": 108,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "QN-NG-3007",
+    "name": "Deluxe Apartment Biển Quy Nhơn & Quảng Trường Trung Tâm — Nguyễn Văn Cừ",
+    "floor": 30,
+    "unitNumber": "3007",
+    "type": "Deluxe Apartment",
+    "sqm": 90,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "vacant",
+    "monthlyRentUSD": 735,
+    "monthlyRentVND": 18000000,
+    "city": "Quy Nhon",
+    "district": "Nguyễn Văn Cừ",
+    "address": "Tầng 30, Tòa tháp Haven Luxury, Đường Chương Dương, Quận Nguyễn Văn Cừ, Quy Nhơn",
+    "images": [
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.65,
+    "reviewCount": 25,
+    "viewType": "View Biển Quy Nhơn & Quảng Trường Trung Tâm",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 18000000,
+      "estimatedElectricityVND": 2250000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1980000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 23930000,
+      "depositMonths": 1,
+      "depositVND": 18000000,
+      "moveInTotalRequiredVND": 41930000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Nguyễn Văn Cừ, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,980,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 80,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 50.8,
+      "waterUsageLiters": 153,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "QN-GH-2606",
+    "name": "Executive Suite Khu Du Lịch Ghềnh Ráng & Bãi Trứng — Ghềnh Ráng",
+    "floor": 26,
+    "unitNumber": "2606",
+    "type": "Executive Suite",
+    "sqm": 110,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 1653,
+    "monthlyRentVND": 40500000,
+    "city": "Quy Nhon",
+    "district": "Ghềnh Ráng",
+    "address": "Tầng 26, Tòa tháp Haven Luxury, Đường An Dương Vương, Quận Ghềnh Ráng, Quy Nhơn",
+    "images": [
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.77,
+    "reviewCount": 41,
+    "viewType": "View Khu Du Lịch Ghềnh Ráng & Bãi Trứng",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 40500000,
+      "estimatedElectricityVND": 2750000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2420000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 47970000,
+      "depositMonths": 1,
+      "depositVND": 40500000,
+      "moveInTotalRequiredVND": 88470000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Ghềnh Ráng, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,420,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 87,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 46.2,
+      "waterUsageLiters": 125,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1141",
+      "name": "Oliver Hansen",
+      "avatar": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 917 890 123",
+      "email": "o.hansen@lego.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-09-15",
+      "leaseEnd": "2026-11-15",
+      "monthlyRentUSD": 1653,
+      "monthlyRentVND": 40500000,
+      "autoPayActive": true,
+      "occupantsCount": 4
+    }
+  },
+  {
+    "id": "BH-QU-1805",
+    "name": "Studio Trung Tâm Hành Chính & Bờ Sông Đồng Nai — Quyết Thắng",
+    "floor": 18,
+    "unitNumber": "1805",
+    "type": "Studio",
+    "sqm": 40,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "occupied",
+    "monthlyRentUSD": 531,
+    "monthlyRentVND": 13000000,
+    "city": "Bien Hoa",
+    "district": "Quyết Thắng",
+    "address": "Tầng 18, Tòa tháp Haven Luxury, Đường Cách Mạng Tháng 8, Quận Quyết Thắng, Biên Hòa",
+    "images": [
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.83,
+    "reviewCount": 43,
+    "viewType": "View Trung Tâm Hành Chính & Bờ Sông Đồng Nai",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 13000000,
+      "estimatedElectricityVND": 1000000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 880000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 16580000,
+      "depositMonths": 1,
+      "depositVND": 13000000,
+      "moveInTotalRequiredVND": 29580000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Quyết Thắng, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (880,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 83,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 52.3,
+      "waterUsageLiters": 91,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1142",
+      "name": "Ngô Bảo Châu",
+      "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200",
+      "phone": "0908334455",
+      "email": "chau.ngo@fpt.com",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-07-15",
+      "leaseEnd": "2026-09-15",
+      "monthlyRentUSD": 531,
+      "monthlyRentVND": 13000000,
+      "autoPayActive": false,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "BH-TÂ-0308",
+    "name": "Deluxe Apartment Quảng Trường Tỉnh & Pegasus Plaza — Tân Phong",
+    "floor": 3,
+    "unitNumber": "0308",
+    "type": "Deluxe Apartment",
+    "sqm": 81,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 837,
+    "monthlyRentVND": 20500000,
+    "city": "Bien Hoa",
+    "district": "Tân Phong",
+    "address": "Tầng 3, Tòa tháp Haven Luxury, Đường Đồng Khởi, Quận Tân Phong, Biên Hòa",
+    "images": [
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
     ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.71,
+    "reviewCount": 48,
+    "viewType": "View Quảng Trường Tỉnh & Pegasus Plaza",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 20500000,
+      "estimatedElectricityVND": 2025000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1782000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 26007000,
+      "depositMonths": 1,
+      "depositVND": 20500000,
+      "moveInTotalRequiredVND": 46507000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Tân Phong, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,782,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 85,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 23.2,
+      "waterUsageLiters": 113,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1143",
+      "name": "Ngô Bảo Châu",
+      "avatar": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200",
+      "phone": "0908334455",
+      "email": "chau.ngo@fpt.com",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-09-15",
+      "leaseEnd": "2026-11-15",
+      "monthlyRentUSD": 837,
+      "monthlyRentVND": 20500000,
+      "autoPayActive": true,
+      "occupantsCount": 2
+    }
+  },
+  {
+    "id": "BH-QU-2103",
+    "name": "Executive Suite Trung Tâm Hành Chính & Bờ Sông Đồng Nai — Quyết Thắng",
+    "floor": 21,
+    "unitNumber": "2103",
+    "type": "Executive Suite",
+    "sqm": 122,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "status": "vacant",
+    "monthlyRentUSD": 2143,
+    "monthlyRentVND": 52500000,
+    "city": "Bien Hoa",
+    "district": "Quyết Thắng",
+    "address": "Tầng 21, Tòa tháp Haven Luxury, Đường Cách Mạng Tháng 8, Quận Quyết Thắng, Biên Hòa",
+    "images": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Moderate",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
     "furnished": true,
     "balcony": true,
     "airConditioning": true,
@@ -3756,13 +13852,612 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "kitchen": true,
     "wifi": true,
     "rating": 4.84,
-    "reviewCount": 34,
+    "reviewCount": 29,
+    "viewType": "View Trung Tâm Hành Chính & Bờ Sông Đồng Nai",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 52500000,
+      "estimatedElectricityVND": 3050000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 2684000,
+      "parkingFeeVND": 1800000,
+      "totalMonthlyEstimatedVND": 60534000,
+      "depositMonths": 2,
+      "depositVND": 105000000,
+      "moveInTotalRequiredVND": 165534000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Executive Suite tại vị trí đắc địa Quyết Thắng, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (2,684,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
     "sensors": {
-      "smartLockBattery": 88,
+      "smartLockBattery": 89,
       "hvacStatus": "Optimal",
       "targetTempC": 22,
-      "energyConsumptionKwh": 38.5,
-      "waterUsageLiters": 119,
+      "energyConsumptionKwh": 49.4,
+      "waterUsageLiters": 141,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "VINH-QU-1607",
+    "name": "Studio Trung Tâm Thương Mại & Quảng Trường Hồ Chí Minh — Quang Trung",
+    "floor": 16,
+    "unitNumber": "1607",
+    "type": "Studio",
+    "sqm": 54,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "vacant",
+    "monthlyRentUSD": 510,
+    "monthlyRentVND": 12500000,
+    "city": "Vinh",
+    "district": "Quang Trung",
+    "address": "Tầng 16, Tòa tháp Haven Luxury, Đường Quang Trung, Quận Quang Trung, Vinh",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.77,
+    "reviewCount": 64,
+    "viewType": "View Trung Tâm Thương Mại & Quảng Trường Hồ Chí Minh",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 12500000,
+      "estimatedElectricityVND": 1350000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1188000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 16738000,
+      "depositMonths": 1,
+      "depositVND": 12500000,
+      "moveInTotalRequiredVND": 29238000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Quang Trung, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,188,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 81,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 29.6,
+      "waterUsageLiters": 160,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "VINH-HƯ-3003",
+    "name": "Deluxe Apartment Khu Dân Cư Cao Cấp Hưng Bình — Hưng Bình",
+    "floor": 30,
+    "unitNumber": "3003",
+    "type": "Deluxe Apartment",
+    "sqm": 81,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "occupied",
+    "monthlyRentUSD": 1286,
+    "monthlyRentVND": 31500000,
+    "city": "Vinh",
+    "district": "Hưng Bình",
+    "address": "Tầng 30, Tòa tháp Haven Luxury, Đường Nguyễn Thị Minh Khai, Quận Hưng Bình, Vinh",
+    "images": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.97,
+    "reviewCount": 30,
+    "viewType": "View Khu Dân Cư Cao Cấp Hưng Bình",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 31500000,
+      "estimatedElectricityVND": 2025000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1782000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 37007000,
+      "depositMonths": 1,
+      "depositVND": 31500000,
+      "moveInTotalRequiredVND": 68507000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Hưng Bình, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,782,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 86,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 26.9,
+      "waterUsageLiters": 137,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1146",
+      "name": "Emily Watson",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
+      "phone": "+84 976 456 789",
+      "email": "emily.watson@grab.com",
+      "nationality": "Foreigner",
+      "moveInDate": "2025-01-15",
+      "leaseEnd": "2026-10-15",
+      "monthlyRentUSD": 1286,
+      "monthlyRentVND": 31500000,
+      "autoPayActive": true,
+      "occupantsCount": 3
+    }
+  },
+  {
+    "id": "TH-ĐÔ-2003",
+    "name": "Studio Vinhomes Star City — Đông Hải",
+    "floor": 20,
+    "unitNumber": "2003",
+    "type": "Studio",
+    "sqm": 38,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "occupied",
+    "monthlyRentUSD": 551,
+    "monthlyRentVND": 13500000,
+    "city": "Thanh Hoa",
+    "district": "Đông Hải",
+    "address": "Tầng 20, Tòa tháp Haven Luxury, Đường Đại Lộ Lê Lợi, Quận Đông Hải, Thanh Hóa",
+    "images": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.67,
+    "reviewCount": 62,
+    "viewType": "View Vinhomes Star City",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 13500000,
+      "estimatedElectricityVND": 950000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 836000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 16986000,
+      "depositMonths": 1,
+      "depositVND": 13500000,
+      "moveInTotalRequiredVND": 30486000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Đông Hải, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (836,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 80,
+      "hvacStatus": "Optimal",
+      "targetTempC": 25,
+      "energyConsumptionKwh": 40.6,
+      "waterUsageLiters": 120,
+      "securityAlarmDisarmed": true
+    },
+    "resident": {
+      "id": "RES-1147",
+      "name": "Phạm Thu Trang",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
+      "phone": "0938112233",
+      "email": "trang.pham@vng.com.vn",
+      "nationality": "Vietnamese",
+      "moveInDate": "2025-11-15",
+      "leaseEnd": "2026-09-15",
+      "monthlyRentUSD": 551,
+      "monthlyRentVND": 13500000,
+      "autoPayActive": true,
+      "occupantsCount": 1
+    }
+  },
+  {
+    "id": "TH-ĐI-3208",
+    "name": "Deluxe Apartment Trung Tâm Thành Phố — Điện Biên",
+    "floor": 32,
+    "unitNumber": "3208",
+    "type": "Deluxe Apartment",
+    "sqm": 81,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "vacant",
+    "monthlyRentUSD": 1020,
+    "monthlyRentVND": 25000000,
+    "city": "Thanh Hoa",
+    "district": "Điện Biên",
+    "address": "Tầng 32, Tòa tháp Haven Luxury, Đường Trần Phú, Quận Điện Biên, Thanh Hóa",
+    "images": [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.91,
+    "reviewCount": 37,
+    "viewType": "View Trung Tâm Thành Phố",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 25000000,
+      "estimatedElectricityVND": 2025000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1782000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 30507000,
+      "depositMonths": 1,
+      "depositVND": 25000000,
+      "moveInTotalRequiredVND": 55507000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Điện Biên, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,782,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 91,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 39.8,
+      "waterUsageLiters": 126,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "BMT-TÂ-2403",
+    "name": "Studio Làng Cà Phê Trung Nguyên & Eco City — Tân Lợi",
+    "floor": 24,
+    "unitNumber": "2403",
+    "type": "Studio",
+    "sqm": 46,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "reserved",
+    "monthlyRentUSD": 959,
+    "monthlyRentVND": 23500000,
+    "city": "Buon Ma Thuot",
+    "district": "Tân Lợi",
+    "address": "Tầng 24, Tòa tháp Haven Luxury, Đường Ngô Quyền, Quận Tân Lợi, Buôn Ma Thuột",
+    "images": [
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Moderate",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.86,
+    "reviewCount": 65,
+    "viewType": "View Làng Cà Phê Trung Nguyên & Eco City",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 23500000,
+      "estimatedElectricityVND": 1150000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1012000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 27362000,
+      "depositMonths": 1,
+      "depositVND": 23500000,
+      "moveInTotalRequiredVND": 50862000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Studio tại vị trí đắc địa Tân Lợi, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,012,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 81,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 37.9,
+      "waterUsageLiters": 85,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "BMT-TH-1503",
+    "name": "Deluxe Apartment Trung Tâm Ngã Sáu Ban Mê — Thắng Lợi",
+    "floor": 15,
+    "unitNumber": "1503",
+    "type": "Deluxe Apartment",
+    "sqm": 83,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "vacant",
+    "monthlyRentUSD": 1551,
+    "monthlyRentVND": 38000000,
+    "city": "Buon Ma Thuot",
+    "district": "Thắng Lợi",
+    "address": "Tầng 15, Tòa tháp Haven Luxury, Đường Phan Bội Châu, Quận Thắng Lợi, Buôn Ma Thuột",
+    "images": [
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": false,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": false,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.68,
+    "reviewCount": 54,
+    "viewType": "View Trung Tâm Ngã Sáu Ban Mê",
+    "isVerifiedPlus": false,
+    "trueCost": {
+      "baseRentVND": 38000000,
+      "estimatedElectricityVND": 2075000,
+      "waterFeeVND": 150000,
+      "internetFeeVND": 350000,
+      "managementFeeVND": 1826000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 43601000,
+      "depositMonths": 1,
+      "depositVND": 38000000,
+      "moveInTotalRequiredVND": 81601000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 1,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Hồ sơ nghiệm thu PCCC đạt chuẩn QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Căn hộ thuộc phân khúc Deluxe Apartment tại vị trí đắc địa Thắng Lợi, kết nối nhanh trung tâm",
+        "Hệ thống PCCC nghiệm thu chuẩn hóa, camera an ninh 2 lớp và kiểm soát cửa thông minh IoT",
+        "Tầm nhìn thoáng đãng, luồng gió tự nhiên đón trọn sinh khí đô thị"
+      ],
+      "worthConsidering": [
+        "Phí dịch vụ quản lý tòa nhà tiêu chuẩn 5 sao (1,826,000 đ/tháng)",
+        "Giờ cao điểm giao thông khu vực có thể đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Đón gió hướng mát; điều hòa biến tần tiết kiệm điện năng.",
+      "floodNotes": "Cốt nền xây dựng cao ráo; không ghi nhận ngập úng trong mùa mưa bão lớn.",
+      "powerNotes": "Hệ thống điện lưới kép và máy phát điện dự phòng 100% công suất.",
+      "trafficNotes": "Mặt tiền đường lớn, thuận tiện di chuyển trong bán kính 10 phút."
+    },
+    "sensors": {
+      "smartLockBattery": 83,
+      "hvacStatus": "Optimal",
+      "targetTempC": 22,
+      "energyConsumptionKwh": 36.3,
+      "waterUsageLiters": 124,
       "securityAlarmDisarmed": true
     }
   }
@@ -3771,7 +14466,7 @@ export const MOCK_UNITS: ApartmentUnit[] = [
 export const MOCK_TICKETS: MaintenanceTicket[] = [
   {
     id: 'TKT-8092',
-    unitId: 'HN-TH-2401',
+    unitId: 'HN-TA-2401',
     residentName: 'Alexander Vance',
     category: 'Smart Lock',
     title: 'Kiểm tra pin khóa thông minh & hiệu chuẩn cảm biến thẻ từ',
@@ -3782,13 +14477,23 @@ export const MOCK_TICKETS: MaintenanceTicket[] = [
   },
   {
     id: 'TKT-8088',
-    unitId: 'SG-D1-1601',
+    unitId: 'SG-QU-1601',
     residentName: 'Elena Rostova',
     category: 'HVAC',
     title: 'Bảo dưỡng định kỳ màng lọc khí tươi điều hòa trung tâm VRV',
     priority: 'Medium',
     status: 'Open',
     reportedAt: '2 giờ trước'
+  },
+  {
+    id: 'TKT-8075',
+    unitId: 'DN-SO-1202',
+    residentName: 'Kenji Sato',
+    category: 'Plumbing',
+    title: 'Hiệu chuẩn cảm biến lưu lượng nước thông minh',
+    priority: 'Low',
+    status: 'Resolved',
+    reportedAt: '1 ngày trước'
   }
 ];
 

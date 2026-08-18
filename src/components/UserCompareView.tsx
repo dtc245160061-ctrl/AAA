@@ -114,7 +114,7 @@ export const UserCompareView: React.FC<UserCompareViewProps> = ({
         <div>
           <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
             <Layers className="w-4 h-4" />
-            <span>Đấu Trường So Sánh Đa Chiều (Comparison Arena)</span>
+            <span>So Sánh Đa Chiều (Radar Chart)</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-serif text-slate-100 font-bold mt-1">
             Đặt Lên Bàn Cân: Chi Phí Thật, An Toàn & Không Gian
