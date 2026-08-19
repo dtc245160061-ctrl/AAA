@@ -28,7 +28,7 @@ export const DevPreviewLauncher: React.FC<DevPreviewLauncherProps> = ({ currentV
   };
 
   return (
-    <aside aria-label="Developer Preview Controls" className="fixed bottom-4 right-4 z-50 font-mono text-xs">
+    <aside aria-label="Developer Preview Controls" className="fixed bottom-20 md:bottom-8 left-4 md:left-6 z-50 font-mono text-xs">
       {!isOpen ? (
         <button
           onClick={() => setIsOpen(true)}

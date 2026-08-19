@@ -236,7 +236,7 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
                   <img
                     src={unit.images[0]}
                     alt={unit.name || unit.id}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover transition-transform duration-300"
                   />
                   <div className="absolute top-3 left-3">
                     <span className="px-2.5 py-1 rounded-full bg-slate-950/85 backdrop-blur-md border border-emerald-500/40 text-emerald-300 text-[10px] font-mono font-bold">

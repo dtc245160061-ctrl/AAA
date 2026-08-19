@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Sparkles, Plus, Clock, Moon, Sun, Monitor, RotateCcw, Bookmark } from 'lucide-react';
+import { Search, Sparkles, Plus, Moon, Sun, Monitor, RotateCcw, Bookmark, Menu, Clock } from 'lucide-react';
 import type { ThemeMode } from '../App';
 
 interface TopbarProps {
@@ -8,10 +8,10 @@ interface TopbarProps {
   onOpenSaved?: () => void;
   onOpenAiCopilot: () => void;
   onOpenQuickAction?: () => void;
-  selectedBuilding?: string;
   themeMode?: ThemeMode;
   onThemeChange?: (mode: ThemeMode) => void;
   onResetDemoData?: () => void;
+  onToggleMobileSidebar?: () => void;
 }
 
 export const Topbar: React.FC<TopbarProps> = ({
@@ -20,14 +20,13 @@ export const Topbar: React.FC<TopbarProps> = ({
   onOpenSaved,
   onOpenAiCopilot,
   onOpenQuickAction,
-  selectedBuilding = 'Grand Tower Residence',
   themeMode = 'dark',
   onThemeChange,
   onResetDemoData,
+  onToggleMobileSidebar,
 }) => {
   const [time, setTime] = useState<string>('');
   const [themeDropdownOpen, setThemeDropdownOpen] = useState<boolean>(false);
-  const [resetToast, setResetToast] = useState<boolean>(false);
 
   useEffect(() => {
     const updateTime = () => {
@@ -37,7 +36,7 @@ export const Topbar: React.FC<TopbarProps> = ({
           hour: '2-digit',
           minute: '2-digit',
           second: '2-digit',
-          hour12: true,
+          hour12: false,
         })
       );
     };
@@ -49,149 +48,162 @@ export const Topbar: React.FC<TopbarProps> = ({
   const handleResetDemo = () => {
     onResetDemoData?.();
     setThemeDropdownOpen(false);
-    setResetToast(true);
-    setTimeout(() => setResetToast(false), 2500);
   };
 
   const themeOptions: { mode: ThemeMode; label: string; icon: React.ComponentType<{ className?: string }> }[] = [
-    { mode: 'dark', label: 'Giao diện Tối', icon: Moon },
-    { mode: 'light', label: 'Giao diện Sáng', icon: Sun },
-    { mode: 'system', label: 'Theo Hệ Thống', icon: Monitor },
+    { mode: 'dark', label: 'Tối', icon: Moon },
+    { mode: 'light', label: 'Sáng', icon: Sun },
+    { mode: 'system', label: 'Hệ thống', icon: Monitor },
   ];
 
   const CurrentThemeIcon = themeMode === 'light' ? Sun : themeMode === 'system' ? Monitor : Moon;
 
   return (
-    <header className="sticky top-0 z-30 w-full bg-[#0A0D12]/90 backdrop-blur-md border-b border-slate-800/80 px-8 py-3.5 transition-colors duration-300">
-      {resetToast && (
-        <div className="absolute top-16 right-8 z-50 bg-emerald-400 text-slate-950 px-3.5 py-2 rounded-xl font-mono-tech text-xs font-bold shadow-2xl flex items-center gap-2 animate-fade-in">
-          <RotateCcw className="w-3.5 h-3.5" />
-          <span>Đã khôi phục dữ liệu mẫu về mặc định!</span>
-        </div>
-      )}
-
-      <div className="flex items-center justify-between gap-4">
-        {/* Left: App Identity & Time Indicator */}
-        <div className="flex items-center gap-4">
-          <div>
-            <div className="flex items-center gap-2 text-[11px] font-mono-tech text-slate-400">
-              <span className="uppercase tracking-widest text-emerald-400 font-semibold">
-                {isAdminView ? 'QUẢN LÝ VẬN HÀNH' : 'HAVEN RESIDENTIAL'}
-              </span>
-              <span>•</span>
-              <span className="flex items-center gap-1 text-slate-400">
-                <Clock className="w-3 h-3 text-slate-400" />
-                {time} UTC+7
-              </span>
-            </div>
-            <h2 className="text-base font-bold text-slate-100 font-serif mt-0.5">
-              {isAdminView ? selectedBuilding : 'HAVEN — Tìm Nơi Ở Lý Tưởng Cho Cuộc Sống Của Bạn'}
-            </h2>
-          </div>
-        </div>
-
-        {/* Right: Saved Bookmark Counter, Global Search, AI Advisor, Theme Control */}
-        <div className="flex items-center gap-3">
-          {/* Saved Units Shortcut for Consumer View */}
-          {!isAdminView && (
+    <header
+      className="sticky top-0 w-full bg-[var(--haven-bg)]/92 backdrop-blur-lg border-b border-[var(--haven-border)] px-4 md:px-6 transition-colors"
+      style={{
+        height: 'var(--topbar-height)',
+        zIndex: 'var(--z-sticky)',
+      }}
+    >
+      <div className="flex items-center justify-between gap-3 h-full">
+        {/* Left: Mobile menu + Brand & Clock Context */}
+        <div className="flex items-center gap-3 min-w-0">
+          {onToggleMobileSidebar && (
             <button
-              onClick={onOpenSaved}
-              className="flex items-center gap-2 px-3.5 py-1.5 text-xs font-mono font-medium text-emerald-300 bg-emerald-950/60 border border-emerald-500/40 rounded-lg hover:bg-emerald-900/60 transition-all relative shadow-sm"
+              onClick={onToggleMobileSidebar}
+              className="md:hidden p-1.5 rounded-lg text-[var(--haven-text-tertiary)] hover:text-[var(--haven-text-primary)] hover:bg-[var(--haven-surface-hover)] transition-colors focus-ring"
             >
-              <Bookmark className="w-3.5 h-3.5 fill-current" />
-              <span>Đã lưu ({savedCount})</span>
+              <Menu className="w-5 h-5" />
             </button>
           )}
 
-          {/* Global Search Bar */}
-          <div className="relative hidden md:block">
-            <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+          <div className="hidden sm:flex items-center gap-2 min-w-0 font-mono text-[11px]">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--haven-emerald-400)]">
+              {isAdminView ? 'QUẢN LÝ VẬN HÀNH' : 'HAVEN RESIDENTIAL'}
+            </span>
+            <span className="text-[var(--haven-text-muted)]">•</span>
+            <span className="flex items-center gap-1 text-[var(--haven-text-secondary)] font-medium">
+              <Clock className="w-3 h-3 text-[var(--haven-emerald-400)]" />
+              <span>{time || '--:--:--'}</span>
+              <span className="text-[9px] text-[var(--haven-text-muted)]">UTC+7</span>
+            </span>
+          </div>
+        </div>
+
+        {/* Center: Global Search */}
+        <div className="flex-1 max-w-md hidden md:block">
+          <div className="relative">
+            <Search className="w-3.5 h-3.5 text-[var(--haven-text-muted)] absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder={isAdminView ? "Tìm căn hộ, cư dân..." : "Tìm thành phố, ngân sách..."}
-              className="w-60 pl-9 pr-4 py-1.5 text-xs bg-slate-900/80 border border-slate-700/80 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:border-emerald-500/50 transition-all font-mono-tech"
+              className="w-full pl-9 pr-4 py-1.5 text-[var(--text-sm)] bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] rounded-[var(--radius-lg)] text-[var(--haven-text-primary)] placeholder-[var(--haven-text-muted)] focus:outline-none focus:border-[var(--haven-border-focus)] transition-colors font-[var(--font-mono)]"
             />
           </div>
+        </div>
 
-          {/* AI Advisor / Copilot Button */}
+        {/* Right: Normalized Control Group */}
+        <div className="flex items-center gap-2">
+          {/* Saved Units (Consumer) */}
+          {!isAdminView && (
+            <button
+              onClick={onOpenSaved}
+              className="h-8 flex items-center gap-1.5 px-3 text-[var(--text-xs)] font-mono font-medium text-[var(--haven-emerald-400)] bg-[var(--haven-emerald-muted)] border border-[var(--haven-border-accent)] rounded-[var(--radius-lg)] hover:bg-[rgba(16,185,129,0.18)] transition-colors focus-ring shrink-0"
+              title="Căn hộ đã lưu"
+            >
+              <Bookmark className="w-3.5 h-3.5 fill-current" />
+              <span>{savedCount}</span>
+            </button>
+          )}
+
+          {/* AI Assistant Button with Subtle Breathing Pulse */}
           <button
             onClick={onOpenAiCopilot}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-200 bg-slate-900/80 border border-slate-700/80 rounded-lg hover:bg-slate-800 hover:border-emerald-500/40 transition-all"
+            className="h-8 flex items-center gap-1.5 px-3 text-[var(--text-xs)] font-medium text-[var(--haven-text-secondary)] bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] rounded-[var(--radius-lg)] hover:bg-[var(--haven-surface-hover)] hover:border-[var(--haven-border-accent)] transition-colors focus-ring shrink-0 group"
+            title="Trợ lý AI HAVEN"
           >
-            <Sparkles className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
-            <span className="hidden sm:inline">{isAdminView ? 'AI Copilot' : 'Trợ lý AI HAVEN'}</span>
+            <Sparkles className="w-3.5 h-3.5 text-[var(--haven-emerald-400)] animate-pulse" />
+            <span className="hidden sm:inline font-mono">{isAdminView ? 'AI' : 'Trợ lý AI'}</span>
           </button>
 
-          {/* Quick Action Button for Admin */}
+          {/* Quick Action (Admin) */}
           {isAdminView && onOpenQuickAction && (
             <button
               onClick={onOpenQuickAction}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-slate-950 bg-emerald-400 hover:bg-emerald-300 rounded-lg transition-all shadow-sm"
+              className="h-8 flex items-center gap-1.5 px-3 text-[var(--text-xs)] font-semibold text-[var(--haven-text-inverse)] bg-[var(--haven-emerald-500)] hover:bg-[var(--haven-emerald-400)] rounded-[var(--radius-lg)] transition-colors shadow-sm focus-ring shrink-0"
             >
               <Plus className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Tạo Mới</span>
             </button>
           )}
 
-          {/* Theme & Demo Switcher Control */}
+          {/* Theme Switcher with Clear Selection State */}
           <div className="relative">
             <button
               onClick={() => setThemeDropdownOpen(!themeDropdownOpen)}
-              title={`Giao diện: ${themeMode}`}
-              className="p-2 text-slate-300 hover:text-white bg-slate-900/80 border border-slate-700/80 rounded-lg hover:bg-slate-800 transition-all flex items-center justify-center relative group"
+              className="h-8 w-8 flex items-center justify-center text-[var(--haven-text-secondary)] hover:text-[var(--haven-text-primary)] bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] rounded-[var(--radius-lg)] hover:bg-[var(--haven-surface-hover)] hover:border-[var(--haven-border-accent)] transition-colors focus-ring relative"
+              title={`Giao diện hiện tại: ${themeMode === 'light' ? 'Sáng' : themeMode === 'dark' ? 'Tối' : 'Hệ thống'}`}
             >
-              <CurrentThemeIcon className="w-3.5 h-3.5 text-emerald-400" />
+              <CurrentThemeIcon className="w-3.5 h-3.5 text-[var(--haven-emerald-400)]" />
+              <span className="absolute bottom-1 right-1 w-1.5 h-1.5 rounded-full bg-[var(--haven-emerald-400)]" />
             </button>
 
-            {/* Theme Dropdown Menu */}
             {themeDropdownOpen && (
-              <div className="absolute right-0 top-full mt-2 w-48 p-1.5 rounded-xl atmospheric-panel border border-slate-700/80 shadow-2xl z-50 space-y-1">
-                <span className="text-[9px] font-mono-tech uppercase text-slate-400 px-2 py-1 block">
-                  CHẾ ĐỘ HIỂN THỊ
-                </span>
-                {themeOptions.map(({ mode, label, icon: Icon }) => (
-                  <button
-                    key={mode}
-                    onClick={() => {
-                      onThemeChange?.(mode);
-                      setThemeDropdownOpen(false);
-                    }}
-                    className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-mono-tech transition-all ${
-                      themeMode === mode
-                        ? 'bg-emerald-500/20 text-emerald-300 font-semibold border border-emerald-500/30'
-                        : 'text-slate-300 hover:bg-slate-800/80 hover:text-white'
-                    }`}
-                  >
-                    <div className="flex items-center gap-2">
-                      <Icon className="w-3.5 h-3.5 text-slate-400" />
-                      <span>{label}</span>
-                    </div>
-                    {themeMode === mode && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />}
-                  </button>
-                ))}
+              <>
+                <div className="fixed inset-0 z-40" onClick={() => setThemeDropdownOpen(false)} />
 
-                <div className="pt-1.5 border-t border-slate-800">
-                  <span className="text-[9px] font-mono-tech uppercase text-slate-400 px-2 py-1 block">
-                    MÔI TRƯỜNG DỮ LIỆU
+                <div
+                  className="absolute right-0 top-full mt-2 w-44 p-1.5 rounded-[var(--radius-xl)] surface-elevated shadow-[var(--shadow-overlay)] z-50 space-y-0.5 border border-[var(--haven-border)]"
+                >
+                  <span className="text-label text-[9px] px-2 py-1 block">
+                    GIAO DIỆN
                   </span>
+                  {themeOptions.map(({ mode, label, icon: Icon }) => (
+                    <button
+                      key={mode}
+                      onClick={() => {
+                        onThemeChange?.(mode);
+                        setThemeDropdownOpen(false);
+                      }}
+                      className={`
+                        w-full flex items-center justify-between px-2.5 py-1.5
+                        rounded-[var(--radius-md)] text-[var(--text-xs)] font-mono
+                        transition-colors
+                        ${themeMode === mode
+                          ? 'bg-[var(--haven-emerald-muted)] text-[var(--haven-emerald-400)] font-semibold border border-[var(--haven-border-accent)]'
+                          : 'text-[var(--haven-text-secondary)] hover:bg-[var(--haven-surface-hover)] hover:text-[var(--haven-text-primary)]'
+                        }
+                      `}
+                    >
+                      <div className="flex items-center gap-2">
+                        <Icon className="w-3.5 h-3.5" />
+                        <span>{label}</span>
+                      </div>
+                      {themeMode === mode && <span className="status-dot status-dot-active" />}
+                    </button>
+                  ))}
+
+                  <div className="divider my-1" />
+
                   <button
                     onClick={handleResetDemo}
-                    className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs font-mono-tech text-rose-300 hover:bg-rose-950/50 hover:text-rose-200 transition-all text-left"
+                    className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-[var(--radius-md)] text-[var(--text-xs)] font-mono text-[var(--haven-rose-400)] hover:bg-[var(--haven-rose-muted)] transition-colors text-left"
                   >
-                    <RotateCcw className="w-3.5 h-3.5 text-rose-400" />
-                    <span>Khôi phục Dữ Liệu Mẫu</span>
+                    <RotateCcw className="w-3.5 h-3.5" />
+                    <span>Khôi phục Demo</span>
                   </button>
                 </div>
-              </div>
+              </>
             )}
           </div>
 
           {/* Profile */}
-          <div className="pl-2 border-l border-slate-800/80">
+          <div className="pl-1 border-l border-[var(--haven-border)]">
             <img
               src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150"
               alt="Profile"
-              className="w-7 h-7 rounded-lg object-cover border border-slate-700"
+              className="h-8 w-8 rounded-[var(--radius-lg)] object-cover border border-[var(--haven-border)]"
             />
           </div>
         </div>

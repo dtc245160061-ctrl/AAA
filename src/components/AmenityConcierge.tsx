@@ -56,7 +56,7 @@ export const AmenityConcierge: React.FC<AmenityConciergeProps> = ({ amenities })
               <img
                 src={item.image}
                 alt={item.name}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                className="w-full h-full object-cover transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#07080B] via-transparent to-transparent" />
               <span className="absolute top-3 left-3 px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-black/60 backdrop-blur-md text-amber-300 border border-white/10 rounded-full">

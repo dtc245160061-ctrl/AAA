@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Sparkles } from 'lucide-react';
 import { Sidebar } from './components/Sidebar';
+import { MobileNav } from './components/layout/MobileNav';
 import { Topbar } from './components/Topbar';
 import { UserHomeView } from './components/UserHomeView';
 import { UserSearchView } from './components/UserSearchView';
@@ -53,6 +54,7 @@ export function App() {
 
   const [activeModule, setActiveModule] = useState<string>(() => isAdminView ? 'dashboard' : 'user_home');
   const [selectedUnitId, setSelectedUnitId] = useState<string>('HN-TH-2401');
+  const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
   const [initialAiQuery, setInitialAiQuery] = useState<string>('');
   
   // Reactive Central State from ApartmentStore
@@ -67,13 +69,19 @@ export function App() {
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
 
   const showToast = (type: 'success' | 'error' | 'info', title: string, description?: string) => {
-    const newToast: ToastMessage = {
-      id: `toast-${Date.now()}-${Math.random().toString(36).substr(2, 4)}`,
-      type,
-      title,
-      description
-    };
-    setToasts(prev => [...prev, newToast]);
+    setToasts(prev => {
+      // Prevent duplicate identical toasts in rapid succession
+      if (prev.some(t => t.title === title && t.description === description)) {
+        return prev;
+      }
+      const newToast: ToastMessage = {
+        id: `toast-${Date.now()}-${Math.random().toString(36).substr(2, 4)}`,
+        type,
+        title,
+        description
+      };
+      return [...prev, newToast];
+    });
   };
 
   const dismissToast = (id: string) => {
@@ -139,6 +147,11 @@ export function App() {
       return () => media.removeEventListener('change', listener);
     }
   }, [themeMode]);
+
+  // Scroll to top on route / module change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [activeModule]);
 
   const handleToggleSaveUnit = (unitId: string) => {
     const updated = savedUnitIds.includes(unitId)
@@ -280,10 +293,6 @@ export function App() {
       {/* Toast Notifications */}
       <ToastContainer toasts={toasts} onDismiss={dismissToast} />
 
-      {/* Subtle Ambient Glows */}
-      <div className="ambient-glow-sky -top-32 -left-32" />
-      <div className="ambient-glow-forest top-[600px] -right-40" />
-
       {/* Sidebar Navigation */}
       <Sidebar
         isAdminView={isAdminView}
@@ -299,6 +308,8 @@ export function App() {
         savedCount={savedUnitIds.length}
         pendingLeadsCount={pendingLeadsCount}
         unreadMessagesCount={unreadMessagesCount}
+        collapsed={sidebarCollapsed}
+        onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
       />
 
       {/* Main Content Layout Shell */}
@@ -325,7 +336,7 @@ export function App() {
         />
 
         {/* Dynamic View Body Container */}
-        <main className="flex-1 p-8 max-w-7xl w-full mx-auto space-y-8">
+        <main className="flex-1 p-4 md:p-8 max-w-7xl w-full mx-auto space-y-8 pb-20 md:pb-8">
           {/* USER MODE CONSUMER VIEWS */}
           {!isAdminView && activeModule === 'user_home' && (
             <UserHomeView
@@ -525,19 +536,19 @@ export function App() {
       {!isAdminView && (
         <button
           onClick={() => setIsUserAiAdvisorOpen(true)}
-          className="fixed bottom-16 right-6 z-40 group flex items-center gap-3 px-4 py-3 rounded-full bg-slate-950/90 hover:bg-slate-900 border border-emerald-500/50 hover:border-emerald-400 shadow-2xl backdrop-blur-xl transition-all duration-300 hover:scale-105 active:scale-95 text-left"
+          className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40 group flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-[var(--haven-surface-elevated)] hover:bg-[var(--haven-surface-raised)] border border-[var(--haven-border-accent)] hover:border-[var(--haven-border-focus)] shadow-[var(--shadow-elevated)] backdrop-blur-xl transition-all duration-200 active:scale-[0.98] text-left"
           title="Mở Trợ lý AI HAVEN"
         >
-          <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-md shadow-emerald-500/30 group-hover:rotate-12 transition-transform shrink-0">
-            <Sparkles className="w-5 h-5 fill-slate-950" />
+          <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-sm shrink-0">
+            <Sparkles className="w-3.5 h-3.5 fill-slate-950" />
           </div>
           <div className="hidden sm:block pr-1">
-            <div className="text-xs font-serif font-bold text-slate-100 group-hover:text-emerald-300 transition-colors flex items-center gap-1.5">
-              <span>Trợ lý AI HAVEN</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+            <div className="text-xs font-display font-semibold text-[var(--haven-text-primary)] group-hover:text-[var(--haven-emerald-400)] transition-colors flex items-center gap-1.5">
+              <span>Trợ lý AI</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
             </div>
-            <div className="text-[10px] font-mono text-emerald-400/80">
-              Tìm nhà theo phong cách sống
+            <div className="text-[10px] font-mono text-[var(--haven-text-tertiary)]">
+              Tư vấn căn hộ
             </div>
           </div>
         </button>
@@ -783,6 +794,15 @@ export function App() {
 
       {/* ISOLATED DEVELOPER PREVIEW SYSTEM */}
       <DevPreviewLauncher currentView={isAdminView ? 'admin' : 'user'} />
+
+      {/* Mobile Bottom Navigation */}
+      <MobileNav
+        isAdminView={isAdminView}
+        activeModule={activeModule}
+        onNavigate={setActiveModule}
+        savedCount={savedUnitIds.length}
+        pendingLeadsCount={pendingLeadsCount}
+      />
     </div>
   );
 }
