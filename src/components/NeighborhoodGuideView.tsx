@@ -243,8 +243,8 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
                       ✓ Verified Cấp 3
                     </span>
                   </div>
-                  <div className="absolute bottom-3 right-3 px-2 py-0.5 rounded-lg bg-slate-950/85 text-emerald-400 text-xs font-mono font-bold">
-                    {((unit.trueCost?.totalMonthlyEstimatedVND || unit.monthlyRentVND) / 1000000).toFixed(1)} Tr/tháng
+                  <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-slate-950/85 backdrop-blur-md border border-slate-700 text-emerald-400 text-xs font-mono font-bold">
+                    {((unit.trueCost?.totalMonthlyEstimatedVND || unit.monthlyRentVND) / 1000000).toFixed(1)}Tr/tháng
                   </div>
                 </div>
 

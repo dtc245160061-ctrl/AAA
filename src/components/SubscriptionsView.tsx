@@ -74,11 +74,11 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
               onClick={() => setActiveTab('tenant')}
               className={`px-5 py-2 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-2 ${
                 activeTab === 'tenant'
-                  ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
+                  ? 'bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25 border border-cyan-300/40'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              <Crown className="w-4 h-4" />
+              <Crown className="w-4 h-4 text-cyan-300" />
               <span>Hội Viên Cư Dân (Prime Club)</span>
             </button>
           </div>
@@ -112,10 +112,14 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
           return (
             <div
               key={plan.id}
-              className={`p-6 md:p-8 rounded-3xl atmospheric-panel border flex flex-col justify-between transition-all duration-200 relative overflow-hidden backdrop-blur-2xl shadow-xl hover:-translate-y-1.5 hover:shadow-2xl ${
-                plan.isPopular
-                  ? 'border-emerald-500/60 shadow-emerald-500/10 ring-1 ring-emerald-500/50 hover:border-emerald-400'
-                  : 'border-slate-800 hover:border-slate-600'
+              className={`p-6 md:p-8 rounded-3xl atmospheric-panel border flex flex-col justify-between transition-all duration-300 relative overflow-hidden backdrop-blur-2xl shadow-xl hover:-translate-y-2 hover:shadow-2xl ${
+                plan.id === 'enterprise'
+                  ? 'border-amber-500/50 hover:border-amber-400 hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]'
+                  : plan.targetAudience === 'tenant'
+                  ? 'border-cyan-500/50 hover:border-cyan-400 hover:shadow-[0_0_35px_rgba(6,182,212,0.25)]'
+                  : plan.isPopular
+                  ? 'border-emerald-500/60 shadow-emerald-500/10 ring-1 ring-emerald-500/50 hover:border-emerald-400 hover:shadow-[0_0_35px_rgba(16,185,129,0.25)]'
+                  : 'border-slate-800 hover:border-slate-600 hover:shadow-[0_0_25px_rgba(255,255,255,0.05)]'
               }`}
             >
               <div className="space-y-5">
@@ -127,10 +131,12 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
                   {plan.badge && (
                     <span className={`shrink-0 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider ${
                       plan.id === 'enterprise' || plan.badge === 'Doanh Nghiệp'
-                        ? 'bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-500 text-slate-950 shadow-md shadow-amber-500/30 border border-amber-300/80 font-bold'
+                        ? 'bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 text-slate-950 font-extrabold shadow-lg shadow-amber-500/30 border border-yellow-200/90'
+                        : plan.id === 'resident_prime' || plan.badge === 'Dành Cho Cư Dân'
+                        ? 'bg-gradient-to-r from-cyan-500 via-sky-400 to-blue-500 text-slate-950 font-extrabold shadow-lg shadow-cyan-500/30 border border-cyan-200/90'
                         : plan.isPopular || plan.badge === 'Khuyên Dùng'
-                        ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 shadow-md shadow-emerald-500/30'
-                        : 'bg-slate-800 text-slate-300 border border-slate-700'
+                        ? 'bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500 text-slate-950 font-extrabold shadow-lg shadow-emerald-500/30 border border-emerald-300/80'
+                        : 'bg-gradient-to-r from-slate-700 via-slate-600 to-slate-800 text-slate-200 font-bold border border-slate-600/80 shadow-md'
                     }`}>
                       {plan.badge}
                     </span>

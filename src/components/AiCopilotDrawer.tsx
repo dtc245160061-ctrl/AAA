@@ -10,7 +10,7 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
   const [messages, setMessages] = useState<Array<{ role: 'user' | 'assistant'; text: string; dataCard?: any }>>([
     {
       role: 'assistant',
-      text: 'Greetings, Operations Manager! I am your AI Property Intelligence Copilot. Ask me to query overdue rent, analyze upcoming lease expirations, review active maintenance dispatches, or draft resident notices.',
+      text: 'Xin chào Giám Đốc Vận Hành! Tôi là Haven AI Copilot — Trợ lý Trí tuệ Vận hành & Quản trị Tòa nhà HAVEN. Bạn có thể yêu cầu tôi tra cứu tiền thuê quá hạn, phân tích hợp đồng sắp hết hạn trong 60 ngày, kiểm tra sự cố bảo trì khẩn cấp, hoặc tóm tắt chỉ số an toàn PCCC.',
     },
   ]);
   const [input, setInput] = useState('');
@@ -18,10 +18,10 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
   if (!isOpen) return null;
 
   const quickPrompts = [
-    'Show overdue rent balances',
-    'Which leases expire in the next 60 days?',
-    'Show unresolved maintenance issues',
-    'Give me a summary of PH-2401',
+    'Tra cứu hóa đơn nợ quá hạn',
+    'Hợp đồng nào hết hạn trong 60 ngày tới?',
+    'Xem các sự cố bảo trì đang xử lý',
+    'Báo cáo tổng quan căn HN-TH-2401',
   ];
 
   const handleSend = (textToSend?: string) => {
@@ -34,59 +34,59 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
 
     setTimeout(() => {
       const q = query.toLowerCase();
-      if (q.includes('overdue') || q.includes('rent') || q.includes('balance') || q.includes('nợ')) {
+      if (q.includes('overdue') || q.includes('rent') || q.includes('balance') || q.includes('nợ') || q.includes('hóa đơn')) {
         setMessages((prev) => [
           ...prev,
           {
             role: 'assistant',
-            text: 'Here is the real-time summary of overdue rent collections for Grand Tower Residence:',
+            text: 'Dưới đây là bảng tổng hợp các khoản tiền thuê & hóa đơn dịch vụ cần đôn đốc thu hồi:',
             dataCard: {
               type: 'overdue',
-              total: '$12,400',
+              total: '128.5 Triệu VNĐ',
               count: 2,
               items: [
-                { unit: 'SV-2002', tenant: 'Marcus Sterling', amount: '$8,750', daysOverdue: 12 },
-                { unit: 'DL-0801', tenant: 'Kenji Takahashi', amount: '$3,650', daysOverdue: 5 },
+                { unit: 'HN-CG-1402', tenant: 'Phạm Thu Trang', amount: '71.3 Triệu', daysOverdue: 10 },
+                { unit: 'DN-HC-1202', tenant: 'Trần Đình Trọng', amount: '57.2 Triệu', daysOverdue: 4 },
               ],
             },
           },
         ]);
-      } else if (q.includes('expire') || q.includes('lease') || q.includes('contract') || q.includes('hạn')) {
+      } else if (q.includes('expire') || q.includes('lease') || q.includes('contract') || q.includes('hạn') || q.includes('hợp đồng')) {
         setMessages((prev) => [
           ...prev,
           {
             role: 'assistant',
-            text: 'Identified 2 lease contracts expiring within the next 60 days:',
+            text: 'Phát hiện 2 hợp đồng thuê sắp đến hạn tái ký trong vòng 60 ngày tới:',
             dataCard: {
               type: 'contracts',
               items: [
-                { unit: 'SV-2001', tenant: 'Sophia Chen', expires: '2026-07-31', status: 'Renewal Required' },
-                { unit: 'DL-1201', tenant: 'David Miller', expires: '2026-08-14', status: 'Under Review' },
+                { unit: 'HN-CG-1402', tenant: 'Phạm Thu Trang', expires: '2026-08-31', status: 'Cần Liên Hệ Tái Ký' },
+                { unit: 'SG-D1-1601', tenant: 'Nguyễn Thành Nam', expires: '2026-09-15', status: 'Đang Thương Thảo' },
               ],
             },
           },
         ]);
-      } else if (q.includes('maintenance') || q.includes('issue') || q.includes('bảo trì')) {
+      } else if (q.includes('maintenance') || q.includes('issue') || q.includes('bảo trì') || q.includes('sự cố')) {
         setMessages((prev) => [
           ...prev,
           {
             role: 'assistant',
-            text: 'Active maintenance dispatches requiring technician attention:',
+            text: 'Danh sách phiếu công tác bảo trì kỹ thuật đang được phân công xử lý:',
             dataCard: {
               type: 'maintenance',
               items: [
-                { unit: 'PH-2401', issue: 'Smart Lock Battery 42%', priority: 'Urgent', tech: 'Marcus Vance' },
-                { unit: 'SV-2002', issue: 'Master Bath Hydro-Jet Pressure', priority: 'Medium', tech: 'Alex Reed' },
+                { unit: 'HN-TH-2401', issue: 'Kiểm tra pin cảm biến khóa thông minh (còn 42%)', priority: 'Khẩn Cấp', tech: 'KTV. Hoàng Tuấn' },
+                { unit: 'SG-D1-1601', issue: 'Hiệu chỉnh áp lực nước vòi sen Master Bath', priority: 'Trung Bình', tech: 'KTV. Lê Minh' },
               ],
             },
           },
         ]);
-      } else if (q.includes('ph-2401') || q.includes('summary')) {
+      } else if (q.includes('2401') || q.includes('tổng quan') || q.includes('summary')) {
         setMessages((prev) => [
           ...prev,
           {
             role: 'assistant',
-            text: 'Executive Summary for Residence PH-2401 (Penthouse Sky Suite):\n• Resident: Alexander Vance\n• Rent Rate: $14,500/mo (Auto-Pay Active)\n• Lease Expiration: Jan 14, 2027 (185 days remaining)\n• Security Deposit: $29,000 Escrow Held\n• IoT Telemetry: Smart Lock 92%, HVAC Optimal 21.5°C',
+            text: '📊 Báo Cáo Tổng Quan Căn Hộ Penthouse HN-TH-2401 (Hồ Tây Panorama):\n• Khách thuê hiện tại: Alexander Vance\n• Giá thuê: 350Tr/tháng (Thanh toán tự động VietQR)\n• Hạn hợp đồng: 14/01/2027 (còn 185 ngày)\n• Tiền ký quỹ Escrow: 700Tr (Bảo chứng tài khoản BIDV)\n• Trạng thái PCCC & IoT: Cửa an toàn 98%, Điều hòa trung tâm 22.5°C đạt chuẩn.',
           },
         ]);
       } else {
@@ -94,11 +94,11 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
           ...prev,
           {
             role: 'assistant',
-            text: `Processed operational request for "${query}". Portfolio telemetry indicates 93.8% occupancy with all primary systems operating normally.`,
+            text: `Đã ghi nhận yêu cầu: "${query}". Tỷ lệ lấp đầy toàn hệ thống HAVEN hiện đạt 94.2% với 150 căn hộ vận hành ổn định.`,
           },
         ]);
       }
-    }, 500);
+    }, 400);
   };
 
   return (
@@ -108,14 +108,14 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
         <div className="p-6 border-b border-slate-800 flex items-center justify-between bg-slate-900/60">
           <div className="flex items-center gap-3">
             <div className="p-2.5 bg-emerald-500/20 rounded-xl border border-emerald-500/40 text-emerald-400">
-              <Sparkles className="w-5 h-5" />
+              <Sparkles className="w-5 h-5 animate-spin-slow" />
             </div>
             <div>
-              <span className="text-[10px] font-mono-tech text-emerald-400 font-bold uppercase tracking-widest block">
-                PROPERTY AI COPILOT
+              <span className="text-[10px] font-mono text-emerald-400 font-bold uppercase tracking-widest block">
+                TRỢ LÝ VẬN HÀNH AI (COPILOT)
               </span>
-              <h3 className="text-base font-bold text-white font-serif-editorial">
-                Operational Assistant
+              <h3 className="text-base font-bold text-white font-serif">
+                Haven Operations Copilot
               </h3>
             </div>
           </div>
@@ -129,7 +129,7 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
         </div>
 
         {/* Chat Messages Body */}
-        <div className="p-6 flex-1 overflow-y-auto space-y-4 text-xs font-mono-tech">
+        <div className="p-6 flex-1 overflow-y-auto space-y-4 text-xs font-mono">
           {messages.map((m, idx) => (
             <div
               key={idx}
@@ -138,7 +138,7 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
               <div
                 className={`p-4 rounded-2xl max-w-[88%] leading-relaxed ${
                   m.role === 'user'
-                    ? 'bg-emerald-400 text-slate-950 font-bold shadow-lg shadow-emerald-500/20'
+                    ? 'bg-emerald-500 text-slate-950 font-bold shadow-lg shadow-emerald-500/20'
                     : 'liquid-glass text-slate-200 border border-slate-700/80'
                 }`}
               >
@@ -149,15 +149,15 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
               {m.dataCard && m.dataCard.type === 'overdue' && (
                 <div className="w-full liquid-glass p-4 rounded-2xl border border-rose-500/40 space-y-3 bg-rose-950/20">
                   <div className="flex justify-between items-center text-xs font-bold text-rose-300">
-                    <span>Total Overdue Target</span>
-                    <span className="font-mono-tech text-base text-white">{m.dataCard.total}</span>
+                    <span>Tổng Nợ Cần Thu Hồi</span>
+                    <span className="font-mono text-base text-white">{m.dataCard.total}</span>
                   </div>
                   <div className="space-y-2">
                     {m.dataCard.items.map((item: any, i: number) => (
                       <div key={i} className="p-2.5 bg-slate-900/80 rounded-xl flex justify-between items-center text-[11px] border border-slate-800">
                         <div>
                           <strong className="text-white">{item.unit}</strong> — {item.tenant}
-                          <p className="text-slate-400 text-[10px]">{item.daysOverdue} days overdue</p>
+                          <p className="text-slate-400 text-[10px]">Quá hạn: {item.daysOverdue} ngày</p>
                         </div>
                         <span className="font-bold text-rose-400">{item.amount}</span>
                       </div>
@@ -168,15 +168,15 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
 
               {m.dataCard && m.dataCard.type === 'contracts' && (
                 <div className="w-full liquid-glass p-4 rounded-2xl border border-sky-500/40 space-y-3 bg-sky-950/20">
-                  <div className="text-xs font-bold text-sky-300">60-Day Expiring Contracts</div>
+                  <div className="text-xs font-bold text-sky-300">Hợp Đồng Hết Hạn Trong 60 Ngày</div>
                   <div className="space-y-2">
                     {m.dataCard.items.map((item: any, i: number) => (
                       <div key={i} className="p-2.5 bg-slate-900/80 rounded-xl flex justify-between items-center text-[11px] border border-slate-800">
                         <div>
                           <strong className="text-white">{item.unit}</strong> — {item.tenant}
-                          <p className="text-slate-400 text-[10px]">End: {item.expires}</p>
+                          <p className="text-slate-400 text-[10px]">Hết hạn: {item.expires}</p>
                         </div>
-                        <span className="px-2 py-0.5 text-[10px] bg-amber-950 text-amber-300 rounded border border-amber-500/40">
+                        <span className="px-2 py-0.5 text-[10px] bg-amber-950 text-amber-300 rounded border border-amber-500/40 font-bold">
                           {item.status}
                         </span>
                       </div>
@@ -187,15 +187,15 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
 
               {m.dataCard && m.dataCard.type === 'maintenance' && (
                 <div className="w-full liquid-glass p-4 rounded-2xl border border-emerald-500/40 space-y-3 bg-emerald-950/20">
-                  <div className="text-xs font-bold text-emerald-300">Active Work Order Tickets</div>
+                  <div className="text-xs font-bold text-emerald-300">Phiếu Công Tác Bảo Trì</div>
                   <div className="space-y-2">
                     {m.dataCard.items.map((item: any, i: number) => (
                       <div key={i} className="p-2.5 bg-slate-900/80 rounded-xl flex justify-between items-center text-[11px] border border-slate-800">
                         <div>
                           <strong className="text-white">{item.unit}</strong> — {item.issue}
-                          <p className="text-slate-400 text-[10px]">Tech: {item.tech}</p>
+                          <p className="text-slate-400 text-[10px]">Phụ trách: {item.tech}</p>
                         </div>
-                        <span className="px-2 py-0.5 text-[10px] bg-rose-950 text-rose-300 rounded border border-rose-500/40">
+                        <span className="px-2 py-0.5 text-[10px] bg-rose-950 text-rose-300 rounded border border-rose-500/40 font-bold">
                           {item.priority}
                         </span>
                       </div>
@@ -224,15 +224,15 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
           <div className="flex items-center gap-2">
             <input
               type="text"
-              placeholder="Ask AI about rent, contracts, maintenance..."
+              placeholder="Hỏi AI về tiền nhà, hợp đồng, bảo trì..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-              className="flex-1 px-4 py-2.5 text-xs bg-slate-900 border border-slate-700/80 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500/60 font-mono-tech"
+              className="flex-1 px-4 py-2.5 text-xs bg-slate-900 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 font-mono"
             />
             <button
               onClick={() => handleSend()}
-              className="p-2.5 bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold rounded-xl transition-all shadow-md"
+              className="p-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl transition-all shadow-md"
             >
               <Send className="w-4 h-4" />
             </button>

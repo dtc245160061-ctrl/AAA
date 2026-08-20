@@ -231,7 +231,7 @@ export const LandlordProfileModal: React.FC<LandlordProfileModalProps> = ({
                     </h5>
                     <p className="text-[11px] font-mono text-slate-400">{unit.district}</p>
                     <p className="text-xs font-mono text-emerald-400 font-bold">
-                      {((unit.trueCost?.totalMonthlyEstimatedVND || unit.monthlyRentVND) / 1000000).toFixed(1)} Tr/tháng
+                      {((unit.trueCost?.totalMonthlyEstimatedVND || unit.monthlyRentVND) / 1000000).toFixed(1)}Tr/tháng
                     </p>
                     <span className="text-[10px] font-mono text-slate-500">
                       {unit.bedrooms} PN • {unit.sqm} m²

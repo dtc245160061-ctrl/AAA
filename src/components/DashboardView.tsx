@@ -225,7 +225,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                   <div className="text-xs text-slate-400 font-mono flex items-center gap-2 mt-0.5">
                     <span className="text-slate-300 font-medium">{contract.unitName}</span>
                     <span>•</span>
-                    <span className="text-emerald-400 font-medium">{(contract.monthlyRentVND / 1000000).toFixed(0)} Tr/tháng</span>
+                    <span className="text-emerald-400 font-medium">{(contract.monthlyRentVND / 1000000).toFixed(0)}Tr/tháng</span>
                   </div>
                 </div>
                 <div className="text-right font-mono text-xs">

@@ -109,14 +109,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
         hidden md:flex flex-col justify-between sticky top-0 h-screen shrink-0
         bg-[var(--haven-bg-subtle)] border-r border-[var(--haven-border)]
         transition-[width] duration-200 ease-out
-        overflow-y-auto overflow-x-hidden z-40 p-2.5
+        overflow-y-auto overflow-x-hidden z-40 px-3.5 py-3
         ${collapsed ? 'w-[72px]' : 'w-[240px]'}
       `}
       style={{ zIndex: 'var(--z-sticky)' }}
     >
       <div className="space-y-4">
         {/* Top Header: Fixed Hamburger Button & Brand */}
-        <div className="flex items-center gap-2.5 h-11 px-0.5">
+        <div className="flex items-center gap-2.5 h-11">
           {/* YouTube-style Hamburger Button at permanent fixed position */}
           {onToggleCollapse && (
             <button
@@ -179,7 +179,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   }
                 `}
               >
-                {/* Fixed Icon Container: NEVER shifts position between collapsed & expanded */}
+                {/* Fixed Icon Container: Exactly 44px wide, centered in 44px space */}
                 <div className="w-11 h-11 flex items-center justify-center shrink-0">
                   <Icon className={`w-5 h-5 transition-transform duration-150 group-hover:scale-110 ${isActive ? 'text-[var(--haven-emerald-400)]' : ''}`} />
                 </div>

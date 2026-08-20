@@ -70,7 +70,7 @@ export const MarketplaceHealthView: React.FC<MarketplaceHealthViewProps> = ({
               onShowToast('info', 'Dữ liệu đã cập nhật', 'Chỉ số sức khỏe marketplace đã được làm mới.');
             }
           }}
-          className="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-xs font-mono hover:bg-slate-800 transition-colors flex items-center gap-1.5 self-start md:self-auto"
+          className="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-xs font-mono hover:bg-slate-800 transition-colors flex items-center gap-1.5 self-start md:self-auto shrink-0 whitespace-nowrap"
         >
           <RefreshCw className="w-3.5 h-3.5" />
           <span>Làm Mới Số Liệu</span>

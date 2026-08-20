@@ -259,7 +259,7 @@ export const UserCompareView: React.FC<UserCompareViewProps> = ({
                         </span>
                       </div>
                       <span className="text-emerald-400 font-semibold">
-                        {((unit.trueCost?.totalMonthlyEstimatedVND || unit.monthlyRentVND) / 1000000).toFixed(1)} Tr/th
+                        {((unit.trueCost?.totalMonthlyEstimatedVND || unit.monthlyRentVND) / 1000000).toFixed(1)}Tr/tháng
                       </span>
                     </div>
                   );

@@ -457,7 +457,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                         <span>Tổng CP Tối Đa:</span>
                       </span>
                       <span className="text-emerald-400 font-bold">
-                        {maxTrueCostVND >= 480000000 ? 'Không giới hạn' : `${(maxTrueCostVND / 1000000).toFixed(0)} Tr/tháng`}
+                        {maxTrueCostVND >= 480000000 ? 'Không giới hạn' : `${(maxTrueCostVND / 1000000).toFixed(0)}Tr/tháng`}
                       </span>
                     </div>
                     <input
@@ -470,9 +470,9 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                       className="w-full accent-emerald-400 bg-slate-800 h-1.5 rounded-lg cursor-pointer"
                     />
                     <div className="flex justify-between text-[10px] font-mono text-slate-400">
-                      <span>10 Tr</span>
-                      <span>120 Tr</span>
-                      <span>480 Tr+</span>
+                      <span>10Tr</span>
+                      <span>120Tr</span>
+                      <span>480Tr+</span>
                     </div>
                   </div>
                 ) : (
@@ -480,7 +480,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                     <div className="flex items-center justify-between text-xs font-mono">
                       <span className="text-slate-400 uppercase tracking-wider font-semibold">Giá Thuê Tối Đa</span>
                       <span className="text-emerald-400 font-bold">
-                        {maxRentVND >= 450000000 ? 'Không giới hạn' : `${(maxRentVND / 1000000).toFixed(0)} Tr/tháng`}
+                        {maxRentVND >= 450000000 ? 'Không giới hạn' : `${(maxRentVND / 1000000).toFixed(0)}Tr/tháng`}
                       </span>
                     </div>
                     <input
@@ -587,7 +587,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
           </div>
         )}
 
-        {/* Right Property Results Listing (Expands to 4 columns when filter is closed!) */}
+        {/* Right Property Results Listing */}
         <div className={isFilterOpen ? 'lg:col-span-8 xl:col-span-9 space-y-6' : 'lg:col-span-12 space-y-6'}>
           {filteredUnits.length === 0 ? (
             <div className="p-12 text-center rounded-2xl border border-slate-800 atmospheric-panel space-y-4">
@@ -606,10 +606,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
           ) : (
             <div className={
               viewMode === 'grid'
-                ? (isFilterOpen 
-                    ? 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5' 
-                    : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5'
-                  )
+                ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
                 : 'space-y-4'
             }>
               {filteredUnits.map(({ unit, score, matchReasons }) => {
@@ -635,24 +632,27 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                         src={unit.images[0]}
                         alt={unit.name || unit.id}
                         loading="lazy"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200';
+                        }}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
 
                       {/* Top Badges Overlay */}
-                      <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between gap-1.5">
-                        <div className="flex items-center gap-1 flex-wrap">
+                      <div className="absolute top-2.5 left-2.5 right-2.5 flex items-start justify-between gap-2 pointer-events-none">
+                        <div className="flex flex-col gap-1.5 items-start pointer-events-auto">
                           {renderVerificationBadge(unit.verificationLevel)}
                           {score > 70 && (
-                            <span className="px-2 py-0.5 rounded-full bg-emerald-500/30 backdrop-blur-md border border-emerald-400 text-emerald-200 text-[9px] font-mono font-semibold">
+                            <span className="px-2 py-0.5 rounded-full bg-emerald-950/90 backdrop-blur-md border border-emerald-400 text-emerald-300 text-[10px] font-mono font-bold shadow-md">
                               {score}% Khớp
                             </span>
                           )}
                         </div>
 
-                        <div className="flex items-center gap-1">
-                          <span className="px-2 py-0.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-amber-500/30 text-amber-300 text-[10px] font-mono font-bold flex items-center gap-0.5">
-                            <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
+                        <div className="flex items-center gap-1.5 pointer-events-auto">
+                          <span className="px-2 py-1 rounded-full bg-slate-950/90 backdrop-blur-md border border-amber-500/40 text-amber-300 text-[11px] font-mono font-bold flex items-center gap-0.5 shadow-md">
+                            <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                             <span>{unit.landlord?.trustScore || 4.8}★</span>
                           </span>
 
@@ -661,10 +661,10 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                               e.stopPropagation();
                               onToggleSaveUnit(unit.id);
                             }}
-                            className={`p-1.5 rounded-full backdrop-blur-md border transition-all ${
+                            className={`p-1.5 rounded-full backdrop-blur-md border transition-all shadow-md ${
                               isSaved
-                                ? 'bg-emerald-500 border-emerald-400 text-slate-950'
-                                : 'bg-slate-950/60 border-slate-700 text-slate-200 hover:text-white'
+                                ? 'bg-emerald-500 border-emerald-400 text-slate-950 scale-105'
+                                : 'bg-slate-950/80 border-slate-700 text-slate-200 hover:text-white hover:border-slate-500'
                             }`}
                             title={isSaved ? 'Đã lưu' : 'Lưu để so sánh'}
                           >
@@ -716,7 +716,10 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                           <span>Điểm Khớp Nhu Cầu:</span>
                         </span>
                         <ul className="space-y-0.5 text-slate-300 font-sans text-[11px]">
-                          {matchReasons.slice(0, 2).map((reason, idx) => (
+                          {(matchReasons.length > 0 ? matchReasons.slice(0, 2) : [
+                            'Đã kiểm định an toàn PCCC & Pháp lý',
+                            unit.hasCarParking ? 'Có chỗ đỗ ô tô hầm thông minh' : 'Tòa nhà văn minh, an ninh 24/7'
+                          ]).map((reason, idx) => (
                             <li key={idx} className="flex items-center gap-1.5">
                               <Check className="w-3 h-3 text-emerald-400 shrink-0" />
                               <span className="truncate">{reason}</span>
@@ -730,9 +733,9 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                         <div className="min-w-0">
                           <div className="flex items-baseline gap-1 flex-wrap">
                             <span className="text-lg font-serif font-bold text-emerald-400">
-                              {(trueCostTotal / 1000000).toFixed(1)} Tr
+                              {(trueCostTotal / 1000000).toFixed(1)}Tr
                             </span>
-                            <span className="text-xs text-slate-400 font-mono">/th</span>
+                            <span className="text-xs text-slate-400 font-mono">/tháng</span>
                           </div>
                           
                           <div className="text-[10px] font-mono text-slate-400 truncate">
@@ -742,7 +745,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
 
                         <button
                           onClick={() => onSelectUnit(unit.id)}
-                          className="px-3 py-2 rounded-xl bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-200 text-xs font-mono transition-all duration-200 font-medium hover:shadow-lg shadow-emerald-500/10 shrink-0"
+                          className="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-200 text-xs font-mono transition-all duration-200 font-bold hover:shadow-lg shadow-emerald-500/10 shrink-0 whitespace-nowrap"
                         >
                           Chi Tiết
                         </button>

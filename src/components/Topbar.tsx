@@ -150,13 +150,13 @@ export const Topbar: React.FC<TopbarProps> = ({
             </button>
           )}
 
-          {/* AI Assistant Button with Subtle Breathing Pulse */}
+          {/* AI Assistant Button with Subtle Slow Spin */}
           <button
             onClick={onOpenAiCopilot}
             className="h-8 flex items-center gap-1.5 px-3 text-[var(--text-xs)] font-medium text-[var(--haven-text-secondary)] bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] rounded-[var(--radius-lg)] hover:bg-[var(--haven-surface-hover)] hover:border-[var(--haven-border-accent)] transition-colors focus-ring shrink-0 group"
             title="Haven AI"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[var(--haven-emerald-400)] animate-pulse" />
+            <Sparkles className="w-3.5 h-3.5 text-[var(--haven-emerald-400)] animate-spin-slow group-hover:[animation-play-state:paused]" />
             <span className="hidden sm:inline font-mono">{isAdminView ? 'AI' : 'Haven AI'}</span>
           </button>
 

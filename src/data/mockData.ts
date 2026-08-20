@@ -981,7 +981,7 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Cầu Giấy",
     "address": "Tầng 37, Tòa tháp Haven Luxury, Đường Trung Hòa, Quận Cầu Giấy, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1560184897-ae75f418493e?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&q=80&w=1200"
     ],
@@ -2679,7 +2679,7 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "images": [
       "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -4959,7 +4959,7 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "images": [
       "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -6826,7 +6826,7 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "address": "Tầng 30, Tòa tháp Haven Luxury, Đường Hòa Cường Bắc, Quận Hải Châu, Đà Nẵng",
     "images": [
       "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
@@ -9148,7 +9148,7 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "address": "Tầng 4, Tòa tháp Haven Luxury, Đường Chánh Nghĩa, Quận Thủ Dầu Một, Bình Dương",
     "images": [
       "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1560184897-ae75f418493e?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
@@ -11001,7 +11001,7 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Cái Răng",
     "address": "Tầng 25, Tòa tháp Haven Luxury, Đường Lê Bình, Quận Cái Răng, Cần Thơ",
     "images": [
-      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&q=80&w=1200"
     ],
@@ -13351,7 +13351,7 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Ghềnh Ráng",
     "address": "Tầng 4, Tòa tháp Haven Luxury, Đường An Dương Vương, Quận Ghềnh Ráng, Quy Nhơn",
     "images": [
-      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1560184897-ae75f418493e?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&q=80&w=1200"
     ],

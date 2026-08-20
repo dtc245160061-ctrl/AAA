@@ -350,7 +350,7 @@ export function App() {
         />
 
         {/* Dynamic View Body Container */}
-        <main className="flex-1 p-4 md:p-8 max-w-7xl w-full mx-auto space-y-8 pb-20 md:pb-8">
+        <main className="flex-1 px-4 md:px-8 py-6 max-w-[1600px] w-full mx-auto space-y-8 pb-20 md:pb-8">
           {/* USER MODE CONSUMER VIEWS */}
           {!isAdminView && activeModule === 'user_home' && (
             <UserHomeView
@@ -558,8 +558,8 @@ export function App() {
           className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40 group flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-[var(--haven-surface-elevated)] hover:bg-[var(--haven-surface-raised)] border border-emerald-500/40 hover:border-emerald-400 shadow-xl shadow-emerald-500/10 backdrop-blur-xl transition-all duration-300 active:scale-[0.98] text-left hover:-translate-y-0.5"
           title="Mở Haven AI"
         >
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-md shadow-emerald-500/25 shrink-0 animate-pulse">
-            <Sparkles className="w-4 h-4 fill-slate-950 text-slate-950 animate-pulse" />
+          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-md shadow-emerald-500/25 shrink-0">
+            <Sparkles className="w-4 h-4 fill-slate-950 text-slate-950 animate-spin-slow group-hover:[animation-play-state:paused]" />
           </div>
           <div className="hidden sm:block pr-1">
             <div className="text-xs font-display font-bold text-[var(--haven-text-primary)] group-hover:text-[var(--haven-emerald-400)] transition-colors flex items-center gap-1.5">

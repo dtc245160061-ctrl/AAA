@@ -18,6 +18,10 @@
     --text-secondary: #475569;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     font-family: var(--font-sans);
     background-color: var(--bg-canvas);
@@ -25,6 +29,38 @@
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
+}
+
+/* ── Animated Background Mesh Drift ── */
+@keyframes mesh-drift {
+  0% {
+    background-position: 0% 0%, 100% 0%, 50% 100%, 100% 100%;
+  }
+  50% {
+    background-position: 100% 50%, 0% 100%, 100% 0%, 0% 50%;
+  }
+  100% {
+    background-position: 0% 0%, 100% 0%, 50% 100%, 100% 100%;
+  }
+}
+
+/* ── Continuous Slow Rotation for Haven AI Sparkles ── */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+
+.animate-spin-slow:hover,
+.group:hover .animate-spin-slow {
+  animation-play-state: paused;
 }
 
 /* ── Legacy Design System Classes (backward compatibility) ── */
@@ -43,10 +79,12 @@
 .canvas-surface {
   background-color: var(--haven-bg);
   background-image: 
-    radial-gradient(at 15% 15%, rgba(16, 185, 129, 0.09) 0px, transparent 55%),
-    radial-gradient(at 85% 25%, rgba(20, 184, 166, 0.07) 0px, transparent 50%),
-    radial-gradient(at 50% 80%, rgba(245, 158, 11, 0.04) 0px, transparent 50%),
-    radial-gradient(at 80% 85%, rgba(99, 102, 241, 0.05) 0px, transparent 55%);
+    radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.10) 0px, transparent 55%),
+    radial-gradient(circle at 85% 25%, rgba(20, 184, 166, 0.08) 0px, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(245, 158, 11, 0.05) 0px, transparent 50%),
+    radial-gradient(circle at 80% 85%, rgba(99, 102, 241, 0.06) 0px, transparent 55%);
+  background-size: 200% 200%;
+  animation: mesh-drift 30s ease-in-out infinite;
   background-attachment: fixed;
 }
 
@@ -54,9 +92,11 @@
 .light .canvas-surface {
   background-color: var(--haven-bg);
   background-image: 
-    radial-gradient(at 20% 15%, rgba(16, 185, 129, 0.05) 0px, transparent 55%),
-    radial-gradient(at 80% 25%, rgba(56, 189, 248, 0.05) 0px, transparent 50%),
-    radial-gradient(at 50% 80%, rgba(245, 158, 11, 0.03) 0px, transparent 50%);
+    radial-gradient(circle at 20% 15%, rgba(16, 185, 129, 0.06) 0px, transparent 55%),
+    radial-gradient(circle at 80% 25%, rgba(56, 189, 248, 0.06) 0px, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(245, 158, 11, 0.03) 0px, transparent 50%);
+  background-size: 200% 200%;
+  animation: mesh-drift 30s ease-in-out infinite;
   background-attachment: fixed;
 }
 

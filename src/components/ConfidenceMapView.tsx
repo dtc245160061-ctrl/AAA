@@ -250,7 +250,7 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
                         )}
                       </div>
                       <div className="text-[11px] font-mono font-bold text-emerald-400">
-                        {trueCostM.toFixed(1)} Tr/tháng
+                        {trueCostM.toFixed(1)}Tr/tháng
                       </div>
                     </div>
                   </button>

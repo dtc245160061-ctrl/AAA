@@ -43,15 +43,15 @@ export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
   const getCategoryBadge = (cat: LegalDocumentItem['category']) => {
     switch (cat) {
       case 'contract':
-        return <span className="px-2.5 py-1 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-bold">Hợp Đồng Số</span>;
+        return <span className="px-2.5 py-1 rounded-full bg-emerald-950/90 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-bold whitespace-nowrap inline-block">Hợp Đồng Số</span>;
       case 'deposit_escrow':
-        return <span className="px-2.5 py-1 rounded-full bg-amber-950 text-amber-400 border border-amber-500/30 text-[10px] font-mono font-bold">Biên Nhận Cọc Escrow</span>;
+        return <span className="px-2.5 py-1 rounded-full bg-amber-950/90 text-amber-400 border border-amber-500/30 text-[10px] font-mono font-bold whitespace-nowrap inline-block">Biên Nhận Cọc Escrow</span>;
       case 'pccc_cert':
-        return <span className="px-2.5 py-1 rounded-full bg-rose-950 text-rose-400 border border-rose-500/30 text-[10px] font-mono font-bold">Nghiệm Thu PCCC</span>;
+        return <span className="px-2.5 py-1 rounded-full bg-rose-950/90 text-rose-400 border border-rose-500/30 text-[10px] font-mono font-bold whitespace-nowrap inline-block">Nghiệm Thu PCCC</span>;
       case 'handover_report':
-        return <span className="px-2.5 py-1 rounded-full bg-sky-950 text-sky-400 border border-sky-500/30 text-[10px] font-mono font-bold">Bàn Giao 15 Mục</span>;
+        return <span className="px-2.5 py-1 rounded-full bg-sky-950/90 text-sky-400 border border-sky-500/30 text-[10px] font-mono font-bold whitespace-nowrap inline-block">Bàn Giao 15 Mục</span>;
       case 'ownership_doc':
-        return <span className="px-2.5 py-1 rounded-full bg-purple-950 text-purple-400 border border-purple-500/30 text-[10px] font-mono font-bold">Sổ Đỏ / Ủy Quyền</span>;
+        return <span className="px-2.5 py-1 rounded-full bg-purple-950/90 text-purple-400 border border-purple-500/30 text-[10px] font-mono font-bold whitespace-nowrap inline-block">Sổ Đỏ / Ủy Quyền</span>;
     }
   };
 

@@ -231,7 +231,7 @@ export function calculateMatchScore(unit: ApartmentUnit, filters: ConsumerFilter
       score -= 35;
     }
   } else if (filters.maxRentVND && unit.monthlyRentVND <= filters.maxRentVND) {
-    matchReasons.push(`Ngân sách tối ưu (${(unit.monthlyRentVND / 1000000).toFixed(0)} Tr/tháng)`);
+    matchReasons.push(`Ngân sách tối ưu (${(unit.monthlyRentVND / 1000000).toFixed(0)}Tr/tháng)`);
   }
 
   if (filters.hasCarParking && unit.hasCarParking) {

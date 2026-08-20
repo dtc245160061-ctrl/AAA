@@ -130,7 +130,7 @@ export const ChatModal: React.FC<ChatModalProps> = ({
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" title="Trực tuyến" />
               </div>
               <div className="flex items-center gap-2 text-[10px] font-mono text-slate-400">
-                <span className="text-emerald-400 font-bold">{(unit.monthlyRentVND / 1000000).toFixed(0)} Tr/tháng</span>
+                <span className="text-emerald-400 font-bold">{(unit.monthlyRentVND / 1000000).toFixed(0)}Tr/tháng</span>
                 <span>•</span>
                 <span>Ban Quản Trị Trực Tuyến</span>
               </div>

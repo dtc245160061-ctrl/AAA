@@ -160,20 +160,20 @@ export const ContractsView: React.FC<ContractsViewProps> = ({
           <table className="w-full text-left text-xs font-mono">
             <thead className="bg-slate-900/90 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
               <tr>
-                <th className="p-4">Mã Hợp Đồng</th>
-                <th className="p-4">Người Thuê</th>
-                <th className="p-4">Căn Hộ</th>
-                <th className="p-4">Giá Thuê & Tiền Cọc</th>
-                <th className="p-4">Thời Hạn Thuê</th>
-                <th className="p-4">Trạng Thái</th>
-                <th className="p-4 text-right">Chi Tiết</th>
+                <th className="p-4 whitespace-nowrap">Mã Hợp Đồng</th>
+                <th className="p-4 whitespace-nowrap">Người Thuê</th>
+                <th className="p-4 whitespace-nowrap">Căn Hộ</th>
+                <th className="p-4 whitespace-nowrap">Giá Thuê & Tiền Cọc</th>
+                <th className="p-4 whitespace-nowrap">Thời Hạn Thuê</th>
+                <th className="p-4 whitespace-nowrap">Trạng Thái</th>
+                <th className="p-4 text-right whitespace-nowrap">Chi Tiết</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800/60 text-slate-300">
               {filteredContracts.map(contract => (
                 <tr key={contract.id} className="hover:bg-slate-900/40 transition-colors">
-                  <td className="p-4 font-bold text-emerald-400">{contract.contractNumber}</td>
-                  <td className="p-4">
+                  <td className="p-4 font-bold text-emerald-400 whitespace-nowrap">{contract.contractNumber}</td>
+                  <td className="p-4 whitespace-nowrap">
                     <div className="font-serif font-bold text-slate-100 text-sm">{contract.tenantName}</div>
                     <div className="text-slate-400 flex items-center gap-1 mt-0.5">
                       <Phone className="w-3 h-3 text-slate-500" />
@@ -182,22 +182,22 @@ export const ContractsView: React.FC<ContractsViewProps> = ({
                   </td>
                   <td className="p-4 cursor-pointer" onClick={() => onSelectUnit(contract.unitId)}>
                     <div className="font-bold text-slate-200 hover:text-emerald-400 transition-colors line-clamp-1">{contract.unitName}</div>
-                    <div className="text-slate-500">{contract.unitId}</div>
+                    <div className="text-slate-500 text-[10px]">{contract.unitId}</div>
                   </td>
-                  <td className="p-4">
-                    <div className="font-bold text-slate-100">{(contract.monthlyRentVND / 1000000).toFixed(0)} Triệu /tháng</div>
-                    <div className="text-[10px] text-slate-400">Cọc: {(contract.depositVND / 1000000).toFixed(0)} Triệu</div>
+                  <td className="p-4 whitespace-nowrap">
+                    <div className="font-bold text-slate-100">{(contract.monthlyRentVND / 1000000).toFixed(0)}Tr/tháng</div>
+                    <div className="text-[10px] text-slate-400">Cọc: {(contract.depositVND / 1000000).toFixed(0)}Tr</div>
                   </td>
-                  <td className="p-4 text-slate-300">
-                    <div>{contract.startDate} $\rightarrow$ {contract.endDate}</div>
+                  <td className="p-4 text-slate-300 whitespace-nowrap">
+                    <div>{contract.startDate} → {contract.endDate}</div>
                     <div className="text-[10px] text-slate-500">Chu kỳ: {contract.paymentCycleMonths} tháng/lần</div>
                   </td>
-                  <td className="p-4">{getStatusBadge(contract.status)}</td>
-                  <td className="p-4 text-right">
+                  <td className="p-4 whitespace-nowrap">{getStatusBadge(contract.status)}</td>
+                  <td className="p-4 text-right whitespace-nowrap">
                     <div className="flex items-center justify-end gap-2">
                       <button
                         onClick={() => setSigningContract(contract)}
-                        className="px-3 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-slate-950 text-xs font-mono font-bold border border-emerald-500/40 transition-all flex items-center gap-1 shadow-sm"
+                        className="px-3 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-slate-950 text-xs font-mono font-bold border border-emerald-500/40 transition-all flex items-center gap-1 shadow-sm whitespace-nowrap"
                         title="Vẽ chữ ký điện tử trên màn hình"
                       >
                         <PenTool className="w-3.5 h-3.5" />
@@ -287,7 +287,7 @@ export const ContractsView: React.FC<ContractsViewProps> = ({
                   >
                     {units.map(unit => (
                       <option key={unit.id} value={unit.id}>
-                        {unit.id} - {unit.name || unit.district} ({(unit.monthlyRentVND / 1000000).toFixed(0)} Tr/th)
+                        {unit.id} - {unit.name || unit.district} ({(unit.monthlyRentVND / 1000000).toFixed(0)}Tr/tháng)
                       </option>
                     ))}
                   </select>

@@ -40,13 +40,13 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
   const getStatusBadge = (status: UnitStatus) => {
     switch (status) {
       case 'vacant':
-        return <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-medium">Sẵn Sàng Cho Thuê</span>;
+        return <span className="px-2.5 py-1 rounded-lg bg-slate-950/85 backdrop-blur-md text-emerald-400 border border-emerald-500/40 text-[10px] font-mono font-bold shadow-md">Sẵn Sàng Cho Thuê</span>;
       case 'occupied':
-        return <span className="px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30 text-[10px] font-mono font-medium">Đang Cho Thuê</span>;
+        return <span className="px-2.5 py-1 rounded-lg bg-slate-950/85 backdrop-blur-md text-sky-400 border border-sky-500/40 text-[10px] font-mono font-bold shadow-md">Đang Cho Thuê</span>;
       case 'reserved':
-        return <span className="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] font-mono font-medium">Đã Nhận Cọc</span>;
+        return <span className="px-2.5 py-1 rounded-lg bg-slate-950/85 backdrop-blur-md text-amber-400 border border-amber-500/40 text-[10px] font-mono font-bold shadow-md">Đã Nhận Cọc</span>;
       case 'maintenance':
-        return <span className="px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30 text-[10px] font-mono font-medium">Bảo Trì & Dọn Dẹp</span>;
+        return <span className="px-2.5 py-1 rounded-lg bg-slate-950/85 backdrop-blur-md text-rose-400 border border-rose-500/40 text-[10px] font-mono font-bold shadow-md">Bảo Trì & Dọn Dẹp</span>;
     }
   };
 
@@ -120,7 +120,7 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
               <button
                 key={tab.id}
                 onClick={() => setStatusFilter(tab.id)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all border ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-mono transition-all border ${
                   statusFilter === tab.id
                     ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300 font-semibold'
                     : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200'
@@ -157,13 +157,16 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                 <img
                   src={unit.images[0]}
                   alt={unit.name || unit.id}
-                  className="w-full h-full object-cover transition-transform duration-300"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200';
+                  }}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute top-3 left-3">
                   {getStatusBadge(unit.status)}
                 </div>
-                <div className="absolute bottom-3 right-3 px-3 py-1 rounded-xl bg-slate-950/80 backdrop-blur-md border border-slate-700 text-xs font-mono font-bold text-emerald-400">
-                  {(unit.monthlyRentVND / 1000000).toFixed(0)} Tr/tháng
+                <div className="absolute bottom-3 right-3 px-3 py-1 rounded-xl bg-slate-950/85 backdrop-blur-md border border-slate-700 text-xs font-mono font-bold text-emerald-400">
+                  {(unit.monthlyRentVND / 1000000).toFixed(0)}Tr/tháng
                 </div>
               </div>
 

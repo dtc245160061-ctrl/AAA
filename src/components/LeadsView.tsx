@@ -193,7 +193,7 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
                   </div>
                   <h4 className="text-xs font-serif font-bold text-slate-100 line-clamp-1">{lead.unitName}</h4>
                   <div className="text-xs font-mono font-bold text-emerald-400">
-                    {(lead.unitPriceVND / 1000000).toFixed(0)} Triệu /tháng
+                    {(lead.unitPriceVND / 1000000).toFixed(0)}Tr/tháng
                   </div>
                 </div>
 
@@ -303,8 +303,8 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
                       <div className="font-bold text-slate-200 line-clamp-1">{lead.unitName}</div>
                       <div className="text-slate-500">{lead.unitId}</div>
                     </td>
-                    <td className="p-4 text-emerald-400 font-bold">
-                      {(lead.unitPriceVND / 1000000).toFixed(0)} Tr/tháng
+                    <td className="p-4 text-emerald-400 font-bold whitespace-nowrap">
+                      {(lead.unitPriceVND / 1000000).toFixed(0)}Tr/tháng
                     </td>
                     <td className="p-4 text-slate-300">{lead.desiredMoveInDate}</td>
                     <td className="p-4">{getStatusBadge(lead.status)}</td>
