@@ -17,9 +17,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Tây Hồ",
     "address": "Tầng 10, Tòa tháp Haven Luxury, Đường Quảng An, Quận Tây Hồ, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -119,9 +119,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Hoàn Kiếm",
     "address": "Tầng 3, Tòa tháp Haven Luxury, Đường Hàng Bài, Quận Hoàn Kiếm, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -221,9 +221,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Ba Đình",
     "address": "Tầng 15, Tòa tháp Haven Luxury, Đường Ngọc Khánh, Quận Ba Đình, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -309,9 +309,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Cầu Giấy",
     "address": "Tầng 7, Tòa tháp Haven Luxury, Đường Yên Hòa, Quận Cầu Giấy, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -397,9 +397,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Nam Từ Liêm",
     "address": "Tầng 5, Tòa tháp Haven Luxury, Đường Mỹ Đình 2, Quận Nam Từ Liêm, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -499,9 +499,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Hai Bà Trưng",
     "address": "Tầng 28, Tòa tháp Haven Luxury, Đường Lê Đại Hành, Quận Hai Bà Trưng, Hà Nội",
     "images": [
+      "https://images.unsplash.com/photo-1554995207-c18c20360250?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -587,9 +587,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Đống Đa",
     "address": "Tầng 19, Tòa tháp Haven Luxury, Đường Ô Chợ Dừa, Quận Đống Đa, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -675,9 +675,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Tây Hồ",
     "address": "Tầng 22, Tòa tháp Haven Luxury, Đường Yên Phụ, Quận Tây Hồ, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -777,9 +777,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Hoàn Kiếm",
     "address": "Tầng 11, Tòa tháp Haven Luxury, Đường Tràng Tiền, Quận Hoàn Kiếm, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1617098900591-3f90928e8c54?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617098492931-29783f06db65?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618220179464-22a40a0866ab?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -879,9 +879,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Ba Đình",
     "address": "Tầng 10, Tòa tháp Haven Luxury, Đường Giảng Võ, Quận Ba Đình, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -981,9 +981,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Cầu Giấy",
     "address": "Tầng 37, Tòa tháp Haven Luxury, Đường Trung Hòa, Quận Cầu Giấy, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560184897-ae75f418493e?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -1083,9 +1083,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Nam Từ Liêm",
     "address": "Tầng 18, Tòa tháp Haven Luxury, Đường Mễ Trì, Quận Nam Từ Liêm, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1565182999-1c58d407045a?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -1171,9 +1171,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Hai Bà Trưng",
     "address": "Tầng 8, Tòa tháp Haven Luxury, Đường Minh Khai, Quận Hai Bà Trưng, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1574362847952-4a7b7a13d706?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -1273,9 +1273,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Đống Đa",
     "address": "Tầng 6, Tòa tháp Haven Luxury, Đường Láng Hạ, Quận Đống Đa, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -1375,9 +1375,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Tây Hồ",
     "address": "Tầng 5, Tòa tháp Haven Luxury, Đường Nhật Tân, Quận Tây Hồ, Hà Nội",
     "images": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -1463,9 +1463,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Hoàn Kiếm",
     "address": "Tầng 32, Tòa tháp Haven Luxury, Đường Phan Chu Trinh, Quận Hoàn Kiếm, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -1551,9 +1551,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Ba Đình",
     "address": "Tầng 38, Tòa tháp Haven Luxury, Đường Kim Mã, Quận Ba Đình, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -1653,9 +1653,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Cầu Giấy",
     "address": "Tầng 30, Tòa tháp Haven Luxury, Đường Nghĩa Đô, Quận Cầu Giấy, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -1755,9 +1755,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Nam Từ Liêm",
     "address": "Tầng 25, Tòa tháp Haven Luxury, Đường Mỹ Đình 1, Quận Nam Từ Liêm, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1499916078039-922301b0eb9b?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -1843,9 +1843,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Hai Bà Trưng",
     "address": "Tầng 18, Tòa tháp Haven Luxury, Đường Bạch Đằng, Quận Hai Bà Trưng, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1502005097973-6a7082348e28?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -1931,9 +1931,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Đống Đa",
     "address": "Tầng 24, Tòa tháp Haven Luxury, Đường Cát Linh, Quận Đống Đa, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1540518614846-7ede433c4570?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -2019,9 +2019,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Tây Hồ",
     "address": "Tầng 19, Tòa tháp Haven Luxury, Đường Xuân La, Quận Tây Hồ, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -2107,9 +2107,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Hoàn Kiếm",
     "address": "Tầng 36, Tòa tháp Haven Luxury, Đường Lý Thái Tổ, Quận Hoàn Kiếm, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1556909211-36987daf7b4d?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560185009-dddeb820c7b7?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -2209,9 +2209,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Ba Đình",
     "address": "Tầng 22, Tòa tháp Haven Luxury, Đường Liễu Giai, Quận Ba Đình, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1560185008-b033106af5c3?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560185008-5d2d0b57e793?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -2297,9 +2297,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Cầu Giấy",
     "address": "Tầng 21, Tòa tháp Haven Luxury, Đường Dịch Vọng Hậu, Quận Cầu Giấy, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1560448075-bb485b067938?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448076-2e869c9b1ec5?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448075-81a9420078eb?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -2385,9 +2385,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Nam Từ Liêm",
     "address": "Tầng 27, Tòa tháp Haven Luxury, Đường Mỹ Đình 2, Quận Nam Từ Liêm, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1560448075-47c0c1b48325?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448205-4d9b3e6bb6db?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -2488,8 +2488,8 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "address": "Tầng 23, Tòa tháp Haven Luxury, Đường Lê Đại Hành, Quận Hai Bà Trưng, Hà Nội",
     "images": [
       "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -2575,9 +2575,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Đống Đa",
     "address": "Tầng 18, Tòa tháp Haven Luxury, Đường Ô Chợ Dừa, Quận Đống Đa, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -2677,9 +2677,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Tây Hồ",
     "address": "Tầng 6, Tòa tháp Haven Luxury, Đường Quảng An, Quận Tây Hồ, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -2779,9 +2779,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Hoàn Kiếm",
     "address": "Tầng 34, Tòa tháp Haven Luxury, Đường Hàng Bài, Quận Hoàn Kiếm, Hà Nội",
     "images": [
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -2881,9 +2881,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 1",
     "address": "Tầng 32, Tòa tháp Haven Luxury, Đường Bến Nghé, Quận Quận 1, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -2969,9 +2969,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thủ Đức (Quận 2)",
     "address": "Tầng 18, Tòa tháp Haven Luxury, Đường An Phú, Quận Thủ Đức (Quận 2), TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -3071,9 +3071,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 7",
     "address": "Tầng 4, Tòa tháp Haven Luxury, Đường Phú Mỹ, Quận Quận 7, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -3159,9 +3159,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Bình Thạnh",
     "address": "Tầng 10, Tòa tháp Haven Luxury, Đường Phường 22, Quận Bình Thạnh, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -3247,9 +3247,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 3",
     "address": "Tầng 30, Tòa tháp Haven Luxury, Đường Phường 6, Quận Quận 3, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -3335,9 +3335,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 4",
     "address": "Tầng 31, Tòa tháp Haven Luxury, Đường Phường 13, Quận Quận 4, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -3437,9 +3437,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Phú Nhuận",
     "address": "Tầng 18, Tòa tháp Haven Luxury, Đường Phường 2, Quận Phú Nhuận, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617098900591-3f90928e8c54?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -3525,9 +3525,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 1",
     "address": "Tầng 33, Tòa tháp Haven Luxury, Đường Nguyễn Thái Bình, Quận Quận 1, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1617098492931-29783f06db65?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618220179464-22a40a0866ab?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -3613,9 +3613,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thủ Đức (Quận 2)",
     "address": "Tầng 15, Tòa tháp Haven Luxury, Đường Thảo Điền, Quận Thủ Đức (Quận 2), TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1615529328331-f8917597711f?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -3715,9 +3715,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 7",
     "address": "Tầng 11, Tòa tháp Haven Luxury, Đường Tân Phong, Quận Quận 7, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1615875605825-5eb9bb5d52ac?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1615876234886-fd9a39fda97f?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -3803,9 +3803,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Bình Thạnh",
     "address": "Tầng 7, Tòa tháp Haven Luxury, Đường Phường 19, Quận Bình Thạnh, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1617103996702-96ff29b1c467?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617104424032-b816dd98299d?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617104551722-3b2d51366400?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -3905,9 +3905,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 3",
     "address": "Tầng 6, Tòa tháp Haven Luxury, Đường Phường 7, Quận Quận 3, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1618221381711-42ca8ab6e908?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618221469555-7f3ad97540d6?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618221639244-c1a8502c0eb9?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -4007,9 +4007,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 4",
     "address": "Tầng 15, Tòa tháp Haven Luxury, Đường Phường 1, Quận Quận 4, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1618221710640-c0eebd83b4d3?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618221823713-ca8c956533ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -4095,9 +4095,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Phú Nhuận",
     "address": "Tầng 28, Tòa tháp Haven Luxury, Đường Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -4183,9 +4183,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 1",
     "address": "Tầng 4, Tòa tháp Haven Luxury, Đường Đa Kao, Quận Quận 1, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -4285,9 +4285,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thủ Đức (Quận 2)",
     "address": "Tầng 29, Tòa tháp Haven Luxury, Đường Bình An, Quận Thủ Đức (Quận 2), TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -4373,9 +4373,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 7",
     "address": "Tầng 29, Tòa tháp Haven Luxury, Đường Tân Phú, Quận Quận 7, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -4461,9 +4461,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Bình Thạnh",
     "address": "Tầng 4, Tòa tháp Haven Luxury, Đường Phường 25, Quận Bình Thạnh, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1554995207-c18c20360250?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -4563,9 +4563,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 3",
     "address": "Tầng 32, Tòa tháp Haven Luxury, Đường Võ Thị Sáu, Quận Quận 3, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -4665,9 +4665,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 4",
     "address": "Tầng 32, Tòa tháp Haven Luxury, Đường Phường 12, Quận Quận 4, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -4767,9 +4767,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Phú Nhuận",
     "address": "Tầng 24, Tòa tháp Haven Luxury, Đường Phường 9, Quận Phú Nhuận, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617098900591-3f90928e8c54?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -4869,9 +4869,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 1",
     "address": "Tầng 5, Tòa tháp Haven Luxury, Đường Bến Thành, Quận Quận 1, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1617098492931-29783f06db65?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618220179464-22a40a0866ab?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -4957,9 +4957,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thủ Đức (Quận 2)",
     "address": "Tầng 5, Tòa tháp Haven Luxury, Đường Thủ Thiêm, Quận Thủ Đức (Quận 2), TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -5059,9 +5059,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 7",
     "address": "Tầng 32, Tòa tháp Haven Luxury, Đường Phú Mỹ, Quận Quận 7, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1560184897-ae75f418493e?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -5161,9 +5161,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Bình Thạnh",
     "address": "Tầng 27, Tòa tháp Haven Luxury, Đường Phường 22, Quận Bình Thạnh, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1565182999-1c58d407045a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -5263,9 +5263,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 3",
     "address": "Tầng 9, Tòa tháp Haven Luxury, Đường Phường 6, Quận Quận 3, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1574362847952-4a7b7a13d706?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -5351,9 +5351,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 4",
     "address": "Tầng 36, Tòa tháp Haven Luxury, Đường Phường 13, Quận Quận 4, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -5453,9 +5453,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Phú Nhuận",
     "address": "Tầng 19, Tòa tháp Haven Luxury, Đường Phường 2, Quận Phú Nhuận, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -5555,9 +5555,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 1",
     "address": "Tầng 29, Tòa tháp Haven Luxury, Đường Bến Nghé, Quận Quận 1, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -5657,9 +5657,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thủ Đức (Quận 2)",
     "address": "Tầng 9, Tòa tháp Haven Luxury, Đường An Phú, Quận Thủ Đức (Quận 2), TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -5759,9 +5759,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 7",
     "address": "Tầng 8, Tòa tháp Haven Luxury, Đường Tân Phong, Quận Quận 7, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -5861,9 +5861,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Bình Thạnh",
     "address": "Tầng 11, Tòa tháp Haven Luxury, Đường Phường 19, Quận Bình Thạnh, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1499916078039-922301b0eb9b?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005097973-6a7082348e28?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -5949,9 +5949,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 3",
     "address": "Tầng 26, Tòa tháp Haven Luxury, Đường Phường 7, Quận Quận 3, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -6037,9 +6037,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 4",
     "address": "Tầng 31, Tòa tháp Haven Luxury, Đường Phường 1, Quận Quận 4, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1540518614846-7ede433c4570?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -6139,9 +6139,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Phú Nhuận",
     "address": "Tầng 24, Tòa tháp Haven Luxury, Đường Phường 7, Quận Phú Nhuận, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -6241,9 +6241,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 1",
     "address": "Tầng 38, Tòa tháp Haven Luxury, Đường Nguyễn Thái Bình, Quận Quận 1, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1556909211-36987daf7b4d?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560185009-dddeb820c7b7?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560185008-b033106af5c3?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -6343,9 +6343,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thủ Đức (Quận 2)",
     "address": "Tầng 17, Tòa tháp Haven Luxury, Đường Thảo Điền, Quận Thủ Đức (Quận 2), TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1560185008-5d2d0b57e793?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448075-bb485b067938?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -6431,9 +6431,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quận 7",
     "address": "Tầng 28, Tòa tháp Haven Luxury, Đường Tân Phú, Quận Quận 7, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1560448076-2e869c9b1ec5?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448075-81a9420078eb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448075-47c0c1b48325?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -6519,9 +6519,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Bình Thạnh",
     "address": "Tầng 8, Tòa tháp Haven Luxury, Đường Phường 25, Quận Bình Thạnh, TP. Hồ Chí Minh",
     "images": [
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448205-4d9b3e6bb6db?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -6622,8 +6622,8 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "address": "Tầng 36, Tòa tháp Haven Luxury, Đường Võ Thị Sáu, Quận Quận 3, TP. Hồ Chí Minh",
     "images": [
       "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -6723,9 +6723,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Sơn Trà",
     "address": "Tầng 38, Tòa tháp Haven Luxury, Đường An Hải Bắc, Quận Sơn Trà, Đà Nẵng",
     "images": [
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -6825,9 +6825,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Hải Châu",
     "address": "Tầng 30, Tòa tháp Haven Luxury, Đường Hòa Cường Bắc, Quận Hải Châu, Đà Nẵng",
     "images": [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -6927,9 +6927,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Ngũ Hành Sơn",
     "address": "Tầng 9, Tòa tháp Haven Luxury, Đường Hòa Hải, Quận Ngũ Hành Sơn, Đà Nẵng",
     "images": [
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -7029,9 +7029,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thanh Khê",
     "address": "Tầng 31, Tòa tháp Haven Luxury, Đường Chính Gián, Quận Thanh Khê, Đà Nẵng",
     "images": [
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -7131,9 +7131,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Sơn Trà",
     "address": "Tầng 32, Tòa tháp Haven Luxury, Đường Phước Mỹ, Quận Sơn Trà, Đà Nẵng",
     "images": [
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -7233,9 +7233,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Hải Châu",
     "address": "Tầng 36, Tòa tháp Haven Luxury, Đường Thạch Thang, Quận Hải Châu, Đà Nẵng",
     "images": [
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -7335,9 +7335,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Ngũ Hành Sơn",
     "address": "Tầng 25, Tòa tháp Haven Luxury, Đường Khuê Mỹ, Quận Ngũ Hành Sơn, Đà Nẵng",
     "images": [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -7437,9 +7437,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thanh Khê",
     "address": "Tầng 17, Tòa tháp Haven Luxury, Đường Chính Gián, Quận Thanh Khê, Đà Nẵng",
     "images": [
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -7539,9 +7539,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Sơn Trà",
     "address": "Tầng 26, Tòa tháp Haven Luxury, Đường Mân Thái, Quận Sơn Trà, Đà Nẵng",
     "images": [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -7627,9 +7627,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Hải Châu",
     "address": "Tầng 32, Tòa tháp Haven Luxury, Đường Bình Hiên, Quận Hải Châu, Đà Nẵng",
     "images": [
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617098900591-3f90928e8c54?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617098492931-29783f06db65?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -7715,9 +7715,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Ngũ Hành Sơn",
     "address": "Tầng 21, Tòa tháp Haven Luxury, Đường Mỹ An, Quận Ngũ Hành Sơn, Đà Nẵng",
     "images": [
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1618220179464-22a40a0866ab?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -7817,9 +7817,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thanh Khê",
     "address": "Tầng 4, Tòa tháp Haven Luxury, Đường Chính Gián, Quận Thanh Khê, Đà Nẵng",
     "images": [
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1615529328331-f8917597711f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -7905,9 +7905,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Sơn Trà",
     "address": "Tầng 4, Tòa tháp Haven Luxury, Đường An Hải Bắc, Quận Sơn Trà, Đà Nẵng",
     "images": [
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1615875605825-5eb9bb5d52ac?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1615876234886-fd9a39fda97f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617103996702-96ff29b1c467?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -7993,9 +7993,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Hải Châu",
     "address": "Tầng 37, Tòa tháp Haven Luxury, Đường Hòa Cường Bắc, Quận Hải Châu, Đà Nẵng",
     "images": [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1617104424032-b816dd98299d?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617104551722-3b2d51366400?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618221381711-42ca8ab6e908?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -8081,9 +8081,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Ngũ Hành Sơn",
     "address": "Tầng 26, Tòa tháp Haven Luxury, Đường Hòa Hải, Quận Ngũ Hành Sơn, Đà Nẵng",
     "images": [
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1618221469555-7f3ad97540d6?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618221639244-c1a8502c0eb9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618221710640-c0eebd83b4d3?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -8169,9 +8169,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Hồng Bàng",
     "address": "Tầng 9, Tòa tháp Haven Luxury, Đường Hoàng Văn Thụ, Quận Hồng Bàng, Hải Phòng",
     "images": [
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1618221823713-ca8c956533ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -8271,9 +8271,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Ngô Quyền",
     "address": "Tầng 37, Tòa tháp Haven Luxury, Đường Cầu Đất, Quận Ngô Quyền, Hải Phòng",
     "images": [
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -8373,9 +8373,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Lê Chân",
     "address": "Tầng 26, Tòa tháp Haven Luxury, Đường Vĩnh Niệm, Quận Lê Chân, Hải Phòng",
     "images": [
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -8461,9 +8461,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thủy Nguyên",
     "address": "Tầng 31, Tòa tháp Haven Luxury, Đường Hoa Động, Quận Thủy Nguyên, Hải Phòng",
     "images": [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -8563,9 +8563,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Hồng Bàng",
     "address": "Tầng 11, Tòa tháp Haven Luxury, Đường Hoàng Văn Thụ, Quận Hồng Bàng, Hải Phòng",
     "images": [
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -8651,9 +8651,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Ngô Quyền",
     "address": "Tầng 11, Tòa tháp Haven Luxury, Đường Lạch Tray, Quận Ngô Quyền, Hải Phòng",
     "images": [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1554995207-c18c20360250?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -8753,9 +8753,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Lê Chân",
     "address": "Tầng 31, Tòa tháp Haven Luxury, Đường Vĩnh Niệm, Quận Lê Chân, Hải Phòng",
     "images": [
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -8841,9 +8841,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thủy Nguyên",
     "address": "Tầng 10, Tòa tháp Haven Luxury, Đường Hoa Động, Quận Thủy Nguyên, Hải Phòng",
     "images": [
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -8943,9 +8943,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Hồng Bàng",
     "address": "Tầng 11, Tòa tháp Haven Luxury, Đường Hoàng Văn Thụ, Quận Hồng Bàng, Hải Phòng",
     "images": [
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617098900591-3f90928e8c54?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617098492931-29783f06db65?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -9045,9 +9045,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Ngô Quyền",
     "address": "Tầng 36, Tòa tháp Haven Luxury, Đường Lạc Viên, Quận Ngô Quyền, Hải Phòng",
     "images": [
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1618220179464-22a40a0866ab?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -9147,9 +9147,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thủ Dầu Một",
     "address": "Tầng 4, Tòa tháp Haven Luxury, Đường Chánh Nghĩa, Quận Thủ Dầu Một, Bình Dương",
     "images": [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560184897-ae75f418493e?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -9249,9 +9249,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thuận An",
     "address": "Tầng 31, Tòa tháp Haven Luxury, Đường Bình Hòa, Quận Thuận An, Bình Dương",
     "images": [
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -9351,9 +9351,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Dĩ An",
     "address": "Tầng 27, Tòa tháp Haven Luxury, Đường Đông Hòa, Quận Dĩ An, Bình Dương",
     "images": [
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1565182999-1c58d407045a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1574362847952-4a7b7a13d706?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -9439,9 +9439,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thủ Dầu Một",
     "address": "Tầng 4, Tòa tháp Haven Luxury, Đường Chánh Nghĩa, Quận Thủ Dầu Một, Bình Dương",
     "images": [
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -9527,9 +9527,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thuận An",
     "address": "Tầng 30, Tòa tháp Haven Luxury, Đường Bình Hòa, Quận Thuận An, Bình Dương",
     "images": [
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -9615,8 +9615,8 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Dĩ An",
     "address": "Tầng 38, Tòa tháp Haven Luxury, Đường Tân Đông Hiệp, Quận Dĩ An, Bình Dương",
     "images": [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
@@ -9703,9 +9703,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thủ Dầu Một",
     "address": "Tầng 35, Tòa tháp Haven Luxury, Đường Chánh Nghĩa, Quận Thủ Dầu Một, Bình Dương",
     "images": [
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -9805,9 +9805,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thuận An",
     "address": "Tầng 34, Tòa tháp Haven Luxury, Đường Bình Hòa, Quận Thuận An, Bình Dương",
     "images": [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -9893,9 +9893,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Dĩ An",
     "address": "Tầng 17, Tòa tháp Haven Luxury, Đường Đông Hòa, Quận Dĩ An, Bình Dương",
     "images": [
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1499916078039-922301b0eb9b?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -9995,9 +9995,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thủ Dầu Một",
     "address": "Tầng 33, Tòa tháp Haven Luxury, Đường Chánh Nghĩa, Quận Thủ Dầu Một, Bình Dương",
     "images": [
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005097973-6a7082348e28?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -10083,9 +10083,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Lộc Thọ",
     "address": "Tầng 33, Tòa tháp Haven Luxury, Đường Trần Phú, Quận Lộc Thọ, Nha Trang",
     "images": [
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1540518614846-7ede433c4570?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -10185,9 +10185,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Vĩnh Hòa",
     "address": "Tầng 5, Tòa tháp Haven Luxury, Đường Ba Làng, Quận Vĩnh Hòa, Nha Trang",
     "images": [
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -10287,9 +10287,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Phước Hải",
     "address": "Tầng 17, Tòa tháp Haven Luxury, Đường Văn Tiến Dũng, Quận Phước Hải, Nha Trang",
     "images": [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1556909211-36987daf7b4d?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -10389,9 +10389,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Lộc Thọ",
     "address": "Tầng 17, Tòa tháp Haven Luxury, Đường Hùng Vương, Quận Lộc Thọ, Nha Trang",
     "images": [
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1560185009-dddeb820c7b7?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560185008-b033106af5c3?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560185008-5d2d0b57e793?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -10491,9 +10491,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Vĩnh Hòa",
     "address": "Tầng 34, Tòa tháp Haven Luxury, Đường Phạm Văn Đồng, Quận Vĩnh Hòa, Nha Trang",
     "images": [
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448075-bb485b067938?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448076-2e869c9b1ec5?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -10593,9 +10593,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Phước Hải",
     "address": "Tầng 35, Tòa tháp Haven Luxury, Đường Lê Hồng Phong, Quận Phước Hải, Nha Trang",
     "images": [
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1560448075-81a9420078eb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448075-47c0c1b48325?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -10695,9 +10695,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Lộc Thọ",
     "address": "Tầng 6, Tòa tháp Haven Luxury, Đường Trần Phú, Quận Lộc Thọ, Nha Trang",
     "images": [
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1560448205-4d9b3e6bb6db?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -10797,9 +10797,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Vĩnh Hòa",
     "address": "Tầng 37, Tòa tháp Haven Luxury, Đường Ba Làng, Quận Vĩnh Hòa, Nha Trang",
     "images": [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -10899,9 +10899,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Ninh Kiều",
     "address": "Tầng 10, Tòa tháp Haven Luxury, Đường Tân An, Quận Ninh Kiều, Cần Thơ",
     "images": [
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -11001,9 +11001,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Cái Răng",
     "address": "Tầng 25, Tòa tháp Haven Luxury, Đường Lê Bình, Quận Cái Răng, Cần Thơ",
     "images": [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -11089,9 +11089,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Ninh Kiều",
     "address": "Tầng 27, Tòa tháp Haven Luxury, Đường Xuân Khánh, Quận Ninh Kiều, Cần Thơ",
     "images": [
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -11177,9 +11177,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Cái Răng",
     "address": "Tầng 32, Tòa tháp Haven Luxury, Đường Lê Bình, Quận Cái Răng, Cần Thơ",
     "images": [
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -11279,9 +11279,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Ninh Kiều",
     "address": "Tầng 6, Tòa tháp Haven Luxury, Đường An Khánh, Quận Ninh Kiều, Cần Thơ",
     "images": [
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -11381,9 +11381,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Cái Răng",
     "address": "Tầng 17, Tòa tháp Haven Luxury, Đường Lê Bình, Quận Cái Răng, Cần Thơ",
     "images": [
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -11483,9 +11483,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thắng Tam",
     "address": "Tầng 17, Tòa tháp Haven Luxury, Đường Thùy Vân, Quận Thắng Tam, Vũng Tàu",
     "images": [
+      "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -11571,9 +11571,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Phường 1",
     "address": "Tầng 37, Tòa tháp Haven Luxury, Đường Quang Trung, Quận Phường 1, Vũng Tàu",
     "images": [
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -11673,9 +11673,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Phường 2",
     "address": "Tầng 16, Tòa tháp Haven Luxury, Đường Phan Chu Trinh, Quận Phường 2, Vũng Tàu",
     "images": [
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -11761,9 +11761,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thắng Tam",
     "address": "Tầng 16, Tòa tháp Haven Luxury, Đường Hoàng Hoa Thám, Quận Thắng Tam, Vũng Tàu",
     "images": [
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1617098900591-3f90928e8c54?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617098492931-29783f06db65?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618220179464-22a40a0866ab?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -11863,9 +11863,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Phường 1",
     "address": "Tầng 34, Tòa tháp Haven Luxury, Đường Hạ Long, Quận Phường 1, Vũng Tàu",
     "images": [
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -11965,9 +11965,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Phường 2",
     "address": "Tầng 12, Tòa tháp Haven Luxury, Đường Võ Thị Sáu, Quận Phường 2, Vũng Tàu",
     "images": [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1615529328331-f8917597711f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1615875605825-5eb9bb5d52ac?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -12053,9 +12053,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Bãi Cháy",
     "address": "Tầng 21, Tòa tháp Haven Luxury, Đường Hạ Long, Quận Bãi Cháy, Hạ Long",
     "images": [
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1615876234886-fd9a39fda97f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617103996702-96ff29b1c467?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617104424032-b816dd98299d?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -12141,9 +12141,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Hòn Gai",
     "address": "Tầng 28, Tòa tháp Haven Luxury, Đường Hồng Gai, Quận Hòn Gai, Hạ Long",
     "images": [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1617104551722-3b2d51366400?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618221381711-42ca8ab6e908?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618221469555-7f3ad97540d6?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -12243,9 +12243,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Bãi Cháy",
     "address": "Tầng 24, Tòa tháp Haven Luxury, Đường Hạ Long, Quận Bãi Cháy, Hạ Long",
     "images": [
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1618221639244-c1a8502c0eb9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618221710640-c0eebd83b4d3?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618221823713-ca8c956533ae?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -12345,9 +12345,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Hòn Gai",
     "address": "Tầng 22, Tòa tháp Haven Luxury, Đường Hồng Gai, Quận Hòn Gai, Hạ Long",
     "images": [
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -12447,9 +12447,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Bãi Cháy",
     "address": "Tầng 28, Tòa tháp Haven Luxury, Đường Hạ Long, Quận Bãi Cháy, Hạ Long",
     "images": [
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -12535,9 +12535,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Phường 1",
     "address": "Tầng 7, Tòa tháp Haven Luxury, Đường Nguyễn Chí Thanh, Quận Phường 1, Đà Lạt",
     "images": [
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -12637,9 +12637,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Phường 10",
     "address": "Tầng 35, Tòa tháp Haven Luxury, Đường Hùng Vương, Quận Phường 10, Đà Lạt",
     "images": [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -12739,9 +12739,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Phường 3",
     "address": "Tầng 20, Tòa tháp Haven Luxury, Đường Đống Đa, Quận Phường 3, Đà Lạt",
     "images": [
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -12841,9 +12841,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Phường 1",
     "address": "Tầng 28, Tòa tháp Haven Luxury, Đường Khu Hòa Bình, Quận Phường 1, Đà Lạt",
     "images": [
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1554995207-c18c20360250?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -12943,9 +12943,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Phú Hội",
     "address": "Tầng 18, Tòa tháp Haven Luxury, Đường Lê Lợi, Quận Phú Hội, Huế",
     "images": [
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -13045,9 +13045,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Vĩnh Ninh",
     "address": "Tầng 19, Tòa tháp Haven Luxury, Đường Hai Bà Trưng, Quận Vĩnh Ninh, Huế",
     "images": [
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -13147,9 +13147,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thuận Hòa",
     "address": "Tầng 28, Tòa tháp Haven Luxury, Đường Lê Duẩn, Quận Thuận Hòa, Huế",
     "images": [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1617098900591-3f90928e8c54?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1617098492931-29783f06db65?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1618220179464-22a40a0866ab?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -13249,9 +13249,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Phú Hội",
     "address": "Tầng 21, Tòa tháp Haven Luxury, Đường Hùng Vương, Quận Phú Hội, Huế",
     "images": [
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -13351,9 +13351,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Ghềnh Ráng",
     "address": "Tầng 4, Tòa tháp Haven Luxury, Đường An Dương Vương, Quận Ghềnh Ráng, Quy Nhơn",
     "images": [
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560184897-ae75f418493e?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -13439,9 +13439,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Nguyễn Văn Cừ",
     "address": "Tầng 30, Tòa tháp Haven Luxury, Đường Chương Dương, Quận Nguyễn Văn Cừ, Quy Nhơn",
     "images": [
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1565182999-1c58d407045a?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -13527,9 +13527,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Ghềnh Ráng",
     "address": "Tầng 26, Tòa tháp Haven Luxury, Đường An Dương Vương, Quận Ghềnh Ráng, Quy Nhơn",
     "images": [
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1574362847952-4a7b7a13d706?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -13629,9 +13629,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quyết Thắng",
     "address": "Tầng 18, Tòa tháp Haven Luxury, Đường Cách Mạng Tháng 8, Quận Quyết Thắng, Biên Hòa",
     "images": [
-      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -13731,9 +13731,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Tân Phong",
     "address": "Tầng 3, Tòa tháp Haven Luxury, Đường Đồng Khởi, Quận Tân Phong, Biên Hòa",
     "images": [
-      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -13833,9 +13833,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quyết Thắng",
     "address": "Tầng 21, Tòa tháp Haven Luxury, Đường Cách Mạng Tháng 8, Quận Quyết Thắng, Biên Hòa",
     "images": [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -13921,9 +13921,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Quang Trung",
     "address": "Tầng 16, Tòa tháp Haven Luxury, Đường Quang Trung, Quận Quang Trung, Vinh",
     "images": [
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502005229762-ee1b2b93e08f?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -14009,9 +14009,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Hưng Bình",
     "address": "Tầng 30, Tòa tháp Haven Luxury, Đường Nguyễn Thị Minh Khai, Quận Hưng Bình, Vinh",
     "images": [
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -14111,9 +14111,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Đông Hải",
     "address": "Tầng 20, Tòa tháp Haven Luxury, Đường Đại Lộ Lê Lợi, Quận Đông Hải, Thanh Hóa",
     "images": [
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1499916078039-922301b0eb9b?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -14213,9 +14213,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Điện Biên",
     "address": "Tầng 32, Tòa tháp Haven Luxury, Đường Trần Phú, Quận Điện Biên, Thanh Hóa",
     "images": [
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1502005097973-6a7082348e28?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,
@@ -14301,9 +14301,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Tân Lợi",
     "address": "Tầng 24, Tòa tháp Haven Luxury, Đường Ngô Quyền, Quận Tân Lợi, Buôn Ma Thuột",
     "images": [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1540518614846-7ede433c4570?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": true,
     "hasMotorbikeParking": true,
@@ -14389,9 +14389,9 @@ export const MOCK_UNITS: ApartmentUnit[] = [
     "district": "Thắng Lợi",
     "address": "Tầng 15, Tòa tháp Haven Luxury, Đường Phan Bội Châu, Quận Thắng Lợi, Buôn Ma Thuột",
     "images": [
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?auto=format&fit=crop&q=80&w=1200"
     ],
     "hasCarParking": false,
     "hasMotorbikeParking": true,

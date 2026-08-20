@@ -550,16 +550,16 @@ export function App() {
       {!isAdminView && (
         <button
           onClick={() => setIsUserAiAdvisorOpen(true)}
-          className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40 group flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-[var(--haven-surface-elevated)] hover:bg-[var(--haven-surface-raised)] border border-[var(--haven-border-accent)] hover:border-[var(--haven-border-focus)] shadow-[var(--shadow-elevated)] backdrop-blur-xl transition-all duration-200 active:scale-[0.98] text-left"
-          title="Mở Trợ lý AI HAVEN"
+          className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40 group flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-[var(--haven-surface-elevated)] hover:bg-[var(--haven-surface-raised)] border border-[var(--haven-border-accent)] hover:border-[var(--haven-border-focus)] shadow-[var(--shadow-elevated)] backdrop-blur-xl transition-all duration-200 active:scale-[0.98] text-left hover:-translate-y-0.5"
+          title="Mở Haven AI"
         >
-          <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-sm shrink-0">
-            <Sparkles className="w-3.5 h-3.5 fill-slate-950" />
+          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-sm shrink-0">
+            <Sparkles className="w-4 h-4 fill-slate-950" />
           </div>
           <div className="hidden sm:block pr-1">
-            <div className="text-xs font-display font-semibold text-[var(--haven-text-primary)] group-hover:text-[var(--haven-emerald-400)] transition-colors flex items-center gap-1.5">
-              <span>Trợ lý AI</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <div className="text-xs font-display font-bold text-[var(--haven-text-primary)] group-hover:text-[var(--haven-emerald-400)] transition-colors flex items-center gap-1.5">
+              <span>Haven AI</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             </div>
             <div className="text-[10px] font-mono text-[var(--haven-text-tertiary)]">
               Tư vấn căn hộ

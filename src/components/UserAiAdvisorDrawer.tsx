@@ -30,7 +30,7 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
     {
       id: 'msg-1',
       sender: 'ai',
-      text: `Xin chào! Tôi là Trợ lý AI Tư Vấn Không Gian Sống HAVEN.\n\nHãy chia sẻ mong muốn của bạn (ví dụ: thành phố, tầm ngân sách hàng tháng, số phòng ngủ, chỗ đỗ xe ô tô, yêu cầu yên tĩnh hay tránh ngập lụt...). Tôi sẽ phân tích và đề xuất các căn hộ phù hợp nhất cho bạn ngay lập tức.`
+      text: `Xin chào! Tôi là Haven AI — Trợ lý Phân Tích & Tư Vấn Không Gian Sống HAVEN.\n\nHãy chia sẻ mong muốn của bạn (ví dụ: thành phố, tầm ngân sách hàng tháng, số phòng ngủ, chỗ đỗ xe ô tô, yêu cầu yên tĩnh hay tránh ngập lụt...). Tôi sẽ phân tích và đề xuất các căn hộ phù hợp nhất cho bạn ngay lập tức.`
     }
   ]);
   const [inputValue, setInputValue] = useState('');
@@ -56,11 +56,11 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
     const topUnit = scored[0]?.unit;
 
     let aiText = parsed.understoodText;
+    if (topUnit) {
+      aiText += `\n\n🏆 Đề xuất tối ưu: ${topUnit.name} (${(topUnit.monthlyRentVND / 1000000).toFixed(0)} Triệu/tháng)\n• Ưu điểm: ${topUnit.aiInsights.whyFit[0]}`;
+    }
     if (parsed.followUpQuestion) {
       aiText += `\n\n📌 Gợi ý thêm: ${parsed.followUpQuestion}`;
-    }
-    if (topUnit) {
-      aiText += `\n\n🏆 Lựa chọn tương thích cao nhất: ${topUnit.name || topUnit.id} (${(topUnit.monthlyRentVND / 1000000).toFixed(0)} Triệu/tháng)\nƯu điểm: ${topUnit.aiInsights.whyFit[0]}`;
     }
 
     const aiMsg: Message = {
@@ -90,7 +90,7 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
                 <Sparkles className="w-5 h-5 animate-pulse" />
               </div>
               <div>
-                <h3 className="font-serif text-lg text-slate-100">Trợ Lý Nhà Ở HAVEN AI</h3>
+                <h3 className="font-serif text-lg text-slate-100">Haven AI</h3>
                 <p className="text-[11px] font-mono text-emerald-400">Tìm Kiếm Ngôn Ngữ Tự Nhiên & Môi Trường</p>
               </div>
             </div>

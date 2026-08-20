@@ -72,7 +72,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
   };
 
   return (
-    <section className="relative rounded-3xl overflow-hidden min-h-[520px] md:min-h-[560px] flex flex-col justify-between p-6 sm:p-8 md:p-12 lg:p-14 shadow-2xl border border-[var(--haven-border)]">
+    <section className="relative rounded-3xl overflow-hidden min-h-[520px] md:min-h-[560px] flex flex-col justify-between p-6 sm:p-8 md:p-12 lg:p-14 shadow-2xl border border-[var(--haven-border)] always-dark">
       {/* Background: Real Architectural Luxury Residence + Layered Scrims */}
       <div className="absolute inset-0 z-0">
         <img
@@ -83,7 +83,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
         {/* Deep atmospheric gradient scrims keeping text 100% crisp */}
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/85 to-slate-950/50" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/40" />
-        <div className="light-hero-gradient absolute inset-0 opacity-40" />
+        <div className="light-hero-gradient absolute inset-0 opacity-60" />
         {/* Ambient glow accent */}
         <div className="absolute -bottom-20 -right-20 w-80 h-80 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
       </div>
@@ -95,14 +95,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
         transition={{ duration: 0.4, ease: 'easeOut' }}
         className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
       >
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/70 border border-emerald-500/30 text-emerald-300 text-xs font-mono tracking-wider uppercase backdrop-blur-md shadow-lg always-white self-start">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 border border-emerald-500/30 text-emerald-300 text-xs font-mono tracking-wider uppercase backdrop-blur-md shadow-lg always-white self-start">
           <Sparkles className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
-          <span className="text-emerald-300 always-white">HAVEN — Không Gian Sống An Yên</span>
+          <span className="text-emerald-300 always-white font-medium">HAVEN — Không Gian Sống An Yên</span>
         </div>
         <div className="flex items-center gap-3 text-xs font-mono text-slate-200 always-white">
           <span className="always-white font-medium">Hà Nội · TP.HCM · Đà Nẵng</span>
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-emerald-300 font-semibold always-white">Trợ lý AI Phân tích Môi trường</span>
+          <span className="text-emerald-300 font-semibold always-white">Haven AI Phân Tích Môi Trường</span>
         </div>
       </motion.div>
 
@@ -136,7 +136,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
           onSubmit={handleSubmit}
           className="relative max-w-2xl"
         >
-          <div className="relative flex items-center rounded-2xl border border-emerald-500/35 p-1.5 sm:p-2 shadow-2xl backdrop-blur-xl bg-slate-950/75 group focus-within:border-emerald-400/80 transition-all duration-300">
+          <div className="relative flex items-center rounded-2xl border border-emerald-500/40 p-1.5 sm:p-2 shadow-2xl backdrop-blur-xl bg-slate-950/80 group focus-within:border-emerald-400 transition-all duration-300">
             <div className="pl-3 pr-2 text-emerald-400">
               <Sparkles className="w-5 h-5 animate-pulse" />
             </div>
@@ -149,7 +149,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
             />
             <button
               type="submit"
-              className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm transition-all duration-200 shadow-lg shadow-emerald-500/25 shrink-0 hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition-all duration-200 shadow-lg shadow-emerald-500/25 shrink-0 hover:scale-[1.02] active:scale-[0.98]"
             >
               <span className="hidden sm:inline">Hỏi AI</span>
               <ArrowRight className="w-4 h-4" />
@@ -164,7 +164,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                 key={s.query}
                 type="button"
                 onClick={() => onSearch(s.query)}
-                className="px-2 py-1 rounded-lg bg-slate-900/80 hover:bg-emerald-950/80 border border-slate-700 hover:border-emerald-500/50 text-slate-200 hover:text-emerald-300 transition-colors backdrop-blur-sm always-white"
+                className="px-2.5 py-1 rounded-lg bg-slate-900/90 hover:bg-emerald-950/90 border border-slate-700/80 hover:border-emerald-500/50 text-slate-100 hover:text-emerald-300 transition-colors backdrop-blur-sm always-white always-dark"
               >
                 "{s.label}"
               </button>

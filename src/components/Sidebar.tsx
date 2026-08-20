@@ -17,8 +17,7 @@ import {
   Compass,
   FolderLock,
   Activity,
-  ChevronLeft,
-  ChevronRight,
+  Menu,
   type LucideIcon
 } from 'lucide-react';
 
@@ -117,9 +116,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
         ${collapsed ? 'w-[68px] p-2' : 'w-[230px] p-3.5'}
       `}
     >
-      <div className="space-y-3.5">
+      <div className="space-y-3">
         {/* Brand with quiet status, clock & collapse button */}
-        <div className={`flex items-center ${collapsed ? 'flex-col gap-2' : 'justify-between'} px-1 pt-1 pb-1`}>
+        <div className={`flex items-center ${collapsed ? 'flex-col gap-2' : 'justify-between'} px-1 pt-1 pb-0.5`}>
           <div className="flex items-center gap-2.5 min-w-0">
             <div className="w-8 h-8 rounded-xl bg-[var(--haven-emerald-muted)] border border-[rgba(16,185,129,0.25)] flex items-center justify-center shrink-0">
               <Leaf className="w-4 h-4 text-[var(--haven-emerald-400)] fill-[rgba(16,185,129,0.2)]" />
@@ -139,27 +138,26 @@ export const Sidebar: React.FC<SidebarProps> = ({
               </div>
             )}
           </div>
+        </div>
 
-          {/* Quick Collapse Toggle at Header */}
+        {/* Section Label with YouTube-style Hamburger Menu Button */}
+        <div className={`flex items-center ${collapsed ? 'justify-center' : 'gap-2'} px-1.5 py-1`}>
           {onToggleCollapse && (
             <button
               onClick={onToggleCollapse}
-              className="p-1 rounded-lg text-[var(--haven-text-muted)] hover:text-[var(--haven-text-secondary)] hover:bg-[var(--haven-surface-hover)] transition-colors focus-ring shrink-0"
-              title={collapsed ? 'Mở rộng sidebar' : 'Thu gọn sidebar'}
+              className="p-1.5 rounded-lg text-[var(--haven-text-muted)] hover:text-[var(--haven-emerald-400)] hover:bg-[var(--haven-surface-hover)] transition-colors focus-ring shrink-0"
+              title={collapsed ? 'Mở rộng thanh bên' : 'Thu gọn thanh bên'}
+              aria-label="Thu gọn / Mở rộng thanh bên"
             >
-              {collapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+              <Menu className="w-4 h-4" />
             </button>
           )}
-        </div>
-
-        {/* Section Label */}
-        {!collapsed && (
-          <div className="px-2 pt-1">
-            <span className="text-label text-[9px]">
+          {!collapsed && (
+            <span className="text-label text-[9px] truncate">
               {isAdminView ? 'PHÂN HỆ QUẢN TRỊ' : 'TRẢI NGHIỆM KHÁCH THUÊ'}
             </span>
-          </div>
-        )}
+          )}
+        </div>
 
         {/* Navigation */}
         <nav className="space-y-0.5">
@@ -200,25 +198,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </nav>
       </div>
 
-      {/* Bottom section: Clean status & Collapse button */}
-      <div className="pt-3 border-t border-[var(--haven-border)] space-y-1">
-        {onToggleCollapse && (
-          <button
-            onClick={onToggleCollapse}
-            className="w-full flex items-center justify-center py-2 rounded-xl text-[var(--haven-text-muted)] hover:text-[var(--haven-text-secondary)] hover:bg-[var(--haven-surface-hover)] transition-colors duration-[var(--duration-micro)] focus-ring text-xs font-mono"
-            title={collapsed ? 'Mở rộng sidebar' : 'Thu gọn sidebar'}
-          >
-            {collapsed ? (
-              <ChevronRight className="w-4 h-4" />
-            ) : (
-              <div className="flex items-center gap-1.5 text-[11px]">
-                <ChevronLeft className="w-3.5 h-3.5" />
-                <span>Thu gọn thanh bên</span>
-              </div>
-            )}
-          </button>
-        )}
-      </div>
+      {/* Clean compact bottom spacer */}
+      <div className="pt-2" />
     </aside>
   );
 };

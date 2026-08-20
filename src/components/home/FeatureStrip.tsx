@@ -86,7 +86,7 @@ export const FeatureStrip: React.FC<FeatureStripProps> = ({
       </div>
 
       {/* Feature Cards Grid with Interactive Resonance */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 stagger-children">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {features.map((feature) => {
           const FeatIcon = feature.icon;
           const isActive = activeFeatureKey === feature.key;
@@ -100,17 +100,17 @@ export const FeatureStrip: React.FC<FeatureStripProps> = ({
               tabIndex={0}
               role="button"
               aria-label={`Chi tiết minh chứng ${feature.title}`}
-              className={`reveal-on-scroll p-5 rounded-2xl transition-all duration-150 cursor-pointer outline-none relative flex flex-col justify-between ${
+              className={`p-5 rounded-2xl transition-all duration-200 cursor-pointer outline-none relative flex flex-col justify-between ${
                 isActive
-                  ? 'bg-[var(--haven-surface-elevated)] border-2 border-[var(--haven-emerald-500)] shadow-[var(--shadow-elevated)] ring-4 ring-[var(--haven-emerald-glow)] -translate-y-1'
-                  : 'bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] hover:border-[var(--haven-border-strong)] hover:shadow-md'
+                  ? 'bg-[var(--haven-surface-elevated)] border-2 border-[var(--haven-emerald-500)] shadow-[var(--shadow-elevated)] ring-4 ring-[var(--haven-emerald-glow)] -translate-y-1.5'
+                  : 'bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] hover:border-[var(--haven-emerald-400)] hover:shadow-lg hover:-translate-y-1'
               }`}
             >
               <div>
                 {/* Header Icon + Active Status */}
                 <div className="flex items-center justify-between mb-3.5">
                   <div
-                    className={`w-10 h-10 rounded-xl flex items-center justify-center transition-transform ${
+                    className={`w-10 h-10 rounded-xl flex items-center justify-center transition-transform duration-200 ${
                       isActive ? 'scale-110 shadow-sm' : ''
                     }`}
                     style={{ background: feature.bgAccent }}
@@ -118,7 +118,7 @@ export const FeatureStrip: React.FC<FeatureStripProps> = ({
                     <FeatIcon className={`w-5 h-5 ${feature.iconColor}`} />
                   </div>
                   {isActive && (
-                    <span className="px-2 py-0.5 rounded-full bg-[var(--haven-emerald-muted)] border border-[var(--haven-border-accent)] text-[var(--haven-emerald-400)] text-[10px] font-mono font-bold">
+                    <span className="px-2 py-0.5 rounded-full bg-[var(--haven-emerald-muted)] border border-[var(--haven-border-accent)] text-[var(--haven-emerald-400)] text-[10px] font-mono font-bold animate-pulse">
                       Đang liên kết
                     </span>
                   )}

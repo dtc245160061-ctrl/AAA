@@ -121,11 +121,11 @@ export const ServicesMarketplaceView: React.FC<ServicesMarketplaceViewProps> = (
         {filteredServices.map(service => (
           <div
             key={service.id}
-            className="p-6 rounded-3xl atmospheric-panel border border-slate-800 hover:border-emerald-500/40 flex flex-col justify-between transition-all group backdrop-blur-2xl shadow-xl hover:shadow-emerald-500/5"
+            className="p-6 rounded-3xl atmospheric-panel border border-slate-800 hover:border-emerald-500/60 flex flex-col justify-between transition-all duration-200 group backdrop-blur-2xl shadow-xl hover:shadow-2xl hover:shadow-emerald-500/10 hover:-translate-y-1.5"
           >
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center group-hover:scale-110 group-hover:border-emerald-500/40 transition-all duration-200">
                   {getIcon(service.iconName)}
                 </div>
                 {service.popular && (

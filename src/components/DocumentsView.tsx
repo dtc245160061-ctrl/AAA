@@ -102,13 +102,15 @@ export const DocumentsView: React.FC<DocumentsViewProps> = ({
           </thead>
           <tbody className="divide-y divide-slate-800/80">
             {filteredDocs.map((doc) => (
-              <tr key={doc.id} className="hover:bg-slate-900/40 transition-colors">
-                <td className="py-4 px-4 font-bold text-white flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                  <span>{doc.name}</span>
+              <tr key={doc.id} className="hover:bg-slate-900/60 transition-all duration-150 group">
+                <td className="py-4 px-4 font-bold text-white flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center group-hover:scale-105 group-hover:bg-emerald-500/20 transition-all">
+                    <FileText className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                  </div>
+                  <span className="group-hover:text-emerald-300 transition-colors">{doc.name}</span>
                 </td>
                 <td className="py-4 px-4">
-                  <span className="px-2.5 py-1 text-[10px] uppercase rounded bg-slate-800 text-slate-300 border border-slate-700">
+                  <span className="px-2.5 py-1 text-[10px] font-mono uppercase rounded-full bg-slate-800 text-slate-300 border border-slate-700">
                     {doc.category}
                   </span>
                 </td>
@@ -116,8 +118,8 @@ export const DocumentsView: React.FC<DocumentsViewProps> = ({
                 <td className="py-4 px-4 text-slate-400">{doc.date}</td>
                 <td className="py-4 px-4 text-slate-400">{doc.size}</td>
                 <td className="py-4 px-4 text-right">
-                  <button className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 ml-auto">
-                    <Download className="w-3.5 h-3.5 text-emerald-400" />
+                  <button className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-200 border border-slate-700 hover:border-emerald-400 transition-all shadow-sm flex items-center gap-1.5 ml-auto font-semibold">
+                    <Download className="w-3.5 h-3.5" />
                     <span>Download</span>
                   </button>
                 </td>

@@ -84,17 +84,19 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
           </div>
 
           {/* Monthly / Yearly cycle */}
-          <div className="flex items-center gap-2 text-xs font-mono bg-slate-900/60 px-3 py-2 rounded-xl border border-slate-800">
-            <span className={billingCycle === 'monthly' ? 'text-emerald-400 font-bold' : 'text-slate-500'}>Hàng Tháng</span>
+          <div className="flex items-center gap-2.5 text-xs font-mono bg-slate-900/80 px-3.5 py-1.5 rounded-xl border border-slate-800">
+            <span className={billingCycle === 'monthly' ? 'text-emerald-400 font-bold' : 'text-slate-400'}>Hàng Tháng</span>
             <button
+              type="button"
               onClick={() => setBillingCycle(b => b === 'monthly' ? 'yearly' : 'monthly')}
-              className="w-10 h-5 rounded-full bg-slate-800 border border-slate-700 p-0.5 relative transition-colors"
+              className="w-11 h-6 rounded-full bg-slate-800 border border-slate-700 p-0.5 relative transition-colors inline-flex items-center"
+              aria-label="Chuyển chu kỳ thanh toán"
             >
-              <div className={`w-4 h-4 rounded-full bg-emerald-400 transition-transform ${
-                billingCycle === 'yearly' ? 'translate-x-5' : 'translate-x-0'
+              <div className={`w-4 h-4 rounded-full bg-emerald-400 transition-transform duration-200 ${
+                billingCycle === 'yearly' ? 'translate-x-5' : 'translate-x-0.5'
               }`} />
             </button>
-            <span className={billingCycle === 'yearly' ? 'text-emerald-400 font-bold' : 'text-slate-500'}>
+            <span className={billingCycle === 'yearly' ? 'text-emerald-400 font-bold' : 'text-slate-400'}>
               Theo Năm <span className="text-[10px] text-amber-400 font-bold">(-20%)</span>
             </span>
           </div>
@@ -110,26 +112,29 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
           return (
             <div
               key={plan.id}
-              className={`p-6 md:p-8 rounded-3xl atmospheric-panel border flex flex-col justify-between transition-all relative overflow-hidden backdrop-blur-2xl shadow-xl ${
+              className={`p-6 md:p-8 rounded-3xl atmospheric-panel border flex flex-col justify-between transition-all duration-200 relative overflow-hidden backdrop-blur-2xl shadow-xl hover:-translate-y-1.5 hover:shadow-2xl ${
                 plan.isPopular
-                  ? 'border-emerald-500/60 shadow-emerald-500/10 ring-1 ring-emerald-500/50'
-                  : 'border-slate-800 hover:border-slate-700'
+                  ? 'border-emerald-500/60 shadow-emerald-500/10 ring-1 ring-emerald-500/50 hover:border-emerald-400'
+                  : 'border-slate-800 hover:border-slate-600'
               }`}
             >
-              {plan.badge && (
-                <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider ${
-                  plan.isPopular
-                    ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/30'
-                    : 'bg-slate-800 text-slate-300 border border-slate-700'
-                }`}>
-                  {plan.badge}
-                </div>
-              )}
-
               <div className="space-y-5">
-                <div>
-                  <h3 className="text-xl font-serif font-bold text-slate-100">{plan.name}</h3>
-                  <p className="text-xs text-slate-400 mt-1 min-h-[32px]">{plan.tagline}</p>
+                <div className="flex items-start justify-between gap-3 min-h-[52px]">
+                  <div>
+                    <h3 className="text-xl font-serif font-bold text-slate-100">{plan.name}</h3>
+                    <p className="text-xs text-slate-400 mt-1 min-h-[32px]">{plan.tagline}</p>
+                  </div>
+                  {plan.badge && (
+                    <span className={`shrink-0 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider ${
+                      plan.id === 'enterprise' || plan.badge === 'Doanh Nghiệp'
+                        ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-md shadow-indigo-500/25 border border-indigo-400/40'
+                        : plan.isPopular || plan.badge === 'Khuyên Dùng'
+                        ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 shadow-md shadow-emerald-500/30'
+                        : 'bg-slate-800 text-slate-300 border border-slate-700'
+                    }`}>
+                      {plan.badge}
+                    </span>
+                  )}
                 </div>
 
                 {/* Price */}

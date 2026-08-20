@@ -331,14 +331,17 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           {/* Hanoi */}
           <div
             onClick={() => onNavigateSearch("Hà Nội")}
-            className="group relative rounded-2xl overflow-hidden h-56 sm:h-64 cursor-pointer border border-slate-800 hover:border-emerald-500/50 transition-all duration-300 shadow-xl"
+            className="group relative rounded-3xl overflow-hidden h-60 sm:h-68 cursor-pointer border border-[var(--haven-border)] hover:border-emerald-400/80 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-emerald-500/15 hover:-translate-y-2"
           >
             <img
-              src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=800"
+              src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=800"
               alt="Hà Nội"
-              className="w-full h-full object-cover transition-transform duration-300"
+              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent" />
+            <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-emerald-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </div>
             <div className="absolute bottom-5 left-5 right-5 space-y-1">
               <span className="text-xs font-mono text-emerald-300 font-bold uppercase tracking-widest always-white">Thủ Đô Ngàn Năm</span>
               <h3 className="text-2xl font-serif text-white font-bold always-white">Hà Nội</h3>
@@ -349,14 +352,17 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           {/* Ho Chi Minh City */}
           <div
             onClick={() => onNavigateSearch("TP. Hồ Chí Minh")}
-            className="group relative rounded-2xl overflow-hidden h-56 sm:h-64 cursor-pointer border border-slate-800 hover:border-emerald-500/50 transition-all duration-300 shadow-xl"
+            className="group relative rounded-3xl overflow-hidden h-60 sm:h-68 cursor-pointer border border-[var(--haven-border)] hover:border-emerald-400/80 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-emerald-500/15 hover:-translate-y-2"
           >
             <img
-              src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=800"
+              src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&q=80&w=800"
               alt="TP. Hồ Chí Minh"
-              className="w-full h-full object-cover transition-transform duration-300"
+              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent" />
+            <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-emerald-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </div>
             <div className="absolute bottom-5 left-5 right-5 space-y-1">
               <span className="text-xs font-mono text-emerald-300 font-bold uppercase tracking-widest always-white">Đô Thị Sầm Uất</span>
               <h3 className="text-2xl font-serif text-white font-bold always-white">TP. Hồ Chí Minh</h3>
@@ -367,14 +373,17 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           {/* Da Nang */}
           <div
             onClick={() => onNavigateSearch("Đà Nẵng")}
-            className="group relative rounded-2xl overflow-hidden h-56 sm:h-64 cursor-pointer border border-slate-800 hover:border-emerald-500/50 transition-all duration-300 shadow-xl"
+            className="group relative rounded-3xl overflow-hidden h-60 sm:h-68 cursor-pointer border border-[var(--haven-border)] hover:border-emerald-400/80 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-emerald-500/15 hover:-translate-y-2"
           >
             <img
-              src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800"
+              src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&q=80&w=800"
               alt="Đà Nẵng"
-              className="w-full h-full object-cover transition-transform duration-300"
+              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent" />
+            <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-emerald-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </div>
             <div className="absolute bottom-5 left-5 right-5 space-y-1">
               <span className="text-xs font-mono text-emerald-300 font-bold uppercase tracking-widest always-white">Thành Phố Đáng Sống</span>
               <h3 className="text-2xl font-serif text-white font-bold always-white">Đà Nẵng</h3>

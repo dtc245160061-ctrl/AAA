@@ -32,6 +32,8 @@ export const Topbar: React.FC<TopbarProps> = ({
   const [time, setTime] = useState<string>('');
   const [themeDropdownOpen, setThemeDropdownOpen] = useState<boolean>(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState<boolean>(false);
+  const profileRef = React.useRef<HTMLDivElement>(null);
+  const themeRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const updateTime = () => {
@@ -50,6 +52,20 @@ export const Topbar: React.FC<TopbarProps> = ({
     return () => clearInterval(interval);
   }, []);
 
+  // Global click-outside listener to reliably close dropdowns
+  useEffect(() => {
+    const handleDocumentClick = (e: MouseEvent) => {
+      if (profileDropdownOpen && profileRef.current && !profileRef.current.contains(e.target as Node)) {
+        setProfileDropdownOpen(false);
+      }
+      if (themeDropdownOpen && themeRef.current && !themeRef.current.contains(e.target as Node)) {
+        setThemeDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleDocumentClick);
+    return () => document.removeEventListener('mousedown', handleDocumentClick);
+  }, [profileDropdownOpen, themeDropdownOpen]);
+
   const handleResetDemo = () => {
     onResetDemoData?.();
     setThemeDropdownOpen(false);
@@ -65,7 +81,7 @@ export const Topbar: React.FC<TopbarProps> = ({
 
   return (
     <header
-      className="sticky top-0 w-full bg-[var(--haven-bg)]/92 backdrop-blur-lg border-b border-[var(--haven-border)] px-4 md:px-6 transition-colors"
+      className="sticky top-0 w-full bg-[var(--haven-bg)]/95 backdrop-blur-xl border-b border-[var(--haven-border)] px-4 md:px-6 transition-colors"
       style={{
         height: 'var(--topbar-height)',
         zIndex: 'var(--z-sticky)',
@@ -126,10 +142,10 @@ export const Topbar: React.FC<TopbarProps> = ({
           <button
             onClick={onOpenAiCopilot}
             className="h-8 flex items-center gap-1.5 px-3 text-[var(--text-xs)] font-medium text-[var(--haven-text-secondary)] bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] rounded-[var(--radius-lg)] hover:bg-[var(--haven-surface-hover)] hover:border-[var(--haven-border-accent)] transition-colors focus-ring shrink-0 group"
-            title="Trợ lý AI HAVEN"
+            title="Haven AI"
           >
             <Sparkles className="w-3.5 h-3.5 text-[var(--haven-emerald-400)] animate-pulse" />
-            <span className="hidden sm:inline font-mono">{isAdminView ? 'AI' : 'Trợ lý AI'}</span>
+            <span className="hidden sm:inline font-mono">{isAdminView ? 'AI' : 'Haven AI'}</span>
           </button>
 
           {/* Quick Action (Admin) */}
@@ -144,7 +160,7 @@ export const Topbar: React.FC<TopbarProps> = ({
           )}
 
           {/* Theme Switcher with Clear Selection State */}
-          <div className="relative">
+          <div ref={themeRef} className="relative">
             <button
               onClick={() => setThemeDropdownOpen(!themeDropdownOpen)}
               className="h-8 w-8 flex items-center justify-center text-[var(--haven-text-secondary)] hover:text-[var(--haven-text-primary)] bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] rounded-[var(--radius-lg)] hover:bg-[var(--haven-surface-hover)] hover:border-[var(--haven-border-accent)] transition-colors focus-ring relative"
@@ -204,7 +220,7 @@ export const Topbar: React.FC<TopbarProps> = ({
           </div>
 
           {/* Interactive User Profile with Dropdown */}
-          <div className="relative pl-1 border-l border-[var(--haven-border)]">
+          <div ref={profileRef} className="relative pl-1 border-l border-[var(--haven-border)]">
             <button
               onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
               className="flex items-center gap-1.5 p-0.5 rounded-[var(--radius-lg)] hover:ring-2 hover:ring-[var(--haven-emerald-400)] transition-all focus-ring"
