@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Sparkles, Plus, Moon, Sun, Monitor, RotateCcw, Bookmark, Menu, Clock } from 'lucide-react';
+import { Search, Sparkles, Plus, Moon, Sun, Monitor, RotateCcw, Bookmark, Menu, Clock, Shield, Calendar, CheckCircle2, ChevronDown } from 'lucide-react';
 import type { ThemeMode } from '../App';
 
 interface TopbarProps {
@@ -12,6 +12,8 @@ interface TopbarProps {
   onThemeChange?: (mode: ThemeMode) => void;
   onResetDemoData?: () => void;
   onToggleMobileSidebar?: () => void;
+  onToggleAdminView?: () => void;
+  onNavigate?: (module: string) => void;
 }
 
 export const Topbar: React.FC<TopbarProps> = ({
@@ -24,9 +26,12 @@ export const Topbar: React.FC<TopbarProps> = ({
   onThemeChange,
   onResetDemoData,
   onToggleMobileSidebar,
+  onToggleAdminView,
+  onNavigate,
 }) => {
   const [time, setTime] = useState<string>('');
   const [themeDropdownOpen, setThemeDropdownOpen] = useState<boolean>(false);
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const updateTime = () => {
@@ -198,13 +203,109 @@ export const Topbar: React.FC<TopbarProps> = ({
             )}
           </div>
 
-          {/* Profile */}
-          <div className="pl-1 border-l border-[var(--haven-border)]">
-            <img
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150"
-              alt="Profile"
-              className="h-8 w-8 rounded-[var(--radius-lg)] object-cover border border-[var(--haven-border)]"
-            />
+          {/* Interactive User Profile with Dropdown */}
+          <div className="relative pl-1 border-l border-[var(--haven-border)]">
+            <button
+              onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
+              className="flex items-center gap-1.5 p-0.5 rounded-[var(--radius-lg)] hover:ring-2 hover:ring-[var(--haven-emerald-400)] transition-all focus-ring"
+              title="Xem hồ sơ cá nhân"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150"
+                alt="Nguyễn An"
+                className="h-8 w-8 rounded-[var(--radius-lg)] object-cover border border-[var(--haven-border)]"
+              />
+              <ChevronDown className="w-3 h-3 text-[var(--haven-text-muted)] hidden sm:block" />
+            </button>
+
+            {profileDropdownOpen && (
+              <>
+                <div className="fixed inset-0 z-40" onClick={() => setProfileDropdownOpen(false)} />
+                <div className="absolute right-0 top-full mt-2 w-64 p-2 rounded-[var(--radius-xl)] surface-elevated shadow-[var(--shadow-overlay)] z-50 space-y-1.5 border border-[var(--haven-border)] animate-in fade-in">
+                  {/* User Profile Header */}
+                  <div className="flex items-center gap-3 p-2 rounded-xl bg-[var(--haven-surface-raised)] border border-[var(--haven-border)]">
+                    <img
+                      src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150"
+                      alt="Nguyễn An"
+                      className="h-10 w-10 rounded-xl object-cover border border-[var(--haven-border-accent)]"
+                    />
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-1">
+                        <span className="font-serif font-bold text-sm text-[var(--haven-text-primary)] truncate">Nguyễn An</span>
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[var(--haven-emerald-400)] shrink-0" />
+                      </div>
+                      <div className="text-[10px] font-mono text-[var(--haven-emerald-400)] font-medium">
+                        Sanctuary Member
+                      </div>
+                      <div className="text-[10px] font-mono text-[var(--haven-text-muted)] truncate">
+                        an.nguyen@haven.luxury
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Menu Items */}
+                  <div className="space-y-0.5 pt-1">
+                    {!isAdminView && (
+                      <>
+                        <button
+                          onClick={() => {
+                            onOpenSaved?.();
+                            setProfileDropdownOpen(false);
+                          }}
+                          className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-mono text-[var(--haven-text-secondary)] hover:text-[var(--haven-text-primary)] hover:bg-[var(--haven-surface-hover)] transition-colors text-left"
+                        >
+                          <div className="flex items-center gap-2">
+                            <Bookmark className="w-3.5 h-3.5 text-[var(--haven-emerald-400)]" />
+                            <span>Căn Hộ Đã Lưu</span>
+                          </div>
+                          <span className="px-1.5 py-0.2 rounded-full bg-[var(--haven-emerald-500)] text-white text-[10px] font-mono font-bold">
+                            {savedCount}
+                          </span>
+                        </button>
+
+                        <button
+                          onClick={() => {
+                            onNavigate?.('user_checklist');
+                            setProfileDropdownOpen(false);
+                          }}
+                          className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-mono text-[var(--haven-text-secondary)] hover:text-[var(--haven-text-primary)] hover:bg-[var(--haven-surface-hover)] transition-colors text-left"
+                        >
+                          <Calendar className="w-3.5 h-3.5 text-sky-400" />
+                          <span>Lịch Hẹn & Bàn Giao</span>
+                        </button>
+                      </>
+                    )}
+
+                    {onToggleAdminView && (
+                      <button
+                        onClick={() => {
+                          onToggleAdminView();
+                          setProfileDropdownOpen(false);
+                        }}
+                        className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-mono text-[var(--haven-emerald-400)] bg-[var(--haven-emerald-muted)] hover:bg-[rgba(16,185,129,0.2)] border border-[var(--haven-border-accent)] transition-colors text-left font-semibold"
+                      >
+                        <Shield className="w-3.5 h-3.5" />
+                        <span>{isAdminView ? 'Chuyển Chế Độ Khách Thuê' : 'Chuyển Quản Trị (Admin Ops)'}</span>
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="divider my-1" />
+
+                  {/* Reset Demo & Logout */}
+                  <button
+                    onClick={() => {
+                      handleResetDemo();
+                      setProfileDropdownOpen(false);
+                    }}
+                    className="w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-mono text-[var(--haven-text-tertiary)] hover:text-[var(--haven-rose-400)] hover:bg-[var(--haven-rose-muted)] transition-colors text-left"
+                  >
+                    <RotateCcw className="w-3.5 h-3.5" />
+                    <span>Khôi phục Dữ liệu Demo</span>
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

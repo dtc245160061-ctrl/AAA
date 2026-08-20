@@ -109,16 +109,17 @@ export const GuidedPath: React.FC<GuidedPathProps> = ({
           className="w-full h-16 lg:h-20 overflow-visible"
         >
           <defs>
-            {/* Emerald linear gradient for brush stroke */}
-            <linearGradient id="brushGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#10B981" stopOpacity="0.95" />
-              <stop offset="60%" stopColor="#059669" stopOpacity="0.95" />
+            {/* Rich Emerald Watercolor / Marker Brush Gradient */}
+            <linearGradient id="emeraldBrushGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#34D399" stopOpacity="0.95" />
+              <stop offset="45%" stopColor="#10B981" stopOpacity="0.95" />
+              <stop offset="85%" stopColor="#059669" stopOpacity="0.92" />
               <stop offset="100%" stopColor="#047857" stopOpacity="0.9" />
             </linearGradient>
 
-            {/* Glowing filter */}
-            <filter id="brushGlow" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="3.5" result="blur" />
+            {/* Soft Ambient Brush Glow */}
+            <filter id="brushSoftGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="6" result="blur" />
               <feMerge>
                 <feMergeNode in="blur" />
                 <feMergeNode in="SourceGraphic" />
@@ -126,179 +127,98 @@ export const GuidedPath: React.FC<GuidedPathProps> = ({
             </filter>
           </defs>
 
-          {/* Background subtle guide lines */}
-          <line x1="200" y1="0" x2="200" y2="20" stroke="var(--haven-border)" strokeWidth="1" strokeDasharray="3 3" />
-          <line x1="600" y1="0" x2="600" y2="20" stroke="var(--haven-border)" strokeWidth="1" strokeDasharray="3 3" />
-          <line x1="1000" y1="0" x2="1000" y2="20" stroke="var(--haven-border)" strokeWidth="1" strokeDasharray="3 3" />
-
-          <line x1="150" y1="70" x2="150" y2="90" stroke="var(--haven-border)" strokeWidth="1" strokeDasharray="3 3" />
-          <line x1="450" y1="70" x2="450" y2="90" stroke="var(--haven-border)" strokeWidth="1" strokeDasharray="3 3" />
-          <line x1="750" y1="70" x2="750" y2="90" stroke="var(--haven-border)" strokeWidth="1" strokeDasharray="3 3" />
-          <line x1="1050" y1="70" x2="1050" y2="90" stroke="var(--haven-border)" strokeWidth="1" strokeDasharray="3 3" />
-
-          {/* ═══ 1. RETIRING PATH: Retracts from property anchor down toward environmental endpoint ═══ */}
+          {/* ═══ 1. RETIRING BRUSH STROKE (smooth fade-out) ═══ */}
           <AnimatePresence>
             {retiringPath && (
               <g key={`retiring-${retiringPath.id}`}>
-                {/* Glow layer */}
+                {/* Soft outer aura */}
                 <motion.path
                   d={retiringPath.d}
                   stroke="#10B981"
-                  strokeWidth="7"
-                  strokeOpacity="0.15"
+                  strokeWidth="26"
+                  strokeOpacity="0.1"
                   strokeLinecap="round"
+                  strokeLinejoin="round"
                   fill="none"
-                  filter="url(#brushGlow)"
-                  initial={{ pathLength: 1, pathOffset: 0, opacity: 0.8 }}
-                  animate={{ pathOffset: 1, opacity: 0 }}
-                  transition={{ duration: 0.28, ease: [0.32, 0, 0.67, 0] }}
+                  filter="url(#brushSoftGlow)"
+                  initial={{ opacity: 0.7 }}
+                  animate={{ opacity: 0 }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
                 />
-                {/* Main base stroke */}
+                {/* Main brush body */}
                 <motion.path
                   d={retiringPath.d}
-                  stroke="url(#brushGrad)"
-                  strokeWidth="2.75"
+                  stroke="url(#emeraldBrushGradient)"
+                  strokeWidth="16"
                   strokeLinecap="round"
+                  strokeLinejoin="round"
                   fill="none"
-                  initial={{ pathLength: 1, pathOffset: 0, opacity: 0.9 }}
-                  animate={{ pathOffset: 1, opacity: 0 }}
-                  transition={{ duration: 0.28, ease: [0.32, 0, 0.67, 0] }}
+                  initial={{ opacity: 0.9 }}
+                  animate={{ opacity: 0 }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
                 />
               </g>
             )}
           </AnimatePresence>
 
-          {/* ═══ 2. INCOMING ACTIVE PATH: Draws from property anchor down toward environmental endpoint ═══ */}
+          {/* ═══ 2. INCOMING ACTIVE BOLD BRUSH STROKE (Organic Marker / Brush Aesthetic) ═══ */}
           <g key={`incoming-${currentPath.id}`}>
-            {/* Ambient Glow Layer */}
+            {/* Outer Soft Aura Glow */}
             <motion.path
               d={currentPath.d}
               stroke="#10B981"
-              strokeWidth="7"
-              strokeOpacity="0.22"
+              strokeWidth="28"
+              strokeOpacity="0.14"
               strokeLinecap="round"
+              strokeLinejoin="round"
               fill="none"
-              filter="url(#brushGlow)"
-              initial={{ pathLength: 0, pathOffset: 0, opacity: 0 }}
-              animate={{ pathLength: 1, pathOffset: 0, opacity: 1 }}
-              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1], delay: 0.04 }}
+              filter="url(#brushSoftGlow)"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
             />
 
-            {/* Base Emerald Brush Stroke */}
+            {/* Main Thick Brush Stroke (Matching User's Sketch) */}
             <motion.path
               d={currentPath.d}
-              stroke="url(#brushGrad)"
-              strokeWidth="2.75"
+              stroke="url(#emeraldBrushGradient)"
+              strokeWidth="16"
               strokeLinecap="round"
+              strokeLinejoin="round"
               fill="none"
-              initial={{ pathLength: 0, pathOffset: 0, opacity: 0 }}
-              animate={{ pathLength: 1, pathOffset: 0, opacity: 1 }}
-              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1], delay: 0.04 }}
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
             />
 
-            {/* Subtle Highlight Spine */}
+            {/* Inner Vibrant Core */}
+            <motion.path
+              d={currentPath.d}
+              stroke="#34D399"
+              strokeWidth="9"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeOpacity="0.85"
+              fill="none"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 0.85 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            />
+
+            {/* Subtle Light Spine Highlight */}
             <motion.path
               d={currentPath.d}
               stroke="#D1FAE5"
-              strokeWidth="1"
-              strokeOpacity="0.8"
+              strokeWidth="3"
               strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeOpacity="0.9"
               fill="none"
-              initial={{ pathLength: 0, pathOffset: 0, opacity: 0 }}
-              animate={{ pathLength: 1, pathOffset: 0, opacity: 0.8 }}
-              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1], delay: 0.04 }}
-            />
-
-            {/* Visible Floating Particles / Bubbles along the active stroke */}
-            <motion.circle
-              r="2.5"
-              fill="#FFFFFF"
-              filter="url(#brushGlow)"
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: [0, 1, 1, 0],
-                cx: [currentPath.startX, currentPath.startX * 0.7 + currentPath.endX * 0.3, currentPath.startX * 0.3 + currentPath.endX * 0.7, currentPath.endX],
-                cy: [0, 25, 65, 90],
-              }}
-              transition={{
-                duration: 1.8,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                delay: 0.1,
-              }}
-            />
-            <motion.circle
-              r="2"
-              fill="#A7F3D0"
-              filter="url(#brushGlow)"
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: [0, 0.9, 0.9, 0],
-                cx: [currentPath.startX, currentPath.startX * 0.8 + currentPath.endX * 0.2, currentPath.startX * 0.2 + currentPath.endX * 0.8, currentPath.endX],
-                cy: [0, 20, 68, 90],
-              }}
-              transition={{
-                duration: 2.2,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                delay: 0.8,
-              }}
-            />
-            <motion.circle
-              r="1.75"
-              fill="#34D399"
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: [0, 0.8, 0.8, 0],
-                cx: [currentPath.startX, currentPath.startX * 0.5 + currentPath.endX * 0.5, currentPath.endX],
-                cy: [0, 45, 90],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                delay: 1.4,
-              }}
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 0.9 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
             />
           </g>
-
-          {/* Top Anchor Node */}
-          <circle
-            cx={currentPath.startX}
-            cy="0"
-            r="4.5"
-            fill="var(--haven-emerald-400)"
-            className="transition-all duration-300"
-          />
-          <circle
-            cx={currentPath.startX}
-            cy="0"
-            r="8"
-            stroke="var(--haven-emerald-400)"
-            strokeWidth="1.5"
-            fill="none"
-            strokeOpacity="0.4"
-            className="animate-ping"
-          />
-
-          {/* Bottom Destination Node */}
-          <circle
-            cx={currentPath.endX}
-            cy="90"
-            r="4.5"
-            fill="var(--haven-emerald-500)"
-            className="transition-all duration-300"
-          />
-          <circle
-            cx={currentPath.endX}
-            cy="90"
-            r="8"
-            stroke="var(--haven-emerald-500)"
-            strokeWidth="1.5"
-            fill="none"
-            strokeOpacity="0.4"
-            className="animate-ping"
-          />
         </svg>
       </div>
 

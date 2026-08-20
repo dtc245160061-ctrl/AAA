@@ -5,7 +5,6 @@ import {
   Users,
   FileText,
   Receipt,
-  Sparkles,
   Home,
   Search,
   Bookmark,
@@ -34,7 +33,7 @@ interface SidebarProps {
   isAdminView?: boolean;
   activeModule: string;
   setActiveModule: (module: string) => void;
-  onOpenAiCopilot: () => void;
+  onOpenAiCopilot?: () => void;
   savedCount?: number;
   pendingLeadsCount?: number;
   unreadMessagesCount?: number;
@@ -46,7 +45,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
   isAdminView = false,
   activeModule,
   setActiveModule,
-  onOpenAiCopilot,
   savedCount = 0,
   pendingLeadsCount = 0,
   unreadMessagesCount = 0,
@@ -112,39 +110,51 @@ export const Sidebar: React.FC<SidebarProps> = ({
   return (
     <aside
       className={`
-        hidden md:flex flex-col justify-between min-h-screen
+        hidden md:flex flex-col justify-between sticky top-0 h-screen shrink-0
         bg-[var(--haven-bg-subtle)] border-r border-[var(--haven-border)]
         transition-all duration-[var(--duration-standard)] ease-[var(--ease-standard)]
-        relative
-        ${collapsed ? 'w-16 p-2' : 'w-[260px] p-4'}
+        overflow-y-auto overflow-x-hidden z-30
+        ${collapsed ? 'w-[68px] p-2' : 'w-[230px] p-3.5'}
       `}
-      style={{ zIndex: 'var(--z-navigation)' }}
     >
-      <div className="space-y-4">
-        {/* Brand with quiet status & clock */}
-        <div className={`flex items-center gap-3 ${collapsed ? 'justify-center px-0 py-2' : 'px-2 pt-2'}`}>
-          <div className="w-8 h-8 rounded-xl bg-[var(--haven-emerald-muted)] border border-[rgba(16,185,129,0.25)] flex items-center justify-center shrink-0">
-            <Leaf className="w-4 h-4 text-[var(--haven-emerald-400)] fill-[rgba(16,185,129,0.2)]" />
-          </div>
-          {!collapsed && (
-            <div className="min-w-0">
-              <h1 className="text-brand text-[15px] font-display font-bold text-[var(--haven-text-primary)] tracking-wider truncate">
-                {isAdminView ? 'HAVEN OPS' : 'HAVEN'}
-              </h1>
-              <div className="flex items-center gap-1.5 text-[9.5px] font-mono text-[var(--haven-text-tertiary)] truncate">
-                <span className="text-[var(--haven-emerald-400)] font-semibold">
-                  {isAdminView ? 'QUẢN TRỊ' : 'SANCTUARY'}
-                </span>
-                <span>•</span>
-                <span>{time || '--:--:--'} UTC+7</span>
-              </div>
+      <div className="space-y-3.5">
+        {/* Brand with quiet status, clock & collapse button */}
+        <div className={`flex items-center ${collapsed ? 'flex-col gap-2' : 'justify-between'} px-1 pt-1 pb-1`}>
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="w-8 h-8 rounded-xl bg-[var(--haven-emerald-muted)] border border-[rgba(16,185,129,0.25)] flex items-center justify-center shrink-0">
+              <Leaf className="w-4 h-4 text-[var(--haven-emerald-400)] fill-[rgba(16,185,129,0.2)]" />
             </div>
+            {!collapsed && (
+              <div className="min-w-0">
+                <h1 className="text-brand text-[14px] font-bold text-[var(--haven-text-primary)] tracking-wider truncate">
+                  {isAdminView ? 'HAVEN OPS' : 'HAVEN'}
+                </h1>
+                <div className="flex items-center gap-1 text-[9px] font-mono text-[var(--haven-text-tertiary)] truncate">
+                  <span className="text-[var(--haven-emerald-400)] font-semibold">
+                    {isAdminView ? 'QUẢN TRỊ' : 'SANCTUARY'}
+                  </span>
+                  <span>•</span>
+                  <span>{time || '--:--'}</span>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Quick Collapse Toggle at Header */}
+          {onToggleCollapse && (
+            <button
+              onClick={onToggleCollapse}
+              className="p-1 rounded-lg text-[var(--haven-text-muted)] hover:text-[var(--haven-text-secondary)] hover:bg-[var(--haven-surface-hover)] transition-colors focus-ring shrink-0"
+              title={collapsed ? 'Mở rộng sidebar' : 'Thu gọn sidebar'}
+            >
+              {collapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+            </button>
           )}
         </div>
 
         {/* Section Label */}
         {!collapsed && (
-          <div className="px-3">
+          <div className="px-2 pt-1">
             <span className="text-label text-[9px]">
               {isAdminView ? 'PHÂN HỆ QUẢN TRỊ' : 'TRẢI NGHIỆM KHÁCH THUÊ'}
             </span>
@@ -163,21 +173,21 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 title={collapsed ? item.label : undefined}
                 className={`
                   w-full flex items-center ${collapsed ? 'justify-center' : 'justify-between'} 
-                  ${collapsed ? 'px-0 py-2.5' : 'px-3 py-2'}
-                  rounded-xl text-[var(--text-sm)] focus-ring
+                  ${collapsed ? 'px-0 py-2.5' : 'px-2.5 py-2'}
+                  rounded-xl text-[13px] focus-ring
                   transition-all duration-[var(--duration-micro)]
                   ${isActive
-                    ? 'bg-[var(--haven-emerald-muted)] text-[var(--haven-emerald-400)] font-semibold border border-[rgba(16,185,129,0.2)]'
+                    ? 'bg-[var(--haven-emerald-muted)] text-[var(--haven-emerald-400)] font-semibold border border-[rgba(16,185,129,0.25)]'
                     : 'text-[var(--haven-text-tertiary)] hover:text-[var(--haven-text-secondary)] hover:bg-[var(--haven-surface-hover)] border border-transparent'
                   }
                 `}
               >
-                <div className={`flex items-center ${collapsed ? '' : 'gap-3'}`}>
+                <div className={`flex items-center ${collapsed ? '' : 'gap-2.5'} min-w-0`}>
                   <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-[var(--haven-emerald-400)]' : ''}`} />
                   {!collapsed && <span className="truncate">{item.label}</span>}
                 </div>
                 {!collapsed && item.badge !== undefined && (
-                  <span className="px-1.5 py-0.5 rounded-full bg-[var(--haven-emerald-500)] text-[var(--haven-text-inverse)] text-[10px] font-mono font-bold min-w-[18px] text-center">
+                  <span className="px-1.5 py-0.2 rounded-full bg-[var(--haven-emerald-500)] text-white text-[10px] font-mono font-bold min-w-[18px] text-center shadow-xs">
                     {item.badge}
                   </span>
                 )}
@@ -190,40 +200,22 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </nav>
       </div>
 
-      {/* Bottom section: AI + Collapse toggle */}
-      <div className="space-y-2 pt-4 border-t border-[var(--haven-border)]">
-        {/* AI Assistant */}
-        <button
-          onClick={onOpenAiCopilot}
-          className={`
-            w-full rounded-xl border border-[var(--haven-border)]
-            hover:border-[var(--haven-border-accent)]
-            bg-[var(--haven-surface-raised)] hover:bg-[var(--haven-surface-hover)]
-            transition-all duration-[var(--duration-micro)] focus-ring
-            ${collapsed ? 'p-2.5 flex items-center justify-center' : 'p-3 text-left'}
-          `}
-        >
-          <div className={`flex items-center ${collapsed ? '' : 'gap-2'}`}>
-            <Sparkles className="w-4 h-4 text-[var(--haven-emerald-400)] shrink-0" />
-            {!collapsed && (
-              <span className="text-[var(--text-xs)] font-semibold text-[var(--haven-text-secondary)]">
-                {isAdminView ? 'AI Copilot' : 'Trợ Lý AI'}
-              </span>
-            )}
-          </div>
-        </button>
-
-        {/* Collapse Toggle */}
+      {/* Bottom section: Clean status & Collapse button */}
+      <div className="pt-3 border-t border-[var(--haven-border)] space-y-1">
         {onToggleCollapse && (
           <button
             onClick={onToggleCollapse}
-            className="w-full flex items-center justify-center py-2 rounded-xl text-[var(--haven-text-muted)] hover:text-[var(--haven-text-secondary)] hover:bg-[var(--haven-surface-hover)] transition-colors duration-[var(--duration-micro)] focus-ring"
+            className="w-full flex items-center justify-center py-2 rounded-xl text-[var(--haven-text-muted)] hover:text-[var(--haven-text-secondary)] hover:bg-[var(--haven-surface-hover)] transition-colors duration-[var(--duration-micro)] focus-ring text-xs font-mono"
             title={collapsed ? 'Mở rộng sidebar' : 'Thu gọn sidebar'}
           >
-            {collapsed
-              ? <ChevronRight className="w-4 h-4" />
-              : <ChevronLeft className="w-4 h-4" />
-            }
+            {collapsed ? (
+              <ChevronRight className="w-4 h-4" />
+            ) : (
+              <div className="flex items-center gap-1.5 text-[11px]">
+                <ChevronLeft className="w-3.5 h-3.5" />
+                <span>Thu gọn thanh bên</span>
+              </div>
+            )}
           </button>
         )}
       </div>

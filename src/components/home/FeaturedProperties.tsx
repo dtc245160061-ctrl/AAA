@@ -101,10 +101,10 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
             <Sparkles className="w-3.5 h-3.5" />
             <span>Hành Trình Tổ Ấm Xác Thực • Căn Hộ → Dữ Liệu → Lợi Ích</span>
           </div>
-          <h2 className="text-2xl md:text-3xl font-display font-bold text-[var(--haven-text-primary)]">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--haven-text-primary)]">
             Căn Hộ Tuyển Chọn & Minh Chứng Môi Trường
           </h2>
-          <p className="text-sm text-[var(--haven-text-secondary)] max-w-2xl">
+          <p className="text-sm text-[var(--haven-text-secondary)] max-w-2xl font-sans">
             Chọn hoặc di chuột qua từng căn hộ để theo dõi đường dẫn dữ liệu xác thực khí hậu, độ ồn và nguồn điện dự phòng.
           </p>
         </div>
@@ -136,14 +136,14 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-40px' }}
-              whileHover={{ y: -3, transition: { duration: 0.2, ease: 'easeOut' } }}
+              whileHover={{ y: -3, transition: { duration: 0.12, ease: 'easeOut' } }}
               onClick={() => onSelectUnitFocal(unit.id, mapping.primaryFeature)}
               onMouseEnter={() => onSelectUnitFocal(unit.id, mapping.primaryFeature)}
               onFocus={() => onSelectUnitFocal(unit.id, mapping.primaryFeature)}
               tabIndex={0}
               role="button"
               aria-label={`Xem dữ liệu xác thực của căn hộ ${unit.name || unit.id}`}
-              className={`group rounded-2xl overflow-hidden flex flex-col transition-all duration-300 relative outline-none focus-visible:ring-2 focus-visible:ring-[var(--haven-emerald-500)] ${
+              className={`group rounded-2xl flex flex-col transition-all duration-150 relative outline-none focus-visible:ring-2 focus-visible:ring-[var(--haven-emerald-500)] ${
                 isFocal
                   ? 'bg-[var(--haven-surface-elevated)] border-2 border-[var(--haven-emerald-500)] shadow-[var(--shadow-elevated)] ring-4 ring-[var(--haven-emerald-glow)]'
                   : 'bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] shadow-[var(--shadow-card)] opacity-95 hover:opacity-100 hover:border-[var(--haven-border-strong)]'
@@ -151,7 +151,7 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
             >
               {/* Photo & Overlays */}
               <div
-                className="relative h-52 lg:h-56 overflow-hidden cursor-pointer bg-[var(--haven-bg-subtle)]"
+                className="relative h-52 lg:h-56 overflow-hidden rounded-t-2xl cursor-pointer bg-[var(--haven-bg-subtle)]"
                 onClick={(e) => {
                   e.stopPropagation();
                   onSelectUnit(unit.id);
@@ -214,7 +214,7 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
                       onSelectUnit(unit.id);
                     }}
                   >
-                    <h3 className="font-display text-lg font-bold group-hover:text-[var(--haven-emerald-400)] transition-colors line-clamp-1 text-[var(--haven-text-primary)]">
+                    <h3 className="font-serif text-lg font-bold group-hover:text-[var(--haven-emerald-400)] transition-colors line-clamp-1 text-[var(--haven-text-primary)]">
                       {unit.name || unit.id}
                     </h3>
                   </div>
@@ -247,7 +247,7 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
                             onSelectUnitFocal(unit.id, feat.key);
                             onSelectFeatureKey(feat.key);
                           }}
-                          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-mono transition-all duration-200 border ${
+                          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-mono transition-all duration-150 border ${
                             isFeatureActive
                               ? 'bg-[var(--haven-emerald-500)] text-white border-[var(--haven-emerald-400)] shadow-sm font-semibold'
                               : 'bg-[var(--haven-surface-hover)] text-[var(--haven-text-secondary)] border-[var(--haven-border)] hover:border-[var(--haven-emerald-400)] hover:text-[var(--haven-text-primary)]'
@@ -275,7 +275,7 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
                 {/* Price + CTA */}
                 <div className="pt-3 flex items-center justify-between border-t border-[var(--haven-border)]">
                   <div className="min-w-0">
-                    <div className="text-lg font-display font-bold text-[var(--haven-emerald-400)]">
+                    <div className="text-xl font-serif font-bold text-[var(--haven-emerald-400)]">
                       {(unit.monthlyRentVND / 1000000).toFixed(0)} Triệu
                       <span className="text-xs font-sans font-normal ml-0.5 text-[var(--haven-text-tertiary)]">/tháng</span>
                     </div>
@@ -288,18 +288,18 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
                       e.stopPropagation();
                       onSelectUnit(unit.id);
                     }}
-                    className="px-3.5 py-2 rounded-xl text-xs font-mono font-medium transition-all duration-200 border bg-[var(--haven-surface-hover)] border-[var(--haven-border)] text-[var(--haven-text-primary)] hover:bg-[var(--haven-emerald-500)] hover:text-white hover:border-[var(--haven-emerald-500)] shrink-0 whitespace-nowrap"
+                    className="px-3.5 py-2 rounded-xl text-xs font-mono font-medium transition-all duration-150 border bg-[var(--haven-surface-hover)] border-[var(--haven-border)] text-[var(--haven-text-primary)] hover:bg-[var(--haven-emerald-500)] hover:text-white hover:border-[var(--haven-emerald-500)] shrink-0 whitespace-nowrap"
                   >
                     Chi Tiết
                   </button>
                 </div>
               </div>
 
-              {/* Bottom Anchor Node for Active Focal State */}
+              {/* Bottom Anchor Node for Active Focal State — Fully visible, unclipped */}
               {isFocal && (
-                <div className="hidden md:flex absolute -bottom-3 left-1/2 -translate-x-1/2 items-center gap-1 px-2.5 py-0.5 rounded-full bg-[var(--haven-emerald-500)] text-white text-[10px] font-mono font-bold shadow-md z-20 pointer-events-none">
+                <div className="hidden md:flex absolute -bottom-3.5 left-1/2 -translate-x-1/2 items-center gap-1.5 px-3 py-0.5 rounded-full bg-[var(--haven-emerald-500)] text-white text-[10px] font-mono font-bold shadow-lg z-30 pointer-events-none border border-emerald-300/40 animate-in fade-in">
                   <span>Dẫn truyền dữ liệu</span>
-                  <ArrowDown className="w-3 h-3" />
+                  <ArrowDown className="w-3 h-3 animate-bounce" />
                 </div>
               )}
             </motion.div>

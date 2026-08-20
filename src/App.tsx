@@ -54,7 +54,9 @@ export function App() {
 
   const [activeModule, setActiveModule] = useState<string>(() => isAdminView ? 'dashboard' : 'user_home');
   const [selectedUnitId, setSelectedUnitId] = useState<string>('HN-TH-2401');
-  const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(() => {
+    return localStorage.getItem('haven_sidebar_collapsed') === 'true';
+  });
   const [initialAiQuery, setInitialAiQuery] = useState<string>('');
   
   // Reactive Central State from ApartmentStore
@@ -309,7 +311,11 @@ export function App() {
         pendingLeadsCount={pendingLeadsCount}
         unreadMessagesCount={unreadMessagesCount}
         collapsed={sidebarCollapsed}
-        onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
+        onToggleCollapse={() => {
+          const next = !sidebarCollapsed;
+          setSidebarCollapsed(next);
+          localStorage.setItem('haven_sidebar_collapsed', String(next));
+        }}
       />
 
       {/* Main Content Layout Shell */}
@@ -333,6 +339,14 @@ export function App() {
           themeMode={themeMode}
           onThemeChange={setThemeMode}
           onResetDemoData={handleResetDemoData}
+          onToggleAdminView={() => {
+            const nextAdmin = !isAdminView;
+            setIsAdminView(nextAdmin);
+            setActiveModule(nextAdmin ? 'dashboard' : 'user_home');
+          }}
+          onNavigate={(mod) => {
+            setActiveModule(mod);
+          }}
         />
 
         {/* Dynamic View Body Container */}

@@ -74,12 +74,12 @@ export const FeatureStrip: React.FC<FeatureStripProps> = ({
           <span>Hệ Thống Phân Tích Môi Trường Sống • 4 Trụ Cột Độc Quyền</span>
         </div>
         <h2
-          className="text-2xl md:text-3xl font-display font-bold text-[var(--haven-text-primary)]"
+          className="text-2xl md:text-3xl font-serif font-bold text-[var(--haven-text-primary)]"
         >
           Dữ Liệu Khí Hậu & Môi Trường Xác Thực
         </h2>
         <p
-          className="text-sm max-w-2xl leading-relaxed text-[var(--haven-text-secondary)]"
+          className="text-sm max-w-2xl leading-relaxed text-[var(--haven-text-secondary)] font-sans"
         >
           Chúng tôi khảo sát trực tiếp từng rủi ro và cam kết tiện ích hạ tầng trước khi đăng ký xem nhà.
         </p>
@@ -100,7 +100,7 @@ export const FeatureStrip: React.FC<FeatureStripProps> = ({
               tabIndex={0}
               role="button"
               aria-label={`Chi tiết minh chứng ${feature.title}`}
-              className={`reveal-on-scroll p-5 rounded-2xl transition-all duration-300 cursor-pointer outline-none relative flex flex-col justify-between ${
+              className={`reveal-on-scroll p-5 rounded-2xl transition-all duration-150 cursor-pointer outline-none relative flex flex-col justify-between ${
                 isActive
                   ? 'bg-[var(--haven-surface-elevated)] border-2 border-[var(--haven-emerald-500)] shadow-[var(--shadow-elevated)] ring-4 ring-[var(--haven-emerald-glow)] -translate-y-1'
                   : 'bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] hover:border-[var(--haven-border-strong)] hover:shadow-md'
@@ -125,12 +125,12 @@ export const FeatureStrip: React.FC<FeatureStripProps> = ({
                 </div>
 
                 <h3
-                  className="text-sm font-semibold font-display mb-1.5 text-[var(--haven-text-primary)]"
+                  className="text-base font-serif font-bold mb-1.5 text-[var(--haven-text-primary)]"
                 >
                   {feature.title}
                 </h3>
                 <p
-                  className="text-xs leading-relaxed text-[var(--haven-text-secondary)] mb-3"
+                  className="text-xs leading-relaxed text-[var(--haven-text-secondary)] mb-3 font-sans"
                 >
                   {feature.description}
                 </p>

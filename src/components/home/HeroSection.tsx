@@ -115,15 +115,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
           animate={phase >= 2 ? 'visible' : 'hidden'}
           className="space-y-1"
         >
-          <motion.h1 variants={lineVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-white tracking-tight leading-[1.1] always-white">
+          <motion.h1 variants={lineVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-[1.15] always-white">
             Tìm nơi ở
           </motion.h1>
-          <motion.h1 variants={lineVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-extrabold tracking-tight leading-[1.1]">
+          <motion.h1 variants={lineVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-[1.15]">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-emerald-400 to-teal-300">
               thực sự thuộc về bạn.
             </span>
           </motion.h1>
-          <motion.p variants={lineVariants} className="text-slate-100 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed mt-4 always-white font-light">
+          <motion.p variants={lineVariants} className="text-slate-100 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed mt-4 always-white font-sans font-light">
             Không chỉ là 4 bức tường. HAVEN thấu hiểu phong cách sống và đánh giá toàn diện nguy cơ ngập úng, độ ồn, chỗ đỗ xe ô tô và nguồn điện dự phòng.
           </motion.p>
         </motion.div>

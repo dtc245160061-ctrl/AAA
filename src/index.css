@@ -19,7 +19,7 @@
   }
 
   body {
-    font-family: var(--font-display);
+    font-family: var(--font-sans);
     background-color: var(--bg-canvas);
     color: var(--text-primary);
     overflow-x: hidden;
