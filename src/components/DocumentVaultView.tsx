@@ -15,10 +15,12 @@ import { ApartmentStore } from '../data/apartmentStore';
 interface DocumentVaultViewProps {
   units: ApartmentUnit[];
   isAdminView?: boolean;
+  onShowToast?: (type: 'success' | 'error' | 'info', title: string, desc?: string) => void;
 }
 
 export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
-  units
+  units,
+  onShowToast
 }) => {
   const [documents, setDocuments] = useState<LegalDocumentItem[]>(() => ApartmentStore.getLegalDocuments());
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
@@ -67,7 +69,9 @@ export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
     setDocuments(ApartmentStore.getLegalDocuments());
     setIsUploadModalOpen(false);
     setDocTitle('');
-    alert(`✅ Tải lên tài liệu "${newDoc.title}" thành công!\nMã bảo chứng SHA-256: ${newDoc.hashSignature}`);
+    if (onShowToast) {
+      onShowToast('success', `Tải lên tài liệu thành công`, `"${newDoc.title}" - Mã SHA-256: ${newDoc.hashSignature.slice(0, 16)}...`);
+    }
   };
 
   return (
@@ -139,7 +143,7 @@ export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
         {filteredDocs.map((doc) => (
           <div
             key={doc.id}
-            className="p-5 rounded-2xl atmospheric-panel border border-slate-800 hover:border-emerald-500/40 transition-all space-y-4 shadow-xl group"
+            className="p-5 rounded-2xl atmospheric-panel border border-slate-800 hover:border-emerald-500/50 hover:-translate-y-1.5 hover:shadow-2xl transition-all duration-200 space-y-4 shadow-xl group"
           >
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-start gap-3">
@@ -179,7 +183,11 @@ export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
               </span>
 
               <button
-                onClick={() => alert(`Đang tải file điện tử an toàn cho tài liệu "${doc.title}"...`)}
+                onClick={() => {
+                  if (onShowToast) {
+                    onShowToast('info', 'Đang tải tài liệu an toàn', `Tài liệu "${doc.title}" đã được ký số.`);
+                  }
+                }}
                 className="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-200 text-xs font-mono font-bold transition-all flex items-center gap-1.5"
               >
                 <Download className="w-3.5 h-3.5" />

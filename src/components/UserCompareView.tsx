@@ -131,16 +131,16 @@ export const UserCompareView: React.FC<UserCompareViewProps> = ({
               className="px-4 py-2 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-mono font-semibold hover:bg-emerald-500/30 transition-all flex items-center gap-1.5"
             >
               <Plus className="w-3.5 h-3.5" />
-              <span>Nạp 3 Căn Mẫu So Sánh Ngay</span>
+              <span>Nạp 3 Căn Mẫu So Sánh</span>
             </button>
           )}
 
           <button
             onClick={onBackToDirectory}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-xs font-mono transition-colors hover:text-white hover:bg-slate-800"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold transition-all shadow-md shadow-emerald-500/20"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>Tìm Thêm Căn Hộ</span>
+            <span>← Quay Lại Tìm Kiếm</span>
           </button>
         </div>
       </div>

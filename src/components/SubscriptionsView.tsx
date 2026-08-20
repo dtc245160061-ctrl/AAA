@@ -127,7 +127,7 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
                   {plan.badge && (
                     <span className={`shrink-0 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider ${
                       plan.id === 'enterprise' || plan.badge === 'Doanh Nghiệp'
-                        ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-md shadow-indigo-500/25 border border-indigo-400/40'
+                        ? 'bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-500 text-slate-950 shadow-md shadow-amber-500/30 border border-amber-300/80 font-bold'
                         : plan.isPopular || plan.badge === 'Khuyên Dùng'
                         ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 shadow-md shadow-emerald-500/30'
                         : 'bg-slate-800 text-slate-300 border border-slate-700'

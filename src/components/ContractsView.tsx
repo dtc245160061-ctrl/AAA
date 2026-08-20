@@ -19,6 +19,7 @@ interface ContractsViewProps {
   onOpenAiCopilot?: () => void;
   initialLeadContractData?: Partial<LeaseContract> | null;
   onClearLeadContractData?: () => void;
+  onShowToast?: (type: 'success' | 'error' | 'info', title: string, desc?: string) => void;
 }
 
 export const ContractsView: React.FC<ContractsViewProps> = ({
@@ -28,6 +29,7 @@ export const ContractsView: React.FC<ContractsViewProps> = ({
   onSelectUnit,
   initialLeadContractData,
   onClearLeadContractData,
+  onShowToast,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(!!initialLeadContractData);
   const [signingContract, setSigningContract] = useState<LeaseContract | null>(null);
@@ -203,7 +205,11 @@ export const ContractsView: React.FC<ContractsViewProps> = ({
                       </button>
 
                       <button
-                        onClick={() => alert(`Xem file điện tử hợp đồng: ${contract.contractNumber}`)}
+                        onClick={() => {
+                          if (onShowToast) {
+                            onShowToast('info', 'Đang tải hợp đồng điện tử', `Hợp đồng mã ${contract.contractNumber} kèm chữ ký số SHA-256.`);
+                          }
+                        }}
                         className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
                         title="Xem & Tải Hợp Đồng"
                       >
@@ -397,7 +403,9 @@ export const ContractsView: React.FC<ContractsViewProps> = ({
           isOpen={!!signingContract}
           onClose={() => setSigningContract(null)}
           onConfirmSign={(_, hash) => {
-            alert(`✅ Ký số thành công cho hợp đồng ${signingContract.contractNumber}!\n🔒 Mã bảo chứng băm: ${hash}`);
+            if (onShowToast) {
+              onShowToast('success', 'Ký số hợp đồng thành công', `Hợp đồng ${signingContract.contractNumber} đã được bảo chứng băm SHA-256: ${hash.slice(0, 16)}...`);
+            }
             setSigningContract(null);
           }}
         />

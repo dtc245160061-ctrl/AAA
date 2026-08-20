@@ -66,6 +66,16 @@ export const Topbar: React.FC<TopbarProps> = ({
     return () => document.removeEventListener('mousedown', handleDocumentClick);
   }, [profileDropdownOpen, themeDropdownOpen]);
 
+  const [searchValue, setSearchValue] = useState<string>('');
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!searchValue.trim()) return;
+    if (!isAdminView) {
+      onNavigate?.('user_search');
+    }
+  };
+
   const handleResetDemo = () => {
     onResetDemoData?.();
     setThemeDropdownOpen(false);
@@ -81,7 +91,7 @@ export const Topbar: React.FC<TopbarProps> = ({
 
   return (
     <header
-      className="sticky top-0 w-full bg-[var(--haven-bg)]/95 backdrop-blur-xl border-b border-[var(--haven-border)] px-4 md:px-6 transition-colors"
+      className="sticky top-0 w-full bg-[var(--haven-bg)]/95 backdrop-blur-xl border-b border-[var(--haven-border)] px-4 md:px-6 transition-colors z-40"
       style={{
         height: 'var(--topbar-height)',
         zIndex: 'var(--z-sticky)',
@@ -113,16 +123,18 @@ export const Topbar: React.FC<TopbarProps> = ({
         </div>
 
         {/* Center: Global Search */}
-        <div className="flex-1 max-w-md hidden md:block">
+        <form onSubmit={handleSearchSubmit} className="flex-1 max-w-md hidden md:block">
           <div className="relative">
             <Search className="w-3.5 h-3.5 text-[var(--haven-text-muted)] absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
-              placeholder={isAdminView ? "Tìm căn hộ, cư dân..." : "Tìm thành phố, ngân sách..."}
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              placeholder={isAdminView ? "Tìm căn hộ, hợp đồng, cư dân..." : "Tìm thành phố, ngân sách... (Nhấn Enter)"}
               className="w-full pl-9 pr-4 py-1.5 text-[var(--text-sm)] bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] rounded-[var(--radius-lg)] text-[var(--haven-text-primary)] placeholder-[var(--haven-text-muted)] focus:outline-none focus:border-[var(--haven-border-focus)] transition-colors font-[var(--font-mono)]"
             />
           </div>
-        </div>
+        </form>
 
         {/* Right: Normalized Control Group */}
         <div className="flex items-center gap-2">

@@ -13,12 +13,14 @@ interface SmartListingCreatorModalProps {
   isOpen: boolean;
   onClose: () => void;
   onListingCreated?: (unit: Partial<ApartmentUnit>) => void;
+  onShowToast?: (type: 'success' | 'error' | 'info', title: string, desc?: string) => void;
 }
 
 export const SmartListingCreatorModal: React.FC<SmartListingCreatorModalProps> = ({
   isOpen,
   onClose,
-  onListingCreated
+  onListingCreated,
+  onShowToast
 }) => {
   const [step, setStep] = useState<'upload' | 'generating' | 'review'>('upload');
   const [selectedCity, setSelectedCity] = useState<'Hanoi' | 'Ho Chi Minh City' | 'Da Nang'>('Ho Chi Minh City');
@@ -54,7 +56,9 @@ export const SmartListingCreatorModal: React.FC<SmartListingCreatorModalProps> =
       monthlyRentVND: suggestedRentVND,
       status: 'vacant'
     });
-    alert('✅ Tin đăng đã được AI tối ưu hóa và xuất bản thành công lên sàn HAVEN!');
+    if (onShowToast) {
+      onShowToast('success', 'Xuất bản tin đăng thành công', 'Tin đăng đã được AI tối ưu hóa và hiển thị trên sàn HAVEN.');
+    }
     onClose();
   };
 

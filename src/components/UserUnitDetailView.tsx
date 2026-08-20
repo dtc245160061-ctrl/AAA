@@ -37,6 +37,7 @@ interface UserUnitDetailViewProps {
   onOpenDepositEscrow?: (unit: ApartmentUnit) => void;
   onOpenVirtualTour?: (unit: ApartmentUnit) => void;
   onOpenLandlordProfile?: (landlord: LandlordProfile) => void;
+  onShowToast?: (type: 'success' | 'error' | 'info', title: string, desc?: string) => void;
 }
 
 export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
@@ -49,7 +50,8 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
   onOpenCommuteSimulator,
   onOpenDepositEscrow,
   onOpenVirtualTour,
-  onOpenLandlordProfile
+  onOpenLandlordProfile,
+  onShowToast
 }) => {
   const [selectedPhotoIdx, setSelectedPhotoIdx] = useState(0);
   const [showCostDetails, setShowCostDetails] = useState(true);
@@ -583,7 +585,11 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
                 )}
 
                 <button
-                  onClick={() => alert(`Đang kết nối với Chuyên viên tư vấn HAVEN cho căn hộ ${unit.name || unit.id}...`)}
+                  onClick={() => {
+                    if (onShowToast) {
+                      onShowToast('info', 'Kết nối Chuyên viên HAVEN 24/7', `Đang chuyển cuộc gọi tới chuyên viên hỗ trợ căn hộ ${unit.name || unit.id}...`);
+                    }
+                  }}
                   className="w-full py-2.5 rounded-xl border border-slate-700 bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-slate-200 text-xs font-mono transition-colors flex items-center justify-center gap-2"
                 >
                   <Phone className="w-3.5 h-3.5 text-slate-400" />

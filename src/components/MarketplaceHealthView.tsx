@@ -14,7 +14,13 @@ import {
 import type { MarketplaceModerationItem } from '../types/apartment';
 import { ApartmentStore } from '../data/apartmentStore';
 
-export const MarketplaceHealthView: React.FC = () => {
+interface MarketplaceHealthViewProps {
+  onShowToast?: (type: 'success' | 'error' | 'info', title: string, desc?: string) => void;
+}
+
+export const MarketplaceHealthView: React.FC<MarketplaceHealthViewProps> = ({
+  onShowToast
+}) => {
   const [kpis, setKpis] = useState(() => ApartmentStore.getMarketplaceHealthKPIs());
   const [moderationQueue, setModerationQueue] = useState<MarketplaceModerationItem[]>(() => ApartmentStore.getModerationQueue());
   const [selectedQueueStatus, setSelectedQueueStatus] = useState<string>('all');
@@ -26,13 +32,17 @@ export const MarketplaceHealthView: React.FC = () => {
   const handleApprove = (id: string) => {
     ApartmentStore.updateModerationStatus(id, 'approved');
     setModerationQueue(ApartmentStore.getModerationQueue());
-    alert(`✅ Đã phê duyệt tin đăng #${id} và cấp huy hiệu Verified trên toàn sàn!`);
+    if (onShowToast) {
+      onShowToast('success', 'Phê duyệt tin thành công', `Đã cấp huy hiệu Verified toàn sàn cho tin #${id}.`);
+    }
   };
 
   const handleFlag = (id: string) => {
     ApartmentStore.updateModerationStatus(id, 'flagged');
     setModerationQueue(ApartmentStore.getModerationQueue());
-    alert(`⚠️ Đã gắn cờ cảnh báo rủi ro cho tin #${id}. Hệ thống đã ẩn khỏi kết quả tìm kiếm.`);
+    if (onShowToast) {
+      onShowToast('error', 'Đã gắn cờ cảnh báo', `Đã ẩn tin #${id} khỏi danh sách tìm kiếm do rủi ro.`);
+    }
   };
 
   return (
@@ -56,96 +66,111 @@ export const MarketplaceHealthView: React.FC = () => {
           onClick={() => {
             setKpis(ApartmentStore.getMarketplaceHealthKPIs());
             setModerationQueue(ApartmentStore.getModerationQueue());
+            if (onShowToast) {
+              onShowToast('info', 'Dữ liệu đã cập nhật', 'Chỉ số sức khỏe marketplace đã được làm mới.');
+            }
           }}
           className="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-xs font-mono hover:bg-slate-800 transition-colors flex items-center gap-1.5 self-start md:self-auto"
         >
           <RefreshCw className="w-3.5 h-3.5" />
-          <span>Làm Mới Dữ Liệu</span>
+          <span>Làm Mới Số Liệu</span>
         </button>
       </div>
 
-      {/* 4 Core Marketplace Health KPIs */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* KPI 1: Verified Listings */}
-        <div className="p-5 rounded-3xl atmospheric-panel border border-emerald-500/40 space-y-2 shadow-xl">
+      {/* Top 4 Core Health KPIs */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="p-6 rounded-3xl atmospheric-panel border border-emerald-500/30 space-y-2 shadow-xl hover:-translate-y-1 transition-all">
           <div className="flex items-center justify-between">
             <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">Tỷ Lệ Tin Đã Xác Minh</span>
-            <ShieldCheck className="w-5 h-5 text-emerald-400" />
+            <div className="p-2 rounded-xl bg-emerald-500/20 text-emerald-300">
+              <ShieldCheck className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-3xl font-serif font-bold text-emerald-300">
+          <div className="text-3xl font-serif font-bold text-emerald-400">
             {kpis.verifiedListingsPercent}%
           </div>
-          <p className="text-[11px] font-mono text-slate-400">
-            {kpis.totalActiveListings} Tin đăng hoạt động • {kpis.totalVerifiedLandlords} Chủ nhà chuẩn
+          <p className="text-[11px] text-slate-400 font-mono">
+            {kpis.totalVerifiedLandlords} chủ nhà đã xác thực CCCD & Sổ đỏ
           </p>
         </div>
 
-        {/* KPI 2: Average Approval Speed */}
-        <div className="p-5 rounded-3xl atmospheric-panel border border-sky-500/40 space-y-2 shadow-xl">
+        <div className="p-6 rounded-3xl atmospheric-panel border border-sky-500/30 space-y-2 shadow-xl hover:-translate-y-1 transition-all">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">Thời Gian Duyệt TB</span>
-            <Clock className="w-5 h-5 text-sky-400" />
+            <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">Tổng Căn Hộ Đang Đăng</span>
+            <div className="p-2 rounded-xl bg-sky-500/20 text-sky-300">
+              <CheckCircle2 className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-3xl font-serif font-bold text-sky-300">
-            {kpis.averageApprovalHours} Giờ
+          <div className="text-3xl font-serif font-bold text-sky-400">
+            {kpis.totalActiveListings} căn
           </div>
-          <p className="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
-            <TrendingDown className="w-3 h-3" /> Nhanh hơn 45% so với tháng trước
+          <p className="text-[11px] text-slate-400 font-mono">
+            Tăng trưởng: +{kpis.weeklyReportsTrendPercent}% tuần này
           </p>
         </div>
 
-        {/* KPI 3: Fraud/Spam Reports Trend */}
-        <div className="p-5 rounded-3xl atmospheric-panel border border-amber-500/40 space-y-2 shadow-xl">
+        <div className="p-6 rounded-3xl atmospheric-panel border border-amber-500/30 space-y-2 shadow-xl hover:-translate-y-1 transition-all">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">Báo Cáo Vi Phạm/Tuần</span>
-            <AlertTriangle className="w-5 h-5 text-amber-400" />
+            <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">Tốc Độ Duyệt Tin AI</span>
+            <div className="p-2 rounded-xl bg-amber-500/20 text-amber-300">
+              <Clock className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-3xl font-serif font-bold text-amber-300">
-            {kpis.weeklyReportsTrendPercent}%
+          <div className="text-3xl font-serif font-bold text-amber-400">
+            {kpis.averageApprovalHours} giờ
           </div>
-          <p className="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
-            <TrendingDown className="w-3 h-3 text-emerald-400" /> Giảm mạnh nhờ AI scan ảnh trùng
+          <p className="text-[11px] text-slate-400 font-mono">
+            Cam kết SLA: &lt; 24 giờ cho tin đăng mới
           </p>
         </div>
 
-        {/* KPI 4: Deposit Dispute Resolution */}
-        <div className="p-5 rounded-3xl atmospheric-panel border border-purple-500/40 space-y-2 shadow-xl">
+        <div className="p-6 rounded-3xl atmospheric-panel border border-rose-500/30 space-y-2 shadow-xl hover:-translate-y-1 transition-all">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">Hoàn Cọc Đúng 72H</span>
-            <CheckCircle2 className="w-5 h-5 text-purple-400" />
+            <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">Tỷ Lệ Giải Quyết Tranh Chấp</span>
+            <div className="p-2 rounded-xl bg-rose-500/20 text-rose-300">
+              <TrendingDown className="w-4 h-4" />
+            </div>
           </div>
-          <div className="text-3xl font-serif font-bold text-purple-300">
+          <div className="text-3xl font-serif font-bold text-emerald-400">
             {kpis.depositDisputeResolutionPercent}%
           </div>
-          <p className="text-[11px] font-mono text-slate-400">
-            Dựa trên đối chiếu biên bản 15 mục
+          <p className="text-[11px] text-slate-400 font-mono">
+            Được bảo vệ bởi HAVEN Escrow
           </p>
         </div>
       </div>
 
-      {/* Moderation Queue & AI Auto-Scan Panel */}
-      <div className="rounded-3xl atmospheric-panel border border-slate-800 p-6 md:p-8 space-y-6 shadow-2xl">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
-          <div className="space-y-1">
+      {/* Moderation Queue & AI Auto-Inspection Area */}
+      <div className="p-6 md:p-8 rounded-3xl atmospheric-panel border border-slate-800 space-y-6 shadow-2xl backdrop-blur-2xl">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800/80 pb-4">
+          <div>
             <h3 className="font-serif text-xl font-bold text-slate-100 flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-emerald-400" />
-              <span>Hàng Đợi Kiểm Duyệt Tin Đăng & Quét Gian Lận (Moderation Queue)</span>
+              <span>Hàng Đợi Kiểm Duyệt Tin Đăng Tự Động (AI Moderation Queue)</span>
             </h3>
-            <p className="text-xs font-mono text-slate-400">AI tự động chấm điểm tính chân thực của ảnh, kiểm tra giá bất thường và từ khóa spam</p>
+            <p className="text-xs text-slate-400 font-mono mt-1">
+              Phát hiện gian lận hình ảnh AI, phát hiện giá ảo và đối soát quyền sở hữu.
+            </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            {(['all', 'pending', 'flagged', 'approved'] as const).map((st) => (
+          {/* Status Filter Tabs */}
+          <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono">
+            {[
+              { id: 'all', label: 'Tất cả' },
+              { id: 'pending', label: 'Chờ duyệt' },
+              { id: 'approved', label: 'Đã duyệt' },
+              { id: 'flagged', label: 'Cảnh báo' }
+            ].map(tab => (
               <button
-                key={st}
-                onClick={() => setSelectedQueueStatus(st)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all ${
-                  selectedQueueStatus === st
-                    ? 'bg-emerald-500 text-slate-950 font-bold shadow-md'
-                    : 'bg-slate-900 border border-slate-800 text-slate-400'
+                key={tab.id}
+                onClick={() => setSelectedQueueStatus(tab.id)}
+                className={`px-3 py-1.5 rounded-lg transition-all ${
+                  selectedQueueStatus === tab.id
+                    ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
+                    : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
-                {st === 'all' ? 'Tất cả' : st === 'pending' ? 'Chờ duyệt' : st === 'flagged' ? 'Bị gắn cờ' : 'Đã duyệt'}
+                {tab.label}
               </button>
             ))}
           </div>
@@ -235,34 +260,34 @@ export const MarketplaceHealthView: React.FC = () => {
       </div>
 
       {/* Monetization Revenue Breakdown Section (§9) */}
-      <div className="p-6 md:p-8 rounded-3xl liquid-glass-origin border border-emerald-500/30 space-y-4 shadow-2xl backdrop-blur-2xl">
+      <div className="p-6 md:p-8 rounded-3xl atmospheric-panel border border-emerald-500/30 space-y-4 shadow-2xl backdrop-blur-2xl">
         <h3 className="font-serif text-xl font-bold text-slate-100 flex items-center gap-2">
           <Coins className="w-5 h-5 text-emerald-400" />
           <span>Cơ Cấu 4 Dòng Doanh Thu Thương Mại HAVEN (Revenue Streams)</span>
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 text-xs font-mono pt-2">
-          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1">
-            <span className="text-slate-500">1. SaaS B2B Chủ Nhà (MRR)</span>
+          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1 hover:-translate-y-1 transition-all">
+            <span className="text-slate-400">1. SaaS B2B Chủ Nhà (MRR)</span>
             <p className="text-emerald-400 font-serif text-xl font-bold">{kpis.revenueByStream.saasPercent}%</p>
             <span className="text-[10px] text-slate-400">Gói Pro (399k) / Business (999k)</span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1">
-            <span className="text-slate-500">2. Phí Thành Công Môi Giới</span>
-            <p className="text-emerald-400 font-serif text-xl font-bold">{kpis.revenueByStream.commissionPercent}%</p>
-            <span className="text-[10px] text-slate-400">50-100% tháng đầu khi chốt khách</span>
+          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1 hover:-translate-y-1 transition-all">
+            <span className="text-slate-400">2. Phí Ký Quỹ Bảo Chứng Escrow</span>
+            <p className="text-sky-400 font-serif text-xl font-bold">{kpis.revenueByStream.escrowPercent}%</p>
+            <span className="text-[10px] text-slate-400">0.5% - 1% giá trị tiền cọc giữ hộ</span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1">
-            <span className="text-slate-500">3. Chợ Dịch Vụ Gia Tăng VAS</span>
-            <p className="text-emerald-400 font-serif text-xl font-bold">{kpis.revenueByStream.vasPercent}%</p>
-            <span className="text-[10px] text-slate-400">15-20% chiết khấu dọn dẹp, chuyển nhà</span>
+          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1 hover:-translate-y-1 transition-all">
+            <span className="text-slate-400">3. Hoa Hồng Dịch Vụ VAS</span>
+            <p className="text-amber-400 font-serif text-xl font-bold">{kpis.revenueByStream.vasPercent}%</p>
+            <span className="text-[10px] text-slate-400">Dọn dẹp, xe chuyển nhà, bảo dưỡng máy lạnh</span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1">
-            <span className="text-slate-500">4. Escrow Bảo Chứng Ký Quỹ</span>
-            <p className="text-emerald-400 font-serif text-xl font-bold">{kpis.revenueByStream.escrowPercent}%</p>
-            <span className="text-[10px] text-slate-400">3% phí bảo lãnh an toàn giao dịch</span>
+          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1 hover:-translate-y-1 transition-all">
+            <span className="text-slate-400">4. Hoa Hồng Môi Giới Sàn</span>
+            <p className="text-purple-400 font-serif text-xl font-bold">{kpis.revenueByStream.commissionPercent}%</p>
+            <span className="text-[10px] text-slate-400">Giao dịch thành công qua nền tảng</span>
           </div>
         </div>
       </div>

@@ -7,7 +7,6 @@ import {
   Receipt,
   Home,
   Search,
-  Bookmark,
   Leaf,
   MessageSquare,
   Crown,
@@ -44,7 +43,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
   isAdminView = false,
   activeModule,
   setActiveModule,
-  savedCount = 0,
   pendingLeadsCount = 0,
   unreadMessagesCount = 0,
   collapsed = false,
@@ -55,7 +53,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { id: 'user_search', label: 'Tìm Kiếm', icon: Search },
     { id: 'user_neighborhoods', label: 'Khu Vực', icon: Compass },
     { id: 'user_map', label: 'Bản Đồ PCCC', icon: Layers },
-    { id: 'user_compare', label: `So Sánh (${savedCount})`, icon: Bookmark },
     { id: 'user_checklist', label: 'Bàn Giao', icon: ClipboardCheck },
     { id: 'user_documents', label: 'Tài Liệu', icon: FolderLock },
     { id: 'user_services', label: 'Dịch Vụ', icon: ShoppingBag },
@@ -111,21 +108,35 @@ export const Sidebar: React.FC<SidebarProps> = ({
       className={`
         hidden md:flex flex-col justify-between sticky top-0 h-screen shrink-0
         bg-[var(--haven-bg-subtle)] border-r border-[var(--haven-border)]
-        transition-all duration-[var(--duration-standard)] ease-[var(--ease-standard)]
-        overflow-y-auto overflow-x-hidden z-30
-        ${collapsed ? 'w-[68px] p-2' : 'w-[230px] p-3.5'}
+        transition-[width] duration-200 ease-out
+        overflow-y-auto overflow-x-hidden z-40 p-2.5
+        ${collapsed ? 'w-[72px]' : 'w-[240px]'}
       `}
+      style={{ zIndex: 'var(--z-sticky)' }}
     >
-      <div className="space-y-3">
-        {/* Brand with quiet status, clock & collapse button */}
-        <div className={`flex items-center ${collapsed ? 'flex-col gap-2' : 'justify-between'} px-1 pt-1 pb-0.5`}>
-          <div className="flex items-center gap-2.5 min-w-0">
-            <div className="w-8 h-8 rounded-xl bg-[var(--haven-emerald-muted)] border border-[rgba(16,185,129,0.25)] flex items-center justify-center shrink-0">
-              <Leaf className="w-4 h-4 text-[var(--haven-emerald-400)] fill-[rgba(16,185,129,0.2)]" />
-            </div>
-            {!collapsed && (
+      <div className="space-y-4">
+        {/* Top Header: Fixed Hamburger Button & Brand */}
+        <div className="flex items-center gap-2.5 h-11 px-0.5">
+          {/* YouTube-style Hamburger Button at permanent fixed position */}
+          {onToggleCollapse && (
+            <button
+              onClick={onToggleCollapse}
+              className="w-11 h-11 rounded-xl flex items-center justify-center text-[var(--haven-text-secondary)] hover:text-[var(--haven-emerald-400)] hover:bg-[var(--haven-surface-hover)] transition-colors focus-ring shrink-0"
+              title={collapsed ? 'Mở rộng thanh bên' : 'Thu gọn thanh bên'}
+              aria-label="Thu gọn / Mở rộng thanh bên"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+          )}
+
+          {/* Brand details when expanded */}
+          {!collapsed && (
+            <div className="flex items-center gap-2 min-w-0 animate-in fade-in duration-200">
+              <div className="w-8 h-8 rounded-xl bg-[var(--haven-emerald-muted)] border border-[rgba(16,185,129,0.25)] flex items-center justify-center shrink-0">
+                <Leaf className="w-4 h-4 text-[var(--haven-emerald-400)] fill-[rgba(16,185,129,0.2)]" />
+              </div>
               <div className="min-w-0">
-                <h1 className="text-brand text-[14px] font-bold text-[var(--haven-text-primary)] tracking-wider truncate">
+                <h1 className="text-brand text-[13px] font-bold text-[var(--haven-text-primary)] tracking-wider truncate">
                   {isAdminView ? 'HAVEN OPS' : 'HAVEN'}
                 </h1>
                 <div className="flex items-center gap-1 text-[9px] font-mono text-[var(--haven-text-tertiary)] truncate">
@@ -136,31 +147,21 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   <span>{time || '--:--'}</span>
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
 
-        {/* Section Label with YouTube-style Hamburger Menu Button */}
-        <div className={`flex items-center ${collapsed ? 'justify-center' : 'gap-2'} px-1.5 py-1`}>
-          {onToggleCollapse && (
-            <button
-              onClick={onToggleCollapse}
-              className="p-1.5 rounded-lg text-[var(--haven-text-muted)] hover:text-[var(--haven-emerald-400)] hover:bg-[var(--haven-surface-hover)] transition-colors focus-ring shrink-0"
-              title={collapsed ? 'Mở rộng thanh bên' : 'Thu gọn thanh bên'}
-              aria-label="Thu gọn / Mở rộng thanh bên"
-            >
-              <Menu className="w-4 h-4" />
-            </button>
-          )}
-          {!collapsed && (
-            <span className="text-label text-[9px] truncate">
+        {/* Section Label (Expanded only) */}
+        {!collapsed && (
+          <div className="px-2 pt-1 pb-0.5 animate-in fade-in duration-200">
+            <span className="text-label text-[9px] uppercase tracking-wider text-[var(--haven-text-muted)] block truncate font-mono">
               {isAdminView ? 'PHÂN HỆ QUẢN TRỊ' : 'TRẢI NGHIỆM KHÁCH THUÊ'}
             </span>
-          )}
-        </div>
+          </div>
+        )}
 
-        {/* Navigation */}
-        <nav className="space-y-0.5">
+        {/* Navigation Items */}
+        <nav className="space-y-1">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeModule === item.id;
@@ -170,27 +171,34 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 onClick={() => setActiveModule(item.id)}
                 title={collapsed ? item.label : undefined}
                 className={`
-                  w-full flex items-center ${collapsed ? 'justify-center' : 'justify-between'} 
-                  ${collapsed ? 'px-0 py-2.5' : 'px-2.5 py-2'}
-                  rounded-xl text-[13px] focus-ring
-                  transition-all duration-[var(--duration-micro)]
+                  w-full h-11 flex items-center rounded-xl focus-ring
+                  transition-all duration-150 relative group
                   ${isActive
-                    ? 'bg-[var(--haven-emerald-muted)] text-[var(--haven-emerald-400)] font-semibold border border-[rgba(16,185,129,0.25)]'
-                    : 'text-[var(--haven-text-tertiary)] hover:text-[var(--haven-text-secondary)] hover:bg-[var(--haven-surface-hover)] border border-transparent'
+                    ? 'bg-[var(--haven-emerald-muted)] text-[var(--haven-emerald-400)] font-semibold border border-[rgba(16,185,129,0.25)] shadow-xs'
+                    : 'text-[var(--haven-text-secondary)] hover:text-[var(--haven-text-primary)] hover:bg-[var(--haven-surface-hover)] border border-transparent'
                   }
                 `}
               >
-                <div className={`flex items-center ${collapsed ? '' : 'gap-2.5'} min-w-0`}>
-                  <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-[var(--haven-emerald-400)]' : ''}`} />
-                  {!collapsed && <span className="truncate">{item.label}</span>}
+                {/* Fixed Icon Container: NEVER shifts position between collapsed & expanded */}
+                <div className="w-11 h-11 flex items-center justify-center shrink-0">
+                  <Icon className={`w-5 h-5 transition-transform duration-150 group-hover:scale-110 ${isActive ? 'text-[var(--haven-emerald-400)]' : ''}`} />
                 </div>
-                {!collapsed && item.badge !== undefined && (
-                  <span className="px-1.5 py-0.2 rounded-full bg-[var(--haven-emerald-500)] text-white text-[10px] font-mono font-bold min-w-[18px] text-center shadow-xs">
-                    {item.badge}
-                  </span>
+
+                {/* Label text when expanded */}
+                {!collapsed && (
+                  <div className="flex-1 flex items-center justify-between pr-2.5 min-w-0 animate-in fade-in duration-150">
+                    <span className="truncate text-[13px] font-sans font-medium">{item.label}</span>
+                    {item.badge !== undefined && (
+                      <span className="px-1.5 py-0.5 rounded-full bg-[var(--haven-emerald-500)] text-slate-950 text-[10px] font-mono font-bold min-w-[18px] text-center shadow-xs">
+                        {item.badge}
+                      </span>
+                    )}
+                  </div>
                 )}
+
+                {/* Badge dot when collapsed */}
                 {collapsed && item.badge !== undefined && (
-                  <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[var(--haven-emerald-500)]" />
+                  <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-[var(--haven-emerald-500)]" />
                 )}
               </button>
             );
@@ -198,7 +206,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </nav>
       </div>
 
-      {/* Clean compact bottom spacer */}
+      {/* Clean bottom spacer */}
       <div className="pt-2" />
     </aside>
   );

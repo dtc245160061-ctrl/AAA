@@ -389,6 +389,7 @@ export function App() {
               onOpenDepositEscrow={(u) => setActiveEscrowUnit(u)}
               onOpenVirtualTour={(u) => setActiveVirtualTourUnit(u)}
               onOpenLandlordProfile={(l) => setActiveLandlordProfile(l)}
+              onShowToast={showToast}
             />
           )}
 
@@ -434,6 +435,7 @@ export function App() {
               unit={currentUnit}
               units={units}
               onBackToDirectory={() => setActiveModule('user_search')}
+              onShowToast={showToast}
             />
           )}
 
@@ -441,6 +443,7 @@ export function App() {
             <DocumentVaultView
               units={units}
               isAdminView={false}
+              onShowToast={showToast}
             />
           )}
 
@@ -507,6 +510,7 @@ export function App() {
               onOpenAiCopilot={() => setIsAiCopilotOpen(true)}
               initialLeadContractData={leadContractData}
               onClearLeadContractData={() => setLeadContractData(null)}
+              onShowToast={showToast}
             />
           )}
 
@@ -520,13 +524,14 @@ export function App() {
           )}
 
           {isAdminView && activeModule === 'admin_health' && (
-            <MarketplaceHealthView />
+            <MarketplaceHealthView onShowToast={showToast} />
           )}
 
           {isAdminView && activeModule === 'admin_documents' && (
             <DocumentVaultView
               units={units}
               isAdminView={true}
+              onShowToast={showToast}
             />
           )}
 
@@ -550,16 +555,16 @@ export function App() {
       {!isAdminView && (
         <button
           onClick={() => setIsUserAiAdvisorOpen(true)}
-          className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40 group flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-[var(--haven-surface-elevated)] hover:bg-[var(--haven-surface-raised)] border border-[var(--haven-border-accent)] hover:border-[var(--haven-border-focus)] shadow-[var(--shadow-elevated)] backdrop-blur-xl transition-all duration-200 active:scale-[0.98] text-left hover:-translate-y-0.5"
+          className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40 group flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-[var(--haven-surface-elevated)] hover:bg-[var(--haven-surface-raised)] border border-emerald-500/40 hover:border-emerald-400 shadow-xl shadow-emerald-500/10 backdrop-blur-xl transition-all duration-300 active:scale-[0.98] text-left hover:-translate-y-0.5"
           title="Mở Haven AI"
         >
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-sm shrink-0">
-            <Sparkles className="w-4 h-4 fill-slate-950" />
+          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-md shadow-emerald-500/25 shrink-0 animate-pulse">
+            <Sparkles className="w-4 h-4 fill-slate-950 text-slate-950 animate-pulse" />
           </div>
           <div className="hidden sm:block pr-1">
             <div className="text-xs font-display font-bold text-[var(--haven-text-primary)] group-hover:text-[var(--haven-emerald-400)] transition-colors flex items-center gap-1.5">
               <span>Haven AI</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
             </div>
             <div className="text-[10px] font-mono text-[var(--haven-text-tertiary)]">
               Tư vấn căn hộ
@@ -710,6 +715,7 @@ export function App() {
           unit={activeEscrowUnit}
           isOpen={!!activeEscrowUnit}
           onClose={() => setActiveEscrowUnit(null)}
+          onShowToast={showToast}
           onConfirmEscrow={() => {
             showToast('success', 'Đã bảo chứng tiền cọc', `Tiền cọc căn ${activeEscrowUnit.name || activeEscrowUnit.id} đã được khóa bảo vệ bởi HAVEN Escrow.`);
           }}
@@ -745,6 +751,7 @@ export function App() {
         <SmartListingCreatorModal
           isOpen={isSmartListingOpen}
           onClose={() => setIsSmartListingOpen(false)}
+          onShowToast={showToast}
           onListingCreated={(newUnit) => {
             const created = ApartmentStore.addUnit({
               floor: 8,

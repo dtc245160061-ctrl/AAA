@@ -15,6 +15,7 @@ interface MoveInChecklistViewProps {
   unit?: ApartmentUnit;
   units: ApartmentUnit[];
   onBackToDirectory?: () => void;
+  onShowToast?: (type: 'success' | 'error' | 'info', title: string, desc?: string) => void;
 }
 
 interface ChecklistItem {
@@ -47,7 +48,8 @@ const INITIAL_15_ITEMS: ChecklistItem[] = [
 export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
   unit,
   units,
-  onBackToDirectory
+  onBackToDirectory,
+  onShowToast
 }) => {
   const [selectedUnitId, setSelectedUnitId] = useState<string>(unit?.id || units[0]?.id || '');
   const [items, setItems] = useState<ChecklistItem[]>(INITIAL_15_ITEMS);
@@ -192,7 +194,9 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
           <button
             onClick={() => {
               setIsFinalized(true);
-              alert(`✅ Đã khóa biên bản bàn giao hiện trạng 15 hạng mục cho căn ${currentUnit.name || currentUnit.id}!\nMã biên bản: BB-HAVEN-${Date.now().toString().slice(-6)}`);
+              if (onShowToast) {
+                onShowToast('success', 'Đã khóa biên bản bàn giao 15 hạng mục', `Căn hộ ${currentUnit.name || currentUnit.id} - Mã BB: BB-HAVEN-${Date.now().toString().slice(-6)}`);
+              }
             }}
             className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono font-bold text-xs shadow-lg shadow-emerald-500/20 transition-all flex items-center gap-2"
           >
@@ -265,7 +269,11 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
                 </td>
                 <td className="p-4 text-center">
                   <button
-                    onClick={() => alert(`Xem ${item.photoCount} ảnh hiện trạng chụp thực tế cho mục "${item.name}"`)}
+                    onClick={() => {
+                      if (onShowToast) {
+                        onShowToast('info', `Ảnh hiện trạng: ${item.name}`, `Đang tải ${item.photoCount} ảnh minh chứng độ phân giải cao.`);
+                      }
+                    }}
                     className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-emerald-300 text-[11px] font-mono transition-colors"
                   >
                     <Camera className="w-3.5 h-3.5 text-emerald-400" />

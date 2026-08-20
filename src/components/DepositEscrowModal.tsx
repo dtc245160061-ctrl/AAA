@@ -15,13 +15,15 @@ interface DepositEscrowModalProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirmEscrow?: () => void;
+  onShowToast?: (type: 'success' | 'error' | 'info', title: string, desc?: string) => void;
 }
 
 export const DepositEscrowModal: React.FC<DepositEscrowModalProps> = ({
   unit,
   isOpen,
   onClose,
-  onConfirmEscrow
+  onConfirmEscrow,
+  onShowToast
 }) => {
   const [currentStep, setCurrentStep] = useState<number>(1);
 
@@ -210,7 +212,9 @@ export const DepositEscrowModal: React.FC<DepositEscrowModalProps> = ({
                 onClick={() => {
                   onConfirmEscrow?.();
                   onClose();
-                  alert(`✅ Kích hoạt bảo chứng cọc thành công cho căn ${unit.name || unit.id}!`);
+                  if (onShowToast) {
+                    onShowToast('success', 'Bảo chứng cọc kích hoạt thành công', `Căn hộ ${unit.name || unit.id} đã được bảo vệ bởi HAVEN Escrow.`);
+                  }
                 }}
                 className="px-6 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono font-bold text-xs shadow-lg shadow-emerald-500/25 transition-all flex items-center gap-1.5"
               >
