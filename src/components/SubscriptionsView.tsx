@@ -48,23 +48,24 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
           <span>Mô Hình Kinh Doanh & Gói Dịch Vụ SaaS Định Kỳ (PropTech Monetization)</span>
         </div>
 
-        <h1 className="text-3xl md:text-5xl font-serif text-slate-100 font-bold leading-tight">
+        <h1 className="text-3xl md:text-5xl font-serif text-slate-900 dark:text-slate-100 font-bold leading-tight">
           Giải Pháp Vận Hành & Phong Cách Sống Đẳng Cấp
         </h1>
         
-        <p className="text-sm md:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
           Tự động hóa công việc quản lý bất động sản cho chủ nhà và mở khóa các đặc quyền tài chính 0đ tiền cọc cho cư dân hiện đại.
         </p>
 
-        {/* Tab switcher: Landlord vs Tenant */}
-        <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <div className="p-1.5 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center">
+        {/* Mode Switcher & Billing Toggle (Sleek Harmonized Midnight Navy Containers) */}
+        <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+          {/* Target Audience Switcher */}
+          <div className="bg-slate-950/90 p-1.5 rounded-2xl border border-slate-800 shadow-xl inline-flex items-center gap-1.5 always-dark">
             <button
               onClick={() => setActiveTab('landlord')}
-              className={`px-5 py-2 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-2 ${
+              className={`px-5 py-2.5 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-2 ${
                 activeTab === 'landlord'
                   ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
-                  : 'text-slate-400 hover:text-slate-200'
+                  : 'text-slate-400 hover:text-white'
               }`}
             >
               <Building2 className="w-4 h-4" />
@@ -72,10 +73,10 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
             </button>
             <button
               onClick={() => setActiveTab('tenant')}
-              className={`px-5 py-2 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-2 ${
+              className={`px-5 py-2.5 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-2 ${
                 activeTab === 'tenant'
                   ? 'bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25 border border-cyan-300/40'
-                  : 'text-slate-400 hover:text-slate-200'
+                  : 'text-slate-400 hover:text-white'
               }`}
             >
               <Crown className="w-4 h-4 text-cyan-300" />
@@ -83,22 +84,31 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
             </button>
           </div>
 
-          {/* Monthly / Yearly cycle */}
-          <div className="flex items-center gap-2.5 text-xs font-mono bg-slate-900/80 px-3.5 py-1.5 rounded-xl border border-slate-800">
-            <span className={billingCycle === 'monthly' ? 'text-emerald-400 font-bold' : 'text-slate-400'}>Hàng Tháng</span>
+          {/* Monthly / Yearly cycle (Matching Identical Pill Design) */}
+          <div className="bg-slate-950/90 p-1.5 rounded-2xl border border-slate-800 shadow-xl inline-flex items-center gap-1.5 always-dark">
             <button
-              type="button"
-              onClick={() => setBillingCycle(b => b === 'monthly' ? 'yearly' : 'monthly')}
-              className="w-11 h-6 rounded-full bg-slate-800 border border-slate-700 p-0.5 relative transition-colors inline-flex items-center"
-              aria-label="Chuyển chu kỳ thanh toán"
+              onClick={() => setBillingCycle('monthly')}
+              className={`px-4 py-2.5 rounded-xl text-xs font-mono font-bold transition-all ${
+                billingCycle === 'monthly'
+                  ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
+                  : 'text-slate-400 hover:text-white'
+              }`}
             >
-              <div className={`w-4 h-4 rounded-full bg-emerald-400 transition-transform duration-200 ${
-                billingCycle === 'yearly' ? 'translate-x-5' : 'translate-x-0.5'
-              }`} />
+              Hàng Tháng
             </button>
-            <span className={billingCycle === 'yearly' ? 'text-emerald-400 font-bold' : 'text-slate-400'}>
-              Theo Năm <span className="text-[10px] text-amber-400 font-bold">(-20%)</span>
-            </span>
+            <button
+              onClick={() => setBillingCycle('yearly')}
+              className={`px-4 py-2.5 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-1.5 ${
+                billingCycle === 'yearly'
+                  ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <span>Theo Năm</span>
+              <span className={`text-[10px] px-1.5 py-0.2 rounded-md ${
+                billingCycle === 'yearly' ? 'bg-slate-950 text-amber-300 font-bold' : 'text-amber-400 font-bold'
+              }`}>-20%</span>
+            </button>
           </div>
         </div>
       </div>
@@ -118,15 +128,15 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
                   : plan.targetAudience === 'tenant'
                   ? 'border-cyan-500/50 hover:border-cyan-400 hover:shadow-[0_0_35px_rgba(6,182,212,0.25)]'
                   : plan.isPopular
-                  ? 'border-emerald-500/60 shadow-emerald-500/10 ring-1 ring-emerald-500/50 hover:border-emerald-400 hover:shadow-[0_0_35px_rgba(16,185,129,0.25)]'
-                  : 'border-slate-800 hover:border-slate-600 hover:shadow-[0_0_25px_rgba(255,255,255,0.05)]'
+                  ? 'border-emerald-500/60 shadow-emerald-500/10 ring-2 ring-emerald-500/50 hover:border-emerald-400 hover:shadow-[0_0_35px_rgba(16,185,129,0.25)]'
+                  : 'border-slate-300 dark:border-slate-800 hover:border-slate-400 dark:hover:border-slate-600 hover:shadow-[0_0_25px_rgba(0,0,0,0.05)]'
               }`}
             >
               <div className="space-y-5">
                 <div className="flex items-start justify-between gap-3 min-h-[52px]">
                   <div>
-                    <h3 className="text-xl font-serif font-bold text-slate-100">{plan.name}</h3>
-                    <p className="text-xs text-slate-400 mt-1 min-h-[32px]">{plan.tagline}</p>
+                    <h3 className="text-xl font-serif font-bold text-slate-900 dark:text-slate-100">{plan.name}</h3>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 min-h-[32px] font-medium">{plan.tagline}</p>
                   </div>
                   {plan.badge && (
                     <span className={`shrink-0 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider ${
@@ -136,7 +146,7 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
                         ? 'bg-gradient-to-r from-cyan-500 via-sky-400 to-blue-500 text-slate-950 font-extrabold shadow-lg shadow-cyan-500/30 border border-cyan-200/90'
                         : plan.isPopular || plan.badge === 'Khuyên Dùng'
                         ? 'bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500 text-slate-950 font-extrabold shadow-lg shadow-emerald-500/30 border border-emerald-300/80'
-                        : 'bg-gradient-to-r from-slate-700 via-slate-600 to-slate-800 text-slate-200 font-bold border border-slate-600/80 shadow-md'
+                        : 'bg-slate-200 dark:bg-slate-700/80 text-slate-700 dark:text-slate-200 font-bold border border-slate-300 dark:border-slate-600 shadow-sm'
                     }`}>
                       {plan.badge}
                     </span>
@@ -144,25 +154,25 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
                 </div>
 
                 {/* Price */}
-                <div className="py-2 border-y border-slate-800/80">
+                <div className="py-2 border-y border-slate-200 dark:border-slate-800/80">
                   <div className="flex items-baseline gap-1">
-                    <span className="text-3xl md:text-4xl font-bold font-mono text-slate-100">
+                    <span className="text-3xl md:text-4xl font-bold font-mono text-slate-900 dark:text-slate-100">
                       {discountedPrice === 0 ? '0 đ' : `${(discountedPrice).toLocaleString('vi-VN')} đ`}
                     </span>
-                    <span className="text-xs font-mono text-slate-400">/ tháng</span>
+                    <span className="text-xs font-mono text-slate-500 dark:text-slate-400 font-bold">/ tháng</span>
                   </div>
                   {billingCycle === 'yearly' && plan.priceVND > 0 && (
-                    <p className="text-[11px] font-mono text-emerald-400 mt-0.5">Tiết kiệm {(plan.priceVND * 0.2 * 12).toLocaleString('vi-VN')} đ / năm</p>
+                    <p className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 mt-0.5 font-bold">Tiết kiệm {(plan.priceVND * 0.2 * 12).toLocaleString('vi-VN')} đ / năm</p>
                   )}
                 </div>
 
                 {/* Feature Checklist */}
                 <div className="space-y-3 pt-2">
-                  <span className="text-[11px] font-mono uppercase tracking-widest text-slate-400 font-bold">Tính năng bao gồm:</span>
+                  <span className="text-[11px] font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold">Tính năng bao gồm:</span>
                   <ul className="space-y-2.5">
                     {plan.features.map((feat, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
-                        <div className="w-4 h-4 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+                      <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-300 font-medium">
+                        <div className="w-4 h-4 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
                           <Check className="w-3 h-3" />
                         </div>
                         <span className="leading-snug">{feat}</span>
@@ -177,12 +187,14 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
                 <button
                   onClick={() => handleSelectTier(plan.id)}
                   disabled={isCurrent}
-                  className={`w-full py-3 px-4 rounded-2xl font-mono text-xs font-bold transition-all shadow-lg flex items-center justify-center gap-2 ${
+                  className={`w-full py-3.5 px-4 rounded-2xl font-mono text-xs font-bold transition-all shadow-lg flex items-center justify-center gap-2 ${
                     isCurrent
-                      ? 'bg-slate-800 text-emerald-400 border border-emerald-500/40 cursor-default'
+                      ? 'bg-slate-200 dark:bg-slate-800 text-emerald-800 dark:text-emerald-400 border border-emerald-500/40 cursor-default'
+                      : plan.id === 'resident_prime'
+                      ? 'bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 hover:opacity-95 text-white shadow-cyan-500/30 hover:scale-[1.02] border border-cyan-300/40'
                       : plan.isPopular
                       ? 'bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-emerald-500/30 hover:scale-[1.02]'
-                      : 'bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700 hover:border-slate-600'
+                      : 'bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white border border-slate-700 hover:scale-[1.02]'
                   }`}
                 >
                   {isCurrent ? (
@@ -204,63 +216,63 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
       </div>
 
       {/* PropTech Monetization Breakdown & Reality Matrix */}
-      <div className="p-8 rounded-3xl atmospheric-panel border border-slate-800 space-y-6 shadow-2xl backdrop-blur-2xl">
+      <div className="p-8 rounded-3xl atmospheric-panel border border-slate-200 dark:border-slate-800 space-y-6 shadow-2xl backdrop-blur-2xl">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+          <div className="w-10 h-10 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
             <DollarSign className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-xl font-serif font-bold text-slate-100">
+            <h2 className="text-xl font-serif font-bold text-slate-900 dark:text-slate-100">
               Cơ Cấu Tạo Doanh Thu Thực Tế Của Sàn HAVEN (Business Economics)
             </h2>
-            <p className="text-xs font-mono text-slate-400">
+            <p className="text-xs font-mono text-slate-500 dark:text-slate-400">
               Bóc tách các dòng tiền thương mại theo chuẩn các kỳ lân Airbnb, Zillow & Guesty
             </p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
-            <div className="flex items-center justify-between text-xs font-mono text-emerald-400">
+          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 space-y-2">
+            <div className="flex items-center justify-between text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold">
               <span>1. Phí Môi Giới Chốt Thuê</span>
               <Percent className="w-3.5 h-3.5" />
             </div>
-            <div className="text-2xl font-bold font-mono text-slate-100">50% - 100%</div>
-            <p className="text-[11px] text-slate-400">
+            <div className="text-2xl font-bold font-mono text-slate-900 dark:text-slate-100">50% - 100%</div>
+            <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">
               Thu từ chủ nhà khi khách ký hợp đồng thuê thành công (Tương đương 0.5 - 1 tháng tiền nhà).
             </p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
-            <div className="flex items-center justify-between text-xs font-mono text-sky-400">
+          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 space-y-2">
+            <div className="flex items-center justify-between text-xs font-mono text-sky-600 dark:text-sky-400 font-bold">
               <span>2. Thuê Bao SaaS (MRR)</span>
               <TrendingUp className="w-3.5 h-3.5" />
             </div>
-            <div className="text-2xl font-bold font-mono text-slate-100">499.000 đ</div>
-            <p className="text-[11px] text-slate-400">
-              Phí phần mềm thu hàng tháng từ các chủ chuỗi căn hộ & nhà trọ cao cấp sử dụng tool tự động.
+            <div className="text-2xl font-bold font-mono text-slate-900 dark:text-slate-100">499.000 đ</div>
+            <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">
+              Gói Pro/Enterprise trả phí định kỳ hàng tháng để quản lý tài chính, hóa đơn và khách thuê tự động.
             </p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
-            <div className="flex items-center justify-between text-xs font-mono text-amber-400">
-              <span>3. Phí Vận Hành (Take Rate)</span>
+          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 space-y-2">
+            <div className="flex items-center justify-between text-xs font-mono text-amber-600 dark:text-amber-400 font-bold">
+              <span>3. Phí Kiểm Định Cấp Tốc</span>
               <ShieldCheck className="w-3.5 h-3.5" />
             </div>
-            <div className="text-2xl font-bold font-mono text-slate-100">5.0%</div>
-            <p className="text-[11px] text-slate-400">
-              Trích trên mỗi hóa đơn tiền thuê thu hộ qua cổng thanh toán bảo chứng của sàn.
+            <div className="text-2xl font-bold font-mono text-slate-900 dark:text-slate-100">250.000 đ</div>
+            <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">
+              Phí dịch vụ cử kỹ thuật viên đến tận nơi đo đạc ồn, kiểm tra PCCC và cấp huy hiệu Verified.
             </p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
-            <div className="flex items-center justify-between text-xs font-mono text-purple-400">
-              <span>4. Hoa Hồng Dịch Vụ (VAS)</span>
+          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 space-y-2">
+            <div className="flex items-center justify-between text-xs font-mono text-purple-600 dark:text-purple-400 font-bold">
+              <span>4. Hoa Hồng Dịch Vụ Sống</span>
               <Sparkles className="w-3.5 h-3.5" />
             </div>
-            <div className="text-2xl font-bold font-mono text-slate-100">15% - 20%</div>
-            <p className="text-[11px] text-slate-400">
-              Chia sẻ lợi nhuận từ đối tác dọn buồng phòng theo giờ, chuyển nhà trọn gói và lắp khóa IoT.
+            <div className="text-2xl font-bold font-mono text-slate-900 dark:text-slate-100">10% - 15%</div>
+            <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">
+              Chiết khấu từ đối tác dọn dẹp, vận chuyển nhà và sửa chữa khi cư dân đặt qua ứng dụng.
             </p>
           </div>
         </div>

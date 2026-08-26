@@ -72,7 +72,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
   };
 
   return (
-    <section className="relative rounded-3xl overflow-hidden min-h-[520px] md:min-h-[560px] flex flex-col justify-between p-6 sm:p-8 md:p-12 lg:p-14 shadow-2xl border border-[var(--haven-border)] always-dark">
+    <section className="relative rounded-3xl overflow-hidden min-h-[520px] md:min-h-[560px] flex flex-col justify-between p-6 sm:p-8 md:p-12 lg:p-14 shadow-2xl border border-[var(--haven-border)] bg-slate-950 dark:bg-slate-950">
       {/* Background: Real Architectural Luxury Residence + Layered Scrims */}
       <div className="absolute inset-0 z-0">
         <img
@@ -80,12 +80,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
           alt="HAVEN Architecture"
           className="w-full h-full object-cover object-center filter brightness-[0.55] transition-transform duration-1000 scale-[1.02]"
         />
-        {/* Deep atmospheric gradient scrims keeping text 100% crisp */}
+        {/* Deep atmospheric gradient scrims for dark mode */}
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/85 to-slate-950/50" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/40" />
-        <div className="light-hero-gradient absolute inset-0 opacity-60" />
+        
+        {/* Radiant luminous ambient overlay in light mode */}
+        <div className="light-hero-gradient absolute inset-0 z-0" />
+        
         {/* Ambient glow accent */}
-        <div className="absolute -bottom-20 -right-20 w-80 h-80 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-20 -right-20 w-80 h-80 rounded-full bg-emerald-500/15 blur-3xl pointer-events-none" />
       </div>
 
       {/* Top Tagline & Contextual AI Status Bar */}
@@ -95,14 +98,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
         transition={{ duration: 0.4, ease: 'easeOut' }}
         className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
       >
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 border border-emerald-500/30 text-emerald-300 text-xs font-mono tracking-wider uppercase backdrop-blur-md shadow-lg always-white self-start">
-          <Sparkles className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
-          <span className="text-emerald-300 always-white font-medium">HAVEN — Không Gian Sống An Yên</span>
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 [data-theme='light']_:bg-white/90 border border-emerald-500/30 text-emerald-400 [data-theme='light']_:text-emerald-700 text-xs font-mono tracking-wider uppercase backdrop-blur-md shadow-lg self-start font-semibold">
+          <Sparkles className="w-3.5 h-3.5 text-emerald-400 [data-theme='light']_:text-emerald-600 animate-pulse" />
+          <span>HAVEN — Không Gian Sống An Yên</span>
         </div>
-        <div className="flex items-center gap-3 text-xs font-mono text-slate-200 always-white">
-          <span className="always-white font-medium">Hà Nội · TP.HCM · Đà Nẵng</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-emerald-300 font-semibold always-white">Haven AI Phân Tích Môi Trường</span>
+        <div className="flex items-center gap-3 text-xs font-mono text-slate-200 [data-theme='light']_:text-slate-800 font-semibold">
+          <span>Hà Nội · TP.HCM · Đà Nẵng</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 [data-theme='light']_:bg-emerald-600 animate-pulse" />
+          <span className="text-emerald-300 [data-theme='light']_:text-emerald-700 font-bold">Haven AI Phân Tích Môi Trường</span>
         </div>
       </motion.div>
 
@@ -115,15 +118,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
           animate={phase >= 2 ? 'visible' : 'hidden'}
           className="space-y-1"
         >
-          <motion.h1 variants={lineVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-[1.15] always-white">
+          <motion.h1 variants={lineVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white [data-theme='light']_:text-slate-950 tracking-tight leading-[1.15]">
             Tìm nơi ở
           </motion.h1>
           <motion.h1 variants={lineVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-[1.15]">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-emerald-400 to-teal-300">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-emerald-400 to-teal-300 [data-theme='light']_:from-emerald-700 [data-theme='light']_:via-teal-700 [data-theme='light']_:to-emerald-800">
               thực sự thuộc về bạn.
             </span>
           </motion.h1>
-          <motion.p variants={lineVariants} className="text-slate-100 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed mt-4 always-white font-sans font-light">
+          <motion.p variants={lineVariants} className="text-slate-100 [data-theme='light']_:text-slate-800 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed mt-4 font-sans font-medium">
             Không chỉ là 4 bức tường. HAVEN thấu hiểu phong cách sống và đánh giá toàn diện nguy cơ ngập úng, độ ồn, chỗ đỗ xe ô tô và nguồn điện dự phòng.
           </motion.p>
         </motion.div>
@@ -136,8 +139,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
           onSubmit={handleSubmit}
           className="relative max-w-2xl"
         >
-          <div className="relative flex items-center rounded-2xl border border-emerald-500/40 p-1.5 sm:p-2 shadow-2xl backdrop-blur-xl bg-slate-950/80 group focus-within:border-emerald-400 transition-all duration-300">
-            <div className="pl-3 pr-2 text-emerald-400">
+          <div className="relative flex items-center rounded-2xl border border-emerald-500/40 p-1.5 sm:p-2 shadow-2xl backdrop-blur-xl bg-slate-950/80 [data-theme='light']_:bg-white/95 group focus-within:border-emerald-400 transition-all duration-300">
+            <div className="pl-3 pr-2 text-emerald-400 [data-theme='light']_:text-emerald-600">
               <Sparkles className="w-5 h-5 animate-pulse" />
             </div>
             <input
@@ -145,11 +148,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
               value={aiPromptInput}
               onChange={(e) => setAiPromptInput(e.target.value)}
               placeholder='Nhập nhu cầu của bạn e.g. "căn 2 phòng ở HN tầm 18 củ có ô tô, tầng cao"'
-              className="w-full bg-transparent border-none text-white placeholder:text-slate-400 text-sm md:text-base focus:outline-none focus:ring-0 pr-3 py-2.5 sm:py-3 always-white font-sans"
+              className="w-full bg-transparent border-none text-white [data-theme='light']_:text-slate-900 placeholder:text-slate-400 [data-theme='light']_:placeholder:text-slate-500 text-sm md:text-base focus:outline-none focus:ring-0 pr-3 py-2.5 sm:py-3 font-sans font-medium"
             />
             <button
               type="submit"
-              className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition-all duration-200 shadow-lg shadow-emerald-500/25 shrink-0 hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 [data-theme='light']_:bg-emerald-600 [data-theme='light']_:hover:bg-emerald-500 text-slate-950 [data-theme='light']_:text-white font-bold text-sm transition-all duration-200 shadow-lg shadow-emerald-500/25 shrink-0 hover:scale-[1.02] active:scale-[0.98]"
             >
               <span className="hidden sm:inline">Hỏi AI</span>
               <ArrowRight className="w-4 h-4" />
@@ -158,13 +161,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
 
           {/* Quick Suggestions */}
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-3 text-xs font-mono">
-            <span className="text-slate-200 font-medium mr-1 always-white">Gợi ý:</span>
+            <span className="text-slate-200 [data-theme='light']_:text-slate-700 font-bold mr-1">Gợi ý:</span>
             {quickSuggestions.map((s) => (
               <button
                 key={s.query}
                 type="button"
                 onClick={() => onSearch(s.query)}
-                className="px-2.5 py-1 rounded-lg bg-slate-900/90 hover:bg-emerald-950/90 border border-slate-700/80 hover:border-emerald-500/50 text-slate-100 hover:text-emerald-300 transition-colors backdrop-blur-sm always-white always-dark"
+                className="px-2.5 py-1 rounded-lg bg-slate-900/90 [data-theme='light']_:bg-white/90 hover:bg-emerald-950/90 [data-theme='light']_:hover:bg-emerald-100 border border-slate-700/80 [data-theme='light']_:border-slate-300 hover:border-emerald-500/50 text-slate-100 [data-theme='light']_:text-slate-800 hover:text-emerald-300 [data-theme='light']_:hover:text-emerald-800 transition-colors backdrop-blur-sm font-semibold shadow-sm"
               >
                 "{s.label}"
               </button>
@@ -178,12 +181,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
         variants={badgeContainerVariants}
         initial="hidden"
         animate={phase >= 4 ? 'visible' : 'hidden'}
-        className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 pt-5 border-t border-white/10 text-xs font-mono text-slate-200 always-white"
+        className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 pt-5 border-t border-white/10 [data-theme='light']_:border-slate-300/60 text-xs font-mono text-slate-200 [data-theme='light']_:text-slate-800 font-semibold"
       >
         {trustBadges.map((badge) => (
           <motion.div key={badge.label} variants={badgeItemVariants} className="flex items-center gap-2">
             <badge.icon className={`w-4 h-4 ${badge.color} shrink-0`} />
-            <span className="always-white">{badge.label}</span>
+            <span>{badge.label}</span>
           </motion.div>
         ))}
       </motion.div>

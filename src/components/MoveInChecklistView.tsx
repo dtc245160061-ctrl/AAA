@@ -102,14 +102,14 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
       {/* Unit Selector & Meter Indicators Bar */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {/* Apartment Selection */}
-        <div className="p-5 rounded-2xl atmospheric-panel border border-slate-800 space-y-2">
-          <label className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold block">
+        <div className="p-5 rounded-2xl atmospheric-panel border border-slate-800 [data-theme='light']_:border-slate-200 space-y-2">
+          <label className="text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-600 uppercase tracking-wider font-bold block">
             Căn Hộ Bàn Giao
           </label>
           <select
             value={selectedUnitId}
             onChange={(e) => setSelectedUnitId(e.target.value)}
-            className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 font-sans text-sm focus:outline-none focus:border-emerald-500"
+            className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 [data-theme='light']_:bg-slate-50 border border-slate-700 [data-theme='light']_:border-slate-300 text-slate-100 [data-theme='light']_:text-slate-900 font-sans text-sm focus:outline-none focus:border-emerald-500"
           >
             {units.map(u => (
               <option key={u.id} value={u.id}>
@@ -120,9 +120,9 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
         </div>
 
         {/* Handover Date */}
-        <div className="p-5 rounded-2xl atmospheric-panel border border-slate-800 space-y-2">
+        <div className="p-5 rounded-2xl atmospheric-panel border border-slate-800 [data-theme='light']_:border-slate-200 space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold flex items-center gap-1.5">
+            <span className="text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-600 uppercase tracking-wider font-bold flex items-center gap-1.5">
               <Calendar className="w-3.5 h-3.5 text-emerald-400" /> Ngày Bàn Giao
             </span>
           </div>
@@ -130,39 +130,39 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
             type="date"
             value={handoverDate}
             onChange={(e) => setHandoverDate(e.target.value)}
-            className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 font-mono text-xs focus:outline-none focus:border-emerald-500"
+            className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 [data-theme='light']_:bg-slate-50 border border-slate-700 [data-theme='light']_:border-slate-300 text-slate-100 [data-theme='light']_:text-slate-900 font-mono text-xs focus:outline-none focus:border-emerald-500"
           />
         </div>
 
         {/* Initial Electric Meter Reading */}
         <div className="p-5 rounded-2xl atmospheric-panel border border-amber-500/30 space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-mono text-amber-300 font-semibold flex items-center gap-1.5">
+            <span className="text-xs font-mono text-amber-300 [data-theme='light']_:text-amber-700 font-bold flex items-center gap-1.5">
               <Zap className="w-4 h-4 text-amber-400" /> Chỉ Số Công Tơ Điện Ban Đầu
             </span>
-            <span className="text-[10px] font-mono text-slate-400">kWh</span>
+            <span className="text-[10px] font-mono text-slate-400 font-bold">kWh</span>
           </div>
           <input
             type="text"
             value={electricMeterNumber}
             onChange={(e) => setElectricMeterNumber(e.target.value)}
-            className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-amber-300 font-mono font-bold text-lg"
+            className="w-full px-3.5 py-2 rounded-xl bg-slate-900 [data-theme='light']_:bg-amber-50/50 border border-slate-700 [data-theme='light']_:border-amber-300 text-amber-300 [data-theme='light']_:text-amber-800 font-mono font-bold text-lg"
           />
         </div>
 
         {/* Initial Water Meter Reading */}
         <div className="p-5 rounded-2xl atmospheric-panel border border-sky-500/30 space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-mono text-sky-300 font-semibold flex items-center gap-1.5">
+            <span className="text-xs font-mono text-sky-300 [data-theme='light']_:text-sky-700 font-bold flex items-center gap-1.5">
               <Droplets className="w-4 h-4 text-sky-400" /> Chỉ Số Đồng Hồ Nước Ban Đầu
             </span>
-            <span className="text-[10px] font-mono text-slate-400">m³</span>
+            <span className="text-[10px] font-mono text-slate-400 font-bold">m³</span>
           </div>
           <input
             type="text"
             value={waterMeterNumber}
             onChange={(e) => setWaterMeterNumber(e.target.value)}
-            className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-sky-300 font-mono font-bold text-lg"
+            className="w-full px-3.5 py-2 rounded-xl bg-slate-900 [data-theme='light']_:bg-sky-50/50 border border-slate-700 [data-theme='light']_:border-sky-300 text-sky-300 [data-theme='light']_:text-sky-800 font-mono font-bold text-lg"
           />
         </div>
       </div>
@@ -170,20 +170,20 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
       {/* Overview Status Metrics */}
       <div className="p-6 rounded-3xl liquid-glass-origin border border-emerald-500/30 flex flex-wrap items-center justify-between gap-4 shadow-xl backdrop-blur-2xl">
         <div className="flex items-center gap-4 flex-wrap">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs font-mono font-bold">
+          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-emerald-950/80 [data-theme=\'light\']_:bg-emerald-50 border border-emerald-500/40 [data-theme=\'light\']_:border-emerald-300 text-emerald-300 [data-theme=\'light\']_:text-emerald-900 text-xs font-mono font-bold shadow-sm">
             <CheckCircle2 className="w-4 h-4 text-emerald-400" />
             <span>{goodCount} / 15 Đạt Chuẩn Tốt</span>
           </div>
 
           {minorCount > 0 && (
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-950/80 border border-amber-500/40 text-amber-300 text-xs font-mono font-bold">
+            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-amber-950/80 [data-theme=\'light\']_:bg-amber-50 border border-amber-500/40 [data-theme=\'light\']_:border-amber-300 text-amber-300 [data-theme=\'light\']_:text-amber-900 text-xs font-mono font-bold shadow-sm">
               <AlertTriangle className="w-4 h-4 text-amber-400" />
               <span>{minorCount} Vết Xước Nhẹ (Chấp nhận)</span>
             </div>
           )}
 
           {repairCount > 0 && (
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-rose-950/80 border border-rose-500/40 text-rose-300 text-xs font-mono font-bold">
+            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-rose-950/80 [data-theme=\'light\']_:bg-rose-50 border border-rose-500/40 [data-theme=\'light\']_:border-rose-300 text-rose-300 [data-theme=\'light\']_:text-rose-900 text-xs font-mono font-bold shadow-sm">
               <AlertTriangle className="w-4 h-4 text-rose-400" />
               <span>{repairCount} Cần Chủ Nhà Khắc Phục</span>
             </div>
@@ -207,10 +207,10 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
       </div>
 
       {/* 15-Item Checklist Table */}
-      <div className="overflow-x-auto rounded-3xl border border-slate-800 bg-slate-950/80 shadow-2xl">
+      <div className="overflow-x-auto rounded-3xl border border-slate-800 [data-theme='light']_:border-slate-200 bg-slate-950/80 [data-theme='light']_:bg-white shadow-2xl">
         <table className="w-full text-left text-xs font-mono border-collapse min-w-[750px]">
           <thead>
-            <tr className="border-b border-slate-800 bg-slate-900/80 text-slate-400">
+            <tr className="border-b border-slate-800 [data-theme='light']_:border-slate-200 bg-slate-900/80 [data-theme='light']_:bg-slate-50 text-slate-400 [data-theme='light']_:text-slate-600 font-bold">
               <th className="p-4 w-12 text-center">STT</th>
               <th className="p-4 w-48">Phân Nhóm</th>
               <th className="p-4">Hạng Mục Kiểm Tra</th>
@@ -219,40 +219,40 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
               <th className="p-4 w-28 text-center">Ảnh Minh Chứng</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800/80 text-slate-300">
+          <tbody className="divide-y divide-slate-800/80 [data-theme='light']_:divide-slate-200 text-slate-300 [data-theme='light']_:text-slate-800">
             {items.map((item, idx) => (
-              <tr key={item.id} className="hover:bg-slate-900/40 transition-colors">
-                <td className="p-4 text-center text-slate-500 font-bold">{idx + 1}</td>
-                <td className="p-4 text-slate-400 font-semibold">{item.category}</td>
-                <td className="p-4 font-serif text-sm font-bold text-slate-100">{item.name}</td>
+              <tr key={item.id} className="hover:bg-slate-900/40 [data-theme=\'light\']_:hover:bg-emerald-50/50 transition-colors">
+                <td className="p-4 text-center text-slate-500 [data-theme='light']_:text-slate-400 font-bold">{idx + 1}</td>
+                <td className="p-4 text-slate-400 [data-theme='light']_:text-slate-600 font-semibold">{item.category}</td>
+                <td className="p-4 font-serif text-sm font-bold text-slate-100 [data-theme='light']_:text-slate-900">{item.name}</td>
                 <td className="p-4">
                   <div className="flex items-center gap-1.5">
                     <button
                       onClick={() => handleUpdateStatus(item.id, 'good')}
-                      className={`px-2 py-1 rounded-lg text-[11px] font-mono transition-all ${
+                      className={`px-2 py-1 rounded-lg text-[11px] font-mono transition-all font-bold ${
                         item.status === 'good'
-                          ? 'bg-emerald-500 text-slate-950 font-bold shadow-md'
-                          : 'bg-slate-900 text-slate-400 border border-slate-800'
+                          ? 'bg-emerald-500 text-slate-950 shadow-md'
+                          : 'bg-slate-900 [data-theme=\'light\']_:bg-slate-100 text-slate-400 [data-theme=\'light\']_:text-slate-600 border border-slate-800 [data-theme=\'light\']_:border-slate-200'
                       }`}
                     >
                       Tốt
                     </button>
                     <button
                       onClick={() => handleUpdateStatus(item.id, 'minor_issue')}
-                      className={`px-2 py-1 rounded-lg text-[11px] font-mono transition-all ${
+                      className={`px-2 py-1 rounded-lg text-[11px] font-mono transition-all font-bold ${
                         item.status === 'minor_issue'
-                          ? 'bg-amber-500 text-slate-950 font-bold shadow-md'
-                          : 'bg-slate-900 text-slate-400 border border-slate-800'
+                          ? 'bg-amber-500 text-slate-950 shadow-md'
+                          : 'bg-slate-900 [data-theme=\'light\']_:bg-slate-100 text-slate-400 [data-theme=\'light\']_:text-slate-600 border border-slate-800 [data-theme=\'light\']_:border-slate-200'
                       }`}
                     >
                       Xước nhẹ
                     </button>
                     <button
                       onClick={() => handleUpdateStatus(item.id, 'needs_repair')}
-                      className={`px-2 py-1 rounded-lg text-[11px] font-mono transition-all ${
+                      className={`px-2 py-1 rounded-lg text-[11px] font-mono transition-all font-bold ${
                         item.status === 'needs_repair'
-                          ? 'bg-rose-500 text-slate-950 font-bold shadow-md'
-                          : 'bg-slate-900 text-slate-400 border border-slate-800'
+                          ? 'bg-rose-500 text-slate-950 shadow-md'
+                          : 'bg-slate-900 [data-theme=\'light\']_:bg-slate-100 text-slate-400 [data-theme=\'light\']_:text-slate-600 border border-slate-800 [data-theme=\'light\']_:border-slate-200'
                       }`}
                     >
                       Cần sửa
@@ -264,7 +264,7 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
                     type="text"
                     value={item.notes}
                     onChange={(e) => handleUpdateNotes(item.id, e.target.value)}
-                    className="w-full px-2.5 py-1.5 rounded-lg bg-slate-900/80 border border-slate-800 text-slate-200 font-sans text-xs focus:outline-none focus:border-emerald-500"
+                    className="w-full px-2.5 py-1.5 rounded-lg bg-slate-900/80 [data-theme='light']_:bg-slate-50 border border-slate-800 [data-theme='light']_:border-slate-200 text-slate-200 [data-theme='light']_:text-slate-900 font-sans text-xs focus:outline-none focus:border-emerald-500 font-medium"
                   />
                 </td>
                 <td className="p-4 text-center">
@@ -274,7 +274,7 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
                         onShowToast('info', `Ảnh hiện trạng: ${item.name}`, `Đang tải ${item.photoCount} ảnh minh chứng độ phân giải cao.`);
                       }
                     }}
-                    className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-emerald-300 text-[11px] font-mono transition-colors"
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-200 text-slate-300 [data-theme='light']_:text-slate-700 hover:text-emerald-500 text-[11px] font-mono transition-colors font-semibold"
                   >
                     <Camera className="w-3.5 h-3.5 text-emerald-400" />
                     <span>{item.photoCount} ảnh</span>

@@ -106,23 +106,23 @@ export const GuidedPath: React.FC<GuidedPathProps> = ({
         <svg
           viewBox="0 0 1200 90"
           fill="none"
-          className="w-full h-16 lg:h-20 overflow-visible"
+          className="w-full h-16 lg:h-20 overflow-visible pointer-events-none"
         >
           <defs>
-            {/* Rich Fluid Emerald Gradient */}
+            {/* Luminous Brush Stroke Gradient */}
             <linearGradient id="emeraldBrushGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#10B981" stopOpacity="0.85" />
-              <stop offset="50%" stopColor="#059669" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="#047857" stopOpacity="0.85" />
+              <stop offset="0%" stopColor="#34D399" stopOpacity="0.9" />
+              <stop offset="50%" stopColor="#10B981" stopOpacity="0.95" />
+              <stop offset="100%" stopColor="#059669" stopOpacity="0.85" />
             </linearGradient>
 
-            {/* Smooth Radial Feathered Aura Glow */}
-            <filter id="brushSoftGlow" x="-40%" y="-40%" width="180%" height="180%">
-              <feGaussianBlur stdDeviation="10" result="wideBlur" />
-              <feGaussianBlur stdDeviation="3" result="tightBlur" />
+            {/* Soft Organic Brush Feather Filter */}
+            <filter id="brushFeatherGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="wideBlur" />
+              <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="softBlur" />
               <feMerge>
                 <feMergeNode in="wideBlur" />
-                <feMergeNode in="tightBlur" />
+                <feMergeNode in="softBlur" />
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
@@ -140,19 +140,20 @@ export const GuidedPath: React.FC<GuidedPathProps> = ({
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   fill="none"
-                  filter="url(#brushSoftGlow)"
-                  initial={{ opacity: 0.6 }}
+                  filter="url(#brushFeatherGlow)"
+                  initial={{ opacity: 0.4 }}
                   animate={{ opacity: 0 }}
                   transition={{ duration: 0.25, ease: 'easeOut' }}
                 />
                 <motion.path
                   d={retiringPath.d}
                   stroke="url(#emeraldBrushGradient)"
-                  strokeWidth="10"
+                  strokeWidth="8"
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  strokeOpacity="0.5"
                   fill="none"
-                  initial={{ opacity: 0.8 }}
+                  initial={{ opacity: 0.5 }}
                   animate={{ opacity: 0 }}
                   transition={{ duration: 0.25, ease: 'easeOut' }}
                 />
@@ -160,36 +161,41 @@ export const GuidedPath: React.FC<GuidedPathProps> = ({
             )}
           </AnimatePresence>
 
-          {/* ═══ 2. INCOMING ACTIVE ORGANIC PATH (Smooth Feathered Luminous Line) ═══ */}
+          {/* ═══ 2. INCOMING ACTIVE ORGANIC PATH (Rich Luminous Brush Ribbon) ═══ */}
           <g key={`incoming-${currentPath.id}`}>
             {/* Outer Feathered Ambient Aura */}
             <motion.path
               d={currentPath.d}
               stroke="#10B981"
-              strokeWidth="24"
+              strokeWidth="20"
               strokeOpacity="0.18"
               strokeLinecap="round"
               strokeLinejoin="round"
               fill="none"
-              filter="url(#brushSoftGlow)"
+              filter="url(#brushFeatherGlow)"
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 1 }}
-              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             />
 
-            {/* Smooth Core Glowing Body (No hard white line) */}
+            {/* Core Organic Brush Body (8px Width) */}
             <motion.path
               d={currentPath.d}
               stroke="url(#emeraldBrushGradient)"
-              strokeWidth="10"
+              strokeWidth="8"
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeOpacity="0.9"
+              strokeOpacity="0.85"
               fill="none"
+              filter="url(#brushFeatherGlow)"
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 0.9 }}
-              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             />
+
+            {/* Glowing Anchor Nodes */}
+            <circle cx={currentPath.startX} cy={0} r={5} fill="#34D399" filter="url(#brushFeatherGlow)" />
+            <circle cx={currentPath.endX} cy={90} r={5} fill="#10B981" filter="url(#brushFeatherGlow)" />
           </g>
         </svg>
       </div>
