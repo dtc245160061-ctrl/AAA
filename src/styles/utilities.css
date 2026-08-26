@@ -363,3 +363,61 @@
   color: var(--haven-text-on-dark) !important;
 }
 
+/* ─── Ultra-Smooth Seamless Fluid Gradient Orbs (Zero Hardware Lag, 100% Seamless Loop) ─── */
+@keyframes fluid-orbit-1 {
+  0% {
+    transform: translate3d(0%, 0%, 0) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate3d(15%, -12%, 0) scale(1.12) rotate(120deg);
+  }
+  66% {
+    transform: translate3d(-10%, 14%, 0) scale(0.94) rotate(240deg);
+  }
+  100% {
+    transform: translate3d(0%, 0%, 0) scale(1) rotate(360deg);
+  }
+}
+
+@keyframes fluid-orbit-2 {
+  0% {
+    transform: translate3d(0%, 0%, 0) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate3d(-14%, 12%, 0) scale(0.96) rotate(-120deg);
+  }
+  66% {
+    transform: translate3d(12%, -14%, 0) scale(1.10) rotate(-240deg);
+  }
+  100% {
+    transform: translate3d(0%, 0%, 0) scale(1) rotate(-360deg);
+  }
+}
+
+@keyframes fluid-orbit-3 {
+  0% {
+    transform: translate3d(0%, 0%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(10%, 12%, 0) scale(1.18);
+  }
+  100% {
+    transform: translate3d(0%, 0%, 0) scale(1);
+  }
+}
+
+.fluid-orb-1 {
+  animation: fluid-orbit-1 20s ease-in-out infinite;
+  will-change: transform;
+}
+
+.fluid-orb-2 {
+  animation: fluid-orbit-2 24s ease-in-out infinite;
+  will-change: transform;
+}
+
+.fluid-orb-3 {
+  animation: fluid-orbit-3 16s ease-in-out infinite;
+  will-change: transform;
+}
+
