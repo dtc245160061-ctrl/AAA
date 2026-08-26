@@ -5,7 +5,8 @@ import {
   Send, 
   Bot, 
   Filter, 
-  Loader2
+  Loader2,
+  ShieldCheck
 } from 'lucide-react';
 import type { ApartmentUnit } from '../types/apartment';
 import { askGeminiRag, type RagRetrievalResult } from '../services/geminiRagService';
@@ -111,8 +112,14 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
                 <Sparkles className="w-5 h-5 animate-pulse" />
               </div>
               <div>
-                <h3 className="font-serif text-lg text-slate-100 font-bold">Haven AI Advisor</h3>
-                <p className="text-[11px] font-mono text-emerald-400">Tìm Kiếm Ngôn Ngữ Tự Nhiên & Môi Trường</p>
+                <div className="flex items-center gap-2">
+                  <h3 className="font-serif text-lg text-slate-100 font-bold">Haven AI Advisor</h3>
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[10px] font-mono text-emerald-400">
+                    <ShieldCheck className="w-3 h-3 text-emerald-400" />
+                    <span>Guardrail Safe</span>
+                  </span>
+                </div>
+                <p className="text-[11px] font-mono text-slate-400">Trợ lý Không Gian Sống & Phân Tích Dữ Liệu</p>
               </div>
             </div>
 

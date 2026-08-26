@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Sparkles } from 'lucide-react';
+import { ShaderBackground } from './components/ShaderBackground';
 import { Sidebar } from './components/Sidebar';
 import { MobileNav } from './components/layout/MobileNav';
 import { Topbar } from './components/Topbar';
@@ -32,12 +33,12 @@ import { QuickActionModal } from './components/QuickActionModal';
 import { DevPreviewLauncher } from './devtools/preview/DevPreviewLauncher';
 import { ToastContainer, type ToastMessage } from './components/Toast';
 import { ApartmentStore } from './data/apartmentStore';
-import type { 
-  ApartmentUnit, 
-  RentalLead, 
-  LeaseContract, 
-  RentalInvoice, 
-  LeadStatus, 
+import type {
+  ApartmentUnit,
+  RentalLead,
+  LeaseContract,
+  RentalInvoice,
+  LeadStatus,
   UnitStatus,
   ChatConversation,
   LandlordProfile
@@ -58,7 +59,7 @@ export function App() {
     return localStorage.getItem('haven_sidebar_collapsed') === 'true';
   });
   const [initialAiQuery, setInitialAiQuery] = useState<string>('');
-  
+
   // Reactive Central State from ApartmentStore
   const [units, setUnits] = useState<ApartmentUnit[]>(() => ApartmentStore.getUnits());
   const [leads, setLeads] = useState<RentalLead[]>(() => ApartmentStore.getLeads());
@@ -161,7 +162,7 @@ export function App() {
       : [...savedUnitIds, unitId];
     setSavedUnitIds(updated);
     ApartmentStore.saveSavedUnitIds(updated);
-    
+
     if (updated.includes(unitId)) {
       showToast('info', 'Đã lưu căn hộ', `Căn ${unitId} đã được thêm vào danh sách so sánh.`);
     }
@@ -292,6 +293,9 @@ export function App() {
 
   return (
     <div className="min-h-screen canvas-surface text-slate-200 flex relative selection:bg-emerald-500/20 selection:text-emerald-200 overflow-x-hidden transition-colors duration-300">
+      {/* Global 60FPS Animated 3D Shader Gradient Background (Dark & Light) */}
+      <ShaderBackground themeMode={themeMode} />
+
       {/* Toast Notifications */}
       <ToastContainer toasts={toasts} onDismiss={dismissToast} />
 
@@ -628,55 +632,55 @@ export function App() {
             <form onSubmit={handleSubmitBooking} className="space-y-3.5 text-xs font-mono">
               <div>
                 <label className="text-slate-400 block mb-1">Họ Và Tên Của Bạn *</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   required
                   value={bookingName}
                   onChange={(e) => setBookingName(e.target.value)}
-                  placeholder="Ví dụ: Nguyễn Văn An" 
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 font-sans" 
+                  placeholder="Ví dụ: Nguyễn Văn An"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 font-sans"
                 />
               </div>
               <div>
                 <label className="text-slate-400 block mb-1">Số Điện Thoại / Zalo Liên Hệ *</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   required
                   value={bookingPhone}
                   onChange={(e) => setBookingPhone(e.target.value)}
-                  placeholder="Ví dụ: 0987 654 321" 
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 font-sans" 
+                  placeholder="Ví dụ: 0987 654 321"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 font-sans"
                 />
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="text-slate-400 block mb-1">Ngày Dự Kiến Vào Ở</label>
-                  <input 
-                    type="date" 
+                  <input
+                    type="date"
                     value={bookingMoveInDate}
                     onChange={(e) => setBookingMoveInDate(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-emerald-500 font-sans" 
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-emerald-500 font-sans"
                   />
                 </div>
                 <div>
                   <label className="text-slate-400 block mb-1">Lịch Hẹn Xem Nhà</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     value={bookingViewingDate}
                     onChange={(e) => setBookingViewingDate(e.target.value)}
                     placeholder="18/08 14:00"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-emerald-500 font-sans" 
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-emerald-500 font-sans"
                   />
                 </div>
               </div>
               <div>
                 <label className="text-slate-400 block mb-1">Ghi Chú Nhu Cầu</label>
-                <textarea 
+                <textarea
                   rows={2}
                   value={bookingNotes}
                   onChange={(e) => setBookingNotes(e.target.value)}
-                  placeholder="Ví dụ: Cần chỗ đỗ xe ô tô 7 chỗ, nuôi 1 bé mèo..." 
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 font-sans" 
+                  placeholder="Ví dụ: Cần chỗ đỗ xe ô tô 7 chỗ, nuôi 1 bé mèo..."
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 font-sans"
                 />
               </div>
 

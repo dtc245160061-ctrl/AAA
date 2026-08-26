@@ -14,9 +14,12 @@
     --text-secondary: #94A3B8;
   }
 
-  [data-theme="light"], .light {
-    --bg-canvas: #F0FDF4; /* Vibrant soft mint/emerald essence */
-    --text-primary: #064E3B; /* Deep emerald text */
+  [data-theme="light"],
+  .light {
+    --bg-canvas: #F0FDF4;
+    /* Vibrant soft mint/emerald essence */
+    --text-primary: #064E3B;
+    /* Deep emerald text */
     --text-secondary: #047857;
   }
 
@@ -38,9 +41,11 @@
   0% {
     background-position: 0% 0%, 100% 0%, 50% 100%, 100% 100%;
   }
+
   50% {
     background-position: 100% 50%, 0% 100%, 100% 0%, 0% 50%;
   }
+
   100% {
     background-position: 0% 0%, 100% 0%, 50% 100%, 100% 100%;
   }
@@ -51,6 +56,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -68,7 +74,8 @@
 /* ── Legacy Design System Classes (backward compatibility) ── */
 /* These will be gradually removed as views migrate to new tokens */
 
-.font-serif-editorial, .font-serif {
+.font-serif-editorial,
+.font-serif {
   font-family: var(--font-serif);
   letter-spacing: -0.015em;
 }
@@ -80,7 +87,7 @@
 
 .canvas-surface {
   background-color: var(--haven-bg);
-  background-image: 
+  background-image:
     radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.10) 0px, transparent 55%),
     radial-gradient(circle at 85% 25%, rgba(20, 184, 166, 0.08) 0px, transparent 50%),
     radial-gradient(circle at 50% 80%, rgba(245, 158, 11, 0.05) 0px, transparent 50%),
@@ -93,7 +100,7 @@
 [data-theme="light"] .canvas-surface,
 .light .canvas-surface {
   background-color: var(--haven-bg);
-  background-image: 
+  background-image:
     radial-gradient(circle at 20% 15%, rgba(16, 185, 129, 0.06) 0px, transparent 55%),
     radial-gradient(circle at 80% 25%, rgba(56, 189, 248, 0.06) 0px, transparent 50%),
     radial-gradient(circle at 50% 80%, rgba(245, 158, 11, 0.03) 0px, transparent 50%);
@@ -104,9 +111,17 @@
 
 /* ── Running Border Glow (Liquid Glass Shimmer) ── */
 @keyframes border-shimmer {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .running-border-glow {
@@ -194,8 +209,8 @@
   border-left: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 24px;
   box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6),
-              inset 0 1px 0 rgba(255, 255, 255, 0.2),
-              inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -208,8 +223,8 @@
   border-left: 1px solid rgba(52, 211, 153, 0.25);
   border-radius: 28px;
   box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.7),
-              0 0 30px -10px rgba(16, 185, 129, 0.15),
-              inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    0 0 30px -10px rgba(16, 185, 129, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -220,7 +235,7 @@
   border-top: 1px solid rgba(255, 255, 255, 1);
   border-left: 1px solid rgba(255, 255, 255, 0.95);
   box-shadow: 0 25px 50px -15px rgba(15, 23, 42, 0.08),
-              inset 0 1px 0 rgba(255, 255, 255, 1);
+    inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 [data-theme="light"] .liquid-glass-origin,
@@ -229,7 +244,7 @@
   border: 1px solid rgba(167, 243, 208, 0.8);
   border-top: 1px solid rgba(255, 255, 255, 1);
   box-shadow: 0 25px 50px -15px rgba(16, 185, 129, 0.12),
-              inset 0 1px 0 rgba(255, 255, 255, 1);
+    inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 /* Light Mode Layout Overrides */
@@ -393,10 +408,9 @@
 .light .light-hero-gradient {
   display: block;
   background: linear-gradient(135deg,
-    rgba(240, 253, 244, 0.92) 0%,
-    rgba(248, 250, 252, 0.88) 45%,
-    rgba(224, 242, 254, 0.85) 100%
-  );
+      rgba(240, 253, 244, 0.92) 0%,
+      rgba(248, 250, 252, 0.88) 45%,
+      rgba(224, 242, 254, 0.85) 100%);
 }
 
 /* ── Font Display utility (maps to design token) ── */
@@ -411,4 +425,3 @@
 .light .ambient-glow-sky {
   opacity: 0;
 }
-
