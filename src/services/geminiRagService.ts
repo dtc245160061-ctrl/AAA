@@ -35,17 +35,6 @@ export interface RagChatResponse {
 const STORAGE_KEY_API_KEY = 'haven_gemini_api_key';
 const STORAGE_KEY_EMBEDDING_CACHE = 'haven_rag_embeddings_cache_v1';
 
-// Key pool loaded from key.txt
-export const DEFAULT_KEY_POOL = [
-  'YOUR_GEMINI_API_KEY',
-  'YOUR_GEMINI_API_KEY',
-  'YOUR_GEMINI_API_KEY',
-  'YOUR_GEMINI_API_KEY',
-  'YOUR_GEMINI_API_KEY',
-  'YOUR_GEMINI_API_KEY',
-  'YOUR_GEMINI_API_KEY'
-];
-
 const GEMINI_GENERATION_MODELS = ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-pro'];
 const GEMINI_EMBEDDING_MODEL = 'text-embedding-004';
 
@@ -54,14 +43,21 @@ export function getGeminiApiKey(): string {
     const saved = localStorage.getItem(STORAGE_KEY_API_KEY);
     if (saved && saved.trim()) return saved.trim();
   }
-  const envKey = (import.meta.env?.VITE_GEMINI_API_KEY as string) || '';
-  if (envKey && envKey.trim()) return envKey.trim();
-  return DEFAULT_KEY_POOL[0] || '';
+  const viteKey = (import.meta.env?.VITE_GEMINI_API_KEY as string) || (import.meta.env?.GEMINI_API_KEY as string) || '';
+  if (viteKey && viteKey.trim()) return viteKey.trim();
+
+  return '';
 }
 
 export function getGeminiKeyPool(): string[] {
-  const custom = getGeminiApiKey();
-  const pool = [custom, ...DEFAULT_KEY_POOL].filter(Boolean);
+  const currentKey = getGeminiApiKey();
+  const rawPool = (import.meta.env?.VITE_GEMINI_API_KEYS as string) || '';
+  const poolFromEnv = rawPool
+    .split(',')
+    .map(k => k.trim())
+    .filter(Boolean);
+
+  const pool = [currentKey, ...poolFromEnv].filter(Boolean);
   return Array.from(new Set(pool));
 }
 
