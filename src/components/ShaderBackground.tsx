@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { ShaderGradientCanvas, ShaderGradient } from 'shadergradient';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface ShaderBackgroundProps {
   className?: string;
@@ -17,6 +16,9 @@ export const ShaderBackground: React.FC<ShaderBackgroundProps> = ({
     }
     return false;
   });
+
+  const darkVideoRef = useRef<HTMLVideoElement>(null);
+  const lightVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const checkTheme = () => {
@@ -40,121 +42,65 @@ export const ShaderBackground: React.FC<ShaderBackgroundProps> = ({
     return () => observer.disconnect();
   }, [themeMode]);
 
-  // Dark Mode Shader Configuration (Exact from user)
-  const darkConfig = useMemo(() => ({
-    animate: 'on',
-    axesHelper: 'off',
-    brightness: 1.2,
-    cAzimuthAngle: 11,
-    cDistance: 13.99,
-    cPolarAngle: 96,
-    cameraZoom: 1,
-    color1: '#0A0C10',
-    color2: '#0369A1',
-    color3: '#047857',
-    destination: 'onCanvas',
-    embedMode: 'off',
-    envPreset: 'city',
-    format: 'gif',
-    fov: 45,
-    frameRate: 60,
-    gizmoHelper: 'hide',
-    grain: 'off',
-    lightType: '3d',
-    pixelDensity: 1.5,
-    positionX: -1.4,
-    positionY: 0,
-    positionZ: 0,
-    range: 'disabled',
-    rangeEnd: 40,
-    rangeStart: 0,
-    reflection: 0.1,
-    rotationX: 0,
-    rotationY: 10,
-    rotationZ: 50,
-    shader: 'defaults',
-    type: 'plane',
-    uAmplitude: 1,
-    uDensity: 0.5,
-    uFrequency: 5.5,
-    uSpeed: 0.1,
-    uStrength: 3.6,
-    uTime: 0,
-    wireframe: false,
-    zoomOut: false,
-  }), []);
-
-  // Light Mode Shader Configuration (Exact from user)
-  const lightConfig = useMemo(() => ({
-    animate: 'on',
-    axesHelper: 'off',
-    brightness: 1.2,
-    cAzimuthAngle: 11,
-    cDistance: 1.81,
-    cPolarAngle: 96,
-    cameraZoom: 1,
-    color1: '#BAE6FD',
-    color2: '#A7F3D0',
-    color3: '#F7F9F8',
-    destination: 'onCanvas',
-    embedMode: 'off',
-    envPreset: 'city',
-    format: 'gif',
-    fov: 45,
-    frameRate: 60,
-    gizmoHelper: 'hide',
-    grain: 'off',
-    lightType: '3d',
-    pixelDensity: 1.5,
-    positionX: -1.4,
-    positionY: 0,
-    positionZ: 0,
-    range: 'disabled',
-    rangeEnd: 40,
-    rangeStart: 0,
-    reflection: 0.1,
-    rotationX: 0,
-    rotationY: 10,
-    rotationZ: 50,
-    shader: 'defaults',
-    type: 'plane',
-    uAmplitude: 1,
-    uDensity: 0.5,
-    uFrequency: 5.5,
-    uSpeed: 0.1,
-    uStrength: 3.6,
-    uTime: 0,
-    wireframe: false,
-    zoomOut: false,
-  }), []);
-
-  const currentConfig: any = isLight ? lightConfig : darkConfig;
+  // Ensure videos autoplay properly across all browsers
+  useEffect(() => {
+    if (darkVideoRef.current) {
+      darkVideoRef.current.play().catch(() => {});
+    }
+    if (lightVideoRef.current) {
+      lightVideoRef.current.play().catch(() => {});
+    }
+  }, []);
 
   return (
     <div 
-      className={`fixed inset-0 pointer-events-none overflow-hidden ${className}`}
-      style={{ zIndex: 0 }}
+      className={`fixed inset-0 pointer-events-none overflow-hidden select-none z-0 ${className}`}
       aria-hidden="true"
     >
-      <ShaderGradientCanvas
+      {/* Dark Mode Video Background - 60FPS Full Bleed Hardware Accelerated */}
+      <video
+        ref={darkVideoRef}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+          isLight ? 'opacity-0' : 'opacity-100'
+        }`}
         style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          pointerEvents: 'none',
+          width: '100vw',
+          height: '100vh',
+          objectFit: 'cover',
         }}
-        pixelDensity={1.5}
-        fov={45}
       >
-        <ShaderGradient {...currentConfig} />
-      </ShaderGradientCanvas>
-      
-      {/* Light & Dark subtle contrast overlay for crisp UI text readability */}
+        <source src="/haven_bg_dark.mp4" type="video/mp4" />
+      </video>
+
+      {/* Light Mode Video Background - 60FPS Full Bleed Hardware Accelerated */}
+      <video
+        ref={lightVideoRef}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+          isLight ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{
+          width: '100vw',
+          height: '100vh',
+          objectFit: 'cover',
+        }}
+      >
+        <source src="/haven_bg_light.mp4" type="video/mp4" />
+      </video>
+
+      {/* Subtle Depth & Contrast Overlay for Crystal Clear Typography */}
       <div 
-        className={`absolute inset-0 pointer-events-none transition-colors duration-300 ${
-          isLight ? 'bg-white/10' : 'bg-black/10'
+        className={`absolute inset-0 pointer-events-none transition-colors duration-700 ${
+          isLight ? 'bg-white/15 backdrop-brightness-[0.98]' : 'bg-black/20 backdrop-brightness-[0.95]'
         }`}
       />
     </div>
