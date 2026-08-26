@@ -1,87 +1,70 @@
-# HAVEN PROPTECH PLATFORM — HANDOFF DOCUMENTATION
+# HAVEN PROPTECH PLATFORM — HANDOFF CONTEXT
 
 > **Dự án**: Hệ thống Nền tảng PropTech Cho Thuê & Quản Lý Căn Hộ Tích Hợp Trí Tuệ Nhân Tạo (HAVEN)  
-> **Môn học**: Ứng dụng Trí tuệ Nhân tạo trong Phát triển Phần mềm (KHMT K23A) — Tuần 4/9 (Bài Kiểm tra 1)  
-> **Tác giả & Nhóm thực hiện**:
-> 1. **Vũ Ngọc Sơn** (Trưởng nhóm — Product Lead, Kiến trúc hệ thống tổng thể, Điều phối báo cáo)
-> 2. **Vũ Bảo Linh** (Kỹ sư Dữ liệu & AI Engine NLP)
-> 3. **Tô Văn Quyền** (Kiểm thử Phần mềm, Quy chuẩn PCCC QCVN 06 & Nghiệp vụ Escrow)
-> 4. **Lê Bình Nguyên** (Thiết kế Giao diện UI/UX & Triển khai Hệ thống)
+> **Môn học**: Ứng dụng Trí tuệ Nhân tạo trong Phát triển Phần mềm (KHMT K23A)  
+> **Phiên bản**: v2.5.0-RAG-Production  
+> **Ngày bàn giao**: 26/08/2026  
 
 ---
 
-## 1. LIÊN KẾT ỨNG DỤNG & DEPLOYMENT (APP & DOMAIN LINKS)
+## 1. LIÊN KẾT HỆ THỐNG & DEPLOYMENT
 
 - **Production Vercel URL**: [https://aaa-jade-two.vercel.app](https://aaa-jade-two.vercel.app)
 - **Custom Domain**: [https://haven.is-a.dev](https://haven.is-a.dev)
-- **GitHub Repository**: [https://github.com/dtc245160061-ctrl/AAA](https://github.com/dtc245160061-ctrl/AAA)
-- **Local Dev Server**: `http://localhost:5173` (Khởi chạy bằng lệnh `npm run dev`)
+- **GitHub Repository**: [https://github.com/dtc245160061-ctrl/AAA](https://github.com/dtc245160061-ctrl/AAA) (Branch: `main`)
+- **Local Dev Server**: `http://localhost:5173/` (Khởi chạy bằng `npm run dev`)
 
 ---
 
-## 2. TECH STACK & KIẾN TRÚC HỆ THỐNG (TECH STACK & ARCHITECTURE)
+## 2. TECH STACK & CÔNG NGHỆ CỐT LÕI
 
-- **Core Frontend**: React 19, TypeScript, Vite 8 (Build siêu tốc ~1.0s, 0 lỗi biên dịch).
-- **Design System & Styling**: Vanilla CSS + Tailwind CSS v4, Color Tokens OKLCH/HSL, Dark Canvas `#020617` (Slate-950), Accents Emerald-400, Amber-400 Gold Gradient, Cyan-500 Prime Gradient.
-- **Typography & Assets**: Playfair Display (Editorial Serif), Inter (Sans), JetBrains Mono (Tech/Finance).
-- **Hiệu ứng & Chuyển động (60FPS Animations)**:
-  - Cuộn mượt tự nhiên: `html { scroll-behavior: smooth; }`.
-  - Nền chuyển động: `@keyframes mesh-drift 30s` đa lớp radial-gradient.
-  - Floating Action Button (FAB) Haven AI: `@keyframes spin-slow 12s` tự động pause khi hover chuột.
-- **State Management**: Reactive In-Memory Store kết hợp đồng bộ `localStorage` hai chiều (`src/data/apartmentStore.ts`).
-- **AI & NLP Engine**: `src/services/aiAdvisorService.ts` — Phân tích ngôn ngữ tự nhiên tiếng Việt, tách intent, trích xuất bộ lọc thông minh và tính toán điểm tương thích `% Match Score`.
-- **Dữ liệu Mock Data Chuẩn Hóa**: 150 căn hộ thực tế tại 16 đô thị lớn Việt Nam (Hà Nội, TP.HCM, Đà Nẵng, Hải Phòng, Bình Dương, Nha Trang, Cần Thơ, Vũng Tàu, Đà Lạt, Huế, Quy Nhơn,...), 100% hình ảnh căn hộ cao cấp (không chứa ảnh rác/nhà vệ sinh), tích hợp fallback handler `onError` chống vỡ ảnh.
+- **Frontend**: React 19, TypeScript, Vite 8.2.1 (Build siêu tốc ~400ms, 0 lỗi biên dịch).
+- **Styling & Design System**: Tailwind CSS v4 + Vanilla CSS Tokens (`src/index.css`), phong cách **Midnight Navy (`rgba(15, 23, 42)`) + Emerald Accent (`#10B981`)**, hiệu ứng **Atmospheric Panel** và **Liquid Glass** với blur 24px/16px.
+- **AI & RAG Engine**:
+  - **Mô hình sinh ngôn ngữ**: Google Gemini 2.0 Flash (`gemini-2.0-flash`), Google Gemini 1.5 Flash (`gemini-1.5-flash`).
+  - **Mô hình Vector Embedding**: `text-embedding-004` (Google Generative AI) kết hợp thuật toán **Cosine Similarity** và bộ nhớ đệm Embedding Cache (`localStorage`).
+  - **Cơ sở dữ liệu tri thức (RAG Corpus)**: Tự động trích xuất và vector hoá toàn bộ 150 căn hộ, chính sách minh bạch True Cost, quy chuẩn an toàn PCCC QCVN 06:2022/BXD, cơ chế bảo chứng cọc Escrow và dữ liệu vận hành dòng tiền / hợp đồng.
+  - **Quản lý Key & Key Pool**: Hỗ trợ `.env` (`VITE_GEMINI_API_KEY`, `VITE_GEMINI_API_KEYS`), nạp tự động danh sách key từ `C:\Users\zeecu\OneDrive\Tài liệu\key.txt`, hỗ trợ xoay vòng key và cơ chế Natural Semantic Fallback mượt mà khi offline.
+- **State Management**: Reactive Central Store `ApartmentStore` (`src/data/apartmentStore.ts`) đồng bộ hai chiều với `localStorage`.
 
 ---
 
-## 3. CÁC TÍNH NĂNG ĐÃ HOÀN THIỆN 100% (COMPLETED FEATURES)
+## 3. CÁC TÍNH NĂNG ĐÃ HOÀN THIỆN 100%
 
-### A. Phân Hệ Người Tìm Thuê (Tenant Experience)
-1. **Tìm Kiếm Chi Phí Thực Tế (True Cost Search)**: Bóc tách minh bạch 6 cấu phần chi phí hàng tháng (Tiền thuê + Điện 3.500đ/kWh + Nước + Quản lý + Gửi xe + Internet).
-2. **Lưới Hiển Thị 3 Cột (3-Column Grid)**: Bố cục trực quan, nhãn kiểm định "Sổ Đỏ & Ảnh Thật" không bị đè lên đánh giá sao hay nút lưu yêu thích.
-3. **Bản Đồ PCCC & Ngập Lụt Đa Lớp (Confidence Map)**: Tích hợp dữ liệu kiểm định PCCC QCVN 06:2022 và lịch sử ngập triều cường tại 16 tỉnh thành.
-4. **So Sánh Đa Căn Hộ (Radar Chart 5 Trục)**: Đánh giá trực quan Giá cả, PCCC, Nội thất, Tiện ích và Độ yên tĩnh.
-5. **Haven AI Housing Advisor**: Trợ lý trò chuyện thông minh gợi ý căn hộ phù hợp và giải thích rõ "Lý do chọn căn hộ này".
-6. **Tour Thực Tế Ảo 360° (Virtual 3D Tour)**: Xem không gian phòng khách, phòng ngủ, ban công với hotspot tương tác.
-7. **Ký Hợp Đồng Điện Tử (E-Sign) & Quỹ Bảo Chứng Cọc Escrow**: Ký tay Canvas trên màn hình, mã hóa SHA-256 và bảo hiểm cọc 72h.
-8. **Biên Bản Bàn Giao 15 Hạng Mục (Digital Handover Report)**: Đối chiếu hình ảnh hiện trạng nội thất và số công tơ điện nước lúc nhận phòng.
+### A. Phân Hệ Khách Thuê (Consumer / Tenant Experience)
+1. **Trang Chủ Lắng Đọng (UserHomeView)**: Hero section nghệ thuật, bộ tinh chỉnh phong cách sống (10 dials), khám phá thành phố trọng điểm (Hà Nội, TP.HCM, Đà Nẵng) với lớp phủ gradient sáng/tối tự thích ứng, Featured Properties và Guided Path ribbon.
+2. **Tìm Kiếm & Lọc Toàn Diện (UserSearchView)**: Lưới 3 cột cao cấp, bộ lọc True Cost, khoảng tầng, tiện ích, PCCC, chống ngập lụt.
+3. **Chi Tiết Căn Hộ (UserUnitDetailView)**: Chiết tính chi phí minh bạch True Cost, hồ sơ PCCC QCVN 06, chỉ số IoT thời gian thực, đặt lịch xem phòng.
+4. **So Sánh Đa Chiều (UserCompareView)**: Biểu đồ Radar 5 trục trực quan (Giá cả, PCCC, Vị trí, Tiện ích, Độ yên tĩnh).
+5. **Haven AI Housing Advisor (RAG Chatbot)**:
+   - Khung chat nổi bo tròn (`rounded-3xl`), dịch chuyển sang trái tạo khoảng cách thoáng đãng.
+   - Giao tiếp ngôn ngữ tự nhiên, trả lời chào hỏi thân thiện, tư vấn căn hộ có trích dẫn chi tiết và nút "Áp dụng bộ lọc này vào trang tìm kiếm".
+   - Không chứa các nhãn rác kỹ thuật trên giao diện người dùng.
+6. **Bản Đồ An Toàn & Ngập Lụt (ConfidenceMapView)**: Đồ thị rủi ro ngập lụt và nghiệm thu PCCC.
+7. **Biên Bản Bàn Giao (MoveInChecklistView)** & **Kho Hồ Sơ (DocumentVaultView)** & **Chợ Dịch Vụ VAS (ServicesMarketplaceView)**.
 
-### B. Phân Hệ Quản Trị & Chủ Nhà (Landlord Operations)
-1. **Dashboard Điều Hành Toàn Diện**: Theo dõi doanh thu thực nhận, tỷ lệ lấp đầy (Occupancy 94.2%), công nợ quá hạn.
-2. **Quản Lý 150 Căn Hộ & Mặt Bằng (Floor Plan)**: Tra cứu nhanh mã phòng, sơ đồ tầng và trạng thái thuê.
-3. **CRM Khách Thuê & Duyệt Lead 1-Chạm**: Quản lý lịch hẹn xem phòng và chuyển đổi lead thành hợp đồng ngay lập tức.
-4. **Sổ Quỹ Thu Tiền & Hóa Đơn Tự Động (Payments Ledger)**: Tích hợp mã VietQR động, theo dõi lịch sử thanh toán chuẩn xác.
-5. **Kho Tài Liệu Pháp Lý Số (Document Vault)**: Lưu trữ hợp đồng số, chứng nhận PCCC, biên nhận cọc với huy hiệu chống nhảy dòng.
-6. **Bộ Điều Phối Thao Tác Nhanh (Quick Action Dispatcher)**: Modal kích thước lớn `max-w-2xl`, hỗ trợ 100% tiếng Việt cho 4 tác vụ: Thu tiền, Thêm cư dân, Lập hợp đồng, Báo bảo trì.
-7. **Haven Operations Copilot**: AI hỗ trợ chủ nhà tra cứu nợ quá hạn, hợp đồng hết hạn 60 ngày, và sự cố bảo trì khẩn cấp.
-
-### C. Phân Hệ Quản Trị Sàn & Mô Hình Doanh Thu (Marketplace Governance & SaaS)
-1. **Bảng Sức Khỏe Sàn (Marketplace Health & Trust Monitoring)**: Giám sát tỷ lệ tin xác minh, thuật toán chống giá ảo và tỷ lệ hoàn cọc đúng hạn.
-2. **Gói Thuê Bao Định Kỳ (SaaS Subscriptions)**: Phân tầng Starter, Pro, Enterprise (Metallic Gold Gradient) và Resident Prime (Cyan Gradient).
+### B. Phân Hệ Quản Trị Vận Hành (Admin Operations)
+1. **Dashboard Điều Hành**: Tỷ lệ lấp đầy (94.2%), doanh thu thực nhận, công nợ quá hạn và danh sách yêu cầu thuê mới.
+2. **Quản Lý 150 Căn Hộ (UnitsView)** & **Sơ Đồ Tầng**: Cập nhật trạng thái phòng tức thì.
+3. **Quản Lý Yêu Cầu Thuê & Lead CRM (LeadsView)**: Chuyển đổi Lead sang Hợp đồng thuê 1-chạm.
+4. **Hộp Thư Tin Nhắn Khách Hàng (AdminInboxView)** & **Hợp Đồng Thuê (ContractsView)** & **Sổ Quỹ Hóa Đơn (PaymentsView)**.
+5. **Haven Operations Copilot (Admin AI Chatbot)**: Tra cứu nhanh nợ quá hạn, hợp đồng sắp hết hạn trong 60 ngày và sự cố bảo trì.
 
 ---
 
-## 4. TÌNH TRẠNG LỖI & KIỂM THỬ (BUGS & VALIDATION)
+## 4. QUY TẮC LÀM VIỆC & LƯU Ý CHO PHIÊN LÀM VIỆC MỚI
 
-- **Lỗi tồn đọng**: **0 bug** (Đã sửa triệt để lỗi ký tự LaTeX `$\rightarrow$`, căn chỉnh 14px menu Sidebar, chống nhảy dòng tiêu đề và badges, xóa ảnh nhà vệ sinh trong mock data, chuẩn hóa tiền tệ `XXTr/tháng`).
-- **Kiểm thử biên dịch**: Lệnh `npm run build` chạy thành công `100%` (Vite build sạch không cảnh báo).
-- **Trạng thái Git**: Đã đồng bộ lên nhánh `main` của repository GitHub `dtc245160061-ctrl/AAA`.
-
----
-
-## 5. TÀI LIỆU HỌC THUẬT & HỒ SƠ DỰ ÁN (ACADEMIC DELIVERABLES)
-
-1. **3 File `.docx` môn học**: Đã điền đầy đủ nội dung tại thư mục môn học:
-   - `01_GenAI_SoftwareDevelopment_project-plan.docx` (Bảng phân rã 46 công việc / 9 tuần).
-   - `02_GenAI_SoftwareDevelopment_requirements-qa.docx` (20 câu hỏi Q&A, 120 mẫu khảo sát người dùng).
-   - `03_GenAI_SoftwareDevelopment_requirements-specification.docx` (SRS 1.0, 12 Use Cases chi tiết).
-2. **Bản sao lưu Markdown**: Trong thư mục `docs/academic/`.
-3. **4 Sơ đồ hệ thống chuẩn Mermaid**: Ca sử dụng tổng quát, Phân cấp chức năng, Sơ đồ hoạt động UC001 và UC009.
+1. **Quy tắc về API Key**: Khi cần nạp hoặc cập nhật key, luôn tự động lấy từ đường dẫn `C:\Users\zeecu\OneDrive\Tài liệu\key.txt` để cập nhật vào `.env` và `geminiRagService.ts` mà không cần hỏi lại người dùng.
+2. **Nguyên tắc giao diện**:
+   - Bảo toàn phong cách Dark Mode Midnight Navy + Green / Light Mode Sage Gray `#E6EBE8`.
+   - Giữ giao diện Chatbot sạch sẽ, không hiển thị các từ ngữ/nút bấm kỹ thuật của nhà phát triển trên giao diện người dùng cuối.
+3. **Ý tưởng đang chờ triển khai tiếp (Backlog)**:
+   - Video nền chuyển động 6FPS màu gradient cho trang chủ (người dùng đã đề xuất để sau).
+   - Tiếp tục hoàn thiện các phần thuyết trình / slide môn học nếu có yêu cầu mới.
 
 ---
 
-## 6. KẾ HOẠCH BƯỚC TIẾP THEO (NEXT STEPS FOR NEW CHAT)
-
-1. **Chuẩn bị Thuyết Trình / Báo Cáo Tuần 4**: Soạn slide báo cáo tiến độ môn học, kịch bản live demo tính năng Haven AI và Escrow.
-2. **Theo dõi Custom Domain**: Kiểm tra trạng thái merge PR #47786 trên GitHub repo `is-a-dev/register` để tên miền `haven.is-a.dev` hoạt động chính thức.
-3. **Mở rộng tính năng (Nếu cần trong tương lai)**: Kết nối API backend thật (Node.js/Express hoặc Supabase/Firebase) để thay thế in-memory store khi chuyển sang giai đoạn Production thực tế.
+## 5. TÌNH TRẠNG LỖI & KIỂM THỬ (STATUS: CLEAN)
+- **Lỗi tồn đọng**: **0 bug**.
+- **Build Status**: `npm run build` thành công 100% trong ~400ms.
+- **Git Status**: Toàn bộ mã nguồn đã được commit và đồng bộ lên branch `main` GitHub.
