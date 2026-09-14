@@ -232,7 +232,7 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 space-y-2">
+          <div className="haven-card-interactive p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/60 hover:shadow-xl hover:shadow-emerald-500/10 space-y-2 cursor-pointer transition-all duration-200">
             <div className="flex items-center justify-between text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold">
               <span>1. Phí Môi Giới Chốt Thuê</span>
               <Percent className="w-3.5 h-3.5" />
@@ -243,7 +243,7 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
             </p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 space-y-2">
+          <div className="haven-card-interactive p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-sky-500/60 hover:shadow-xl hover:shadow-sky-500/10 space-y-2 cursor-pointer transition-all duration-200">
             <div className="flex items-center justify-between text-xs font-mono text-sky-600 dark:text-sky-400 font-bold">
               <span>2. Thuê Bao SaaS (MRR)</span>
               <TrendingUp className="w-3.5 h-3.5" />
@@ -254,7 +254,7 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
             </p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 space-y-2">
+          <div className="haven-card-interactive p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-amber-500/60 hover:shadow-xl hover:shadow-amber-500/10 space-y-2 cursor-pointer transition-all duration-200">
             <div className="flex items-center justify-between text-xs font-mono text-amber-600 dark:text-amber-400 font-bold">
               <span>3. Phí Kiểm Định Cấp Tốc</span>
               <ShieldCheck className="w-3.5 h-3.5" />
@@ -265,7 +265,7 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
             </p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 space-y-2">
+          <div className="haven-card-interactive p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-purple-500/60 hover:shadow-xl hover:shadow-purple-500/10 space-y-2 cursor-pointer transition-all duration-200">
             <div className="flex items-center justify-between text-xs font-mono text-purple-600 dark:text-purple-400 font-bold">
               <span>4. Hoa Hồng Dịch Vụ Sống</span>
               <Sparkles className="w-3.5 h-3.5" />

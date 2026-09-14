@@ -33,10 +33,61 @@ export interface RagChatResponse {
 }
 
 const STORAGE_KEY_API_KEY = 'haven_gemini_api_key';
+const STORAGE_KEY_GROQ_API_KEY = 'haven_groq_api_key';
 const STORAGE_KEY_EMBEDDING_CACHE = 'haven_rag_embeddings_cache_v1';
 
 const GEMINI_GENERATION_MODELS = ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-pro'];
 const GEMINI_EMBEDDING_MODEL = 'text-embedding-004';
+
+export function getGroqApiKey(): string {
+  if (typeof window !== 'undefined') {
+    const saved = localStorage.getItem(STORAGE_KEY_GROQ_API_KEY);
+    if (saved && saved.trim()) return saved.trim();
+  }
+  const viteKey = (import.meta.env?.VITE_GROQ_API_KEY as string) || (import.meta.env?.GROQ_API_KEY as string) || '';
+  if (viteKey && viteKey.trim()) return viteKey.trim();
+
+  return '';
+}
+
+export function setGroqApiKey(apiKey: string): void {
+  if (typeof window !== 'undefined') {
+    if (!apiKey || !apiKey.trim()) {
+      localStorage.removeItem(STORAGE_KEY_GROQ_API_KEY);
+    } else {
+      localStorage.setItem(STORAGE_KEY_GROQ_API_KEY, apiKey.trim());
+    }
+  }
+}
+
+export async function testGroqApiKey(apiKey: string): Promise<{ valid: boolean; message: string; model?: string }> {
+  if (!apiKey || !apiKey.trim()) {
+    return { valid: false, message: 'Vui lòng nhập Groq API Key (bắt đầu bằng gsk_)' };
+  }
+
+  try {
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey.trim()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        messages: [{ role: 'user', content: 'Say OK' }],
+        max_tokens: 5
+      })
+    });
+
+    if (response.ok) {
+      return { valid: true, message: 'Kết nối Groq Llama 3.3 70B thành công!', model: 'llama-3.3-70b-versatile' };
+    }
+    const errData = await response.json().catch(() => ({}));
+    return { valid: false, message: errData?.error?.message || 'API Key Groq không hợp lệ.' };
+  } catch (err: any) {
+    return { valid: false, message: `Lỗi kết nối Groq: ${err.message || err}` };
+  }
+}
 
 export function getGeminiApiKey(): string {
   if (typeof window !== 'undefined') {
@@ -442,16 +493,63 @@ export async function askGeminiRag(
 
   const retrievedSources = await retrieveRagKnowledge(userQuery, 4, apiKey);
 
-  // 2. If standard Google Gemini API Key is available, try calling Google Gemini API
+  const contextSnippet = retrievedSources
+    .map((src, i) => `[TRÍ THỨC #${i + 1}] (${src.chunk.title})\n${src.chunk.content}`)
+    .join('\n\n');
+
+  const systemInstruction = roleMode === 'admin'
+    ? `Bạn là Haven AI Operations Copilot — Trợ lý vận hành BĐS HAVEN. Trả lời ngắn gọn, chuyên nghiệp, súc tích bằng tiếng Việt.`
+    : `Bạn là Haven AI — Trợ lý tư vấn tìm căn hộ HAVEN. Trả lời thân thiện, lịch sự, tự nhiên, bằng tiếng Việt chuẩn. Tuyệt đối không dùng các từ ngữ kỹ thuật như "RAG", "vector". Khi người dùng chào hỏi, hãy chào lại tự nhiên mà không ép buộc gợi ý căn hộ khi chưa có tiêu chí.`;
+
+  // 2. Try Calling Groq API first (Highest priority, ultra-fast <300ms)
+  const groqKey = getGroqApiKey();
+  if (groqKey && (groqKey.startsWith('gsk_') || groqKey.length > 20)) {
+    try {
+      const groqMessages = [
+        { role: 'system', content: `${systemInstruction}\n\n=== DỮ LIỆU CĂN HỘ VÀ TRI THỨC HỆ THỐNG HAVEN ===\n${contextSnippet}` },
+        ...history.slice(-4).map(h => ({ role: h.role === 'user' ? 'user' : 'assistant', content: h.text })),
+        { role: 'user', content: userQuery }
+      ];
+
+      const groqResp = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${groqKey.trim()}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: 'llama-3.3-70b-versatile',
+          messages: groqMessages,
+          temperature: 0.3,
+          max_tokens: 1024
+        })
+      });
+
+      if (groqResp.ok) {
+        const groqData = await groqResp.json();
+        const groqAnswer = groqData.choices?.[0]?.message?.content;
+        if (groqAnswer) {
+          return {
+            answer: groqAnswer,
+            sources: retrievedSources,
+            modelUsed: 'Groq Llama 3.3 70B Versatile',
+            usedRealApi: true,
+            guardrailStatus: guardrailEval,
+            suggestedAction: (parsed.classification.required.length > 0 || parsed.extractedFilters.city) ? {
+              type: 'apply_filters',
+              queryText: userQuery
+            } : undefined
+          };
+        }
+      }
+    } catch (groqErr) {
+      console.warn('Groq API call encountered error, proceeding to Gemini/fallback:', groqErr);
+    }
+  }
+
+  // 3. If standard Google Gemini API Key is available, try calling Google Gemini API
   if (apiKey && apiKey.startsWith('AIza')) {
     try {
-      const contextSnippet = retrievedSources
-        .map((src, i) => `[TRÍ THỨC #${i + 1}] (${src.chunk.title})\n${src.chunk.content}`)
-        .join('\n\n');
-
-      const systemInstruction = roleMode === 'admin'
-        ? `Bạn là Haven AI Operations Copilot — Trợ lý vận hành BĐS HAVEN. Trả lời ngắn gọn, chuyên nghiệp, súc tích bằng tiếng Việt.`
-        : `Bạn là Haven AI — Trợ lý tư vấn tìm căn hộ HAVEN. Trả lời thân thiện, lịch sự, tự nhiên, bằng tiếng Việt chuẩn. Tuyệt đối không dùng các từ ngữ kỹ thuật như "RAG", "vector". Khi người dùng chào hỏi, hãy chào lại tự nhiên mà không ép buộc gợi ý căn hộ khi chưa có tiêu chí.`;
 
       const promptWithRag = `
 ${systemInstruction}

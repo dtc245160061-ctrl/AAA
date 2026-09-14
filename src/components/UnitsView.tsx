@@ -149,7 +149,7 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
         {filteredUnits.map(unit => (
           <div
             key={unit.id}
-            className="group rounded-3xl atmospheric-panel border border-slate-800/80 hover:border-emerald-500/40 p-5 space-y-4 shadow-xl transition-all duration-300 flex flex-col justify-between"
+            className="group haven-card-interactive rounded-3xl atmospheric-panel border border-slate-800/80 hover:border-emerald-400/80 hover:shadow-2xl hover:shadow-emerald-500/15 p-5 space-y-4 shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer"
           >
             <div className="space-y-3">
               {/* Top Row: Image & Status */}
@@ -160,7 +160,7 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200';
                   }}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-opacity duration-300"
                 />
                 <div className="absolute top-3 left-3">
                   {getStatusBadge(unit.status)}

@@ -143,7 +143,7 @@ export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
         {filteredDocs.map((doc) => (
           <div
             key={doc.id}
-            className="p-5 rounded-2xl atmospheric-panel border border-slate-800 hover:border-emerald-500/50 hover:-translate-y-1.5 hover:shadow-2xl transition-all duration-200 space-y-4 shadow-xl group"
+            className="haven-card-interactive p-5 rounded-2xl atmospheric-panel border border-slate-800 hover:border-emerald-400/80 hover:shadow-2xl hover:shadow-emerald-500/15 transition-all duration-300 space-y-4 shadow-xl group cursor-pointer"
           >
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-start gap-3">

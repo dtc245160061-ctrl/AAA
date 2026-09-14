@@ -154,6 +154,8 @@ export function App() {
   // Scroll to top on route / module change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
+    const mainEl = document.getElementById('haven-main-scroll');
+    if (mainEl) mainEl.scrollTo({ top: 0, behavior: 'instant' });
   }, [activeModule]);
 
   const handleToggleSaveUnit = (unitId: string) => {
@@ -292,14 +294,14 @@ export function App() {
   const unreadMessagesCount = conversations.reduce((sum, c) => sum + c.unreadCount, 0);
 
   return (
-    <div className="min-h-screen canvas-surface text-slate-200 flex relative selection:bg-emerald-500/20 selection:text-emerald-200 overflow-x-hidden transition-colors duration-300">
+    <div className="h-screen w-screen overflow-hidden canvas-surface text-slate-200 flex relative selection:bg-emerald-500/20 selection:text-emerald-200 transition-colors duration-300">
       {/* Global 60FPS Animated 3D Shader Gradient Background (Dark & Light) */}
       <ShaderBackground themeMode={themeMode} />
 
       {/* Toast Notifications */}
       <ToastContainer toasts={toasts} onDismiss={dismissToast} />
 
-      {/* Sidebar Navigation */}
+      {/* Sidebar Navigation - Permanently fixed at left side */}
       <Sidebar
         isAdminView={isAdminView}
         activeModule={activeModule}
@@ -322,9 +324,9 @@ export function App() {
         }}
       />
 
-      {/* Main Content Layout Shell */}
-      <div className="flex-1 flex flex-col min-w-0 min-h-screen relative z-10">
-        {/* Topbar Header */}
+      {/* Main Content Layout Shell - Occupies remaining width, full height */}
+      <div className="flex-1 flex flex-col min-w-0 h-full relative z-10 overflow-hidden">
+        {/* Topbar Header - Permanently fixed at top */}
         <Topbar
           isAdminView={isAdminView}
           savedCount={savedUnitIds.length}
@@ -353,8 +355,11 @@ export function App() {
           }}
         />
 
-        {/* Dynamic View Body Container */}
-        <main className="flex-1 px-4 md:px-8 py-6 max-w-[1600px] w-full mx-auto space-y-8 pb-20 md:pb-8">
+        {/* Dynamic View Body Container - ONLY element that scrolls */}
+        <main
+          id="haven-main-scroll"
+          className="flex-1 overflow-y-auto px-4 md:px-8 py-6 max-w-[1600px] w-full mx-auto space-y-8 pb-24 md:pb-12 scroll-smooth"
+        >
           {/* USER MODE CONSUMER VIEWS */}
           {!isAdminView && activeModule === 'user_home' && (
             <UserHomeView
@@ -555,26 +560,31 @@ export function App() {
         </main>
       </div>
 
-      {/* PERSISTENT FLOATING AI HOUSING ADVISOR ACTION BUTTON (FAB) */}
+      {/* PERSISTENT FLOATING AI HOUSING ADVISOR ACTION BUTTON (FAB) WITH 2-POINT ORBITING BEAM */}
       {!isAdminView && (
-        <button
-          onClick={() => setIsUserAiAdvisorOpen(true)}
-          className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40 group flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-[var(--haven-surface-elevated)] hover:bg-[var(--haven-surface-raised)] border border-emerald-500/40 hover:border-emerald-400 shadow-xl shadow-emerald-500/10 backdrop-blur-xl transition-all duration-300 active:scale-[0.98] text-left hover:-translate-y-0.5"
-          title="Mở Haven AI"
-        >
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-md shadow-emerald-500/25 shrink-0">
-            <Sparkles className="w-4 h-4 fill-slate-950 text-slate-950 animate-spin-slow group-hover:[animation-play-state:paused]" />
-          </div>
-          <div className="hidden sm:block pr-1">
-            <div className="text-xs font-display font-bold text-[var(--haven-text-primary)] group-hover:text-[var(--haven-emerald-400)] transition-colors flex items-center gap-1.5">
-              <span>Haven AI</span>
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+        <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40 p-[2px] rounded-full overflow-hidden shadow-2xl shadow-emerald-500/25 transition-transform duration-150 hover:scale-105 active:scale-95 group">
+          {/* Dual Orbiting Clockwise Light Beams */}
+          <div className="absolute inset-[-150%] bg-[conic-gradient(from_0deg,transparent_0_120deg,#34d399_150deg,transparent_180deg_300deg,#34d399_330deg,transparent_360deg)] animate-spin-beam pointer-events-none" />
+
+          <button
+            onClick={() => setIsUserAiAdvisorOpen(true)}
+            className="relative z-10 flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-slate-950/95 [data-theme='light']_:bg-white/95 backdrop-blur-2xl border border-emerald-500/40 group-hover:border-emerald-400 text-left transition-colors duration-150"
+            title="Mở Haven AI"
+          >
+            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-md shadow-emerald-500/30 shrink-0">
+              <Sparkles className="w-4 h-4 fill-slate-950 text-slate-950 animate-spin-slow group-hover:[animation-play-state:paused]" />
             </div>
-            <div className="text-[10px] font-mono text-[var(--haven-text-tertiary)]">
-              Tư vấn căn hộ
+            <div className="hidden sm:block pr-1">
+              <div className="text-xs font-display font-bold text-slate-100 [data-theme='light']_:text-slate-900 group-hover:text-emerald-400 transition-colors flex items-center gap-1.5">
+                <span>Haven AI</span>
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+              </div>
+              <div className="text-[10px] font-mono text-emerald-400/80 [data-theme='light']_:text-emerald-700">
+                Tư vấn căn hộ
+              </div>
             </div>
-          </div>
-        </button>
+          </button>
+        </div>
       )}
 
       {/* Consumer AI Housing Advisor Drawer */}

@@ -187,17 +187,48 @@
 }
 
 .product-ui-card:hover {
-  border-color: rgba(56, 189, 248, 0.4);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 25px -5px rgba(56, 189, 248, 0.15);
+  border-color: rgba(52, 211, 153, 0.6);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 30px -5px rgba(16, 185, 129, 0.25);
   transform: translateY(-4px);
 }
 
 [data-theme="light"] .product-ui-card:hover,
 .light .product-ui-card:hover {
   background: #FFFFFF;
-  border-color: rgba(16, 185, 129, 0.5);
-  box-shadow: 0 16px 32px -8px rgba(16, 185, 129, 0.12), 0 4px 12px rgba(15, 23, 42, 0.04);
+  border-color: rgba(16, 185, 129, 0.6);
+  box-shadow: 0 16px 32px -8px rgba(16, 185, 129, 0.2), 0 4px 12px rgba(15, 23, 42, 0.04);
   transform: translateY(-4px);
+}
+
+/* ── Unified Interactive Card Hover Across Entire App ── */
+.haven-card-interactive {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.haven-card-interactive:hover {
+  transform: translateY(-4px);
+  border-color: rgba(52, 211, 153, 0.55);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 25px -5px rgba(16, 185, 129, 0.25);
+}
+
+[data-theme="light"] .haven-card-interactive:hover,
+.light .haven-card-interactive:hover {
+  border-color: rgba(16, 185, 129, 0.6);
+  box-shadow: 0 16px 32px -8px rgba(16, 185, 129, 0.18), 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+/* ── 2-Point Orbiting Running Border Light Beam for Haven AI FAB ── */
+@keyframes spin-beam {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-beam {
+  animation: spin-beam 3.5s linear infinite;
 }
 
 .liquid-glass {

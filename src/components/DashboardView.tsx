@@ -81,7 +81,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           {/* Metric 1: Occupancy */}
           <div 
             onClick={() => onNavigateTab('units')}
-            className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500/40 transition-all cursor-pointer group"
+            className="haven-card-interactive p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-400/80 hover:shadow-xl hover:shadow-emerald-500/15 transition-all duration-300 cursor-pointer group"
           >
             <div className="flex items-center justify-between text-slate-400 text-xs font-mono">
               <span>TỶ LỆ LẤP ĐẦY</span>
@@ -93,14 +93,14 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             </div>
             <div className="mt-2 text-[11px] text-slate-500 flex items-center justify-between">
               <span>Trống: {vacantUnits} • Cọc: {reservedUnits}</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-emerald-400" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
             </div>
           </div>
 
           {/* Metric 2: Revenue */}
           <div 
             onClick={() => onNavigateTab('billing')}
-            className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500/40 transition-all cursor-pointer group"
+            className="haven-card-interactive p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-400/80 hover:shadow-xl hover:shadow-emerald-500/15 transition-all duration-300 cursor-pointer group"
           >
             <div className="flex items-center justify-between text-slate-400 text-xs font-mono">
               <span>DOANH THU THÁNG 8</span>
@@ -113,14 +113,14 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             </div>
             <div className="mt-2 text-[11px] text-slate-500 flex items-center justify-between">
               <span>Chờ thu: {(pendingRevenueVND / 1000000).toFixed(0)} Tr</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-emerald-400" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
             </div>
           </div>
 
           {/* Metric 3: Leads */}
           <div 
             onClick={() => onNavigateTab('leads')}
-            className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500/40 transition-all cursor-pointer group"
+            className="haven-card-interactive p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-400/80 hover:shadow-xl hover:shadow-emerald-500/15 transition-all duration-300 cursor-pointer group"
           >
             <div className="flex items-center justify-between text-slate-400 text-xs font-mono">
               <span>YÊU CẦU THUÊ MỚI</span>
@@ -132,14 +132,14 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             </div>
             <div className="mt-2 text-[11px] text-slate-500 flex items-center justify-between">
               <span>Tổng leads: {leads.length}</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-emerald-400" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
             </div>
           </div>
 
           {/* Metric 4: Active Contracts */}
           <div 
             onClick={() => onNavigateTab('contracts')}
-            className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500/40 transition-all cursor-pointer group"
+            className="haven-card-interactive p-5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-400/80 hover:shadow-xl hover:shadow-emerald-500/15 transition-all duration-300 cursor-pointer group"
           >
             <div className="flex items-center justify-between text-slate-400 text-xs font-mono">
               <span>HỢP ĐỒNG HIỆU LỰC</span>
@@ -153,7 +153,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             </div>
             <div className="mt-2 text-[11px] text-slate-500 flex items-center justify-between">
               <span>Toàn hệ thống</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-emerald-400" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
             </div>
           </div>
         </div>

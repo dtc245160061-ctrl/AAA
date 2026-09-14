@@ -163,7 +163,7 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
             </h3>
 
             <div className="grid grid-cols-2 gap-3 text-xs font-mono">
-              <div className="p-3.5 rounded-xl bg-slate-900/80 [data-theme='light']_:bg-white border border-slate-800 [data-theme='light']_:border-slate-200 space-y-1">
+              <div className="haven-card-interactive p-3.5 rounded-xl bg-slate-900/80 [data-theme='light']_:bg-white border border-slate-800 [data-theme='light']_:border-slate-200 space-y-1 hover:border-emerald-400/60 hover:shadow-lg hover:shadow-emerald-500/10 cursor-default">
                 <span className="text-slate-500 uppercase text-[10px] font-bold">Giá Thuê Trung Bình</span>
                 <p className="text-emerald-400 [data-theme='light']_:text-emerald-700 font-serif text-lg font-bold">
                   {(activeNeighborhood.averageRentVND / 1000000).toFixed(0)} Triệu <span className="text-[10px] text-slate-400 font-sans">/th</span>
@@ -173,7 +173,7 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
                 </span>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-slate-900/80 [data-theme='light']_:bg-white border border-slate-800 [data-theme='light']_:border-slate-200 space-y-1">
+              <div className="haven-card-interactive p-3.5 rounded-xl bg-slate-900/80 [data-theme='light']_:bg-white border border-slate-800 [data-theme='light']_:border-slate-200 space-y-1 hover:border-emerald-400/60 hover:shadow-lg hover:shadow-emerald-500/10 cursor-default">
                 <span className="text-slate-500 uppercase text-[10px] font-bold">Điểm An Ninh Trật Tự</span>
                 <p className="text-emerald-300 [data-theme='light']_:text-emerald-700 font-serif text-lg font-bold">
                   {activeNeighborhood.securityScore} / 10
@@ -183,7 +183,7 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
                 </span>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-slate-900/80 [data-theme='light']_:bg-white border border-slate-800 [data-theme='light']_:border-slate-200 space-y-1">
+              <div className="haven-card-interactive p-3.5 rounded-xl bg-slate-900/80 [data-theme='light']_:bg-white border border-slate-800 [data-theme='light']_:border-slate-200 space-y-1 hover:border-emerald-400/60 hover:shadow-lg hover:shadow-emerald-500/10 cursor-default">
                 <span className="text-slate-500 uppercase text-[10px] font-bold">Rủi Ro Ngập Mùa Mưa</span>
                 <p className={`font-serif text-sm font-bold ${
                   activeNeighborhood.floodRiskLevel === 'Low' ? 'text-emerald-400 [data-theme=\'light\']_:text-emerald-700' : 'text-amber-400 [data-theme=\'light\']_:text-amber-700'
@@ -195,7 +195,7 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
                 </span>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-slate-900/80 [data-theme='light']_:bg-white border border-slate-800 [data-theme='light']_:border-slate-200 space-y-1">
+              <div className="haven-card-interactive p-3.5 rounded-xl bg-slate-900/80 [data-theme='light']_:bg-white border border-slate-800 [data-theme='light']_:border-slate-200 space-y-1 hover:border-emerald-400/60 hover:shadow-lg hover:shadow-emerald-500/10 cursor-default">
                 <span className="text-slate-500 uppercase text-[10px] font-bold">Trường Học & Bệnh Viện</span>
                 <p className="text-slate-100 [data-theme='light']_:text-slate-900 font-serif text-sm font-bold">
                   {activeNeighborhood.schoolsCount} Trường • {activeNeighborhood.hospitalsCount} BV
@@ -225,12 +225,10 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
       </div>
 
       {/* Available Units in this Neighborhood */}
-      <div className="space-y-4 pt-4">
-        <div className="flex items-center justify-between">
-          <h3 className="font-serif text-xl font-bold text-slate-100 [data-theme='light']_:text-slate-900 flex items-center gap-2">
-            <Building2 className="w-5 h-5 text-emerald-400" />
-            <span>Căn Hộ Đang Cho Thuê Tại {activeNeighborhood.district} ({neighborhoodUnits.length})</span>
-          </h3>
+      <div className="space-y-6">
+        <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
+          <Building2 className="w-4 h-4" />
+          <span>Căn Hộ Đang Cho Thuê Tại {activeNeighborhood.district} ({neighborhoodUnits.length})</span>
         </div>
 
         {neighborhoodUnits.length > 0 ? (
@@ -239,7 +237,7 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
               <div
                 key={unit.id}
                 onClick={() => onSelectUnit(unit.id)}
-                className="group rounded-3xl overflow-hidden border border-slate-800 [data-theme='light']_:border-slate-200 bg-slate-900/80 [data-theme='light']_:bg-white hover:border-emerald-500/50 transition-all duration-300 cursor-pointer shadow-xl hover:-translate-y-1"
+                className="group haven-card-interactive rounded-3xl overflow-hidden border border-slate-800 [data-theme='light']_:border-slate-200 bg-slate-900/80 [data-theme='light']_:bg-white cursor-pointer shadow-xl hover:border-emerald-500/60"
               >
                 {/* TALL IMAGE h-60 sm:h-64 */}
                 <div className="relative h-60 sm:h-64 overflow-hidden bg-slate-950">

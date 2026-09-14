@@ -113,10 +113,10 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           <button
             type="button"
             onClick={() => setTuningQuiet(!tuningQuiet)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
               tuningQuiet
                 ? 'bg-emerald-500/20 [data-theme=\'light\']_:bg-emerald-100 border-emerald-400 [data-theme=\'light\']_:border-emerald-500 text-emerald-300 [data-theme=\'light\']_:text-emerald-950 ring-2 ring-emerald-500/40 shadow-lg shadow-emerald-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-500/50 hover:bg-slate-900/80 [data-theme=\'light\']_:hover:bg-emerald-50/40 shadow-sm'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">
@@ -133,10 +133,10 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           <button
             type="button"
             onClick={() => setTuningFloodSafe(!tuningFloodSafe)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
               tuningFloodSafe
                 ? 'bg-sky-500/20 [data-theme=\'light\']_:bg-sky-100 border-sky-400 [data-theme=\'light\']_:border-sky-500 text-sky-300 [data-theme=\'light\']_:text-sky-950 ring-2 ring-sky-500/40 shadow-lg shadow-sky-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-sky-500/50 hover:bg-slate-900/80 [data-theme=\'light\']_:hover:bg-sky-50/40 shadow-sm'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">
@@ -153,10 +153,10 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           <button
             type="button"
             onClick={() => setTuningCarParking(!tuningCarParking)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
               tuningCarParking
                 ? 'bg-amber-500/20 [data-theme=\'light\']_:bg-amber-100 border-amber-400 [data-theme=\'light\']_:border-amber-500 text-amber-300 [data-theme=\'light\']_:text-amber-950 ring-2 ring-amber-500/40 shadow-lg shadow-amber-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-amber-500/50 hover:bg-slate-900/80 [data-theme=\'light\']_:hover:bg-amber-50/40 shadow-sm'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">
@@ -173,10 +173,10 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           <button
             type="button"
             onClick={() => setTuningHighFloor(!tuningHighFloor)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
               tuningHighFloor
                 ? 'bg-teal-500/20 [data-theme=\'light\']_:bg-teal-100 border-teal-400 [data-theme=\'light\']_:border-teal-500 text-teal-300 [data-theme=\'light\']_:text-teal-950 ring-2 ring-teal-500/40 shadow-lg shadow-teal-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-teal-500/50 hover:bg-slate-900/80 [data-theme=\'light\']_:hover:bg-teal-50/40 shadow-sm'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">
@@ -193,10 +193,10 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           <button
             type="button"
             onClick={() => setTuningPetFriendly(!tuningPetFriendly)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
               tuningPetFriendly
                 ? 'bg-rose-500/20 [data-theme=\'light\']_:bg-rose-100 border-rose-400 [data-theme=\'light\']_:border-rose-500 text-rose-300 [data-theme=\'light\']_:text-rose-950 ring-2 ring-rose-500/40 shadow-lg shadow-rose-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-rose-500/50 hover:bg-slate-900/80 [data-theme=\'light\']_:hover:bg-rose-50/40 shadow-sm'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">
@@ -213,10 +213,10 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           <button
             type="button"
             onClick={() => setTuningMetroNearby(!tuningMetroNearby)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
               tuningMetroNearby
                 ? 'bg-indigo-500/20 [data-theme=\'light\']_:bg-indigo-100 border-indigo-400 [data-theme=\'light\']_:border-indigo-500 text-indigo-300 [data-theme=\'light\']_:text-indigo-950 ring-2 ring-indigo-500/40 shadow-lg shadow-indigo-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-indigo-500/50 hover:bg-slate-900/80 [data-theme=\'light\']_:hover:bg-indigo-50/40 shadow-sm'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">
@@ -233,10 +233,10 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           <button
             type="button"
             onClick={() => setTuningBalcony(!tuningBalcony)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
               tuningBalcony
                 ? 'bg-emerald-500/20 [data-theme=\'light\']_:bg-emerald-100 border-emerald-400 [data-theme=\'light\']_:border-emerald-500 text-emerald-300 [data-theme=\'light\']_:text-emerald-950 ring-2 ring-emerald-500/40 shadow-lg shadow-emerald-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-500/50 hover:bg-slate-900/80 [data-theme=\'light\']_:hover:bg-emerald-50/40 shadow-sm'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">
@@ -253,10 +253,10 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           <button
             type="button"
             onClick={() => setTuningPoolGym(!tuningPoolGym)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
               tuningPoolGym
                 ? 'bg-cyan-500/20 [data-theme=\'light\']_:bg-cyan-100 border-cyan-400 [data-theme=\'light\']_:border-cyan-500 text-cyan-300 [data-theme=\'light\']_:text-cyan-950 ring-2 ring-cyan-500/40 shadow-lg shadow-cyan-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-cyan-500/50 hover:bg-slate-900/80 [data-theme=\'light\']_:hover:bg-cyan-50/40 shadow-sm'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">
@@ -273,10 +273,10 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           <button
             type="button"
             onClick={() => setTuningSecurity(!tuningSecurity)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
               tuningSecurity
                 ? 'bg-purple-500/20 [data-theme=\'light\']_:bg-purple-100 border-purple-400 [data-theme=\'light\']_:border-purple-500 text-purple-300 [data-theme=\'light\']_:text-purple-950 ring-2 ring-purple-500/40 shadow-lg shadow-purple-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-purple-500/50 hover:bg-slate-900/80 [data-theme=\'light\']_:hover:bg-purple-50/40 shadow-sm'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">
@@ -293,10 +293,10 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           <button
             type="button"
             onClick={() => setTuningSchoolHospital(!tuningSchoolHospital)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
               tuningSchoolHospital
                 ? 'bg-amber-500/20 [data-theme=\'light\']_:bg-amber-100 border-amber-400 [data-theme=\'light\']_:border-amber-500 text-amber-300 [data-theme=\'light\']_:text-amber-950 ring-2 ring-amber-500/40 shadow-lg shadow-amber-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-amber-500/50 hover:bg-slate-900/80 [data-theme=\'light\']_:hover:bg-amber-50/40 shadow-sm'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">

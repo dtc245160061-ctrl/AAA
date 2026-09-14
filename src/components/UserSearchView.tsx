@@ -589,7 +589,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                 return (
                   <div
                     key={unit.id}
-                    className="group product-ui-card rounded-3xl overflow-hidden shadow-lg hover:-translate-y-1.5 hover:shadow-2xl hover:border-emerald-500/40 transition-all duration-300 flex flex-col justify-between bg-[var(--haven-surface-raised)] border border-[var(--haven-border)]"
+                    className="group haven-card-interactive rounded-3xl overflow-hidden shadow-lg hover:border-emerald-400/80 hover:shadow-2xl hover:shadow-emerald-500/20 transition-all duration-300 flex flex-col justify-between bg-[var(--haven-surface-raised)] border border-[var(--haven-border)]"
                   >
                     {/* Image Area - TALL & MAJESTIC (h-64 sm:h-72) */}
                     <div

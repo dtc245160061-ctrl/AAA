@@ -121,7 +121,7 @@ export const ServicesMarketplaceView: React.FC<ServicesMarketplaceViewProps> = (
         {filteredServices.map(service => (
           <div
             key={service.id}
-            className="p-6 rounded-3xl atmospheric-panel border border-slate-800 hover:border-emerald-500/60 flex flex-col justify-between transition-all duration-200 group backdrop-blur-2xl shadow-xl hover:shadow-2xl hover:shadow-emerald-500/10 hover:-translate-y-1.5"
+            className="haven-card-interactive p-6 rounded-3xl atmospheric-panel border border-slate-800 hover:border-emerald-400/80 hover:ring-1 hover:ring-emerald-400/40 flex flex-col justify-between transition-all duration-300 group backdrop-blur-2xl shadow-xl hover:shadow-2xl hover:shadow-emerald-500/20 cursor-pointer"
           >
             <div className="space-y-4">
               <div className="flex items-center justify-between">

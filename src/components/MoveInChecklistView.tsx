@@ -102,14 +102,14 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
       {/* Unit Selector & Meter Indicators Bar */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {/* Apartment Selection */}
-        <div className="p-5 rounded-2xl atmospheric-panel border border-slate-800 [data-theme='light']_:border-slate-200 space-y-2">
+        <div className="haven-card-interactive p-5 rounded-2xl atmospheric-panel border border-slate-800 [data-theme='light']_:border-slate-200 space-y-2 hover:border-emerald-500/60 hover:shadow-xl transition-all duration-200 cursor-pointer">
           <label className="text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-600 uppercase tracking-wider font-bold block">
             Căn Hộ Bàn Giao
           </label>
           <select
             value={selectedUnitId}
             onChange={(e) => setSelectedUnitId(e.target.value)}
-            className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 [data-theme='light']_:bg-slate-50 border border-slate-700 [data-theme='light']_:border-slate-300 text-slate-100 [data-theme='light']_:text-slate-900 font-sans text-sm focus:outline-none focus:border-emerald-500"
+            className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 [data-theme='light']_:bg-slate-50 border border-slate-700 [data-theme='light']_:border-slate-300 text-slate-100 [data-theme='light']_:text-slate-900 font-sans text-sm focus:outline-none focus:border-emerald-500 cursor-pointer"
           >
             {units.map(u => (
               <option key={u.id} value={u.id}>
@@ -120,7 +120,7 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
         </div>
 
         {/* Handover Date */}
-        <div className="p-5 rounded-2xl atmospheric-panel border border-slate-800 [data-theme='light']_:border-slate-200 space-y-2">
+        <div className="haven-card-interactive p-5 rounded-2xl atmospheric-panel border border-slate-800 [data-theme='light']_:border-slate-200 space-y-2 hover:border-emerald-500/60 hover:shadow-xl transition-all duration-200 cursor-pointer">
           <div className="flex items-center justify-between">
             <span className="text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-600 uppercase tracking-wider font-bold flex items-center gap-1.5">
               <Calendar className="w-3.5 h-3.5 text-emerald-400" /> Ngày Bàn Giao
@@ -130,12 +130,12 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
             type="date"
             value={handoverDate}
             onChange={(e) => setHandoverDate(e.target.value)}
-            className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 [data-theme='light']_:bg-slate-50 border border-slate-700 [data-theme='light']_:border-slate-300 text-slate-100 [data-theme='light']_:text-slate-900 font-mono text-xs focus:outline-none focus:border-emerald-500"
+            className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 [data-theme='light']_:bg-slate-50 border border-slate-700 [data-theme='light']_:border-slate-300 text-slate-100 [data-theme='light']_:text-slate-900 font-mono text-xs focus:outline-none focus:border-emerald-500 cursor-pointer"
           />
         </div>
 
         {/* Initial Electric Meter Reading */}
-        <div className="p-5 rounded-2xl atmospheric-panel border border-amber-500/30 space-y-2">
+        <div className="haven-card-interactive p-5 rounded-2xl atmospheric-panel border border-amber-500/30 space-y-2 hover:border-amber-400 hover:shadow-xl hover:shadow-amber-500/10 transition-all duration-200 cursor-pointer">
           <div className="flex items-center justify-between">
             <span className="text-xs font-mono text-amber-300 [data-theme='light']_:text-amber-700 font-bold flex items-center gap-1.5">
               <Zap className="w-4 h-4 text-amber-400" /> Chỉ Số Công Tơ Điện Ban Đầu
@@ -146,12 +146,12 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
             type="text"
             value={electricMeterNumber}
             onChange={(e) => setElectricMeterNumber(e.target.value)}
-            className="w-full px-3.5 py-2 rounded-xl bg-slate-900 [data-theme='light']_:bg-amber-50/50 border border-slate-700 [data-theme='light']_:border-amber-300 text-amber-300 [data-theme='light']_:text-amber-800 font-mono font-bold text-lg"
+            className="w-full px-3.5 py-2 rounded-xl bg-slate-900 [data-theme='light']_:bg-amber-50/50 border border-slate-700 [data-theme='light']_:border-amber-300 text-amber-300 [data-theme='light']_:text-amber-800 font-mono font-bold text-lg cursor-pointer"
           />
         </div>
 
         {/* Initial Water Meter Reading */}
-        <div className="p-5 rounded-2xl atmospheric-panel border border-sky-500/30 space-y-2">
+        <div className="haven-card-interactive p-5 rounded-2xl atmospheric-panel border border-sky-500/30 space-y-2 hover:border-sky-400 hover:shadow-xl hover:shadow-sky-500/10 transition-all duration-200 cursor-pointer">
           <div className="flex items-center justify-between">
             <span className="text-xs font-mono text-sky-300 [data-theme='light']_:text-sky-700 font-bold flex items-center gap-1.5">
               <Droplets className="w-4 h-4 text-sky-400" /> Chỉ Số Đồng Hồ Nước Ban Đầu
@@ -162,7 +162,7 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
             type="text"
             value={waterMeterNumber}
             onChange={(e) => setWaterMeterNumber(e.target.value)}
-            className="w-full px-3.5 py-2 rounded-xl bg-slate-900 [data-theme='light']_:bg-sky-50/50 border border-slate-700 [data-theme='light']_:border-sky-300 text-sky-300 [data-theme='light']_:text-sky-800 font-mono font-bold text-lg"
+            className="w-full px-3.5 py-2 rounded-xl bg-slate-900 [data-theme='light']_:bg-sky-50/50 border border-slate-700 [data-theme='light']_:border-sky-300 text-sky-300 [data-theme='light']_:text-sky-800 font-mono font-bold text-lg cursor-pointer"
           />
         </div>
       </div>
@@ -198,7 +198,7 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
                 onShowToast('success', 'Đã khóa biên bản bàn giao 15 hạng mục', `Căn hộ ${currentUnit.name || currentUnit.id} - Mã BB: BB-HAVEN-${Date.now().toString().slice(-6)}`);
               }
             }}
-            className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono font-bold text-xs shadow-lg shadow-emerald-500/20 transition-all flex items-center gap-2"
+            className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono font-bold text-xs shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2"
           >
             <ShieldCheck className="w-4 h-4" />
             <span>{isFinalized ? 'Đã Khóa Bảo Chứng' : 'Khóa Biên Bản & Lưu Hồ Sơ'}</span>
@@ -221,7 +221,7 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
           </thead>
           <tbody className="divide-y divide-slate-800/80 [data-theme='light']_:divide-slate-200 text-slate-300 [data-theme='light']_:text-slate-800">
             {items.map((item, idx) => (
-              <tr key={item.id} className="hover:bg-slate-900/40 [data-theme=\'light\']_:hover:bg-emerald-50/50 transition-colors">
+              <tr key={item.id} className="hover:bg-emerald-950/50 hover:text-emerald-200 border-l-4 border-l-transparent hover:border-l-emerald-400 transition-all duration-150">
                 <td className="p-4 text-center text-slate-500 [data-theme='light']_:text-slate-400 font-bold">{idx + 1}</td>
                 <td className="p-4 text-slate-400 [data-theme='light']_:text-slate-600 font-semibold">{item.category}</td>
                 <td className="p-4 font-serif text-sm font-bold text-slate-100 [data-theme='light']_:text-slate-900">{item.name}</td>

@@ -111,11 +111,9 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end bg-black/80 backdrop-blur-xl animate-fade-in text-left">
-      <div className="fixed inset-y-0 right-0 max-w-full flex items-center justify-end p-3 sm:p-6 sm:mr-4 pointer-events-none">
-        <div className="w-screen max-w-md h-[94vh] rounded-3xl border border-slate-700/80 liquid-glass bg-[#0A0D12]/95 flex flex-col justify-between shadow-2xl overflow-hidden pointer-events-auto">
-          {/* Header */}
-          <div className="p-4 sm:p-6 border-b border-slate-800 flex items-center justify-between bg-slate-900/60">
+    <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 w-[440px] max-w-[calc(100vw-2rem)] h-[620px] max-h-[calc(100vh-5rem)] rounded-3xl border border-emerald-500/40 liquid-glass-origin bg-[#0A0D12]/95 [data-theme='light']_:bg-white/95 flex flex-col justify-between shadow-2xl shadow-emerald-500/20 backdrop-blur-2xl overflow-hidden animate-in slide-in-from-bottom-5 duration-200 text-left">
+      {/* Header */}
+      <div className="p-3.5 sm:p-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/60">
             <div className="flex items-center gap-3">
               <div className="p-2.5 bg-emerald-500/20 rounded-xl border border-emerald-500/40 text-emerald-400">
                 <Sparkles className="w-5 h-5 animate-spin-slow" />
@@ -269,7 +267,5 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
             </div>
           </div>
         </div>
-      </div>
-    </div>
   );
 };
