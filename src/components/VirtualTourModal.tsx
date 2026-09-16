@@ -9,15 +9,14 @@ import {
   Building,
   Box,
   MapPin,
-  Sun,
   Maximize2,
   Minimize2,
   Sparkles,
-  Layers,
-  Ruler,
   Navigation,
   Info,
-  ShieldCheck
+  ShieldCheck,
+  CheckCircle2,
+  Ruler
 } from 'lucide-react';
 import type { ApartmentUnit, VirtualTourRoom } from '../types/apartment';
 
@@ -32,50 +31,49 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
   isOpen,
   onClose
 }) => {
-  const [activeTab, setActiveTab] = useState<'360_sphere' | 'dollhouse' | 'google_maps'>('360_sphere');
+  // Tabs: Matterport 3D Walkthrough, 360° Seamless Photosphere, Google Maps 3D & Street View
+  const [activeTab, setActiveTab] = useState<'matterport' | '360_sphere' | 'google_maps'>('matterport');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [autoRotate, setAutoRotate] = useState(true);
-  const [sunHour, setSunHour] = useState<number>(10); // 10:00 AM
-  const [selectedRoomDimension, setSelectedRoomDimension] = useState<string | null>(null);
 
-  // 360 Rooms Definition
+  // Genuine 2:1 Equirectangular 360° Panoramas (Seamless, ZERO seam lines or stitching glitches)
   const rooms: VirtualTourRoom[] = [
     {
       id: 'room-living',
-      roomName: 'Phòng Khách Panorama & Ban Công',
-      imageUrl: unit.images[0] || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1600',
-      description: 'Không gian mở rộng rãi với kính Low-E tràn viền cách âm nhiệt và ban công đón gió Đông Nam.',
+      roomName: 'Phòng Khách Panorama 360°',
+      imageUrl: 'https://pannellum.org/images/alma.jpg',
+      description: 'Không gian mở đón sáng tự nhiên, trần cao thoáng đãng với tầm nhìn bao quát toàn bộ căn hộ.',
       hotspots: [
-        { id: 'hs-1', label: 'Đi tới Phòng Ngủ Master', targetRoomId: 'room-master', xPercent: 78, yPercent: 48 },
-        { id: 'hs-2', label: 'Đi tới Khu Vực Bếp Mở', targetRoomId: 'room-kitchen', xPercent: 22, yPercent: 52 }
+        { id: 'hs-1', label: 'Đi tới Sảnh Tiếp Khách & Lounge', targetRoomId: 'room-lounge', xPercent: 78, yPercent: 50 },
+        { id: 'hs-2', label: 'Đi tới Khu Nội Thất Hiện Đại', targetRoomId: 'room-interior', xPercent: 22, yPercent: 50 }
       ]
     },
     {
-      id: 'room-master',
-      roomName: 'Phòng Ngủ Master Suite',
-      imageUrl: unit.images[1] || 'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1600',
-      description: 'Trang bị giường King size, sàn gỗ tự nhiên chống ẩm và phòng tắm kính walk-in khép kín.',
+      id: 'room-lounge',
+      roomName: 'Sảnh Đón & Khu Sinh Hoạt Chung',
+      imageUrl: 'https://pannellum.org/images/jfk.jpg',
+      description: 'Sàn đá cao cấp, bố trí khu vực tiếp khách sang trọng và hành lang kết nối các phòng ngủ.',
       hotspots: [
-        { id: 'hs-3', label: 'Quay lại Phòng Khách', targetRoomId: 'room-living', xPercent: 18, yPercent: 55 },
-        { id: 'hs-4', label: 'Đi tới Ban Công View Hoàng Hôn', targetRoomId: 'room-balcony', xPercent: 82, yPercent: 45 }
+        { id: 'hs-3', label: 'Quay lại Phòng Khách', targetRoomId: 'room-living', xPercent: 18, yPercent: 50 },
+        { id: 'hs-4', label: 'Đi tới Ban Công & Khu Vực Thoáng', targetRoomId: 'room-balcony', xPercent: 82, yPercent: 48 }
       ]
     },
     {
-      id: 'room-kitchen',
-      roomName: 'Khu Bếp Mở & Bàn Đảo Hiện Đại',
-      imageUrl: unit.images[2] || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1600',
-      description: 'Hệ tủ bếp kịch trần, bếp từ âm đôi, máy hút mùi than hoạt tính và chậu rửa inox 304.',
+      id: 'room-interior',
+      roomName: 'Khu Trưng Bày & Bếp Tiện Nghi',
+      imageUrl: 'https://pannellum.org/images/bma-0.jpg',
+      description: 'Không gian trưng bày nội thất hiện đại với hệ thống chiếu sáng âm trần đạt chuẩn thẩm mỹ.',
       hotspots: [
         { id: 'hs-5', label: 'Quay lại Phòng Khách', targetRoomId: 'room-living', xPercent: 85, yPercent: 50 }
       ]
     },
     {
       id: 'room-balcony',
-      roomName: 'Ban Công View Thoáng & Lưới An Toàn',
-      imageUrl: unit.images[3] || 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1600',
-      description: 'Lan can kính cường lực cao 1.4m đạt chuẩn an toàn, trang bị lưới bảo vệ tàng hình cho trẻ nhỏ.',
+      roomName: 'Khu Vườn & Không Gian Xanh',
+      imageUrl: 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/2294472375_24a3b8ef46_o.jpg',
+      description: 'Không gian mở ngoài trời thoáng mát, đón gió đối lưu tự nhiên cho toàn bộ căn hộ.',
       hotspots: [
-        { id: 'hs-6', label: 'Vào Phòng Ngủ Master', targetRoomId: 'room-master', xPercent: 20, yPercent: 50 }
+        { id: 'hs-6', label: 'Vào Sảnh Đón', targetRoomId: 'room-lounge', xPercent: 25, yPercent: 50 }
       ]
     }
   ];
@@ -91,14 +89,6 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
   const sphereMeshRef = useRef<THREE.Mesh | null>(null);
   const sphereAnimationIdRef = useRef<number>(0);
 
-  // Three.js References for 3D Dollhouse
-  const dollhouseMountRef = useRef<HTMLDivElement>(null);
-  const dollhouseRendererRef = useRef<THREE.WebGLRenderer | null>(null);
-  const dollhouseSceneRef = useRef<THREE.Scene | null>(null);
-  const dollhouseCameraRef = useRef<THREE.PerspectiveCamera | null>(null);
-  const dollhouseAnimationIdRef = useRef<number>(0);
-  const dollhouseSunLightRef = useRef<THREE.DirectionalLight | null>(null);
-
   // Interaction State for 360 Camera
   const isUserInteractingRef = useRef(false);
   const onPointerDownMouseXRef = useRef(0);
@@ -111,13 +101,8 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
   const thetaRef = useRef(0);
   const [currentBearing, setCurrentBearing] = useState<number>(0);
 
-  // Interaction State for Dollhouse Orbit
-  const isDollhouseInteractingRef = useRef(false);
-  const dollhousePrevMousePosRef = useRef({ x: 0, y: 0 });
-  const dollhouseRotationRef = useRef({ x: 0.45, y: -0.6 });
-
   // -------------------------------------------------------------
-  // 1. Initialize Three.js 360 Panoramic Sphere
+  // Initialize Three.js 360 Seamless Photosphere
   // -------------------------------------------------------------
   useEffect(() => {
     if (!isOpen || activeTab !== '360_sphere' || !sphereMountRef.current) return;
@@ -145,10 +130,13 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
     geometry.scale(-1, 1, 1);
 
     const textureLoader = new THREE.TextureLoader();
+    textureLoader.crossOrigin = 'anonymous';
     const texture = textureLoader.load(activeRoom.imageUrl, () => {
       renderer.render(scene, camera);
     });
     texture.colorSpace = THREE.SRGBColorSpace;
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.repeat.x = 1;
 
     const material = new THREE.MeshBasicMaterial({ map: texture });
     const mesh = new THREE.Mesh(geometry, material);
@@ -174,7 +162,7 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
       camera.lookAt(targetX, targetY, targetZ);
       renderer.render(scene, camera);
 
-      // Normalize bearing for compass (0 to 360 deg)
+      // Bearing for compass (0 to 360 deg)
       const bearing = (Math.round(lonRef.current) % 360 + 360) % 360;
       setCurrentBearing(bearing);
     };
@@ -203,198 +191,6 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
     };
   }, [isOpen, activeTab, activeRoom.imageUrl, autoRotate]);
 
-  // -------------------------------------------------------------
-  // 2. Initialize Three.js 3D Dollhouse Cutaway Model
-  // -------------------------------------------------------------
-  useEffect(() => {
-    if (!isOpen || activeTab !== 'dollhouse' || !dollhouseMountRef.current) return;
-
-    const container = dollhouseMountRef.current;
-    const width = container.clientWidth || 800;
-    const height = container.clientHeight || 500;
-
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0a0f18);
-    dollhouseSceneRef.current = scene;
-
-    const camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000);
-    camera.position.set(22, 26, 28);
-    camera.lookAt(0, 0, 0);
-    dollhouseCameraRef.current = camera;
-
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(width, height);
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    container.innerHTML = '';
-    container.appendChild(renderer.domElement);
-    dollhouseRendererRef.current = renderer;
-
-    // Ambient light
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-    scene.add(ambientLight);
-
-    // Directional Sunlight (Calculated from sunHour)
-    const sunAngle = ((sunHour - 6) / 12) * Math.PI; // 6 AM to 6 PM
-    const sunX = Math.cos(sunAngle) * 30;
-    const sunY = Math.sin(sunAngle) * 25 + 5;
-    const sunZ = 20;
-
-    const sunLight = new THREE.DirectionalLight(0xfffaed, 1.8);
-    sunLight.position.set(sunX, sunY, sunZ);
-    sunLight.castShadow = true;
-    sunLight.shadow.mapSize.width = 1024;
-    sunLight.shadow.mapSize.height = 1024;
-    scene.add(sunLight);
-    dollhouseSunLightRef.current = sunLight;
-
-    // Soft fill blue light for realistic room ambiance
-    const fillLight = new THREE.DirectionalLight(0x38bdf8, 0.4);
-    fillLight.position.set(-20, 10, -20);
-    scene.add(fillLight);
-
-    // Dollhouse Floor Base
-    const floorGeo = new THREE.BoxGeometry(28, 0.6, 22);
-    const floorMat = new THREE.MeshStandardMaterial({ 
-      color: 0x1e293b, 
-      roughness: 0.7, 
-      metalness: 0.1 
-    });
-    const floor = new THREE.Mesh(floorGeo, floorMat);
-    floor.position.y = -0.3;
-    floor.receiveShadow = true;
-    scene.add(floor);
-
-    // Grid guide floor beneath
-    const grid = new THREE.GridHelper(36, 18, 0x10b981, 0x1e293b);
-    grid.position.y = -0.61;
-    scene.add(grid);
-
-    // Room 1: Phòng khách (Wood floor)
-    const livingFloorGeo = new THREE.BoxGeometry(14, 0.1, 12);
-    const livingFloorMat = new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.4 });
-    const livingFloor = new THREE.Mesh(livingFloorGeo, livingFloorMat);
-    livingFloor.position.set(-6, 0.05, 4);
-    livingFloor.receiveShadow = true;
-    scene.add(livingFloor);
-
-    // Room 2: Phòng ngủ Master (Soft oak wood)
-    const masterFloorGeo = new THREE.BoxGeometry(12, 0.1, 10);
-    const masterFloorMat = new THREE.MeshStandardMaterial({ color: 0xb45309, roughness: 0.5 });
-    const masterFloor = new THREE.Mesh(masterFloorGeo, masterFloorMat);
-    masterFloor.position.set(7, 0.05, 5);
-    masterFloor.receiveShadow = true;
-    scene.add(masterFloor);
-
-    // Room 3: Bếp & Ăn (Grey Tile)
-    const kitchenFloorGeo = new THREE.BoxGeometry(14, 0.1, 8);
-    const kitchenFloorMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.3 });
-    const kitchenFloor = new THREE.Mesh(kitchenFloorGeo, kitchenFloorMat);
-    kitchenFloor.position.set(-6, 0.05, -6);
-    kitchenFloor.receiveShadow = true;
-    scene.add(kitchenFloor);
-
-    // Walls function helper (Cutaway walls, height: 3.5m)
-    const wallMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.8 });
-    const glassMat = new THREE.MeshPhysicalMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.45, roughness: 0.1 });
-
-    const createWall = (w: number, h: number, d: number, x: number, y: number, z: number, isGlass = false) => {
-      const geo = new THREE.BoxGeometry(w, h, d);
-      const mesh = new THREE.Mesh(geo, isGlass ? glassMat : wallMat);
-      mesh.position.set(x, y, z);
-      mesh.castShadow = true;
-      mesh.receiveShadow = true;
-      scene.add(mesh);
-    };
-
-    // Outer Cutaway Walls (low height so interior is visible)
-    createWall(28, 3.5, 0.5, 0, 1.75, -10.5); // Back wall
-    createWall(0.5, 3.5, 21.5, -13.75, 1.75, 0.25); // Left wall
-    createWall(0.5, 3.5, 21.5, 13.75, 1.75, 0.25); // Right wall
-    createWall(14, 3.5, 0.5, -6, 1.75, 10.75, true); // Front Balcony Glass Wall
-
-    // Partition walls inside
-    createWall(0.5, 3.5, 10, 1, 1.75, 5); // Divider between living & bedroom
-    createWall(14, 3.5, 0.5, -6, 1.75, -2); // Divider between living & kitchen
-
-    // Furniture: Sofa in living room
-    const sofaMat = new THREE.MeshStandardMaterial({ color: 0x059669 });
-    const sofaBase = new THREE.Mesh(new THREE.BoxGeometry(7, 1.2, 2.5), sofaMat);
-    sofaBase.position.set(-7, 0.6, 2);
-    sofaBase.castShadow = true;
-    scene.add(sofaBase);
-
-    // Coffee table
-    const tableMesh = new THREE.Mesh(new THREE.BoxGeometry(4, 0.8, 2), new THREE.MeshStandardMaterial({ color: 0x94a3b8 }));
-    tableMesh.position.set(-7, 0.4, 6);
-    tableMesh.castShadow = true;
-    scene.add(tableMesh);
-
-    // King Bed in Master Bedroom
-    const bedMat = new THREE.MeshStandardMaterial({ color: 0x6366f1 });
-    const bedMesh = new THREE.Mesh(new THREE.BoxGeometry(6.5, 1.4, 7), bedMat);
-    bedMesh.position.set(7.5, 0.7, 4.5);
-    bedMesh.castShadow = true;
-    scene.add(bedMesh);
-
-    // PCCC Smoke detector on ceiling corner
-    const pcccLight = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.3, 0.3, 0.2, 16),
-      new THREE.MeshBasicMaterial({ color: 0xef4444 })
-    );
-    pcccLight.position.set(-6, 3.4, 3);
-    scene.add(pcccLight);
-
-    // Animation Loop for Dollhouse Orbit
-    const animate = () => {
-      dollhouseAnimationIdRef.current = requestAnimationFrame(animate);
-
-      if (!isDollhouseInteractingRef.current) {
-        dollhouseRotationRef.current.y += 0.002; // slow drift
-      }
-
-      const dist = 36;
-      camera.position.x = dist * Math.sin(dollhouseRotationRef.current.y) * Math.cos(dollhouseRotationRef.current.x);
-      camera.position.z = dist * Math.cos(dollhouseRotationRef.current.y) * Math.cos(dollhouseRotationRef.current.x);
-      camera.position.y = dist * Math.sin(dollhouseRotationRef.current.x);
-      camera.lookAt(0, 1, 0);
-
-      renderer.render(scene, camera);
-    };
-
-    animate();
-
-    const handleResize = () => {
-      if (!container || !renderer || !camera) return;
-      const newW = container.clientWidth;
-      const newH = container.clientHeight;
-      camera.aspect = newW / newH;
-      camera.updateProjectionMatrix();
-      renderer.setSize(newW, newH);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      cancelAnimationFrame(dollhouseAnimationIdRef.current);
-      window.removeEventListener('resize', handleResize);
-      renderer.dispose();
-      if (container) container.innerHTML = '';
-    };
-  }, [isOpen, activeTab, sunHour]);
-
-  // Update Sunlight in Dollhouse when slider changes
-  useEffect(() => {
-    if (dollhouseSunLightRef.current) {
-      const sunAngle = ((sunHour - 6) / 12) * Math.PI;
-      const sunX = Math.cos(sunAngle) * 32;
-      const sunY = Math.max(2, Math.sin(sunAngle) * 28 + 4);
-      const sunZ = 22;
-      dollhouseSunLightRef.current.position.set(sunX, sunY, sunZ);
-    }
-  }, [sunHour]);
-
   // Mouse Handlers for 360 Sphere
   const handleSphereMouseDown = (e: React.MouseEvent) => {
     isUserInteractingRef.current = true;
@@ -421,26 +217,6 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
     sphereCameraRef.current.updateProjectionMatrix();
   };
 
-  // Mouse Handlers for 3D Dollhouse
-  const handleDollhouseMouseDown = (e: React.MouseEvent) => {
-    isDollhouseInteractingRef.current = true;
-    dollhousePrevMousePosRef.current = { x: e.clientX, y: e.clientY };
-  };
-
-  const handleDollhouseMouseMove = (e: React.MouseEvent) => {
-    if (!isDollhouseInteractingRef.current) return;
-    const deltaX = e.clientX - dollhousePrevMousePosRef.current.x;
-    const deltaY = e.clientY - dollhousePrevMousePosRef.current.y;
-    dollhousePrevMousePosRef.current = { x: e.clientX, y: e.clientY };
-
-    dollhouseRotationRef.current.y -= deltaX * 0.008;
-    dollhouseRotationRef.current.x = Math.max(0.15, Math.min(1.4, dollhouseRotationRef.current.x + deltaY * 0.008));
-  };
-
-  const handleDollhouseMouseUp = () => {
-    isDollhouseInteractingRef.current = false;
-  };
-
   if (!isOpen) return null;
 
   const district = unit.district || 'Hà Nội';
@@ -449,13 +225,16 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
   const mapsEmbedUrl = `https://maps.google.com/maps?q=${mapsQuery}&t=k&z=17&ie=UTF8&iwloc=&output=embed`;
   const externalMapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
 
+  // Real Matterport 3D Showcase (Walkthrough thực tế chuyên nghiệp trong ngành Bất Động Sản)
+  const matterportEmbedUrl = 'https://my.matterport.com/show/?m=JGPnGQ6hosj&play=1&qs=1&brand=0&title=0';
+
   return (
     <div className="fixed inset-0 z-[99999] flex items-center justify-center p-2 sm:p-4 bg-black/90 backdrop-blur-xl animate-in fade-in duration-200">
       <div 
         className={`relative w-full rounded-3xl atmospheric-panel border border-emerald-500/40 overflow-hidden shadow-2xl flex flex-col bg-[#0B0F17] transition-all duration-300 ${
           isFullscreen 
             ? 'w-screen h-screen rounded-none max-w-none' 
-            : 'max-w-5xl h-[88vh] max-h-[820px]'
+            : 'max-w-5xl h-[88vh] max-h-[840px]'
         }`}
       >
         {/* Top Header Bar */}
@@ -471,17 +250,29 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
                 </h3>
                 <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[10px] font-mono text-emerald-400 font-bold">
                   <Sparkles className="w-3 h-3" />
-                  <span>3D Spatial Twin</span>
+                  <span>3D Digital Twin</span>
                 </span>
               </div>
               <p className="text-[11px] font-mono text-slate-400">
-                {unit.sqm}m² • {unit.bedrooms} Phòng ngủ • Tầng {unit.floor} • {district}, {city}
+                {unit.sqm}m² • {unit.bedrooms} PN • Tầng {unit.floor} • {district}, {city}
               </p>
             </div>
           </div>
 
           {/* Mode Switcher Tabs */}
           <div className="flex items-center gap-1.5 bg-slate-900/90 p-1 rounded-2xl border border-slate-800 text-xs font-mono">
+            <button
+              onClick={() => setActiveTab('matterport')}
+              className={`px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 ${
+                activeTab === 'matterport'
+                  ? 'bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <Box className="w-3.5 h-3.5" />
+              <span>3D Walkthrough Thực Tế</span>
+            </button>
+
             <button
               onClick={() => setActiveTab('360_sphere')}
               className={`px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 ${
@@ -491,19 +282,7 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
               }`}
             >
               <Compass className="w-3.5 h-3.5" />
-              <span>360° VR</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab('dollhouse')}
-              className={`px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 ${
-                activeTab === 'dollhouse'
-                  ? 'bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              <Layers className="w-3.5 h-3.5" />
-              <span>3D Dollhouse</span>
+              <span>360° VR Liền Mạch</span>
             </button>
 
             <button
@@ -541,7 +320,39 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
         {/* Main Viewport Content Area */}
         <div className="relative flex-1 bg-slate-950 overflow-hidden flex flex-col">
           
-          {/* TAB 1: Three.js 360° Panoramic Sphere */}
+          {/* TAB 1: Real Matterport 3D Walkthrough Digital Twin */}
+          {activeTab === 'matterport' && (
+            <div className="relative w-full h-full flex flex-col bg-[#000]">
+              <iframe
+                title="Matterport 3D Walkthrough Digital Twin"
+                src={matterportEmbedUrl}
+                className="w-full h-full border-0"
+                allow="fullscreen; vr; xr-spatial-tracking"
+                allowFullScreen
+              />
+
+              {/* Top Feature Badges HUD */}
+              <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+                <div className="bg-slate-950/90 px-3 py-1.5 rounded-xl border border-slate-800 text-xs font-mono text-slate-300 flex items-center gap-2 pointer-events-auto backdrop-blur-md">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Dữ liệu 3D thật (Digital Twin Photogrammetry) • Đi từng bước trong phòng</span>
+                </div>
+                <div className="hidden sm:flex items-center gap-2 bg-slate-950/90 px-3 py-1.5 rounded-xl border border-slate-800 text-xs font-mono text-emerald-400 pointer-events-auto backdrop-blur-md">
+                  <Ruler className="w-3.5 h-3.5" />
+                  <span>Hỗ trợ đo thước laser trực tiếp trên tường</span>
+                </div>
+              </div>
+
+              {/* Bottom Instructions HUD */}
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono text-slate-300 pointer-events-none">
+                <div className="bg-slate-950/85 px-3 py-1.5 rounded-xl border border-slate-800 pointer-events-auto">
+                  <span>Bấm vào sàn nhà để di chuyển • Xoay chuột 360° • Xem Floorplan / Dollhouse ở góc dưới</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 2: Three.js 360° Seamless Equirectangular Sphere (No Seams, No Distortion) */}
           {activeTab === '360_sphere' && (
             <div 
               className="relative w-full h-full cursor-grab active:cursor-grabbing select-none"
@@ -560,6 +371,12 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
                   style={{ transform: `rotate(${-currentBearing}deg)` }} 
                 />
                 <span>Hướng: {currentBearing}° ({currentBearing > 315 || currentBearing < 45 ? 'Bắc' : currentBearing < 135 ? 'Đông' : currentBearing < 225 ? 'Nam' : 'Tây'})</span>
+              </div>
+
+              {/* Seamless Guarantee Badge */}
+              <div className="absolute top-4 right-4 bg-slate-950/80 px-3 py-1.5 rounded-2xl border border-slate-800 backdrop-blur-md text-xs font-mono text-emerald-300 flex items-center gap-1.5 pointer-events-none">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Ảnh cầu Equirectangular 2:1 chuẩn (Không ghép lỗi vết nối)</span>
               </div>
 
               {/* Interactive Room Navigation Hotspots */}
@@ -604,88 +421,6 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
                   <div className="bg-slate-950/80 px-3 py-1.5 rounded-xl border border-slate-800 text-[11px] text-slate-400">
                     Kéo chuột để xoay • Cuộn để Zoom
                   </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* TAB 2: Three.js 3D Dollhouse Cutaway Floor Plan */}
-          {activeTab === 'dollhouse' && (
-            <div 
-              className="relative w-full h-full cursor-grab active:cursor-grabbing select-none"
-              onMouseDown={handleDollhouseMouseDown}
-              onMouseMove={handleDollhouseMouseMove}
-              onMouseUp={handleDollhouseMouseUp}
-            >
-              {/* Three.js Dollhouse Canvas */}
-              <div ref={dollhouseMountRef} className="w-full h-full" />
-
-              {/* Sunlight & Time of Day Simulator HUD */}
-              <div className="absolute top-4 left-4 bg-slate-950/90 p-3 rounded-2xl border border-slate-800/80 backdrop-blur-md text-xs font-mono text-slate-200 space-y-2 max-w-xs pointer-events-auto">
-                <div className="flex items-center justify-between text-emerald-400 font-bold">
-                  <div className="flex items-center gap-1.5">
-                    <Sun className="w-4 h-4 text-amber-400 animate-spin-slow" />
-                    <span>Mô Phỏng Hướng Nắng</span>
-                  </div>
-                  <span className="px-2 py-0.5 rounded-lg bg-amber-500/20 text-amber-300 text-[10px]">
-                    {sunHour}:00 {sunHour < 12 ? 'Sáng' : 'Chiều'}
-                  </span>
-                </div>
-                <input 
-                  type="range" 
-                  min="6" 
-                  max="18" 
-                  value={sunHour}
-                  onChange={(e) => setSunHour(Number(e.target.value))}
-                  className="w-full accent-emerald-400 cursor-pointer"
-                />
-                <p className="text-[10px] text-slate-400 leading-tight">
-                  Ban công hướng {(unit as any).direction || 'Đông Nam'} đón trọn ánh sáng ban mai dịu nhẹ từ 07:00 - 11:00, tránh nắng gắt buổi chiều.
-                </p>
-              </div>
-
-              {/* Room Dimensions & Calipers HUD */}
-              <div className="absolute top-4 right-4 bg-slate-950/90 p-3 rounded-2xl border border-slate-800/80 backdrop-blur-md text-xs font-mono text-slate-200 space-y-1.5 pointer-events-auto">
-                <div className="flex items-center gap-1.5 text-emerald-400 font-bold mb-1">
-                  <Ruler className="w-3.5 h-3.5" />
-                  <span>Kích Thước Cắt Lớp</span>
-                </div>
-                <div 
-                  onClick={() => setSelectedRoomDimension(selectedRoomDimension === 'living' ? null : 'living')}
-                  className={`px-2.5 py-1 rounded-lg border transition-all cursor-pointer flex justify-between gap-3 text-[11px] ${
-                    selectedRoomDimension === 'living' ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300' : 'bg-slate-900 border-slate-800 hover:border-emerald-500/50'
-                  }`}
-                >
-                  <span className="text-slate-300">Phòng Khách:</span>
-                  <span className="text-emerald-400 font-bold">28.5 m² (4.2m × 6.8m)</span>
-                </div>
-                <div 
-                  onClick={() => setSelectedRoomDimension(selectedRoomDimension === 'master' ? null : 'master')}
-                  className={`px-2.5 py-1 rounded-lg border transition-all cursor-pointer flex justify-between gap-3 text-[11px] ${
-                    selectedRoomDimension === 'master' ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300' : 'bg-slate-900 border-slate-800 hover:border-emerald-500/50'
-                  }`}
-                >
-                  <span className="text-slate-300">Phòng Ngủ Master:</span>
-                  <span className="text-emerald-400 font-bold">18.2 m² (3.8m × 4.8m)</span>
-                </div>
-                <div 
-                  onClick={() => setSelectedRoomDimension(selectedRoomDimension === 'kitchen' ? null : 'kitchen')}
-                  className={`px-2.5 py-1 rounded-lg border transition-all cursor-pointer flex justify-between gap-3 text-[11px] ${
-                    selectedRoomDimension === 'kitchen' ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300' : 'bg-slate-900 border-slate-800 hover:border-emerald-500/50'
-                  }`}
-                >
-                  <span className="text-slate-300">Bếp & Ăn:</span>
-                  <span className="text-emerald-400 font-bold">12.0 m² (3.2m × 3.75m)</span>
-                </div>
-              </div>
-
-              {/* Bottom Instructions */}
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-slate-300 pointer-events-none">
-                <div className="bg-slate-950/85 px-4 py-2 rounded-2xl backdrop-blur-md border border-slate-800">
-                  <span>🏢 Mô hình 3D cắt lớp Dollhouse được sinh tự động từ thông số diện tích {unit.sqm}m²</span>
-                </div>
-                <div className="bg-slate-950/85 px-3.5 py-2 rounded-2xl backdrop-blur-md border border-slate-800 text-[11px]">
-                  Kéo chuột để xoay mô hình 3D
                 </div>
               </div>
             </div>
@@ -771,7 +506,7 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
 
             <div className="hidden sm:flex items-center gap-2 text-[11px] font-mono text-slate-400 shrink-0">
               <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Three.js WebGL Photosphere</span>
+              <span>Three.js WebGL Equirectangular Sphere</span>
             </div>
           </div>
         )}

@@ -7,7 +7,6 @@ import {
   Bot, 
   Filter, 
   Loader2,
-  Zap,
   Mic,
   MicOff
 } from 'lucide-react';
@@ -193,9 +192,9 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
                 <h3 className="font-serif text-sm font-bold text-slate-100 [data-theme='light']_:text-slate-900">
                   Haven AI Advisor
                 </h3>
-                <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[9px] font-mono text-emerald-400 font-bold">
-                  <Zap className="w-2.5 h-2.5" />
-                  <span>Gemini 3.5 Flash-Lite</span>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[9px] font-mono text-emerald-400 font-bold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Online • Trợ Lý AI</span>
                 </span>
               </div>
               <p className="text-[10px] font-mono text-slate-400 [data-theme='light']_:text-slate-500">
@@ -235,13 +234,6 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
                 }`}
               >
                 <p className="whitespace-pre-line leading-relaxed text-[12px]">{msg.text}</p>
-
-                {/* Model Tag */}
-                {msg.modelUsed && (
-                  <div className="text-[9px] font-mono text-emerald-400/80 [data-theme='light']_:text-emerald-700">
-                    ⚡ {msg.modelUsed}
-                  </div>
-                )}
 
                 {/* Filter Action Chip */}
                 {msg.suggestedAction && (

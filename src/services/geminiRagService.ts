@@ -120,13 +120,24 @@ export async function testGroqApiKey(apiKey: string): Promise<{ valid: boolean; 
   }
 }
 
+const INVALID_KEY_PREFIXES = ['AQ.Ab8RN6Jwh5'];
+
 export function getGeminiApiKey(): string {
   if (typeof window !== 'undefined') {
     const saved = localStorage.getItem(STORAGE_KEY_API_KEY);
-    if (saved && saved.trim()) return saved.trim();
+    if (saved && saved.trim()) {
+      const clean = saved.trim();
+      if (INVALID_KEY_PREFIXES.some(prefix => clean.startsWith(prefix))) {
+        localStorage.removeItem(STORAGE_KEY_API_KEY);
+      } else {
+        return clean;
+      }
+    }
   }
   const viteKey = (import.meta.env?.VITE_GEMINI_API_KEY as string) || (import.meta.env?.GEMINI_API_KEY as string) || '';
-  if (viteKey && viteKey.trim()) return viteKey.trim();
+  if (viteKey && viteKey.trim() && !INVALID_KEY_PREFIXES.some(prefix => viteKey.startsWith(prefix))) {
+    return viteKey.trim();
+  }
 
   return GEMINI_DEFAULT_KEY_POOL[0];
 }
@@ -137,9 +148,12 @@ export function getGeminiKeyPool(): string[] {
   const poolFromEnv = rawPool
     .split(',')
     .map(k => k.trim())
-    .filter(Boolean);
+    .filter(Boolean)
+    .filter(k => !INVALID_KEY_PREFIXES.some(prefix => k.startsWith(prefix)));
 
-  const pool = [currentKey, ...poolFromEnv, ...GEMINI_DEFAULT_KEY_POOL].filter(Boolean);
+  const pool = [currentKey, ...poolFromEnv, ...GEMINI_DEFAULT_KEY_POOL]
+    .filter(Boolean)
+    .filter(k => !INVALID_KEY_PREFIXES.some(prefix => k.startsWith(prefix)));
   return Array.from(new Set(pool));
 }
 
@@ -614,8 +628,8 @@ NGUYÊN TẮC PHÂN QUYỀN & BẢO MẬT DỮ LIỆU (BẮT BUỘC):
           }
         ],
         generationConfig: {
-          temperature: (guardrailEval.intent === 'GREETING_CHITCHAT' || guardrailEval.intent === 'GRATITUDE_CLOSURE') ? 0.7 : 0.3,
-          maxOutputTokens: 1024
+          temperature: (guardrailEval.intent === 'GREETING_CHITCHAT' || guardrailEval.intent === 'GRATITUDE_CLOSURE') ? 0.7 : 0.25,
+          maxOutputTokens: 500
         }
       };
 
@@ -623,28 +637,28 @@ NGUYÊN TẮC PHÂN QUYỀN & BẢO MẬT DỮ LIỆU (BẮT BUỘC):
         let keyFailed = false;
         for (const model of GEMINI_GENERATION_MODELS) {
           try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000);
+
             const resp = await fetch(
               `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${currentKey}`,
               {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(geminiPayload)
+                body: JSON.stringify(geminiPayload),
+                signal: controller.signal
               }
             );
+            clearTimeout(timeoutId);
 
             if (resp.ok) {
               const data = await resp.json();
               const textResponse = data?.candidates?.[0]?.content?.parts?.[0]?.text;
               if (textResponse && textResponse.trim()) {
-                const modelLabel = model.includes('3.5') 
-                  ? 'Gemini 3.5 Flash-Lite' 
-                  : model.includes('3.1') 
-                    ? 'Gemini 3.1 Flash-Lite' 
-                    : `Google ${model}`;
                 return {
                   answer: textResponse.trim(),
                   sources: retrievedSources,
-                  modelUsed: modelLabel,
+                  modelUsed: 'Haven AI',
                   usedRealApi: true,
                   guardrailStatus: guardrailEval,
                   suggestedAction: (parsed.classification.required.length > 0 || parsed.extractedFilters.city) ? {
@@ -653,7 +667,7 @@ NGUYÊN TẮC PHÂN QUYỀN & BẢO MẬT DỮ LIỆU (BẮT BUỘC):
                   } : undefined
                 };
               }
-            } else if (resp.status === 429 || resp.status === 401) {
+            } else if (resp.status === 429 || resp.status === 401 || resp.status === 403 || resp.status === 404) {
               keyFailed = true;
               break; // Rotate to next key immediately on quota or auth error
             }
