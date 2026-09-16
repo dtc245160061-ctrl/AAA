@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { 
   X, 
   Sparkles, 
@@ -50,12 +51,12 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll on new messages
+  // Auto-scroll ONLY inside chat box (never scroll parent page / window)
   useEffect(() => {
-    if (isOpen) {
-      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (isOpen && messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
     }
   }, [messages, isOpen]);
 
@@ -79,8 +80,6 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isOpen, onClose]);
-
-  if (!isOpen) return null;
 
   const quickPrompts = [
     'Tìm căn 2PN Tây Hồ yên tĩnh có đỗ ô tô',
@@ -135,18 +134,23 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
   };
 
   return (
-    /* Notion AI-Style Floating Window with 1.5px Running Light Beam Border */
-    <div 
-      ref={containerRef}
-      className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 w-[400px] max-w-[calc(100vw-2rem)] h-[540px] max-h-[calc(100vh-5rem)] rounded-3xl p-[1.5px] overflow-hidden shadow-2xl shadow-emerald-500/30 animate-in slide-in-from-bottom-5 duration-200 text-left"
-    >
-      {/* Running Luminous Emerald Beam Border */}
-      <div className="absolute inset-[-150%] bg-[conic-gradient(from_0deg,transparent_0_120deg,#34d399_150deg,transparent_180deg_300deg,#34d399_330deg,transparent_360deg)] animate-spin-beam pointer-events-none opacity-90" />
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div 
+          ref={containerRef}
+          initial={{ opacity: 0, y: 24, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 24, scale: 0.96 }}
+          transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+          className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 w-[400px] max-w-[calc(100vw-2rem)] h-[540px] max-h-[calc(100vh-5rem)] rounded-3xl p-[2px] overflow-hidden shadow-2xl shadow-emerald-500/30 text-left"
+        >
+          {/* Dual Symmetrical Opposing Orbiting Light Beams (180° apart, continuous, non-clipping) */}
+          <div className="absolute inset-[-150%] bg-[conic-gradient(from_0deg,rgba(52,211,153,0.12)_0deg,rgba(52,211,153,0.35)_35deg,rgba(52,211,153,0.85)_70deg,#34d399_90deg,rgba(52,211,153,0.85)_110deg,rgba(52,211,153,0.35)_145deg,rgba(52,211,153,0.12)_180deg,rgba(52,211,153,0.35)_215deg,rgba(52,211,153,0.85)_250deg,#34d399_270deg,rgba(52,211,153,0.85)_290deg,rgba(52,211,153,0.35)_325deg,rgba(52,211,153,0.12)_360deg)] animate-spin-beam pointer-events-none opacity-95" />
 
-      {/* Main Inner Window Container with Opaque Backdrop */}
-      <div className="relative z-10 w-full h-full rounded-[22px] bg-slate-950/98 [data-theme='light']_:bg-white/98 backdrop-blur-2xl flex flex-col justify-between overflow-hidden shadow-2xl">
-        {/* Top Bar Header */}
-        <div className="p-3 sm:p-3.5 border-b border-slate-800/80 [data-theme='light']_:border-slate-200 flex items-center justify-between bg-slate-900/70 [data-theme='light']_:bg-slate-50 shrink-0">
+          {/* Main Inner Window Container with 100% Solid Opaque Backdrop */}
+          <div className="relative z-10 w-full h-full rounded-[22px] bg-[#0B0F17] [data-theme='light']_:bg-white border border-slate-700 [data-theme='light']_:border-slate-200 flex flex-col justify-between overflow-hidden shadow-2xl">
+            {/* Top Bar Header */}
+            <div className="p-3 sm:p-3.5 border-b border-slate-800 [data-theme='light']_:border-slate-200 flex items-center justify-between bg-slate-900 [data-theme='light']_:bg-slate-50 shrink-0">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
               <Sparkles className="w-4 h-4 animate-pulse" />
@@ -178,7 +182,7 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
         </div>
 
         {/* Chat Messages Body */}
-        <div className="flex-1 p-3.5 overflow-y-auto space-y-3 font-sans text-xs">
+        <div ref={messagesContainerRef} className="flex-1 p-3.5 overflow-y-auto space-y-3 font-sans text-xs">
           {messages.map(msg => (
             <div
               key={msg.id}
@@ -235,7 +239,6 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
               </div>
             </div>
           )}
-          <div ref={messagesEndRef} />
         </div>
 
         {/* Quick Prompts Bar with compact text */}
@@ -270,7 +273,9 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
             <Send className="w-3.5 h-3.5" />
           </button>
         </form>
-      </div>
-    </div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };

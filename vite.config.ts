@@ -8,4 +8,9 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  server: {
+    watch: {
+      ignored: ['**/scripts/**', '**/*.tmp', '**/*.bak', '**/Ứng dụng trí tuệ nhân tạo**'],
+    },
+  },
 })

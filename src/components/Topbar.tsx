@@ -177,7 +177,7 @@ export const Topbar: React.FC<TopbarProps> = ({
 
             {themeDropdownOpen && (
               <div
-                className="absolute right-0 top-full mt-2 w-44 p-1.5 rounded-[var(--radius-xl)] surface-elevated shadow-[var(--shadow-overlay)] z-50 space-y-0.5 border border-[var(--haven-border)] animate-in fade-in"
+                className="absolute right-0 top-full mt-2 w-48 p-2 rounded-2xl bg-slate-900 [data-theme='light']_:bg-white shadow-2xl z-50 space-y-0.5 border border-slate-700 [data-theme='light']_:border-slate-200 animate-in fade-in duration-150"
               >
                 <span className="text-label text-[9px] px-2 py-1 block">
                   GIAO DIỆN

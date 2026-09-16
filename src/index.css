@@ -217,19 +217,24 @@
 .haven-beam-hover::after {
   content: '';
   position: absolute;
-  inset: -1px;
+  inset: -2px;
   border-radius: inherit;
-  padding: 1.25px; /* Delicate, thin running light beam on hover as requested */
+  padding: 2.75px; /* Thicker 2.75px dual running light beam */
   background: conic-gradient(
     from var(--beam-angle, 0deg),
-    transparent 0deg,
-    transparent 65deg,
-    rgba(52, 211, 153, 0.95) 90deg,
-    transparent 115deg,
-    transparent 245deg,
-    rgba(52, 211, 153, 0.95) 270deg,
-    transparent 295deg,
-    transparent 360deg
+    rgba(52, 211, 153, 0.1) 0deg,
+    rgba(52, 211, 153, 0.3) 35deg,
+    rgba(52, 211, 153, 0.8) 70deg,
+    rgba(52, 211, 153, 1) 90deg,
+    rgba(52, 211, 153, 0.8) 110deg,
+    rgba(52, 211, 153, 0.3) 145deg,
+    rgba(52, 211, 153, 0.1) 180deg,
+    rgba(52, 211, 153, 0.3) 215deg,
+    rgba(52, 211, 153, 0.8) 250deg,
+    rgba(52, 211, 153, 1) 270deg,
+    rgba(52, 211, 153, 0.8) 290deg,
+    rgba(52, 211, 153, 0.3) 325deg,
+    rgba(52, 211, 153, 0.1) 360deg
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -245,15 +250,15 @@
 .product-ui-card:hover::after,
 .haven-beam-hover:hover::after {
   opacity: 1;
-  animation: spin-beam-angle 5s linear infinite;
+  animation: spin-beam-angle 4s linear infinite;
 }
 
 .haven-card-interactive:hover,
 .product-ui-card:hover,
 .haven-beam-hover:hover {
   transform: translateY(-3px) translateZ(0);
-  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.5);
-  border-color: rgba(52, 211, 153, 0.35);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(52, 211, 153, 0.3);
+  border-color: rgba(52, 211, 153, 0.45);
 }
 
 [data-theme="light"] .haven-card-interactive:hover,
@@ -263,45 +268,51 @@
 [data-theme="light"] .haven-beam-hover:hover,
 .light .haven-beam-hover:hover {
   transform: translateY(-3px) translateZ(0);
-  box-shadow: 0 14px 28px -6px rgba(15, 23, 42, 0.08);
-  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 14px 28px -6px rgba(15, 23, 42, 0.08), inset 0 0 0 1px rgba(16, 185, 129, 0.3);
+  border-color: rgba(16, 185, 129, 0.45);
 }
 
-/* ── Permanent Active Running Border Beam (Thicker 2px for Selected/Focal items) ── */
+/* ── Permanent Active Running Border Beam (Thicker 2.75px Dual Beams for Selected/Focal items) ── */
 .haven-beam-active {
   position: relative;
   border-color: rgba(52, 211, 153, 0.6) !important;
   transform: translateZ(0);
+  box-shadow: inset 0 0 0 1px rgba(52, 211, 153, 0.35);
 }
 
 .haven-beam-active::after {
   content: '';
   position: absolute;
-  inset: -1px;
+  inset: -2px;
   border-radius: inherit;
-  padding: 2px; /* Thicker beam for active focal items as requested */
+  padding: 2.75px;
   background: conic-gradient(
     from var(--beam-angle, 0deg),
-    transparent 0deg,
-    transparent 65deg,
+    rgba(52, 211, 153, 0.12) 0deg,
+    rgba(52, 211, 153, 0.35) 35deg,
+    rgba(52, 211, 153, 0.85) 70deg,
     rgba(52, 211, 153, 1) 90deg,
-    transparent 115deg,
-    transparent 245deg,
+    rgba(52, 211, 153, 0.85) 110deg,
+    rgba(52, 211, 153, 0.35) 145deg,
+    rgba(52, 211, 153, 0.12) 180deg,
+    rgba(52, 211, 153, 0.35) 215deg,
+    rgba(52, 211, 153, 0.85) 250deg,
     rgba(52, 211, 153, 1) 270deg,
-    transparent 295deg,
-    transparent 360deg
+    rgba(52, 211, 153, 0.85) 290deg,
+    rgba(52, 211, 153, 0.35) 325deg,
+    rgba(52, 211, 153, 0.12) 360deg
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
   opacity: 1 !important;
-  animation: spin-beam-angle 4s linear infinite !important;
+  animation: spin-beam-angle 3.5s linear infinite !important;
   z-index: 15;
   will-change: transform;
 }
 
-/* ── Colorized Running Border Beams for SaaS Plans & Club Tiers ── */
+/* ── Colorized Dual Opposing Running Border Beams for SaaS Plans & Club Tiers (Double-Border Effect) ── */
 .haven-beam-white,
 .haven-beam-emerald,
 .haven-beam-gold,
@@ -311,66 +322,118 @@
   transform: translateZ(0);
 }
 
+/* Double-border: Static delicate inner glow border line (always present) */
+.haven-beam-white {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+.haven-beam-emerald {
+  box-shadow: inset 0 0 0 1px rgba(52, 211, 153, 0.3);
+}
+.haven-beam-gold {
+  box-shadow: inset 0 0 0 1px rgba(251, 191, 36, 0.3);
+}
+.haven-beam-cyan {
+  box-shadow: inset 0 0 0 1px rgba(6, 182, 212, 0.3);
+}
+
 .haven-beam-white::after,
 .haven-beam-emerald::after,
 .haven-beam-gold::after,
 .haven-beam-cyan::after {
   content: '';
   position: absolute;
-  inset: -1px;
+  inset: -2px;
   border-radius: inherit;
-  padding: 1.25px;
+  padding: 2.75px; /* Thicker running dual outer beam */
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.25s ease;
+  opacity: 0.75; /* Continuously active so dual opposing beams are always visible */
+  animation: spin-beam-angle 4.5s linear infinite;
+  transition: opacity 0.25s ease, filter 0.25s ease;
   z-index: 15;
   will-change: transform, opacity;
 }
 
+/* Starter: Silver White Dual Opposing Beams (No Dead Zones, 180° Symmetrical) */
 .haven-beam-white::after {
   background: conic-gradient(
     from var(--beam-angle, 0deg),
-    transparent 0deg, transparent 65deg,
-    rgba(255, 255, 255, 0.95) 90deg,
-    transparent 115deg, transparent 245deg,
-    rgba(255, 255, 255, 0.95) 270deg,
-    transparent 295deg, transparent 360deg
+    rgba(255, 255, 255, 0.12) 0deg,
+    rgba(255, 255, 255, 0.3) 35deg,
+    rgba(255, 255, 255, 0.8) 70deg,
+    rgba(255, 255, 255, 1) 90deg,
+    rgba(255, 255, 255, 0.8) 110deg,
+    rgba(255, 255, 255, 0.3) 145deg,
+    rgba(255, 255, 255, 0.12) 180deg,
+    rgba(255, 255, 255, 0.3) 215deg,
+    rgba(255, 255, 255, 0.8) 250deg,
+    rgba(255, 255, 255, 1) 270deg,
+    rgba(255, 255, 255, 0.8) 290deg,
+    rgba(255, 255, 255, 0.3) 325deg,
+    rgba(255, 255, 255, 0.12) 360deg
   );
 }
 
+/* Pro: Emerald Dual Opposing Beams (No Dead Zones, 180° Symmetrical) */
 .haven-beam-emerald::after {
+  opacity: 0.9;
   background: conic-gradient(
     from var(--beam-angle, 0deg),
-    transparent 0deg, transparent 65deg,
-    rgba(52, 211, 153, 0.95) 90deg,
-    transparent 115deg, transparent 245deg,
-    rgba(52, 211, 153, 0.95) 270deg,
-    transparent 295deg, transparent 360deg
+    rgba(52, 211, 153, 0.12) 0deg,
+    rgba(52, 211, 153, 0.35) 35deg,
+    rgba(52, 211, 153, 0.85) 70deg,
+    rgba(52, 211, 153, 1) 90deg,
+    rgba(52, 211, 153, 0.85) 110deg,
+    rgba(52, 211, 153, 0.35) 145deg,
+    rgba(52, 211, 153, 0.12) 180deg,
+    rgba(52, 211, 153, 0.35) 215deg,
+    rgba(52, 211, 153, 0.85) 250deg,
+    rgba(52, 211, 153, 1) 270deg,
+    rgba(52, 211, 153, 0.85) 290deg,
+    rgba(52, 211, 153, 0.35) 325deg,
+    rgba(52, 211, 153, 0.12) 360deg
   );
 }
 
+/* Enterprise: Royal Gold Dual Opposing Beams (No Dead Zones, 180° Symmetrical) */
 .haven-beam-gold::after {
   background: conic-gradient(
     from var(--beam-angle, 0deg),
-    transparent 0deg, transparent 65deg,
-    rgba(251, 191, 36, 0.95) 90deg,
-    transparent 115deg, transparent 245deg,
-    rgba(251, 191, 36, 0.95) 270deg,
-    transparent 295deg, transparent 360deg
+    rgba(251, 191, 36, 0.12) 0deg,
+    rgba(251, 191, 36, 0.35) 35deg,
+    rgba(251, 191, 36, 0.85) 70deg,
+    rgba(251, 191, 36, 1) 90deg,
+    rgba(251, 191, 36, 0.85) 110deg,
+    rgba(251, 191, 36, 0.35) 145deg,
+    rgba(251, 191, 36, 0.12) 180deg,
+    rgba(251, 191, 36, 0.35) 215deg,
+    rgba(251, 191, 36, 0.85) 250deg,
+    rgba(251, 191, 36, 1) 270deg,
+    rgba(251, 191, 36, 0.85) 290deg,
+    rgba(251, 191, 36, 0.35) 325deg,
+    rgba(251, 191, 36, 0.12) 360deg
   );
 }
 
+/* Resident Prime Club: Cyan Blue Dual Opposing Beams (No Dead Zones, 180° Symmetrical) */
 .haven-beam-cyan::after {
   background: conic-gradient(
     from var(--beam-angle, 0deg),
-    transparent 0deg, transparent 65deg,
-    rgba(6, 182, 212, 0.95) 90deg,
-    transparent 115deg, transparent 245deg,
-    rgba(6, 182, 212, 0.95) 270deg,
-    transparent 295deg, transparent 360deg
+    rgba(6, 182, 212, 0.12) 0deg,
+    rgba(6, 182, 212, 0.35) 35deg,
+    rgba(6, 182, 212, 0.85) 70deg,
+    rgba(6, 182, 212, 1) 90deg,
+    rgba(6, 182, 212, 0.85) 110deg,
+    rgba(6, 182, 212, 0.35) 145deg,
+    rgba(6, 182, 212, 0.12) 180deg,
+    rgba(6, 182, 212, 0.35) 215deg,
+    rgba(6, 182, 212, 0.85) 250deg,
+    rgba(6, 182, 212, 1) 270deg,
+    rgba(6, 182, 212, 0.85) 290deg,
+    rgba(6, 182, 212, 0.35) 325deg,
+    rgba(6, 182, 212, 0.12) 360deg
   );
 }
 
@@ -379,7 +442,21 @@
 .haven-beam-gold:hover::after,
 .haven-beam-cyan:hover::after {
   opacity: 1;
-  animation: spin-beam-angle 5s linear infinite;
+  animation-duration: 3s;
+}
+
+/* Double border static glow accents on hover */
+.haven-beam-white:hover {
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+.haven-beam-emerald:hover {
+  box-shadow: 0 16px 36px -10px rgba(16, 185, 129, 0.3), inset 0 0 0 1px rgba(52, 211, 153, 0.45);
+}
+.haven-beam-gold:hover {
+  box-shadow: 0 16px 36px -10px rgba(245, 158, 11, 0.3), inset 0 0 0 1px rgba(251, 191, 36, 0.45);
+}
+.haven-beam-cyan:hover {
+  box-shadow: 0 16px 36px -10px rgba(6, 182, 212, 0.3), inset 0 0 0 1px rgba(6, 182, 212, 0.45);
 }
 
 /* ── 2-Point Orbiting Running Border Light Beam (Symmetrical & Non-Clipping) ── */
