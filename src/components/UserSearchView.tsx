@@ -19,7 +19,8 @@ import {
   Filter,
   Mic,
   MicOff,
-  Search
+  Search,
+  Box
 } from 'lucide-react';
 import type { ApartmentUnit } from '../types/apartment';
 import { type ConsumerFilters, parseNaturalLanguageQuery, calculateMatchScore } from '../services/aiAdvisorService';
@@ -30,6 +31,7 @@ interface UserSearchViewProps {
   savedUnitIds: string[];
   onToggleSaveUnit: (id: string) => void;
   onSelectUnit: (id: string) => void;
+  onOpenVirtualTour?: (unit: ApartmentUnit) => void;
   initialAiQuery?: string;
 }
 
@@ -38,6 +40,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
   savedUnitIds,
   onToggleSaveUnit,
   onSelectUnit,
+  onOpenVirtualTour,
   initialAiQuery = ''
 }) => {
   const [aiUnderstoodText, setAiUnderstoodText] = useState<string | null>(null);
@@ -803,12 +806,27 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                           </div>
                         </div>
 
-                        <button
-                          onClick={() => onSelectUnit(unit.id)}
-                          className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-white text-xs font-mono transition-all duration-200 font-bold hover:shadow-lg shadow-emerald-500/10 shrink-0 whitespace-nowrap"
-                        >
-                          Chi Tiết
-                        </button>
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          {onOpenVirtualTour && (
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                onOpenVirtualTour(unit);
+                              }}
+                              className="px-2.5 py-2.5 rounded-xl bg-purple-950/80 hover:bg-purple-900 border border-purple-500/40 text-purple-300 text-xs font-mono font-bold transition-all flex items-center gap-1 shadow-md hover:scale-105 active:scale-95"
+                              title="Xem 3D & Tour ảo 360°"
+                            >
+                              <Box className="w-3.5 h-3.5 text-purple-400" />
+                              <span className="hidden sm:inline text-[11px]">3D</span>
+                            </button>
+                          )}
+                          <button
+                            onClick={() => onSelectUnit(unit.id)}
+                            className="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-white text-xs font-mono transition-all duration-200 font-bold hover:shadow-lg shadow-emerald-500/10 shrink-0 whitespace-nowrap"
+                          >
+                            Chi Tiết
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>

@@ -420,6 +420,7 @@ export function App() {
               savedUnitIds={savedUnitIds}
               onToggleSaveUnit={handleToggleSaveUnit}
               onSelectUnit={handleInspectUnit}
+              onOpenVirtualTour={(u) => setActiveVirtualTourUnit(u)}
               initialAiQuery={initialAiQuery}
             />
           )}

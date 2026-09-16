@@ -22,6 +22,7 @@ import {
   Wifi,
   Droplets,
   Building,
+  Box,
   Check
 } from 'lucide-react';
 import type { ApartmentUnit, LandlordProfile } from '../types/apartment';
@@ -135,10 +136,10 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
           {onOpenVirtualTour && (
             <button
               onClick={() => onOpenVirtualTour(unit)}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-purple-950/80 border border-purple-400/50 text-purple-300 text-xs font-mono font-bold hover:bg-purple-900/80 transition-all shadow-md"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 text-xs font-mono font-bold transition-all shadow-lg shadow-emerald-500/25 active:scale-95"
             >
-              <Compass className="w-3.5 h-3.5 text-purple-400" />
-              <span>Tour Ảo 360°</span>
+              <Box className="w-4 h-4 text-slate-950" />
+              <span>3D Preview & Tour Ảo 360°</span>
             </button>
           )}
 
