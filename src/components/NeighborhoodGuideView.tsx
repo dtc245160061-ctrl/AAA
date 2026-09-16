@@ -28,10 +28,23 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
 }) => {
   const neighborhoods = ApartmentStore.getNeighborhoods();
   const [selectedCity, setSelectedCity] = useState<'All' | 'Hanoi' | 'Ho Chi Minh City' | 'Da Nang'>('All');
-  const [selectedNeighborhoodId, setSelectedNeighborhoodId] = useState<string>(neighborhoods[0].id);
+  const [selectedNeighborhoodId, setSelectedNeighborhoodId] = useState<string>('');
 
   const filteredNeighborhoods = neighborhoods.filter(n => selectedCity === 'All' || n.city === selectedCity);
-  const activeNeighborhood = neighborhoods.find(n => n.id === selectedNeighborhoodId) || filteredNeighborhoods[0] || neighborhoods[0];
+  
+  // Ensure active neighborhood always belongs to the currently filtered city!
+  const activeNeighborhood = 
+    filteredNeighborhoods.find(n => n.id === selectedNeighborhoodId) || 
+    filteredNeighborhoods[0] || 
+    neighborhoods[0];
+
+  const handleCityChange = (city: 'All' | 'Hanoi' | 'Ho Chi Minh City' | 'Da Nang') => {
+    setSelectedCity(city);
+    const firstInCity = neighborhoods.find(n => city === 'All' || n.city === city);
+    if (firstInCity) {
+      setSelectedNeighborhoodId(firstInCity.id);
+    }
+  };
 
   const neighborhoodUnits = units.filter(u => 
     u.district.toLowerCase().includes(activeNeighborhood.district.toLowerCase()) ||
@@ -60,7 +73,7 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
           {(['All', 'Ho Chi Minh City', 'Hanoi', 'Da Nang'] as const).map(city => (
             <button
               key={city}
-              onClick={() => setSelectedCity(city)}
+              onClick={() => handleCityChange(city)}
               className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all shadow-sm ${
                 selectedCity === city
                   ? 'bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20'
