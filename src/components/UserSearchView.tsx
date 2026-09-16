@@ -16,10 +16,14 @@ import {
   Star, 
   CheckCircle2,
   X,
-  Filter
+  Filter,
+  Mic,
+  MicOff,
+  Search
 } from 'lucide-react';
 import type { ApartmentUnit } from '../types/apartment';
 import { type ConsumerFilters, parseNaturalLanguageQuery, calculateMatchScore } from '../services/aiAdvisorService';
+import { VoiceRecognitionService } from '../services/voiceRecognitionService';
 
 interface UserSearchViewProps {
   units: ApartmentUnit[];
@@ -39,6 +43,8 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
   const [aiUnderstoodText, setAiUnderstoodText] = useState<string | null>(null);
   const [aiFollowUp, setAiFollowUp] = useState<string | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
+  const [searchInput, setSearchInput] = useState<string>('');
+  const [isListening, setIsListening] = useState<boolean>(false);
 
   // Filter States
   const [cityFilter, setCityFilter] = useState<string>('All');
@@ -57,6 +63,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
   // Process initial AI query on mount if passed
   useEffect(() => {
     if (initialAiQuery) {
+      setSearchInput(initialAiQuery);
       handleApplyAiPrompt(initialAiQuery);
     }
   }, [initialAiQuery]);
@@ -93,6 +100,43 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
       setPetFriendlyOnly(true);
     }
   };
+
+  const toggleVoiceSearch = () => {
+    if (isListening) {
+      VoiceRecognitionService.stop();
+      setIsListening(false);
+      return;
+    }
+
+    const started = VoiceRecognitionService.start({
+      lang: 'vi-VN',
+      onStart: () => setIsListening(true),
+      onEnd: () => setIsListening(false),
+      onResult: (transcript, isFinal) => {
+        setSearchInput(transcript);
+        if (isFinal) {
+          handleApplyAiPrompt(transcript);
+        }
+      },
+      onError: (err) => {
+        console.warn('Voice search error:', err);
+        setIsListening(false);
+      }
+    });
+
+    if (!started) {
+      alert('Trình duyệt của bạn chưa hỗ trợ nhận diện giọng nói hoặc chưa cấp quyền micro.');
+    }
+  };
+
+  // Distinct sorted cities from all available units (covering all 63 provinces)
+  const availableCities = useMemo(() => {
+    const citySet = new Set<string>();
+    units.forEach(u => {
+      if (u.city) citySet.add(u.city);
+    });
+    return Array.from(citySet).sort((a, b) => a.localeCompare(b, 'vi'));
+  }, [units]);
 
   const activeFiltersObj: ConsumerFilters = useMemo(() => ({
     city: cityFilter,
@@ -279,12 +323,56 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
           </div>
         </div>
 
+        {/* AI Voice & Natural Language Search Bar */}
+        <div className="relative p-[1.5px] rounded-2xl overflow-hidden shadow-lg shadow-emerald-500/10 group">
+          <div className="animate-spin-beam bg-[conic-gradient(from_0deg,rgba(52,211,153,0.12)_0deg,rgba(52,211,153,0.35)_35deg,rgba(52,211,153,0.85)_70deg,#34d399_90deg,rgba(52,211,153,0.85)_110deg,rgba(52,211,153,0.35)_145deg,rgba(52,211,153,0.12)_180deg,rgba(52,211,153,0.35)_215deg,rgba(52,211,153,0.85)_250deg,#34d399_270deg,rgba(52,211,153,0.85)_290deg,rgba(52,211,153,0.35)_325deg,rgba(52,211,153,0.12)_360deg)] pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
+          <div className="relative z-10 flex items-center rounded-[14px] bg-slate-900/90 [data-theme='light']_:bg-white/95 backdrop-blur-md p-1.5 sm:p-2 gap-2">
+            <div className="pl-2 text-emerald-400 [data-theme='light']_:text-emerald-600">
+              <Search className="w-4 h-4" />
+            </div>
+            <input
+              type="text"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && searchInput.trim()) {
+                  handleApplyAiPrompt(searchInput);
+                }
+              }}
+              placeholder='Tìm bằng giọng nói hoặc nhập text (vd: "căn 2 phòng ở Thái Nguyên tầm 8 triệu có ô tô")'
+              className="flex-1 bg-transparent border-none text-white [data-theme='light']_:text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm focus:outline-none focus:ring-0 font-sans"
+            />
+            {/* Microphone Voice Search Button */}
+            <button
+              type="button"
+              onClick={toggleVoiceSearch}
+              title={isListening ? "Đang lắng nghe... Nhấn để dừng" : "Nhấn để nói bằng giọng nói"}
+              className={`p-2 rounded-xl transition-all flex items-center justify-center shrink-0 ${
+                isListening
+                  ? 'bg-rose-500 text-white animate-pulse shadow-lg shadow-rose-500/30 ring-2 ring-rose-400'
+                  : 'bg-slate-800 [data-theme="light"]_:bg-slate-100 text-slate-300 [data-theme="light"]_:text-slate-700 hover:text-emerald-400 hover:bg-slate-700'
+              }`}
+            >
+              {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                if (searchInput.trim()) handleApplyAiPrompt(searchInput);
+              }}
+              className="px-3.5 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs font-mono transition-all shrink-0 shadow-md shadow-emerald-500/20"
+            >
+              Lọc AI
+            </button>
+          </div>
+        </div>
+
         {/* Quick City Filter Pills - Fast 1-click filtering without opening sidebar */}
         <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-1 text-xs font-mono">
           <span className="text-[11px] text-slate-400 [data-theme='light']_:text-slate-500 font-semibold mr-1 shrink-0">Khu vực:</span>
-          {['All', 'Hà Nội', 'TP. Hồ Chí Minh', 'Đà Nẵng', 'Hải Phòng', 'Quảng Ninh'].map((c) => {
+          {['All', 'Thái Nguyên', 'Hà Nội', 'TP. Hồ Chí Minh', 'Đà Nẵng', 'Hải Phòng', 'Bắc Ninh', 'Bình Dương', 'Quảng Ninh'].map((c) => {
             const isSelected = cityFilter === c;
-            const label = c === 'All' ? 'Tất Cả Đô Thị' : c;
+            const label = c === 'All' ? 'Tất Cả 63 Tỉnh Thành' : c;
             return (
               <button
                 key={c}
@@ -343,30 +431,22 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
 
               {/* City Filter */}
               <div className="space-y-1.5">
-                <label className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">Thành Phố</label>
+                <label className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">Tỉnh / Thành Phố (63 Tỉnh Thành)</label>
                 <select
                   value={cityFilter}
                   onChange={(e) => setCityFilter(e.target.value)}
-                  aria-label="Chọn thành phố"
+                  aria-label="Chọn tỉnh thành phố"
                   className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200 focus:outline-none focus:border-emerald-500 transition-colors"
                 >
-                  <option value="All">Tất cả thành phố ({units.length} căn)</option>
-                  <option value="Hanoi">Hà Nội</option>
-                  <option value="Ho Chi Minh City">TP. Hồ Chí Minh</option>
-                  <option value="Da Nang">Đà Nẵng</option>
-                  <option value="Hai Phong">Hải Phòng</option>
-                  <option value="Binh Duong">Bình Dương</option>
-                  <option value="Nha Trang">Nha Trang</option>
-                  <option value="Can Tho">Cần Thơ</option>
-                  <option value="Vung Tau">Vũng Tàu</option>
-                  <option value="Ha Long">Hạ Long</option>
-                  <option value="Da Lat">Đà Lạt</option>
-                  <option value="Hue">Huế</option>
-                  <option value="Quy Nhon">Quy Nhơn</option>
-                  <option value="Bien Hoa">Biên Hòa</option>
-                  <option value="Vinh">Vinh</option>
-                  <option value="Thanh Hoa">Thanh Hóa</option>
-                  <option value="Buon Ma Thuot">Buôn Ma Thuột</option>
+                  <option value="All">Tất cả tỉnh thành ({units.length} căn hộ)</option>
+                  {availableCities.map(c => {
+                    const count = units.filter(u => u.city === c).length;
+                    return (
+                      <option key={c} value={c}>
+                        {getCityDisplayName(c)} ({count} căn)
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
 

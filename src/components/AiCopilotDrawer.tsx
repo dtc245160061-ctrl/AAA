@@ -7,9 +7,12 @@ import {
   Loader2, 
   Receipt,
   FileText,
-  Wrench
+  Wrench,
+  Mic,
+  MicOff
 } from 'lucide-react';
 import { askGeminiRag, type RagRetrievalResult } from '../services/geminiRagService';
+import { VoiceRecognitionService } from '../services/voiceRecognitionService';
 
 interface AiCopilotDrawerProps {
   isOpen: boolean;
@@ -32,8 +35,37 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isListening, setIsListening] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
+
+  const toggleVoiceAdmin = () => {
+    if (isListening) {
+      VoiceRecognitionService.stop();
+      setIsListening(false);
+      return;
+    }
+
+    const started = VoiceRecognitionService.start({
+      lang: 'vi-VN',
+      onStart: () => setIsListening(true),
+      onEnd: () => setIsListening(false),
+      onResult: (transcript, isFinal) => {
+        setInput(transcript);
+        if (isFinal) {
+          handleSend(transcript);
+        }
+      },
+      onError: (err) => {
+        console.warn('Voice admin error:', err);
+        setIsListening(false);
+      }
+    });
+
+    if (!started) {
+      alert('Trình duyệt chưa hỗ trợ Web Speech API hoặc chưa cấp quyền micro.');
+    }
+  };
 
   // Auto-scroll ONLY inside chat box (never scroll parent page / window)
   useEffect(() => {
@@ -290,17 +322,30 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
               ))}
             </div>
 
-            {/* Chat Input Bar */}
-            <div className="p-2.5 border-t border-slate-800 [data-theme='light']_:border-slate-200 flex items-center gap-2 bg-slate-950 [data-theme='light']_:bg-white shrink-0">
+            {/* Chat Input Bar with Voice Mic Button */}
+            <div className="p-2.5 border-t border-slate-800 [data-theme='light']_:border-slate-200 flex items-center gap-1.5 bg-slate-950 [data-theme='light']_:bg-white shrink-0">
               <input
                 type="text"
-                placeholder="Hỏi về nợ quá hạn, hợp đồng, bảo trì..."
+                placeholder={isListening ? "Đang lắng nghe admin nói..." : "Hỏi về nợ quá hạn, hợp đồng, bảo trì..."}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && !isLoading && handleSend()}
                 disabled={isLoading}
                 className="flex-1 px-3 py-2 text-xs bg-slate-900 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-200 rounded-xl text-white [data-theme='light']_:text-slate-900 placeholder-slate-500 focus:outline-none focus:border-emerald-500/50 font-sans disabled:opacity-50"
               />
+              {/* Mic button */}
+              <button
+                type="button"
+                onClick={toggleVoiceAdmin}
+                title={isListening ? "Đang lắng nghe... Bấm để dừng" : "Nói bằng giọng nói"}
+                className={`w-8 h-8 flex items-center justify-center rounded-xl transition-all shrink-0 ${
+                  isListening
+                    ? 'bg-rose-500 text-white animate-pulse shadow-md shadow-rose-500/30'
+                    : 'bg-slate-800 hover:bg-slate-700 [data-theme="light"]_:bg-slate-200 [data-theme="light"]_:hover:bg-slate-300 text-slate-300 [data-theme="light"]_:text-slate-700'
+                }`}
+              >
+                {isListening ? <MicOff className="w-3.5 h-3.5" /> : <Mic className="w-3.5 h-3.5" />}
+              </button>
               <button
                 onClick={() => handleSend()}
                 disabled={isLoading || !input.trim()}

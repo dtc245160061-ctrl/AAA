@@ -66,16 +66,79 @@ export function parseNaturalLanguageQuery(queryText: string): AIParsedQuery {
     avoid: []
   };
 
-  // 1. City Detection
-  if (normalized.includes('hanoi')) {
-    filters.city = 'Hanoi';
-    classification.preferred.push('Thành phố: Hà Nội');
-  } else if (normalized.includes('hcmc')) {
-    filters.city = 'Ho Chi Minh City';
-    classification.preferred.push('Thành phố: TP. Hồ Chí Minh');
-  } else if (normalized.includes('danang')) {
-    filters.city = 'Da Nang';
-    classification.preferred.push('Thành phố: Đà Nẵng');
+  // 1. City / Province Detection (All 63 provinces of Vietnam)
+  const VIETNAM_PROVINCES: Array<{ keywords: string[]; city: string; label: string }> = [
+    { keywords: ['thái nguyên', 'thai nguyen', 'tn'], city: 'Thái Nguyên', label: 'Thái Nguyên' },
+    { keywords: ['hà nội', 'ha noi', 'hanoi', 'hn'], city: 'Hanoi', label: 'Hà Nội' },
+    { keywords: ['hồ chí minh', 'ho chi minh', 'sài gòn', 'saigon', 'hcmc', 'hcm', 'sg', 'tphcm'], city: 'Ho Chi Minh City', label: 'TP. Hồ Chí Minh' },
+    { keywords: ['đà nẵng', 'da nang', 'danang', 'dn'], city: 'Da Nang', label: 'Đà Nẵng' },
+    { keywords: ['hải phòng', 'hai phong', 'hp'], city: 'Hai Phong', label: 'Hải Phòng' },
+    { keywords: ['bắc ninh', 'bac ninh', 'bn'], city: 'Bắc Ninh', label: 'Bắc Ninh' },
+    { keywords: ['bắc giang', 'bac giang', 'bg'], city: 'Bắc Giang', label: 'Bắc Giang' },
+    { keywords: ['bình dương', 'binh duong', 'bd'], city: 'Binh Duong', label: 'Bình Dương' },
+    { keywords: ['quảng ninh', 'quang ninh', 'hạ long', 'ha long', 'qn'], city: 'Quảng Ninh', label: 'Quảng Ninh' },
+    { keywords: ['nha trang', 'khánh hòa', 'khanh hoa'], city: 'Nha Trang', label: 'Nha Trang' },
+    { keywords: ['cần thơ', 'can tho'], city: 'Can Tho', label: 'Cần Thơ' },
+    { keywords: ['vũng tàu', 'vung tau', 'bà rịa', 'ba ria'], city: 'Vung Tau', label: 'Vũng Tàu' },
+    { keywords: ['đà lạt', 'da lat', 'lâm đồng', 'lam dong'], city: 'Da Lat', label: 'Đà Lạt' },
+    { keywords: ['huế', 'hue', 'thừa thiên huế'], city: 'Hue', label: 'Huế' },
+    { keywords: ['quy nhơn', 'quy nhon', 'bình định', 'binh dinh'], city: 'Quy Nhon', label: 'Quy Nhơn' },
+    { keywords: ['biên hòa', 'bien hoa', 'đồng nai', 'dong nai'], city: 'Bien Hoa', label: 'Biên Hòa' },
+    { keywords: ['vinh', 'nghệ an', 'nghe an'], city: 'Vinh', label: 'Vinh' },
+    { keywords: ['thanh hóa', 'thanh hoa'], city: 'Thanh Hoa', label: 'Thanh Hóa' },
+    { keywords: ['buôn ma thuột', 'buon ma thuot', 'đắk lắk', 'dak lak'], city: 'Buon Ma Thuot', label: 'Buôn Ma Thuột' },
+    { keywords: ['hải dương', 'hai duong'], city: 'Hải Dương', label: 'Hải Dương' },
+    { keywords: ['hưng yên', 'hung yen'], city: 'Hưng Yên', label: 'Hưng Yên' },
+    { keywords: ['nam định', 'nam dinh'], city: 'Nam Định', label: 'Nam Định' },
+    { keywords: ['thái bình', 'thai binh'], city: 'Thái Bình', label: 'Thái Bình' },
+    { keywords: ['vĩnh phúc', 'vinh phuc', 'vĩnh yên'], city: 'Vĩnh Phúc', label: 'Vĩnh Phúc' },
+    { keywords: ['phú thọ', 'phu tho', 'việt trì'], city: 'Phú Thọ', label: 'Phú Thọ' },
+    { keywords: ['lào cai', 'lao cai', 'sa pa', 'sapa'], city: 'Lào Cai', label: 'Lào Cai' },
+    { keywords: ['hòa bình', 'hoa binh'], city: 'Hòa Bình', label: 'Hòa Bình' },
+    { keywords: ['hà nam', 'ha nam', 'phủ lý'], city: 'Hà Nam', label: 'Hà Nam' },
+    { keywords: ['ninh bình', 'ninh binh'], city: 'Ninh Bình', label: 'Ninh Bình' },
+    { keywords: ['hà tĩnh', 'ha tinh'], city: 'Hà Tĩnh', label: 'Hà Tĩnh' },
+    { keywords: ['quảng bình', 'quang binh', 'đồng hới'], city: 'Quảng Bình', label: 'Quảng Bình' },
+    { keywords: ['quảng trị', 'quang tri'], city: 'Quảng Trị', label: 'Quảng Trị' },
+    { keywords: ['quảng nam', 'quang nam', 'hội an'], city: 'Quảng Nam', label: 'Quảng Nam' },
+    { keywords: ['quảng ngãi', 'quang ngai'], city: 'Quảng Ngãi', label: 'Quảng Ngãi' },
+    { keywords: ['phú yên', 'phu yen', 'tuy hòa'], city: 'Phú Yên', label: 'Phú Yên' },
+    { keywords: ['ninh thuận', 'ninh thuan', 'phan rang'], city: 'Ninh Thuận', label: 'Ninh Thuận' },
+    { keywords: ['bình thuận', 'binh thuan', 'phan thiết'], city: 'Bình Thuận', label: 'Bình Thuận' },
+    { keywords: ['kon tum', 'kontum'], city: 'Kon Tum', label: 'Kon Tum' },
+    { keywords: ['gia lai', 'pleiku'], city: 'Gia Lai', label: 'Gia Lai' },
+    { keywords: ['đắk nông', 'dak nong'], city: 'Đắk Nông', label: 'Đắk Nông' },
+    { keywords: ['tây ninh', 'tay ninh'], city: 'Tây Ninh', label: 'Tây Ninh' },
+    { keywords: ['bình phước', 'binh phuoc'], city: 'Bình Phước', label: 'Bình Phước' },
+    { keywords: ['long an', 'tân an'], city: 'Long An', label: 'Long An' },
+    { keywords: ['tiền giang', 'mỹ tho'], city: 'Tiền Giang', label: 'Tiền Giang' },
+    { keywords: ['bến tre', 'ben tre'], city: 'Bến Tre', label: 'Bến Tre' },
+    { keywords: ['trà vinh', 'tra vinh'], city: 'Trà Vinh', label: 'Trà Vinh' },
+    { keywords: ['vĩnh long', 'vinh long'], city: 'Vĩnh Long', label: 'Vĩnh Long' },
+    { keywords: ['đồng tháp', 'dong thap', 'cao lãnh'], city: 'Đồng Tháp', label: 'Đồng Tháp' },
+    { keywords: ['an giang', 'long xuyên', 'châu đốc'], city: 'An Giang', label: 'An Giang' },
+    { keywords: ['kiên giang', 'rạch giá', 'phú quốc'], city: 'Kiên Giang', label: 'Kiên Giang' },
+    { keywords: ['hậu giang', 'vị thanh'], city: 'Hậu Giang', label: 'Hậu Giang' },
+    { keywords: ['sóc trăng', 'soc trang'], city: 'Sóc Trăng', label: 'Sóc Trăng' },
+    { keywords: ['bạc liêu', 'bac lieu'], city: 'Bạc Liêu', label: 'Bạc Liêu' },
+    { keywords: ['cà mau', 'ca mau'], city: 'Cà Mau', label: 'Cà Mau' },
+    { keywords: ['tuyên quang', 'tuyen quang'], city: 'Tuyên Quang', label: 'Tuyên Quang' },
+    { keywords: ['hà giang', 'ha giang'], city: 'Hà Giang', label: 'Hà Giang' },
+    { keywords: ['cao bằng', 'cao bang'], city: 'Cao Bằng', label: 'Cao Bằng' },
+    { keywords: ['bắc kạn', 'bac kan'], city: 'Bắc Kạn', label: 'Bắc Kạn' },
+    { keywords: ['lạng sơn', 'lang son'], city: 'Lạng Sơn', label: 'Lạng Sơn' },
+    { keywords: ['yên bái', 'yen bai'], city: 'Yên Bái', label: 'Yên Bái' },
+    { keywords: ['sơn la', 'son la', 'mộc châu'], city: 'Sơn La', label: 'Sơn La' },
+    { keywords: ['điện biên', 'dien bien'], city: 'Điện Biên', label: 'Điện Biên' },
+    { keywords: ['lai châu', 'lai chau'], city: 'Lai Châu', label: 'Lai Châu' }
+  ];
+
+  for (const prov of VIETNAM_PROVINCES) {
+    if (prov.keywords.some(k => raw.includes(k) || normalized.includes(k))) {
+      filters.city = prov.city;
+      classification.preferred.push(`Địa điểm: ${prov.label}`);
+      break;
+    }
   }
 
   // 2. District & Location Shorthand

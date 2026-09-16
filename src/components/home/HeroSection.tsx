@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, ArrowRight, ShieldCheck, CloudRain, Car, Zap } from 'lucide-react';
+import { Sparkles, ArrowRight, ShieldCheck, CloudRain, Car, Zap, Mic, MicOff } from 'lucide-react';
 import { useFirstLoadReveal } from '../../hooks/useFirstLoadReveal';
+import { VoiceRecognitionService } from '../../services/voiceRecognitionService';
 
 interface HeroSectionProps {
   onSearch: (query?: string) => void;
 }
 
 const quickSuggestions = [
+  { label: 'căn 2 phòng ở Thái Nguyên tầm 8 củ', query: 'căn 2 phòng ở Thái Nguyên tầm 8 củ có ô tô' },
   { label: 'căn 2 phòng HN tầm 18 củ có ô tô', query: 'căn 2 phòng ở HN tầm 18 củ có ô tô' },
   { label: '2pn tây hồ dưới 20 củ, tầng cao', query: '2pn tây hồ dưới 20 củ, tầng cao' },
   { label: 'vợ chồng 1 con, cầu giấy, yên tĩnh', query: 'vợ chồng 1 con, cầu giấy, yên tĩnh' },
@@ -64,11 +66,40 @@ const badgeItemVariants = {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
   const [aiPromptInput, setAiPromptInput] = useState('');
+  const [isListening, setIsListening] = useState(false);
   const phase = useFirstLoadReveal();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSearch(aiPromptInput.trim() || undefined);
+  };
+
+  const toggleVoice = () => {
+    if (isListening) {
+      VoiceRecognitionService.stop();
+      setIsListening(false);
+      return;
+    }
+
+    const started = VoiceRecognitionService.start({
+      lang: 'vi-VN',
+      onStart: () => setIsListening(true),
+      onEnd: () => setIsListening(false),
+      onResult: (transcript, isFinal) => {
+        setAiPromptInput(transcript);
+        if (isFinal) {
+          onSearch(transcript);
+        }
+      },
+      onError: (err) => {
+        console.warn('Voice error:', err);
+        setIsListening(false);
+      }
+    });
+
+    if (!started) {
+      alert('Trình duyệt chưa hỗ trợ Web Speech API hoặc bạn chưa cấp quyền micro.');
+    }
   };
 
   return (
@@ -103,9 +134,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
           <span>HAVEN — Không Gian Sống An Yên</span>
         </div>
         <div className="flex items-center gap-3 text-xs font-mono text-slate-200 [data-theme='light']_:text-slate-800 font-semibold">
-          <span>Hà Nội · TP.HCM · Đà Nẵng</span>
+          <span>63 Tỉnh Thành Toàn Quốc</span>
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 [data-theme='light']_:bg-emerald-600 animate-pulse" />
-          <span className="text-emerald-300 [data-theme='light']_:text-emerald-700 font-bold">Haven AI Phân Tích Môi Trường</span>
+          <span className="text-emerald-300 [data-theme='light']_:text-emerald-700 font-bold">Haven AI Tìm Bằng Giọng Nói</span>
         </div>
       </motion.div>
 
@@ -127,7 +158,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
             </span>
           </motion.h1>
           <motion.p variants={lineVariants} className="text-slate-100 [data-theme='light']_:text-slate-800 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed mt-4 font-sans font-medium">
-            Không chỉ là 4 bức tường. HAVEN thấu hiểu phong cách sống và đánh giá toàn diện nguy cơ ngập úng, độ ồn, chỗ đỗ xe ô tô và nguồn điện dự phòng.
+            Không chỉ là 4 bức tường. HAVEN thấu hiểu phong cách sống và đánh giá toàn diện nguy cơ ngập úng, độ ồn, chỗ đỗ xe ô tô và nguồn điện dự phòng trên khắp 63 tỉnh thành.
           </motion.p>
         </motion.div>
 
@@ -143,17 +174,30 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
             {/* Dual Orbiting Clockwise Light Beams (Symmetrical & Non-Clipping) */}
             <div className="animate-spin-beam bg-[conic-gradient(from_0deg,rgba(52,211,153,0.12)_0deg,rgba(52,211,153,0.35)_35deg,rgba(52,211,153,0.85)_70deg,#34d399_90deg,rgba(52,211,153,0.85)_110deg,rgba(52,211,153,0.35)_145deg,rgba(52,211,153,0.12)_180deg,rgba(52,211,153,0.35)_215deg,rgba(52,211,153,0.85)_250deg,#34d399_270deg,rgba(52,211,153,0.85)_290deg,rgba(52,211,153,0.35)_325deg,rgba(52,211,153,0.12)_360deg)] pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
 
-            <div className="relative z-10 flex items-center rounded-[14px] bg-slate-950/90 [data-theme='light']_:bg-white/95 backdrop-blur-md p-1.5 sm:p-2">
-              <div className="pl-3 pr-2 text-emerald-400 [data-theme='light']_:text-emerald-600">
+            <div className="relative z-10 flex items-center rounded-[14px] bg-slate-950/90 [data-theme='light']_:bg-white/95 backdrop-blur-md p-1.5 sm:p-2 gap-1.5">
+              <div className="pl-3 pr-1 text-emerald-400 [data-theme='light']_:text-emerald-600">
                 <Sparkles className="w-5 h-5 animate-pulse" />
               </div>
               <input
                 type="text"
                 value={aiPromptInput}
                 onChange={(e) => setAiPromptInput(e.target.value)}
-                placeholder='Nhập nhu cầu của bạn e.g. "căn 2 phòng ở HN tầm 18 củ có ô tô, tầng cao"'
-                className="w-full bg-transparent border-none text-white [data-theme='light']_:text-slate-900 placeholder:text-slate-400 [data-theme='light']_:placeholder:text-slate-500 text-sm md:text-base focus:outline-none focus:ring-0 pr-3 py-2 sm:py-2.5 font-sans font-medium"
+                placeholder='Nói hoặc nhập: "căn 2 phòng ở Thái Nguyên tầm 8 củ có ô tô"'
+                className="w-full bg-transparent border-none text-white [data-theme='light']_:text-slate-900 placeholder:text-slate-400 [data-theme='light']_:placeholder:text-slate-500 text-sm md:text-base focus:outline-none focus:ring-0 pr-2 py-2 sm:py-2.5 font-sans font-medium"
               />
+              {/* Mic Voice Search Button */}
+              <button
+                type="button"
+                onClick={toggleVoice}
+                title={isListening ? "Đang lắng nghe... Bấm để dừng" : "Bấm để tìm kiếm bằng giọng nói tiếng Việt"}
+                className={`p-2.5 rounded-xl transition-all flex items-center justify-center shrink-0 ${
+                  isListening
+                    ? 'bg-rose-500 text-white animate-pulse shadow-lg shadow-rose-500/30 ring-2 ring-rose-400'
+                    : 'bg-slate-850 [data-theme="light"]_:bg-slate-100 text-slate-300 [data-theme="light"]_:text-slate-700 hover:text-emerald-400 hover:bg-slate-800'
+                }`}
+              >
+                {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+              </button>
               <button
                 type="submit"
                 className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 [data-theme='light']_:bg-emerald-600 [data-theme='light']_:hover:bg-emerald-500 text-slate-950 [data-theme='light']_:text-white font-bold text-sm transition-all duration-200 shadow-lg shadow-emerald-500/25 shrink-0 hover:scale-[1.02] active:scale-[0.98]"

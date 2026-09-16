@@ -545,35 +545,29 @@ export async function askGeminiRag(
   }
 
   const apiKey = getGeminiApiKey();
+  const groqKey = getGroqApiKey();
   const parsed = parseNaturalLanguageQuery(userQuery);
 
-  // If greeting or smalltalk, respond immediately without forcing apartment recommendations
-  if (guardrailEval.intent === 'GREETING_CHITCHAT' || guardrailEval.intent === 'GRATITUDE_CLOSURE') {
-    const responseText = generateNaturalResponse(userQuery, roleMode, [], guardrailEval);
-    return {
-      answer: responseText,
-      sources: [],
-      modelUsed: 'HAVEN AI Natural Intelligence',
-      usedRealApi: false,
-      guardrailStatus: guardrailEval,
-      suggestedAction: undefined
-    };
-  }
+  const retrievedSources = (guardrailEval.intent === 'GREETING_CHITCHAT' || guardrailEval.intent === 'GRATITUDE_CLOSURE')
+    ? []
+    : await retrieveRagKnowledge(userQuery, 4, apiKey, roleMode);
 
-  const retrievedSources = await retrieveRagKnowledge(userQuery, 4, apiKey, roleMode);
-
-  const contextSnippet = retrievedSources
-    .map((src, i) => `[TRÍ THỨC #${i + 1}] (${src.chunk.title})\n${src.chunk.content}`)
-    .join('\n\n');
+  const contextSnippet = retrievedSources.length > 0
+    ? retrievedSources
+        .map((src, i) => `[TRÍ THỨC #${i + 1}] (${src.chunk.title})\n${src.chunk.content}`)
+        .join('\n\n')
+    : 'Không cần tham chiếu căn hộ cho câu hỏi xã giao này.';
 
   const nowTime = new Date();
   const timeContext = `Thời gian thực hiện tại: ${nowTime.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', hour12: false })} ngày ${nowTime.toLocaleDateString('vi-VN')} (Việt Nam, UTC+7).`;
   const systemInstruction = roleMode === 'admin'
     ? `Bạn là Haven AI Operations Copilot — Trợ lý vận hành BĐS HAVEN. ${timeContext} Trả lời ngắn gọn, chuẩn xác bằng tiếng Việt.
 HỖ TRỢ VẬN HÀNH: Bạn có quyền truy cập dữ liệu quản trị sàn (công nợ quá hạn, hợp đồng thuê cần tái ký, tỷ lệ lấp đầy, báo cáo doanh thu). Trả lời súc tích, tập trung vào số liệu hành động.`
-    : `Bạn là Haven AI — Trợ lý tư vấn không gian sống HAVEN. ${timeContext} Trả lời thân thiện, lịch sự bằng tiếng Việt chuẩn.
+    : `Bạn là Haven AI — Trợ lý tư vấn không gian sống và người bạn đồng hành HAVEN. ${timeContext} Trả lời thân thiện, lịch sự, duyên dáng bằng tiếng Việt chuẩn.
 VỀ GIAO TIẾP & TRÒ CHUYỆN ĐỜI THƯỜNG:
-- Khi người dùng hỏi những câu hỏi xã giao, đời sống thường nhật (ví dụ: chào hỏi, bạn tên gì, bạn làm nghề gì, sống ở đâu, thời tiết, mưa lạnh ăn gì, tâm sự, buồn vui...): Hãy trả lời một cách tự nhiên, hóm hỉnh, duyên dáng và ấm áp như một người bạn tinh tế am hiểu cuộc sống và ẩm thực. Tuyệt đối không máy móc ép người dùng phải thuê nhà hay báo giá căn hộ ngay lập tức khi họ chỉ đang hỏi chuyện đời thường. Trò chuyện tự nhiên trước, rồi nếu phù hợp mới khéo léo kết nối nhẹ nhàng đến không gian sống ấm cúng.
+- Khi người dùng hỏi bất kỳ câu hỏi xã giao, đời sống thường nhật (ví dụ: chào hỏi, bạn tên gì, bạn làm nghề gì, sống ở đâu, thời tiết, mưa lạnh ăn gì, tâm sự, buồn vui, sở thích...): Hãy trả lời một cách tự nhiên, hóm hỉnh, ấm áp và cực kỳ cuốn hút như một người bạn tri kỷ tinh tế am hiểu cuộc sống và ẩm thực Việt Nam.
+- Tuyệt đối không máy móc ép người dùng phải thuê nhà hay báo giá căn hộ ngay lập tức khi họ chỉ đang hỏi chuyện đời thường. Hãy trò chuyện thân tình trước, rồi nếu rất tự nhiên mới khéo léo gợi mở nhẹ nhàng về một không gian sống ấm cúng.
+- Khi người dùng hỏi về căn hộ hoặc tìm nhà (ở bất kỳ tỉnh thành nào trong 63 tỉnh thành Việt Nam, ví dụ: Thái Nguyên, Hà Nội, TP.HCM, Đà Nẵng, Bắc Ninh...): Hãy tư vấn nhiệt tình, nêu rõ thông tin căn hộ, mức giá, tiện ích và các điểm kiểm định.
 VỀ THỜI GIAN: Nếu người dùng hỏi giờ, chỉ trả lời giờ và phút (ví dụ "14:35"), không cần giây.
 NGUYÊN TẮC PHÂN QUYỀN & BẢO MẬT DỮ LIỆU (BẮT BUỘC):
 1. BẢO VỆ CHỦ NHÀ: Tuyệt đối KHÔNG tiết lộ số điện thoại riêng, số tài khoản ngân hàng, căn cước CCCD, hay doanh thu/lợi nhuận của chủ nhà. Chỉ cung cấp thông tin căn hộ công khai, tiện ích và hướng dẫn liên hệ qua ứng dụng HAVEN.
@@ -581,8 +575,7 @@ NGUYÊN TẮC PHÂN QUYỀN & BẢO MẬT DỮ LIỆU (BẮT BUỘC):
 3. BẢO VỆ DỮ LIỆU SÀN: Tuyệt đối KHÔNG xuất toàn bộ cơ sở dữ liệu (dump database), không tiết lộ thông tin riêng tư của người tạo/quản trị ứng dụng.
 4. NỘI DUNG TƯ VẤN: Tập trung vào tiêu chuẩn an toàn PCCC QCVN 06:2022/BXD, rủi ro ngập úng thực địa, công thức chi phí minh bạch True Cost và chính sách bảo chứng cọc HAVEN Escrow.`;
 
-  // 2. Try Calling Groq API first (Highest priority, ultra-fast <300ms)
-  const groqKey = getGroqApiKey();
+  // 1. Try Calling Groq API first (Highest priority, ultra-fast <300ms)
   if (groqKey && (groqKey.startsWith('gsk_') || groqKey.length > 20)) {
     try {
       const groqMessages = [
@@ -600,7 +593,7 @@ NGUYÊN TẮC PHÂN QUYỀN & BẢO MẬT DỮ LIỆU (BẮT BUỘC):
         body: JSON.stringify({
           model: 'llama-3.3-70b-versatile',
           messages: groqMessages,
-          temperature: 0.3,
+          temperature: (guardrailEval.intent === 'GREETING_CHITCHAT' || guardrailEval.intent === 'GRATITUDE_CLOSURE') ? 0.7 : 0.3,
           max_tokens: 1024
         })
       });
@@ -625,6 +618,19 @@ NGUYÊN TẮC PHÂN QUYỀN & BẢO MẬT DỮ LIỆU (BẮT BUỘC):
     } catch (groqErr) {
       console.warn('Groq API call encountered error, proceeding to Gemini/fallback:', groqErr);
     }
+  }
+
+  // If greeting or smalltalk and no Groq key, respond with intelligent natural template
+  if (guardrailEval.intent === 'GREETING_CHITCHAT' || guardrailEval.intent === 'GRATITUDE_CLOSURE') {
+    const responseText = generateNaturalResponse(userQuery, roleMode, [], guardrailEval);
+    return {
+      answer: responseText,
+      sources: [],
+      modelUsed: 'HAVEN AI Natural Intelligence',
+      usedRealApi: false,
+      guardrailStatus: guardrailEval,
+      suggestedAction: undefined
+    };
   }
 
   // 3. If standard Google Gemini API Key is available, try calling Google Gemini API

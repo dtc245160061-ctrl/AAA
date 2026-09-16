@@ -7,7 +7,9 @@ import {
   Bot, 
   Filter, 
   Loader2,
-  Zap
+  Zap,
+  Mic,
+  MicOff
 } from 'lucide-react';
 import type { ApartmentUnit } from '../types/apartment';
 import { 
@@ -15,6 +17,7 @@ import {
   getGroqApiKey, 
   type RagRetrievalResult 
 } from '../services/geminiRagService';
+import { VoiceRecognitionService } from '../services/voiceRecognitionService';
 
 interface Message {
   id: string;
@@ -50,8 +53,37 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isListening, setIsListening] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
+
+  const toggleVoiceChat = () => {
+    if (isListening) {
+      VoiceRecognitionService.stop();
+      setIsListening(false);
+      return;
+    }
+
+    const started = VoiceRecognitionService.start({
+      lang: 'vi-VN',
+      onStart: () => setIsListening(true),
+      onEnd: () => setIsListening(false),
+      onResult: (transcript, isFinal) => {
+        setInputValue(transcript);
+        if (isFinal) {
+          handleSend(transcript);
+        }
+      },
+      onError: (err) => {
+        console.warn('Voice chat error:', err);
+        setIsListening(false);
+      }
+    });
+
+    if (!started) {
+      alert('Trình duyệt chưa hỗ trợ Web Speech API hoặc chưa cấp quyền micro.');
+    }
+  };
 
   // Auto-scroll ONLY inside chat box (never scroll parent page / window)
   useEffect(() => {
@@ -255,16 +287,29 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
           ))}
         </div>
 
-        {/* Chat Input Bar */}
-        <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className="p-2.5 border-t border-slate-800/80 [data-theme='light']_:border-slate-200 flex items-center gap-2 bg-slate-950 [data-theme='light']_:bg-white shrink-0">
+        {/* Chat Input Bar with Voice Mic Button */}
+        <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className="p-2.5 border-t border-slate-800/80 [data-theme='light']_:border-slate-200 flex items-center gap-1.5 bg-slate-950 [data-theme='light']_:bg-white shrink-0">
           <input
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             disabled={isLoading}
-            placeholder="Nhập câu hỏi hoặc nhu cầu..."
+            placeholder={isListening ? "Đang lắng nghe bạn nói..." : "Nhập câu hỏi hoặc nói bằng mic..."}
             className="flex-1 px-3 py-2 rounded-xl bg-slate-900 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-200 text-slate-100 [data-theme='light']_:text-slate-900 placeholder:text-slate-500 text-xs focus:outline-none focus:border-emerald-500/50 disabled:opacity-50"
           />
+          {/* Voice Microphone Button */}
+          <button
+            type="button"
+            onClick={toggleVoiceChat}
+            title={isListening ? "Đang lắng nghe... Bấm để dừng" : "Nói bằng giọng nói"}
+            className={`w-8 h-8 flex items-center justify-center rounded-xl transition-all shrink-0 ${
+              isListening
+                ? 'bg-rose-500 text-white animate-pulse shadow-md shadow-rose-500/30'
+                : 'bg-slate-800 hover:bg-slate-700 [data-theme="light"]_:bg-slate-200 [data-theme="light"]_:hover:bg-slate-300 text-slate-300 [data-theme="light"]_:text-slate-700'
+            }`}
+          >
+            {isListening ? <MicOff className="w-3.5 h-3.5" /> : <Mic className="w-3.5 h-3.5" />}
+          </button>
           <button
             type="submit"
             disabled={isLoading || !inputValue.trim()}

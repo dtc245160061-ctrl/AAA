@@ -14460,7 +14460,5614 @@ export const MOCK_UNITS: ApartmentUnit[] = [
       "waterUsageLiters": 124,
       "securityAlarmDisarmed": true
     }
+  },
+{
+  "id": "VN-9001",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Long Xuyên, An Giang",
+  "floor": 8,
+  "unitNumber": "0803",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "An Giang",
+  "district": "Long Xuyên",
+  "address": "Khu đô thị Golden City Long Xuyên, Đường Nguyễn Hoàng, TP. Long Xuyên",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Long Xuyên",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Long Xuyên, kết nối nhanh toàn bộ tiện ích của tỉnh An Giang",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Long Xuyên, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
   }
+},
+{
+  "id": "VN-9002",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Vũng Tàu, Bà Rịa - Vũng Tàu",
+  "floor": 8,
+  "unitNumber": "0804",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Bà Rịa - Vũng Tàu",
+  "district": "Vũng Tàu",
+  "address": "Chung cư Gateway Vũng Tàu, Đường 3 Tháng 2, Phường Nguyễn An Ninh, TP. Vũng Tàu",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Vũng Tàu",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Vũng Tàu, kết nối nhanh toàn bộ tiện ích của tỉnh Bà Rịa - Vũng Tàu",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Vũng Tàu, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9003",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Bắc Giang, Bắc Giang",
+  "floor": 8,
+  "unitNumber": "0805",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Bắc Giang",
+  "district": "Bắc Giang",
+  "address": "Tòa nhà Saigontel Central Park, Phường Ngô Quyền, TP. Bắc Giang",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Bắc Giang",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Bắc Giang, kết nối nhanh toàn bộ tiện ích của tỉnh Bắc Giang",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Bắc Giang, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9004",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Bắc Kạn, Bắc Kạn",
+  "floor": 8,
+  "unitNumber": "0806",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Bắc Kạn",
+  "district": "Bắc Kạn",
+  "address": "Khu phức hợp Bắc Kạn Riverview, Phường Sông Cầu, TP. Bắc Kạn",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Bắc Kạn",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Bắc Kạn, kết nối nhanh toàn bộ tiện ích của tỉnh Bắc Kạn",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Bắc Kạn, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9005",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Bạc Liêu, Bạc Liêu",
+  "floor": 8,
+  "unitNumber": "0807",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Bạc Liêu",
+  "district": "Bạc Liêu",
+  "address": "Khu dân cư Tràng An, Phường 7, TP. Bạc Liêu",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Bạc Liêu",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Bạc Liêu, kết nối nhanh toàn bộ tiện ích của tỉnh Bạc Liêu",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Bạc Liêu, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9006",
+  "name": "Căn Hộ Vinhomes Bắc Ninh — Ngã 6 Suối Hoa, TP. Bắc Ninh",
+  "floor": 8,
+  "unitNumber": "0808",
+  "type": "Deluxe Apartment",
+  "sqm": 75,
+  "bedrooms": 2,
+  "bathrooms": 2,
+  "status": "vacant",
+  "monthlyRentUSD": 449,
+  "monthlyRentVND": 11000000,
+  "city": "Bắc Ninh",
+  "district": "Bắc Ninh",
+  "address": "Chung cư Vinhomes Bắc Ninh, Ngã 6 Đường Trần Hưng Đạo, Phường Suối Hoa, TP. Bắc Ninh",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Bắc Ninh",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 11000000,
+    "estimatedElectricityVND": 880000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 750000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 13800000,
+    "depositMonths": 1,
+    "depositVND": 11000000,
+    "moveInTotalRequiredVND": 24800000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Bắc Ninh, kết nối nhanh toàn bộ tiện ích của tỉnh Bắc Ninh",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Bắc Ninh, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9007",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Bến Tre, Bến Tre",
+  "floor": 8,
+  "unitNumber": "0809",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Bến Tre",
+  "district": "Bến Tre",
+  "address": "Khu đô thị Việt Sinh An Bình, Phường Bến Tre, TP. Bến Tre",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Bến Tre",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Bến Tre, kết nối nhanh toàn bộ tiện ích của tỉnh Bến Tre",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Bến Tre, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9008",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Quy Nhơn, Bình Định",
+  "floor": 8,
+  "unitNumber": "0810",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Bình Định",
+  "district": "Quy Nhơn",
+  "address": "Tổ hợp FLC SeaTower Quy Nhơn, Đường An Dương Vương, TP. Quy Nhơn",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Quy Nhơn",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Quy Nhơn, kết nối nhanh toàn bộ tiện ích của tỉnh Bình Định",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Quy Nhơn, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9009",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Thủ Dầu Một, Bình Dương",
+  "floor": 8,
+  "unitNumber": "0811",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Bình Dương",
+  "district": "Thủ Dầu Một",
+  "address": "Căn hộ Sora Gardens II, Khu đô thị Tokyu Bình Dương, Phường Hòa Phú, TP. Thủ Dầu Một",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Thủ Dầu Một",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Thủ Dầu Một, kết nối nhanh toàn bộ tiện ích của tỉnh Bình Dương",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Thủ Dầu Một, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9010",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Đồng Xoài, Bình Phước",
+  "floor": 8,
+  "unitNumber": "0812",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Bình Phước",
+  "district": "Đồng Xoài",
+  "address": "Khu đô thị Cát Tường Phú Hưng, Tiến Hưng, TP. Đồng Xoài",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Đồng Xoài",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Đồng Xoài, kết nối nhanh toàn bộ tiện ích của tỉnh Bình Phước",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Đồng Xoài, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9011",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Phan Thiết, Bình Thuận",
+  "floor": 8,
+  "unitNumber": "0813",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Bình Thuận",
+  "district": "Phan Thiết",
+  "address": "Căn hộ Ocean Dunes Resort, Đường Tôn Đức Thắng, TP. Phan Thiết",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Phan Thiết",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Phan Thiết, kết nối nhanh toàn bộ tiện ích của tỉnh Bình Thuận",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Phan Thiết, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9012",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Cà Mau, Cà Mau",
+  "floor": 8,
+  "unitNumber": "0814",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Cà Mau",
+  "district": "Cà Mau",
+  "address": "Khu đô thị Hoàng Tâm, Xã Lý Văn Lâm, TP. Cà Mau",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Cà Mau",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Cà Mau, kết nối nhanh toàn bộ tiện ích của tỉnh Cà Mau",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Cà Mau, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9013",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Ninh Kiều, Cần Thơ",
+  "floor": 8,
+  "unitNumber": "0815",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Cần Thơ",
+  "district": "Ninh Kiều",
+  "address": "Tổ hợp Vincom Shophouse & Căn hộ Cao cấp Xuân Khánh, Đường 30 Tháng 4, Q. Ninh Kiều",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Ninh Kiều",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Ninh Kiều, kết nối nhanh toàn bộ tiện ích của tỉnh Cần Thơ",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Ninh Kiều, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9014",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Cao Bằng, Cao Bằng",
+  "floor": 8,
+  "unitNumber": "0816",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Cao Bằng",
+  "district": "Cao Bằng",
+  "address": "Khu dân cư Sông Hiến Park, Phường Sông Hiến, TP. Cao Bằng",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Cao Bằng",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Cao Bằng, kết nối nhanh toàn bộ tiện ích của tỉnh Cao Bằng",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Cao Bằng, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9015",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Hải Châu, Đà Nẵng",
+  "floor": 8,
+  "unitNumber": "0817",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Đà Nẵng",
+  "district": "Hải Châu",
+  "address": "Haven Horizon Bay, Đường Bạch Đằng, Quận Hải Châu, TP. Đà Nẵng",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Hải Châu",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Hải Châu, kết nối nhanh toàn bộ tiện ích của tỉnh Đà Nẵng",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Hải Châu, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9016",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Buôn Ma Thuột, Đắk Lắk",
+  "floor": 8,
+  "unitNumber": "0818",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Đắk Lắk",
+  "district": "Buôn Ma Thuột",
+  "address": "Khu đô thị EcoCity Premia, Đường Nguyễn Chí Thanh, TP. Buôn Ma Thuột",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Buôn Ma Thuột",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Buôn Ma Thuột, kết nối nhanh toàn bộ tiện ích của tỉnh Đắk Lắk",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Buôn Ma Thuột, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9017",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Gia Nghĩa, Đắk Nông",
+  "floor": 8,
+  "unitNumber": "0819",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Đắk Nông",
+  "district": "Gia Nghĩa",
+  "address": "Khu phức hợp Green Valley Đắk Nông, Phường Nghĩa Đức, TP. Gia Nghĩa",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Gia Nghĩa",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Gia Nghĩa, kết nối nhanh toàn bộ tiện ích của tỉnh Đắk Nông",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Gia Nghĩa, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9018",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Điện Biên Phủ, Điện Biên",
+  "floor": 8,
+  "unitNumber": "0820",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Điện Biên",
+  "district": "Điện Biên Phủ",
+  "address": "Chung cư Mường Thanh Luxury Điện Biên, Phường Him Lam, TP. Điện Biên Phủ",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Điện Biên Phủ",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Điện Biên Phủ, kết nối nhanh toàn bộ tiện ích của tỉnh Điện Biên",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Điện Biên Phủ, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9019",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Biên Hòa, Đồng Nai",
+  "floor": 8,
+  "unitNumber": "0801",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Đồng Nai",
+  "district": "Biên Hòa",
+  "address": "Topaz Twins Biên Hòa, Đường Võ Thị Sáu, Phường Thống Nhất, TP. Biên Hòa",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Biên Hòa",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Biên Hòa, kết nối nhanh toàn bộ tiện ích của tỉnh Đồng Nai",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Biên Hòa, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9020",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Cao Lãnh, Đồng Tháp",
+  "floor": 8,
+  "unitNumber": "0802",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Đồng Tháp",
+  "district": "Cao Lãnh",
+  "address": "Khu dân cư Vincom Plaza Cao Lãnh, Phường 1, TP. Cao Lãnh",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Cao Lãnh",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Cao Lãnh, kết nối nhanh toàn bộ tiện ích của tỉnh Đồng Tháp",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Cao Lãnh, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9021",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Pleiku, Gia Lai",
+  "floor": 8,
+  "unitNumber": "0803",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Gia Lai",
+  "district": "Pleiku",
+  "address": "Khu phức hợp FLC Pleiku Tower, Phường Hội Thương, TP. Pleiku",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Pleiku",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Pleiku, kết nối nhanh toàn bộ tiện ích của tỉnh Gia Lai",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Pleiku, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9022",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Hà Giang, Hà Giang",
+  "floor": 8,
+  "unitNumber": "0804",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Hà Giang",
+  "district": "Hà Giang",
+  "address": "Khu căn hộ sinh thái Lô Gô Riverside, Phường Trần Phú, TP. Hà Giang",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Hà Giang",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Hà Giang, kết nối nhanh toàn bộ tiện ích của tỉnh Hà Giang",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Hà Giang, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9023",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Phủ Lý, Hà Nam",
+  "floor": 8,
+  "unitNumber": "0805",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Hà Nam",
+  "district": "Phủ Lý",
+  "address": "Chung cư Mường Thanh Grand Hà Nam, Đường Lê Hoàn, Phường Hai Bà Trưng, TP. Phủ Lý",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Phủ Lý",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Phủ Lý, kết nối nhanh toàn bộ tiện ích của tỉnh Hà Nam",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Phủ Lý, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9024",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Ba Đình, Hà Nội",
+  "floor": 8,
+  "unitNumber": "0806",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Hà Nội",
+  "district": "Ba Đình",
+  "address": "Tòa tháp Haven Ba Đình Skyview, Liễu Giai, Quận Ba Đình, Hà Nội",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Ba Đình",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Ba Đình, kết nối nhanh toàn bộ tiện ích của tỉnh Hà Nội",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Ba Đình, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9025",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Hà Tĩnh, Hà Tĩnh",
+  "floor": 8,
+  "unitNumber": "0807",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Hà Tĩnh",
+  "district": "Hà Tĩnh",
+  "address": "Tổ hợp Vinhomes New Center Hà Tĩnh, Đường Hàm Nghi, TP. Hà Tĩnh",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Hà Tĩnh",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Hà Tĩnh, kết nối nhanh toàn bộ tiện ích của tỉnh Hà Tĩnh",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Hà Tĩnh, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9026",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Hải Dương, Hải Dương",
+  "floor": 8,
+  "unitNumber": "0808",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 306,
+  "monthlyRentVND": 7500000,
+  "city": "Hải Dương",
+  "district": "Hải Dương",
+  "address": "Tổ hợp Căn hộ Ecorivers Hải Dương, Phường Hải Tân, TP. Hải Dương",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Hải Dương",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 7500000,
+    "estimatedElectricityVND": 600000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 9920000,
+    "depositMonths": 1,
+    "depositVND": 7500000,
+    "moveInTotalRequiredVND": 17420000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Hải Dương, kết nối nhanh toàn bộ tiện ích của tỉnh Hải Dương",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Hải Dương, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9027",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Hồng Bàng, Hải Phòng",
+  "floor": 8,
+  "unitNumber": "0809",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Hải Phòng",
+  "district": "Hồng Bàng",
+  "address": "Vinhomes Imperia Sky Residence, Phường Thượng Lý, Quận Hồng Bàng, Hải Phòng",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Hồng Bàng",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Hồng Bàng, kết nối nhanh toàn bộ tiện ích của tỉnh Hải Phòng",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Hồng Bàng, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9028",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Vị Thanh, Hậu Giang",
+  "floor": 8,
+  "unitNumber": "0810",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Hậu Giang",
+  "district": "Vị Thanh",
+  "address": "Khu đô thị Cát Tường Western Pearl, Đường Trần Hưng Đạo, TP. Vị Thanh",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Vị Thanh",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Vị Thanh, kết nối nhanh toàn bộ tiện ích của tỉnh Hậu Giang",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Vị Thanh, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9029",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Hòa Bình, Hòa Bình",
+  "floor": 8,
+  "unitNumber": "0811",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Hòa Bình",
+  "district": "Hòa Bình",
+  "address": "Khu đô thị Dạ Hợp Riverside, Phường Tân Thịnh, TP. Hòa Bình",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Hòa Bình",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Hòa Bình, kết nối nhanh toàn bộ tiện ích của tỉnh Hòa Bình",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Hòa Bình, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9030",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Hưng Yên, Hưng Yên",
+  "floor": 8,
+  "unitNumber": "0812",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Hưng Yên",
+  "district": "Hưng Yên",
+  "address": "Khu đô thị Ecopark Grand The Island, Văn Giang / TP. Hưng Yên",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Hưng Yên",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Hưng Yên, kết nối nhanh toàn bộ tiện ích của tỉnh Hưng Yên",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Hưng Yên, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9031",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Nha Trang, Khánh Hòa",
+  "floor": 8,
+  "unitNumber": "0813",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Khánh Hòa",
+  "district": "Nha Trang",
+  "address": "Tòa tháp The Aston Luxury Residence, Đường Xóm Cồn, TP. Nha Trang",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Nha Trang",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Nha Trang, kết nối nhanh toàn bộ tiện ích của tỉnh Khánh Hòa",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Nha Trang, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9032",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Rạch Giá, Kiên Giang",
+  "floor": 8,
+  "unitNumber": "0814",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Kiên Giang",
+  "district": "Rạch Giá",
+  "address": "Khu đô thị Phú Cường Kiên Giang, Đường Tôn Đức Thắng, TP. Rạch Giá",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Rạch Giá",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Rạch Giá, kết nối nhanh toàn bộ tiện ích của tỉnh Kiên Giang",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Rạch Giá, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9033",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Kon Tum, Kon Tum",
+  "floor": 8,
+  "unitNumber": "0815",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Kon Tum",
+  "district": "Kon Tum",
+  "address": "Khu dân cư Mega City Kon Tum, Phường Quyết Thắng, TP. Kon Tum",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Kon Tum",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Kon Tum, kết nối nhanh toàn bộ tiện ích của tỉnh Kon Tum",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Kon Tum, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9034",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Lai Châu, Lai Châu",
+  "floor": 8,
+  "unitNumber": "0816",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Lai Châu",
+  "district": "Lai Châu",
+  "address": "Khu tổ hợp Green Park Lai Châu, Phường Tân Phong, TP. Lai Châu",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Lai Châu",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Lai Châu, kết nối nhanh toàn bộ tiện ích của tỉnh Lai Châu",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Lai Châu, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9035",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Đà Lạt, Lâm Đồng",
+  "floor": 8,
+  "unitNumber": "0817",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Lâm Đồng",
+  "district": "Đà Lạt",
+  "address": "Dalat Panorama Residence, Đường Trần Hưng Đạo, Phường 10, TP. Đà Lạt",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Đà Lạt",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Đà Lạt, kết nối nhanh toàn bộ tiện ích của tỉnh Lâm Đồng",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Đà Lạt, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9036",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Lạng Sơn, Lạng Sơn",
+  "floor": 8,
+  "unitNumber": "0818",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Lạng Sơn",
+  "district": "Lạng Sơn",
+  "address": "Tổ hợp Apec Diamond Park Lạng Sơn, Đường Hùng Vương, TP. Lạng Sơn",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Lạng Sơn",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Lạng Sơn, kết nối nhanh toàn bộ tiện ích của tỉnh Lạng Sơn",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Lạng Sơn, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9037",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Lào Cai, Lào Cai",
+  "floor": 8,
+  "unitNumber": "0819",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Lào Cai",
+  "district": "Lào Cai",
+  "address": "Chung cư The Manor Tower Lào Cai, Đại lộ Trần Hưng Đạo, TP. Lào Cai",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Lào Cai",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Lào Cai, kết nối nhanh toàn bộ tiện ích của tỉnh Lào Cai",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Lào Cai, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9038",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Tân An, Long An",
+  "floor": 8,
+  "unitNumber": "0820",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Long An",
+  "district": "Tân An",
+  "address": "Khu căn hộ Waterpoint Nam Long, Huyện Bến Lức / TP. Tân An",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Tân An",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Tân An, kết nối nhanh toàn bộ tiện ích của tỉnh Long An",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Tân An, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9039",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Nam Định, Nam Định",
+  "floor": 8,
+  "unitNumber": "0801",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Nam Định",
+  "district": "Nam Định",
+  "address": "Tổ hợp Nam Định Tower, Đường Điện Biên, Phường Cửa Bắc, TP. Nam Định",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Nam Định",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Nam Định, kết nối nhanh toàn bộ tiện ích của tỉnh Nam Định",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Nam Định, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9040",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Vinh, Nghệ An",
+  "floor": 8,
+  "unitNumber": "0802",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Nghệ An",
+  "district": "Vinh",
+  "address": "Căn hộ Cao cấp T&T Victoria, Số 1 Đường Quang Trung, TP. Vinh",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Vinh",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Vinh, kết nối nhanh toàn bộ tiện ích của tỉnh Nghệ An",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Vinh, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9041",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Ninh Bình, Ninh Bình",
+  "floor": 8,
+  "unitNumber": "0803",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Ninh Bình",
+  "district": "Ninh Bình",
+  "address": "Khu phức hợp Xuân Thành Heritage, Phường Ninh Khánh, TP. Ninh Bình",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Ninh Bình",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Ninh Bình, kết nối nhanh toàn bộ tiện ích của tỉnh Ninh Bình",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Ninh Bình, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9042",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Phan Rang - Tháp Chàm, Ninh Thuận",
+  "floor": 8,
+  "unitNumber": "0804",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Ninh Thuận",
+  "district": "Phan Rang - Tháp Chàm",
+  "address": "Tổ hợp SunBay Park Hotel & Resort, Đường Yên Ninh, TP. Phan Rang",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Phan Rang - Tháp Chàm",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Phan Rang - Tháp Chàm, kết nối nhanh toàn bộ tiện ích của tỉnh Ninh Thuận",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Phan Rang - Tháp Chàm, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9043",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Việt Trì, Phú Thọ",
+  "floor": 8,
+  "unitNumber": "0805",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Phú Thọ",
+  "district": "Việt Trì",
+  "address": "Chung cư Vicentra Việt Trì, Đường Hùng Vương, Phường Tiên Cát, TP. Việt Trì",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Việt Trì",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Việt Trì, kết nối nhanh toàn bộ tiện ích của tỉnh Phú Thọ",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Việt Trì, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9044",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Tuy Hòa, Phú Yên",
+  "floor": 8,
+  "unitNumber": "0806",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Phú Yên",
+  "district": "Tuy Hòa",
+  "address": "Khu căn hộ Apec Mandala Wyndham Phú Yên, Đại lộ Hùng Vương, TP. Tuy Hòa",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Tuy Hòa",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Tuy Hòa, kết nối nhanh toàn bộ tiện ích của tỉnh Phú Yên",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Tuy Hòa, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9045",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Đồng Hới, Quảng Bình",
+  "floor": 8,
+  "unitNumber": "0807",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Quảng Bình",
+  "district": "Đồng Hới",
+  "address": "Tổ hợp Regal Legend Quảng Bình, Đường Võ Nguyên Giáp, TP. Đồng Hới",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Đồng Hới",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Đồng Hới, kết nối nhanh toàn bộ tiện ích của tỉnh Quảng Bình",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Đồng Hới, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9046",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Tam Kỳ, Quảng Nam",
+  "floor": 8,
+  "unitNumber": "0808",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Quảng Nam",
+  "district": "Tam Kỳ",
+  "address": "Khu đô thị Vịnh An Hòa City, Tam Kỳ / Núi Thành",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Tam Kỳ",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Tam Kỳ, kết nối nhanh toàn bộ tiện ích của tỉnh Quảng Nam",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Tam Kỳ, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9047",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Quảng Ngãi, Quảng Ngãi",
+  "floor": 8,
+  "unitNumber": "0809",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Quảng Ngãi",
+  "district": "Quảng Ngãi",
+  "address": "Tòa nhà Phú Mỹ Center Point, Đường Hùng Vương, TP. Quảng Ngãi",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Quảng Ngãi",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Quảng Ngãi, kết nối nhanh toàn bộ tiện ích của tỉnh Quảng Ngãi",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Quảng Ngãi, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9048",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Hạ Long, Quảng Ninh",
+  "floor": 8,
+  "unitNumber": "0810",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Quảng Ninh",
+  "district": "Hạ Long",
+  "address": "The Sapphire Residence Hạ Long, Bến Đoan, Phường Hồng Gai, TP. Hạ Long",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Hạ Long",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Hạ Long, kết nối nhanh toàn bộ tiện ích của tỉnh Quảng Ninh",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Hạ Long, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9049",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Đông Hà, Quảng Trị",
+  "floor": 8,
+  "unitNumber": "0811",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Quảng Trị",
+  "district": "Đông Hà",
+  "address": "Khu phức hợp Vincom Shophouse Đông Hà, Đường Hùng Vương, TP. Đông Hà",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Đông Hà",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Đông Hà, kết nối nhanh toàn bộ tiện ích của tỉnh Quảng Trị",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Đông Hà, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9050",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Sóc Trăng, Sóc Trăng",
+  "floor": 8,
+  "unitNumber": "0812",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Sóc Trăng",
+  "district": "Sóc Trăng",
+  "address": "Khu đô thị Mekong Smart City, Phường 2, TP. Sóc Trăng",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Sóc Trăng",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Sóc Trăng, kết nối nhanh toàn bộ tiện ích của tỉnh Sóc Trăng",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Sóc Trăng, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9051",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Sơn La, Sơn La",
+  "floor": 8,
+  "unitNumber": "0813",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Sơn La",
+  "district": "Sơn La",
+  "address": "Khu căn hộ cao cấp Vincom Plaza Sơn La, Đường Giảng Lắc, TP. Sơn La",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Sơn La",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Sơn La, kết nối nhanh toàn bộ tiện ích của tỉnh Sơn La",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Sơn La, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9052",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Tây Ninh, Tây Ninh",
+  "floor": 8,
+  "unitNumber": "0814",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Tây Ninh",
+  "district": "Tây Ninh",
+  "address": "Chung cư Golden City Tây Ninh, Đường Yết Kiêu, Phường 2, TP. Tây Ninh",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Tây Ninh",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Tây Ninh, kết nối nhanh toàn bộ tiện ích của tỉnh Tây Ninh",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Tây Ninh, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9053",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Thái Bình, Thái Bình",
+  "floor": 8,
+  "unitNumber": "0815",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Thái Bình",
+  "district": "Thái Bình",
+  "address": "Chung cư Eden Garden Thái Bình, Phường Lê Hồng Phong, TP. Thái Bình",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Thái Bình",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Thái Bình, kết nối nhanh toàn bộ tiện ích của tỉnh Thái Bình",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Thái Bình, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9054",
+  "name": "Căn Hộ Tecco Elite City — Phường Thịnh Đán, TP. Thái Nguyên",
+  "floor": 8,
+  "unitNumber": "0816",
+  "type": "Deluxe Apartment",
+  "sqm": 72,
+  "bedrooms": 2,
+  "bathrooms": 2,
+  "status": "vacant",
+  "monthlyRentUSD": 327,
+  "monthlyRentVND": 8000000,
+  "city": "Thái Nguyên",
+  "district": "Thành phố Thái Nguyên",
+  "address": "Tổ hợp Tháp Đôi Tecco Elite City, Đường Quang Trung, Phường Thịnh Đán, TP. Thái Nguyên",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Thành phố Thái Nguyên",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 8000000,
+    "estimatedElectricityVND": 640000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 720000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 10530000,
+    "depositMonths": 1,
+    "depositVND": 8000000,
+    "moveInTotalRequiredVND": 18530000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Thành phố Thái Nguyên, kết nối nhanh toàn bộ tiện ích của tỉnh Thái Nguyên",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Thành phố Thái Nguyên, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9055",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Thanh Hóa, Thanh Hóa",
+  "floor": 8,
+  "unitNumber": "0817",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Thanh Hóa",
+  "district": "Thanh Hóa",
+  "address": "Tòa tháp Vinhomes Star City, Đại lộ Lê Lợi, Phường Đông Hải, TP. Thanh Hóa",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Thanh Hóa",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Thanh Hóa, kết nối nhanh toàn bộ tiện ích của tỉnh Thanh Hóa",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Thanh Hóa, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9056",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Huế, Thừa Thiên Huế",
+  "floor": 8,
+  "unitNumber": "0818",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Thừa Thiên Huế",
+  "district": "Huế",
+  "address": "The Manor Crown Huế, Đại lộ Tố Hữu, Phường Xuân Phú, TP. Huế",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Huế",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Huế, kết nối nhanh toàn bộ tiện ích của tỉnh Thừa Thiên Huế",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Huế, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9057",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Mỹ Tho, Tiền Giang",
+  "floor": 8,
+  "unitNumber": "0819",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Tiền Giang",
+  "district": "Mỹ Tho",
+  "address": "Khu căn hộ Green Pearl Mỹ Tho, Đường Hùng Vương, Phường 1, TP. Mỹ Tho",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Mỹ Tho",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Mỹ Tho, kết nối nhanh toàn bộ tiện ích của tỉnh Tiền Giang",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Mỹ Tho, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9058",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Quận 1, TP. Hồ Chí Minh",
+  "floor": 8,
+  "unitNumber": "0820",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "TP. Hồ Chí Minh",
+  "district": "Quận 1",
+  "address": "Haven The Marq Residence, Đường Nguyễn Đình Chiểu, Quận 1, TP. Hồ Chí Minh",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Quận 1",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Quận 1, kết nối nhanh toàn bộ tiện ích của tỉnh TP. Hồ Chí Minh",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Quận 1, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9059",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Trà Vinh, Trà Vinh",
+  "floor": 8,
+  "unitNumber": "0801",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Trà Vinh",
+  "district": "Trà Vinh",
+  "address": "Khu đô thị Hoàng Quân Trà Vinh, Đường Chu Văn An, Phường 4, TP. Trà Vinh",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Trà Vinh",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Trà Vinh, kết nối nhanh toàn bộ tiện ích của tỉnh Trà Vinh",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Trà Vinh, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9060",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Tuyên Quang, Tuyên Quang",
+  "floor": 8,
+  "unitNumber": "0802",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Tuyên Quang",
+  "district": "Tuyên Quang",
+  "address": "Khu dân cư Vincom Plaza Tuyên Quang, Đường Quang Trung, TP. Tuyên Quang",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Tuyên Quang",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Tuyên Quang, kết nối nhanh toàn bộ tiện ích của tỉnh Tuyên Quang",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Tuyên Quang, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9061",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Vĩnh Long, Vĩnh Long",
+  "floor": 8,
+  "unitNumber": "0803",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Vĩnh Long",
+  "district": "Vĩnh Long",
+  "address": "Tổ hợp Căn hộ Vĩnh Long Riverside, Phường 1, TP. Vĩnh Long",
+  "images": [
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Vĩnh Long",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Vĩnh Long, kết nối nhanh toàn bộ tiện ích của tỉnh Vĩnh Long",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Vĩnh Long, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9062",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Vĩnh Yên, Vĩnh Phúc",
+  "floor": 8,
+  "unitNumber": "0804",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Vĩnh Phúc",
+  "district": "Vĩnh Yên",
+  "address": "Chung cư The City Light Vĩnh Yên, Ngã 4 Nguyễn Tất Thành, TP. Vĩnh Yên",
+  "images": [
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Vĩnh Yên",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Vĩnh Yên, kết nối nhanh toàn bộ tiện ích của tỉnh Vĩnh Phúc",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Vĩnh Yên, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+},
+{
+  "id": "VN-9063",
+  "name": "Căn Hộ Cao Cấp Haven Garden — Yên Bái, Yên Bái",
+  "floor": 8,
+  "unitNumber": "0805",
+  "type": "Deluxe Apartment",
+  "sqm": 65,
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "status": "vacant",
+  "monthlyRentUSD": 245,
+  "monthlyRentVND": 6000000,
+  "city": "Yên Bái",
+  "district": "Yên Bái",
+  "address": "Khu đô thị Melinh Plaza Yên Bái, Đường Điện Biên, Phường Minh Tân, TP. Yên Bái",
+  "images": [
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200"
+  ],
+  "hasCarParking": true,
+  "hasMotorbikeParking": true,
+  "hasElevator": true,
+  "hasBackupPower": true,
+  "floodingRisk": "Low",
+  "noiseLevel": "Quiet",
+  "trafficDensity": "Moderate",
+  "petFriendly": true,
+  "furnished": true,
+  "balcony": true,
+  "airConditioning": true,
+  "washingMachine": true,
+  "kitchen": true,
+  "wifi": true,
+  "rating": 4.85,
+  "reviewCount": 28,
+  "viewType": "View Trung Tâm Yên Bái",
+  "isVerifiedPlus": true,
+  "verificationLevel": "full_ownership_verified",
+  "trueCost": {
+    "baseRentVND": 6000000,
+    "estimatedElectricityVND": 480000,
+    "waterFeeVND": 120000,
+    "internetFeeVND": 250000,
+    "managementFeeVND": 650000,
+    "parkingFeeVND": 800000,
+    "totalMonthlyEstimatedVND": 8300000,
+    "depositMonths": 1,
+    "depositVND": 6000000,
+    "moveInTotalRequiredVND": 14300000,
+    "electricityRatePerKwh": 3500
+  },
+  "pcccReport": {
+    "hasFireEscapes": true,
+    "fireEscapeCount": 2,
+    "hasAutomaticSprinklers": true,
+    "hasSmokeDetectors": true,
+    "hasFireExtinguishers": true,
+    "inspectionCertificateStatus": "certified",
+    "lastInspectionDate": "2026-04-15",
+    "emergencyExitWidthMeters": 1.4,
+    "disclaimer": "Đạt thẩm duyệt PCCC QCVN 06:2022/BXD bởi Cảnh sát PCCC & CNCH."
+  },
+  "aiInsights": {
+    "whyFit": [
+      "Vị trí đắc địa tại Yên Bái, kết nối nhanh toàn bộ tiện ích của tỉnh Yên Bái",
+      "Trang bị chỗ đỗ ô tô định danh, camera an ninh và khóa cửa thông minh IoT",
+      "Tiêu chuẩn PCCC và hệ thống điện dự phòng tự động hoạt động 24/7"
+    ],
+    "worthConsidering": [
+      "Căn hộ thuộc quỹ nhà kiểm định Verified Plus có lượng khách săn đón cao",
+      "Hợp đồng thuê tối thiểu từ 6 tháng trở lên"
+    ]
+  },
+  "environmentalData": {
+    "weatherNotes": "Không khí trong lành, đón gió tươi tự nhiên thông thoáng quanh năm.",
+    "floodNotes": "Cốt nền cao ráo kiên cố; không ngập úng khi triều cường hoặc mưa giông.",
+    "powerNotes": "Hệ thống điện lưới kép và trạm phát điện dự phòng tự động 100% tải.",
+    "trafficNotes": "Tọa lạc trên trục đường lớn tại Yên Bái, thuận tiện di chuyển."
+  },
+  "sensors": {
+    "smartLockBattery": 92,
+    "hvacStatus": "Optimal",
+    "targetTempC": 24,
+    "energyConsumptionKwh": 18.5,
+    "waterUsageLiters": 95,
+    "securityAlarmDisarmed": true
+  }
+}
 ];
 
 export const MOCK_TICKETS: MaintenanceTicket[] = [
