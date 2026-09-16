@@ -275,10 +275,13 @@
 
 /* ── Permanent Active Running Border Beam (Thicker 2.75px Dual Beams for Selected/Focal items) ── */
 .haven-beam-active {
-  position: relative;
   border-color: rgba(52, 211, 153, 0.6) !important;
   transform: translateZ(0);
   box-shadow: inset 0 0 0 1px rgba(52, 211, 153, 0.35);
+}
+
+.haven-beam-active:not(.fixed):not([style*="position: fixed"]):not([style*="position:fixed"]) {
+  position: relative;
 }
 
 .haven-beam-active::after {
@@ -318,9 +321,15 @@
 .haven-beam-emerald,
 .haven-beam-gold,
 .haven-beam-cyan {
-  position: relative;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
   transform: translateZ(0);
+}
+
+.haven-beam-white:not(.fixed):not([style*="position: fixed"]):not([style*="position:fixed"]),
+.haven-beam-emerald:not(.fixed):not([style*="position: fixed"]):not([style*="position:fixed"]),
+.haven-beam-gold:not(.fixed):not([style*="position: fixed"]):not([style*="position:fixed"]),
+.haven-beam-cyan:not(.fixed):not([style*="position: fixed"]):not([style*="position:fixed"]) {
+  position: relative;
 }
 
 /* Double-border: Static delicate inner glow border line (always present) */

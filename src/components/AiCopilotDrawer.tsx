@@ -179,7 +179,8 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 24, scale: 0.96 }}
           transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 w-[400px] max-w-[calc(100vw-2rem)] h-[540px] max-h-[calc(100vh-5rem)] rounded-3xl haven-beam-active haven-beam-emerald shadow-2xl shadow-emerald-500/25 text-left"
+          style={{ position: 'fixed', bottom: '1.25rem', right: '1.25rem', zIndex: 9999 }}
+          className="fixed !fixed bottom-5 right-5 z-[9999] w-[400px] max-w-[calc(100vw-2.5rem)] h-[500px] max-h-[calc(100vh-5.5rem)] rounded-3xl haven-beam-active haven-beam-emerald shadow-2xl shadow-emerald-500/25 text-left flex flex-col"
         >
           {/* Main Inner Window Container with 100% Solid Opaque Backdrop */}
           <div className="relative z-10 w-full h-full rounded-3xl bg-[#0B0F17] [data-theme='light']_:bg-white border border-slate-700/80 [data-theme='light']_:border-slate-200 flex flex-col justify-between overflow-hidden shadow-2xl">
