@@ -11,6 +11,7 @@ export class VoiceRecognitionService {
   private static recognition: any = null;
   private static isListening: boolean = false;
   private static silenceTimer: any = null;
+  private static lastTranscript: string = '';
 
   static isSupported(): boolean {
     if (typeof window === 'undefined') return false;
@@ -47,6 +48,7 @@ export class VoiceRecognitionService {
 
     this.recognition.onstart = () => {
       this.isListening = true;
+      this.lastTranscript = '';
       options.onStart?.();
     };
 
@@ -67,17 +69,20 @@ export class VoiceRecognitionService {
       }
 
       const displayTranscript = (currentAccumulated + ' ' + interimTranscript).trim();
+      this.lastTranscript = displayTranscript;
+
       if (displayTranscript) {
+        // Stream text immediately in real-time as words are spoken
         options.onResult(displayTranscript, false);
 
-        // Reset 2.0-second silence debounce timer before finalizing
+        // Reset silence debounce timer before finalizing
         if (this.silenceTimer) clearTimeout(this.silenceTimer);
         this.silenceTimer = setTimeout(() => {
           if (this.isListening && displayTranscript) {
             options.onResult(displayTranscript, true);
             this.stop();
           }
-        }, 2200); // 2.2s debounce buffer so it never abruptly cuts off!
+        }, 2200); // 2.2s debounce buffer
       }
     };
 
@@ -112,11 +117,12 @@ export class VoiceRecognitionService {
     }
   }
 
-  static stop() {
+  static stop(): string {
     if (this.silenceTimer) {
       clearTimeout(this.silenceTimer);
       this.silenceTimer = null;
     }
+    const captured = this.lastTranscript;
     if (this.recognition && this.isListening) {
       try {
         this.recognition.stop();
@@ -125,6 +131,11 @@ export class VoiceRecognitionService {
       }
       this.isListening = false;
     }
+    return captured;
+  }
+
+  static getCurrentTranscript(): string {
+    return this.lastTranscript;
   }
 
   static getIsListening(): boolean {

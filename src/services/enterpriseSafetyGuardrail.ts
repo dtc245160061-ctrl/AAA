@@ -262,11 +262,50 @@ export function evaluateEnterpriseSafety(query: string, roleMode: 'consumer' | '
     };
   }
 
-  // 8. General Property Search
+  // 8. Distinguish Genuine Property Search vs General Natural Conversation
+  const hasHousingIntent = 
+    normalizedNoAccents.includes('thue') || 
+    normalizedNoAccents.includes('tim phong') || 
+    normalizedNoAccents.includes('tim nha') || 
+    normalizedNoAccents.includes('can ho') || 
+    normalizedNoAccents.includes('phong tro') || 
+    normalizedNoAccents.includes('chung cu') || 
+    normalizedNoAccents.includes('can 1pn') || 
+    normalizedNoAccents.includes('can 2pn') || 
+    normalizedNoAccents.includes('can 3pn') || 
+    normalizedNoAccents.includes('phong ngu') || 
+    normalizedNoAccents.includes('o to') || 
+    normalizedNoAccents.includes('gia thue') || 
+    normalizedNoAccents.includes('ngan sach') || 
+    normalizedNoAccents.includes('hoang mai') || 
+    normalizedNoAccents.includes('tay ho') || 
+    normalizedNoAccents.includes('cau giay') || 
+    normalizedNoAccents.includes('quan 1') || 
+    normalizedNoAccents.includes('quan 7') || 
+    normalizedNoAccents.includes('son tra') || 
+    normalizedNoAccents.includes('thai nguyen') || 
+    normalizedNoAccents.includes('ha noi') || 
+    normalizedNoAccents.includes('da nang') || 
+    normalizedNoAccents.includes('sai gon') || 
+    normalizedNoAccents.includes('trieu/thang') || 
+    normalizedNoAccents.includes('cu/thang') ||
+    /\b(\d+)\s*(trieu|cu|tr|pn)\b/i.test(normalizedNoAccents);
+
+  if (hasHousingIntent) {
+    return {
+      isSafe: true,
+      category: 'SAFE',
+      intent: 'PROPERTY_SEARCH',
+      confidence: 0.92,
+      sanitizedQuery: trimmed
+    };
+  }
+
+  // If no housing intent detected, classify as general natural conversation so AI chats naturally without forcing apartment recommendations
   return {
     isSafe: true,
     category: 'SAFE',
-    intent: 'PROPERTY_SEARCH',
+    intent: 'GREETING_CHITCHAT',
     confidence: 0.90,
     sanitizedQuery: trimmed
   };

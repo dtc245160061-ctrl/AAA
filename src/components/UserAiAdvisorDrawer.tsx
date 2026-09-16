@@ -59,8 +59,12 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
 
   const toggleVoiceChat = () => {
     if (isListening) {
-      VoiceRecognitionService.stop();
+      const captured = VoiceRecognitionService.stop();
       setIsListening(false);
+      if (captured && captured.trim()) {
+        setInputValue(captured.trim());
+        handleSend(captured.trim());
+      }
       return;
     }
 

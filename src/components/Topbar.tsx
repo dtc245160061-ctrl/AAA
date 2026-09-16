@@ -73,7 +73,15 @@ export const Topbar: React.FC<TopbarProps> = ({
 
   const handleSearchSubmit = (e?: React.FormEvent, customQuery?: string) => {
     if (e) e.preventDefault();
-    const query = (customQuery || searchValue).trim();
+    let query = (customQuery || searchValue).trim();
+    if (isVoiceListening) {
+      const captured = VoiceRecognitionService.stop();
+      setIsVoiceListening(false);
+      if (captured && captured.trim()) {
+        query = captured.trim();
+        setSearchValue(query);
+      }
+    }
     if (!query) return;
     if (!isAdminView) {
       onSearchSubmit?.(query);
@@ -83,8 +91,12 @@ export const Topbar: React.FC<TopbarProps> = ({
 
   const toggleVoiceSearch = () => {
     if (isVoiceListening) {
-      VoiceRecognitionService.stop();
+      const captured = VoiceRecognitionService.stop();
       setIsVoiceListening(false);
+      if (captured && captured.trim()) {
+        setSearchValue(captured.trim());
+        handleSearchSubmit(undefined, captured.trim());
+      }
       return;
     }
 

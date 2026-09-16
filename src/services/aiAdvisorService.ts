@@ -142,7 +142,11 @@ export function parseNaturalLanguageQuery(queryText: string): AIParsedQuery {
   }
 
   // 2. District & Location Shorthand
-  if (raw.includes('tây hồ') || raw.includes('tay ho') || raw.includes('west lake')) {
+  if (raw.includes('hoàng mai') || raw.includes('hoang mai') || raw.includes('linh đàm') || raw.includes('linh dam') || raw.includes('gamuda')) {
+    filters.district = 'Hoàng Mai';
+    if (!filters.city) filters.city = 'Hanoi';
+    classification.preferred.push('Khu vực: Quận Hoàng Mai (Hà Nội)');
+  } else if (raw.includes('tây hồ') || raw.includes('tay ho') || raw.includes('west lake')) {
     filters.district = 'Tây Hồ';
     if (!filters.city) filters.city = 'Hanoi';
     classification.preferred.push('Khu vực: Quận Tây Hồ (Hà Nội)');
@@ -154,6 +158,22 @@ export function parseNaturalLanguageQuery(queryText: string): AIParsedQuery {
     filters.district = 'Cầu Giấy';
     if (!filters.city) filters.city = 'Hanoi';
     classification.preferred.push('Khu vực: Quận Cầu Giấy (Hà Nội)');
+  } else if (raw.includes('ba đình') || raw.includes('ba dinh')) {
+    filters.district = 'Ba Đình';
+    if (!filters.city) filters.city = 'Hanoi';
+    classification.preferred.push('Khu vực: Quận Ba Đình (Hà Nội)');
+  } else if (raw.includes('đống đa') || raw.includes('dong da')) {
+    filters.district = 'Đống Đa';
+    if (!filters.city) filters.city = 'Hanoi';
+    classification.preferred.push('Khu vực: Quận Đống Đa (Hà Nội)');
+  } else if (raw.includes('hai bà trưng') || raw.includes('hai ba trung')) {
+    filters.district = 'Hai Bà Trưng';
+    if (!filters.city) filters.city = 'Hanoi';
+    classification.preferred.push('Khu vực: Quận Hai Bà Trưng (Hà Nội)');
+  } else if (raw.includes('nam từ liêm') || raw.includes('nam tu liem') || raw.includes('mỹ đình') || raw.includes('my dinh')) {
+    filters.district = 'Nam Từ Liêm';
+    if (!filters.city) filters.city = 'Hanoi';
+    classification.preferred.push('Khu vực: Quận Nam Từ Liêm (Hà Nội)');
   } else if (raw.includes('thảo điền') || raw.includes('thao dien') || raw.includes('quận 2') || raw.includes('district 2')) {
     filters.district = 'Thủ Đức';
     if (!filters.city) filters.city = 'Ho Chi Minh City';
@@ -166,10 +186,18 @@ export function parseNaturalLanguageQuery(queryText: string): AIParsedQuery {
     filters.district = 'Quận 7';
     if (!filters.city) filters.city = 'Ho Chi Minh City';
     classification.preferred.push('Khu vực: Quận 7 / Phú Mỹ Hưng (TP.HCM)');
+  } else if (raw.includes('bình thạnh') || raw.includes('binh thanh')) {
+    filters.district = 'Bình Thạnh';
+    if (!filters.city) filters.city = 'Ho Chi Minh City';
+    classification.preferred.push('Khu vực: Quận Bình Thạnh (TP.HCM)');
   } else if (raw.includes('sơn trà') || raw.includes('son tra') || raw.includes('mỹ khê') || raw.includes('my khe')) {
     filters.district = 'Sơn Trà';
     if (!filters.city) filters.city = 'Da Nang';
     classification.preferred.push('Khu vực: Sơn Trà / Biển Mỹ Khê (Đà Nẵng)');
+  } else if (raw.includes('hải châu') || raw.includes('hai chau')) {
+    filters.district = 'Hải Châu';
+    if (!filters.city) filters.city = 'Da Nang';
+    classification.preferred.push('Khu vực: Quận Hải Châu (Đà Nẵng)');
   } else if (raw.includes('trung tâm') || raw.includes('central')) {
     classification.preferred.push('Gần trung tâm thành phố');
   }

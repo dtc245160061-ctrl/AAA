@@ -101,10 +101,29 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     }
   };
 
+  const handleSearchSubmitNow = () => {
+    let finalQuery = searchInput.trim();
+    if (isListening) {
+      const captured = VoiceRecognitionService.stop();
+      setIsListening(false);
+      if (captured && captured.trim()) {
+        finalQuery = captured.trim();
+        setSearchInput(finalQuery);
+      }
+    }
+    if (finalQuery) {
+      handleApplyAiPrompt(finalQuery);
+    }
+  };
+
   const toggleVoiceSearch = () => {
     if (isListening) {
-      VoiceRecognitionService.stop();
+      const captured = VoiceRecognitionService.stop();
       setIsListening(false);
+      if (captured && captured.trim()) {
+        setSearchInput(captured);
+        handleApplyAiPrompt(captured);
+      }
       return;
     }
 
@@ -335,8 +354,9 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === 'Enter' && searchInput.trim()) {
-                  handleApplyAiPrompt(searchInput);
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  handleSearchSubmitNow();
                 }
               }}
               placeholder='Tìm bằng giọng nói hoặc nhập text (vd: "căn 2 phòng ở Thái Nguyên tầm 8 triệu có ô tô")'
@@ -346,7 +366,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
             <button
               type="button"
               onClick={toggleVoiceSearch}
-              title={isListening ? "Đang lắng nghe... Nhấn để dừng" : "Nhấn để nói bằng giọng nói"}
+              title={isListening ? "Đang lắng nghe... Nhấn để dừng & tìm ngay" : "Nhấn để nói bằng giọng nói"}
               className={`p-2 rounded-xl transition-all flex items-center justify-center shrink-0 ${
                 isListening
                   ? 'bg-rose-500 text-white animate-pulse shadow-lg shadow-rose-500/30 ring-2 ring-rose-400'
@@ -357,10 +377,8 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
             </button>
             <button
               type="button"
-              onClick={() => {
-                if (searchInput.trim()) handleApplyAiPrompt(searchInput);
-              }}
-              className="px-3.5 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs font-mono transition-all shrink-0 shadow-md shadow-emerald-500/20"
+              onClick={handleSearchSubmitNow}
+              className="px-3.5 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs font-mono transition-all shrink-0 shadow-md shadow-emerald-500/20 active:scale-95"
             >
               Lọc AI
             </button>

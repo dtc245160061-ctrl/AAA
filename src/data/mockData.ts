@@ -2,6 +2,181 @@ import type { ApartmentUnit, MaintenanceTicket, Amenity } from '../types/apartme
 
 export const MOCK_UNITS: ApartmentUnit[] = [
   {
+    "id": "HN-HM-1206",
+    "name": "Căn Hộ Hồ Linh Đàm & Công Viên Yên Sở — Hoàng Mai",
+    "floor": 12,
+    "unitNumber": "1206",
+    "type": "Deluxe Apartment",
+    "sqm": 85,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "status": "vacant",
+    "monthlyRentUSD": 650,
+    "monthlyRentVND": 16000000,
+    "city": "Hanoi",
+    "district": "Hoàng Mai",
+    "address": "Tầng 12, Chung cư Haven Park Linh Đàm, Bán Đảo Linh Đàm, Quận Hoàng Mai, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Moderate",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.88,
+    "reviewCount": 38,
+    "viewType": "View Hồ Linh Đàm & Công Viên Yên Sở",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 16000000,
+      "estimatedElectricityVND": 950000,
+      "waterFeeVND": 120000,
+      "internetFeeVND": 250000,
+      "managementFeeVND": 850000,
+      "parkingFeeVND": 1200000,
+      "totalMonthlyEstimatedVND": 19370000,
+      "depositMonths": 1,
+      "depositVND": 16000000,
+      "moveInTotalRequiredVND": 35370000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-02-15",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Đạt quy chuẩn PCCC QCVN 06:2022/BXD của Cảnh sát PCCC TP Hà Nội."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Vị trí ven Hồ Linh Đàm cực kỳ thoáng mát, yên tĩnh, view trọn công viên cây xanh",
+        "Có chỗ đỗ ô tô định danh dưới hầm và thang máy Mitsubishi tải trọng cao",
+        "Chi phí True Cost minh bạch, điện nước giá nhà nước chuẩn đồng hồ riêng"
+      ],
+      "worthConsidering": [
+        "Tuyến đường Giải Phóng vào giờ cao điểm có mật độ xe đông đúc"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Gió hồ mát rượi quanh năm, không bị nắng gắt buổi chiều.",
+      "floodNotes": "Khu đô thị bán đảo Linh Đàm tôn cao ráo, hoàn toàn không bị ngập úng khi mưa to.",
+      "powerNotes": "Trạm biến áp riêng và máy phát điện dự phòng tự động cấp điện sau 15 giây.",
+      "trafficNotes": "Gần bến xe Nước Ngầm, vành đai 3 trên cao thuận tiện đi các tỉnh."
+    },
+    "sensors": {
+      "smartLockBattery": 94,
+      "hvacStatus": "Optimal",
+      "targetTempC": 24,
+      "energyConsumptionKwh": 26.5,
+      "waterUsageLiters": 95,
+      "securityAlarmDisarmed": true
+    }
+  },
+  {
+    "id": "HN-HM-1908",
+    "name": "Studio Cao Cấp KĐT Gamuda Gardens — Hoàng Mai",
+    "floor": 19,
+    "unitNumber": "1908",
+    "type": "Studio",
+    "sqm": 52,
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "status": "vacant",
+    "monthlyRentUSD": 420,
+    "monthlyRentVND": 10500000,
+    "city": "Hanoi",
+    "district": "Hoàng Mai",
+    "address": "Tầng 19, The Zen Residence Gamuda, Phường Trần Phú, Quận Hoàng Mai, Hà Nội",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&q=80&w=1200"
+    ],
+    "hasCarParking": true,
+    "hasMotorbikeParking": true,
+    "hasElevator": true,
+    "hasBackupPower": true,
+    "floodingRisk": "Low",
+    "noiseLevel": "Quiet",
+    "trafficDensity": "Low",
+    "petFriendly": true,
+    "furnished": true,
+    "balcony": true,
+    "airConditioning": true,
+    "washingMachine": true,
+    "kitchen": true,
+    "wifi": true,
+    "rating": 4.92,
+    "reviewCount": 45,
+    "viewType": "View Nội Khu Sinh Thái Gamuda Gardens",
+    "isVerifiedPlus": true,
+    "trueCost": {
+      "baseRentVND": 10500000,
+      "estimatedElectricityVND": 650000,
+      "waterFeeVND": 90000,
+      "internetFeeVND": 250000,
+      "managementFeeVND": 600000,
+      "parkingFeeVND": 1000000,
+      "totalMonthlyEstimatedVND": 13090000,
+      "depositMonths": 1,
+      "depositVND": 10500000,
+      "moveInTotalRequiredVND": 23590000,
+      "electricityRatePerKwh": 3500
+    },
+    "pcccReport": {
+      "hasFireEscapes": true,
+      "fireEscapeCount": 2,
+      "hasAutomaticSprinklers": true,
+      "hasSmokeDetectors": true,
+      "hasFireExtinguishers": true,
+      "inspectionCertificateStatus": "certified",
+      "lastInspectionDate": "2026-03-01",
+      "emergencyExitWidthMeters": 1.4,
+      "disclaimer": "Nghiệm thu PCCC chuẩn quốc tế Gamuda Land."
+    },
+    "aiInsights": {
+      "whyFit": [
+        "Môi trường sống sinh thái chuẩn resort Malaysia, không khí trong lành",
+        "Đầy đủ tiện ích bể bơi vô cực, phòng gym, sân tennis",
+        "An ninh bảo vệ 3 lớp 24/7 tuyệt đối yên tĩnh"
+      ],
+      "worthConsidering": [
+        "Khoảng cách đến trung tâm Hoàn Kiếm tầm 8km"
+      ]
+    },
+    "environmentalData": {
+      "weatherNotes": "Nhiều cây xanh, nhiệt độ thấp hơn trung tâm thành phố 1-2 độ C.",
+      "floodNotes": "Hệ thống thoát nước thông minh độc lập của Gamuda, không bao giờ ngập úng.",
+      "powerNotes": "Hạ tầng ngầm hóa 100%, điện lưới ổn định tuyệt đối.",
+      "trafficNotes": "Kết nối nhanh Vành đai 3 và cầu Thanh Trì."
+    },
+    "sensors": {
+      "smartLockBattery": 98,
+      "hvacStatus": "Optimal",
+      "targetTempC": 23,
+      "energyConsumptionKwh": 18.2,
+      "waterUsageLiters": 68,
+      "securityAlarmDisarmed": true
+    }
+  },
+
+  {
     "id": "HN-TÂ-1001",
     "name": "Studio Hồ Tây Panorama — Tây Hồ",
     "floor": 10,
