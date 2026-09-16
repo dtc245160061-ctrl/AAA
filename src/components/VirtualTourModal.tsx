@@ -16,9 +16,18 @@ import {
   Info,
   ShieldCheck,
   CheckCircle2,
-  Ruler
+  Ruler,
+  ChevronDown,
+  ChevronUp,
+  Home,
+  Check
 } from 'lucide-react';
 import type { ApartmentUnit, VirtualTourRoom } from '../types/apartment';
+import { 
+  getMatterportTourForUnit, 
+  VERIFIED_MATTERPORT_TOURS, 
+  type MatterportTourItem 
+} from '../data/matterportTours';
 
 interface VirtualTourModalProps {
   unit: ApartmentUnit;
@@ -35,6 +44,30 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
   const [activeTab, setActiveTab] = useState<'matterport' | '360_sphere' | 'google_maps'>('matterport');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [autoRotate, setAutoRotate] = useState(true);
+
+  // 3D Walkthrough model state
+  const defaultTour = getMatterportTourForUnit(unit);
+  const [currentTour, setCurrentTour] = useState<MatterportTourItem>(defaultTour);
+  const [showModelPicker, setShowModelPicker] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+
+  // Sync with unit prop changes
+  useEffect(() => {
+    const matched = getMatterportTourForUnit(unit);
+    setCurrentTour(matched);
+  }, [unit]);
+
+  // Filtered 3D Models
+  const filteredTours = selectedCategory === 'all'
+    ? VERIFIED_MATTERPORT_TOURS
+    : VERIFIED_MATTERPORT_TOURS.filter(t => {
+        if (selectedCategory === 'studio') return t.category === 'studio';
+        if (selectedCategory === '1bed') return t.category === '1bed';
+        if (selectedCategory === '2bed') return t.category === '2bed' || t.category === 'condo';
+        if (selectedCategory === 'family') return t.category === '3bed' || t.category === '4bed';
+        if (selectedCategory === 'luxury') return t.category === 'penthouse' || t.category === 'villa' || t.category === 'suite';
+        return true;
+      });
 
   // Genuine 2:1 Equirectangular 360° Panoramas (Seamless, ZERO seam lines or stitching glitches)
   const rooms: VirtualTourRoom[] = [
@@ -225,16 +258,13 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
   const mapsEmbedUrl = `https://maps.google.com/maps?q=${mapsQuery}&t=k&z=17&ie=UTF8&iwloc=&output=embed`;
   const externalMapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
 
-  // Real Matterport 3D Showcase (Walkthrough thực tế chuyên nghiệp trong ngành Bất Động Sản)
-  const matterportEmbedUrl = 'https://my.matterport.com/show/?m=JGPnGQ6hosj&play=1&qs=1&brand=0&title=0';
-
   return (
     <div className="fixed inset-0 z-[99999] flex items-center justify-center p-2 sm:p-4 bg-black/90 backdrop-blur-xl animate-in fade-in duration-200">
       <div 
         className={`relative w-full rounded-3xl atmospheric-panel border border-emerald-500/40 overflow-hidden shadow-2xl flex flex-col bg-[#0B0F17] transition-all duration-300 ${
           isFullscreen 
             ? 'w-screen h-screen rounded-none max-w-none' 
-            : 'max-w-5xl h-[88vh] max-h-[840px]'
+            : 'max-w-5xl h-[88vh] max-h-[850px]'
         }`}
       >
         {/* Top Header Bar */}
@@ -250,7 +280,7 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
                 </h3>
                 <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[10px] font-mono text-emerald-400 font-bold">
                   <Sparkles className="w-3 h-3" />
-                  <span>3D Digital Twin</span>
+                  <span>3D Digital Twin ({VERIFIED_MATTERPORT_TOURS.length} nhà thật)</span>
                 </span>
               </div>
               <p className="text-[11px] font-mono text-slate-400">
@@ -270,7 +300,7 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
               }`}
             >
               <Box className="w-3.5 h-3.5" />
-              <span>3D Walkthrough Thực Tế</span>
+              <span>3D Walkthrough ({VERIFIED_MATTERPORT_TOURS.length})</span>
             </button>
 
             <button
@@ -325,28 +355,136 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
             <div className="relative w-full h-full flex flex-col bg-[#000]">
               <iframe
                 title="Matterport 3D Walkthrough Digital Twin"
-                src={matterportEmbedUrl}
+                src={currentTour.embedUrl}
                 className="w-full h-full border-0"
                 allow="fullscreen; vr; xr-spatial-tracking"
                 allowFullScreen
               />
 
-              {/* Top Feature Badges HUD */}
-              <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
-                <div className="bg-slate-950/90 px-3 py-1.5 rounded-xl border border-slate-800 text-xs font-mono text-slate-300 flex items-center gap-2 pointer-events-auto backdrop-blur-md">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span>Dữ liệu 3D thật (Digital Twin Photogrammetry) • Đi từng bước trong phòng</span>
+              {/* Model Switcher Toolbar HUD on Top */}
+              <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none z-30">
+                <div className="flex items-center gap-2 pointer-events-auto">
+                  {/* Model Selector Button */}
+                  <button
+                    onClick={() => setShowModelPicker(!showModelPicker)}
+                    className="px-3.5 py-2 rounded-xl bg-slate-950/95 hover:bg-slate-900 border border-emerald-500/50 text-xs font-mono text-slate-200 flex items-center gap-2 shadow-2xl backdrop-blur-md transition-all active:scale-95"
+                  >
+                    <Box className="w-3.5 h-3.5 text-emerald-400" />
+                    <span className="font-bold text-white max-w-[200px] sm:max-w-[320px] truncate">
+                      {currentTour.name}
+                    </span>
+                    <span className="px-1.5 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 text-[10px] font-bold">
+                      {currentTour.categoryLabel}
+                    </span>
+                    {showModelPicker ? <ChevronUp className="w-3.5 h-3.5 text-slate-400" /> : <ChevronDown className="w-3.5 h-3.5 text-slate-400" />}
+                  </button>
+
+                  {/* Reset to Recommended Model for this Apartment */}
+                  {currentTour.id !== defaultTour.id && (
+                    <button
+                      onClick={() => setCurrentTour(defaultTour)}
+                      className="px-2.5 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-xs font-mono text-emerald-300 flex items-center gap-1.5 transition-all"
+                      title="Về mô hình 3D mặc định của căn hộ này"
+                    >
+                      <Home className="w-3.5 h-3.5" />
+                      <span className="hidden sm:inline">Mặc định căn này</span>
+                    </button>
+                  )}
                 </div>
-                <div className="hidden sm:flex items-center gap-2 bg-slate-950/90 px-3 py-1.5 rounded-xl border border-slate-800 text-xs font-mono text-emerald-400 pointer-events-auto backdrop-blur-md">
+
+                <div className="hidden md:flex items-center gap-2 bg-slate-950/90 px-3 py-1.5 rounded-xl border border-slate-800 text-xs font-mono text-emerald-400 pointer-events-auto backdrop-blur-md">
                   <Ruler className="w-3.5 h-3.5" />
-                  <span>Hỗ trợ đo thước laser trực tiếp trên tường</span>
+                  <span>Đo thước laser 3D trên tường</span>
                 </div>
               </div>
 
+              {/* Floating Dropdown Drawer for 66 Real 3D Models */}
+              {showModelPicker && (
+                <div className="absolute top-14 left-3 right-3 max-w-2xl max-h-[70%] bg-slate-950/95 border border-emerald-500/50 rounded-2xl p-3 shadow-2xl backdrop-blur-xl z-40 flex flex-col space-y-2.5 animate-in fade-in slide-in-from-top-2 duration-150">
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+                    <div className="flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-emerald-400" />
+                      <span className="font-bold text-xs text-white font-mono">
+                        Kho Dữ Liệu 3D Thực Tế ({VERIFIED_MATTERPORT_TOURS.length} Không Gian Quét Laser)
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => setShowModelPicker(false)}
+                      className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+
+                  {/* Filter Pills */}
+                  <div className="flex items-center gap-1.5 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden text-[11px] font-mono">
+                    {[
+                      { id: 'all', label: 'Tất cả' },
+                      { id: 'studio', label: 'Studio (11)' },
+                      { id: '1bed', label: '1 PN (6)' },
+                      { id: '2bed', label: '2 PN (10)' },
+                      { id: 'family', label: '3-4 PN (3)' },
+                      { id: 'luxury', label: 'Penthouse & Villa (20)' }
+                    ].map(f => (
+                      <button
+                        key={f.id}
+                        onClick={() => setSelectedCategory(f.id)}
+                        className={`px-2.5 py-1 rounded-lg whitespace-nowrap transition-all ${
+                          selectedCategory === f.id
+                            ? 'bg-emerald-500 text-slate-950 font-bold'
+                            : 'bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800'
+                        }`}
+                      >
+                        {f.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Models Grid / List */}
+                  <div className="overflow-y-auto max-h-[300px] space-y-1.5 pr-1 font-mono text-xs">
+                    {filteredTours.map(t => {
+                      const isSelected = t.id === currentTour.id;
+                      return (
+                        <div
+                          key={t.id}
+                          onClick={() => {
+                            setCurrentTour(t);
+                            setShowModelPicker(false);
+                          }}
+                          className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between gap-3 ${
+                            isSelected
+                              ? 'bg-emerald-500/20 border-emerald-500 text-emerald-200 shadow-md shadow-emerald-500/10'
+                              : 'bg-slate-900/90 border-slate-800 text-slate-300 hover:border-emerald-500/40 hover:bg-slate-850'
+                          }`}
+                        >
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <div className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 ${isSelected ? 'bg-emerald-500 text-slate-950 font-bold' : 'bg-slate-800 text-slate-400'}`}>
+                              {isSelected ? <Check className="w-3.5 h-3.5" /> : <Box className="w-3.5 h-3.5" />}
+                            </div>
+                            <div className="min-w-0">
+                              <p className="font-bold text-white text-[12px] truncate">{t.name}</p>
+                              <p className="text-[10px] text-slate-400">{t.categoryLabel} • {t.bedroomCount} Phòng ngủ</p>
+                            </div>
+                          </div>
+
+                          <span className="text-[10px] px-2 py-0.5 rounded-md bg-slate-800 border border-slate-700 text-emerald-400 shrink-0">
+                            Khám phá
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
               {/* Bottom Instructions HUD */}
-              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono text-slate-300 pointer-events-none">
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono text-slate-300 pointer-events-none z-20">
                 <div className="bg-slate-950/85 px-3 py-1.5 rounded-xl border border-slate-800 pointer-events-auto">
-                  <span>Bấm vào sàn nhà để di chuyển • Xoay chuột 360° • Xem Floorplan / Dollhouse ở góc dưới</span>
+                  <span>Bấm vào sàn nhà để di chuyển • Xoay 360° • Xem Floorplan / Dollhouse ở thanh công cụ góc dưới</span>
+                </div>
+                <div className="hidden sm:flex items-center gap-1.5 bg-slate-950/85 px-3 py-1.5 rounded-xl border border-slate-800 text-emerald-400 pointer-events-auto">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>Dữ liệu Digital Twin 100% không chắp vá</span>
                 </div>
               </div>
             </div>
