@@ -52,33 +52,30 @@ export const AdminInboxView: React.FC<AdminInboxViewProps> = ({
   );
 
   return (
-    <div className="space-y-8 text-left pb-16 animate-in fade-in duration-300">
-      {/* Header Banner */}
-      <div className="p-8 rounded-3xl atmospheric-panel border border-emerald-500/30 space-y-4 shadow-2xl backdrop-blur-2xl">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="space-y-1">
-            <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
-              <MessageSquare className="w-4 h-4 text-emerald-400" />
-              <span>Hộp Thư Tương Tác Trực Tiếp (Shopee-Style Messaging Hub)</span>
+    <div className="space-y-4 text-left pb-4 animate-in fade-in duration-300 flex flex-col h-[calc(100vh-80px)]">
+      {/* Compact Header Banner */}
+      <div className="p-3.5 md:p-4 rounded-2xl atmospheric-panel border border-emerald-500/25 shadow-lg shrink-0">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="space-y-0.5">
+            <div className="inline-flex items-center gap-1.5 text-[11px] font-mono text-emerald-400 uppercase tracking-wider font-semibold">
+              <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Hộp Thư Trực Tiếp (Live Messaging Hub)</span>
             </div>
-            <h1 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold">
-              Tin Nhắn Khách Thuê & Tư Vấn
+            <h1 className="text-xl md:text-2xl font-serif text-slate-100 font-bold">
+              Tin Nhắn Khách Thuê & Tư Vấn Căn Hộ
             </h1>
-            <p className="text-sm text-slate-400">
-              Quản lý toàn bộ trao đổi trực tiếp với khách thuê từ Web Consumer, phản hồi nhanh và chốt hợp đồng ngay trên khung chat.
-            </p>
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="px-4 py-2 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono">
-              <span className="font-bold">{conversations.reduce((a, b) => a + b.unreadCount, 0)}</span> tin nhắn chưa đọc
+            <div className="px-3 py-1 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-semibold">
+              <span className="font-bold">{conversations.reduce((a, b) => a + b.unreadCount, 0)}</span> tin nhắn mới
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Two-Pane Chat Container */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-[680px]">
+      {/* Main Two-Pane Chat Container - Fitted to Remaining Viewport */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 flex-1 min-h-0 overflow-hidden">
         {/* Left Pane: Conversation List (4 cols) */}
         <div className="lg:col-span-5 atmospheric-panel rounded-3xl border border-slate-800 flex flex-col overflow-hidden shadow-xl">
           {/* Search bar */}

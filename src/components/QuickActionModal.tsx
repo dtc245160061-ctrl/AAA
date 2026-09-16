@@ -29,7 +29,7 @@ export const QuickActionModal: React.FC<QuickActionModalProps> = ({ isOpen, onCl
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl animate-fade-in text-left">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/40 backdrop-blur-sm animate-fade-in text-left">
       {toast && (
         <div className="absolute top-6 right-6 z-50 bg-emerald-400 text-slate-950 px-5 py-3.5 rounded-2xl font-bold font-mono shadow-2xl flex items-center gap-2 animate-bounce">
           <CheckCircle className="w-5 h-5 text-slate-950" />

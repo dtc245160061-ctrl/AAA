@@ -143,10 +143,8 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
               tabIndex={0}
               role="button"
               aria-label={`Xem dữ liệu xác thực của căn hộ ${unit.name || unit.id}`}
-              className={`group rounded-2xl flex flex-col transition-all duration-200 relative outline-none shadow-lg ${
-                isFocal
-                  ? 'bg-[var(--haven-surface-elevated)] border-2 border-emerald-400 shadow-[0_0_25px_rgba(16,185,129,0.2)] ring-2 ring-emerald-400/30'
-                  : 'bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] opacity-95 hover:opacity-100 hover:border-emerald-500/40 hover:shadow-xl'
+              className={`group rounded-2xl flex flex-col transition-all duration-200 relative outline-none shadow-lg border border-[var(--haven-border)] bg-[var(--haven-surface-elevated)] haven-beam-active shadow-xl hover:shadow-[0_0_35px_rgba(16,185,129,0.35)] ${
+                isFocal ? 'ring-2 ring-emerald-400/50' : 'opacity-95 hover:opacity-100'
               }`}
             >
               {/* Photo & Overlays */}

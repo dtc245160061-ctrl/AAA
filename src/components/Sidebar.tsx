@@ -91,7 +91,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
         now.toLocaleTimeString('en-US', {
           hour: '2-digit',
           minute: '2-digit',
-          second: '2-digit',
           hour12: false,
         })
       );
@@ -109,14 +108,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
         hidden md:flex flex-col justify-between sticky top-0 h-screen shrink-0
         bg-[var(--haven-bg-subtle)] border-r border-[var(--haven-border)]
         transition-[width] duration-200 ease-out
-        overflow-y-auto overflow-x-hidden z-40 px-3.5 py-3
-        ${collapsed ? 'w-[72px]' : 'w-[240px]'}
+        overflow-y-auto overflow-x-hidden z-40 px-3 py-3
+        [scrollbar-width:none] [&::-webkit-scrollbar]:hidden
+        ${collapsed ? 'w-[68px]' : 'w-[240px]'}
       `}
       style={{ zIndex: 'var(--z-sticky)' }}
     >
       <div className="space-y-4">
         {/* Top Header: Fixed Hamburger Button & Brand */}
-        <div className="flex items-center gap-2.5 h-11">
+        <div className="flex items-center h-11">
           {/* YouTube-style Hamburger Button at permanent fixed position */}
           {onToggleCollapse && (
             <button
@@ -125,13 +125,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
               title={collapsed ? 'Mở rộng thanh bên' : 'Thu gọn thanh bên'}
               aria-label="Thu gọn / Mở rộng thanh bên"
             >
-              <Menu className="w-5 h-5" />
+              <Menu className="w-5 h-5 shrink-0" />
             </button>
           )}
 
           {/* Brand details when expanded */}
           {!collapsed && (
-            <div className="flex items-center gap-2 min-w-0 animate-in fade-in duration-200">
+            <div className="flex items-center gap-2 ml-2.5 min-w-0 animate-in fade-in duration-200">
               <div className="w-8 h-8 rounded-xl bg-[var(--haven-emerald-muted)] border border-[rgba(16,185,129,0.25)] flex items-center justify-center shrink-0">
                 <Leaf className="w-4 h-4 text-[var(--haven-emerald-400)] fill-[rgba(16,185,129,0.2)]" />
               </div>
@@ -151,17 +151,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
           )}
         </div>
 
-        {/* Section Label (Expanded only) */}
-        {!collapsed && (
-          <div className="px-2 pt-1 pb-0.5 animate-in fade-in duration-200">
-            <span className="text-label text-[9px] uppercase tracking-wider text-[var(--haven-text-muted)] block truncate font-mono">
-              {isAdminView ? 'PHÂN HỆ QUẢN TRỊ' : 'TRẢI NGHIỆM KHÁCH THUÊ'}
-            </span>
-          </div>
-        )}
-
-        {/* Navigation Items */}
-        <nav className="space-y-1">
+        {/* Navigation Items (Category label removed per user requirement so icons stay fixed) */}
+        <nav className="space-y-1 mt-2">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeModule === item.id;
@@ -172,21 +163,21 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 title={collapsed ? item.label : undefined}
                 className={`
                   w-full h-11 flex items-center rounded-xl focus-ring
-                  transition-all duration-150 relative group
+                  transition-colors duration-150 relative
                   ${isActive
                     ? 'bg-[var(--haven-emerald-muted)] text-[var(--haven-emerald-400)] font-semibold border border-[rgba(16,185,129,0.25)] shadow-xs'
                     : 'text-[var(--haven-text-secondary)] hover:text-[var(--haven-text-primary)] hover:bg-[var(--haven-surface-hover)] border border-transparent'
                   }
                 `}
               >
-                {/* Fixed Icon Container: Exactly 44px wide, centered in 44px space */}
+                {/* Fixed Icon Container: Exactly 44px wide, permanently at left-0 of button */}
                 <div className="w-11 h-11 flex items-center justify-center shrink-0">
-                  <Icon className={`w-5 h-5 transition-transform duration-150 group-hover:scale-110 ${isActive ? 'text-[var(--haven-emerald-400)]' : ''}`} />
+                  <Icon className={`w-5 h-5 shrink-0 ${isActive ? 'text-[var(--haven-emerald-400)]' : ''}`} />
                 </div>
 
                 {/* Label text when expanded */}
                 {!collapsed && (
-                  <div className="flex-1 flex items-center justify-between pr-2.5 min-w-0 animate-in fade-in duration-150">
+                  <div className="flex-1 flex items-center justify-between pr-3 min-w-0 animate-in fade-in duration-150">
                     <span className="truncate text-[13px] font-sans font-medium">{item.label}</span>
                     {item.badge !== undefined && (
                       <span className="px-1.5 py-0.5 rounded-full bg-[var(--haven-emerald-500)] text-slate-950 text-[10px] font-mono font-bold min-w-[18px] text-center shadow-xs">

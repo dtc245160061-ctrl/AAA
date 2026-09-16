@@ -81,10 +81,10 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
             <button
               key={nh.id}
               onClick={() => setSelectedNeighborhoodId(nh.id)}
-              className={`p-4 sm:p-5 rounded-2xl text-left border transition-all duration-200 flex flex-col justify-between gap-3 shadow-md hover:-translate-y-1 ${
+              className={`p-4 sm:p-5 rounded-2xl text-left border transition-all duration-200 flex flex-col justify-between gap-3 shadow-md hover:-translate-y-1 relative ${
                 isSelected
-                  ? 'bg-sky-950/80 [data-theme=\'light\']_:bg-sky-100 border-sky-400 [data-theme=\'light\']_:border-sky-500 ring-2 ring-sky-500/30 shadow-lg shadow-sky-500/10'
-                  : 'bg-slate-900/80 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 hover:border-sky-500/40'
+                  ? 'haven-beam-active bg-sky-950/80 [data-theme=\'light\']_:bg-sky-100 border-sky-400 [data-theme=\'light\']_:border-sky-500 shadow-xl shadow-sky-500/10'
+                  : 'haven-beam-hover bg-slate-900/80 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200'
               }`}
             >
               <div>

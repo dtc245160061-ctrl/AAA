@@ -100,10 +100,10 @@ export const FeatureStrip: React.FC<FeatureStripProps> = ({
               tabIndex={0}
               role="button"
               aria-label={`Chi tiết minh chứng ${feature.title}`}
-              className={`p-5 rounded-2xl transition-all duration-200 cursor-pointer outline-none relative flex flex-col justify-between ${
+              className={`p-5 rounded-2xl transition-all duration-200 cursor-pointer outline-none relative flex flex-col justify-between border border-[var(--haven-border)] ${
                 isActive
-                  ? 'bg-[var(--haven-surface-elevated)] border-2 border-[var(--haven-emerald-500)] shadow-[var(--shadow-elevated)] ring-4 ring-[var(--haven-emerald-glow)] -translate-y-1.5'
-                  : 'bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] hover:border-[var(--haven-emerald-400)] hover:shadow-lg hover:-translate-y-1'
+                  ? 'bg-[var(--haven-surface-elevated)] haven-beam-active shadow-xl -translate-y-1.5'
+                  : 'bg-[var(--haven-surface-raised)] haven-beam-hover hover:shadow-xl hover:-translate-y-1'
               }`}
             >
               <div>

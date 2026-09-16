@@ -30,7 +30,6 @@ import { ServicesMarketplaceView } from './components/ServicesMarketplaceView';
 import { ChatModal } from './components/ChatModal';
 import { AiCopilotDrawer } from './components/AiCopilotDrawer';
 import { QuickActionModal } from './components/QuickActionModal';
-import { DevPreviewLauncher } from './devtools/preview/DevPreviewLauncher';
 import { ToastContainer, type ToastMessage } from './components/Toast';
 import { ApartmentStore } from './data/apartmentStore';
 import type {
@@ -158,6 +157,30 @@ export function App() {
     if (mainEl) mainEl.scrollTo({ top: 0, behavior: 'instant' });
   }, [activeModule]);
 
+  // Browser History Navigation (Alt + Left Arrow / Back Button)
+  useEffect(() => {
+    window.history.replaceState({ module: activeModule, unitId: selectedUnitId, isAdmin: isAdminView }, '');
+
+    const handlePopState = (e: PopStateEvent) => {
+      if (e.state && e.state.module) {
+        setActiveModule(e.state.module);
+        if (e.state.unitId) setSelectedUnitId(e.state.unitId);
+        if (e.state.isAdmin !== undefined) setIsAdminView(e.state.isAdmin);
+      } else {
+        setActiveModule('user_home');
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const navigateToModule = (mod: any, unitId?: string) => {
+    setActiveModule(mod);
+    if (unitId) setSelectedUnitId(unitId);
+    window.history.pushState({ module: mod, unitId: unitId || selectedUnitId, isAdmin: isAdminView }, '');
+  };
+
   const handleToggleSaveUnit = (unitId: string) => {
     const updated = savedUnitIds.includes(unitId)
       ? savedUnitIds.filter(id => id !== unitId)
@@ -173,9 +196,9 @@ export function App() {
   const handleInspectUnit = (unitId: string) => {
     setSelectedUnitId(unitId);
     if (!isAdminView) {
-      setActiveModule('user_detail');
+      navigateToModule('user_detail', unitId);
     } else {
-      setActiveModule('units');
+      navigateToModule('units', unitId);
     }
   };
 
@@ -183,7 +206,23 @@ export function App() {
     if (aiQuery) {
       setInitialAiQuery(aiQuery);
     }
-    setActiveModule('user_search');
+    navigateToModule('user_search');
+  };
+
+  const handleEditUnit = (unitId: string, updates: Partial<ApartmentUnit>) => {
+    const updated = ApartmentStore.updateUnit(unitId, updates);
+    if (updated) {
+      setUnits(ApartmentStore.getUnits());
+      showToast('success', 'Cập nhật căn hộ thành công', `Đã lưu thay đổi cho căn "${updated.name || updated.id}".`);
+    }
+  };
+
+  const handleDeleteUnit = (unitId: string) => {
+    const success = ApartmentStore.deleteUnit(unitId);
+    if (success) {
+      setUnits(ApartmentStore.getUnits());
+      showToast('info', 'Đã xóa căn hộ', `Căn hộ ${unitId} đã được gỡ khỏi hệ thống.`);
+    }
   };
 
   // Booking Inquiry Submission (Consumer -> Admin)
@@ -353,6 +392,10 @@ export function App() {
           onNavigate={(mod) => {
             setActiveModule(mod);
           }}
+          onSearchSubmit={(query) => {
+            setInitialAiQuery(query);
+            setActiveModule('user_search');
+          }}
         />
 
         {/* Dynamic View Body Container - ONLY element that scrolls */}
@@ -489,6 +532,8 @@ export function App() {
               onSelectUnit={handleInspectUnit}
               onUpdateUnitStatus={handleUpdateUnitStatus}
               onOpenQuickAction={() => setIsSmartListingOpen(true)}
+              onEditUnit={handleEditUnit}
+              onDeleteUnit={handleDeleteUnit}
             />
           )}
 
@@ -560,28 +605,25 @@ export function App() {
         </main>
       </div>
 
-      {/* PERSISTENT FLOATING AI HOUSING ADVISOR ACTION BUTTON (FAB) WITH 2-POINT ORBITING BEAM */}
-      {!isAdminView && (
-        <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40 p-[2px] rounded-full overflow-hidden shadow-2xl shadow-emerald-500/25 transition-transform duration-150 hover:scale-105 active:scale-95 group">
+      {/* PERSISTENT FLOATING NOTION-AI COMPACT CIRCULAR BUTTON (HIDES WHEN DRAWER IS OPEN) */}
+      {!isUserAiAdvisorOpen && !isAiCopilotOpen && (
+        <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40 p-[2px] rounded-full overflow-hidden shadow-2xl shadow-emerald-500/30 transition-all duration-200 hover:scale-110 active:scale-95 group">
           {/* Dual Orbiting Clockwise Light Beams */}
           <div className="absolute inset-[-150%] bg-[conic-gradient(from_0deg,transparent_0_120deg,#34d399_150deg,transparent_180deg_300deg,#34d399_330deg,transparent_360deg)] animate-spin-beam pointer-events-none" />
 
           <button
-            onClick={() => setIsUserAiAdvisorOpen(true)}
-            className="relative z-10 flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-slate-950/95 [data-theme='light']_:bg-white/95 backdrop-blur-2xl border border-emerald-500/40 group-hover:border-emerald-400 text-left transition-colors duration-150"
-            title="Mở Haven AI"
+            onClick={() => {
+              if (isAdminView) {
+                setIsAiCopilotOpen(prev => !prev);
+              } else {
+                setIsUserAiAdvisorOpen(prev => !prev);
+              }
+            }}
+            className="relative z-10 w-12 h-12 rounded-full bg-slate-950/95 [data-theme='light']_:bg-white/95 backdrop-blur-md border border-emerald-500/40 group-hover:border-emerald-400 flex items-center justify-center transition-all duration-150 shadow-lg"
+            title={isAdminView ? "Mở Haven AI Copilot Quản Trị" : "Mở Haven AI Tư Vấn Căn Hộ"}
           >
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-md shadow-emerald-500/30 shrink-0">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-md shadow-emerald-500/40 shrink-0">
               <Sparkles className="w-4 h-4 fill-slate-950 text-slate-950 animate-spin-slow group-hover:[animation-play-state:paused]" />
-            </div>
-            <div className="hidden sm:block pr-1">
-              <div className="text-xs font-display font-bold text-slate-100 [data-theme='light']_:text-slate-900 group-hover:text-emerald-400 transition-colors flex items-center gap-1.5">
-                <span>Haven AI</span>
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              </div>
-              <div className="text-[10px] font-mono text-emerald-400/80 [data-theme='light']_:text-emerald-700">
-                Tư vấn căn hộ
-              </div>
             </div>
           </button>
         </div>
@@ -827,8 +869,7 @@ export function App() {
         />
       )}
 
-      {/* ISOLATED DEVELOPER PREVIEW SYSTEM */}
-      <DevPreviewLauncher currentView={isAdminView ? 'admin' : 'user'} />
+
 
       {/* Mobile Bottom Navigation */}
       <MobileNav

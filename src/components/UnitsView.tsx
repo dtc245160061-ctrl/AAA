@@ -3,7 +3,11 @@ import {
   Building, 
   Search, 
   MapPin, 
-  Eye
+  Eye,
+  Edit2,
+  Trash2,
+  X,
+  Check
 } from 'lucide-react';
 import type { ApartmentUnit, UnitStatus } from '../types/apartment';
 
@@ -12,14 +16,20 @@ interface UnitsViewProps {
   onSelectUnit: (unitId: string) => void;
   onUpdateUnitStatus?: (unitId: string, status: UnitStatus) => void;
   onOpenQuickAction?: () => void;
+  onEditUnit?: (unitId: string, updates: Partial<ApartmentUnit>) => void;
+  onDeleteUnit?: (unitId: string) => void;
 }
 
 export const UnitsView: React.FC<UnitsViewProps> = ({
   units,
   onSelectUnit,
   onUpdateUnitStatus,
-  onOpenQuickAction
+  onOpenQuickAction,
+  onEditUnit,
+  onDeleteUnit
 }) => {
+  const [editingUnit, setEditingUnit] = useState<ApartmentUnit | null>(null);
+  const [deletingUnit, setDeletingUnit] = useState<ApartmentUnit | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [cityFilter, setCityFilter] = useState<'All' | 'Hanoi' | 'Ho Chi Minh City' | 'Da Nang'>('All');
   const [statusFilter, setStatusFilter] = useState<string>('all');
@@ -212,6 +222,28 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
               </select>
 
               <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setEditingUnit({ ...unit });
+                }}
+                className="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-amber-400 text-slate-300 hover:text-amber-400 transition-colors"
+                title="Sửa thông tin căn hộ"
+              >
+                <Edit2 className="w-4 h-4" />
+              </button>
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setDeletingUnit(unit);
+                }}
+                className="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-rose-400 text-slate-300 hover:text-rose-400 transition-colors"
+                title="Xóa căn hộ"
+              >
+                <Trash2 className="w-4 h-4" />
+              </button>
+
+              <button
                 onClick={() => onSelectUnit(unit.id)}
                 className="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-emerald-500 text-slate-300 hover:text-white transition-colors"
                 title="Xem chi tiết căn"
@@ -222,6 +254,187 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
           </div>
         ))}
       </div>
+
+      {/* Edit Unit Modal */}
+      {editingUnit && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/50 backdrop-blur-sm animate-in fade-in duration-200 text-left">
+          <div className="max-w-lg w-full rounded-3xl atmospheric-panel border border-amber-500/40 p-6 md:p-8 space-y-5 shadow-2xl backdrop-blur-2xl bg-slate-950/95">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+              <div className="flex items-center gap-2">
+                <div className="p-2 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                  <Edit2 className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-lg font-bold text-white">Chỉnh Sửa Thông Tin Căn Hộ</h3>
+                  <p className="text-xs font-mono text-slate-400">{editingUnit.id}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setEditingUnit(null)}
+                className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (editingUnit) {
+                  onEditUnit?.(editingUnit.id, {
+                    name: editingUnit.name,
+                    monthlyRentVND: editingUnit.monthlyRentVND,
+                    sqm: editingUnit.sqm,
+                    bedrooms: editingUnit.bedrooms,
+                    bathrooms: editingUnit.bathrooms,
+                    floor: editingUnit.floor,
+                    status: editingUnit.status
+                  });
+                  setEditingUnit(null);
+                }
+              }}
+              className="space-y-4 text-xs font-mono"
+            >
+              <div>
+                <label className="text-slate-400 block mb-1">Tên / Tiêu Đề Căn Hộ</label>
+                <input
+                  type="text"
+                  required
+                  value={editingUnit.name || ''}
+                  onChange={(e) => setEditingUnit({ ...editingUnit, name: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-400 font-sans"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="text-slate-400 block mb-1">Giá Thuê (VNĐ/tháng)</label>
+                  <input
+                    type="number"
+                    required
+                    value={editingUnit.monthlyRentVND || 0}
+                    onChange={(e) => setEditingUnit({ ...editingUnit, monthlyRentVND: Number(e.target.value) })}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-400"
+                  />
+                </div>
+                <div>
+                  <label className="text-slate-400 block mb-1">Diện Tích (m²)</label>
+                  <input
+                    type="number"
+                    required
+                    value={editingUnit.sqm || 0}
+                    onChange={(e) => setEditingUnit({ ...editingUnit, sqm: Number(e.target.value) })}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-400"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-3">
+                <div>
+                  <label className="text-slate-400 block mb-1">Phòng Ngủ</label>
+                  <input
+                    type="number"
+                    value={editingUnit.bedrooms || 1}
+                    onChange={(e) => setEditingUnit({ ...editingUnit, bedrooms: Number(e.target.value) })}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-400"
+                  />
+                </div>
+                <div>
+                  <label className="text-slate-400 block mb-1">Phòng Tắm</label>
+                  <input
+                    type="number"
+                    value={editingUnit.bathrooms || 1}
+                    onChange={(e) => setEditingUnit({ ...editingUnit, bathrooms: Number(e.target.value) })}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-400"
+                  />
+                </div>
+                <div>
+                  <label className="text-slate-400 block mb-1">Tầng</label>
+                  <input
+                    type="number"
+                    value={editingUnit.floor || 1}
+                    onChange={(e) => setEditingUnit({ ...editingUnit, floor: Number(e.target.value) })}
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-400"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-slate-400 block mb-1">Trạng Thái Vận Hành</label>
+                <select
+                  value={editingUnit.status}
+                  onChange={(e) => setEditingUnit({ ...editingUnit, status: e.target.value as UnitStatus })}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-amber-400"
+                >
+                  <option value="vacant">Sẵn Sàng Cho Thuê (Trống)</option>
+                  <option value="occupied">Đang Cho Thuê</option>
+                  <option value="reserved">Đã Nhận Cọc</option>
+                  <option value="maintenance">Bảo Trì & Dọn Dẹp</option>
+                </select>
+              </div>
+
+              <div className="flex gap-3 pt-3">
+                <button
+                  type="button"
+                  onClick={() => setEditingUnit(null)}
+                  className="flex-1 py-2.5 rounded-xl border border-slate-800 text-slate-400 hover:text-white transition-colors"
+                >
+                  Hủy Bỏ
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-1.5"
+                >
+                  <Check className="w-4 h-4" />
+                  <span>Lưu Thay Đổi</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Unit Confirmation Modal */}
+      {deletingUnit && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/50 backdrop-blur-sm animate-in fade-in duration-200 text-left">
+          <div className="max-w-md w-full rounded-3xl atmospheric-panel border border-rose-500/40 p-6 space-y-4 shadow-2xl backdrop-blur-2xl bg-slate-950/95">
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 rounded-2xl bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                <Trash2 className="w-5 h-5 text-rose-400" />
+              </div>
+              <div>
+                <h3 className="font-serif text-lg font-bold text-white">Xác Nhận Xóa Căn Hộ</h3>
+                <p className="text-xs font-mono text-slate-400">{deletingUnit.id}</p>
+              </div>
+            </div>
+
+            <p className="text-xs text-slate-300 leading-relaxed font-sans">
+              Bạn có chắc chắn muốn xóa căn hộ <span className="text-white font-bold font-serif">"{deletingUnit.name || deletingUnit.id}"</span> khỏi hệ thống HAVEN? Thao tác này sẽ lưu trực tiếp vào cơ sở dữ liệu.
+            </p>
+
+            <div className="flex gap-3 pt-2 font-mono text-xs">
+              <button
+                onClick={() => setDeletingUnit(null)}
+                className="flex-1 py-2.5 rounded-xl border border-slate-800 text-slate-400 hover:text-white transition-colors"
+              >
+                Hủy Bỏ
+              </button>
+              <button
+                onClick={() => {
+                  if (deletingUnit) {
+                    onDeleteUnit?.(deletingUnit.id);
+                    setDeletingUnit(null);
+                  }
+                }}
+                className="flex-1 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold shadow-lg shadow-rose-500/20 transition-all flex items-center justify-center gap-1.5"
+              >
+                <Trash2 className="w-4 h-4" />
+                <span>Xác Nhận Xóa</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

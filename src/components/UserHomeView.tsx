@@ -82,30 +82,34 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
       {/* ═══ NEW: Product-Native Hero with Entrance Choreography ═══ */}
       <HeroSection onSearch={onNavigateSearch} />
 
-      {/* ═══ Sanctuary Tuning Dials (kept as-is, will redesign in Slice 2) ═══ */}
-      <section className="relative rounded-3xl atmospheric-panel atmospheric-panel-hover border border-emerald-500/30 p-6 sm:p-8 md:p-10 space-y-6 shadow-2xl backdrop-blur-2xl group">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="space-y-1">
-            <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
-              <Sliders className="w-4 h-4 text-emerald-400" />
-              <span>Bộ Tinh Chỉnh Không Gian Sống</span>
-            </div>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-serif text-slate-100 group-hover:text-emerald-300 [data-theme='light']_:group-hover:text-emerald-700 transition-colors">
-              Chọn các yếu tố ưu tiên cho tổ ấm của bạn
-            </h2>
-            <p className="text-slate-400 text-sm">
-              Kích hoạt nhanh các tiêu chuẩn môi trường & tiện ích để hệ thống AI tự động tìm những căn hộ tương thích nhất.
-            </p>
-          </div>
+      {/* ═══ Sanctuary Tuning Dials with 1.5px Running Light Beam ═══ */}
+      <section className="relative rounded-3xl p-[1.5px] overflow-hidden shadow-2xl group transition-all">
+        {/* Dual Orbiting Clockwise Symmetrical Light Beams (Zero Corner Cutoff) */}
+        <div className="animate-spin-beam bg-[conic-gradient(from_0deg,transparent_0deg_65deg,#34d399_90deg,transparent_115deg_245deg,#34d399_270deg,transparent_295deg_360deg)] pointer-events-none opacity-50 group-hover:opacity-95 transition-opacity" />
 
-          <button
-            onClick={handleApplyTuning}
-            className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-semibold transition-all shadow-lg shadow-emerald-500/25 shrink-0 self-start md:self-auto hover:scale-105 active:scale-95"
-          >
-            <span>Áp Dụng Tinh Chỉnh</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
+        <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel haven-sheen-sweep p-6 sm:p-8 md:p-10 space-y-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
+                <Sliders className="w-4 h-4 text-emerald-400" />
+                <span>Bộ Tinh Chỉnh Không Gian Sống</span>
+              </div>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-serif text-slate-100 group-hover:text-emerald-300 [data-theme='light']_:group-hover:text-emerald-700 transition-colors">
+                Chọn các yếu tố ưu tiên cho tổ ấm của bạn
+              </h2>
+              <p className="text-slate-400 text-sm">
+                Kích hoạt nhanh các tiêu chuẩn môi trường & tiện ích để hệ thống AI tự động tìm những căn hộ tương thích nhất.
+              </p>
+            </div>
+
+            <button
+              onClick={handleApplyTuning}
+              className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-semibold transition-all shadow-lg shadow-emerald-500/25 shrink-0 self-start md:self-auto hover:scale-105 active:scale-95"
+            >
+              <span>Áp Dụng Tinh Chỉnh</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
 
         {/* Sensory Dials Row (10 Criteria) */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-2">
@@ -309,6 +313,7 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             </div>
           </button>
         </div>
+        </div>
       </section>
 
       {/* ═══ Featured Cities (No zoom on hover, full card elevation + bold text) ═══ */}
@@ -331,63 +336,72 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           {/* Hanoi */}
           <div
             onClick={() => onNavigateSearch("Hà Nội")}
-            className="group relative rounded-3xl overflow-hidden h-60 sm:h-68 cursor-pointer border border-[var(--haven-border)] hover:border-emerald-400/80 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-emerald-500/15 hover:-translate-y-2"
+            className="group relative rounded-3xl p-[1.5px] overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/20 hover:-translate-y-2 transition-all duration-300 h-60 sm:h-68"
           >
-            <img
-              src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=800"
-              alt="Hà Nội"
-              className="w-full h-full object-cover transition-transform duration-500 ease-out"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent [data-theme='light']_:from-white/95 [data-theme='light']_:via-white/60" />
-            <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-emerald-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </div>
-            <div className="absolute bottom-5 left-5 right-5 space-y-1">
-              <span className="text-xs font-mono text-emerald-300 font-bold uppercase tracking-widest">Thủ Đô Ngàn Năm</span>
-              <h3 className="text-2xl font-serif text-white [data-theme='light']_:text-slate-900 font-bold">Hà Nội</h3>
-              <p className="text-xs text-slate-200 [data-theme='light']_:text-slate-700 font-medium">Penthouse Hồ Tây, Hoàn Kiếm Heritage & Cầu Giấy</p>
+            <div className="animate-spin-beam bg-[conic-gradient(from_0deg,transparent_0deg_65deg,#34d399_90deg,transparent_115deg_245deg,#34d399_270deg,transparent_295deg_360deg)] pointer-events-none opacity-40 group-hover:opacity-100 transition-opacity" />
+            <div className="relative z-10 w-full h-full rounded-[22px] overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=800"
+                alt="Hà Nội"
+                className="w-full h-full object-cover transition-transform duration-500 ease-out"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent [data-theme='light']_:from-white/95 [data-theme='light']_:via-white/60" />
+              <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-emerald-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </div>
+              <div className="absolute bottom-5 left-5 right-5 space-y-1">
+                <span className="text-xs font-mono text-emerald-300 font-bold uppercase tracking-widest">Thủ Đô Ngàn Năm</span>
+                <h3 className="text-2xl font-serif text-white [data-theme='light']_:text-slate-900 font-bold">Hà Nội</h3>
+                <p className="text-xs text-slate-200 [data-theme='light']_:text-slate-700 font-medium">Penthouse Hồ Tây, Hoàn Kiếm Heritage & Cầu Giấy</p>
+              </div>
             </div>
           </div>
 
           {/* Ho Chi Minh City */}
           <div
             onClick={() => onNavigateSearch("TP. Hồ Chí Minh")}
-            className="group relative rounded-3xl overflow-hidden h-60 sm:h-68 cursor-pointer border border-[var(--haven-border)] hover:border-emerald-400/80 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-emerald-500/15 hover:-translate-y-2"
+            className="group relative rounded-3xl p-[1.5px] overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/20 hover:-translate-y-2 transition-all duration-300 h-60 sm:h-68"
           >
-            <img
-              src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&q=80&w=800"
-              alt="TP. Hồ Chí Minh"
-              className="w-full h-full object-cover transition-transform duration-500 ease-out"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent [data-theme='light']_:from-white/95 [data-theme='light']_:via-white/60" />
-            <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-emerald-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </div>
-            <div className="absolute bottom-5 left-5 right-5 space-y-1">
-              <span className="text-xs font-mono text-emerald-300 font-bold uppercase tracking-widest">Đô Thị Sầm Uất</span>
-              <h3 className="text-2xl font-serif text-white [data-theme='light']_:text-slate-900 font-bold">TP. Hồ Chí Minh</h3>
-              <p className="text-xs text-slate-200 [data-theme='light']_:text-slate-700 font-medium">View Sông Sài Gòn Quận 1, Thảo Điền & Phú Mỹ Hưng</p>
+            <div className="animate-spin-beam bg-[conic-gradient(from_0deg,transparent_0deg_65deg,#34d399_90deg,transparent_115deg_245deg,#34d399_270deg,transparent_295deg_360deg)] pointer-events-none opacity-40 group-hover:opacity-100 transition-opacity" />
+            <div className="relative z-10 w-full h-full rounded-[22px] overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&q=80&w=800"
+                alt="TP. Hồ Chí Minh"
+                className="w-full h-full object-cover transition-transform duration-500 ease-out"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent [data-theme='light']_:from-white/95 [data-theme='light']_:via-white/60" />
+              <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-emerald-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </div>
+              <div className="absolute bottom-5 left-5 right-5 space-y-1">
+                <span className="text-xs font-mono text-emerald-300 font-bold uppercase tracking-widest">Đô Thị Sầm Uất</span>
+                <h3 className="text-2xl font-serif text-white [data-theme='light']_:text-slate-900 font-bold">TP. Hồ Chí Minh</h3>
+                <p className="text-xs text-slate-200 [data-theme='light']_:text-slate-700 font-medium">View Sông Sài Gòn Quận 1, Thảo Điền & Phú Mỹ Hưng</p>
+              </div>
             </div>
           </div>
 
           {/* Da Nang */}
           <div
             onClick={() => onNavigateSearch("Đà Nẵng")}
-            className="group relative rounded-3xl overflow-hidden h-60 sm:h-68 cursor-pointer border border-[var(--haven-border)] hover:border-emerald-400/80 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-emerald-500/15 hover:-translate-y-2"
+            className="group relative rounded-3xl p-[1.5px] overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/20 hover:-translate-y-2 transition-all duration-300 h-60 sm:h-68"
           >
-            <img
-              src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&q=80&w=800"
-              alt="Đà Nẵng"
-              className="w-full h-full object-cover transition-transform duration-500 ease-out"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent [data-theme='light']_:from-white/95 [data-theme='light']_:via-white/60" />
-            <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-emerald-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </div>
-            <div className="absolute bottom-5 left-5 right-5 space-y-1">
-              <span className="text-xs font-mono text-emerald-300 font-bold uppercase tracking-widest">Thành Phố Đáng Sống</span>
-              <h3 className="text-2xl font-serif text-white [data-theme='light']_:text-slate-900 font-bold">Đà Nẵng</h3>
-              <p className="text-xs text-slate-200 [data-theme='light']_:text-slate-700 font-medium">Sky Villa Biển Mỹ Khê & Bán Đảo Sơn Trà</p>
+            <div className="animate-spin-beam bg-[conic-gradient(from_0deg,transparent_0deg_65deg,#34d399_90deg,transparent_115deg_245deg,#34d399_270deg,transparent_295deg_360deg)] pointer-events-none opacity-40 group-hover:opacity-100 transition-opacity" />
+            <div className="relative z-10 w-full h-full rounded-[22px] overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&q=80&w=800"
+                alt="Đà Nẵng"
+                className="w-full h-full object-cover transition-transform duration-500 ease-out"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent [data-theme='light']_:from-white/95 [data-theme='light']_:via-white/60" />
+              <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-emerald-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </div>
+              <div className="absolute bottom-5 left-5 right-5 space-y-1">
+                <span className="text-xs font-mono text-emerald-300 font-bold uppercase tracking-widest">Thành Phố Đáng Sống</span>
+                <h3 className="text-2xl font-serif text-white [data-theme='light']_:text-slate-900 font-bold">Đà Nẵng</h3>
+                <p className="text-xs text-slate-200 [data-theme='light']_:text-slate-700 font-medium">Sky Villa Biển Mỹ Khê & Bán Đảo Sơn Trà</p>
+              </div>
             </div>
           </div>
         </div>

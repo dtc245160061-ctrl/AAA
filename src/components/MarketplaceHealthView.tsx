@@ -234,22 +234,36 @@ export const MarketplaceHealthView: React.FC<MarketplaceHealthViewProps> = ({
                   </td>
                   <td className="py-4 text-right">
                     <div className="flex items-center justify-end gap-1.5">
-                      <button
-                        onClick={() => handleApprove(item.id)}
-                        className="px-3 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-slate-950 text-xs font-bold transition-all border border-emerald-500/30 flex items-center gap-1"
-                        title="Duyệt xuất bản tin"
-                      >
-                        <Check className="w-3.5 h-3.5" />
-                        <span>Duyệt</span>
-                      </button>
-                      <button
-                        onClick={() => handleFlag(item.id)}
-                        className="px-3 py-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500 text-rose-300 hover:text-slate-950 text-xs font-bold transition-all border border-rose-500/30 flex items-center gap-1"
-                        title="Gắn cờ cảnh báo"
-                      >
-                        <X className="w-3.5 h-3.5" />
-                        <span>Chặn</span>
-                      </button>
+                      {item.status === 'approved' ? (
+                        <span className="px-3 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 text-xs font-bold font-mono border border-emerald-500/30 flex items-center gap-1">
+                          <Check className="w-3.5 h-3.5" />
+                          <span>✓ Đã phê duyệt</span>
+                        </span>
+                      ) : item.status === 'flagged' ? (
+                        <span className="px-3 py-1.5 rounded-lg bg-rose-500/10 text-rose-400 text-xs font-bold font-mono border border-rose-500/30 flex items-center gap-1">
+                          <AlertTriangle className="w-3.5 h-3.5" />
+                          <span>⚠ Đã chặn tin</span>
+                        </span>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() => handleApprove(item.id)}
+                            className="px-3 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-slate-950 text-xs font-bold transition-all border border-emerald-500/30 flex items-center gap-1"
+                            title="Duyệt xuất bản tin"
+                          >
+                            <Check className="w-3.5 h-3.5" />
+                            <span>Duyệt</span>
+                          </button>
+                          <button
+                            onClick={() => handleFlag(item.id)}
+                            className="px-3 py-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500 text-rose-300 hover:text-slate-950 text-xs font-bold transition-all border border-rose-500/30 flex items-center gap-1"
+                            title="Gắn cờ cảnh báo"
+                          >
+                            <X className="w-3.5 h-3.5" />
+                            <span>Chặn</span>
+                          </button>
+                        </>
+                      )}
                     </div>
                   </td>
                 </tr>
@@ -266,25 +280,25 @@ export const MarketplaceHealthView: React.FC<MarketplaceHealthViewProps> = ({
           <span>Cơ Cấu 4 Dòng Doanh Thu Thương Mại HAVEN (Revenue Streams)</span>
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 text-xs font-mono pt-2">
-          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1 hover:-translate-y-1 transition-all">
+          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1 hover:-translate-y-1 transition-all haven-beam-hover haven-beam-emerald relative overflow-hidden">
             <span className="text-slate-400">1. SaaS B2B Chủ Nhà (MRR)</span>
             <p className="text-emerald-400 font-serif text-xl font-bold">{kpis.revenueByStream.saasPercent}%</p>
             <span className="text-[10px] text-slate-400">Gói Pro (399k) / Business (999k)</span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1 hover:-translate-y-1 transition-all">
+          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1 hover:-translate-y-1 transition-all haven-beam-hover haven-beam-cyan relative overflow-hidden">
             <span className="text-slate-400">2. Phí Ký Quỹ Bảo Chứng Escrow</span>
             <p className="text-sky-400 font-serif text-xl font-bold">{kpis.revenueByStream.escrowPercent}%</p>
             <span className="text-[10px] text-slate-400">0.5% - 1% giá trị tiền cọc giữ hộ</span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1 hover:-translate-y-1 transition-all">
+          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1 hover:-translate-y-1 transition-all haven-beam-hover haven-beam-gold relative overflow-hidden">
             <span className="text-slate-400">3. Hoa Hồng Dịch Vụ VAS</span>
             <p className="text-amber-400 font-serif text-xl font-bold">{kpis.revenueByStream.vasPercent}%</p>
             <span className="text-[10px] text-slate-400">Dọn dẹp, xe chuyển nhà, bảo dưỡng máy lạnh</span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1 hover:-translate-y-1 transition-all">
+          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-1 hover:-translate-y-1 transition-all haven-beam-hover haven-beam-white relative overflow-hidden">
             <span className="text-slate-400">4. Hoa Hồng Môi Giới Sàn</span>
             <p className="text-purple-400 font-serif text-xl font-bold">{kpis.revenueByStream.commissionPercent}%</p>
             <span className="text-[10px] text-slate-400">Giao dịch thành công qua nền tảng</span>

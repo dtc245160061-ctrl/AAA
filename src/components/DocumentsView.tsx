@@ -118,7 +118,22 @@ export const DocumentsView: React.FC<DocumentsViewProps> = ({
                 <td className="py-4 px-4 text-slate-400">{doc.date}</td>
                 <td className="py-4 px-4 text-slate-400">{doc.size}</td>
                 <td className="py-4 px-4 text-right">
-                  <button className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-200 border border-slate-700 hover:border-emerald-400 transition-all shadow-sm flex items-center gap-1.5 ml-auto font-semibold">
+                  <button 
+                    onClick={() => {
+                      const content = `HAVEN RESIDENTIAL - CERTIFIED LEGAL DOCUMENT\nDocument: ${doc.name}\nEntity: ${doc.entity}\nCategory: ${doc.category}\nDate: ${doc.date}\nStatus: Verified and Digitally Signed\n`;
+                      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement('a');
+                      a.href = url;
+                      a.download = `${doc.name.replace(/[\s/\\:]+/g, '_')}.txt`;
+                      document.body.appendChild(a);
+                      a.click();
+                      document.body.removeChild(a);
+                      URL.revokeObjectURL(url);
+                    }}
+                    className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-100 active:scale-90 active:bg-emerald-400 border border-slate-700 hover:border-emerald-400 transition-all shadow-sm flex items-center gap-1.5 ml-auto font-semibold text-xs"
+                    title="Tải văn bản pháp lý"
+                  >
                     <Download className="w-3.5 h-3.5" />
                     <span>Download</span>
                   </button>

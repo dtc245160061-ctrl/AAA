@@ -124,12 +124,12 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
               key={plan.id}
               className={`p-6 md:p-8 rounded-3xl atmospheric-panel border flex flex-col justify-between transition-all duration-300 relative overflow-hidden backdrop-blur-2xl shadow-xl hover:-translate-y-2 hover:shadow-2xl ${
                 plan.id === 'enterprise'
-                  ? 'border-amber-500/50 hover:border-amber-400 hover:shadow-[0_0_35px_rgba(245,158,11,0.25)]'
+                  ? 'border-amber-500/50 haven-beam-gold hover:shadow-[0_0_35px_rgba(245,158,11,0.35)]'
                   : plan.targetAudience === 'tenant'
-                  ? 'border-cyan-500/50 hover:border-cyan-400 hover:shadow-[0_0_35px_rgba(6,182,212,0.25)]'
+                  ? 'border-cyan-500/50 haven-beam-cyan hover:shadow-[0_0_35px_rgba(6,182,212,0.35)]'
                   : plan.isPopular
-                  ? 'border-emerald-500/60 shadow-emerald-500/10 ring-2 ring-emerald-500/50 hover:border-emerald-400 hover:shadow-[0_0_35px_rgba(16,185,129,0.25)]'
-                  : 'border-slate-300 dark:border-slate-800 hover:border-slate-400 dark:hover:border-slate-600 hover:shadow-[0_0_25px_rgba(0,0,0,0.05)]'
+                  ? 'border-emerald-500/60 haven-beam-emerald ring-1 ring-emerald-500/40 hover:shadow-[0_0_35px_rgba(16,185,129,0.35)]'
+                  : 'border-slate-300 dark:border-slate-800 haven-beam-white hover:shadow-[0_0_25px_rgba(255,255,255,0.15)]'
               }`}
             >
               <div className="space-y-5">

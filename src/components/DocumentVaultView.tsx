@@ -184,11 +184,41 @@ export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
 
               <button
                 onClick={() => {
+                  // Trigger real file download
+                  const content = `======================================================
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
+Độc lập - Tự do - Hạnh phúc
+------------------------------------------------------
+HAVEN LUXURY RESIDENTIAL PLATFORM - BẢN GỐC ĐIỆN TỬ
+TÀI LIỆU PHÁP LÝ ĐÃ ĐƯỢC CHỨNG THỰC & KÝ SỐ SHA-256
+======================================================
+
+1. TÊN TÀI LIỆU: ${doc.title}
+2. PHÂN LOẠI: ${doc.category === 'contract' ? 'Hợp đồng thuê căn hộ số' : doc.category === 'deposit_escrow' ? 'Biên nhận ký quỹ bảo chứng Escrow' : 'Biên bản kiểm định PCCC QCVN 06'}
+3. MÃ BĂM BẢO MẬT (SHA-256): ${doc.hashSignature}
+4. CĂN HỘ ÁP DỤNG: ${doc.unitId}
+5. NGÀY PHÁT HÀNH / TẢI LÊN: ${doc.uploadedAt}
+6. TRẠNG THÁI PHÁP LÝ: ĐÃ XÁC THỰC BẢO CHỨNG 100% BỞI BAN QUẢN TRỊ HAVEN
+
+Văn bản này có giá trị pháp lý tương đương bản cứng theo quy định tại Luật Giao dịch Điện tử và các quy chuẩn thẩm định căn hộ của HAVEN.
+======================================================`;
+
+                  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement('a');
+                  a.href = url;
+                  a.download = `${doc.title.replace(/[\s/\\:]+/g, '_')}_signed.txt`;
+                  document.body.appendChild(a);
+                  a.click();
+                  document.body.removeChild(a);
+                  URL.revokeObjectURL(url);
+
                   if (onShowToast) {
-                    onShowToast('info', 'Đang tải tài liệu an toàn', `Tài liệu "${doc.title}" đã được ký số.`);
+                    onShowToast('success', 'Đã tải tài liệu về máy', `Tập tin "${doc.title}" đã được lưu vào máy tính của bạn.`);
                   }
                 }}
-                className="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-200 text-xs font-mono font-bold transition-all flex items-center gap-1.5"
+                className="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-100 active:scale-90 active:bg-emerald-400 border border-slate-700 hover:border-emerald-400 text-xs font-mono font-bold transition-all flex items-center gap-1.5 shadow-sm"
+                title="Tải bản gốc tài liệu đã ký số về máy"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Tải Bản Gốc</span>

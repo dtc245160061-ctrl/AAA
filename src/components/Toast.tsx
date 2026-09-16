@@ -15,7 +15,7 @@ interface ToastContainerProps {
 
 export const ToastContainer: React.FC<ToastContainerProps> = ({ toasts, onDismiss }) => {
   return (
-    <div className="fixed top-6 right-6 z-50 flex flex-col gap-3 max-w-sm w-full pointer-events-none">
+    <div className="fixed bottom-6 left-6 md:bottom-8 md:left-8 z-50 flex flex-col-reverse gap-3 max-w-sm w-full pointer-events-none">
       {toasts.map(toast => (
         <ToastItem key={toast.id} toast={toast} onDismiss={onDismiss} />
       ))}
@@ -38,7 +38,7 @@ const ToastItem: React.FC<{ toast: ToastMessage; onDismiss: (id: string) => void
 
   return (
     <div
-      className={`pointer-events-auto p-3.5 rounded-2xl bg-[var(--haven-surface-elevated)] border ${borderColor} shadow-[var(--shadow-elevated)] backdrop-blur-xl flex items-start gap-3 animate-in slide-in-from-top-4 duration-200`}
+      className={`pointer-events-auto p-3.5 rounded-2xl bg-[var(--haven-surface-elevated)] border ${borderColor} shadow-[var(--shadow-elevated)] backdrop-blur-xl flex items-start gap-3 animate-in slide-in-from-bottom-4 duration-200`}
     >
       <div className={`p-1.5 rounded-xl ${bgBadge} ${iconColor} shrink-0 mt-0.5`}>
         <Icon className="w-4 h-4" />

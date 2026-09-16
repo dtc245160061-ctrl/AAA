@@ -490,6 +490,28 @@ export class ApartmentStore {
     }
   }
 
+  static updateUnit(unitId: string, updates: Partial<ApartmentUnit>): ApartmentUnit | null {
+    const units = this.getUnits();
+    const idx = units.findIndex(u => u.id === unitId);
+    if (idx !== -1) {
+      units[idx] = enrichUnit({ ...units[idx], ...updates });
+      this.saveUnits(units);
+      return units[idx];
+    }
+    return null;
+  }
+
+  static deleteUnit(unitId: string): boolean {
+    let units = this.getUnits();
+    const initialLen = units.length;
+    units = units.filter(u => u.id !== unitId);
+    if (units.length !== initialLen) {
+      this.saveUnits(units);
+      return true;
+    }
+    return false;
+  }
+
   // Leads
   static getLeads(): RentalLead[] {
     try {
@@ -725,11 +747,27 @@ export class ApartmentStore {
   static getSavedUnitIds(): string[] {
     try {
       const data = localStorage.getItem(STORAGE_KEYS.SAVED);
-      if (data) return JSON.parse(data);
+      if (data) {
+        const parsed = JSON.parse(data);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          // If stored IDs contain old deprecated IDs, migrate them to valid IDs
+          const hasDeadIds = parsed.includes('HN-TH-2401') || parsed.includes('SG-D1-1601');
+          if (hasDeadIds) {
+            const migrated = parsed.map((id: string) => {
+              if (id === 'HN-TH-2401') return 'HN-TÂ-1001';
+              if (id === 'SG-D1-1601') return 'HN-HO-0303';
+              return id;
+            });
+            localStorage.setItem(STORAGE_KEYS.SAVED, JSON.stringify(migrated));
+            return migrated;
+          }
+          return parsed;
+        }
+      }
     } catch (e) {
       console.error(e);
     }
-    return ['HN-TH-2401', 'SG-D1-1601'];
+    return ['HN-TÂ-1001', 'HN-HO-0303'];
   }
 
   static saveSavedUnitIds(ids: string[]) {

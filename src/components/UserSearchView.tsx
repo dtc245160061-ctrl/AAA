@@ -36,7 +36,6 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
   onSelectUnit,
   initialAiQuery = ''
 }) => {
-  const [aiPromptInput, setAiPromptInput] = useState(initialAiQuery);
   const [aiUnderstoodText, setAiUnderstoodText] = useState<string | null>(null);
   const [aiFollowUp, setAiFollowUp] = useState<string | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
@@ -93,11 +92,6 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     if (parsed.extractedFilters.petFriendly) {
       setPetFriendlyOnly(true);
     }
-  };
-
-  const handleAiFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    handleApplyAiPrompt(aiPromptInput);
   };
 
   const activeFiltersObj: ConsumerFilters = useMemo(() => ({
@@ -190,7 +184,6 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     setVerifiedLandlordOnly(false);
     setAiUnderstoodText(null);
     setAiFollowUp(null);
-    setAiPromptInput('');
   };
 
   const getCityDisplayName = (city: string) => {
@@ -242,24 +235,24 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
 
   return (
     <div className="space-y-6 pb-16 animate-in fade-in duration-300 relative">
-      {/* Top Section: Sticky AI Natural Search Header */}
-      <div className="p-5 md:p-6 rounded-3xl atmospheric-panel border border-emerald-500/30 space-y-4 shadow-2xl backdrop-blur-2xl sticky top-2 z-30">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="space-y-1">
-            <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 [data-theme='light']_:text-emerald-700 uppercase tracking-widest font-bold">
-              <Sparkles className="w-4 h-4 text-emerald-400 animate-pulse" />
-              <span>Tìm Kiếm Thông Minh & Bóc Tách Chi Phí Thật</span>
+      {/* Section Header: Non-sticky, elegant and compact */}
+      <div className="p-4 md:p-5 rounded-2xl atmospheric-panel border border-emerald-500/25 space-y-3 shadow-lg">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div className="space-y-0.5">
+            <div className="inline-flex items-center gap-1.5 text-[11px] font-mono text-emerald-400 [data-theme='light']_:text-emerald-700 uppercase tracking-wider font-bold">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
+              <span>Kho Căn Hộ Tuyển Chọn HAVEN</span>
             </div>
-            <h2 className="text-2xl md:text-3xl font-serif text-slate-100 [data-theme='light']_:text-slate-900 font-bold">
-              Khám Phá Kho Căn Hộ Tuyển Chọn ({filteredUnits.length} Căn)
+            <h2 className="text-xl md:text-2xl font-serif text-slate-100 [data-theme='light']_:text-slate-900 font-bold">
+              {filteredUnits.length} Không Gian Sống Đã Kiểm Định Pháp Lý & Môi Trường
             </h2>
           </div>
 
-          <div className="flex items-center gap-2.5 self-start md:self-auto flex-wrap">
+          <div className="flex items-center gap-2 self-start md:self-auto flex-wrap">
             {/* Collapsible Filter Phễu Toggle Button */}
             <button
               onClick={() => setIsFilterOpen(!isFilterOpen)}
-              className={`px-3.5 py-2 rounded-xl border text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm ${
+              className={`px-3 py-1.5 rounded-xl border text-xs font-mono font-semibold transition-all flex items-center gap-1.5 shadow-sm ${
                 isFilterOpen || activeFiltersCount > 0
                   ? 'bg-emerald-500 text-slate-950 border-emerald-400 shadow-emerald-500/20'
                   : 'bg-slate-900/80 [data-theme="light"]_:bg-white border-slate-800 [data-theme="light"]_:border-slate-200 text-slate-300 [data-theme="light"]_:text-slate-700 hover:text-emerald-300'
@@ -267,7 +260,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
               title="Mở hoặc thu gọn bộ lọc chi tiết"
             >
               <Filter className="w-3.5 h-3.5" />
-              <span>{isFilterOpen ? 'Đóng Bộ Lọc' : 'Bộ Lọc'}</span>
+              <span>{isFilterOpen ? 'Thu gọn bộ lọc' : 'Bộ lọc chi tiết'}</span>
               {activeFiltersCount > 0 && (
                 <span className="px-1.5 py-0.2 rounded-full bg-slate-950 text-emerald-400 text-[10px] font-bold">
                   {activeFiltersCount}
@@ -278,35 +271,36 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
             <button
               onClick={handleResetFilters}
               title="Đặt lại bộ lọc"
-              className="p-2.5 rounded-xl bg-slate-900/60 [data-theme='light']_:bg-white border border-slate-800 [data-theme='light']_:border-slate-200 text-slate-400 [data-theme='light']_:text-slate-600 hover:text-rose-500 transition-all flex items-center gap-1 text-xs font-mono font-semibold"
+              className="p-2 rounded-xl bg-slate-900/60 [data-theme='light']_:bg-white border border-slate-800 [data-theme='light']_:border-slate-200 text-slate-400 [data-theme='light']_:text-slate-600 hover:text-rose-500 transition-all flex items-center gap-1 text-xs font-mono font-semibold"
             >
-              <RefreshCw className="w-4 h-4" />
+              <RefreshCw className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Đặt lại</span>
             </button>
           </div>
         </div>
 
-        {/* AI Prompt Input Form */}
-        <form onSubmit={handleAiFormSubmit} className="relative">
-          <div className="relative flex items-center rounded-2xl bg-slate-950/80 border border-emerald-500/40 p-2 shadow-xl backdrop-blur-xl group focus-within:border-emerald-400 transition-all">
-            <div className="pl-3 pr-2 text-emerald-400">
-              <Sparkles className="w-4 h-4" />
-            </div>
-            <input
-              type="text"
-              value={aiPromptInput}
-              onChange={(e) => setAiPromptInput(e.target.value)}
-              placeholder='Ví dụ: "căn 2 phòng ngủ ở Tây Hồ tầm 20 củ, có chỗ đỗ ô tô, tầng cao yên tĩnh"'
-              className="w-full bg-transparent border-none text-slate-100 placeholder:text-slate-400 text-sm focus:outline-none focus:ring-0 pr-4 py-2 font-sans"
-            />
-            <button
-              type="submit"
-              className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-medium text-xs font-mono transition-all shrink-0 hover:scale-[1.02] active:scale-[0.98]"
-            >
-              Phân Tích AI
-            </button>
-          </div>
-        </form>
+        {/* Quick City Filter Pills - Fast 1-click filtering without opening sidebar */}
+        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-1 text-xs font-mono">
+          <span className="text-[11px] text-slate-400 [data-theme='light']_:text-slate-500 font-semibold mr-1 shrink-0">Khu vực:</span>
+          {['All', 'Hà Nội', 'TP. Hồ Chí Minh', 'Đà Nẵng', 'Hải Phòng', 'Quảng Ninh'].map((c) => {
+            const isSelected = cityFilter === c;
+            const label = c === 'All' ? 'Tất Cả Đô Thị' : c;
+            return (
+              <button
+                key={c}
+                type="button"
+                onClick={() => setCityFilter(c)}
+                className={`px-3 py-1 rounded-xl transition-all whitespace-nowrap shrink-0 font-semibold border ${
+                  isSelected
+                    ? 'bg-emerald-500 text-slate-950 border-emerald-400 shadow-sm shadow-emerald-500/20'
+                    : 'bg-slate-900/60 [data-theme="light"]_:bg-slate-100 border-slate-800/80 [data-theme="light"]_:border-slate-200 text-slate-300 [data-theme="light"]_:text-slate-700 hover:text-emerald-400 hover:border-emerald-500/40'
+                }`}
+              >
+                {label}
+              </button>
+            );
+          })}
+        </div>
 
         {/* AI Parsed Understanding Alert Box */}
         {aiUnderstoodText && (
@@ -589,11 +583,11 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                 return (
                   <div
                     key={unit.id}
-                    className="group haven-card-interactive rounded-3xl overflow-hidden shadow-lg hover:border-emerald-400/80 hover:shadow-2xl hover:shadow-emerald-500/20 transition-all duration-300 flex flex-col justify-between bg-[var(--haven-surface-raised)] border border-[var(--haven-border)]"
+                    className="group haven-beam-hover rounded-3xl shadow-lg transition-all duration-300 flex flex-col justify-between bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] relative"
                   >
                     {/* Image Area - TALL & MAJESTIC (h-64 sm:h-72) */}
                     <div
-                      className="relative h-64 sm:h-72 bg-slate-900 cursor-pointer overflow-hidden"
+                      className="relative h-64 sm:h-72 bg-slate-900 cursor-pointer overflow-hidden rounded-t-3xl"
                       onClick={() => onSelectUnit(unit.id)}
                     >
                       <img

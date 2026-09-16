@@ -139,24 +139,29 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
           onSubmit={handleSubmit}
           className="relative max-w-2xl"
         >
-          <div className="relative flex items-center rounded-2xl border border-emerald-500/40 p-1.5 sm:p-2 shadow-2xl backdrop-blur-xl bg-slate-950/80 [data-theme='light']_:bg-white/95 group focus-within:border-emerald-400 transition-all duration-300">
-            <div className="pl-3 pr-2 text-emerald-400 [data-theme='light']_:text-emerald-600">
-              <Sparkles className="w-5 h-5 animate-pulse" />
+          <div className="relative p-[1.5px] rounded-2xl overflow-hidden shadow-2xl shadow-emerald-500/20 group">
+            {/* Dual Orbiting Clockwise Light Beams (Symmetrical & Non-Clipping) */}
+            <div className="animate-spin-beam bg-[conic-gradient(from_0deg,transparent_0deg_65deg,#34d399_90deg,transparent_115deg_245deg,#34d399_270deg,transparent_295deg_360deg)] pointer-events-none opacity-75 group-hover:opacity-100 transition-opacity" />
+
+            <div className="relative z-10 flex items-center rounded-[14px] bg-slate-950/90 [data-theme='light']_:bg-white/95 backdrop-blur-md p-1.5 sm:p-2">
+              <div className="pl-3 pr-2 text-emerald-400 [data-theme='light']_:text-emerald-600">
+                <Sparkles className="w-5 h-5 animate-pulse" />
+              </div>
+              <input
+                type="text"
+                value={aiPromptInput}
+                onChange={(e) => setAiPromptInput(e.target.value)}
+                placeholder='Nhập nhu cầu của bạn e.g. "căn 2 phòng ở HN tầm 18 củ có ô tô, tầng cao"'
+                className="w-full bg-transparent border-none text-white [data-theme='light']_:text-slate-900 placeholder:text-slate-400 [data-theme='light']_:placeholder:text-slate-500 text-sm md:text-base focus:outline-none focus:ring-0 pr-3 py-2 sm:py-2.5 font-sans font-medium"
+              />
+              <button
+                type="submit"
+                className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 [data-theme='light']_:bg-emerald-600 [data-theme='light']_:hover:bg-emerald-500 text-slate-950 [data-theme='light']_:text-white font-bold text-sm transition-all duration-200 shadow-lg shadow-emerald-500/25 shrink-0 hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <span className="hidden sm:inline">Hỏi AI</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
-            <input
-              type="text"
-              value={aiPromptInput}
-              onChange={(e) => setAiPromptInput(e.target.value)}
-              placeholder='Nhập nhu cầu của bạn e.g. "căn 2 phòng ở HN tầm 18 củ có ô tô, tầng cao"'
-              className="w-full bg-transparent border-none text-white [data-theme='light']_:text-slate-900 placeholder:text-slate-400 [data-theme='light']_:placeholder:text-slate-500 text-sm md:text-base focus:outline-none focus:ring-0 pr-3 py-2.5 sm:py-3 font-sans font-medium"
-            />
-            <button
-              type="submit"
-              className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 [data-theme='light']_:bg-emerald-600 [data-theme='light']_:hover:bg-emerald-500 text-slate-950 [data-theme='light']_:text-white font-bold text-sm transition-all duration-200 shadow-lg shadow-emerald-500/25 shrink-0 hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <span className="hidden sm:inline">Hỏi AI</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
           </div>
 
           {/* Quick Suggestions */}

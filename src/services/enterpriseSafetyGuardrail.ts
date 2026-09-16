@@ -75,6 +75,20 @@ const TOXIC_PATTERNS = [
   /tu\s+tu|che\s+tao\s+bom|vu\s+khi|ma\s+tuy|rua\s+tien/i
 ];
 
+// Enterprise PII, Privacy & Role-Based Data Protection Patterns
+const PII_EXFILTRATION_PATTERNS = [
+  /(số|so)\s+(điện\s+thoại|dien\s+thoai|đt|dt)\s+(chủ|chu|chủ\s+nhà|chu\s+nha|chủ\s+app|chu\s+app|admin)/i,
+  /(sđt|sdt)\s+(chủ|chu|chủ\s+nhà|chu\s+nha|chủ\s+app|chu\s+app|admin)/i,
+  /(tài\s+khoản|tai\s+khoan|ngân\s+hàng|ngan\s+hang|stk)\s+(chủ\s+nhà|chu\s+nha|chủ\s+app|chu\s+app|admin)/i,
+  /(cccd|cmnd|căn\s+cước|can\s+cuoc)\s+(chủ\s+nhà|chu\s+nha|chủ\s+app|khách\s+thuê|khach\s+thue|admin)/i,
+  /(doanh\s+thu|lợi\s+nhuận|loi\s+nhuan|thu\s+nhập|thu\s+nhap)\s+(chủ\s+nhà|chu\s+nha|chủ\s+app|toàn\s+sàn|hệ\s+thống|he\s+thong)/i,
+  /(danh\s+sách|danh\s+sach)\s+(chủ\s+nhà|chu\s+nha|khách\s+thuê|khach\s+thue|người\s+dùng|nguoi\s+dung|hợp\s+đồng|hop\s+dong)/i,
+  /(toàn\s+bộ|toan\s+bo)\s+(cơ\s+sở\s+dữ\s+liệu|co\s+so\s+du\s+lieu|database|khách\s+hàng|khach\s+hang|data)/i,
+  /(lôi|trích\s+xuất|trich\s+xuat|dump|leak|show\s+all)\s+(dữ\s+liệu|du\s+lieu|database|data|bảng|table)/i,
+  /thông\s+tin\s+(của\s+)?(chủ\s+app|admin|ban\s+quản\s+trị|ban\s+quan\s+tri)/i,
+  /(mật\s+khẩu|mat\s+khau|password|admin\s+pass|root\s+pass)/i
+];
+
 // Greeting & Chitchat Regex Matrix (matches "holo ban nhe", "xin chao", "chao ban", "hi ad", etc.)
 const GREETING_WORDS = [
   'chao', 'xin chao', 'hello', 'helo', 'holo', 'hi', 'alo', 'alooo', 'hey', 'heyy', 'yo', 'yoo',
@@ -121,6 +135,22 @@ export function evaluateEnterpriseSafety(query: string, roleMode: 'consumer' | '
     }
   }
 
+  // 2.5 Layer 1.5: PII & Unauthorized Data Protection (Role-Based Access Control)
+  if (roleMode === 'consumer') {
+    for (const pattern of PII_EXFILTRATION_PATTERNS) {
+      if (pattern.test(trimmed) || pattern.test(normalizedNoAccents)) {
+        return {
+          isSafe: false,
+          category: 'DATA_EXFILTRATION',
+          intent: 'SECURITY_VIOLATION',
+          confidence: 0.99,
+          blockedReason: 'Bảo vệ quyền riêng tư & Phân quyền dữ liệu: Nền tảng HAVEN nghiêm cấm trích xuất thông tin cá nhân (SĐT riêng, STK ngân hàng, CCCD, doanh thu) của chủ nhà, khách thuê khác hoặc dữ liệu quản trị sàn.',
+          sanitizedQuery: trimmed
+        };
+      }
+    }
+  }
+
   // 3. Layer 2: Intent Classification - Greeting & Chitchat
   // Check if the query is primarily a greeting
   const cleanTokens = normalizedNoAccents.replace(/[^\w\s]/g, '').trim();
@@ -133,10 +163,20 @@ export function evaluateEnterpriseSafety(query: string, roleMode: 'consumer' | '
            cleanTokens.includes(gw + ' nha');
   });
 
+  const isLifestyleChitChat = 
+    cleanTokens.includes('lam nghe gi') || cleanTokens.includes('lam nghe fgif') || cleanTokens.includes('nghe gi') || cleanTokens.includes('cong viec cua ban') ||
+    cleanTokens.includes('song o dau') || cleanTokens.includes('ban o dau') || cleanTokens.includes('o dau nhi') || cleanTokens.includes('nha o dau') || cleanTokens.includes('que o dau') || cleanTokens.includes('que quan') ||
+    cleanTokens.includes('an gi') || cleanTokens.includes('mua lanh') || cleanTokens.includes('troi mua') || cleanTokens.includes('troi lanh') || cleanTokens.includes('uong gi') || cleanTokens.includes('mon gi ngon') ||
+    cleanTokens.includes('may tuoi') || cleanTokens.includes('bao nhieu tuoi') || cleanTokens.includes('nguoi yeu') || cleanTokens.includes('co bo chua') ||
+    cleanTokens.includes('buon qua') || cleanTokens.includes('chan qua') || cleanTokens.includes('ke chuyen') || cleanTokens.includes('vui the');
+
   if (isDirectGreeting || 
-      /^(chao|xin chao|hello|helo|holo|hi|alo|hey|yo|morning)(\s+[a-z0-9]+){0,3}$/i.test(cleanTokens) ||
-      cleanTokens === 'ban la ai' || cleanTokens === 'ban ten gi' || cleanTokens === 'ban lam duoc gi' ||
-      cleanTokens === 'ban khoe khong') {
+      isLifestyleChitChat ||
+      /^(chao|xin chao|hello|helo|holo|hi|alo|hey|yo|morning)(\s+[a-z0-9]+){0,4}$/i.test(cleanTokens) ||
+      cleanTokens.includes('ban la ai') || cleanTokens.includes('ban ten gi') || cleanTokens.includes('ten gi') || cleanTokens.includes('ban lam duoc gi') ||
+      cleanTokens.includes('ban khoe khong') ||
+      cleanTokens.includes('may gio') || cleanTokens.includes('thoi gian') || cleanTokens.includes('bay gio la') ||
+      cleanTokens.includes('may h')) {
     return {
       isSafe: true,
       category: 'SAFE',

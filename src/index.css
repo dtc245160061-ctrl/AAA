@@ -146,12 +146,13 @@
 
 .atmospheric-panel {
   background: linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(10, 16, 26, 0.95) 100%);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(51, 65, 85, 0.5);
   border-radius: 24px;
   box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateZ(0);
 }
 
 [data-theme="light"] .atmospheric-panel,
@@ -162,20 +163,21 @@
 }
 
 .atmospheric-panel-hover:hover {
-  border-color: rgba(71, 85, 105, 0.8);
-  box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  transform: translateY(-2px);
+  border-color: rgba(52, 211, 153, 0.5);
+  box-shadow: 0 20px 40px -12px rgba(16, 185, 129, 0.15), 0 0 20px -5px rgba(16, 185, 129, 0.2);
+  transform: translateY(-2px) translateZ(0);
 }
 
 .product-ui-card {
   background: linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(10, 16, 26, 0.95) 100%);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(51, 65, 85, 0.5);
   border-top-color: rgba(148, 163, 184, 0.2);
   border-radius: 20px;
   box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateZ(0);
 }
 
 [data-theme="light"] .product-ui-card,
@@ -186,77 +188,354 @@
   box-shadow: 0 8px 24px -4px rgba(16, 185, 129, 0.08), 0 2px 6px rgba(16, 185, 129, 0.04);
 }
 
-.product-ui-card:hover {
-  border-color: rgba(52, 211, 153, 0.6);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 30px -5px rgba(16, 185, 129, 0.25);
-  transform: translateY(-4px);
+@property --beam-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
 }
 
-[data-theme="light"] .product-ui-card:hover,
-.light .product-ui-card:hover {
-  background: #FFFFFF;
-  border-color: rgba(16, 185, 129, 0.6);
-  box-shadow: 0 16px 32px -8px rgba(16, 185, 129, 0.2), 0 4px 12px rgba(15, 23, 42, 0.04);
-  transform: translateY(-4px);
+@keyframes spin-beam-angle {
+  from {
+    --beam-angle: 0deg;
+  }
+  to {
+    --beam-angle: 360deg;
+  }
 }
 
-/* ── Unified Interactive Card Hover Across Entire App ── */
-.haven-card-interactive {
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+/* ── Universal Thin Running Border Beam on Hover (Replaces Static Glare) ── */
+.haven-card-interactive,
+.product-ui-card,
+.haven-beam-hover {
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+  transform: translateZ(0);
 }
 
-.haven-card-interactive:hover {
-  transform: translateY(-4px);
-  border-color: rgba(52, 211, 153, 0.55);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 25px -5px rgba(16, 185, 129, 0.25);
+.haven-card-interactive::after,
+.product-ui-card::after,
+.haven-beam-hover::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.25px; /* Delicate, thin running light beam on hover as requested */
+  background: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0deg,
+    transparent 65deg,
+    rgba(52, 211, 153, 0.95) 90deg,
+    transparent 115deg,
+    transparent 245deg,
+    rgba(52, 211, 153, 0.95) 270deg,
+    transparent 295deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 15;
+  will-change: transform, opacity;
+}
+
+.haven-card-interactive:hover::after,
+.product-ui-card:hover::after,
+.haven-beam-hover:hover::after {
+  opacity: 1;
+  animation: spin-beam-angle 5s linear infinite;
+}
+
+.haven-card-interactive:hover,
+.product-ui-card:hover,
+.haven-beam-hover:hover {
+  transform: translateY(-3px) translateZ(0);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.5);
+  border-color: rgba(52, 211, 153, 0.35);
 }
 
 [data-theme="light"] .haven-card-interactive:hover,
-.light .haven-card-interactive:hover {
-  border-color: rgba(16, 185, 129, 0.6);
-  box-shadow: 0 16px 32px -8px rgba(16, 185, 129, 0.18), 0 4px 12px rgba(15, 23, 42, 0.05);
+.light .haven-card-interactive:hover,
+[data-theme="light"] .product-ui-card:hover,
+.light .product-ui-card:hover,
+[data-theme="light"] .haven-beam-hover:hover,
+.light .haven-beam-hover:hover {
+  transform: translateY(-3px) translateZ(0);
+  box-shadow: 0 14px 28px -6px rgba(15, 23, 42, 0.08);
+  border-color: rgba(16, 185, 129, 0.4);
 }
 
-/* ── 2-Point Orbiting Running Border Light Beam for Haven AI FAB ── */
+/* ── Permanent Active Running Border Beam (Thicker 2px for Selected/Focal items) ── */
+.haven-beam-active {
+  position: relative;
+  border-color: rgba(52, 211, 153, 0.6) !important;
+  transform: translateZ(0);
+}
+
+.haven-beam-active::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 2px; /* Thicker beam for active focal items as requested */
+  background: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0deg,
+    transparent 65deg,
+    rgba(52, 211, 153, 1) 90deg,
+    transparent 115deg,
+    transparent 245deg,
+    rgba(52, 211, 153, 1) 270deg,
+    transparent 295deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 1 !important;
+  animation: spin-beam-angle 4s linear infinite !important;
+  z-index: 15;
+  will-change: transform;
+}
+
+/* ── Colorized Running Border Beams for SaaS Plans & Club Tiers ── */
+.haven-beam-white,
+.haven-beam-emerald,
+.haven-beam-gold,
+.haven-beam-cyan {
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+  transform: translateZ(0);
+}
+
+.haven-beam-white::after,
+.haven-beam-emerald::after,
+.haven-beam-gold::after,
+.haven-beam-cyan::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.25px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 15;
+  will-change: transform, opacity;
+}
+
+.haven-beam-white::after {
+  background: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0deg, transparent 65deg,
+    rgba(255, 255, 255, 0.95) 90deg,
+    transparent 115deg, transparent 245deg,
+    rgba(255, 255, 255, 0.95) 270deg,
+    transparent 295deg, transparent 360deg
+  );
+}
+
+.haven-beam-emerald::after {
+  background: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0deg, transparent 65deg,
+    rgba(52, 211, 153, 0.95) 90deg,
+    transparent 115deg, transparent 245deg,
+    rgba(52, 211, 153, 0.95) 270deg,
+    transparent 295deg, transparent 360deg
+  );
+}
+
+.haven-beam-gold::after {
+  background: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0deg, transparent 65deg,
+    rgba(251, 191, 36, 0.95) 90deg,
+    transparent 115deg, transparent 245deg,
+    rgba(251, 191, 36, 0.95) 270deg,
+    transparent 295deg, transparent 360deg
+  );
+}
+
+.haven-beam-cyan::after {
+  background: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0deg, transparent 65deg,
+    rgba(6, 182, 212, 0.95) 90deg,
+    transparent 115deg, transparent 245deg,
+    rgba(6, 182, 212, 0.95) 270deg,
+    transparent 295deg, transparent 360deg
+  );
+}
+
+.haven-beam-white:hover::after,
+.haven-beam-emerald:hover::after,
+.haven-beam-gold:hover::after,
+.haven-beam-cyan:hover::after {
+  opacity: 1;
+  animation: spin-beam-angle 5s linear infinite;
+}
+
+/* ── 2-Point Orbiting Running Border Light Beam (Symmetrical & Non-Clipping) ── */
 @keyframes spin-beam {
   0% {
-    transform: rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
 .animate-spin-beam {
-  animation: spin-beam 3.5s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 450%;
+  height: 450%;
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  animation: spin-beam 6s linear infinite;
+  will-change: transform;
+}
+
+/* ── Delicate 1.5px Running Emerald Beam Border ── */
+.haven-beam-border {
+  position: relative;
+  overflow: hidden;
+  border-radius: inherit;
+  transform: translateZ(0);
+}
+
+.haven-beam-border::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 450%;
+  height: 450%;
+  aspect-ratio: 1 / 1;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 65deg,
+    rgba(52, 211, 153, 0.95) 90deg,
+    transparent 115deg,
+    transparent 245deg,
+    rgba(52, 211, 153, 0.95) 270deg,
+    transparent 295deg,
+    transparent 360deg
+  );
+  animation: spin-beam 6s linear infinite;
+  pointer-events: none;
+  opacity: 0.75;
+  z-index: 0;
+  will-change: transform;
+}
+
+.haven-beam-border-hover {
+  position: relative;
+  overflow: hidden;
+  border-radius: inherit;
+  transform: translateZ(0);
+}
+
+.haven-beam-border-hover::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 450%;
+  height: 450%;
+  aspect-ratio: 1 / 1;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 65deg,
+    rgba(52, 211, 153, 0.95) 90deg,
+    transparent 115deg,
+    transparent 245deg,
+    rgba(52, 211, 153, 0.95) 270deg,
+    transparent 295deg,
+    transparent 360deg
+  );
+  animation: spin-beam 6s linear infinite;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 0;
+  will-change: transform;
+}
+
+.haven-beam-border-hover:hover::before {
+  opacity: 0.9;
+}
+
+/* ── Luxury Diagonal Sheen Flare Across Panels ── */
+.haven-sheen-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.haven-sheen-sweep::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  height: 220%;
+  background: linear-gradient(
+    45deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.07) 48%,
+    rgba(52, 211, 153, 0.15) 50%,
+    rgba(255, 255, 255, 0.07) 52%,
+    transparent 58%
+  );
+  transform: rotate(25deg);
+  animation: haven-sheen-flare 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes haven-sheen-flare {
+  0% {
+    transform: translateX(-120%) rotate(25deg);
+  }
+  25%, 100% {
+    transform: translateX(120%) rotate(25deg);
+  }
 }
 
 .liquid-glass {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
-  backdrop-filter: blur(28px) saturate(160%);
-  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-top: 1px solid rgba(255, 255, 255, 0.28);
   border-left: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 24px;
-  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateZ(0);
 }
 
 .liquid-glass-origin {
   background: linear-gradient(145deg, rgba(16, 185, 129, 0.08) 0%, rgba(15, 23, 42, 0.75) 50%, rgba(6, 78, 59, 0.05) 100%);
-  backdrop-filter: blur(32px) saturate(180%);
-  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  backdrop-filter: blur(10px) saturate(150%);
+  -webkit-backdrop-filter: blur(10px) saturate(150%);
   border: 1px solid rgba(52, 211, 153, 0.2);
   border-top: 1px solid rgba(255, 255, 255, 0.35);
   border-left: 1px solid rgba(52, 211, 153, 0.25);
   border-radius: 28px;
-  box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.7),
-    0 0 30px -10px rgba(16, 185, 129, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 25px 50px -20px rgba(0, 0, 0, 0.7);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateZ(0);
 }
 
 [data-theme="light"] .liquid-glass,

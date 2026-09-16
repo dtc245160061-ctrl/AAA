@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Sparkles, Plus, Moon, Sun, Monitor, RotateCcw, Bookmark, Menu, Clock, Shield, Calendar, CheckCircle2, ChevronDown } from 'lucide-react';
+import { Search, Plus, Moon, Sun, Monitor, RotateCcw, Bookmark, Menu, Clock, Shield, Calendar, CheckCircle2, ChevronDown } from 'lucide-react';
 import type { ThemeMode } from '../App';
 
 interface TopbarProps {
   isAdminView?: boolean;
   savedCount?: number;
   onOpenSaved?: () => void;
-  onOpenAiCopilot: () => void;
+  onOpenAiCopilot?: () => void;
   onOpenQuickAction?: () => void;
   themeMode?: ThemeMode;
   onThemeChange?: (mode: ThemeMode) => void;
@@ -14,13 +14,14 @@ interface TopbarProps {
   onToggleMobileSidebar?: () => void;
   onToggleAdminView?: () => void;
   onNavigate?: (module: string) => void;
+  onSearchSubmit?: (query: string) => void;
 }
 
 export const Topbar: React.FC<TopbarProps> = ({
   isAdminView = false,
   savedCount = 0,
   onOpenSaved,
-  onOpenAiCopilot,
+  onOpenAiCopilot: _onOpenAiCopilot,
   onOpenQuickAction,
   themeMode = 'dark',
   onThemeChange,
@@ -28,6 +29,7 @@ export const Topbar: React.FC<TopbarProps> = ({
   onToggleMobileSidebar,
   onToggleAdminView,
   onNavigate,
+  onSearchSubmit,
 }) => {
   const [time, setTime] = useState<string>('');
   const [themeDropdownOpen, setThemeDropdownOpen] = useState<boolean>(false);
@@ -42,7 +44,6 @@ export const Topbar: React.FC<TopbarProps> = ({
         now.toLocaleTimeString('en-US', {
           hour: '2-digit',
           minute: '2-digit',
-          second: '2-digit',
           hour12: false,
         })
       );
@@ -52,7 +53,7 @@ export const Topbar: React.FC<TopbarProps> = ({
     return () => clearInterval(interval);
   }, []);
 
-  // Global click-outside listener to reliably close dropdowns
+  // Global click-outside listener to reliably close dropdowns anywhere on the screen
   useEffect(() => {
     const handleDocumentClick = (e: MouseEvent) => {
       if (profileDropdownOpen && profileRef.current && !profileRef.current.contains(e.target as Node)) {
@@ -72,6 +73,7 @@ export const Topbar: React.FC<TopbarProps> = ({
     e.preventDefault();
     if (!searchValue.trim()) return;
     if (!isAdminView) {
+      onSearchSubmit?.(searchValue.trim());
       onNavigate?.('user_search');
     }
   };
@@ -116,14 +118,14 @@ export const Topbar: React.FC<TopbarProps> = ({
             <span className="text-[var(--haven-text-muted)]">•</span>
             <span className="flex items-center gap-1 text-[var(--haven-text-secondary)] font-medium">
               <Clock className="w-3 h-3 text-[var(--haven-emerald-400)]" />
-              <span>{time || '--:--:--'}</span>
+              <span>{time || '--:--'}</span>
               <span className="text-[9px] text-[var(--haven-text-muted)]">UTC+7</span>
             </span>
           </div>
         </div>
 
-        {/* Center: Global Search */}
-        <form onSubmit={handleSearchSubmit} className="flex-1 max-w-md hidden md:block">
+        {/* Center: Global Search - Always accessible even when scrolled */}
+        <form onSubmit={handleSearchSubmit} className="flex-1 max-w-md mx-1.5 sm:mx-3">
           <div className="relative">
             <Search className="w-3.5 h-3.5 text-[var(--haven-text-muted)] absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -131,7 +133,7 @@ export const Topbar: React.FC<TopbarProps> = ({
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               placeholder={isAdminView ? "Tìm căn hộ, hợp đồng, cư dân..." : "Tìm thành phố, ngân sách... (Nhấn Enter)"}
-              className="w-full pl-9 pr-4 py-1.5 text-[var(--text-sm)] bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] rounded-[var(--radius-lg)] text-[var(--haven-text-primary)] placeholder-[var(--haven-text-muted)] focus:outline-none focus:border-[var(--haven-border-focus)] transition-colors font-[var(--font-mono)]"
+              className="w-full pl-9 pr-4 py-1.5 text-[var(--text-xs)] sm:text-[var(--text-sm)] bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] rounded-[var(--radius-lg)] text-[var(--haven-text-primary)] placeholder-[var(--haven-text-muted)] focus:outline-none focus:border-[var(--haven-border-focus)] transition-colors font-[var(--font-mono)]"
             />
           </div>
         </form>
@@ -150,15 +152,6 @@ export const Topbar: React.FC<TopbarProps> = ({
             </button>
           )}
 
-          {/* AI Assistant Button with Subtle Slow Spin */}
-          <button
-            onClick={onOpenAiCopilot}
-            className="h-8 flex items-center gap-1.5 px-3 text-[var(--text-xs)] font-medium text-[var(--haven-text-secondary)] bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] rounded-[var(--radius-lg)] hover:bg-[var(--haven-surface-hover)] hover:border-[var(--haven-border-accent)] transition-colors focus-ring shrink-0 group"
-            title="Haven AI"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-[var(--haven-emerald-400)] animate-spin-slow group-hover:[animation-play-state:paused]" />
-            <span className="hidden sm:inline font-mono">{isAdminView ? 'AI' : 'Haven AI'}</span>
-          </button>
 
           {/* Quick Action (Admin) */}
           {isAdminView && onOpenQuickAction && (
@@ -183,51 +176,47 @@ export const Topbar: React.FC<TopbarProps> = ({
             </button>
 
             {themeDropdownOpen && (
-              <>
-                <div className="fixed inset-0 z-40" onClick={() => setThemeDropdownOpen(false)} />
-
-                <div
-                  className="absolute right-0 top-full mt-2 w-44 p-1.5 rounded-[var(--radius-xl)] surface-elevated shadow-[var(--shadow-overlay)] z-50 space-y-0.5 border border-[var(--haven-border)]"
-                >
-                  <span className="text-label text-[9px] px-2 py-1 block">
-                    GIAO DIỆN
-                  </span>
-                  {themeOptions.map(({ mode, label, icon: Icon }) => (
-                    <button
-                      key={mode}
-                      onClick={() => {
-                        onThemeChange?.(mode);
-                        setThemeDropdownOpen(false);
-                      }}
-                      className={`
-                        w-full flex items-center justify-between px-2.5 py-1.5
-                        rounded-[var(--radius-md)] text-[var(--text-xs)] font-mono
-                        transition-colors
-                        ${themeMode === mode
-                          ? 'bg-[var(--haven-emerald-muted)] text-[var(--haven-emerald-400)] font-semibold border border-[var(--haven-border-accent)]'
-                          : 'text-[var(--haven-text-secondary)] hover:bg-[var(--haven-surface-hover)] hover:text-[var(--haven-text-primary)]'
-                        }
-                      `}
-                    >
-                      <div className="flex items-center gap-2">
-                        <Icon className="w-3.5 h-3.5" />
-                        <span>{label}</span>
-                      </div>
-                      {themeMode === mode && <span className="status-dot status-dot-active" />}
-                    </button>
-                  ))}
-
-                  <div className="divider my-1" />
-
+              <div
+                className="absolute right-0 top-full mt-2 w-44 p-1.5 rounded-[var(--radius-xl)] surface-elevated shadow-[var(--shadow-overlay)] z-50 space-y-0.5 border border-[var(--haven-border)] animate-in fade-in"
+              >
+                <span className="text-label text-[9px] px-2 py-1 block">
+                  GIAO DIỆN
+                </span>
+                {themeOptions.map(({ mode, label, icon: Icon }) => (
                   <button
-                    onClick={handleResetDemo}
-                    className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-[var(--radius-md)] text-[var(--text-xs)] font-mono text-[var(--haven-rose-400)] hover:bg-[var(--haven-rose-muted)] transition-colors text-left"
+                    key={mode}
+                    onClick={() => {
+                      onThemeChange?.(mode);
+                      setThemeDropdownOpen(false);
+                    }}
+                    className={`
+                      w-full flex items-center justify-between px-2.5 py-1.5
+                      rounded-[var(--radius-md)] text-[var(--text-xs)] font-mono
+                      transition-colors
+                      ${themeMode === mode
+                        ? 'bg-[var(--haven-emerald-muted)] text-[var(--haven-emerald-400)] font-semibold border border-[var(--haven-border-accent)]'
+                        : 'text-[var(--haven-text-secondary)] hover:bg-[var(--haven-surface-hover)] hover:text-[var(--haven-text-primary)]'
+                      }
+                    `}
                   >
-                    <RotateCcw className="w-3.5 h-3.5" />
-                    <span>Khôi phục Demo</span>
+                    <div className="flex items-center gap-2">
+                      <Icon className="w-3.5 h-3.5" />
+                      <span>{label}</span>
+                    </div>
+                    {themeMode === mode && <span className="status-dot status-dot-active" />}
                   </button>
-                </div>
-              </>
+                ))}
+
+                <div className="divider my-1" />
+
+                <button
+                  onClick={handleResetDemo}
+                  className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-[var(--radius-md)] text-[var(--text-xs)] font-mono text-[var(--haven-rose-400)] hover:bg-[var(--haven-rose-muted)] transition-colors text-left"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                  <span>Khôi phục Demo</span>
+                </button>
+              </div>
             )}
           </div>
 
@@ -247,32 +236,49 @@ export const Topbar: React.FC<TopbarProps> = ({
             </button>
 
             {profileDropdownOpen && (
-              <>
-                <div className="fixed inset-0 z-40" onClick={() => setProfileDropdownOpen(false)} />
-                <div className="absolute right-0 top-full mt-2 w-64 p-2 rounded-[var(--radius-xl)] surface-elevated shadow-[var(--shadow-overlay)] z-50 space-y-1.5 border border-[var(--haven-border)] animate-in fade-in">
+              <div className="absolute right-0 top-full mt-2 w-72 p-2.5 rounded-2xl bg-slate-900 [data-theme='light']_:bg-white shadow-2xl z-50 space-y-2 border border-slate-700 [data-theme='light']_:border-slate-200 animate-in fade-in">
                   {/* User Profile Header */}
-                  <div className="flex items-center gap-3 p-2 rounded-xl bg-[var(--haven-surface-raised)] border border-[var(--haven-border)]">
+                  <div className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-950/80 [data-theme='light']_:bg-slate-50 border border-slate-800 [data-theme='light']_:border-slate-200">
                     <img
                       src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150"
                       alt="Nguyễn An"
-                      className="h-10 w-10 rounded-xl object-cover border border-[var(--haven-border-accent)]"
+                      className="h-10 w-10 rounded-xl object-cover border border-emerald-500/40"
                     />
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-1">
-                        <span className="font-serif font-bold text-sm text-[var(--haven-text-primary)] truncate">Nguyễn An</span>
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[var(--haven-emerald-400)] shrink-0" />
+                        <span className="font-serif font-bold text-sm text-white [data-theme='light']_:text-slate-900 truncate">Nguyễn An</span>
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                       </div>
-                      <div className="text-[10px] font-mono text-[var(--haven-emerald-400)] font-medium">
-                        Sanctuary Member
+                      <div className="text-[10px] font-mono text-emerald-400 font-bold">
+                        {isAdminView ? 'Ban Quản Trị Sàn' : 'Sanctuary Member'}
                       </div>
-                      <div className="text-[10px] font-mono text-[var(--haven-text-muted)] truncate">
+                      <div className="text-[10px] font-mono text-slate-200 [data-theme='light']_:text-slate-600 font-medium truncate">
                         an.nguyen@haven.luxury
                       </div>
                     </div>
                   </div>
 
                   {/* Menu Items */}
-                  <div className="space-y-0.5 pt-1">
+                  <div className="space-y-1 pt-1">
+                    {/* Role Switcher - Essential for Presentation */}
+                    {onToggleAdminView && (
+                      <button
+                        onClick={() => {
+                          onToggleAdminView();
+                          setProfileDropdownOpen(false);
+                        }}
+                        className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-mono text-emerald-300 [data-theme='light']_:text-emerald-800 bg-emerald-500/15 [data-theme='light']_:bg-emerald-100 hover:bg-emerald-500/25 border border-emerald-500/40 transition-all text-left font-bold shadow-xs group"
+                      >
+                        <div className="flex items-center gap-2">
+                          <Shield className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" />
+                          <span>{isAdminView ? 'Chuyển Chế Độ Khách (User)' : 'Chuyển Quản Trị (Admin Ops)'}</span>
+                        </div>
+                        <span className="px-1.5 py-0.5 rounded-md bg-emerald-500 text-slate-950 text-[9px] font-bold">
+                          ĐỔI
+                        </span>
+                      </button>
+                    )}
+
                     {!isAdminView && (
                       <>
                         <button
@@ -280,13 +286,13 @@ export const Topbar: React.FC<TopbarProps> = ({
                             onOpenSaved?.();
                             setProfileDropdownOpen(false);
                           }}
-                          className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-mono text-[var(--haven-text-secondary)] hover:text-[var(--haven-text-primary)] hover:bg-[var(--haven-surface-hover)] transition-colors text-left"
+                          className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-mono text-slate-200 [data-theme='light']_:text-slate-700 hover:text-white hover:bg-slate-800/80 transition-colors text-left"
                         >
                           <div className="flex items-center gap-2">
-                            <Bookmark className="w-3.5 h-3.5 text-[var(--haven-emerald-400)]" />
+                            <Bookmark className="w-3.5 h-3.5 text-emerald-400" />
                             <span>Căn Hộ Đã Lưu</span>
                           </div>
-                          <span className="px-1.5 py-0.2 rounded-full bg-[var(--haven-emerald-500)] text-white text-[10px] font-mono font-bold">
+                          <span className="px-1.5 py-0.5 rounded-full bg-emerald-500 text-slate-950 text-[10px] font-mono font-bold">
                             {savedCount}
                           </span>
                         </button>
@@ -296,29 +302,16 @@ export const Topbar: React.FC<TopbarProps> = ({
                             onNavigate?.('user_checklist');
                             setProfileDropdownOpen(false);
                           }}
-                          className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-mono text-[var(--haven-text-secondary)] hover:text-[var(--haven-text-primary)] hover:bg-[var(--haven-surface-hover)] transition-colors text-left"
+                          className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-mono text-slate-200 [data-theme='light']_:text-slate-700 hover:text-white hover:bg-slate-800/80 transition-colors text-left"
                         >
                           <Calendar className="w-3.5 h-3.5 text-sky-400" />
                           <span>Lịch Hẹn & Bàn Giao</span>
                         </button>
                       </>
                     )}
-
-                    {onToggleAdminView && (
-                      <button
-                        onClick={() => {
-                          onToggleAdminView();
-                          setProfileDropdownOpen(false);
-                        }}
-                        className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-mono text-[var(--haven-emerald-400)] bg-[var(--haven-emerald-muted)] hover:bg-[rgba(16,185,129,0.2)] border border-[var(--haven-border-accent)] transition-colors text-left font-semibold"
-                      >
-                        <Shield className="w-3.5 h-3.5" />
-                        <span>{isAdminView ? 'Chuyển Chế Độ Khách Thuê' : 'Chuyển Quản Trị (Admin Ops)'}</span>
-                      </button>
-                    )}
                   </div>
 
-                  <div className="divider my-1" />
+                  <div className="divider my-1 border-t border-slate-800 [data-theme='light']_:border-slate-200" />
 
                   {/* Reset Demo & Logout */}
                   <button
@@ -326,13 +319,12 @@ export const Topbar: React.FC<TopbarProps> = ({
                       handleResetDemo();
                       setProfileDropdownOpen(false);
                     }}
-                    className="w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-mono text-[var(--haven-text-tertiary)] hover:text-[var(--haven-rose-400)] hover:bg-[var(--haven-rose-muted)] transition-colors text-left"
+                    className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-mono text-rose-400 hover:text-rose-300 hover:bg-rose-500/15 transition-colors text-left font-semibold"
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
                     <span>Khôi phục Dữ liệu Demo</span>
                   </button>
                 </div>
-              </>
             )}
           </div>
         </div>

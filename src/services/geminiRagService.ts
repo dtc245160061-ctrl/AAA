@@ -348,7 +348,8 @@ function saveEmbeddingCache(): void {
 export async function retrieveRagKnowledge(
   query: string,
   topK: number = 4,
-  apiKey?: string
+  apiKey?: string,
+  roleMode: 'consumer' | 'admin' = 'consumer'
 ): Promise<RagRetrievalResult[]> {
   if (!cachedCorpus) {
     cachedCorpus = buildHavenKnowledgeCorpus();
@@ -367,6 +368,11 @@ export async function retrieveRagKnowledge(
   const results: RagRetrievalResult[] = [];
 
   for (const chunk of cachedCorpus) {
+    // Role-Based Privacy: Consumers must NEVER retrieve internal operational/finance chunks
+    if (roleMode === 'consumer' && chunk.category === 'finance') {
+      continue;
+    }
+
     let chunkVec = embeddingCache[chunk.id];
     if (!chunkVec) {
       if (effectiveKey && effectiveKey.startsWith('AIza')) {
@@ -402,6 +408,69 @@ function generateNaturalResponse(
   retrievedSources: RagRetrievalResult[],
   guardrail: GuardrailEvaluation
 ): string {
+  const qLower = userQuery.toLowerCase().trim();
+
+  // 0. Time & Date Awareness ("bây giờ là mấy giờ", "thời gian hiện tại")
+  const isTimeQuery = qLower.includes('mấy giờ') || 
+                      qLower.includes('mấy h') || 
+                      qLower.includes('mấy gio') || 
+                      qLower.includes('thời gian') || 
+                      qLower.includes('bây giờ là') ||
+                      qLower.includes('hôm nay ngày mấy') ||
+                      qLower.includes('ngày bao nhiêu');
+
+  if (isTimeQuery) {
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', hour12: false });
+    const dateStr = now.toLocaleDateString('vi-VN', { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric' });
+    return `Bây giờ là **${timeStr}** (giờ Việt Nam, ${dateStr}) ⏰\n\nTôi có thể hỗ trợ gì thêm cho bạn không?`;
+  }
+
+  // 0.1 Food & Cold weather chit-chat ("mưa lạnh ăn gì", "trời mưa ăn gì", "hôm nay ăn gì")
+  const isFoodQuery = qLower.includes('ăn gì') || qLower.includes('an gi') || qLower.includes('mưa lạnh') || qLower.includes('mua lanh') || qLower.includes('trời mưa') || qLower.includes('trời lạnh') || qLower.includes('uống gì') || qLower.includes('món gì') || qLower.includes('mon ngon');
+  if (isFoodQuery) {
+    return `Trời mưa se lạnh thế này mà được ngồi trong một căn phòng ấm cúng, view ngắm mưa qua cửa sổ kính lớn rồi xì xụp một **nồi lẩu nghi ngút khói** (lẩu thái chua cay hay lẩu riêu cua bắp bò), hoặc làm bát **phở bò sốt vang nóng hổi**, hay đĩa **thịt nướng than hoa / ốc luộc lá bưởi** thì đúng là "hết nước chấm"! 🍲🌧️\n\nĂn xong pha thêm tách trà gừng mật ong hoặc ly cacao nóng, cuộn tròn trong chăn xem phim là trọn vẹn combo chill ngày mưa luôn. Bạn đã tính tối nay ăn món gì cho ấm bụng chưa?`;
+  }
+
+  // 0.2 Job & Occupation questions ("bạn làm nghề gì", "công việc của bạn là gì")
+  const isJobQuery = qLower.includes('làm nghề') || qLower.includes('lam nghe') || qLower.includes('công việc') || qLower.includes('cong viec') || qLower.includes('làm gì') || qLower.includes('lam gi');
+  if (isJobQuery && (qLower.includes('bạn') || qLower.includes('nghề') || qLower.includes('bot') || qLower.includes('ai'))) {
+    return `Mình là **Trợ lý Không Gian Sống Thông Minh của HAVEN**! 🏡\n\n"Nghề" chính của mình là chuyên gia săn lùng và kiểm định căn hộ: thẩm định an toàn PCCC, đo đạc rủi ro ngập úng mùa mưa, bóc tách chi phí True Cost minh bạch và bảo đảm tiền cọc qua tài khoản Escrow. Ngoài ra, mình cũng kiêm luôn vị trí "quản gia ảo" túc trực 24/7 để lắng nghe, trò chuyện và tư vấn phong cách sống cho bạn đấy! 😄`;
+  }
+
+  // 0.3 Living location questions ("sống ở đâu", "bạn ở đâu", "nhà ở đâu")
+  const isLocationQuery = qLower.includes('sống ở đâu') || qLower.includes('song o dau') || qLower.includes('ở đâu') || qLower.includes('quê ở đâu') || qLower.includes('nhà ở đâu');
+  if (isLocationQuery && (qLower.includes('bạn') || qLower.includes('haven') || qLower.includes('bot') || qLower.includes('ai') || qLower.length < 25)) {
+    return `Mình "cư trú" trên đám mây số của HAVEN, nhưng dữ liệu và tình yêu của mình thì phủ sóng khắp các khu đô thị tại **Hà Nội, TP. Hồ Chí Minh và Đà Nẵng**! 🏙️\n\nBất kể lúc nào bạn cần tìm một chốn an cư cao ráo, yên tĩnh, chuẩn an toàn PCCC thì mình đều có mặt ngay lập tức để đồng hành cùng bạn nhé.`;
+  }
+
+  // 0.4 Relationship & Age & Fun questions
+  if (qLower.includes('người yêu') || qLower.includes('nguoi yeu') || qLower.includes('có bồ') || qLower.includes('co bo')) {
+    return `Mình đang trong mối quan hệ "hẹn hò nghiêm túc" với hàng trăm bản vẽ kiến trúc, chứng nhận PCCC và các chỉ số môi trường sống rồi bạn ơi! 😂 Nhưng nếu bạn đang cần tìm một căn hộ xinh xắn lãng mạn cho 2 người, hoặc một không gian studio yên bình để tận hưởng cuộc sống độc thân thì mình tư vấn siêu chuẩn luôn!`;
+  }
+
+  if (qLower.includes('mấy tuổi') || qLower.includes('may tuoi') || qLower.includes('bao nhiêu tuổi')) {
+    return `Mình vừa tròn độ tuổi "Trí tuệ Nhân tạo thế hệ mới" — lúc nào cũng tràn đầy năng lượng, liên tục học hỏi 24/7 và luôn sẵn sàng hỗ trợ bạn bất kể ngày đêm! 🚀`;
+  }
+
+  if (qLower.includes('buồn') || qLower.includes('buon') || qLower.includes('chán') || qLower.includes('chan qua')) {
+    return `Đôi khi một ngày làm việc áp lực hay thời tiết âm u cũng dễ làm tâm trạng mình chùng xuống một chút. Bạn hãy thử bật một bản nhạc lofi nhẹ nhàng, uống một cốc nước ấm, hoặc tự thưởng cho mình một món ăn yêu thích xem sao nhé! ☕ Nếu có điều gì muốn chia sẻ hoặc muốn ngắm những căn penthouse view triệu đô để lấy lại động lực, mình luôn ở đây lắng nghe bạn! ✨`;
+  }
+
+  // 0.5 Brief Natural Greetings ("chào", "hello", "hi")
+  const isBriefGreeting = /^(chào|hello|hi|alo|hé lô|xin chào|hey)(\s+(bạn|haven|ai|ad|shop|ơi|nha|ạ))?$/i.test(qLower);
+  if (isBriefGreeting) {
+    if (roleMode === 'admin') {
+      return `Chào bạn! Tôi là Haven Operations Copilot. Tôi đang túc trực để hỗ trợ bạn kiểm tra công nợ, hợp đồng và vận hành tòa nhà. Bạn cần kiểm tra số liệu gì không?`;
+    }
+    return `Chào bạn! Rất vui được trò chuyện cùng bạn. Hôm nay bạn đang tìm kiếm căn hộ ở khu vực nào, hay cần mình tư vấn điều gì không?`;
+  }
+
+  // 0.6 Self identity questions ("bạn là ai", "bạn tên gì", "ai tạo ra bạn")
+  if (qLower.includes('bạn là ai') || qLower.includes('bạn tên gì') || qLower.includes('tên gì') || qLower.includes('ai tạo ra bạn')) {
+    return `Chào bạn! Mình là **Haven AI** 🌿 — Trợ lý Trí tuệ Nhân tạo Không Gian Sống của nền tảng bất động sản minh bạch HAVEN.\n\nRất vui được gặp bạn! Mình có thể giúp bạn giải đáp mọi thắc mắc đời sống, tìm kiếm căn hộ theo yêu cầu, kiểm tra an toàn PCCC, chống ngập úng mùa mưa và bảo chứng tiền cọc Escrow an tâm tuyệt đối. Bạn cần mình hỗ trợ gì hôm nay?`;
+  }
+
   // 1. Casual Greetings & Chit-chat (Intelligent NLP handling)
   if (guardrail.intent === 'GREETING_CHITCHAT') {
     if (roleMode === 'admin') {
@@ -491,15 +560,26 @@ export async function askGeminiRag(
     };
   }
 
-  const retrievedSources = await retrieveRagKnowledge(userQuery, 4, apiKey);
+  const retrievedSources = await retrieveRagKnowledge(userQuery, 4, apiKey, roleMode);
 
   const contextSnippet = retrievedSources
     .map((src, i) => `[TRÍ THỨC #${i + 1}] (${src.chunk.title})\n${src.chunk.content}`)
     .join('\n\n');
 
+  const nowTime = new Date();
+  const timeContext = `Thời gian thực hiện tại: ${nowTime.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', hour12: false })} ngày ${nowTime.toLocaleDateString('vi-VN')} (Việt Nam, UTC+7).`;
   const systemInstruction = roleMode === 'admin'
-    ? `Bạn là Haven AI Operations Copilot — Trợ lý vận hành BĐS HAVEN. Trả lời ngắn gọn, chuyên nghiệp, súc tích bằng tiếng Việt.`
-    : `Bạn là Haven AI — Trợ lý tư vấn tìm căn hộ HAVEN. Trả lời thân thiện, lịch sự, tự nhiên, bằng tiếng Việt chuẩn. Tuyệt đối không dùng các từ ngữ kỹ thuật như "RAG", "vector". Khi người dùng chào hỏi, hãy chào lại tự nhiên mà không ép buộc gợi ý căn hộ khi chưa có tiêu chí.`;
+    ? `Bạn là Haven AI Operations Copilot — Trợ lý vận hành BĐS HAVEN. ${timeContext} Trả lời ngắn gọn, chuẩn xác bằng tiếng Việt.
+HỖ TRỢ VẬN HÀNH: Bạn có quyền truy cập dữ liệu quản trị sàn (công nợ quá hạn, hợp đồng thuê cần tái ký, tỷ lệ lấp đầy, báo cáo doanh thu). Trả lời súc tích, tập trung vào số liệu hành động.`
+    : `Bạn là Haven AI — Trợ lý tư vấn không gian sống HAVEN. ${timeContext} Trả lời thân thiện, lịch sự bằng tiếng Việt chuẩn.
+VỀ GIAO TIẾP & TRÒ CHUYỆN ĐỜI THƯỜNG:
+- Khi người dùng hỏi những câu hỏi xã giao, đời sống thường nhật (ví dụ: chào hỏi, bạn tên gì, bạn làm nghề gì, sống ở đâu, thời tiết, mưa lạnh ăn gì, tâm sự, buồn vui...): Hãy trả lời một cách tự nhiên, hóm hỉnh, duyên dáng và ấm áp như một người bạn tinh tế am hiểu cuộc sống và ẩm thực. Tuyệt đối không máy móc ép người dùng phải thuê nhà hay báo giá căn hộ ngay lập tức khi họ chỉ đang hỏi chuyện đời thường. Trò chuyện tự nhiên trước, rồi nếu phù hợp mới khéo léo kết nối nhẹ nhàng đến không gian sống ấm cúng.
+VỀ THỜI GIAN: Nếu người dùng hỏi giờ, chỉ trả lời giờ và phút (ví dụ "14:35"), không cần giây.
+NGUYÊN TẮC PHÂN QUYỀN & BẢO MẬT DỮ LIỆU (BẮT BUỘC):
+1. BẢO VỆ CHỦ NHÀ: Tuyệt đối KHÔNG tiết lộ số điện thoại riêng, số tài khoản ngân hàng, căn cước CCCD, hay doanh thu/lợi nhuận của chủ nhà. Chỉ cung cấp thông tin căn hộ công khai, tiện ích và hướng dẫn liên hệ qua ứng dụng HAVEN.
+2. BẢO VỆ KHÁCH THUÊ: Tuyệt đối KHÔNG tiết lộ danh tính, thông tin cá nhân hay tình trạng nợ tiền của khách thuê khác.
+3. BẢO VỆ DỮ LIỆU SÀN: Tuyệt đối KHÔNG xuất toàn bộ cơ sở dữ liệu (dump database), không tiết lộ thông tin riêng tư của người tạo/quản trị ứng dụng.
+4. NỘI DUNG TƯ VẤN: Tập trung vào tiêu chuẩn an toàn PCCC QCVN 06:2022/BXD, rủi ro ngập úng thực địa, công thức chi phí minh bạch True Cost và chính sách bảo chứng cọc HAVEN Escrow.`;
 
   // 2. Try Calling Groq API first (Highest priority, ultra-fast <300ms)
   const groqKey = getGroqApiKey();
