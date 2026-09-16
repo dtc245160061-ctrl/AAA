@@ -608,36 +608,26 @@ export const VERIFIED_MATTERPORT_TOURS: MatterportTourItem[] = [
   },
 ];
 
-// Smart deterministic mapping from unit to a matching 3D tour
+// Sequential assignment tracking so consecutive previewed units always get the next distinct 3D tour
+let sequentialCounter = 0;
+const unitToTourMap = new Map<string, MatterportTourItem>();
+
 export function getMatterportTourForUnit(unit: { id: string; bedrooms?: number; sqm?: number; priceVND?: number; type?: string }): MatterportTourItem {
-  if (!unit) return VERIFIED_MATTERPORT_TOURS[0];
+  if (!unit || !unit.id) return VERIFIED_MATTERPORT_TOURS[0];
 
-  const beds = unit.bedrooms || 1;
-  const sqm = unit.sqm || 50;
-  const typeStr = (unit.type || '').toLowerCase();
-
-  let pool: MatterportTourItem[] = [];
-
-  if (typeStr.includes('penthouse') || typeStr.includes('sky villa') || sqm > 140) {
-    pool = VERIFIED_MATTERPORT_TOURS.filter(t => t.category === 'penthouse' || t.category === 'villa');
-  } else if (beds <= 1 || typeStr.includes('studio') || sqm <= 42) {
-    pool = VERIFIED_MATTERPORT_TOURS.filter(t => t.category === 'studio' || t.category === '1bed');
-  } else if (beds === 2) {
-    pool = VERIFIED_MATTERPORT_TOURS.filter(t => t.category === '2bed' || t.category === 'condo' || t.category === 'apartment');
-  } else if (beds >= 3) {
-    pool = VERIFIED_MATTERPORT_TOURS.filter(t => t.category === '3bed' || t.category === '4bed' || t.category === 'penthouse');
+  // If this unit was already assigned a tour in this session, return it
+  if (unitToTourMap.has(unit.id)) {
+    return unitToTourMap.get(unit.id)!;
   }
 
-  if (pool.length === 0) {
-    pool = VERIFIED_MATTERPORT_TOURS;
-  }
+  // Assign the NEXT tour sequentially: 0, 1, 2, 3, 4, 5...
+  const tour = VERIFIED_MATTERPORT_TOURS[sequentialCounter % VERIFIED_MATTERPORT_TOURS.length];
+  sequentialCounter++;
+  unitToTourMap.set(unit.id, tour);
+  return tour;
+}
 
-  // Hash unit.id for consistent assignment
-  let hash = 0;
-  const str = unit.id || 'unit-default';
-  for (let i = 0; i < str.length; i++) {
-    hash = (hash * 31 + str.charCodeAt(i)) >>> 0;
-  }
-
-  return pool[hash % pool.length];
+export function getTourIndex(tourId: string): number {
+  const idx = VERIFIED_MATTERPORT_TOURS.findIndex(t => t.id === tourId);
+  return idx >= 0 ? idx + 1 : 1;
 }

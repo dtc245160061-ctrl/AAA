@@ -25,6 +25,7 @@ import {
 import type { ApartmentUnit, VirtualTourRoom } from '../types/apartment';
 import { 
   getMatterportTourForUnit, 
+  getTourIndex,
   VERIFIED_MATTERPORT_TOURS, 
   type MatterportTourItem 
 } from '../data/matterportTours';
@@ -280,7 +281,7 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
                 </h3>
                 <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[10px] font-mono text-emerald-400 font-bold">
                   <Sparkles className="w-3 h-3" />
-                  <span>3D Digital Twin ({VERIFIED_MATTERPORT_TOURS.length} nhà thật)</span>
+                  <span>Không Gian 3D #{getTourIndex(currentTour.id)} • Digital Twin</span>
                 </span>
               </div>
               <p className="text-[11px] font-mono text-slate-400">
@@ -367,10 +368,12 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
                   {/* Model Selector Button */}
                   <button
                     onClick={() => setShowModelPicker(!showModelPicker)}
-                    className="px-3.5 py-2 rounded-xl bg-slate-950/95 hover:bg-slate-900 border border-emerald-500/50 text-xs font-mono text-slate-200 flex items-center gap-2 shadow-2xl backdrop-blur-md transition-all active:scale-95"
+                    className="px-3 py-1.5 rounded-xl bg-slate-950/95 hover:bg-slate-900 border border-emerald-500/50 text-xs font-mono text-slate-200 flex items-center gap-2 shadow-2xl backdrop-blur-md transition-all active:scale-95"
                   >
-                    <Box className="w-3.5 h-3.5 text-emerald-400" />
-                    <span className="font-bold text-white max-w-[200px] sm:max-w-[320px] truncate">
+                    <span className="px-1.5 py-0.5 rounded bg-emerald-500 text-slate-950 font-bold text-[10px]">
+                      Bản #{getTourIndex(currentTour.id)}
+                    </span>
+                    <span className="font-bold text-white max-w-[180px] sm:max-w-[280px] truncate">
                       {currentTour.name}
                     </span>
                     <span className="px-1.5 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 text-[10px] font-bold">
@@ -462,7 +465,10 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
                               {isSelected ? <Check className="w-3.5 h-3.5" /> : <Box className="w-3.5 h-3.5" />}
                             </div>
                             <div className="min-w-0">
-                              <p className="font-bold text-white text-[12px] truncate">{t.name}</p>
+                              <p className="font-bold text-white text-[12px] truncate">
+                                <span className="text-emerald-400 font-mono mr-1.5 font-bold">#{getTourIndex(t.id)}</span>
+                                {t.name}
+                              </p>
                               <p className="text-[10px] text-slate-400">{t.categoryLabel} • {t.bedroomCount} Phòng ngủ</p>
                             </div>
                           </div>
