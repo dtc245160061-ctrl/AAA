@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Plus, Moon, Sun, Monitor, RotateCcw, Bookmark, Menu, Clock, Shield, Calendar, CheckCircle2, ChevronDown } from 'lucide-react';
+import { Search, Plus, Moon, Sun, Monitor, RotateCcw, Bookmark, Menu, Clock, Shield, Calendar, CheckCircle2, ChevronDown, Mic, MicOff } from 'lucide-react';
 import type { ThemeMode } from '../App';
+import { VoiceRecognitionService } from '../services/voiceRecognitionService';
 
 interface TopbarProps {
   isAdminView?: boolean;
@@ -68,13 +69,43 @@ export const Topbar: React.FC<TopbarProps> = ({
   }, [profileDropdownOpen, themeDropdownOpen]);
 
   const [searchValue, setSearchValue] = useState<string>('');
+  const [isVoiceListening, setIsVoiceListening] = useState<boolean>(false);
 
-  const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!searchValue.trim()) return;
+  const handleSearchSubmit = (e?: React.FormEvent, customQuery?: string) => {
+    if (e) e.preventDefault();
+    const query = (customQuery || searchValue).trim();
+    if (!query) return;
     if (!isAdminView) {
-      onSearchSubmit?.(searchValue.trim());
+      onSearchSubmit?.(query);
       onNavigate?.('user_search');
+    }
+  };
+
+  const toggleVoiceSearch = () => {
+    if (isVoiceListening) {
+      VoiceRecognitionService.stop();
+      setIsVoiceListening(false);
+      return;
+    }
+
+    const started = VoiceRecognitionService.start({
+      lang: 'vi-VN',
+      onStart: () => setIsVoiceListening(true),
+      onEnd: () => setIsVoiceListening(false),
+      onResult: (transcript, isFinal) => {
+        setSearchValue(transcript);
+        if (isFinal) {
+          handleSearchSubmit(undefined, transcript);
+        }
+      },
+      onError: (err) => {
+        console.warn('Topbar voice error:', err);
+        setIsVoiceListening(false);
+      }
+    });
+
+    if (!started) {
+      alert('Trình duyệt chưa hỗ trợ nhận diện giọng nói hoặc chưa cấp quyền micro.');
     }
   };
 
@@ -124,17 +155,30 @@ export const Topbar: React.FC<TopbarProps> = ({
           </div>
         </div>
 
-        {/* Center: Global Search - Always accessible even when scrolled */}
+        {/* Center: Global Search with Microphone Voice Input - Always accessible even when scrolled */}
         <form onSubmit={handleSearchSubmit} className="flex-1 max-w-md mx-1.5 sm:mx-3">
-          <div className="relative">
-            <Search className="w-3.5 h-3.5 text-[var(--haven-text-muted)] absolute left-3 top-1/2 -translate-y-1/2" />
+          <div className="relative flex items-center">
+            <Search className="w-3.5 h-3.5 text-[var(--haven-text-muted)] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
-              placeholder={isAdminView ? "Tìm căn hộ, hợp đồng, cư dân..." : "Tìm thành phố, ngân sách... (Nhấn Enter)"}
-              className="w-full pl-9 pr-4 py-1.5 text-[var(--text-xs)] sm:text-[var(--text-sm)] bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] rounded-[var(--radius-lg)] text-[var(--haven-text-primary)] placeholder-[var(--haven-text-muted)] focus:outline-none focus:border-[var(--haven-border-focus)] transition-colors font-[var(--font-mono)]"
+              placeholder={isVoiceListening ? "Đang lắng nghe bạn nói..." : (isAdminView ? "Tìm căn hộ, hợp đồng, cư dân..." : "Tìm thành phố, ngân sách... (Nhấn Enter)")}
+              className="w-full pl-9 pr-9 py-1.5 text-[var(--text-xs)] sm:text-[var(--text-sm)] bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] rounded-[var(--radius-lg)] text-[var(--haven-text-primary)] placeholder-[var(--haven-text-muted)] focus:outline-none focus:border-[var(--haven-border-focus)] transition-colors font-[var(--font-mono)]"
             />
+            {/* Topbar Voice Search Mic Button */}
+            <button
+              type="button"
+              onClick={toggleVoiceSearch}
+              title={isVoiceListening ? "Đang lắng nghe... Bấm để dừng" : "Tìm kiếm bằng giọng nói"}
+              className={`absolute right-1.5 top-1/2 -translate-y-1/2 p-1.5 rounded-md transition-all flex items-center justify-center ${
+                isVoiceListening
+                  ? 'bg-rose-500 text-white animate-pulse scale-110 shadow-md shadow-rose-500/40 ring-1 ring-rose-400'
+                  : 'text-[var(--haven-text-muted)] hover:text-[var(--haven-emerald-400)] hover:bg-[var(--haven-surface-hover)]'
+              }`}
+            >
+              {isVoiceListening ? <MicOff className="w-3.5 h-3.5" /> : <Mic className="w-3.5 h-3.5" />}
+            </button>
           </div>
         </form>
 

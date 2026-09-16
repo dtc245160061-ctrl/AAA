@@ -166,16 +166,16 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
         </div>
       </div>
 
-      {/* Photo Gallery Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Main Large Photo */}
-        <div className="lg:col-span-2 relative h-[440px] rounded-3xl overflow-hidden border border-slate-800 bg-slate-900 shadow-2xl">
+      {/* Photo Gallery Grid - 2x2 Balanced Aspect Ratio Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+        {/* Main Hero Photo (Takes 7 cols) */}
+        <div className="lg:col-span-7 relative h-[360px] sm:h-[400px] md:h-[440px] rounded-3xl overflow-hidden border border-slate-800 bg-slate-900 shadow-2xl group">
           <img
             src={unit.images[selectedPhotoIdx] || unit.images[0]}
             alt={unit.name || unit.id}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
           
           <div className="absolute top-4 left-4 flex items-center gap-2">
             <span className="px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-400 text-emerald-300 text-xs font-mono font-bold backdrop-blur-md shadow-lg shadow-emerald-500/20 flex items-center gap-1.5">
@@ -184,7 +184,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
             </span>
           </div>
 
-          <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-slate-200">
+          <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-slate-200 pointer-events-none">
             <span className="px-3 py-1 rounded-full bg-slate-950/85 backdrop-blur-md border border-slate-800">
               Ảnh {selectedPhotoIdx + 1} / {unit.images.length}
             </span>
@@ -194,21 +194,50 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
           </div>
         </div>
 
-        {/* Thumbnail Selector List */}
-        <div className="flex flex-col gap-3">
-          {unit.images.map((imgUrl, idx) => (
+        {/* Thumbnail Selector 2x2 Grid (Takes 5 cols, aspect 4:3 for perfectly proportioned architecture shots) */}
+        <div className="lg:col-span-5 grid grid-cols-2 gap-3 h-[360px] sm:h-[400px] md:h-[440px]">
+          {unit.images.slice(0, 4).map((imgUrl, idx) => (
             <div
               key={idx}
               onClick={() => setSelectedPhotoIdx(idx)}
-              className={`relative h-[138px] rounded-2xl overflow-hidden cursor-pointer border transition-all ${
+              className={`relative rounded-2xl overflow-hidden cursor-pointer border transition-all group ${
                 selectedPhotoIdx === idx
-                  ? 'border-emerald-400 ring-2 ring-emerald-500/30'
-                  : 'border-slate-800 opacity-70 hover:opacity-100'
+                  ? 'border-emerald-400 ring-2 ring-emerald-500/40 shadow-lg shadow-emerald-500/20'
+                  : 'border-slate-800 opacity-80 hover:opacity-100 hover:border-slate-600'
               }`}
             >
-              <img src={imgUrl} alt={`Ảnh ${idx + 1}`} className="w-full h-full object-cover" />
+              <img 
+                src={imgUrl} 
+                alt={`Ảnh ${idx + 1}`} 
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" 
+              />
+              <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors" />
+              <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-slate-950/80 backdrop-blur-sm text-[10px] font-mono text-slate-300 border border-slate-700">
+                #{idx + 1}
+              </span>
             </div>
           ))}
+          {/* If unit has only 3 images, duplicate first as complementary view or render clean placeholder */}
+          {unit.images.length === 3 && (
+            <div
+              onClick={() => setSelectedPhotoIdx(0)}
+              className={`relative rounded-2xl overflow-hidden cursor-pointer border transition-all group ${
+                selectedPhotoIdx === 0
+                  ? 'border-emerald-400'
+                  : 'border-slate-800 opacity-80 hover:opacity-100'
+              }`}
+            >
+              <img 
+                src={unit.images[0]} 
+                alt="Góc nhìn toàn cảnh" 
+                className="w-full h-full object-cover filter contrast-105 transition-transform duration-300 group-hover:scale-105" 
+              />
+              <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors" />
+              <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-slate-950/80 backdrop-blur-sm text-[10px] font-mono text-slate-300 border border-slate-700">
+                Toàn cảnh
+              </span>
+            </div>
+          )}
         </div>
       </div>
 

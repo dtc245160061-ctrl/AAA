@@ -174,13 +174,10 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 24, scale: 0.96 }}
           transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 w-[400px] max-w-[calc(100vw-2rem)] h-[540px] max-h-[calc(100vh-5rem)] rounded-3xl p-[2px] overflow-hidden shadow-2xl shadow-emerald-500/30 text-left"
+          className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 w-[400px] max-w-[calc(100vw-2rem)] h-[540px] max-h-[calc(100vh-5rem)] rounded-3xl haven-beam-active haven-beam-emerald shadow-2xl shadow-emerald-500/25 text-left"
         >
-          {/* Dual Symmetrical Opposing Orbiting Light Beams (180° apart, continuous, non-clipping) */}
-          <div className="absolute inset-[-150%] bg-[conic-gradient(from_0deg,rgba(52,211,153,0.12)_0deg,rgba(52,211,153,0.35)_35deg,rgba(52,211,153,0.85)_70deg,#34d399_90deg,rgba(52,211,153,0.85)_110deg,rgba(52,211,153,0.35)_145deg,rgba(52,211,153,0.12)_180deg,rgba(52,211,153,0.35)_215deg,rgba(52,211,153,0.85)_250deg,#34d399_270deg,rgba(52,211,153,0.85)_290deg,rgba(52,211,153,0.35)_325deg,rgba(52,211,153,0.12)_360deg)] animate-spin-beam pointer-events-none opacity-95" />
-
           {/* Main Inner Window Container with 100% Solid Opaque Backdrop */}
-          <div className="relative z-10 w-full h-full rounded-[22px] bg-[#0B0F17] [data-theme='light']_:bg-white border border-slate-700 [data-theme='light']_:border-slate-200 flex flex-col justify-between overflow-hidden shadow-2xl">
+          <div className="relative z-10 w-full h-full rounded-3xl bg-[#0B0F17] [data-theme='light']_:bg-white border border-slate-700/80 [data-theme='light']_:border-slate-200 flex flex-col justify-between overflow-hidden shadow-2xl">
             {/* Top Bar Header */}
             <div className="p-3 sm:p-3.5 border-b border-slate-800 [data-theme='light']_:border-slate-200 flex items-center justify-between bg-slate-900 [data-theme='light']_:bg-slate-50 shrink-0">
           <div className="flex items-center gap-2.5">

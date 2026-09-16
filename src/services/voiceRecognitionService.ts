@@ -10,6 +10,7 @@ export interface VoiceRecognitionOptions {
 export class VoiceRecognitionService {
   private static recognition: any = null;
   private static isListening: boolean = false;
+  private static silenceTimer: any = null;
 
   static isSupported(): boolean {
     if (typeof window === 'undefined') return false;
@@ -20,6 +21,11 @@ export class VoiceRecognitionService {
     if (!this.isSupported()) {
       options.onError?.('Trình duyệt không hỗ trợ Web Speech API.');
       return false;
+    }
+
+    if (this.silenceTimer) {
+      clearTimeout(this.silenceTimer);
+      this.silenceTimer = null;
     }
 
     // If currently listening, stop first
@@ -33,9 +39,11 @@ export class VoiceRecognitionService {
 
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     this.recognition = new SpeechRecognition();
-    this.recognition.continuous = false;
+    this.recognition.continuous = true; // Keep listening continuously until user finishes speaking
     this.recognition.interimResults = true;
     this.recognition.lang = options.lang || 'vi-VN';
+
+    let currentAccumulated = '';
 
     this.recognition.onstart = () => {
       this.isListening = true;
@@ -44,35 +52,53 @@ export class VoiceRecognitionService {
 
     this.recognition.onresult = (event: any) => {
       let interimTranscript = '';
-      let finalTranscript = '';
+      let latestFinal = '';
 
       for (let i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {
-          finalTranscript += event.results[i][0].transcript;
+          latestFinal += event.results[i][0].transcript;
         } else {
           interimTranscript += event.results[i][0].transcript;
         }
       }
 
-      if (finalTranscript) {
-        options.onResult(finalTranscript, true);
-      } else if (interimTranscript) {
-        options.onResult(interimTranscript, false);
+      if (latestFinal) {
+        currentAccumulated = (currentAccumulated + ' ' + latestFinal).trim();
+      }
+
+      const displayTranscript = (currentAccumulated + ' ' + interimTranscript).trim();
+      if (displayTranscript) {
+        options.onResult(displayTranscript, false);
+
+        // Reset 2.0-second silence debounce timer before finalizing
+        if (this.silenceTimer) clearTimeout(this.silenceTimer);
+        this.silenceTimer = setTimeout(() => {
+          if (this.isListening && displayTranscript) {
+            options.onResult(displayTranscript, true);
+            this.stop();
+          }
+        }, 2200); // 2.2s debounce buffer so it never abruptly cuts off!
       }
     };
 
     this.recognition.onerror = (event: any) => {
+      if (event.error === 'no-speech') {
+        // Don't kill abruptly on brief silence, allow user pause
+        return;
+      }
       this.isListening = false;
       const errorMsg = event.error === 'not-allowed' 
         ? 'Vui lòng cấp quyền truy cập micro để tìm kiếm bằng giọng nói.' 
-        : event.error === 'no-speech' 
-        ? 'Không nhận diện được giọng nói. Vui lòng nói lại.'
         : `Lỗi micro: ${event.error}`;
       options.onError?.(errorMsg);
     };
 
     this.recognition.onend = () => {
       this.isListening = false;
+      if (this.silenceTimer) {
+        clearTimeout(this.silenceTimer);
+        this.silenceTimer = null;
+      }
       options.onEnd?.();
     };
 
@@ -87,6 +113,10 @@ export class VoiceRecognitionService {
   }
 
   static stop() {
+    if (this.silenceTimer) {
+      clearTimeout(this.silenceTimer);
+      this.silenceTimer = null;
+    }
     if (this.recognition && this.isListening) {
       try {
         this.recognition.stop();
