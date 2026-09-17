@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Sparkles } from 'lucide-react';
 import { ShaderBackground } from './components/ShaderBackground';
 import { Sidebar } from './components/Sidebar';
+import { HavenCursor } from './components/common/HavenCursor';
 import { MobileNav } from './components/layout/MobileNav';
 import { Topbar } from './components/Topbar';
 import { UserHomeView } from './components/UserHomeView';
@@ -334,6 +335,9 @@ export function App() {
 
   return (
     <div className="h-screen w-screen overflow-hidden canvas-surface text-slate-200 flex relative selection:bg-emerald-500/20 selection:text-emerald-200 transition-colors duration-300">
+      {/* Haven Biophilic Smooth Trailing Cursor */}
+      <HavenCursor />
+
       {/* Global 60FPS Animated 3D Shader Gradient Background (Dark & Light) */}
       <ShaderBackground themeMode={themeMode} />
 

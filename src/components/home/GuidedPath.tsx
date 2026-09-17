@@ -6,13 +6,17 @@ import { ArrowDown, Sparkles } from 'lucide-react';
 interface GuidedPathProps {
   activeUnitId: string;
   activeFeatureKey: FeatureBenefitKey;
+  activeUnitIndex?: number;
 }
 
-// Unit positions across 3-column desktop layout (0..1200 viewBox)
+// Fallback unit positions if activeUnitIndex is undefined (0..1200 viewBox)
 const UNIT_X_POSITIONS: Record<string, number> = {
-  'HN-TÂ-1001': 200,   // Column 1 (Left)
-  'HN-HO-0303': 600,   // Column 2 (Center)
-  'HN-BA-1502': 1000,  // Column 3 (Right)
+  'HN-HM-0101': 200,   // Column 1 (Left)
+  'HN-HM-0102': 600,   // Column 2 (Center)
+  'HN-TH-2401': 1000,  // Column 3 (Right)
+  'HN-TÂ-1001': 200,
+  'HN-HO-0303': 600,
+  'HN-BA-1502': 1000,
 };
 
 // Feature positions across 4-column desktop layout (0..1200 viewBox)
@@ -42,12 +46,21 @@ interface ActivePathItem {
 export const GuidedPath: React.FC<GuidedPathProps> = ({
   activeUnitId,
   activeFeatureKey,
+  activeUnitIndex = 0,
 }) => {
-  // Current active path data
-  const startX = UNIT_X_POSITIONS[activeUnitId] || 200;
+  // Current active path data: dynamically derive startX from activeUnitIndex (0, 1, or 2)
+  const startX =
+    activeUnitIndex === 0
+      ? 200
+      : activeUnitIndex === 1
+      ? 600
+      : activeUnitIndex === 2
+      ? 1000
+      : (UNIT_X_POSITIONS[activeUnitId] || 200);
+
   const endX = FEATURE_X_POSITIONS[activeFeatureKey] || 450;
   const pathD = `M ${startX} 0 C ${startX} 45, ${endX} 45, ${endX} 90`;
-  const pathKey = `${activeUnitId}->${activeFeatureKey}`;
+  const pathKey = `${activeUnitIndex}-${activeUnitId}->${activeFeatureKey}`;
 
   // Keep track of retiring/outgoing path and incoming path for brush-stroke choreography
   const [currentPath, setCurrentPath] = useState<ActivePathItem>({
@@ -64,10 +77,8 @@ export const GuidedPath: React.FC<GuidedPathProps> = ({
 
   useEffect(() => {
     if (prevKeyRef.current !== pathKey) {
-      // Set previous as retiring path (which will retract toward destination)
       setRetiringPath(currentPath);
 
-      // Set new active as incoming path (which will draw from top anchor down)
       const nextItem: ActivePathItem = {
         id: pathKey,
         unitId: activeUnitId,
@@ -79,14 +90,13 @@ export const GuidedPath: React.FC<GuidedPathProps> = ({
       setCurrentPath(nextItem);
       prevKeyRef.current = pathKey;
 
-      // Clear retiring path after transition completes (320ms)
       const timer = setTimeout(() => {
         setRetiringPath(null);
-      }, 320);
+      }, 280);
 
       return () => clearTimeout(timer);
     }
-  }, [pathKey, activeUnitId, activeFeatureKey, startX, endX, pathD, currentPath]);
+  }, [pathKey, activeUnitId, activeFeatureKey, activeUnitIndex, startX, endX, pathD, currentPath]);
 
   return (
     <div className="relative py-3 -my-2 select-none" aria-hidden="true">
@@ -111,91 +121,80 @@ export const GuidedPath: React.FC<GuidedPathProps> = ({
           <defs>
             {/* Luminous Brush Stroke Gradient */}
             <linearGradient id="emeraldBrushGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#34D399" stopOpacity="0.9" />
+              <stop offset="0%" stopColor="#34D399" stopOpacity="0.95" />
               <stop offset="50%" stopColor="#10B981" stopOpacity="0.95" />
-              <stop offset="100%" stopColor="#059669" stopOpacity="0.85" />
+              <stop offset="100%" stopColor="#059669" stopOpacity="0.9" />
             </linearGradient>
-
-            {/* Soft Organic Brush Feather Filter */}
-            <filter id="brushFeatherGlow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="wideBlur" />
-              <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="softBlur" />
-              <feMerge>
-                <feMergeNode in="wideBlur" />
-                <feMergeNode in="softBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
           </defs>
 
-          {/* ═══ 1. RETIRING PATH (smooth fade-out) ═══ */}
+          {/* ═══ 1. RETIRING PATH (smooth GPU fade-out) ═══ */}
           <AnimatePresence>
             {retiringPath && (
               <g key={`retiring-${retiringPath.id}`}>
                 <motion.path
                   d={retiringPath.d}
                   stroke="#10B981"
-                  strokeWidth="20"
+                  strokeWidth="12"
                   strokeOpacity="0.12"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   fill="none"
-                  filter="url(#brushFeatherGlow)"
                   initial={{ opacity: 0.4 }}
                   animate={{ opacity: 0 }}
-                  transition={{ duration: 0.25, ease: 'easeOut' }}
+                  transition={{ duration: 0.22, ease: 'easeOut' }}
                 />
                 <motion.path
                   d={retiringPath.d}
                   stroke="url(#emeraldBrushGradient)"
-                  strokeWidth="8"
+                  strokeWidth="4"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeOpacity="0.5"
+                  strokeOpacity="0.4"
                   fill="none"
-                  initial={{ opacity: 0.5 }}
+                  initial={{ opacity: 0.4 }}
                   animate={{ opacity: 0 }}
-                  transition={{ duration: 0.25, ease: 'easeOut' }}
+                  transition={{ duration: 0.22, ease: 'easeOut' }}
                 />
               </g>
             )}
           </AnimatePresence>
 
-          {/* ═══ 2. INCOMING ACTIVE ORGANIC PATH (Rich Luminous Brush Ribbon) ═══ */}
+          {/* ═══ 2. INCOMING ACTIVE ORGANIC PATH (Ultra-smooth GPU Composited Ribbon) ═══ */}
           <g key={`incoming-${currentPath.id}`}>
-            {/* Outer Feathered Ambient Aura */}
+            {/* Outer Ambient Laser Halo */}
             <motion.path
               d={currentPath.d}
               stroke="#10B981"
-              strokeWidth="20"
+              strokeWidth="14"
               strokeOpacity="0.18"
               strokeLinecap="round"
               strokeLinejoin="round"
               fill="none"
-              filter="url(#brushFeatherGlow)"
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 1 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+              style={{ filter: 'drop-shadow(0 0 6px rgba(16, 185, 129, 0.4))' }}
             />
 
-            {/* Core Organic Brush Body (8px Width) */}
+            {/* Core Organic Laser Body (4.5px Width) */}
             <motion.path
               d={currentPath.d}
               stroke="url(#emeraldBrushGradient)"
-              strokeWidth="8"
+              strokeWidth="4.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeOpacity="0.85"
+              strokeOpacity="0.95"
               fill="none"
-              filter="url(#brushFeatherGlow)"
               initial={{ pathLength: 0, opacity: 0 }}
-              animate={{ pathLength: 1, opacity: 0.9 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
             />
 
             {/* Glowing Anchor Nodes */}
-            <circle cx={currentPath.startX} cy={0} r={5} fill="#34D399" filter="url(#brushFeatherGlow)" />
-            <circle cx={currentPath.endX} cy={90} r={5} fill="#10B981" filter="url(#brushFeatherGlow)" />
+            <circle cx={currentPath.startX} cy={0} r={5} fill="#34D399" />
+            <circle cx={currentPath.startX} cy={0} r={2.5} fill="#ffffff" />
+            <circle cx={currentPath.endX} cy={90} r={5} fill="#10B981" />
+            <circle cx={currentPath.endX} cy={90} r={2.5} fill="#ffffff" />
           </g>
         </svg>
       </div>

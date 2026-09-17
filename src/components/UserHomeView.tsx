@@ -35,14 +35,21 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
   onNavigateSearch
 }) => {
   // Signature Experience: Property-to-Benefit Sanctuary Journey State
-  const [activeFocalUnitId, setActiveFocalUnitId] = useState<string>('HN-TÂ-1001');
+  const [activeFocalUnitId, setActiveFocalUnitId] = useState<string>(units[0]?.id || 'HN-HM-0101');
+  const [activeFocalUnitIndex, setActiveFocalUnitIndex] = useState<number>(0);
   const [activeFeatureKey, setActiveFeatureKey] = useState<FeatureBenefitKey>('power');
 
   const activeUnit = units.find(u => u.id === activeFocalUnitId) || units[0];
 
-  const handleSelectUnitFocal = (unitId: string, primaryFeature: FeatureBenefitKey) => {
+  const handleSelectUnitFocal = (unitId: string, primaryFeature: FeatureBenefitKey, index?: number) => {
     setActiveFocalUnitId(unitId);
     setActiveFeatureKey(primaryFeature);
+    if (typeof index === 'number') {
+      setActiveFocalUnitIndex(index);
+    } else {
+      const idx = units.slice(0, 3).findIndex(u => u.id === unitId);
+      if (idx !== -1) setActiveFocalUnitIndex(idx);
+    }
   };
 
   // Sanctuary Tuning Dial States (10 Sensory & Lifestyle Criteria)
@@ -412,6 +419,7 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
         units={units}
         savedUnitIds={savedUnitIds}
         activeUnitId={activeFocalUnitId}
+        activeUnitIndex={activeFocalUnitIndex}
         activeFeatureKey={activeFeatureKey}
         onSelectUnitFocal={handleSelectUnitFocal}
         onSelectFeatureKey={setActiveFeatureKey}
@@ -424,6 +432,7 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
       {/* ═══ Guided Dynamic Visual Conductor ═══ */}
       <GuidedPath
         activeUnitId={activeFocalUnitId}
+        activeUnitIndex={activeFocalUnitIndex}
         activeFeatureKey={activeFeatureKey}
       />
 
@@ -432,13 +441,23 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
         activeFeatureKey={activeFeatureKey}
         onSelectFeature={(featKey) => {
           setActiveFeatureKey(featKey);
-          // Maintain bidirectional causality
+          // Maintain bidirectional causality with the top 3 featured units
+          const top3 = units.slice(0, 3);
           if (featKey === 'flood') {
-            setActiveFocalUnitId('HN-HO-0303');
+            if (top3[1]) {
+              setActiveFocalUnitId(top3[1].id);
+              setActiveFocalUnitIndex(1);
+            }
           } else if (featKey === 'parking') {
-            setActiveFocalUnitId('HN-BA-1502');
+            if (top3[2]) {
+              setActiveFocalUnitId(top3[2].id);
+              setActiveFocalUnitIndex(2);
+            }
           } else {
-            setActiveFocalUnitId('HN-TÂ-1001');
+            if (top3[0]) {
+              setActiveFocalUnitId(top3[0].id);
+              setActiveFocalUnitIndex(0);
+            }
           }
         }}
         activeUnitName={activeUnit?.name || activeUnit?.id}
