@@ -347,7 +347,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
 
         {/* AI Voice & Natural Language Search Bar */}
         <div className="relative p-[1.5px] rounded-2xl overflow-hidden shadow-lg shadow-emerald-500/10 group">
-          <div className="animate-spin-beam bg-[conic-gradient(from_0deg,rgba(52,211,153,0.12)_0deg,rgba(52,211,153,0.35)_35deg,rgba(52,211,153,0.85)_70deg,#34d399_90deg,rgba(52,211,153,0.85)_110deg,rgba(52,211,153,0.35)_145deg,rgba(52,211,153,0.12)_180deg,rgba(52,211,153,0.35)_215deg,rgba(52,211,153,0.85)_250deg,#34d399_270deg,rgba(52,211,153,0.85)_290deg,rgba(52,211,153,0.35)_325deg,rgba(52,211,153,0.12)_360deg)] pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
+          <div className="animate-spin-beam pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
           <div className="relative z-10 flex items-center rounded-[14px] bg-slate-900/90 [data-theme='light']_:bg-white/95 backdrop-blur-md p-1.5 sm:p-2 gap-2">
             <div className="pl-2 text-emerald-400 [data-theme='light']_:text-emerald-600">
               <Search className="w-4 h-4" />

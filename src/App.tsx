@@ -609,8 +609,8 @@ export function App() {
       {/* PERSISTENT FLOATING NOTION-AI COMPACT CIRCULAR BUTTON (HIDES WHEN DRAWER IS OPEN) */}
       {!isUserAiAdvisorOpen && !isAiCopilotOpen && (
         <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40 p-[2px] rounded-full overflow-hidden shadow-2xl shadow-emerald-500/30 transition-all duration-200 hover:scale-110 active:scale-95 group">
-          {/* Dual Symmetrical Opposing Orbiting Light Beams (180° apart, continuous, non-clipping) */}
-          <div className="absolute inset-[-150%] bg-[conic-gradient(from_0deg,rgba(52,211,153,0.12)_0deg,rgba(52,211,153,0.35)_35deg,rgba(52,211,153,0.85)_70deg,#34d399_90deg,rgba(52,211,153,0.85)_110deg,rgba(52,211,153,0.35)_145deg,rgba(52,211,153,0.12)_180deg,rgba(52,211,153,0.35)_215deg,rgba(52,211,153,0.85)_250deg,#34d399_270deg,rgba(52,211,153,0.85)_290deg,rgba(52,211,153,0.35)_325deg,rgba(52,211,153,0.12)_360deg)] animate-spin-beam pointer-events-none" />
+          {/* Dual Symmetrical Opposing Orbiting Light Beams (180° apart, crisp, non-clipping) */}
+          <div className="floating-ai-beam" />
 
           <button
             onClick={() => {
@@ -624,7 +624,7 @@ export function App() {
             title={isAdminView ? "Mở Haven AI Copilot Quản Trị" : "Mở Haven AI Tư Vấn Căn Hộ"}
           >
             <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-md shadow-emerald-500/40 shrink-0">
-              <Sparkles className="w-4 h-4 fill-slate-950 text-slate-950 animate-spin-slow group-hover:[animation-play-state:paused]" />
+              <Sparkles className="w-4 h-4 fill-slate-950 text-slate-950" />
             </div>
           </button>
         </div>

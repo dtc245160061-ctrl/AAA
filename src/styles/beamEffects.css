@@ -1,0 +1,221 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   HAVEN PRO-TECH BORDER BEAMS & LIGHTING SYSTEM (GPU ACCELERATED)
+   • 2 Symmetrical Opposing Beams (180° apart: Top-Right & Bottom-Left)
+   • Crisp, short beam length (30° span, zero muddy background wash)
+   • 100% GPU Composited (transform: rotate) - 0% CPU repaint, smooth on Firefox & Chrome
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Hardware-Accelerated 360° Rotation ── */
+@keyframes haven-spin-beam {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* ── Core Gradient Definitions (2 Crisp Opposing Beams, 180° Apart) ── */
+:root {
+  /* Emerald Dual Beam (Default Haven Brand) */
+  --beam-gradient-emerald: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 72deg,
+    rgba(52, 211, 153, 0.45) 82deg,
+    #34d399 90deg,
+    rgba(52, 211, 153, 0.45) 98deg,
+    transparent 108deg,
+    transparent 252deg,
+    rgba(52, 211, 153, 0.45) 262deg,
+    #34d399 270deg,
+    rgba(52, 211, 153, 0.45) 278deg,
+    transparent 288deg,
+    transparent 360deg
+  );
+
+  /* Gold / Amber Dual Beam (Prime Club / Luxury) */
+  --beam-gradient-gold: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 72deg,
+    rgba(251, 191, 36, 0.45) 82deg,
+    #fbbf24 90deg,
+    rgba(251, 191, 36, 0.45) 98deg,
+    transparent 108deg,
+    transparent 252deg,
+    rgba(251, 191, 36, 0.45) 262deg,
+    #fbbf24 270deg,
+    rgba(251, 191, 36, 0.45) 278deg,
+    transparent 288deg,
+    transparent 360deg
+  );
+
+  /* Cyan Dual Beam (Landlord Pro) */
+  --beam-gradient-cyan: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 72deg,
+    rgba(6, 182, 212, 0.45) 82deg,
+    #06b6d4 90deg,
+    rgba(6, 182, 212, 0.45) 98deg,
+    transparent 108deg,
+    transparent 252deg,
+    rgba(6, 182, 212, 0.45) 262deg,
+    #06b6d4 270deg,
+    rgba(6, 182, 212, 0.45) 278deg,
+    transparent 288deg,
+    transparent 360deg
+  );
+
+  /* Silver / White Dual Beam (Starter / Clean) */
+  --beam-gradient-white: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 72deg,
+    rgba(255, 255, 255, 0.45) 82deg,
+    #ffffff 90deg,
+    rgba(255, 255, 255, 0.45) 98deg,
+    transparent 108deg,
+    transparent 252deg,
+    rgba(255, 255, 255, 0.45) 262deg,
+    #ffffff 270deg,
+    rgba(255, 255, 255, 0.45) 278deg,
+    transparent 288deg,
+    transparent 360deg
+  );
+}
+
+/* ── 1. General Rotating Beam Quad (Used in Panels with border wrapper) ── */
+.animate-spin-beam {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400%;
+  height: 400%;
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  background: var(--beam-gradient-emerald);
+  animation: haven-spin-beam 5s linear infinite;
+  will-change: transform;
+  transform: translate(-50%, -50%) rotate(0deg);
+  /* Force GPU rendering layer in Firefox & WebKit */
+  -webkit-transform: translate(-50%, -50%) rotate(0deg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* ── 2. Floating AI Chat Button Dual Beam (Compact, Fast, Ultra-Smooth) ── */
+.floating-ai-beam {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250%;
+  height: 250%;
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  background: var(--beam-gradient-emerald);
+  animation: haven-spin-beam 3.2s linear infinite;
+  will-change: transform;
+  transform: translate(-50%, -50%) rotate(0deg);
+  backface-visibility: hidden;
+}
+
+/* ── 3. Universal Running Border Beam on Cards (Mask-Composite Based, GPU Safe) ── */
+.haven-card-interactive,
+.product-ui-card,
+.haven-beam-hover {
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+  transform: translateZ(0);
+}
+
+.haven-card-interactive::after,
+.product-ui-card::after,
+.haven-beam-hover::after {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 2px;
+  background: var(--beam-gradient-emerald);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 10;
+  will-change: opacity;
+}
+
+.haven-card-interactive:hover::after,
+.product-ui-card:hover::after,
+.haven-beam-hover:hover::after {
+  opacity: 1;
+}
+
+.haven-card-interactive:hover,
+.product-ui-card:hover,
+.haven-beam-hover:hover {
+  transform: translateY(-3px) translateZ(0);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(52, 211, 153, 0.3);
+  border-color: rgba(52, 211, 153, 0.45);
+}
+
+/* ── 4. Permanent Active Running Border Beams for SaaS Plans & Drawers ── */
+.haven-beam-active {
+  border-color: rgba(52, 211, 153, 0.6) !important;
+  transform: translateZ(0);
+  box-shadow: inset 0 0 0 1px rgba(52, 211, 153, 0.35);
+}
+
+.haven-beam-active:not(.fixed):not([style*="position: fixed"]):not([style*="position:fixed"]) {
+  position: relative;
+}
+
+.haven-beam-active::after {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 2px;
+  background: var(--beam-gradient-emerald);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.9 !important;
+  z-index: 10;
+}
+
+/* ── 5. Color Themes for SaaS Plans ── */
+.haven-beam-white::after {
+  background: var(--beam-gradient-white) !important;
+}
+.haven-beam-emerald::after {
+  background: var(--beam-gradient-emerald) !important;
+}
+.haven-beam-gold::after {
+  background: var(--beam-gradient-gold) !important;
+}
+.haven-beam-cyan::after {
+  background: var(--beam-gradient-cyan) !important;
+}
+
+/* ── 6. Firefox Performance Enhancements ── */
+@-moz-document url-prefix() {
+  /* Disable heavy backdrop-filters that crush FPS on Firefox */
+  .atmospheric-panel,
+  .product-ui-card {
+    backdrop-filter: blur(4px) !important;
+    -moz-backdrop-filter: blur(4px) !important;
+  }
+  
+  /* Force hardware layer creation */
+  .animate-spin-beam,
+  .floating-ai-beam {
+    will-change: transform;
+    transform: translate(-50%, -50%) rotate(0deg) translateZ(0);
+  }
+}

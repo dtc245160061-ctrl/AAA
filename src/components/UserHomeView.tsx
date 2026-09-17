@@ -85,7 +85,7 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
       {/* ═══ Sanctuary Tuning Dials with 1.5px Running Light Beam ═══ */}
       <section className="relative rounded-3xl p-[1.5px] overflow-hidden shadow-2xl group transition-all">
         {/* Dual Orbiting Clockwise Symmetrical Light Beams (Zero Corner Cutoff, No Dead Zones) */}
-        <div className="animate-spin-beam bg-[conic-gradient(from_0deg,rgba(52,211,153,0.12)_0deg,rgba(52,211,153,0.35)_35deg,rgba(52,211,153,0.85)_70deg,#34d399_90deg,rgba(52,211,153,0.85)_110deg,rgba(52,211,153,0.35)_145deg,rgba(52,211,153,0.12)_180deg,rgba(52,211,153,0.35)_215deg,rgba(52,211,153,0.85)_250deg,#34d399_270deg,rgba(52,211,153,0.85)_290deg,rgba(52,211,153,0.35)_325deg,rgba(52,211,153,0.12)_360deg)] pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
+        <div className="animate-spin-beam pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
 
         <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel haven-sheen-sweep p-6 sm:p-8 md:p-10 space-y-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -338,7 +338,7 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             onClick={() => onNavigateSearch("Hà Nội")}
             className="group relative rounded-3xl p-[1.5px] overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/20 hover:-translate-y-2 transition-all duration-300 h-60 sm:h-68"
           >
-            <div className="animate-spin-beam bg-[conic-gradient(from_0deg,rgba(52,211,153,0.12)_0deg,rgba(52,211,153,0.35)_35deg,rgba(52,211,153,0.85)_70deg,#34d399_90deg,rgba(52,211,153,0.85)_110deg,rgba(52,211,153,0.35)_145deg,rgba(52,211,153,0.12)_180deg,rgba(52,211,153,0.35)_215deg,rgba(52,211,153,0.85)_250deg,#34d399_270deg,rgba(52,211,153,0.85)_290deg,rgba(52,211,153,0.35)_325deg,rgba(52,211,153,0.12)_360deg)] pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity" />
+            <div className="animate-spin-beam pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity" />
             <div className="relative z-10 w-full h-full rounded-[22px] overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=800"
@@ -362,7 +362,7 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             onClick={() => onNavigateSearch("TP. Hồ Chí Minh")}
             className="group relative rounded-3xl p-[1.5px] overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/20 hover:-translate-y-2 transition-all duration-300 h-60 sm:h-68"
           >
-            <div className="animate-spin-beam bg-[conic-gradient(from_0deg,rgba(52,211,153,0.12)_0deg,rgba(52,211,153,0.35)_35deg,rgba(52,211,153,0.85)_70deg,#34d399_90deg,rgba(52,211,153,0.85)_110deg,rgba(52,211,153,0.35)_145deg,rgba(52,211,153,0.12)_180deg,rgba(52,211,153,0.35)_215deg,rgba(52,211,153,0.85)_250deg,#34d399_270deg,rgba(52,211,153,0.85)_290deg,rgba(52,211,153,0.35)_325deg,rgba(52,211,153,0.12)_360deg)] pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity" />
+            <div className="animate-spin-beam pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity" />
             <div className="relative z-10 w-full h-full rounded-[22px] overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&q=80&w=800"
@@ -386,7 +386,7 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             onClick={() => onNavigateSearch("Đà Nẵng")}
             className="group relative rounded-3xl p-[1.5px] overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/20 hover:-translate-y-2 transition-all duration-300 h-60 sm:h-68"
           >
-            <div className="animate-spin-beam bg-[conic-gradient(from_0deg,rgba(52,211,153,0.12)_0deg,rgba(52,211,153,0.35)_35deg,rgba(52,211,153,0.85)_70deg,#34d399_90deg,rgba(52,211,153,0.85)_110deg,rgba(52,211,153,0.35)_145deg,rgba(52,211,153,0.12)_180deg,rgba(52,211,153,0.35)_215deg,rgba(52,211,153,0.85)_250deg,#34d399_270deg,rgba(52,211,153,0.85)_290deg,rgba(52,211,153,0.35)_325deg,rgba(52,211,153,0.12)_360deg)] pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity" />
+            <div className="animate-spin-beam pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity" />
             <div className="relative z-10 w-full h-full rounded-[22px] overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&q=80&w=800"
