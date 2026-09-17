@@ -103,9 +103,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
   };
 
   return (
-    <section className="relative rounded-3xl overflow-hidden min-h-[520px] md:min-h-[560px] flex flex-col justify-between p-6 sm:p-8 md:p-12 lg:p-14 shadow-2xl border border-[var(--haven-border)] bg-slate-950 dark:bg-slate-950">
-      {/* Background: Real Architectural Luxury Residence + Layered Scrims */}
-      <div className="absolute inset-0 z-0">
+    <section className="relative rounded-3xl p-[2px] overflow-hidden shadow-2xl group transition-all">
+      {/* Dual Orbiting Clockwise Continuous Light Beams */}
+      <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
+
+      <div className="relative z-10 w-full h-full rounded-[22px] overflow-hidden min-h-[520px] md:min-h-[560px] flex flex-col justify-between p-6 sm:p-8 md:p-12 lg:p-14 border border-[var(--haven-border)] bg-slate-950 dark:bg-slate-950">
+        {/* Background: Real Architectural Luxury Residence + Layered Scrims */}
+        <div className="absolute inset-0 z-0">
         <img
           src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1600"
           alt="HAVEN Architecture"
@@ -239,6 +243,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
           </motion.div>
         ))}
       </motion.div>
+      </div>
     </section>
   );
 };

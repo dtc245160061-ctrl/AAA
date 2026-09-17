@@ -133,68 +133,62 @@ export const GuidedPath: React.FC<GuidedPathProps> = ({
               <g key={`retiring-${retiringPath.id}`}>
                 <motion.path
                   d={retiringPath.d}
-                  stroke="#10B981"
-                  strokeWidth="12"
-                  strokeOpacity="0.12"
+                  stroke="rgba(45, 212, 191, 0.2)"
+                  strokeWidth="20"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   fill="none"
-                  initial={{ opacity: 0.4 }}
+                  initial={{ opacity: 0.5 }}
                   animate={{ opacity: 0 }}
-                  transition={{ duration: 0.22, ease: 'easeOut' }}
-                />
-                <motion.path
-                  d={retiringPath.d}
-                  stroke="url(#emeraldBrushGradient)"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeOpacity="0.4"
-                  fill="none"
-                  initial={{ opacity: 0.4 }}
-                  animate={{ opacity: 0 }}
-                  transition={{ duration: 0.22, ease: 'easeOut' }}
+                  transition={{ duration: 0.25, ease: 'easeOut' }}
                 />
               </g>
             )}
           </AnimatePresence>
 
-          {/* ═══ 2. INCOMING ACTIVE ORGANIC PATH (Ultra-smooth GPU Composited Ribbon) ═══ */}
+          {/* ═══ 2. INCOMING ACTIVE DIGITAL BRUSH RIBBON (Rich, Soft & Lush like Illustration) ═══ */}
           <g key={`incoming-${currentPath.id}`}>
-            {/* Outer Ambient Laser Halo */}
+            {/* Outer Feathered Ambient Cyan/Emerald Glow (24px width) */}
             <motion.path
               d={currentPath.d}
-              stroke="#10B981"
-              strokeWidth="14"
-              strokeOpacity="0.18"
+              stroke="#10b981"
+              strokeWidth="24"
+              strokeOpacity="0.22"
               strokeLinecap="round"
               strokeLinejoin="round"
               fill="none"
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 1 }}
-              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-              style={{ filter: 'drop-shadow(0 0 6px rgba(16, 185, 129, 0.4))' }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              style={{ filter: 'drop-shadow(0 0 10px rgba(45, 212, 191, 0.5))' }}
             />
 
-            {/* Core Organic Laser Body (4.5px Width) */}
+            {/* Lush Soft Digital Brush Body (14px width) */}
             <motion.path
               d={currentPath.d}
               stroke="url(#emeraldBrushGradient)"
-              strokeWidth="4.5"
+              strokeWidth="14"
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeOpacity="0.95"
+              strokeOpacity="0.85"
               fill="none"
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 1 }}
-              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             />
 
-            {/* Glowing Anchor Nodes */}
-            <circle cx={currentPath.startX} cy={0} r={5} fill="#34D399" />
-            <circle cx={currentPath.startX} cy={0} r={2.5} fill="#ffffff" />
-            <circle cx={currentPath.endX} cy={90} r={5} fill="#10B981" />
-            <circle cx={currentPath.endX} cy={90} r={2.5} fill="#ffffff" />
+            {/* Inner High-Luminance Core Highlight (5px width) */}
+            <motion.path
+              d={currentPath.d}
+              stroke="rgba(255, 255, 255, 0.6)"
+              strokeWidth="5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 0.8 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            />
           </g>
         </svg>
       </div>

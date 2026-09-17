@@ -94,26 +94,36 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
             <button
               key={nh.id}
               onClick={() => setSelectedNeighborhoodId(nh.id)}
-              className={`p-4 sm:p-5 rounded-2xl text-left border transition-all duration-200 flex flex-col justify-between gap-3 shadow-md hover:-translate-y-1 relative ${
-                isSelected
-                  ? 'haven-beam-active bg-sky-950/80 [data-theme=\'light\']_:bg-sky-100 border-sky-400 [data-theme=\'light\']_:border-sky-500 shadow-xl shadow-sky-500/10'
-                  : 'haven-beam-hover bg-slate-900/80 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200'
-              }`}
+              className="group relative rounded-2xl p-[1.5px] text-left transition-all duration-300 shadow-md hover:-translate-y-1 cursor-pointer"
             >
-              <div>
-                <span className={`text-[10px] font-mono uppercase font-bold tracking-wider ${
-                  isSelected 
-                    ? 'text-sky-300 [data-theme=\'light\']_:text-sky-800' 
-                    : 'text-slate-400 [data-theme=\'light\']_:text-slate-500'
-                }`}>
-                  {nh.city === 'Hanoi' ? 'Hà Nội' : nh.city === 'Ho Chi Minh City' ? 'TP.HCM' : 'Đà Nẵng'}
-                </span>
-                <h4 className="font-serif font-bold text-sm sm:text-base text-slate-100 [data-theme='light']_:text-slate-900 line-clamp-1 mt-1">
-                  {nh.district}
-                </h4>
+              {/* Dual Orbiting Running Laser Beam on hover and active */}
+              <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+                <div
+                  className={`animate-spin-beam pointer-events-none transition-opacity duration-300 ${
+                    isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                  }`}
+                />
               </div>
-              <div className="text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-600 pt-1 border-t border-slate-800/60 [data-theme='light']_:border-slate-100">
-                TB: <span className={`font-bold ${isSelected ? 'text-sky-400 [data-theme=\'light\']_:text-sky-700' : 'text-emerald-400 [data-theme=\'light\']_:text-emerald-700'}`}>{(nh.averageRentVND / 1000000).toFixed(0)} Tr</span>
+
+              {/* Inner card preserving deep navy atmospheric styling */}
+              <div className={`relative z-10 w-full h-full p-4 sm:p-5 rounded-[14.5px] flex flex-col justify-between gap-3 border transition-all duration-200 bg-slate-900/90 [data-theme='light']_:bg-slate-900 border-slate-800/90 text-slate-100 ${
+                isSelected ? 'ring-1 ring-emerald-400/60 shadow-lg shadow-emerald-500/20' : 'group-hover:border-emerald-500/40'
+              }`}>
+                <div>
+                  <span className={`text-[10px] font-mono uppercase font-bold tracking-wider ${
+                    isSelected 
+                      ? 'text-emerald-400' 
+                      : 'text-slate-400'
+                  }`}>
+                    {nh.city === 'Hanoi' ? 'Hà Nội' : nh.city === 'Ho Chi Minh City' ? 'TP.HCM' : 'Đà Nẵng'}
+                  </span>
+                  <h4 className="font-serif font-bold text-sm sm:text-base text-slate-100 line-clamp-1 mt-1">
+                    {nh.district}
+                  </h4>
+                </div>
+                <div className="text-xs font-mono text-slate-400 pt-1 border-t border-slate-800/60">
+                  TB: <span className="font-bold text-emerald-400">{(nh.averageRentVND / 1000000).toFixed(0)} Tr</span>
+                </div>
               </div>
             </button>
           );

@@ -89,10 +89,10 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
       {/* ═══ NEW: Product-Native Hero with Entrance Choreography ═══ */}
       <HeroSection onSearch={onNavigateSearch} />
 
-      {/* ═══ Sanctuary Tuning Dials with 1.5px Running Light Beam ═══ */}
-      <section className="relative rounded-3xl p-[1.5px] overflow-hidden shadow-2xl group transition-all">
-        {/* Dual Orbiting Clockwise Symmetrical Light Beams (Zero Corner Cutoff, No Dead Zones) */}
-        <div className="animate-spin-beam pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
+      {/* ═══ Sanctuary Tuning Dials with Thicker 2.5px Running Light Beam ═══ */}
+      <section className="relative rounded-3xl p-[2.5px] overflow-hidden shadow-2xl group transition-all">
+        {/* Dual Orbiting Clockwise Symmetrical Light Beams (Thicker, Richer Glow) */}
+        <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
 
         <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel haven-sheen-sweep p-6 sm:p-8 md:p-10 space-y-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -111,28 +111,28 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
 
             <button
               onClick={handleApplyTuning}
-              className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-semibold transition-all shadow-lg shadow-emerald-500/25 shrink-0 self-start md:self-auto hover:scale-105 active:scale-95"
+              className="haven-btn-beam inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-semibold transition-all shadow-lg shadow-emerald-500/25 shrink-0 self-start md:self-auto hover:scale-105 active:scale-95 cursor-pointer"
             >
               <span>Áp Dụng Tinh Chỉnh</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
 
-        {/* Sensory Dials Row (10 Criteria) */}
+        {/* Sensory Dials Row (10 Criteria - 10 Unique Color Palettes on Hover & Active) */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-2">
-          {/* Dial 1: Yên tĩnh */}
+          {/* Dial 1: Yên tĩnh (Indigo) */}
           <button
             type="button"
             onClick={() => setTuningQuiet(!tuningQuiet)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 cursor-pointer ${
               tuningQuiet
-                ? 'bg-emerald-500/20 [data-theme=\'light\']_:bg-emerald-100 border-emerald-400 [data-theme=\'light\']_:border-emerald-500 text-emerald-300 [data-theme=\'light\']_:text-emerald-950 ring-2 ring-emerald-500/40 shadow-lg shadow-emerald-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
+                ? 'bg-indigo-500/20 [data-theme=\'light\']_:bg-indigo-100 border-indigo-400 [data-theme=\'light\']_:border-indigo-500 text-indigo-300 [data-theme=\'light\']_:text-indigo-950 ring-2 ring-indigo-500/50 shadow-lg shadow-indigo-500/25'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-indigo-400 hover:ring-2 hover:ring-indigo-400/50 hover:shadow-[0_0_20px_rgba(99,102,241,0.35)] shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">
-              <VolumeX className={`w-5 h-5 ${tuningQuiet ? 'text-emerald-400 [data-theme=\'light\']_:text-emerald-700' : 'text-slate-400'}`} />
-              <span className={`w-2.5 h-2.5 rounded-full ${tuningQuiet ? 'bg-emerald-400 [data-theme=\'light\']_:bg-emerald-600' : 'bg-slate-600 [data-theme=\'light\']_:bg-slate-300'}`} />
+              <VolumeX className={`w-5 h-5 ${tuningQuiet ? 'text-indigo-400 [data-theme=\'light\']_:text-indigo-700' : 'text-slate-400 group-hover:text-indigo-400'}`} />
+              <span className={`w-2.5 h-2.5 rounded-full ${tuningQuiet ? 'bg-indigo-400 [data-theme=\'light\']_:bg-indigo-600' : 'bg-slate-600 [data-theme=\'light\']_:bg-slate-300'}`} />
             </div>
             <div>
               <div className="text-sm font-bold text-slate-200 [data-theme='light']_:text-slate-900">Yên Tĩnh Tuyệt Đối</div>
@@ -140,14 +140,14 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             </div>
           </button>
 
-          {/* Dial 2: Không ngập lụt */}
+          {/* Dial 2: Không ngập lụt (Sky Blue) */}
           <button
             type="button"
             onClick={() => setTuningFloodSafe(!tuningFloodSafe)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 cursor-pointer ${
               tuningFloodSafe
-                ? 'bg-sky-500/20 [data-theme=\'light\']_:bg-sky-100 border-sky-400 [data-theme=\'light\']_:border-sky-500 text-sky-300 [data-theme=\'light\']_:text-sky-950 ring-2 ring-sky-500/40 shadow-lg shadow-sky-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
+                ? 'bg-sky-500/20 [data-theme=\'light\']_:bg-sky-100 border-sky-400 [data-theme=\'light\']_:border-sky-500 text-sky-300 [data-theme=\'light\']_:text-sky-950 ring-2 ring-sky-500/50 shadow-lg shadow-sky-500/25'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-sky-400 hover:ring-2 hover:ring-sky-400/50 hover:shadow-[0_0_20px_rgba(56,189,248,0.35)] shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">
@@ -160,19 +160,19 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             </div>
           </button>
 
-          {/* Dial 3: Chỗ đỗ ô tô */}
+          {/* Dial 3: Chỗ đỗ ô tô (Emerald) */}
           <button
             type="button"
             onClick={() => setTuningCarParking(!tuningCarParking)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 cursor-pointer ${
               tuningCarParking
-                ? 'bg-amber-500/20 [data-theme=\'light\']_:bg-amber-100 border-amber-400 [data-theme=\'light\']_:border-amber-500 text-amber-300 [data-theme=\'light\']_:text-amber-950 ring-2 ring-amber-500/40 shadow-lg shadow-amber-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
+                ? 'bg-emerald-500/20 [data-theme=\'light\']_:bg-emerald-100 border-emerald-400 [data-theme=\'light\']_:border-emerald-500 text-emerald-300 [data-theme=\'light\']_:text-emerald-950 ring-2 ring-emerald-500/50 shadow-lg shadow-emerald-500/25'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/50 hover:shadow-[0_0_20px_rgba(52,211,153,0.35)] shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">
-              <Car className={`w-5 h-5 ${tuningCarParking ? 'text-amber-400 [data-theme=\'light\']_:text-amber-700' : 'text-slate-400'}`} />
-              <span className={`w-2.5 h-2.5 rounded-full ${tuningCarParking ? 'bg-amber-400 [data-theme=\'light\']_:bg-amber-600' : 'bg-slate-600 [data-theme=\'light\']_:bg-slate-300'}`} />
+              <Car className={`w-5 h-5 ${tuningCarParking ? 'text-emerald-400 [data-theme=\'light\']_:text-emerald-700' : 'text-slate-400'}`} />
+              <span className={`w-2.5 h-2.5 rounded-full ${tuningCarParking ? 'bg-emerald-400 [data-theme=\'light\']_:bg-emerald-600' : 'bg-slate-600 [data-theme=\'light\']_:bg-slate-300'}`} />
             </div>
             <div>
               <div className="text-sm font-bold text-slate-200 [data-theme='light']_:text-slate-900">Chỗ Đỗ Ô Tô Hầm</div>
@@ -180,14 +180,14 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             </div>
           </button>
 
-          {/* Dial 4: Tầng cao đón gió */}
+          {/* Dial 4: Tầng cao đón gió (Teal) */}
           <button
             type="button"
             onClick={() => setTuningHighFloor(!tuningHighFloor)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 cursor-pointer ${
               tuningHighFloor
-                ? 'bg-teal-500/20 [data-theme=\'light\']_:bg-teal-100 border-teal-400 [data-theme=\'light\']_:border-teal-500 text-teal-300 [data-theme=\'light\']_:text-teal-950 ring-2 ring-teal-500/40 shadow-lg shadow-teal-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
+                ? 'bg-teal-500/20 [data-theme=\'light\']_:bg-teal-100 border-teal-400 [data-theme=\'light\']_:border-teal-500 text-teal-300 [data-theme=\'light\']_:text-teal-950 ring-2 ring-teal-500/50 shadow-lg shadow-teal-500/25'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-teal-400 hover:ring-2 hover:ring-teal-400/50 hover:shadow-[0_0_20px_rgba(45,212,191,0.35)] shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">
@@ -200,14 +200,14 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             </div>
           </button>
 
-          {/* Dial 5: Nuôi thú cưng */}
+          {/* Dial 5: Nuôi thú cưng (Rose Red) */}
           <button
             type="button"
             onClick={() => setTuningPetFriendly(!tuningPetFriendly)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 cursor-pointer ${
               tuningPetFriendly
-                ? 'bg-rose-500/20 [data-theme=\'light\']_:bg-rose-100 border-rose-400 [data-theme=\'light\']_:border-rose-500 text-rose-300 [data-theme=\'light\']_:text-rose-950 ring-2 ring-rose-500/40 shadow-lg shadow-rose-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
+                ? 'bg-rose-500/20 [data-theme=\'light\']_:bg-rose-100 border-rose-400 [data-theme=\'light\']_:border-rose-500 text-rose-300 [data-theme=\'light\']_:text-rose-950 ring-2 ring-rose-500/50 shadow-lg shadow-rose-500/25'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-rose-400 hover:ring-2 hover:ring-rose-400/50 hover:shadow-[0_0_20px_rgba(244,63,94,0.35)] shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">
@@ -220,19 +220,19 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             </div>
           </button>
 
-          {/* Dial 6: Gần Metro */}
+          {/* Dial 6: Gần Metro (Amber Gold) */}
           <button
             type="button"
             onClick={() => setTuningMetroNearby(!tuningMetroNearby)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 cursor-pointer ${
               tuningMetroNearby
-                ? 'bg-indigo-500/20 [data-theme=\'light\']_:bg-indigo-100 border-indigo-400 [data-theme=\'light\']_:border-indigo-500 text-indigo-300 [data-theme=\'light\']_:text-indigo-950 ring-2 ring-indigo-500/40 shadow-lg shadow-indigo-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
+                ? 'bg-amber-500/20 [data-theme=\'light\']_:bg-amber-100 border-amber-400 [data-theme=\'light\']_:border-amber-500 text-amber-300 [data-theme=\'light\']_:text-amber-950 ring-2 ring-amber-500/50 shadow-lg shadow-amber-500/25'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-amber-400 hover:ring-2 hover:ring-amber-400/50 hover:shadow-[0_0_20px_rgba(245,158,11,0.35)] shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">
-              <Train className={`w-5 h-5 ${tuningMetroNearby ? 'text-indigo-400 [data-theme=\'light\']_:text-indigo-700' : 'text-slate-400'}`} />
-              <span className={`w-2.5 h-2.5 rounded-full ${tuningMetroNearby ? 'bg-indigo-400 [data-theme=\'light\']_:bg-indigo-600' : 'bg-slate-600 [data-theme=\'light\']_:bg-slate-300'}`} />
+              <Train className={`w-5 h-5 ${tuningMetroNearby ? 'text-amber-400 [data-theme=\'light\']_:text-amber-700' : 'text-slate-400'}`} />
+              <span className={`w-2.5 h-2.5 rounded-full ${tuningMetroNearby ? 'bg-amber-400 [data-theme=\'light\']_:bg-amber-600' : 'bg-slate-600 [data-theme=\'light\']_:bg-slate-300'}`} />
             </div>
             <div>
               <div className="text-sm font-bold text-slate-200 [data-theme='light']_:text-slate-900">Gần Trạm Metro</div>
@@ -240,19 +240,19 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             </div>
           </button>
 
-          {/* Dial 7: Ban công */}
+          {/* Dial 7: Ban công (Lime Citrus Green) */}
           <button
             type="button"
             onClick={() => setTuningBalcony(!tuningBalcony)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 cursor-pointer ${
               tuningBalcony
-                ? 'bg-emerald-500/20 [data-theme=\'light\']_:bg-emerald-100 border-emerald-400 [data-theme=\'light\']_:border-emerald-500 text-emerald-300 [data-theme=\'light\']_:text-emerald-950 ring-2 ring-emerald-500/40 shadow-lg shadow-emerald-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
+                ? 'bg-lime-500/20 [data-theme=\'light\']_:bg-lime-100 border-lime-400 [data-theme=\'light\']_:border-lime-500 text-lime-300 [data-theme=\'light\']_:text-lime-950 ring-2 ring-lime-500/50 shadow-lg shadow-lime-500/25'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-lime-400 hover:ring-2 hover:ring-lime-400/50 hover:shadow-[0_0_20px_rgba(163,230,53,0.35)] shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">
-              <Maximize2 className={`w-5 h-5 ${tuningBalcony ? 'text-emerald-400 [data-theme=\'light\']_:text-emerald-700' : 'text-slate-400'}`} />
-              <span className={`w-2.5 h-2.5 rounded-full ${tuningBalcony ? 'bg-emerald-400 [data-theme=\'light\']_:bg-emerald-600' : 'bg-slate-600 [data-theme=\'light\']_:bg-slate-300'}`} />
+              <Maximize2 className={`w-5 h-5 ${tuningBalcony ? 'text-lime-400 [data-theme=\'light\']_:text-lime-700' : 'text-slate-400'}`} />
+              <span className={`w-2.5 h-2.5 rounded-full ${tuningBalcony ? 'bg-lime-400 [data-theme=\'light\']_:bg-lime-600' : 'bg-slate-600 [data-theme=\'light\']_:bg-slate-300'}`} />
             </div>
             <div>
               <div className="text-sm font-bold text-slate-200 [data-theme='light']_:text-slate-900">Ban Công Rộng Rãi</div>
@@ -260,19 +260,19 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             </div>
           </button>
 
-          {/* Dial 8: Hồ bơi & Gym */}
+          {/* Dial 8: Hồ bơi & Gym (Cobalt Ocean Blue) */}
           <button
             type="button"
             onClick={() => setTuningPoolGym(!tuningPoolGym)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 cursor-pointer ${
               tuningPoolGym
-                ? 'bg-cyan-500/20 [data-theme=\'light\']_:bg-cyan-100 border-cyan-400 [data-theme=\'light\']_:border-cyan-500 text-cyan-300 [data-theme=\'light\']_:text-cyan-950 ring-2 ring-cyan-500/40 shadow-lg shadow-cyan-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
+                ? 'bg-blue-500/20 [data-theme=\'light\']_:bg-blue-100 border-blue-400 [data-theme=\'light\']_:border-blue-500 text-blue-300 [data-theme=\'light\']_:text-blue-950 ring-2 ring-blue-500/50 shadow-lg shadow-blue-500/25'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-blue-400 hover:ring-2 hover:ring-blue-400/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.35)] shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">
-              <Waves className={`w-5 h-5 ${tuningPoolGym ? 'text-cyan-400 [data-theme=\'light\']_:text-cyan-700' : 'text-slate-400'}`} />
-              <span className={`w-2.5 h-2.5 rounded-full ${tuningPoolGym ? 'bg-cyan-400 [data-theme=\'light\']_:bg-cyan-600' : 'bg-slate-600 [data-theme=\'light\']_:bg-slate-300'}`} />
+              <Waves className={`w-5 h-5 ${tuningPoolGym ? 'text-blue-400 [data-theme=\'light\']_:text-blue-700' : 'text-slate-400'}`} />
+              <span className={`w-2.5 h-2.5 rounded-full ${tuningPoolGym ? 'bg-blue-400 [data-theme=\'light\']_:bg-blue-600' : 'bg-slate-600 [data-theme=\'light\']_:bg-slate-300'}`} />
             </div>
             <div>
               <div className="text-sm font-bold text-slate-200 [data-theme='light']_:text-slate-900">Hồ Bơi & Phòng Gym</div>
@@ -280,14 +280,14 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             </div>
           </button>
 
-          {/* Dial 9: An ninh 24/7 */}
+          {/* Dial 9: An ninh 24/7 (Fuchsia Purple) */}
           <button
             type="button"
             onClick={() => setTuningSecurity(!tuningSecurity)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 cursor-pointer ${
               tuningSecurity
-                ? 'bg-purple-500/20 [data-theme=\'light\']_:bg-purple-100 border-purple-400 [data-theme=\'light\']_:border-purple-500 text-purple-300 [data-theme=\'light\']_:text-purple-950 ring-2 ring-purple-500/40 shadow-lg shadow-purple-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
+                ? 'bg-purple-500/20 [data-theme=\'light\']_:bg-purple-100 border-purple-400 [data-theme=\'light\']_:border-purple-500 text-purple-300 [data-theme=\'light\']_:text-purple-950 ring-2 ring-purple-500/50 shadow-lg shadow-purple-500/25'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-purple-400 hover:ring-2 hover:ring-purple-400/50 hover:shadow-[0_0_20px_rgba(168,85,247,0.35)] shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">
@@ -300,19 +300,19 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             </div>
           </button>
 
-          {/* Dial 10: Gần trường & BV */}
+          {/* Dial 10: Gần trường & BV (Sunset Orange) */}
           <button
             type="button"
             onClick={() => setTuningSchoolHospital(!tuningSchoolHospital)}
-            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 hover:shadow-xl cursor-pointer ${
+            className={`p-4 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between h-28 sm:h-32 hover:scale-[1.02] hover:-translate-y-1.5 cursor-pointer ${
               tuningSchoolHospital
-                ? 'bg-amber-500/20 [data-theme=\'light\']_:bg-amber-100 border-amber-400 [data-theme=\'light\']_:border-amber-500 text-amber-300 [data-theme=\'light\']_:text-amber-950 ring-2 ring-amber-500/40 shadow-lg shadow-amber-500/10'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-emerald-400 hover:ring-2 hover:ring-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/20 hover:bg-slate-900/90 [data-theme=\'light\']_:hover:bg-emerald-50/70 shadow-sm'
+                ? 'bg-orange-500/20 [data-theme=\'light\']_:bg-orange-100 border-orange-400 [data-theme=\'light\']_:border-orange-500 text-orange-300 [data-theme=\'light\']_:text-orange-950 ring-2 ring-orange-500/50 shadow-lg shadow-orange-500/25'
+                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-600 hover:border-orange-400 hover:ring-2 hover:ring-orange-400/50 hover:shadow-[0_0_20px_rgba(249,115,22,0.35)] shadow-sm'
             }`}
           >
             <div className="flex items-center justify-between">
-              <Building2 className={`w-5 h-5 ${tuningSchoolHospital ? 'text-amber-400 [data-theme=\'light\']_:text-amber-700' : 'text-slate-400'}`} />
-              <span className={`w-2.5 h-2.5 rounded-full ${tuningSchoolHospital ? 'bg-amber-400 [data-theme=\'light\']_:bg-amber-600' : 'bg-slate-600 [data-theme=\'light\']_:bg-slate-300'}`} />
+              <Building2 className={`w-5 h-5 ${tuningSchoolHospital ? 'text-orange-400 [data-theme=\'light\']_:text-orange-700' : 'text-slate-400'}`} />
+              <span className={`w-2.5 h-2.5 rounded-full ${tuningSchoolHospital ? 'bg-orange-400 [data-theme=\'light\']_:bg-orange-600' : 'bg-slate-600 [data-theme=\'light\']_:bg-slate-300'}`} />
             </div>
             <div>
               <div className="text-sm font-bold text-slate-200 [data-theme='light']_:text-slate-900">Gần Trường & BV</div>
@@ -320,8 +320,8 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             </div>
           </button>
         </div>
-        </div>
-      </section>
+      </div>
+    </section>
 
       {/* ═══ Featured Cities (No zoom on hover, full card elevation + bold text) ═══ */}
       <section className="space-y-6">

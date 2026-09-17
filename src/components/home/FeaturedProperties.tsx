@@ -169,14 +169,16 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
               tabIndex={0}
               role="button"
               aria-label={`Xem dữ liệu xác thực của căn hộ ${unit.name || unit.id}`}
-              className="group relative rounded-2xl p-[1.5px] overflow-hidden cursor-pointer shadow-xl transition-all duration-300"
+              className="group relative rounded-2xl p-[1.5px] cursor-pointer shadow-xl transition-all duration-300"
             >
-              {/* Dynamic Orbiting Dual Laser Beam (GPU Composited 60FPS) */}
-              <div
-                className={`animate-spin-beam pointer-events-none transition-opacity duration-300 ${
-                  isFocal ? 'opacity-90' : 'opacity-0 group-hover:opacity-85'
-                }`}
-              />
+              {/* Dynamic Orbiting Dual Laser Beam strictly contained in border shell */}
+              <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+                <div
+                  className={`animate-spin-beam pointer-events-none transition-opacity duration-300 ${
+                    isFocal ? 'opacity-90' : 'opacity-0 group-hover:opacity-85'
+                  }`}
+                />
+              </div>
 
               {/* Card Inner Container */}
               <div

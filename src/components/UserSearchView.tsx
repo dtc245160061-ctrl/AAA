@@ -680,17 +680,23 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                 const trueCostTotal = unit.trueCost?.totalMonthlyEstimatedVND || unit.monthlyRentVND;
                 const extraFees = trueCostTotal - unit.monthlyRentVND;
 
-                // Grid View Card (Tall, Architectural Proportions)
+                // Grid View Card (Tall, Architectural Proportions with Dynamic Orbiting Beam)
                 return (
                   <div
                     key={unit.id}
-                    className="group haven-beam-hover rounded-3xl shadow-lg transition-all duration-300 flex flex-col justify-between bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] relative"
+                    className="group relative rounded-3xl p-[1.5px] shadow-lg transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5"
                   >
-                    {/* Image Area - TALL & MAJESTIC (h-64 sm:h-72) */}
-                    <div
-                      className="relative h-64 sm:h-72 bg-slate-900 cursor-pointer overflow-hidden rounded-t-3xl"
-                      onClick={() => onSelectUnit(unit.id)}
-                    >
+                    {/* Dynamic Orbiting Dual Laser Beam on Hover */}
+                    <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+                      <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+                    </div>
+
+                    <div className="relative z-10 w-full h-full rounded-[22.5px] overflow-hidden flex flex-col justify-between bg-[var(--haven-surface-raised)] border border-[var(--haven-border)]">
+                      {/* Image Area - TALL & MAJESTIC (h-64 sm:h-72) */}
+                      <div
+                        className="relative h-64 sm:h-72 bg-slate-900 cursor-pointer overflow-hidden rounded-t-[22.5px]"
+                        onClick={() => onSelectUnit(unit.id)}
+                      >
                       <img
                         src={unit.images[0]}
                         alt={unit.name || unit.id}
@@ -828,6 +834,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                           </button>
                         </div>
                       </div>
+                    </div>
                     </div>
                   </div>
                 );

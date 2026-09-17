@@ -100,28 +100,87 @@
     transparent 286deg,
     transparent 360deg
   );
+
+  --beam-gradient-purple: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 74deg,
+    rgba(168, 85, 247, 0.5) 82deg,
+    #a855f7 90deg,
+    rgba(168, 85, 247, 0.5) 98deg,
+    transparent 106deg,
+    transparent 254deg,
+    rgba(168, 85, 247, 0.5) 262deg,
+    #a855f7 270deg,
+    rgba(168, 85, 247, 0.5) 278deg,
+    transparent 286deg,
+    transparent 360deg
+  );
+
+  --beam-gradient-slate: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 74deg,
+    rgba(148, 163, 184, 0.5) 82deg,
+    #94a3b8 90deg,
+    rgba(148, 163, 184, 0.5) 98deg,
+    transparent 106deg,
+    transparent 254deg,
+    rgba(148, 163, 184, 0.5) 262deg,
+    #94a3b8 270deg,
+    rgba(148, 163, 184, 0.5) 278deg,
+    transparent 286deg,
+    transparent 360deg
+  );
 }
 
 /* ── 2. PRESET THEMES (Change theme with a single class or data attribute) ── */
-[data-beam-theme="gold"], .theme-gold {
+[data-beam-theme="gold"], .theme-gold, .haven-beam-gold {
   --beam-color-primary: #fbbf24;
   --beam-color-secondary: rgba(251, 191, 36, 0.5);
   --beam-color-ambient: rgba(245, 158, 11, 0.15);
   --beam-color-glow: rgba(245, 158, 11, 0.45);
+  --beam-gradient-master: var(--beam-gradient-gold);
 }
 
-[data-beam-theme="cyan"], .theme-cyan {
+[data-beam-theme="cyan"], .theme-cyan, .haven-beam-cyan {
   --beam-color-primary: #22d3ee;
   --beam-color-secondary: rgba(34, 211, 238, 0.5);
   --beam-color-ambient: rgba(6, 182, 212, 0.15);
   --beam-color-glow: rgba(6, 182, 212, 0.45);
+  --beam-gradient-master: var(--beam-gradient-cyan);
 }
 
-[data-beam-theme="white"], .theme-white {
+[data-beam-theme="purple"], .theme-purple, .haven-beam-purple {
+  --beam-color-primary: #a855f7;
+  --beam-color-secondary: rgba(168, 85, 247, 0.5);
+  --beam-color-ambient: rgba(147, 51, 234, 0.15);
+  --beam-color-glow: rgba(168, 85, 247, 0.45);
+  --beam-gradient-master: var(--beam-gradient-purple);
+}
+
+[data-beam-theme="slate"], .theme-slate, .haven-beam-slate {
+  --beam-color-primary: #94a3b8;
+  --beam-color-secondary: rgba(148, 163, 184, 0.5);
+  --beam-color-ambient: rgba(100, 116, 139, 0.15);
+  --beam-color-glow: rgba(148, 163, 184, 0.45);
+  --beam-gradient-master: var(--beam-gradient-slate);
+}
+
+[data-beam-theme="white"], .theme-white, .haven-beam-white {
   --beam-color-primary: #ffffff;
   --beam-color-secondary: rgba(255, 255, 255, 0.5);
   --beam-color-ambient: rgba(255, 255, 255, 0.12);
   --beam-color-glow: rgba(255, 255, 255, 0.35);
+  --beam-gradient-master: var(--beam-gradient-white);
+}
+
+[data-beam-theme="emerald"], .theme-emerald, .haven-beam-emerald {
+  --beam-color-primary: #34d399;
+  --beam-color-secondary: rgba(52, 211, 153, 0.5);
+  --beam-color-ambient: rgba(16, 185, 129, 0.15);
+  --beam-color-glow: rgba(52, 211, 153, 0.45);
+  --beam-gradient-master: var(--beam-gradient-emerald);
 }
 
 /* ── 3. HARDWARE-ACCELERATED KEYFRAMES (60 FPS on Firefox & WebKit) ── */

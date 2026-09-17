@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { SUBSCRIPTION_PLANS, ApartmentStore } from '../data/apartmentStore';
 import type { SubscriptionTier } from '../types/apartment';
+import { ShaderCard } from './ui/ShaderCard';
 
 interface SubscriptionsViewProps {
   onShowToast: (type: 'success' | 'info', title: string, desc?: string) => void;
@@ -62,7 +63,7 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
           <div className="bg-slate-950/90 p-1.5 rounded-2xl border border-slate-800 shadow-xl inline-flex items-center gap-1.5 always-dark">
             <button
               onClick={() => setActiveTab('landlord')}
-              className={`px-5 py-2.5 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-2 ${
+              className={`px-5 py-2.5 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-2 cursor-pointer ${
                 activeTab === 'landlord'
                   ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
                   : 'text-slate-400 hover:text-white'
@@ -73,7 +74,7 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
             </button>
             <button
               onClick={() => setActiveTab('tenant')}
-              className={`px-5 py-2.5 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-2 ${
+              className={`px-5 py-2.5 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-2 cursor-pointer ${
                 activeTab === 'tenant'
                   ? 'bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25 border border-cyan-300/40'
                   : 'text-slate-400 hover:text-white'
@@ -88,7 +89,7 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
           <div className="bg-slate-950/90 p-1.5 rounded-2xl border border-slate-800 shadow-xl inline-flex items-center gap-1.5 always-dark">
             <button
               onClick={() => setBillingCycle('monthly')}
-              className={`px-4 py-2.5 rounded-xl text-xs font-mono font-bold transition-all ${
+              className={`px-4 py-2.5 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${
                 billingCycle === 'monthly'
                   ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
                   : 'text-slate-400 hover:text-white'
@@ -98,7 +99,7 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
             </button>
             <button
               onClick={() => setBillingCycle('yearly')}
-              className={`px-4 py-2.5 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-1.5 ${
+              className={`px-4 py-2.5 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
                 billingCycle === 'yearly'
                   ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20'
                   : 'text-slate-400 hover:text-white'
@@ -113,102 +114,133 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
         </div>
       </div>
 
-      {/* Pricing Cards Grid */}
+      {/* Pricing Cards Grid with ShaderCard & Dynamic Tier Beams */}
       <div className={`grid grid-cols-1 ${filteredPlans.length === 1 ? 'max-w-md mx-auto' : 'md:grid-cols-3'} gap-6`}>
         {filteredPlans.map((plan) => {
           const isCurrent = currentTier === plan.id;
           const discountedPrice = billingCycle === 'yearly' ? plan.priceVND * 0.8 : plan.priceVND;
 
+          // Tier color palette customization
+          let themeColor: 'slate' | 'purple' | 'gold' | 'cyan' = 'slate';
+          let beamThemeClass = 'haven-beam-slate';
+          let badgeGradient = 'bg-slate-200 dark:bg-slate-700/80 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-600';
+          let btnClass = 'bg-slate-700 hover:bg-slate-600 text-white font-bold shadow-slate-700/30 hover:scale-[1.02] border border-slate-500/50';
+
+          if (plan.id === 'enterprise' || plan.badge === 'Doanh Nghiệp') {
+            themeColor = 'gold';
+            beamThemeClass = 'haven-beam-gold';
+            badgeGradient = 'bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 text-slate-950 font-extrabold shadow-lg shadow-amber-500/30 border border-yellow-200/90';
+            btnClass = 'bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 hover:brightness-110 text-slate-950 font-bold shadow-amber-500/30 hover:scale-[1.02] border border-amber-300/50';
+          } else if (plan.id === 'resident_prime' || plan.badge === 'Dành Cho Cư Dân') {
+            themeColor = 'cyan';
+            beamThemeClass = 'haven-beam-cyan';
+            badgeGradient = 'bg-gradient-to-r from-cyan-500 via-sky-400 to-blue-500 text-slate-950 font-extrabold shadow-lg shadow-cyan-500/30 border border-cyan-200/90';
+            btnClass = 'bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 hover:opacity-95 text-white font-bold shadow-cyan-500/30 hover:scale-[1.02] border border-cyan-300/40';
+          } else if (plan.isPopular || plan.badge === 'Khuyên Dùng' || plan.id === 'pro') {
+            themeColor = 'purple';
+            beamThemeClass = 'haven-beam-purple';
+            badgeGradient = 'bg-gradient-to-r from-purple-500 via-violet-400 to-purple-600 text-white font-extrabold shadow-lg shadow-purple-500/30 border border-purple-300/80';
+            btnClass = 'bg-gradient-to-r from-purple-600 via-violet-500 to-fuchsia-600 hover:brightness-110 text-white font-bold shadow-purple-500/35 hover:scale-[1.02] border border-purple-400/50';
+          }
+
           return (
             <div
               key={plan.id}
-              className={`p-6 md:p-8 rounded-3xl atmospheric-panel border flex flex-col justify-between transition-all duration-300 relative overflow-hidden backdrop-blur-2xl shadow-xl hover:-translate-y-2 hover:shadow-2xl ${
-                plan.id === 'enterprise'
-                  ? 'border-amber-500/50 haven-beam-gold hover:shadow-[0_0_35px_rgba(245,158,11,0.35)]'
-                  : plan.targetAudience === 'tenant'
-                  ? 'border-cyan-500/50 haven-beam-cyan hover:shadow-[0_0_35px_rgba(6,182,212,0.35)]'
-                  : plan.isPopular
-                  ? 'border-emerald-500/60 haven-beam-emerald ring-1 ring-emerald-500/40 hover:shadow-[0_0_35px_rgba(16,185,129,0.35)]'
-                  : 'border-slate-300 dark:border-slate-800 haven-beam-white hover:shadow-[0_0_25px_rgba(255,255,255,0.15)]'
-              }`}
+              className={`group relative rounded-3xl p-[2px] shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-2 ${beamThemeClass}`}
             >
-              <div className="space-y-5">
-                <div className="flex items-start justify-between gap-3 min-h-[52px]">
-                  <div>
-                    <h3 className="text-xl font-serif font-bold text-slate-900 dark:text-slate-100">{plan.name}</h3>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 min-h-[32px] font-medium">{plan.tagline}</p>
-                  </div>
-                  {plan.badge && (
-                    <span className={`shrink-0 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider ${
-                      plan.id === 'enterprise' || plan.badge === 'Doanh Nghiệp'
-                        ? 'bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 text-slate-950 font-extrabold shadow-lg shadow-amber-500/30 border border-yellow-200/90'
-                        : plan.id === 'resident_prime' || plan.badge === 'Dành Cho Cư Dân'
-                        ? 'bg-gradient-to-r from-cyan-500 via-sky-400 to-blue-500 text-slate-950 font-extrabold shadow-lg shadow-cyan-500/30 border border-cyan-200/90'
-                        : plan.isPopular || plan.badge === 'Khuyên Dùng'
-                        ? 'bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500 text-slate-950 font-extrabold shadow-lg shadow-emerald-500/30 border border-emerald-300/80'
-                        : 'bg-slate-200 dark:bg-slate-700/80 text-slate-700 dark:text-slate-200 font-bold border border-slate-300 dark:border-slate-600 shadow-sm'
-                    }`}>
-                      {plan.badge}
-                    </span>
-                  )}
-                </div>
-
-                {/* Price */}
-                <div className="py-2 border-y border-slate-200 dark:border-slate-800/80">
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-3xl md:text-4xl font-bold font-mono text-slate-900 dark:text-slate-100">
-                      {discountedPrice === 0 ? '0 đ' : `${(discountedPrice).toLocaleString('vi-VN')} đ`}
-                    </span>
-                    <span className="text-xs font-mono text-slate-500 dark:text-slate-400 font-bold">/ tháng</span>
-                  </div>
-                  {billingCycle === 'yearly' && plan.priceVND > 0 && (
-                    <p className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 mt-0.5 font-bold">Tiết kiệm {(plan.priceVND * 0.2 * 12).toLocaleString('vi-VN')} đ / năm</p>
-                  )}
-                </div>
-
-                {/* Feature Checklist */}
-                <div className="space-y-3 pt-2">
-                  <span className="text-[11px] font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold">Tính năng bao gồm:</span>
-                  <ul className="space-y-2.5">
-                    {plan.features.map((feat, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-300 font-medium">
-                        <div className="w-4 h-4 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
-                          <Check className="w-3 h-3" />
-                        </div>
-                        <span className="leading-snug">{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              {/* Dynamic Orbiting Dual Laser Beam strictly contained in border shell */}
+              <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+                <div
+                  className={`animate-spin-beam pointer-events-none transition-opacity duration-300 ${
+                    isCurrent ? 'opacity-90' : 'opacity-0 group-hover:opacity-100'
+                  }`}
+                />
               </div>
 
-              {/* CTA Button */}
-              <div className="pt-8">
-                <button
-                  onClick={() => handleSelectTier(plan.id)}
-                  disabled={isCurrent}
-                  className={`w-full py-3.5 px-4 rounded-2xl font-mono text-xs font-bold transition-all shadow-lg flex items-center justify-center gap-2 ${
-                    isCurrent
-                      ? 'bg-slate-200 dark:bg-slate-800 text-emerald-800 dark:text-emerald-400 border border-emerald-500/40 cursor-default'
-                      : plan.id === 'resident_prime'
-                      ? 'bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600 hover:opacity-95 text-white shadow-cyan-500/30 hover:scale-[1.02] border border-cyan-300/40'
-                      : plan.isPopular
-                      ? 'bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-emerald-500/30 hover:scale-[1.02]'
-                      : 'bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white border border-slate-700 hover:scale-[1.02]'
-                  }`}
+              {/* Inner card with React Bits Pro ShaderCard background effect */}
+              <div className="relative z-10 w-full h-full rounded-[22px] overflow-hidden atmospheric-panel border border-slate-800 flex flex-col justify-between">
+                <ShaderCard
+                  speed={0.1}
+                  positionY={0.15000000000000002}
+                  scale={3}
+                  edgeMax={0.7}
+                  falloffPower={3.5}
+                  waveAmount={0.1}
+                  branchIntensity={1.9000000000000001}
+                  verticalExtent={2}
+                  blur={4.5}
+                  colorTheme={themeColor}
+                  className="w-full h-full flex flex-col justify-between p-6 md:p-8"
                 >
-                  {isCurrent ? (
-                    <>
-                      <ShieldCheck className="w-4 h-4" />
-                      <span>Đang Sử Dụng Gói Này</span>
-                    </>
-                  ) : (
-                    <>
-                      <Zap className="w-4 h-4" />
-                      <span>Nâng Cấp Gói Này</span>
-                    </>
-                  )}
-                </button>
+                  <div className="space-y-5">
+                    <div className="flex items-start justify-between gap-3 min-h-[52px]">
+                      <div>
+                        <h3 className="text-xl font-serif font-bold text-slate-900 dark:text-slate-100">{plan.name}</h3>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 min-h-[32px] font-medium">{plan.tagline}</p>
+                      </div>
+                      {plan.badge && (
+                        <span className={`shrink-0 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider ${badgeGradient}`}>
+                          {plan.badge}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Price */}
+                    <div className="py-2 border-y border-slate-200 dark:border-slate-800/80">
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-3xl md:text-4xl font-bold font-mono text-slate-900 dark:text-slate-100">
+                          {discountedPrice === 0 ? '0 đ' : `${(discountedPrice).toLocaleString('vi-VN')} đ`}
+                        </span>
+                        <span className="text-xs font-mono text-slate-500 dark:text-slate-400 font-bold">/ tháng</span>
+                      </div>
+                      {billingCycle === 'yearly' && plan.priceVND > 0 && (
+                        <p className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 mt-0.5 font-bold">
+                          Tiết kiệm {(plan.priceVND * 0.2 * 12).toLocaleString('vi-VN')} đ / năm
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Feature Checklist */}
+                    <div className="space-y-3 pt-2">
+                      <span className="text-[11px] font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold">Tính năng bao gồm:</span>
+                      <ul className="space-y-2.5">
+                        {plan.features.map((feat, idx) => (
+                          <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-300 font-medium">
+                            <div className="w-4 h-4 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+                              <Check className="w-3 h-3" />
+                            </div>
+                            <span className="leading-snug">{feat}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* CTA Button */}
+                  <div className="pt-8">
+                    <button
+                      onClick={() => handleSelectTier(plan.id)}
+                      disabled={isCurrent}
+                      className={`w-full py-3.5 px-4 rounded-2xl font-mono text-xs font-bold transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer ${
+                        isCurrent
+                          ? 'bg-slate-800/90 text-emerald-400 border border-emerald-500/50 cursor-default shadow-md shadow-emerald-500/10'
+                          : btnClass
+                      }`}
+                    >
+                      {isCurrent ? (
+                        <>
+                          <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                          <span>Đang Sử Dụng Gói Này</span>
+                        </>
+                      ) : (
+                        <>
+                          <Zap className="w-4 h-4" />
+                          <span>{plan.priceVND === 0 ? 'Chọn Gói Miễn Phí' : 'Nâng Cấp Gói Này'}</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </ShaderCard>
               </div>
             </div>
           );
@@ -232,48 +264,68 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="haven-card-interactive p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/60 hover:shadow-xl hover:shadow-emerald-500/10 space-y-2 cursor-pointer transition-all duration-200">
-            <div className="flex items-center justify-between text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold">
-              <span>1. Phí Môi Giới Chốt Thuê</span>
-              <Percent className="w-3.5 h-3.5" />
+          <div className="group relative rounded-2xl p-[1.5px] cursor-pointer hover:-translate-y-1 transition-all duration-200">
+            <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+              <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
             </div>
-            <div className="text-2xl font-bold font-mono text-slate-900 dark:text-slate-100">50% - 100%</div>
-            <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">
-              Thu từ chủ nhà khi khách ký hợp đồng thuê thành công (Tương đương 0.5 - 1 tháng tiền nhà).
-            </p>
+            <div className="relative z-10 w-full h-full p-4 rounded-[14.5px] bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 space-y-2">
+              <div className="flex items-center justify-between text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold">
+                <span>1. Phí Môi Giới Chốt Thuê</span>
+                <Percent className="w-3.5 h-3.5" />
+              </div>
+              <div className="text-2xl font-bold font-mono text-slate-900 dark:text-slate-100">50% - 100%</div>
+              <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">
+                Thu từ chủ nhà khi khách ký hợp đồng thuê thành công (Tương đương 0.5 - 1 tháng tiền nhà).
+              </p>
+            </div>
           </div>
 
-          <div className="haven-card-interactive p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-sky-500/60 hover:shadow-xl hover:shadow-sky-500/10 space-y-2 cursor-pointer transition-all duration-200">
-            <div className="flex items-center justify-between text-xs font-mono text-sky-600 dark:text-sky-400 font-bold">
-              <span>2. Thuê Bao SaaS (MRR)</span>
-              <TrendingUp className="w-3.5 h-3.5" />
+          <div className="group relative rounded-2xl p-[1.5px] cursor-pointer hover:-translate-y-1 transition-all duration-200">
+            <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+              <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
             </div>
-            <div className="text-2xl font-bold font-mono text-slate-900 dark:text-slate-100">499.000 đ</div>
-            <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">
-              Gói Pro/Enterprise trả phí định kỳ hàng tháng để quản lý tài chính, hóa đơn và khách thuê tự động.
-            </p>
+            <div className="relative z-10 w-full h-full p-4 rounded-[14.5px] bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 space-y-2">
+              <div className="flex items-center justify-between text-xs font-mono text-sky-600 dark:text-sky-400 font-bold">
+                <span>2. Thuê Bao SaaS (MRR)</span>
+                <TrendingUp className="w-3.5 h-3.5" />
+              </div>
+              <div className="text-2xl font-bold font-mono text-slate-900 dark:text-slate-100">499.000 đ</div>
+              <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">
+                Gói Pro/Enterprise trả phí định kỳ hàng tháng để quản lý tài chính, hóa đơn và khách thuê tự động.
+              </p>
+            </div>
           </div>
 
-          <div className="haven-card-interactive p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-amber-500/60 hover:shadow-xl hover:shadow-amber-500/10 space-y-2 cursor-pointer transition-all duration-200">
-            <div className="flex items-center justify-between text-xs font-mono text-amber-600 dark:text-amber-400 font-bold">
-              <span>3. Phí Kiểm Định Cấp Tốc</span>
-              <ShieldCheck className="w-3.5 h-3.5" />
+          <div className="group relative rounded-2xl p-[1.5px] cursor-pointer hover:-translate-y-1 transition-all duration-200">
+            <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+              <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
             </div>
-            <div className="text-2xl font-bold font-mono text-slate-900 dark:text-slate-100">250.000 đ</div>
-            <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">
-              Phí dịch vụ cử kỹ thuật viên đến tận nơi đo đạc ồn, kiểm tra PCCC và cấp huy hiệu Verified.
-            </p>
+            <div className="relative z-10 w-full h-full p-4 rounded-[14.5px] bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 space-y-2">
+              <div className="flex items-center justify-between text-xs font-mono text-amber-600 dark:text-amber-400 font-bold">
+                <span>3. Phí Kiểm Định Cấp Tốc</span>
+                <ShieldCheck className="w-3.5 h-3.5" />
+              </div>
+              <div className="text-2xl font-bold font-mono text-slate-900 dark:text-slate-100">250.000 đ</div>
+              <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">
+                Phí dịch vụ cử kỹ thuật viên đến tận nơi đo đạc ồn, kiểm tra PCCC và cấp huy hiệu Verified.
+              </p>
+            </div>
           </div>
 
-          <div className="haven-card-interactive p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 hover:border-purple-500/60 hover:shadow-xl hover:shadow-purple-500/10 space-y-2 cursor-pointer transition-all duration-200">
-            <div className="flex items-center justify-between text-xs font-mono text-purple-600 dark:text-purple-400 font-bold">
-              <span>4. Hoa Hồng Dịch Vụ Sống</span>
-              <Sparkles className="w-3.5 h-3.5" />
+          <div className="group relative rounded-2xl p-[1.5px] cursor-pointer hover:-translate-y-1 transition-all duration-200">
+            <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+              <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
             </div>
-            <div className="text-2xl font-bold font-mono text-slate-900 dark:text-slate-100">10% - 15%</div>
-            <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">
-              Chiết khấu từ đối tác dọn dẹp, vận chuyển nhà và sửa chữa khi cư dân đặt qua ứng dụng.
-            </p>
+            <div className="relative z-10 w-full h-full p-4 rounded-[14.5px] bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 space-y-2">
+              <div className="flex items-center justify-between text-xs font-mono text-purple-600 dark:text-purple-400 font-bold">
+                <span>4. Hoa Hồng Dịch Vụ Sống</span>
+                <Sparkles className="w-3.5 h-3.5" />
+              </div>
+              <div className="text-2xl font-bold font-mono text-slate-900 dark:text-slate-100">10% - 15%</div>
+              <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">
+                Chiết khấu từ đối tác dọn dẹp, vận chuyển nhà và sửa chữa khi cư dân đặt qua ứng dụng.
+              </p>
+            </div>
           </div>
         </div>
       </div>

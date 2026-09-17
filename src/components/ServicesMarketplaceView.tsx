@@ -121,52 +121,59 @@ export const ServicesMarketplaceView: React.FC<ServicesMarketplaceViewProps> = (
         {filteredServices.map(service => (
           <div
             key={service.id}
-            className="haven-card-interactive haven-beam-hover haven-beam-emerald relative overflow-hidden p-6 rounded-3xl atmospheric-panel border border-slate-800 hover:border-emerald-400/80 hover:ring-1 hover:ring-emerald-400/40 flex flex-col justify-between transition-all duration-300 group backdrop-blur-2xl shadow-xl hover:shadow-2xl hover:shadow-emerald-500/20 cursor-pointer"
+            className="group relative rounded-3xl p-[1.5px] shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5"
           >
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center group-hover:scale-110 group-hover:border-emerald-500/40 transition-all duration-200">
-                  {getIcon(service.iconName)}
+            {/* Dynamic Orbiting Dual Laser Beam on Hover */}
+            <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+              <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+            </div>
+
+            <div className="relative z-10 w-full h-full p-6 rounded-[22.5px] atmospheric-panel border border-slate-800 flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center group-hover:scale-110 group-hover:border-emerald-500/40 transition-all duration-200">
+                    {getIcon(service.iconName)}
+                  </div>
+                  {service.popular && (
+                    <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-bold uppercase">
+                      Phổ Biến Nhất
+                    </span>
+                  )}
                 </div>
-                {service.popular && (
-                  <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-bold uppercase">
-                    Phổ Biến Nhất
-                  </span>
+
+                <div>
+                  <h3 className="text-base font-serif font-bold text-slate-100 group-hover:text-emerald-300 transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+
+                {service.duration && (
+                  <div className="flex items-center gap-1.5 text-xs font-mono text-slate-400">
+                    <Clock className="w-3.5 h-3.5 text-slate-500" />
+                    <span>Thời gian phục vụ: {service.duration}</span>
+                  </div>
                 )}
               </div>
 
-              <div>
-                <h3 className="text-base font-serif font-bold text-slate-100 group-hover:text-emerald-300 transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
-
-              {service.duration && (
-                <div className="flex items-center gap-1.5 text-xs font-mono text-slate-400">
-                  <Clock className="w-3.5 h-3.5 text-slate-500" />
-                  <span>Thời gian phục vụ: {service.duration}</span>
+              <div className="pt-6 border-t border-slate-800/80 mt-6 flex items-center justify-between">
+                <div>
+                  <div className="text-lg font-bold font-mono text-emerald-400">
+                    {service.priceVND.toLocaleString('vi-VN')} đ
+                  </div>
+                  <div className="text-[10px] font-mono text-slate-500">/ {service.unitLabel}</div>
                 </div>
-              )}
-            </div>
 
-            <div className="pt-6 border-t border-slate-800/80 mt-6 flex items-center justify-between">
-              <div>
-                <div className="text-lg font-bold font-mono text-emerald-400">
-                  {service.priceVND.toLocaleString('vi-VN')} đ
-                </div>
-                <div className="text-[10px] font-mono text-slate-500">/ {service.unitLabel}</div>
+                <button
+                  onClick={() => setBookingService(service)}
+                  className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-mono font-bold transition-all shadow-md shadow-emerald-500/20 hover:scale-105 flex items-center gap-1.5 cursor-pointer"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>Đặt Ngay</span>
+                </button>
               </div>
-
-              <button
-                onClick={() => setBookingService(service)}
-                className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-mono font-bold transition-all shadow-md shadow-emerald-500/20 hover:scale-105 flex items-center gap-1.5"
-              >
-                <Plus className="w-4 h-4" />
-                <span>Đặt Ngay</span>
-              </button>
             </div>
           </div>
         ))}

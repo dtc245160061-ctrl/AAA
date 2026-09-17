@@ -177,10 +177,13 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
           exit={{ opacity: 0, y: 24, scale: 0.96 }}
           transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
           style={{ position: 'fixed', bottom: '1.25rem', right: '1.25rem', zIndex: 9999 }}
-          className="fixed !fixed bottom-5 right-5 z-[9999] w-[400px] max-w-[calc(100vw-2.5rem)] h-[500px] max-h-[calc(100vh-5.5rem)] rounded-3xl haven-beam-active haven-beam-emerald shadow-2xl shadow-emerald-500/25 text-left flex flex-col"
+          className="fixed !fixed bottom-5 right-5 z-[9999] w-[400px] max-w-[calc(100vw-2.5rem)] h-[500px] max-h-[calc(100vh-5.5rem)] rounded-3xl p-[2px] overflow-hidden shadow-2xl shadow-emerald-500/30 text-left flex flex-col"
         >
+          {/* Continuous Dual Orbiting Running Laser Beam around AI Advisor */}
+          <div className="animate-spin-beam pointer-events-none opacity-95" />
+
           {/* Main Inner Window Container with 100% Solid Opaque Backdrop */}
-          <div className="relative z-10 w-full h-full rounded-3xl bg-[#0B0F17] [data-theme='light']_:bg-white border border-slate-700/80 [data-theme='light']_:border-slate-200 flex flex-col justify-between overflow-hidden shadow-2xl">
+          <div className="relative z-10 w-full h-full rounded-[22px] bg-[#0B0F17] [data-theme='light']_:bg-white border border-slate-700/80 [data-theme='light']_:border-slate-200 flex flex-col justify-between overflow-hidden shadow-2xl">
             {/* Top Bar Header */}
             <div className="p-3 sm:p-3.5 border-b border-slate-800 [data-theme='light']_:border-slate-200 flex items-center justify-between bg-slate-900 [data-theme='light']_:bg-slate-50 shrink-0">
           <div className="flex items-center gap-2.5">
