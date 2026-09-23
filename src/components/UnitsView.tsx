@@ -7,7 +7,10 @@ import {
   Edit2,
   Trash2,
   X,
-  Check
+  Check,
+  Maximize2,
+  Bed,
+  Layers
 } from 'lucide-react';
 import type { ApartmentUnit, UnitStatus } from '../types/apartment';
 import { normalizeCity } from '../data/apartmentStore';
@@ -53,13 +56,33 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
   const getStatusBadge = (status: UnitStatus) => {
     switch (status) {
       case 'vacant':
-        return <span className="px-2.5 py-1 rounded-lg bg-slate-950/85 backdrop-blur-md text-emerald-400 border border-emerald-500/40 text-[10px] font-mono font-bold shadow-md">Sẵn Sàng Cho Thuê</span>;
+        return (
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/90 backdrop-blur-md text-emerald-400 border border-emerald-500/40 text-[10px] font-mono font-bold shadow-lg shadow-emerald-500/10">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Sẵn Sàng Cho Thuê</span>
+          </span>
+        );
       case 'occupied':
-        return <span className="px-2.5 py-1 rounded-lg bg-slate-950/85 backdrop-blur-md text-sky-400 border border-sky-500/40 text-[10px] font-mono font-bold shadow-md">Đang Cho Thuê</span>;
+        return (
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/90 backdrop-blur-md text-sky-400 border border-sky-500/40 text-[10px] font-mono font-bold shadow-lg shadow-sky-500/10">
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
+            <span>Đang Cho Thuê</span>
+          </span>
+        );
       case 'reserved':
-        return <span className="px-2.5 py-1 rounded-lg bg-slate-950/85 backdrop-blur-md text-amber-400 border border-amber-500/40 text-[10px] font-mono font-bold shadow-md">Đã Nhận Cọc</span>;
+        return (
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/90 backdrop-blur-md text-amber-400 border border-amber-500/40 text-[10px] font-mono font-bold shadow-lg shadow-amber-500/10">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+            <span>Đã Nhận Cọc</span>
+          </span>
+        );
       case 'maintenance':
-        return <span className="px-2.5 py-1 rounded-lg bg-slate-950/85 backdrop-blur-md text-rose-400 border border-rose-500/40 text-[10px] font-mono font-bold shadow-md">Bảo Trì & Dọn Dẹp</span>;
+        return (
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/90 backdrop-blur-md text-rose-400 border border-rose-500/40 text-[10px] font-mono font-bold shadow-lg shadow-rose-500/10">
+            <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
+            <span>Bảo Trì & Dọn Dẹp</span>
+          </span>
+        );
     }
   };
 
@@ -158,42 +181,42 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
         {filteredUnits.map(unit => (
           <div
             key={unit.id}
-            className="group relative rounded-3xl p-[1.5px] overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-1.5 cursor-pointer"
+            className="group relative rounded-3xl p-[2px] overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_16px_50px_rgba(16,185,129,0.2)] cursor-pointer"
           >
             <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-60 group-hover:opacity-100" />
-            <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel haven-sheen-sweep border border-slate-800/80 [data-theme='light']_:border-slate-200/80 group-hover:border-emerald-500/40 p-5 space-y-4 flex flex-col justify-between">
+            <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel haven-sheen-sweep border border-slate-800/80 [data-theme='light']_:border-slate-200/80 group-hover:border-emerald-500/50 p-5 space-y-4 flex flex-col justify-between">
               <div className="space-y-3">
-                {/* Top Row: Tall Architectural Photo & Badges */}
-                <div className="relative h-56 sm:h-64 rounded-2xl overflow-hidden bg-slate-900 group/img">
+                {/* Top Row: Architectural Photo & Luxury Badges */}
+                <div className="relative h-60 rounded-2xl overflow-hidden bg-slate-900 group/img">
                   <img
                     src={unit.images[0]}
                     alt={unit.name || unit.id}
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200';
                     }}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/25 to-transparent pointer-events-none" />
                   
                   <div className="absolute top-3 left-3">
                     {getStatusBadge(unit.status)}
                   </div>
                   
                   <div className="absolute top-3 right-3">
-                    <span className="px-2.5 py-1 rounded-xl bg-slate-950/80 backdrop-blur-md border border-slate-700 text-[11px] font-mono text-slate-300 font-bold">
+                    <span className="px-3 py-1 rounded-full bg-slate-950/85 backdrop-blur-md border border-slate-700/80 text-[11px] font-mono text-slate-300 font-bold shadow-md">
                       #{unit.id}
                     </span>
                   </div>
 
-                  <div className="absolute bottom-3 right-3 px-3 py-1.5 rounded-xl bg-slate-950/85 backdrop-blur-md border border-emerald-500/40 text-xs font-mono font-bold text-emerald-400 shadow-xl flex items-baseline gap-1">
-                    <span>{(unit.monthlyRentVND / 1000000).toFixed(0)}Tr</span>
+                  <div className="absolute bottom-3 right-3 px-3.5 py-1.5 rounded-xl bg-slate-950/90 backdrop-blur-md border border-emerald-500/50 text-xs font-mono font-bold text-emerald-400 shadow-xl shadow-emerald-500/20 flex items-baseline gap-1 group-hover:border-emerald-400 group-hover:scale-105 transition-all">
+                    <span className="text-sm font-bold">{(unit.monthlyRentVND / 1000000).toFixed(0)}Tr</span>
                     <span className="text-[10px] text-slate-400 font-normal">/tháng</span>
                   </div>
                 </div>
 
                 {/* Title & Location */}
                 <div>
-                  <h3 className="font-serif text-lg font-bold text-slate-100 [data-theme='light']_:text-slate-900 group-hover:text-emerald-300 [data-theme='light']_:group-hover:text-emerald-700 transition-colors line-clamp-1">
+                  <h3 className="font-serif text-lg font-bold text-slate-100 [data-theme='light']_:text-slate-900 group-hover:text-emerald-300 [data-theme='light']_:group-hover:text-emerald-700 group-hover:drop-shadow-[0_0_10px_rgba(52,211,153,0.5)] transition-all line-clamp-1">
                     {unit.name || unit.id}
                   </h3>
                   <div className="flex items-center gap-1.5 text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-600 mt-1">
@@ -202,29 +225,35 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                   </div>
                 </div>
 
-                {/* Specs */}
-                <div className="grid grid-cols-3 gap-2 py-2 border-y border-slate-800/60 [data-theme='light']_:border-slate-200/80 text-center font-mono text-xs">
-                  <div>
-                    <span className="text-slate-500 [data-theme='light']_:text-slate-400 text-[10px] block">DIỆN TÍCH</span>
-                    <span className="text-slate-200 [data-theme='light']_:text-slate-800 font-medium">{unit.sqm} m²</span>
+                {/* Specs as 3 Luxury Frosted Glass Pills */}
+                <div className="grid grid-cols-3 gap-2 py-1 font-mono text-xs">
+                  <div className="flex flex-col items-center justify-center p-2 rounded-xl bg-slate-950/50 [data-theme='light']_:bg-slate-100/80 border border-slate-800/80 [data-theme='light']_:border-slate-200/80 group-hover:border-emerald-500/30 transition-colors">
+                    <span className="text-slate-500 [data-theme='light']_:text-slate-400 text-[10px] flex items-center gap-1 mb-0.5">
+                      <Maximize2 className="w-3 h-3 text-emerald-400/80" /> DIỆN TÍCH
+                    </span>
+                    <span className="text-slate-200 [data-theme='light']_:text-slate-800 font-bold">{unit.sqm} m²</span>
                   </div>
-                  <div>
-                    <span className="text-slate-500 [data-theme='light']_:text-slate-400 text-[10px] block">PHÒNG NGỦ</span>
-                    <span className="text-slate-200 [data-theme='light']_:text-slate-800 font-medium">{unit.bedrooms} PN • {unit.bathrooms} WC</span>
+                  <div className="flex flex-col items-center justify-center p-2 rounded-xl bg-slate-950/50 [data-theme='light']_:bg-slate-100/80 border border-slate-800/80 [data-theme='light']_:border-slate-200/80 group-hover:border-emerald-500/30 transition-colors">
+                    <span className="text-slate-500 [data-theme='light']_:text-slate-400 text-[10px] flex items-center gap-1 mb-0.5">
+                      <Bed className="w-3 h-3 text-emerald-400/80" /> BỐ TRÍ
+                    </span>
+                    <span className="text-slate-200 [data-theme='light']_:text-slate-800 font-bold">{unit.bedrooms}PN • {unit.bathrooms}WC</span>
                   </div>
-                  <div>
-                    <span className="text-slate-500 [data-theme='light']_:text-slate-400 text-[10px] block">TẦNG</span>
-                    <span className="text-slate-200 [data-theme='light']_:text-slate-800 font-medium">Tầng {unit.floor}</span>
+                  <div className="flex flex-col items-center justify-center p-2 rounded-xl bg-slate-950/50 [data-theme='light']_:bg-slate-100/80 border border-slate-800/80 [data-theme='light']_:border-slate-200/80 group-hover:border-emerald-500/30 transition-colors">
+                    <span className="text-slate-500 [data-theme='light']_:text-slate-400 text-[10px] flex items-center gap-1 mb-0.5">
+                      <Layers className="w-3 h-3 text-emerald-400/80" /> VỊ TRÍ
+                    </span>
+                    <span className="text-slate-200 [data-theme='light']_:text-slate-800 font-bold">Tầng {unit.floor}</span>
                   </div>
                 </div>
               </div>
 
-              {/* Actions */}
+              {/* Admin Actions Bar with Radiant Glass Buttons */}
               <div className="pt-3 flex items-center gap-2 border-t border-slate-800/80 [data-theme='light']_:border-slate-200/80">
                 <select
                   value={unit.status}
                   onChange={(e) => onUpdateUnitStatus?.(unit.id, e.target.value as UnitStatus)}
-                  className="flex-1 px-3 py-2 rounded-xl bg-slate-900/90 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-300 text-slate-300 [data-theme='light']_:text-slate-800 text-xs font-mono focus:outline-none focus:border-emerald-500 cursor-pointer"
+                  className="flex-1 px-3 py-2 rounded-xl bg-slate-950/80 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-300 text-slate-200 [data-theme='light']_:text-slate-800 text-xs font-mono focus:outline-none focus:border-emerald-500 hover:border-slate-700 transition-colors cursor-pointer"
                 >
                   <option value="vacant">Trạng thái: Trống</option>
                   <option value="occupied">Trạng thái: Đang thuê</option>
@@ -237,7 +266,7 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                     e.stopPropagation();
                     setEditingUnit({ ...unit });
                   }}
-                  className="p-2 rounded-xl bg-slate-900/90 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-300 hover:border-amber-400 text-slate-300 [data-theme='light']_:text-slate-700 hover:text-amber-400 transition-colors cursor-pointer"
+                  className="p-2.5 rounded-xl bg-slate-950/80 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-300 hover:border-amber-400/70 hover:bg-amber-500/15 text-slate-300 [data-theme='light']_:text-slate-700 hover:text-amber-300 hover:shadow-[0_0_15px_rgba(251,191,36,0.35)] transition-all cursor-pointer"
                   title="Sửa thông tin căn hộ"
                 >
                   <Edit2 className="w-4 h-4" />
@@ -248,7 +277,7 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                     e.stopPropagation();
                     setDeletingUnit(unit);
                   }}
-                  className="p-2 rounded-xl bg-slate-900/90 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-300 hover:border-rose-400 text-slate-300 [data-theme='light']_:text-slate-700 hover:text-rose-400 transition-colors cursor-pointer"
+                  className="p-2.5 rounded-xl bg-slate-950/80 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-300 hover:border-rose-400/70 hover:bg-rose-500/15 text-slate-300 [data-theme='light']_:text-slate-700 hover:text-rose-300 hover:shadow-[0_0_15px_rgba(244,63,94,0.35)] transition-all cursor-pointer"
                   title="Xóa căn hộ"
                 >
                   <Trash2 className="w-4 h-4" />
@@ -256,16 +285,16 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
 
                 <button
                   onClick={() => onSelectUnit(unit.id)}
-                  className="p-2 rounded-xl bg-slate-900/90 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-300 hover:border-emerald-500 text-slate-300 [data-theme='light']_:text-slate-700 hover:text-emerald-400 transition-colors cursor-pointer"
+                  className="p-2.5 rounded-xl bg-slate-950/80 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-300 hover:border-emerald-400/70 hover:bg-emerald-500/15 text-slate-300 [data-theme='light']_:text-slate-700 hover:text-emerald-300 hover:shadow-[0_0_15px_rgba(16,185,129,0.35)] transition-all cursor-pointer"
                   title="Xem chi tiết căn"
                 >
                   <Eye className="w-4 h-4" />
                 </button>
               </div>
             </div>
-        </div>
-      ))}
-    </div>
+          </div>
+        ))}
+      </div>
 
       {/* Edit Unit Modal */}
       {editingUnit && (

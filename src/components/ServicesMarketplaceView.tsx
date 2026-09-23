@@ -274,47 +274,80 @@ export const ServicesMarketplaceView: React.FC<ServicesMarketplaceViewProps> = (
         </div>
       )}
 
-      {/* Recent Orders List */}
-      <div className="p-8 rounded-3xl atmospheric-panel border border-slate-800 space-y-4 shadow-2xl backdrop-blur-2xl">
-        <h2 className="text-lg font-serif font-bold text-slate-100 flex items-center gap-2">
-          <Calendar className="w-5 h-5 text-emerald-400" />
-          <span>Lịch Sử Đặt Dịch Vụ Của Cư Dân & Tòa Nhà</span>
-        </h2>
+      {/* Recent Orders List with Dynamic Rotating Border Beam */}
+      <div className="relative rounded-3xl p-[2px] overflow-hidden shadow-2xl group transition-all">
+        <div className="animate-spin-beam pointer-events-none opacity-40 group-hover:opacity-80 transition-opacity" />
+        <div className="relative z-10 w-full h-full p-6 sm:p-8 rounded-[22px] atmospheric-panel bg-slate-950/80 border border-slate-800/80 space-y-5 shadow-2xl backdrop-blur-2xl">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800/80 pb-4">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
+                <Calendar className="w-4 h-4 text-emerald-400" />
+                <span>Nhật Ký Dịch Vụ Cư Dân (Service Activity Log)</span>
+              </div>
+              <h2 className="text-xl font-serif font-bold text-slate-100 mt-1">
+                Lịch Sử Đặt Dịch Vụ Của Cư Dân & Tòa Nhà
+              </h2>
+            </div>
+            <span className="px-3 py-1.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono text-xs self-start sm:self-auto">
+              {serviceOrders.length} Yêu cầu đã ghi nhận
+            </span>
+          </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs font-mono">
-            <thead>
-              <tr className="border-b border-slate-800 text-slate-400">
-                <th className="py-3 px-4">Mã Đơn</th>
-                <th className="py-3 px-4">Tên Dịch Vụ</th>
-                <th className="py-3 px-4">Khách Hàng / Căn Hộ</th>
-                <th className="py-3 px-4">Thời Gian Hẹn</th>
-                <th className="py-3 px-4">Chi Phí</th>
-                <th className="py-3 px-4">Trạng Thái</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-800/60 text-slate-300">
-              {serviceOrders.map(ord => (
-                <tr key={ord.id} className="hover:bg-slate-900/40">
-                  <td className="py-3 px-4 text-emerald-400 font-bold">{ord.id}</td>
-                  <td className="py-3 px-4 font-semibold text-slate-100">{ord.serviceTitle}</td>
-                  <td className="py-3 px-4">
-                    <div>{ord.customerName} ({ord.customerPhone})</div>
-                    <div className="text-slate-500 text-[10px]">Căn {ord.unitId}</div>
-                  </td>
-                  <td className="py-3 px-4">{ord.scheduledDate}</td>
-                  <td className="py-3 px-4 font-bold text-slate-100">{ord.priceVND.toLocaleString('vi-VN')} đ</td>
-                  <td className="py-3 px-4">
-                    <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold ${
-                      ord.status === 'confirmed' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
-                    }`}>
-                      {ord.status === 'confirmed' ? 'Đã Xác Nhận' : 'Chờ Xử Lý'}
-                    </span>
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs font-mono">
+              <thead className="bg-slate-900/90 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
+                <tr>
+                  <th className="py-3 px-4">Mã Đơn</th>
+                  <th className="py-3 px-4">Tên Dịch Vụ</th>
+                  <th className="py-3 px-4">Khách Hàng / Căn Hộ</th>
+                  <th className="py-3 px-4">Thời Gian Hẹn</th>
+                  <th className="py-3 px-4">Chi Phí</th>
+                  <th className="py-3 px-4">Trạng Thái</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-slate-800/60 text-slate-300">
+                {serviceOrders.map(ord => (
+                  <tr
+                    key={ord.id}
+                    className="group hover:bg-slate-800/80 [data-theme='light']_:hover:bg-emerald-50/70 border-l-4 border-l-transparent hover:border-l-emerald-400 transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.18)] cursor-pointer"
+                  >
+                    <td className="py-3.5 px-4 whitespace-nowrap">
+                      <span className="font-mono font-bold text-emerald-400 group-hover:text-emerald-300 group-hover:drop-shadow-[0_0_10px_rgba(52,211,153,0.9)] px-2.5 py-1 rounded-lg bg-emerald-950/40 border border-emerald-500/20 group-hover:border-emerald-400/60 group-hover:bg-emerald-950/90 transition-all inline-block shadow-sm">
+                        {ord.id}
+                      </span>
+                    </td>
+                    <td className="py-3.5 px-4 font-semibold text-slate-100 group-hover:text-emerald-200 group-hover:drop-shadow-[0_0_8px_rgba(167,243,208,0.5)] transition-all">
+                      {ord.serviceTitle}
+                    </td>
+                    <td className="py-3.5 px-4">
+                      <div className="font-serif font-bold text-slate-200 group-hover:text-emerald-100 transition-colors">
+                        {ord.customerName} ({ord.customerPhone})
+                      </div>
+                      <div className="text-slate-500 group-hover:text-emerald-400/80 text-[10px] transition-colors">
+                        Căn {ord.unitId}
+                      </div>
+                    </td>
+                    <td className="py-3.5 px-4 text-slate-300 group-hover:text-slate-200 transition-colors whitespace-nowrap">
+                      {ord.scheduledDate}
+                    </td>
+                    <td className="py-3.5 px-4 font-bold text-emerald-400 group-hover:text-emerald-300 group-hover:drop-shadow-[0_0_10px_rgba(52,211,153,0.8)] font-mono whitespace-nowrap transition-all">
+                      {ord.priceVND.toLocaleString('vi-VN')} đ
+                    </td>
+                    <td className="py-3.5 px-4 whitespace-nowrap">
+                      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold font-mono transition-all ${
+                        ord.status === 'confirmed'
+                          ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40 group-hover:border-emerald-400 group-hover:shadow-[0_0_12px_rgba(16,185,129,0.3)]'
+                          : 'bg-amber-950/80 text-amber-300 border border-amber-500/40 group-hover:border-amber-400 group-hover:shadow-[0_0_12px_rgba(245,158,11,0.3)]'
+                      }`}>
+                        <span className={`w-1.5 h-1.5 rounded-full ${ord.status === 'confirmed' ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`} />
+                        <span>{ord.status === 'confirmed' ? 'Đã Xác Nhận' : 'Chờ Xử Lý'}</span>
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

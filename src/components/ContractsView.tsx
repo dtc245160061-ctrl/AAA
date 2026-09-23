@@ -93,134 +93,157 @@ export const ContractsView: React.FC<ContractsViewProps> = ({
 
   return (
     <div className="space-y-8 text-left pb-16 animate-in fade-in duration-300">
-      {/* Header Banner */}
-      <div className="p-8 rounded-3xl atmospheric-panel border border-emerald-500/30 space-y-6 shadow-2xl backdrop-blur-2xl">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="space-y-1">
-            <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
-              <FileText className="w-4 h-4 text-emerald-400" />
-              <span>Quản Lý Hợp Đồng Cho Thuê Căn Hộ (Lease Management)</span>
+      {/* Header Banner with Radiating Beam */}
+      <div className="relative rounded-3xl p-[2.5px] overflow-hidden shadow-2xl group transition-all">
+        <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
+        <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel haven-sheen-sweep p-6 sm:p-8 space-y-6 shadow-2xl backdrop-blur-2xl">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
+                <FileText className="w-4 h-4 text-emerald-400" />
+                <span>Quản Lý Hợp Đồng Cho Thuê Căn Hộ (Lease Management)</span>
+              </div>
+              <h1 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold">
+                Hợp Đồng Cho Thuê & Pháp Lý
+              </h1>
+              <p className="text-sm text-slate-400">
+                Quản lý danh sách hợp đồng cho thuê căn hộ, điều khoản tiền cọc, kỳ thanh toán và cảnh báo gia hạn.
+              </p>
             </div>
-            <h1 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold">
-              Hợp Đồng Cho Thuê & Pháp Lý
-            </h1>
-            <p className="text-sm text-slate-400">
-              Quản lý danh sách hợp đồng cho thuê căn hộ, điều khoản tiền cọc, kỳ thanh toán và cảnh báo gia hạn.
-            </p>
+
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold transition-all shadow-lg shadow-emerald-500/25 shrink-0 self-start md:self-auto hover:scale-105 cursor-pointer"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Lập Hợp Đồng Mới</span>
+            </button>
           </div>
 
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold transition-all shadow-lg shadow-emerald-500/25 shrink-0 self-start md:self-auto hover:scale-105"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Lập Hợp Đồng Mới</span>
-          </button>
-        </div>
+          {/* Search and Filters */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-800/80">
+            <div className="flex items-center gap-2">
+              {[
+                { id: 'all', label: `Tất cả (${contracts.length})` },
+                { id: 'active', label: 'Đang hiệu lực' },
+                { id: 'expiring_soon', label: 'Sắp hết hạn' },
+                { id: 'terminated', label: 'Đã thanh lý' },
+              ].map(tab => (
+                <button
+                  key={tab.id}
+                  onClick={() => setStatusFilter(tab.id)}
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-mono transition-all border cursor-pointer ${
+                    statusFilter === tab.id
+                      ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300 font-semibold'
+                      : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
 
-        {/* Search and Filters */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-800/80">
-          <div className="flex items-center gap-2">
-            {[
-              { id: 'all', label: `Tất cả (${contracts.length})` },
-              { id: 'active', label: 'Đang hiệu lực' },
-              { id: 'expiring_soon', label: 'Sắp hết hạn' },
-              { id: 'terminated', label: 'Đã thanh lý' },
-            ].map(tab => (
-              <button
-                key={tab.id}
-                onClick={() => setStatusFilter(tab.id)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-mono transition-all border ${
-                  statusFilter === tab.id
-                    ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300 font-semibold'
-                    : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="relative">
-            <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Tìm theo tên khách, mã HĐ..."
-              className="pl-9 pr-4 py-1.5 text-xs bg-slate-900/80 border border-slate-700 rounded-xl text-slate-200 placeholder:text-slate-500 font-mono focus:outline-none focus:border-emerald-500"
-            />
+            <div className="relative">
+              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Tìm theo tên khách, mã HĐ..."
+                className="pl-9 pr-4 py-1.5 text-xs bg-slate-900/80 border border-slate-700 rounded-xl text-slate-200 placeholder:text-slate-500 font-mono focus:outline-none focus:border-emerald-500"
+              />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Contracts Table */}
-      <div className="atmospheric-panel rounded-3xl overflow-hidden border border-slate-800 shadow-2xl">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs font-mono">
-            <thead className="bg-slate-900/90 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
-              <tr>
-                <th className="p-4 whitespace-nowrap">Mã Hợp Đồng</th>
-                <th className="p-4 whitespace-nowrap">Người Thuê</th>
-                <th className="p-4 whitespace-nowrap">Căn Hộ</th>
-                <th className="p-4 whitespace-nowrap">Giá Thuê & Tiền Cọc</th>
-                <th className="p-4 whitespace-nowrap">Thời Hạn Thuê</th>
-                <th className="p-4 whitespace-nowrap">Trạng Thái</th>
-                <th className="p-4 text-right whitespace-nowrap">Chi Tiết</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-800/60 text-slate-300">
-              {filteredContracts.map(contract => (
-                <tr key={contract.id} className="hover:bg-slate-900/40 transition-colors">
-                  <td className="p-4 font-bold text-emerald-400 whitespace-nowrap">{contract.contractNumber}</td>
-                  <td className="p-4 whitespace-nowrap">
-                    <div className="font-serif font-bold text-slate-100 text-sm">{contract.tenantName}</div>
-                    <div className="text-slate-400 flex items-center gap-1 mt-0.5">
-                      <Phone className="w-3 h-3 text-slate-500" />
-                      <span>{contract.tenantPhone}</span>
-                    </div>
-                  </td>
-                  <td className="p-4 cursor-pointer" onClick={() => onSelectUnit(contract.unitId)}>
-                    <div className="font-bold text-slate-200 hover:text-emerald-400 transition-colors line-clamp-1">{contract.unitName}</div>
-                    <div className="text-slate-500 text-[10px]">{contract.unitId}</div>
-                  </td>
-                  <td className="p-4 whitespace-nowrap">
-                    <div className="font-bold text-slate-100">{(contract.monthlyRentVND / 1000000).toFixed(0)}Tr/tháng</div>
-                    <div className="text-[10px] text-slate-400">Cọc: {(contract.depositVND / 1000000).toFixed(0)}Tr</div>
-                  </td>
-                  <td className="p-4 text-slate-300 whitespace-nowrap">
-                    <div>{contract.startDate} → {contract.endDate}</div>
-                    <div className="text-[10px] text-slate-500">Chu kỳ: {contract.paymentCycleMonths} tháng/lần</div>
-                  </td>
-                  <td className="p-4 whitespace-nowrap">{getStatusBadge(contract.status)}</td>
-                  <td className="p-4 text-right whitespace-nowrap">
-                    <div className="flex items-center justify-end gap-2">
-                      <button
-                        onClick={() => setSigningContract(contract)}
-                        className="px-3 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-slate-950 text-xs font-mono font-bold border border-emerald-500/40 transition-all flex items-center gap-1 shadow-sm whitespace-nowrap"
-                        title="Vẽ chữ ký điện tử trên màn hình"
-                      >
-                        <PenTool className="w-3.5 h-3.5" />
-                        <span>Ký Số E-Sign</span>
-                      </button>
-
-                      <button
-                        onClick={() => {
-                          if (onShowToast) {
-                            onShowToast('info', 'Đang tải hợp đồng điện tử', `Hợp đồng mã ${contract.contractNumber} kèm chữ ký số SHA-256.`);
-                          }
-                        }}
-                        className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
-                        title="Xem & Tải Hợp Đồng"
-                      >
-                        <Download className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </td>
+      {/* Contracts Table with Running Border Beam */}
+      <div className="relative rounded-3xl p-[2px] overflow-hidden shadow-2xl group transition-all">
+        <div className="animate-spin-beam pointer-events-none opacity-40 group-hover:opacity-75 transition-opacity" />
+        <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel overflow-hidden border border-slate-800/80 shadow-2xl">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs font-mono">
+              <thead className="bg-slate-900/90 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
+                <tr>
+                  <th className="p-4 whitespace-nowrap">Mã Hợp Đồng</th>
+                  <th className="p-4 whitespace-nowrap">Người Thuê</th>
+                  <th className="p-4 whitespace-nowrap">Căn Hộ</th>
+                  <th className="p-4 whitespace-nowrap">Giá Thuê & Tiền Cọc</th>
+                  <th className="p-4 whitespace-nowrap">Thời Hạn Thuê</th>
+                  <th className="p-4 whitespace-nowrap">Trạng Thái</th>
+                  <th className="p-4 text-right whitespace-nowrap">Chi Tiết</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-slate-800/60 text-slate-300">
+                {filteredContracts.map(contract => (
+                  <tr
+                    key={contract.id}
+                    className="group hover:bg-slate-800/80 [data-theme='light']_:hover:bg-emerald-50/70 border-l-4 border-l-transparent hover:border-l-emerald-400 transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.18)] cursor-pointer"
+                  >
+                    <td className="p-4 whitespace-nowrap">
+                      <span className="font-mono font-bold text-emerald-400 group-hover:text-emerald-300 group-hover:drop-shadow-[0_0_10px_rgba(52,211,153,0.9)] px-2.5 py-1 rounded-lg bg-emerald-950/40 border border-emerald-500/20 group-hover:border-emerald-400/60 group-hover:bg-emerald-950/90 transition-all inline-block shadow-sm">
+                        {contract.contractNumber}
+                      </span>
+                    </td>
+                    <td className="p-4 whitespace-nowrap">
+                      <div className="font-serif font-bold text-slate-100 group-hover:text-emerald-200 group-hover:drop-shadow-[0_0_8px_rgba(167,243,208,0.6)] text-sm transition-all">
+                        {contract.tenantName}
+                      </div>
+                      <div className="text-slate-400 group-hover:text-slate-300 flex items-center gap-1 mt-0.5 transition-colors">
+                        <Phone className="w-3 h-3 text-slate-500 group-hover:text-emerald-400/80" />
+                        <span>{contract.tenantPhone}</span>
+                      </div>
+                    </td>
+                    <td className="p-4 cursor-pointer" onClick={() => onSelectUnit(contract.unitId)}>
+                      <div className="font-bold text-slate-200 group-hover:text-emerald-300 group-hover:drop-shadow-[0_0_8px_rgba(52,211,153,0.6)] transition-all line-clamp-1">
+                        {contract.unitName}
+                      </div>
+                      <div className="text-slate-500 group-hover:text-emerald-400/70 text-[10px] transition-colors">
+                        {contract.unitId}
+                      </div>
+                    </td>
+                    <td className="p-4 whitespace-nowrap">
+                      <div className="font-bold text-slate-100 group-hover:text-emerald-300 transition-colors">
+                        {(contract.monthlyRentVND / 1000000).toFixed(0)}Tr/tháng
+                      </div>
+                      <div className="text-[10px] text-slate-400">
+                        Cọc: {(contract.depositVND / 1000000).toFixed(0)}Tr
+                      </div>
+                    </td>
+                    <td className="p-4 text-slate-300 whitespace-nowrap">
+                      <div className="group-hover:text-slate-200 transition-colors">{contract.startDate} → {contract.endDate}</div>
+                      <div className="text-[10px] text-slate-500">Chu kỳ: {contract.paymentCycleMonths} tháng/lần</div>
+                    </td>
+                    <td className="p-4 whitespace-nowrap">{getStatusBadge(contract.status)}</td>
+                    <td className="p-4 text-right whitespace-nowrap">
+                      <div className="flex items-center justify-end gap-2">
+                        <button
+                          onClick={() => setSigningContract(contract)}
+                          className="px-3 py-1.5 rounded-lg bg-emerald-500/20 group-hover:bg-emerald-500 text-emerald-300 group-hover:text-slate-950 text-xs font-mono font-bold border border-emerald-500/40 group-hover:border-emerald-400 transition-all flex items-center gap-1 shadow-sm group-hover:shadow-[0_0_12px_rgba(16,185,129,0.35)] whitespace-nowrap cursor-pointer"
+                          title="Vẽ chữ ký điện tử trên màn hình"
+                        >
+                          <PenTool className="w-3.5 h-3.5" />
+                          <span>Ký Số E-Sign</span>
+                        </button>
+
+                        <button
+                          onClick={() => {
+                            if (onShowToast) {
+                              onShowToast('info', 'Đang tải hợp đồng điện tử', `Hợp đồng mã ${contract.contractNumber} kèm chữ ký số SHA-256.`);
+                            }
+                          }}
+                          className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 group-hover:bg-slate-700/90 text-slate-300 hover:text-white transition-colors cursor-pointer"
+                          title="Xem & Tải Hợp Đồng"
+                        >
+                          <Download className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
