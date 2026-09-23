@@ -302,7 +302,7 @@ input[type="radio"],
   cursor: pointer !important;
 }
 
-/* ── 5. ROTATING BEAM QUAD (Panels, Cards, Search Bars - Ultra-Optimized GPU Pipeline) ── */
+/* ── 5. ROTATING BEAM QUAD (Panels, Cards, Search Bars - Continuous Luxury Laser Aura) ── */
 .animate-spin-beam {
   position: absolute;
   top: 50%;
@@ -312,21 +312,24 @@ input[type="radio"],
   aspect-ratio: 1 / 1;
   pointer-events: none;
   background: var(--beam-gradient-master);
-  animation: haven-spin-beam var(--beam-speed-card) linear infinite;
-  animation-play-state: paused;
+  animation: haven-spin-beam var(--beam-speed-card) linear infinite !important;
+  animation-play-state: running !important;
+  opacity: 0.85 !important;
   will-change: transform;
   transform: translate3d(-50%, -50%, 0) rotate(0deg);
   -webkit-transform: translate3d(-50%, -50%, 0) rotate(0deg);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  transition: opacity 0.3s ease;
 }
 
-/* Run spin beam animation smoothly on hover only (Zero CPU/GPU idle cost) */
+/* Enhanced bloom on hover */
 .group:hover .animate-spin-beam,
 *:hover > .animate-spin-beam,
 .animate-spin-beam-active,
 .animate-spin-beam:hover {
-  animation-play-state: running;
+  animation-play-state: running !important;
+  opacity: 1 !important;
 }
 
 /* ── 6. FLOATING AI CHAT BUTTON BEAM (Soft Circular Aura, No Sharp Jitter) ── */

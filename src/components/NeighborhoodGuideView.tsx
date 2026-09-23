@@ -30,13 +30,12 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
   onNavigateSearchDistrict
 }) => {
   const neighborhoods = ApartmentStore.getNeighborhoods();
-  const [selectedCity, setSelectedCity] = useState<string>('All');
+  const [selectedCity, setSelectedCity] = useState<string>('Hanoi');
   const [selectedNeighborhoodId, setSelectedNeighborhoodId] = useState<string>('');
 
   const cityOptions = [
-    { id: 'All', label: 'Tất cả' },
     { id: 'Hanoi', label: 'Hà Nội' },
-    { id: 'Ho Chi Minh City', label: 'TP.HCM' },
+    { id: 'Ho Chi Minh City', label: 'TP. Hồ Chí Minh' },
     { id: 'Da Nang', label: 'Đà Nẵng' },
     { id: 'Thái Nguyên', label: 'Thái Nguyên' },
     { id: 'Hải Phòng', label: 'Hải Phòng' },
@@ -44,7 +43,6 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
   ];
 
   const filteredNeighborhoods = neighborhoods.filter(n => {
-    if (selectedCity === 'All') return true;
     return n.city === selectedCity || normalizeCity(n.city) === normalizeCity(selectedCity);
   });
   
@@ -56,7 +54,7 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
 
   const handleCityChange = (city: string) => {
     setSelectedCity(city);
-    const firstInCity = neighborhoods.find(n => city === 'All' || n.city === city || normalizeCity(n.city) === normalizeCity(city));
+    const firstInCity = neighborhoods.find(n => n.city === city || normalizeCity(n.city) === normalizeCity(city));
     if (firstInCity) {
       setSelectedNeighborhoodId(firstInCity.id);
     }
@@ -142,7 +140,7 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
               <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
                 <div
                   className={`animate-spin-beam pointer-events-none transition-opacity duration-300 ${
-                    isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                    isSelected ? 'opacity-100' : 'opacity-70 group-hover:opacity-100'
                   }`}
                 />
               </div>

@@ -184,7 +184,7 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
             >
               {/* Dynamic Orbiting Dual Laser Beam */}
               <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
-                <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+                <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-75 group-hover:opacity-100" />
               </div>
 
               {/* Inner Container: Translucent atmospheric-panel */}
@@ -306,7 +306,7 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                       </button>
                       <button
                         onClick={() => onSelectUnit(unit.id)}
-                        className="px-3.5 py-1.5 rounded-xl bg-slate-900 [data-theme='light']_:bg-slate-100 hover:bg-emerald-500 hover:text-slate-950 text-slate-200 [data-theme='light']_:text-slate-800 border border-slate-700 [data-theme='light']_:border-slate-300 hover:border-emerald-400 text-xs font-mono font-bold transition-all shadow-md cursor-pointer hover:scale-105"
+                        className="px-3.5 py-1.5 rounded-xl bg-slate-900 [data-theme='light']_:bg-slate-800 hover:bg-emerald-600 text-white hover:text-white border border-slate-700 hover:border-emerald-400 text-xs font-mono font-bold transition-all shadow-md cursor-pointer hover:scale-105"
                       >
                         Chi Tiết
                       </button>

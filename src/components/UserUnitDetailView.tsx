@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
   Sparkles, 
   MapPin, 
@@ -56,6 +56,27 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
 }) => {
   const [selectedPhotoIdx, setSelectedPhotoIdx] = useState(0);
   const [showCostDetails, setShowCostDetails] = useState(true);
+
+  // Distinct verified architectural photos pool to guarantee 4 unique photos for every unit
+  const fallbackArchitecturalImages = [
+    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200',
+    'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200',
+    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200',
+    'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=1200'
+  ];
+
+  const galleryImages = useMemo(() => {
+    const list = [...(unit.images || [])];
+    let fallbackIdx = 0;
+    while (list.length < 4) {
+      const candidate = fallbackArchitecturalImages[fallbackIdx % fallbackArchitecturalImages.length];
+      if (!list.includes(candidate)) {
+        list.push(candidate);
+      }
+      fallbackIdx++;
+    }
+    return list.slice(0, 4);
+  }, [unit.images]);
 
   const getCityDisplayName = (city: string) => {
     switch (city) {
@@ -172,7 +193,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
         {/* Main Hero Photo (Takes 7 cols) */}
         <div className="lg:col-span-7 relative h-[360px] sm:h-[400px] md:h-[440px] rounded-3xl overflow-hidden border border-slate-800 bg-slate-900 shadow-2xl group">
           <img
-            src={unit.images[selectedPhotoIdx] || unit.images[0]}
+            src={galleryImages[selectedPhotoIdx] || galleryImages[0]}
             alt={unit.name || unit.id}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
@@ -187,7 +208,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
 
           <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-slate-200 pointer-events-none">
             <span className="px-3 py-1 rounded-full bg-slate-950/85 backdrop-blur-md border border-slate-800">
-              Ảnh {selectedPhotoIdx + 1} / {unit.images.length}
+              Ảnh {selectedPhotoIdx + 1} / {galleryImages.length}
             </span>
             <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-medium">
               Không dùng ảnh mẫu 3D • Chụp thực tế
@@ -195,12 +216,13 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
           </div>
         </div>
 
-        {/* Thumbnail Selector 2x2 Grid (Takes 5 cols, aspect 4:3 for perfectly proportioned architecture shots) */}
+        {/* Thumbnail Selector 2x2 Grid (Interactive Hover & Click to Switch) */}
         <div className="lg:col-span-5 grid grid-cols-2 gap-3 h-[360px] sm:h-[400px] md:h-[440px]">
-          {unit.images.slice(0, 4).map((imgUrl, idx) => (
+          {galleryImages.map((imgUrl, idx) => (
             <div
               key={idx}
               onClick={() => setSelectedPhotoIdx(idx)}
+              onMouseEnter={() => setSelectedPhotoIdx(idx)}
               className={`relative rounded-2xl overflow-hidden cursor-pointer border transition-all group ${
                 selectedPhotoIdx === idx
                   ? 'border-emerald-400 ring-2 ring-emerald-500/40 shadow-lg shadow-emerald-500/20'
@@ -218,27 +240,6 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
               </span>
             </div>
           ))}
-          {/* If unit has only 3 images, duplicate first as complementary view or render clean placeholder */}
-          {unit.images.length === 3 && (
-            <div
-              onClick={() => setSelectedPhotoIdx(0)}
-              className={`relative rounded-2xl overflow-hidden cursor-pointer border transition-all group ${
-                selectedPhotoIdx === 0
-                  ? 'border-emerald-400'
-                  : 'border-slate-800 opacity-80 hover:opacity-100'
-              }`}
-            >
-              <img 
-                src={unit.images[0]} 
-                alt="Góc nhìn toàn cảnh" 
-                className="w-full h-full object-cover filter contrast-105 transition-transform duration-300 group-hover:scale-105" 
-              />
-              <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors" />
-              <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-slate-950/80 backdrop-blur-sm text-[10px] font-mono text-slate-300 border border-slate-700">
-                Toàn cảnh
-              </span>
-            </div>
-          )}
         </div>
       </div>
 
@@ -284,17 +285,19 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
           </div>
 
           {/* 1. SIGNATURE P0: TRUE COST BREAKDOWN PANEL */}
-          <div className="rounded-3xl liquid-glass-origin border border-emerald-500/40 p-6 md:p-8 space-y-6 shadow-2xl backdrop-blur-2xl">
-            <div className="flex items-center justify-between border-b border-emerald-500/20 pb-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-2xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                  <Calculator className="w-5 h-5" />
+          <div className="relative rounded-3xl p-[2.5px] overflow-hidden group shadow-2xl haven-beam-emerald">
+            <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
+            <div className="rounded-[22px] atmospheric-panel haven-sheen-sweep border border-emerald-500/40 p-6 md:p-8 space-y-6 shadow-2xl backdrop-blur-2xl relative overflow-hidden">
+              <div className="flex items-center justify-between border-b border-emerald-500/20 pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-2xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shadow-md shadow-emerald-500/20">
+                    <Calculator className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-xl text-slate-100 font-bold">Bảng Tính Tổng Chi Phí Thực Tế (True Cost)</h3>
+                    <p className="text-xs text-slate-400 font-mono">Bóc tách toàn bộ chi phí sinh hoạt hàng tháng — Không phí ẩn</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-serif text-xl text-slate-100 font-bold">Bảng Tính Tổng Chi Phí Thực Tế (True Cost)</h3>
-                  <p className="text-xs text-slate-400 font-mono">Bóc tách toàn bộ chi phí sinh hoạt hàng tháng — Không phí ẩn</p>
-                </div>
-              </div>
 
               <button
                 onClick={() => setShowCostDetails(!showCostDetails)}
@@ -375,20 +378,23 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
                 </div>
               </div>
             )}
+            </div>
           </div>
 
           {/* 2. SIGNATURE P0: PCCC TRANSPARENCY CARD */}
-          <div className="p-6 md:p-8 rounded-3xl bg-slate-950/80 border border-rose-500/30 space-y-6 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-2xl bg-rose-500/20 text-rose-300 border border-rose-500/30">
-                  <Flame className="w-5 h-5 text-rose-400" />
+          <div className="relative rounded-3xl p-[2.5px] overflow-hidden group shadow-2xl haven-beam-rose">
+            <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
+            <div className="p-6 md:p-8 rounded-[22px] atmospheric-panel haven-sheen-sweep border border-rose-500/30 space-y-6 shadow-2xl relative overflow-hidden">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-2xl bg-rose-500/20 text-rose-300 border border-rose-500/30 shadow-md shadow-rose-500/20">
+                    <Flame className="w-5 h-5 text-rose-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-xl text-slate-100 font-bold">Minh Bạch An Toàn PCCC & Thoát Hiểm</h3>
+                    <p className="text-xs text-slate-400 font-mono">Tiêu chuẩn an toàn theo quy chuẩn QCVN 06:2022</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-serif text-xl text-slate-100 font-bold">Minh Bạch An Toàn PCCC & Thoát Hiểm</h3>
-                  <p className="text-xs text-slate-400 font-mono">Tiêu chuẩn an toàn theo quy chuẩn QCVN 06:2022</p>
-                </div>
-              </div>
 
               <span className="px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs font-mono font-bold">
                 ✓ Đã Nghiệm Thu PCCC
@@ -429,26 +435,31 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
               </div>
             </div>
 
-            {/* Disclaimer */}
-            <div className="p-3.5 rounded-xl bg-rose-950/20 border border-rose-500/20 text-[11px] font-mono text-rose-300/90 flex items-start gap-2">
-              <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
-              <span>
-                ⚖️ <strong>Khuyến nghị an toàn</strong>: {pccc.disclaimer}
-              </span>
+              <div className="p-3.5 rounded-xl bg-rose-950/20 border border-rose-500/20 text-[11px] font-mono text-rose-300/90 flex items-start gap-2">
+                <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                <span>
+                  ⚖️ <strong>Khuyến nghị an toàn</strong>: {pccc.disclaimer}
+                </span>
+              </div>
             </div>
           </div>
 
           {/* 3. SIGNATURE P0: DEPOSIT TERMS PANEL */}
-          <div className="p-6 md:p-8 rounded-3xl bg-slate-950/80 border border-slate-800 space-y-5 shadow-2xl">
-            <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
-              <div className="p-2.5 rounded-2xl bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                <Lock className="w-5 h-5 text-amber-400" />
+          <div className="relative rounded-3xl p-[2.5px] overflow-hidden group shadow-2xl haven-beam-gold">
+            <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
+            <div className="p-6 md:p-8 rounded-[22px] atmospheric-panel haven-sheen-sweep border border-amber-500/30 space-y-5 shadow-2xl relative overflow-hidden">
+              <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
+                <div className="p-2.5 rounded-2xl bg-amber-500/20 text-amber-300 border border-amber-500/30 shadow-md shadow-amber-500/20">
+                  <Lock className="w-5 h-5 text-amber-400" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-xl text-slate-100 font-bold flex items-center gap-2">
+                    <span>Điều Khoản Hoàn Tiền Cọc & Cam Kết Sanctuary</span>
+                    <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+                  </h3>
+                  <p className="text-xs text-slate-400 font-mono">Bảo vệ quyền lợi khách thuê — Hoàn tiền minh bạch trong 72 giờ</p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-serif text-xl text-slate-100 font-bold">Điều Khoản Hoàn Tiền Cọc & Cam Kết Sanctuary</h3>
-                <p className="text-xs text-slate-400 font-mono">Bảo vệ quyền lợi khách thuê — Hoàn tiền minh bạch trong 72 giờ</p>
-              </div>
-            </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
               <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
@@ -481,19 +492,25 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
                 ))}
               </ul>
             </div>
+            </div>
           </div>
 
-          {/* AI Apartment Insight Panel */}
-          <div className="rounded-3xl liquid-glass-origin border border-emerald-500/30 p-6 md:p-8 space-y-6 backdrop-blur-2xl shadow-2xl">
-            <div className="flex items-center gap-3 border-b border-emerald-500/20 pb-4">
-              <div className="p-2.5 rounded-2xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                <Sparkles className="w-5 h-5 animate-pulse" />
+          {/* AI Apartment Insight Panel with Radiant Laser Aura */}
+          <div className="relative rounded-3xl p-[2.5px] overflow-hidden group shadow-2xl haven-beam-cyan">
+            <div className="animate-spin-beam pointer-events-none opacity-90 group-hover:opacity-100 transition-opacity" />
+            <div className="rounded-[22px] atmospheric-panel haven-sheen-sweep border border-emerald-500/40 p-6 md:p-8 space-y-6 backdrop-blur-2xl shadow-2xl relative overflow-hidden">
+              <div className="flex items-center gap-3 border-b border-emerald-500/20 pb-4">
+                <div className="p-2.5 rounded-2xl bg-gradient-to-tr from-emerald-500/30 to-cyan-500/30 text-emerald-300 border border-emerald-400/50 shadow-lg shadow-emerald-500/20">
+                  <Sparkles className="w-5 h-5 animate-pulse text-emerald-300" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-xl text-slate-100 font-bold flex items-center gap-2">
+                    <span>Đánh Giá Chuyên Sâu Từ Trí Tuệ Nhân Tạo AI</span>
+                    <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-mono border border-emerald-500/40 animate-pulse">Live Insight</span>
+                  </h3>
+                  <p className="text-xs text-slate-400 font-mono">Phân tích tính tương thích sinh hoạt và rủi ro môi trường</p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-serif text-xl text-slate-100 font-bold">Đánh Giá Chuyên Sâu Từ Trí Tuệ Nhân Tạo AI</h3>
-                <p className="text-xs text-slate-400 font-mono">Phân tích tính tương thích sinh hoạt và rủi ro môi trường</p>
-              </div>
-            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Why This Fits You */}
@@ -527,6 +544,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
                   ))}
                 </ul>
               </div>
+            </div>
             </div>
           </div>
 
@@ -572,18 +590,20 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
         {/* Right Column: Pricing, Landlord & Rental CTA Box */}
         <div className="space-y-6">
           <div className="sticky top-24 space-y-6">
-            {/* Pricing Box */}
-            <div className="p-6 md:p-8 rounded-3xl liquid-glass-origin border border-emerald-500/30 space-y-6 shadow-2xl backdrop-blur-2xl">
-              <div>
-                <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">Tổng Chi Phí Thực Tế</span>
-                <div className="text-3xl font-serif font-bold text-emerald-400 mt-1">
-                  {(trueCost.totalMonthlyEstimatedVND / 1000000).toFixed(1)} Triệu
-                  <span className="text-xs text-slate-400 font-sans font-normal"> /tháng</span>
+            {/* Pricing Box with Continuous Laser Beam */}
+            <div className="relative rounded-3xl p-[2.5px] overflow-hidden group shadow-2xl haven-beam-emerald">
+              <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
+              <div className="p-6 md:p-8 rounded-[22px] atmospheric-panel haven-sheen-sweep border border-emerald-500/30 space-y-6 shadow-2xl backdrop-blur-2xl relative overflow-hidden">
+                <div>
+                  <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">Tổng Chi Phí Thực Tế</span>
+                  <div className="text-3xl font-serif font-bold text-emerald-400 mt-1">
+                    {(trueCost.totalMonthlyEstimatedVND / 1000000).toFixed(1)} Triệu
+                    <span className="text-xs text-slate-400 font-sans font-normal"> /tháng</span>
+                  </div>
+                  <div className="text-xs font-mono text-slate-400 mt-1">
+                    Giá thuê gốc: {(unit.monthlyRentVND / 1000000).toFixed(0)} Tr + Phí điện nước DV
+                  </div>
                 </div>
-                <div className="text-xs font-mono text-slate-400 mt-1">
-                  Giá thuê gốc: {(unit.monthlyRentVND / 1000000).toFixed(0)} Tr + Phí điện nước DV
-                </div>
-              </div>
 
               <div className="pt-4 border-t border-slate-800 space-y-3">
                 <button
@@ -645,6 +665,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
                   </div>
                 </div>
               </div>
+            </div>
             </div>
 
             {/* Landlord Profile Mini Card (D10 / C5) */}

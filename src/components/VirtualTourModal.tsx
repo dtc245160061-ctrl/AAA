@@ -242,13 +242,15 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
   const mapsEmbedUrl = `https://maps.google.com/maps?q=${coordsStr ? coordsStr : mapsQuery}&t=${mapMode}&z=17&ie=UTF8&iwloc=B&output=embed`;
   const externalMapsUrl = `https://www.google.com/maps/search/?api=1&query=${coordsStr ? coordsStr : mapsQuery}`;
 
+  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${coordsStr ? coordsStr : mapsQuery}`;
+
   return (
-    <div className="fixed inset-0 z-[99999] flex items-center justify-center p-2 sm:p-4 bg-black/90 backdrop-blur-xl animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-[99999] flex items-center justify-center p-2 sm:p-4 bg-slate-950/45 backdrop-blur-md animate-in fade-in duration-200">
       <div 
         className={`relative w-full rounded-3xl atmospheric-panel border border-emerald-500/40 overflow-hidden shadow-2xl flex flex-col bg-[#0B0F17] transition-all duration-300 ${
           isFullscreen 
             ? 'w-screen h-screen rounded-none max-w-none' 
-            : 'max-w-5xl h-[88vh] max-h-[850px]'
+            : 'max-w-4xl h-[78vh] max-h-[680px]'
         }`}
       >
         {/* Top Header Bar */}
@@ -259,7 +261,7 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-serif text-base sm:text-lg font-bold text-slate-100 line-clamp-1">
+                <h3 className="font-serif text-sm sm:text-base font-bold text-slate-100">
                   {unit.name || `Căn hộ ${unit.id}`}
                 </h3>
                 <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[10px] font-mono text-emerald-400 font-bold">
@@ -459,13 +461,6 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
 
               {/* CENTER PRECISION PINPOINT HUD MARKER (Red Pin 📍 + Pulsing Beacon) */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[92%] pointer-events-none z-30 flex flex-col items-center">
-                {/* Floating Info Tag Badge */}
-                <div className="mb-2 px-3.5 py-1.5 rounded-xl bg-slate-950/95 border-2 border-red-500 text-white font-mono text-[11px] shadow-2xl backdrop-blur-md flex items-center gap-2 whitespace-nowrap animate-bounce">
-                  <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping" />
-                  <span className="font-bold text-red-400">VỊ TRÍ CHÍNH XÁC:</span>
-                  <span className="text-slate-100 font-semibold">{unit.name || unit.id}</span>
-                </div>
-
                 {/* SVG Red Pin with Pulse Ripple */}
                 <div className="relative flex items-center justify-center">
                   <div className="w-16 h-16 rounded-full bg-red-500/25 border-2 border-red-500/40 animate-ping absolute -bottom-1" />
@@ -489,7 +484,7 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white text-sm line-clamp-1">{unit.name || unit.id}</h4>
+                    <h4 className="font-bold text-white text-xs sm:text-sm">{unit.name || unit.id}</h4>
                     <p className="text-[11px] text-slate-400">{unit.address || `${district}, ${city}`}</p>
                   </div>
                 </div>
@@ -520,13 +515,24 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
                   </div>
 
                   <a
+                    href={directionsUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-500 hover:bg-red-400 text-white font-mono font-bold text-xs transition-all shadow-md shadow-red-500/20"
+                    title="Chỉ đường từng bước trên Google Maps"
+                  >
+                    <Navigation className="w-3.5 h-3.5" />
+                    <span>Chỉ Đường</span>
+                  </a>
+
+                  <a
                     href={externalMapsUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-500 text-slate-950 font-mono font-bold text-xs hover:bg-emerald-400 transition-all shadow-lg shadow-emerald-500/20"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500 text-slate-950 font-mono font-bold text-xs hover:bg-emerald-400 transition-all shadow-md shadow-emerald-500/20"
                   >
                     <Navigation className="w-3.5 h-3.5" />
-                    <span>Mở Google Maps 3D & Street View</span>
+                    <span className="hidden sm:inline">Mở Google Maps</span>
                   </a>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { 
   Sparkles, 
   SlidersHorizontal, 
@@ -22,6 +22,35 @@ import {
 import type { ApartmentUnit } from '../types/apartment';
 import { type ConsumerFilters, parseNaturalLanguageQuery, calculateMatchScore } from '../services/aiAdvisorService';
 import { normalizeCity } from '../data/apartmentStore';
+
+const getCityPriorityWeight = (cityName?: string): number => {
+  if (!cityName) return 50;
+  const norm = cityName
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd')
+    .trim();
+
+  // Tier 1: Major metropolises (Hà Nội & TP.HCM top priority)
+  if (norm.includes('ha noi') || norm.includes('hanoi')) return 100;
+  if (norm.includes('ho chi minh') || norm.includes('sai gon') || norm.includes('tphcm')) return 100;
+
+  // Tier 2: Key regional economic hubs
+  if (norm.includes('da nang')) return 88;
+  if (norm.includes('hai phong')) return 84;
+  if (norm.includes('can tho')) return 80;
+
+  // Tier 3: Emerging dynamic cities & educational/industrial hubs
+  if (norm.includes('thai nguyen')) return 72;
+  if (norm.includes('binh duong')) return 70;
+  if (norm.includes('bac ninh')) return 68;
+  if (norm.includes('quang ninh') || norm.includes('ha long')) return 66;
+  if (norm.includes('nha trang') || norm.includes('khanh hoa')) return 65;
+  if (norm.includes('vung tau')) return 62;
+
+  return 50;
+};
 
 interface UserSearchViewProps {
   units: ApartmentUnit[];
@@ -59,6 +88,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
   const [pcccCertifiedOnly, setPcccCertifiedOnly] = useState<boolean>(false);
   const [verifiedLandlordOnly, setVerifiedLandlordOnly] = useState<boolean>(false);
   const [displayLimit, setDisplayLimit] = useState<number>(12);
+  const observerRef = useRef<HTMLDivElement | null>(null);
 
   // Reset pagination when search or filters change to keep rendering buttery smooth
   useEffect(() => {
@@ -78,6 +108,8 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     verifiedLandlordOnly,
     searchInput
   ]);
+
+
 
   // Process initial AI query on mount if passed
   useEffect(() => {
@@ -187,11 +219,22 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
 
         return true;
       })
-      .map(unit => {
+      .map((unit, index) => {
         const { score, matchReasons } = calculateMatchScore(unit, activeFiltersObj);
-        return { unit, score, matchReasons };
+        return { unit, score, matchReasons, originalIndex: index };
       })
-      .sort((a, b) => b.score - a.score);
+      .sort((a, b) => {
+        if (b.score !== a.score) {
+          return b.score - a.score;
+        }
+        // Metropolis Priority (Hanoi & TP.HCM first, then Da Nang, Hai Phong, Thai Nguyen...)
+        const weightA = getCityPriorityWeight(a.unit.city);
+        const weightB = getCityPriorityWeight(b.unit.city);
+        if (weightB !== weightA) {
+          return weightB - weightA;
+        }
+        return a.originalIndex - b.originalIndex;
+      });
   }, [
     units, 
     activeFiltersObj, 
@@ -206,8 +249,24 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     backupPowerOnly, 
     petFriendlyOnly,
     pcccCertifiedOnly,
-    verifiedLandlordOnly
   ]);
+
+  // Automated Infinite Scroll: Pre-fetches next 12 units 600px before reaching the bottom
+  useEffect(() => {
+    if (!observerRef.current || displayLimit >= filteredUnits.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setDisplayLimit(prev => Math.min(prev + 12, filteredUnits.length));
+        }
+      },
+      { rootMargin: '600px 0px' }
+    );
+
+    observer.observe(observerRef.current);
+    return () => observer.disconnect();
+  }, [displayLimit, filteredUnits.length]);
 
   const handleResetFilters = () => {
     setCityFilter('All');
@@ -275,18 +334,20 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
 
   return (
     <div className="space-y-6 pb-16 animate-in fade-in duration-300 relative">
-      {/* Section Header: Non-sticky, elegant and compact */}
-      <div className="p-4 md:p-5 rounded-2xl atmospheric-panel border border-emerald-500/25 space-y-3 shadow-lg">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
-          <div className="space-y-0.5">
-            <div className="inline-flex items-center gap-1.5 text-[11px] font-mono text-emerald-400 [data-theme='light']_:text-emerald-700 uppercase tracking-wider font-bold">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
-              <span>Kho Căn Hộ Tuyển Chọn HAVEN</span>
+      {/* Section Header: Radiating Continuous Laser Beam Luxury Banner */}
+      <div className="relative rounded-3xl p-[2.5px] overflow-hidden shadow-2xl group">
+        <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
+        <div className="p-4 md:p-6 rounded-[22px] atmospheric-panel haven-sheen-sweep space-y-3.5 shadow-2xl backdrop-blur-2xl relative overflow-hidden">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 relative z-10">
+            <div className="space-y-0.5">
+              <div className="inline-flex items-center gap-1.5 text-[11px] font-mono text-emerald-400 [data-theme='light']_:text-emerald-700 uppercase tracking-wider font-bold">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
+                <span>Kho Căn Hộ Tuyển Chọn HAVEN</span>
+              </div>
+              <h2 className="text-xl md:text-2xl font-serif text-slate-100 [data-theme='light']_:text-slate-900 font-bold">
+                {filteredUnits.length} Không Gian Sống Đã Kiểm Định Pháp Lý & Môi Trường
+              </h2>
             </div>
-            <h2 className="text-xl md:text-2xl font-serif text-slate-100 [data-theme='light']_:text-slate-900 font-bold">
-              {filteredUnits.length} Không Gian Sống Đã Kiểm Định Pháp Lý & Môi Trường
-            </h2>
-          </div>
 
           <div className="flex items-center gap-2 self-start md:self-auto flex-wrap">
             {/* Collapsible Filter Phễu Toggle Button */}
@@ -345,9 +406,9 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
         {/* Quick City Filter Pills - Fast 1-click filtering without opening sidebar */}
         <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-1 text-xs font-mono">
           <span className="text-[11px] text-slate-400 [data-theme='light']_:text-slate-500 font-semibold mr-1 shrink-0">Khu vực:</span>
-          {['All', 'Thái Nguyên', 'Hà Nội', 'TP. Hồ Chí Minh', 'Đà Nẵng', 'Hải Phòng', 'Bắc Ninh', 'Bình Dương', 'Quảng Ninh'].map((c) => {
+          {['All', 'Hà Nội', 'TP. Hồ Chí Minh', 'Đà Nẵng', 'Hải Phòng', 'Thái Nguyên', 'Bắc Ninh', 'Bình Dương', 'Quảng Ninh'].map((c) => {
             const isSelected = cityFilter === c;
-            const label = c === 'All' ? 'Tất Cả 63 Tỉnh Thành' : c;
+            const label = c === 'All' ? 'Tất Cả' : c;
             return (
               <button
                 key={c}
@@ -382,6 +443,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
             )}
           </div>
         )}
+        </div>
       </div>
 
       {/* Main Filter & Results Container */}
@@ -406,14 +468,14 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
 
               {/* City Filter */}
               <div className="space-y-1.5">
-                <label className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">Tỉnh / Thành Phố (63 Tỉnh Thành)</label>
+                <label className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">Tỉnh / Thành Phố</label>
                 <select
                   value={cityFilter}
                   onChange={(e) => setCityFilter(e.target.value)}
                   aria-label="Chọn tỉnh thành phố"
                   className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200 focus:outline-none focus:border-emerald-500 transition-colors"
                 >
-                  <option value="All">Tất cả tỉnh thành ({units.length} căn hộ)</option>
+                  <option value="All">Tất cả ({units.length} căn hộ)</option>
                   {availableCities.map(c => {
                     const count = units.filter(u => u.city === c).length;
                     return (
@@ -642,7 +704,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                     {/* Dynamic Orbiting Dual Laser Beam */}
                     <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
                       <div
-                        className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+                        className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-75 group-hover:opacity-100"
                       />
                     </div>
 
@@ -786,7 +848,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                           )}
                           <button
                             onClick={() => onSelectUnit(unit.id)}
-                            className="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-white text-xs font-mono transition-all duration-200 font-bold hover:shadow-lg shadow-emerald-500/10 shrink-0 whitespace-nowrap"
+                            className="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-emerald-600 text-white hover:text-white text-xs font-mono transition-all duration-200 font-bold hover:shadow-lg shadow-emerald-500/20 shrink-0 whitespace-nowrap cursor-pointer"
                           >
                             Chi Tiết
                           </button>
@@ -798,18 +860,24 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                 );
               })}
 
+              {/* Continuous Infinite Scroll Sentinel */}
               {displayLimit < filteredUnits.length && (
-                <div className="col-span-full pt-8 pb-4 flex flex-col items-center justify-center gap-3">
-                  <button
-                    onClick={() => setDisplayLimit(prev => Math.min(prev + 12, filteredUnits.length))}
-                    className="haven-btn-beam px-8 py-3.5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold shadow-xl shadow-emerald-500/25 transition-all hover:scale-105 cursor-pointer flex items-center gap-2"
-                  >
-                    <Sparkles className="w-4 h-4 text-slate-950" />
-                    <span>Xem Thêm 12 Căn Hộ Tiếp Theo (Còn {filteredUnits.length - displayLimit} căn)</span>
-                  </button>
-                  <span className="text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-600">
-                    Đang hiển thị {displayLimit} / {filteredUnits.length} căn hộ tuyển chọn
+                <div ref={observerRef} className="col-span-full py-8 flex flex-col items-center justify-center gap-2">
+                  <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/80 [data-theme='light']_:bg-white border border-slate-800 [data-theme='light']_:border-slate-200 text-emerald-400 text-xs font-mono shadow-md">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                    <Sparkles className="w-3.5 h-3.5 animate-spin text-emerald-400" />
+                    <span>Tự động tải thêm không gian sống tiếp theo...</span>
+                  </div>
+                  <span className="text-[11px] font-mono text-slate-400 [data-theme='light']_:text-slate-500">
+                    Đã hiển thị {displayLimit} / {filteredUnits.length} căn hộ
                   </span>
+                </div>
+              )}
+
+              {displayLimit >= filteredUnits.length && filteredUnits.length > 0 && (
+                <div className="col-span-full py-6 text-center text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-500 flex items-center justify-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <span>Đã tải toàn bộ {filteredUnits.length} căn hộ tuyển chọn</span>
                 </div>
               )}
             </div>
