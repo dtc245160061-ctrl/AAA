@@ -12,7 +12,8 @@ import {
   ShieldCheck, 
   CheckCircle2, 
   Box, 
-  Sparkles 
+  Sparkles,
+  ArrowRight
 } from 'lucide-react';
 import type { ApartmentUnit, UnitStatus } from '../types/apartment';
 import { normalizeCity } from '../data/apartmentStore';
@@ -180,7 +181,7 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
           return (
             <div
               key={unit.id}
-              className="group relative rounded-3xl p-[2.5px] shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5"
+              className="group relative rounded-3xl p-[2.5px] shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5 apartment-card"
             >
               {/* Dynamic Orbiting Dual Laser Beam */}
               <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
@@ -195,11 +196,12 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                   onClick={() => onSelectUnit(unit.id)}
                 >
                   <img
-                    src={unit.images[0]}
+                    src={unit.images[0]?.replace('w=1200', 'w=600&q=75') || unit.images[0]}
                     alt={unit.name || unit.id}
                     loading="lazy"
+                    decoding="async"
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200';
+                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=75&w=600';
                     }}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
@@ -306,9 +308,13 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                       </button>
                       <button
                         onClick={() => onSelectUnit(unit.id)}
-                        className="px-3.5 py-1.5 rounded-xl bg-slate-900 [data-theme='light']_:bg-slate-800 hover:bg-emerald-600 text-white hover:text-white border border-slate-700 hover:border-emerald-400 text-xs font-mono font-bold transition-all shadow-md cursor-pointer hover:scale-105"
+                        className="group/btn relative px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-500 hover:via-teal-400 hover:to-cyan-400 text-white font-mono text-xs font-bold transition-all duration-300 shadow-md shadow-emerald-500/25 hover:shadow-cyan-400/50 hover:scale-105 active:scale-95 shrink-0 whitespace-nowrap cursor-pointer flex items-center gap-1.5 border border-cyan-400/40 hover:border-cyan-300 ring-1 ring-cyan-500/20 hover:ring-cyan-400/70 overflow-hidden"
                       >
-                        Chi Tiết
+                        <span className="relative z-10 flex items-center gap-1">
+                          Chi Tiết
+                          <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5" />
+                        </span>
+                        <span className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
                       </button>
                     </div>
                   </div>

@@ -178,21 +178,30 @@ export const Topbar: React.FC<TopbarProps> = ({
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               placeholder={isVoiceListening ? "Đang lắng nghe bạn nói..." : (isAdminView ? "Tìm căn hộ, hợp đồng, cư dân..." : "Tìm thành phố, ngân sách... (Nhấn Enter)")}
-              className="w-full pl-9 pr-9 py-1.5 text-[var(--text-xs)] sm:text-[var(--text-sm)] bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] rounded-[var(--radius-lg)] text-[var(--haven-text-primary)] placeholder-[var(--haven-text-muted)] focus:outline-none focus:border-[var(--haven-border-focus)] transition-colors font-[var(--font-mono)]"
+              className="w-full pl-9 pr-16 py-1.5 text-[var(--text-xs)] sm:text-[var(--text-sm)] bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] rounded-[var(--radius-lg)] text-[var(--haven-text-primary)] placeholder-[var(--haven-text-muted)] focus:outline-none focus:border-[var(--haven-border-focus)] transition-colors font-[var(--font-mono)]"
             />
-            {/* Topbar Voice Search Mic Button */}
-            <button
-              type="button"
-              onClick={toggleVoiceSearch}
-              title={isVoiceListening ? "Đang lắng nghe... Bấm để dừng" : "Tìm kiếm bằng giọng nói"}
-              className={`absolute right-1.5 top-1/2 -translate-y-1/2 p-1.5 rounded-md transition-all flex items-center justify-center ${
-                isVoiceListening
-                  ? 'bg-rose-500 text-white animate-pulse scale-110 shadow-md shadow-rose-500/40 ring-1 ring-rose-400'
-                  : 'text-[var(--haven-text-muted)] hover:text-[var(--haven-emerald-400)] hover:bg-[var(--haven-surface-hover)]'
-              }`}
-            >
-              {isVoiceListening ? <MicOff className="w-3.5 h-3.5" /> : <Mic className="w-3.5 h-3.5" />}
-            </button>
+            {/* Topbar Action Buttons: Search & Voice */}
+            <div className="absolute right-1.5 top-1/2 -translate-y-1/2 flex items-center gap-0.5">
+              <button
+                type="submit"
+                title="Tìm kiếm ngay"
+                className="p-1.5 rounded-md text-[var(--haven-text-muted)] hover:text-emerald-400 hover:bg-[var(--haven-surface-hover)] transition-all flex items-center justify-center cursor-pointer"
+              >
+                <Search className="w-3.5 h-3.5" />
+              </button>
+              <button
+                type="button"
+                onClick={toggleVoiceSearch}
+                title={isVoiceListening ? "Đang lắng nghe... Bấm để dừng" : "Tìm kiếm bằng giọng nói"}
+                className={`p-1.5 rounded-md transition-all flex items-center justify-center cursor-pointer ${
+                  isVoiceListening
+                    ? 'bg-rose-500 text-white animate-pulse scale-110 shadow-md shadow-rose-500/40 ring-1 ring-rose-400'
+                    : 'text-[var(--haven-text-muted)] hover:text-[var(--haven-emerald-400)] hover:bg-[var(--haven-surface-hover)]'
+                }`}
+              >
+                {isVoiceListening ? <MicOff className="w-3.5 h-3.5" /> : <Mic className="w-3.5 h-3.5" />}
+              </button>
+            </div>
           </div>
         </form>
 

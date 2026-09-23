@@ -192,8 +192,8 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({
       </div>
 
       {/* Invoices Ledger Table with Rotating Border Beam */}
-      <div className="relative rounded-3xl p-[2px] overflow-hidden shadow-2xl group transition-all">
-        <div className="animate-spin-beam pointer-events-none opacity-40 group-hover:opacity-75 transition-opacity" />
+      <div className="relative rounded-3xl p-[2px] overflow-hidden shadow-2xl group/table transition-all">
+        <div className="animate-spin-beam pointer-events-none opacity-40 group-hover/table:opacity-75 transition-opacity" />
         <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel overflow-hidden border border-slate-800/80 shadow-2xl">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs font-mono">
@@ -213,32 +213,32 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({
                 {filteredInvoices.map(inv => (
                   <tr
                     key={inv.id}
-                    className="group hover:bg-slate-800/80 [data-theme='light']_:hover:bg-emerald-50/70 border-l-4 border-l-transparent hover:border-l-emerald-400 transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.18)] cursor-pointer"
+                    className="group/row hover:bg-slate-800/80 [data-theme='light']_:hover:bg-emerald-50/70 border-l-4 border-l-transparent hover:border-l-emerald-400 transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.18)] cursor-pointer"
                   >
                     <td className="p-4 whitespace-nowrap">
-                      <div className="inline-block px-2.5 py-1 rounded-lg bg-emerald-950/40 border border-emerald-500/20 group-hover:border-emerald-400/60 group-hover:bg-emerald-950/90 group-hover:text-emerald-300 group-hover:drop-shadow-[0_0_10px_rgba(52,211,153,0.9)] font-bold text-emerald-400 font-mono transition-all shadow-sm">
+                      <div className="inline-block px-2.5 py-1 rounded-lg bg-emerald-950/40 border border-emerald-500/20 group-hover/row:border-emerald-400/60 group-hover/row:bg-emerald-950/90 group-hover/row:text-emerald-300 group-hover/row:drop-shadow-[0_0_10px_rgba(52,211,153,0.9)] font-bold text-emerald-400 font-mono transition-all shadow-sm">
                         {inv.invoiceCode}
                       </div>
-                      <div className="text-slate-500 group-hover:text-slate-400 text-[10px] mt-1 transition-colors flex items-center gap-1">
-                        <Clock className="w-3 h-3 text-slate-500 group-hover:text-emerald-400/80" />
+                      <div className="text-slate-500 group-hover/row:text-slate-400 text-[10px] mt-1 transition-colors flex items-center gap-1">
+                        <Clock className="w-3 h-3 text-slate-500 group-hover/row:text-emerald-400/80" />
                         <span>{inv.monthYear} • Hạn {inv.dueDate}</span>
                       </div>
                     </td>
                     <td className="p-4 whitespace-nowrap">
-                      <div className="font-serif font-bold text-slate-100 group-hover:text-emerald-200 group-hover:drop-shadow-[0_0_8px_rgba(167,243,208,0.6)] text-sm transition-all">{inv.tenantName}</div>
+                      <div className="font-serif font-bold text-slate-100 group-hover/row:text-emerald-200 group-hover/row:drop-shadow-[0_0_8px_rgba(167,243,208,0.6)] text-sm transition-all">{inv.tenantName}</div>
                     </td>
                     <td className="p-4 cursor-pointer" onClick={() => onSelectUnit(inv.unitId)}>
-                      <div className="font-bold text-slate-200 group-hover:text-emerald-300 group-hover:drop-shadow-[0_0_8px_rgba(52,211,153,0.6)] transition-all line-clamp-1">{inv.unitName}</div>
-                      <div className="text-slate-500 group-hover:text-emerald-400/70 text-[10px] transition-colors">{inv.unitId}</div>
+                      <div className="font-bold text-slate-200 group-hover/row:text-emerald-300 group-hover/row:drop-shadow-[0_0_8px_rgba(52,211,153,0.6)] transition-all line-clamp-1">{inv.unitName}</div>
+                      <div className="text-slate-500 group-hover/row:text-emerald-400/70 text-[10px] transition-colors">{inv.unitId}</div>
                     </td>
-                    <td className="p-4 text-slate-200 group-hover:text-slate-100 whitespace-nowrap font-mono transition-colors">
+                    <td className="p-4 text-slate-200 group-hover/row:text-slate-100 whitespace-nowrap font-mono transition-colors">
                       {(inv.rentAmountVND / 1000000).toFixed(0)}Tr
                     </td>
                     <td className="p-4 text-slate-400 whitespace-nowrap font-mono">
                       <div>DV: {(inv.serviceFeeVND / 1000000).toFixed(1)}Tr</div>
                       <div className="text-[10px] text-slate-500">Đ/N: {(inv.electricityWaterVND / 1000000).toFixed(1)}Tr</div>
                     </td>
-                    <td className="p-4 font-bold text-emerald-400 group-hover:text-emerald-300 group-hover:drop-shadow-[0_0_12px_rgba(52,211,153,0.9)] text-sm whitespace-nowrap transition-all font-mono">
+                    <td className="p-4 font-bold text-emerald-400 group-hover/row:text-emerald-300 group-hover/row:drop-shadow-[0_0_12px_rgba(52,211,153,0.9)] text-sm whitespace-nowrap transition-all font-mono">
                       {(inv.totalAmountVND / 1000000).toFixed(1)} Triệu
                     </td>
                     <td className="p-4 whitespace-nowrap">
@@ -251,7 +251,7 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({
                       {inv.status !== 'paid' ? (
                         <button
                           onClick={() => onMarkInvoicePaid(inv.id)}
-                          className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500 group-hover:bg-emerald-500 text-emerald-300 group-hover:text-slate-950 border border-emerald-500/40 group-hover:border-emerald-400 text-[11px] font-mono transition-all font-semibold whitespace-nowrap shadow-sm group-hover:shadow-[0_0_12px_rgba(16,185,129,0.35)] cursor-pointer"
+                          className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500 group-hover/row:bg-emerald-500 text-emerald-300 group-hover/row:text-slate-950 border border-emerald-500/40 group-hover/row:border-emerald-400 text-[11px] font-mono transition-all font-semibold whitespace-nowrap shadow-sm group-hover/row:shadow-[0_0_12px_rgba(16,185,129,0.35)] cursor-pointer"
                         >
                           <Check className="w-3.5 h-3.5" />
                           <span>Thu Tiền</span>

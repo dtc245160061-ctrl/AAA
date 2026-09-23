@@ -38,11 +38,17 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
   const [isListening, setIsListening] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
+  const lastSubmittedVoiceRef = useRef<string>('');
 
   const toggleVoiceAdmin = () => {
     if (isListening) {
-      VoiceRecognitionService.stop();
+      const captured = VoiceRecognitionService.stop();
       setIsListening(false);
+      const cleanCaptured = (captured || '').trim();
+      if (cleanCaptured && cleanCaptured !== lastSubmittedVoiceRef.current) {
+        lastSubmittedVoiceRef.current = cleanCaptured;
+        handleSend(cleanCaptured);
+      }
       return;
     }
 
@@ -53,7 +59,11 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
       onResult: (transcript, isFinal) => {
         setInput(transcript);
         if (isFinal) {
-          handleSend(transcript);
+          const cleanTranscript = (transcript || '').trim();
+          if (cleanTranscript && cleanTranscript !== lastSubmittedVoiceRef.current) {
+            lastSubmittedVoiceRef.current = cleanTranscript;
+            handleSend(cleanTranscript);
+          }
         }
       },
       onError: (err) => {

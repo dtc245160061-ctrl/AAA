@@ -6,7 +6,8 @@ import {
   Receipt, 
   ArrowUpRight, 
   Sparkles,
-  ChevronRight
+  ChevronRight,
+  Bot
 } from 'lucide-react';
 import type { ApartmentUnit, RentalLead, LeaseContract, RentalInvoice } from '../types/apartment';
 
@@ -72,9 +73,10 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               <button
                 onClick={onOpenAiCopilot}
                 className="haven-btn-beam inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-900 [data-theme='light']_:bg-white border border-emerald-500/40 hover:border-emerald-400 text-emerald-300 [data-theme='light']_:text-emerald-700 font-mono text-xs font-semibold transition-all hover:scale-105 shadow-lg shadow-emerald-500/10 cursor-pointer"
+                title="Mở Trợ lý Trí tuệ AI hỗ trợ điều hành và quản trị vận hành"
               >
-                <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span>Phân Tích AI Copilot</span>
+                <Bot className="w-4 h-4 text-emerald-400" />
+                <span>Báo Cáo AI Vận Hành</span>
               </button>
             </div>
           </div>

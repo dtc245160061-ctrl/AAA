@@ -496,3 +496,10 @@
 .light .ambient-glow-sky {
   opacity: 0;
 }
+
+/* ── High-Performance 60-144 FPS Rapid Scroll Virtualization & Containment ── */
+.apartment-card {
+  content-visibility: auto;
+  contain-intrinsic-size: 380px;
+  will-change: transform;
+}

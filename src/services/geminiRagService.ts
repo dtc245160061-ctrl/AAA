@@ -629,7 +629,7 @@ NGUYÊN TẮC PHÂN QUYỀN & BẢO MẬT DỮ LIỆU (BẮT BUỘC):
         ],
         generationConfig: {
           temperature: (guardrailEval.intent === 'GREETING_CHITCHAT' || guardrailEval.intent === 'GRATITUDE_CLOSURE') ? 0.7 : 0.25,
-          maxOutputTokens: 2048
+          maxOutputTokens: 4096
         }
       };
 
@@ -638,7 +638,7 @@ NGUYÊN TẮC PHÂN QUYỀN & BẢO MẬT DỮ LIỆU (BẮT BUỘC):
         for (const model of GEMINI_GENERATION_MODELS) {
           try {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 5000);
+            const timeoutId = setTimeout(() => controller.abort(), 12000);
 
             const resp = await fetch(
               `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${currentKey}`,
@@ -701,7 +701,7 @@ NGUYÊN TẮC PHÂN QUYỀN & BẢO MẬT DỮ LIỆU (BẮT BUỘC):
           model: 'llama-3.3-70b-versatile',
           messages: groqMessages,
           temperature: (guardrailEval.intent === 'GREETING_CHITCHAT' || guardrailEval.intent === 'GRATITUDE_CLOSURE') ? 0.7 : 0.3,
-          max_tokens: 1024
+          max_tokens: 4096
         })
       });
 

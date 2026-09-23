@@ -93,31 +93,31 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
 
   return (
     <div className="space-y-8 pt-2 pb-16 animate-in fade-in duration-300 text-left">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      {/* Header Banner - Compact & Clean */}
+      <div className="space-y-3.5">
         <div>
           <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 [data-theme='light']_:text-emerald-700 uppercase tracking-widest font-bold">
             <Compass className="w-4 h-4 text-emerald-400" />
             <span>Cẩm Nang Khu Vực Đô Thị (Neighborhood Guide)</span>
           </div>
-          <h1 className="text-3xl md:text-4xl font-serif text-slate-100 [data-theme='light']_:text-slate-900 font-bold mt-1.5">
+          <h1 className="text-2xl md:text-3xl font-serif text-slate-100 [data-theme='light']_:text-slate-900 font-bold mt-1">
             Khám Phá Phong Cách Sống, Tiện Ích & Giá Thuê Từng Quận
           </h1>
-          <p className="text-sm text-slate-400 [data-theme='light']_:text-slate-600 mt-1 max-w-2xl font-medium">
+          <p className="text-xs sm:text-sm text-slate-400 [data-theme='light']_:text-slate-600 mt-1 max-w-3xl">
             Tổng hợp dữ liệu giá thị trường, chỉ số an ninh, nguy cơ ngập lụt và khoảng cách trường học/bệnh viện trước khi chọn nơi an cư.
           </p>
         </div>
 
-        {/* City Filter Pills */}
-        <div className="flex items-center gap-2 flex-wrap">
+        {/* City Filter Pills - Clean Dedicated Horizontal Row */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {cityOptions.map(c => (
             <button
               key={c.id}
               onClick={() => handleCityChange(c.id)}
-              className={`px-3.5 py-2 rounded-xl text-xs font-mono font-bold transition-all shadow-sm cursor-pointer ${
+              className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all shadow-sm cursor-pointer whitespace-nowrap shrink-0 ${
                 selectedCity === c.id
-                  ? 'bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20'
-                  : 'bg-slate-900/80 light:bg-white border border-slate-800 light:border-slate-200 text-slate-400 light:text-slate-700 hover:text-emerald-400'
+                  ? 'bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/25 ring-2 ring-emerald-400/40'
+                  : 'bg-slate-900/80 [data-theme="light"]_:bg-white border border-slate-800 [data-theme="light"]_:border-slate-200 text-slate-400 [data-theme="light"]_:text-slate-700 hover:text-emerald-400 hover:border-emerald-500/30'
               }`}
             >
               {c.label}

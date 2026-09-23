@@ -17,7 +17,9 @@ import {
   CheckCircle2,
   X,
   Filter,
-  Box
+  Box,
+  ArrowRight,
+  Search
 } from 'lucide-react';
 import type { ApartmentUnit } from '../types/apartment';
 import { type ConsumerFilters, parseNaturalLanguageQuery, calculateMatchScore } from '../services/aiAdvisorService';
@@ -217,6 +219,17 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
         if (pcccCertifiedOnly && unit.pcccReport?.inspectionCertificateStatus !== 'certified') return false;
         if (verifiedLandlordOnly && unit.verificationLevel === 'unverified') return false;
 
+        // Keyword Search Filter (name, district, city, address, unit id)
+        if (searchInput.trim()) {
+          const q = searchInput.trim().toLowerCase();
+          const unaccentQ = q.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd');
+          const target = `${unit.name || ''} ${unit.district} ${unit.city} ${unit.address} ${unit.id}`.toLowerCase();
+          const unaccentTarget = target.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd');
+          if (!target.includes(q) && !unaccentTarget.includes(unaccentQ)) {
+            return false;
+          }
+        }
+
         return true;
       })
       .map((unit, index) => {
@@ -249,6 +262,8 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     backupPowerOnly, 
     petFriendlyOnly,
     pcccCertifiedOnly,
+    verifiedLandlordOnly,
+    searchInput
   ]);
 
   // Automated Infinite Scroll: Pre-fetches next 12 units 600px before reaching the bottom
@@ -402,6 +417,32 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
             </button>
           </div>
         )}
+
+        {/* Real-time In-Page Search Bar */}
+        <div className="relative w-full max-w-2xl">
+          <Search className="w-4 h-4 text-emerald-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <input
+            type="text"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+            placeholder="Tìm theo tên căn hộ, quận huyện, dự án hoặc từ khóa..."
+            className="w-full pl-10 pr-24 py-2.5 text-xs sm:text-sm bg-slate-950/70 [data-theme='light']_:bg-white border border-slate-700/80 [data-theme='light']_:border-slate-300 rounded-xl text-slate-100 [data-theme='light']_:text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/50 transition-all font-mono shadow-inner"
+          />
+          <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
+            {searchInput && (
+              <button
+                type="button"
+                onClick={() => setSearchInput('')}
+                className="px-2 py-0.5 text-[11px] font-mono rounded-md bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors cursor-pointer"
+              >
+                ✕ Xóa
+              </button>
+            )}
+            <span className="px-2 py-0.5 text-[10px] font-mono font-bold rounded-md bg-emerald-950/80 border border-emerald-500/30 text-emerald-400">
+              {filteredUnits.length} căn
+            </span>
+          </div>
+        </div>
 
         {/* Quick City Filter Pills - Fast 1-click filtering without opening sidebar */}
         <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-1 text-xs font-mono">
@@ -699,7 +740,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                 return (
                   <div
                     key={unit.id}
-                    className="group relative rounded-3xl p-[2.5px] shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5"
+                    className="group relative rounded-3xl p-[2.5px] shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5 apartment-card"
                   >
                     {/* Dynamic Orbiting Dual Laser Beam */}
                     <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
@@ -718,13 +759,14 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                         onClick={() => onSelectUnit(unit.id)}
                       >
                       <img
-                        src={unit.images[0]}
+                        src={unit.images[0]?.replace('w=1200', 'w=600&q=75') || unit.images[0]}
                         alt={unit.name || unit.id}
                         loading="lazy"
+                        decoding="async"
                         onError={(e) => {
-                          (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200';
+                          (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=75&w=600';
                         }}
-                        className="w-full h-full object-cover transition-transform duration-500"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
 
@@ -848,9 +890,13 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                           )}
                           <button
                             onClick={() => onSelectUnit(unit.id)}
-                            className="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-emerald-600 text-white hover:text-white text-xs font-mono transition-all duration-200 font-bold hover:shadow-lg shadow-emerald-500/20 shrink-0 whitespace-nowrap cursor-pointer"
+                            className="group/btn relative px-3.5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-500 hover:via-teal-400 hover:to-cyan-400 text-white font-mono text-xs font-bold transition-all duration-300 shadow-md shadow-emerald-500/25 hover:shadow-cyan-400/50 hover:scale-105 active:scale-95 shrink-0 whitespace-nowrap cursor-pointer flex items-center gap-1.5 border border-cyan-400/40 hover:border-cyan-300 ring-1 ring-cyan-500/20 hover:ring-cyan-400/70 overflow-hidden"
                           >
-                            Chi Tiết
+                            <span className="relative z-10 flex items-center gap-1">
+                              Chi Tiết
+                              <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5" />
+                            </span>
+                            <span className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
                           </button>
                         </div>
                       </div>
