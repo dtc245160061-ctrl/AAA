@@ -39,6 +39,7 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
   const [activeTab, setActiveTab] = useState<'matterport' | '360_sphere' | 'google_maps'>('matterport');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [autoRotate, setAutoRotate] = useState(true);
+  const [mapMode, setMapMode] = useState<'m' | 'k'>('m');
 
   // 3D Walkthrough model state (Sequential round-robin mapping per unit, perfectly cached)
   const [currentTour, setCurrentTour] = useState<MatterportTourItem>(() => getMatterportTourForUnit(unit));
@@ -234,10 +235,12 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
   if (!isOpen) return null;
 
   const district = unit.district || 'Hà Nội';
-  const city = unit.city || 'Hà Nội';
-  const mapsQuery = encodeURIComponent(`${unit.name || 'Căn hộ'} ${unit.address || ''}, ${district}, ${city}`);
-  const mapsEmbedUrl = `https://maps.google.com/maps?q=${mapsQuery}&t=k&z=17&ie=UTF8&iwloc=&output=embed`;
-  const externalMapsUrl = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
+  const city = unit.city || 'Thái Nguyên';
+  const fullAddress = `${unit.name ? unit.name + ', ' : ''}${unit.address || ''}, ${district}, ${city}`.trim();
+  const coordsStr = unit.coordinates ? `${unit.coordinates.lat},${unit.coordinates.lng}` : '';
+  const mapsQuery = coordsStr || encodeURIComponent(fullAddress);
+  const mapsEmbedUrl = `https://maps.google.com/maps?q=${coordsStr ? coordsStr : mapsQuery}&t=${mapMode}&z=17&ie=UTF8&iwloc=B&output=embed`;
+  const externalMapsUrl = `https://www.google.com/maps/search/?api=1&query=${coordsStr ? coordsStr : mapsQuery}`;
 
   return (
     <div className="fixed inset-0 z-[99999] flex items-center justify-center p-2 sm:p-4 bg-black/90 backdrop-blur-xl animate-in fade-in duration-200">
@@ -443,9 +446,9 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
             </div>
           )}
 
-          {/* TAB 3: Google Maps 3D & Street View Explorer */}
+          {/* TAB 3: Google Maps 3D & Street View Explorer with Precision Pinpoint Marker */}
           {activeTab === 'google_maps' && (
-            <div className="relative w-full h-full flex flex-col bg-slate-950">
+            <div className="relative w-full h-full flex flex-col bg-slate-950 overflow-hidden">
               <iframe
                 title="Google Maps 3D Satellite Explorer"
                 src={mapsEmbedUrl}
@@ -454,10 +457,35 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
                 allowFullScreen
               />
 
+              {/* CENTER PRECISION PINPOINT HUD MARKER (Red Pin 📍 + Pulsing Beacon) */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[92%] pointer-events-none z-30 flex flex-col items-center">
+                {/* Floating Info Tag Badge */}
+                <div className="mb-2 px-3.5 py-1.5 rounded-xl bg-slate-950/95 border-2 border-red-500 text-white font-mono text-[11px] shadow-2xl backdrop-blur-md flex items-center gap-2 whitespace-nowrap animate-bounce">
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping" />
+                  <span className="font-bold text-red-400">VỊ TRÍ CHÍNH XÁC:</span>
+                  <span className="text-slate-100 font-semibold">{unit.name || unit.id}</span>
+                </div>
+
+                {/* SVG Red Pin with Pulse Ripple */}
+                <div className="relative flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-red-500/25 border-2 border-red-500/40 animate-ping absolute -bottom-1" />
+                  <div className="w-8 h-8 rounded-full bg-red-500/35 animate-pulse absolute -bottom-1" />
+                  <svg 
+                    className="w-11 h-11 text-red-500 filter drop-shadow-[0_8px_16px_rgba(239,68,68,0.85)]" 
+                    viewBox="0 0 24 24" 
+                    fill="currentColor"
+                  >
+                    <path d="M12 0C7.58 0 4 3.58 4 8c0 5.25 8 13.5 8 13.5S20 13.25 20 8c0-4.42-3.58-8-8-8zm0 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+                  </svg>
+                  {/* Ground Pin Drop Shadow */}
+                  <div className="w-4 h-2 bg-black/80 rounded-full blur-[2px] absolute -bottom-1" />
+                </div>
+              </div>
+
               {/* Map Info Bar Overlay */}
-              <div className="absolute top-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
+              <div className="absolute top-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2 pointer-events-none z-20">
                 <div className="bg-slate-950/90 px-4 py-2.5 rounded-2xl border border-slate-800/80 backdrop-blur-md text-xs font-mono text-slate-200 pointer-events-auto flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+                  <div className="w-8 h-8 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center font-bold">
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
@@ -467,6 +495,30 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
                 </div>
 
                 <div className="flex items-center gap-2 pointer-events-auto">
+                  {/* Map Layer Mode Switcher */}
+                  <div className="flex items-center gap-1 bg-slate-950/90 p-1 rounded-xl border border-slate-800 text-xs font-mono backdrop-blur-md">
+                    <button
+                      onClick={() => setMapMode('m')}
+                      className={`px-3 py-1.5 rounded-lg transition-all ${
+                        mapMode === 'm'
+                          ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm shadow-emerald-500/20'
+                          : 'text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      Bản đồ
+                    </button>
+                    <button
+                      onClick={() => setMapMode('k')}
+                      className={`px-3 py-1.5 rounded-lg transition-all ${
+                        mapMode === 'k'
+                          ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm shadow-emerald-500/20'
+                          : 'text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      Vệ tinh 3D
+                    </button>
+                  </div>
+
                   <a
                     href={externalMapsUrl}
                     target="_blank"
@@ -480,7 +532,7 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
               </div>
 
               {/* Bottom Street View & Neighborhood Context */}
-              <div className="absolute bottom-4 left-4 right-4 bg-slate-950/90 p-3 rounded-2xl border border-slate-800/80 backdrop-blur-md text-xs font-mono text-slate-300 grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <div className="absolute bottom-4 left-4 right-4 bg-slate-950/90 p-3 rounded-2xl border border-slate-800/80 backdrop-blur-md text-xs font-mono text-slate-300 grid grid-cols-1 sm:grid-cols-3 gap-2 z-20">
                 <div className="p-2 rounded-xl bg-slate-900 border border-slate-800 flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
                   <span>Đường vào: Ô tô tránh nhau thoải mái, có chỗ đỗ ngầm</span>

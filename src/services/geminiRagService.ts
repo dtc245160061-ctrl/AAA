@@ -629,7 +629,7 @@ NGUYÊN TẮC PHÂN QUYỀN & BẢO MẬT DỮ LIỆU (BẮT BUỘC):
         ],
         generationConfig: {
           temperature: (guardrailEval.intent === 'GREETING_CHITCHAT' || guardrailEval.intent === 'GRATITUDE_CLOSURE') ? 0.7 : 0.25,
-          maxOutputTokens: 500
+          maxOutputTokens: 2048
         }
       };
 

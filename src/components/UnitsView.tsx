@@ -249,11 +249,11 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                 {/* Content Details */}
                 <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                   <div className="space-y-1.5 cursor-pointer" onClick={() => onSelectUnit(unit.id)}>
-                    <h3 className="font-serif text-lg font-bold text-slate-100 group-hover:text-emerald-300 transition-colors line-clamp-1">
+                    <h3 className="font-serif text-lg font-bold text-slate-100 [data-theme='light']_:text-slate-900 group-hover:text-emerald-500 transition-colors line-clamp-1">
                       {unit.name || unit.id}
                     </h3>
 
-                    <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
+                    <div className="flex items-center gap-2 text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-500">
                       <span>{unit.bedrooms} PN</span>
                       <span>•</span>
                       <span>{unit.bathrooms} WC</span>
@@ -264,11 +264,11 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
 
                   {/* AI Match Reasons Box */}
                   <div className="p-3 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-xs space-y-1.5">
-                    <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-wider font-bold flex items-center gap-1">
+                    <span className="text-[10px] font-mono text-emerald-400 [data-theme='light']_:text-emerald-600 uppercase tracking-wider font-bold flex items-center gap-1">
                       <Sparkles className="w-3 h-3 text-emerald-500 shrink-0" />
                       <span>ĐIỂM KHỚP NHU CẦU:</span>
                     </span>
-                    <ul className="space-y-1 text-slate-300 font-sans text-xs">
+                    <ul className="space-y-1 text-slate-300 [data-theme='light']_:text-slate-700 font-sans text-xs">
                       <li className="flex items-center gap-1.5 leading-snug">
                         <Check className="w-3 h-3 text-emerald-500 shrink-0" />
                         <span className="truncate">Đã kiểm định an toàn PCCC & Pháp lý</span>
@@ -281,16 +281,16 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                   </div>
 
                   {/* Pricing & 3D / Chi Tiết Action Row */}
-                  <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
+                  <div className="pt-3 border-t border-slate-800/80 [data-theme='light']_:border-slate-200 flex items-center justify-between gap-2">
                     <div className="min-w-0">
                       <div className="flex items-baseline gap-1 flex-wrap">
-                        <span className="text-xl font-serif font-bold text-emerald-400">
+                        <span className="text-xl font-serif font-bold text-emerald-400 [data-theme='light']_:text-emerald-600">
                           {(trueCostTotal / 1000000).toFixed(1)} Tr
                         </span>
-                        <span className="text-xs text-slate-400 font-mono">/tháng</span>
+                        <span className="text-xs text-slate-400 [data-theme='light']_:text-slate-500 font-mono">/tháng</span>
                       </div>
                       
-                      <div className="text-[10px] font-mono text-slate-500 truncate mt-0.5">
+                      <div className="text-[10px] font-mono text-slate-500 [data-theme='light']_:text-slate-400 truncate mt-0.5">
                         Gốc: {(unit.monthlyRentVND / 1000000).toFixed(0)}Tr (+{(extraFees / 1000000).toFixed(1)}Tr phí)
                       </div>
                     </div>
@@ -298,15 +298,15 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                     <div className="flex items-center gap-1.5 shrink-0">
                       <button
                         onClick={() => onSelectUnit(unit.id)}
-                        className="px-2.5 py-1.5 rounded-xl bg-purple-950/80 hover:bg-purple-900 border border-purple-500/40 text-purple-300 text-xs font-mono font-bold flex items-center gap-1 shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                        className="px-2.5 py-1.5 rounded-xl bg-purple-950/80 [data-theme='light']_:bg-purple-50 hover:bg-purple-900 [data-theme='light']_:hover:bg-purple-100 border border-purple-500/40 [data-theme='light']_:border-purple-200 text-purple-300 [data-theme='light']_:text-purple-700 text-xs font-mono font-bold flex items-center gap-1 shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
                         title="Xem phối cảnh 3D"
                       >
-                        <Box className="w-3.5 h-3.5" />
+                        <Box className="w-3.5 h-3.5 text-purple-400 [data-theme='light']_:text-purple-600" />
                         <span>3D</span>
                       </button>
                       <button
                         onClick={() => onSelectUnit(unit.id)}
-                        className="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-emerald-500 hover:text-slate-950 text-slate-200 border border-slate-700 hover:border-emerald-400 text-xs font-mono font-bold transition-all shadow-md cursor-pointer hover:scale-105"
+                        className="px-3.5 py-1.5 rounded-xl bg-slate-900 [data-theme='light']_:bg-slate-100 hover:bg-emerald-500 hover:text-slate-950 text-slate-200 [data-theme='light']_:text-slate-800 border border-slate-700 [data-theme='light']_:border-slate-300 hover:border-emerald-400 text-xs font-mono font-bold transition-all shadow-md cursor-pointer hover:scale-105"
                       >
                         Chi Tiết
                       </button>
@@ -314,13 +314,13 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                   </div>
 
                   {/* Admin Operations Bar (Elevated Glass Toolbar) */}
-                  <div className="pt-2.5 border-t border-slate-800/80 flex items-center gap-2">
+                  <div className="pt-2.5 border-t border-slate-800/80 [data-theme='light']_:border-slate-200 flex items-center gap-2">
                     {/* Status Selector with Live Colored Dot */}
                     <div className="flex-1 relative">
                       <select
                         value={unit.status}
                         onChange={(e) => onUpdateUnitStatus?.(unit.id, e.target.value as UnitStatus)}
-                        className="w-full pl-7 pr-3 py-2 rounded-xl bg-slate-950/90 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-300 text-slate-200 [data-theme='light']_:text-slate-800 text-[11px] font-mono focus:outline-none focus:border-emerald-500 cursor-pointer"
+                        className="w-full pl-7 pr-3 py-2 rounded-xl bg-slate-950/90 [data-theme='light']_:bg-white border border-slate-800 [data-theme='light']_:border-slate-200 text-slate-200 [data-theme='light']_:text-slate-800 text-[11px] font-mono focus:outline-none focus:border-emerald-500 cursor-pointer shadow-xs"
                       >
                         <option value="vacant">Trống (Sẵn sàng)</option>
                         <option value="occupied">Đang cho thuê</option>
@@ -340,7 +340,7 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                         e.stopPropagation();
                         setEditingUnit({ ...unit });
                       }}
-                      className="p-2 rounded-xl bg-slate-950/80 border border-slate-800 hover:border-amber-400/70 hover:bg-amber-500/15 text-slate-300 hover:text-amber-300 transition-all cursor-pointer"
+                      className="p-2 rounded-xl bg-slate-950/80 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-200 hover:border-amber-400/70 hover:bg-amber-500/15 text-slate-300 [data-theme='light']_:text-slate-600 hover:text-amber-500 transition-all cursor-pointer shadow-xs"
                       title="Sửa thông tin căn hộ"
                     >
                       <Edit2 className="w-3.5 h-3.5" />
@@ -352,7 +352,7 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                         e.stopPropagation();
                         setDeletingUnit(unit);
                       }}
-                      className="p-2 rounded-xl bg-slate-950/80 border border-slate-800 hover:border-rose-400/70 hover:bg-rose-500/15 text-slate-300 hover:text-rose-300 transition-all cursor-pointer"
+                      className="p-2 rounded-xl bg-slate-950/80 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-200 hover:border-rose-400/70 hover:bg-rose-500/15 text-slate-300 [data-theme='light']_:text-slate-600 hover:text-rose-500 transition-all cursor-pointer shadow-xs"
                       title="Xóa căn hộ"
                     >
                       <Trash2 className="w-3.5 h-3.5" />

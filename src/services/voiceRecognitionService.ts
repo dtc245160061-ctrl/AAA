@@ -79,8 +79,9 @@ export class VoiceRecognitionService {
         if (this.silenceTimer) clearTimeout(this.silenceTimer);
         this.silenceTimer = setTimeout(() => {
           if (this.isListening && displayTranscript) {
-            options.onResult(displayTranscript, true);
+            const finalTxt = displayTranscript;
             this.stop();
+            options.onResult(finalTxt, true);
           }
         }, 2200); // 2.2s debounce buffer
       }
@@ -123,6 +124,7 @@ export class VoiceRecognitionService {
       this.silenceTimer = null;
     }
     const captured = this.lastTranscript;
+    this.lastTranscript = '';
     if (this.recognition && this.isListening) {
       try {
         this.recognition.stop();

@@ -353,15 +353,15 @@ export const ADDON_SERVICES: AddonService[] = [
 ];
 
 const STORAGE_KEYS = {
-  UNITS: 'haven_units_data_v3',
-  LEADS: 'haven_rental_leads_v3',
-  CONTRACTS: 'haven_lease_contracts_v3',
-  INVOICES: 'haven_rental_invoices_v3',
-  SAVED: 'haven_saved_unit_ids_v3',
-  CONVERSATIONS: 'haven_chat_conversations_v3',
-  ACTIVE_SUBSCRIPTION: 'haven_active_subscription_v3',
-  SERVICE_ORDERS: 'haven_service_orders_v3',
-  DOCUMENTS: 'haven_documents_v3'
+  UNITS: 'haven_units_data_v4',
+  LEADS: 'haven_rental_leads_v4',
+  CONTRACTS: 'haven_lease_contracts_v4',
+  INVOICES: 'haven_rental_invoices_v4',
+  SAVED: 'haven_saved_unit_ids_v4',
+  CONVERSATIONS: 'haven_chat_conversations_v4',
+  ACTIVE_SUBSCRIPTION: 'haven_active_subscription_v4',
+  SERVICE_ORDERS: 'haven_service_orders_v4',
+  DOCUMENTS: 'haven_documents_v4'
 };
 
 export const normalizeCity = (city?: string): string => {
@@ -842,22 +842,20 @@ export function enrichUnit(unit: any): ApartmentUnit {
 export class ApartmentStore {
   // Units
   static getUnits(): ApartmentUnit[] {
-    const allPool = [...EXTRA_REGIONAL_UNITS, ...MOCK_UNITS];
     try {
       const data = localStorage.getItem(STORAGE_KEYS.UNITS);
       if (data) {
         const parsed: ApartmentUnit[] = JSON.parse(data);
-        if (parsed.length >= 10) {
-          // Merge with extra regional units to guarantee Thai Nguyen etc. are present
-          const existingIds = new Set(parsed.map(u => u.id));
-          const missingExtras = EXTRA_REGIONAL_UNITS.filter(u => !existingIds.has(u.id));
-          return [...missingExtras, ...parsed].map(enrichUnit);
+        if (parsed.length >= 500) {
+          return parsed.map(enrichUnit);
         }
       }
     } catch (e) {
       console.error(e);
     }
-    return allPool.map(enrichUnit);
+    const units = MOCK_UNITS.map(enrichUnit);
+    this.saveUnits(units);
+    return units;
   }
 
   static saveUnits(units: ApartmentUnit[]) {

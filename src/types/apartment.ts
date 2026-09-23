@@ -133,6 +133,7 @@ export interface ApartmentUnit {
   pcccReport?: PcccSafetyReport;
   landlord?: LandlordProfile;
   depositTerms?: DepositTerms;
+  coordinates?: { lat: number; lng: number };
 }
 
 export type LeadStatus = 'new' | 'contacted' | 'viewing_scheduled' | 'approved' | 'rejected' | 'converted';
