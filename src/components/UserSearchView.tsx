@@ -58,6 +58,26 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
   const [petFriendlyOnly, setPetFriendlyOnly] = useState<boolean>(false);
   const [pcccCertifiedOnly, setPcccCertifiedOnly] = useState<boolean>(false);
   const [verifiedLandlordOnly, setVerifiedLandlordOnly] = useState<boolean>(false);
+  const [displayLimit, setDisplayLimit] = useState<number>(12);
+
+  // Reset pagination when search or filters change to keep rendering buttery smooth
+  useEffect(() => {
+    setDisplayLimit(12);
+  }, [
+    cityFilter,
+    districtFilter,
+    bedroomsFilter,
+    filterMode,
+    maxRentVND,
+    maxTrueCostVND,
+    carParkingOnly,
+    lowFloodOnly,
+    backupPowerOnly,
+    petFriendlyOnly,
+    pcccCertifiedOnly,
+    verifiedLandlordOnly,
+    searchInput
+  ]);
 
   // Process initial AI query on mount if passed
   useEffect(() => {
@@ -608,7 +628,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredUnits.map(({ unit, score, matchReasons }) => {
+              {filteredUnits.slice(0, displayLimit).map(({ unit, score, matchReasons }) => {
                 const isSaved = savedUnitIds.includes(unit.id);
                 const trueCostTotal = unit.trueCost?.totalMonthlyEstimatedVND || unit.monthlyRentVND;
                 const extraFees = trueCostTotal - unit.monthlyRentVND;
@@ -776,6 +796,21 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                   </div>
                 );
               })}
+
+              {displayLimit < filteredUnits.length && (
+                <div className="col-span-full pt-8 pb-4 flex flex-col items-center justify-center gap-3">
+                  <button
+                    onClick={() => setDisplayLimit(prev => Math.min(prev + 12, filteredUnits.length))}
+                    className="haven-btn-beam px-8 py-3.5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold shadow-xl shadow-emerald-500/25 transition-all hover:scale-105 cursor-pointer flex items-center gap-2"
+                  >
+                    <Sparkles className="w-4 h-4 text-slate-950" />
+                    <span>Xem Thêm 12 Căn Hộ Tiếp Theo (Còn {filteredUnits.length - displayLimit} căn)</span>
+                  </button>
+                  <span className="text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-600">
+                    Đang hiển thị {displayLimit} / {filteredUnits.length} căn hộ tuyển chọn
+                  </span>
+                </div>
+              )}
             </div>
           )}
         </div>
