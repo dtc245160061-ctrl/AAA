@@ -153,126 +153,136 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
           {filteredLeads.map(lead => (
             <div
               key={lead.id}
-              className="product-ui-card rounded-2xl p-6 space-y-4 flex flex-col justify-between shadow-xl border border-slate-800/90 hover:border-emerald-500/40 transition-all"
+              className="group relative rounded-3xl p-[1.5px] overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-1.5"
             >
-              <div className="space-y-3">
-                {/* Header Row */}
-                <div className="flex items-center justify-between">
-                  {getStatusBadge(lead.status)}
-                  <span className="text-[11px] font-mono text-slate-400 flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
-                    {lead.createdAt}
-                  </span>
-                </div>
+              <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-60 group-hover:opacity-100" />
+              <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel haven-sheen-sweep border border-slate-800/80 [data-theme='light']_:border-slate-200/80 group-hover:border-emerald-500/40 p-5 space-y-4 flex flex-col justify-between">
+                <div className="space-y-3">
+                  {/* Header Row: Status & Timestamp */}
+                  <div className="flex items-center justify-between">
+                    {getStatusBadge(lead.status)}
+                    <span className="text-[11px] font-mono text-slate-400 [data-theme='light']_:text-slate-500 flex items-center gap-1">
+                      <Clock className="w-3 h-3" />
+                      {lead.createdAt}
+                    </span>
+                  </div>
 
-                {/* Customer Identity */}
-                <div>
-                  <h3 className="text-lg font-serif font-bold text-slate-100">{lead.customerName}</h3>
-                  <div className="flex flex-col gap-1 mt-1.5 text-xs font-mono text-slate-400">
-                    <a href={`tel:${lead.phone}`} className="flex items-center gap-1.5 text-emerald-400 hover:underline">
-                      <Phone className="w-3.5 h-3.5" />
-                      <span>{lead.phone}</span>
-                    </a>
-                    {lead.email && (
-                      <div className="flex items-center gap-1.5 text-slate-400 truncate">
-                        <Mail className="w-3.5 h-3.5" />
-                        <span>{lead.email}</span>
+                  {/* Customer Identity with Avatar */}
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500/20 to-teal-500/30 border border-emerald-500/40 text-emerald-400 font-serif font-bold text-base flex items-center justify-center shrink-0">
+                      {lead.customerName.charAt(0)}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-base font-serif font-bold text-slate-100 [data-theme='light']_:text-slate-900 truncate">
+                        {lead.customerName}
+                      </h3>
+                      <div className="flex items-center gap-2 mt-0.5 text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-600 flex-wrap">
+                        <a href={`tel:${lead.phone}`} className="flex items-center gap-1 text-emerald-400 [data-theme='light']_:text-emerald-700 hover:underline">
+                          <Phone className="w-3 h-3" />
+                          <span>{lead.phone}</span>
+                        </a>
+                        {lead.email && (
+                          <span className="flex items-center gap-1 text-slate-400 [data-theme='light']_:text-slate-500 truncate max-w-[140px]">
+                            <Mail className="w-3.5 h-3.5 text-slate-500" />
+                            <span className="truncate">{lead.email}</span>
+                          </span>
+                        )}
                       </div>
+                    </div>
+                  </div>
+
+                  {/* Target Apartment Details */}
+                  <div 
+                    onClick={() => onSelectUnit(lead.unitId)}
+                    className="p-3 rounded-xl bg-slate-950/60 [data-theme='light']_:bg-slate-50/90 border border-slate-800/80 [data-theme='light']_:border-slate-200 hover:border-emerald-500/40 cursor-pointer transition-all space-y-1"
+                  >
+                    <div className="text-[10px] font-mono text-slate-400 [data-theme='light']_:text-slate-500 uppercase flex items-center gap-1">
+                      <Building className="w-3 h-3 text-emerald-400" />
+                      <span>Căn Hộ Yêu Cầu Thuê</span>
+                    </div>
+                    <h4 className="text-xs font-serif font-bold text-slate-100 [data-theme='light']_:text-slate-900 line-clamp-1">{lead.unitName}</h4>
+                    <div className="text-xs font-mono font-bold text-emerald-400 [data-theme='light']_:text-emerald-700">
+                      {(lead.unitPriceVND / 1000000).toFixed(0)}Tr/tháng
+                    </div>
+                  </div>
+
+                  {/* Requirements / Notes */}
+                  <div className="space-y-1 text-xs font-sans">
+                    <div className="flex items-center gap-2 text-slate-400 [data-theme='light']_:text-slate-600 font-mono text-[11px]">
+                      <Calendar className="w-3.5 h-3.5 text-sky-400" />
+                      <span>Dự kiến vào ở: <strong className="text-slate-200 [data-theme='light']_:text-slate-800">{lead.desiredMoveInDate || 'Càng sớm càng tốt'}</strong></span>
+                    </div>
+                    {lead.viewingDate && (
+                      <div className="flex items-center gap-2 text-slate-400 [data-theme='light']_:text-slate-600 font-mono text-[11px]">
+                        <Clock className="w-3.5 h-3.5 text-amber-400" />
+                        <span>Lịch hẹn xem: <strong className="text-amber-300 [data-theme='light']_:text-amber-700">{lead.viewingDate}</strong></span>
+                      </div>
+                    )}
+                    {lead.notes && (
+                      <p className="text-slate-300 [data-theme='light']_:text-slate-700 text-xs italic bg-slate-950/40 [data-theme='light']_:bg-slate-100/80 p-2.5 rounded-lg border border-slate-800/80 [data-theme='light']_:border-slate-200 mt-1">
+                        "{lead.notes}"
+                      </p>
                     )}
                   </div>
                 </div>
 
-                {/* Target Apartment Details */}
-                <div 
-                  onClick={() => onSelectUnit(lead.unitId)}
-                  className="p-3 rounded-xl bg-slate-900/70 border border-slate-800 hover:border-emerald-500/30 cursor-pointer transition-all space-y-1"
-                >
-                  <div className="text-[10px] font-mono text-slate-400 uppercase flex items-center gap-1">
-                    <Building className="w-3 h-3 text-emerald-400" />
-                    <span>Căn Hộ Yêu Cầu Thuê</span>
-                  </div>
-                  <h4 className="text-xs font-serif font-bold text-slate-100 line-clamp-1">{lead.unitName}</h4>
-                  <div className="text-xs font-mono font-bold text-emerald-400">
-                    {(lead.unitPriceVND / 1000000).toFixed(0)}Tr/tháng
-                  </div>
-                </div>
+                {/* Action Buttons */}
+                <div className="pt-3 border-t border-slate-800/80 [data-theme='light']_:border-slate-200/80 flex flex-wrap gap-2">
+                  {lead.status === 'new' && (
+                    <>
+                      <button
+                        onClick={() => onUpdateLeadStatus(lead.id, 'viewing_scheduled')}
+                        className="flex-1 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-mono text-xs font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer"
+                      >
+                        <Calendar className="w-3.5 h-3.5" />
+                        <span>Hẹn Xem Nhà</span>
+                      </button>
+                      <button
+                        onClick={() => onUpdateLeadStatus(lead.id, 'approved')}
+                        className="py-2 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-semibold transition-all cursor-pointer"
+                        title="Duyệt hồ sơ"
+                      >
+                        <Check className="w-4 h-4" />
+                      </button>
+                    </>
+                  )}
 
-                {/* Requirements / Notes */}
-                <div className="space-y-1 text-xs font-sans">
-                  <div className="flex items-center gap-2 text-slate-400 font-mono text-[11px]">
-                    <Calendar className="w-3.5 h-3.5 text-sky-400" />
-                    <span>Dự kiến vào ở: <strong className="text-slate-200">{lead.desiredMoveInDate || 'Càng sớm càng tốt'}</strong></span>
-                  </div>
-                  {lead.viewingDate && (
-                    <div className="flex items-center gap-2 text-slate-400 font-mono text-[11px]">
-                      <Clock className="w-3.5 h-3.5 text-amber-400" />
-                      <span>Lịch hẹn xem: <strong className="text-amber-300">{lead.viewingDate}</strong></span>
+                  {lead.status === 'viewing_scheduled' && (
+                    <>
+                      <button
+                        onClick={() => onUpdateLeadStatus(lead.id, 'approved')}
+                        className="flex-1 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-mono text-xs font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer"
+                      >
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        <span>Đã Xem & Duyệt</span>
+                      </button>
+                      <button
+                        onClick={() => onUpdateLeadStatus(lead.id, 'rejected')}
+                        className="py-2 px-3 rounded-xl bg-slate-800 hover:bg-rose-950 text-slate-400 hover:text-rose-300 font-mono text-xs transition-all cursor-pointer"
+                        title="Từ chối"
+                      >
+                        <XCircle className="w-4 h-4" />
+                      </button>
+                    </>
+                  )}
+
+                  {lead.status === 'approved' && (
+                    <button
+                      onClick={() => onCreateContractFromLead(lead)}
+                      className="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-lg shadow-emerald-500/20 cursor-pointer"
+                    >
+                      <FileText className="w-4 h-4" />
+                      <span>Lập Hợp Đồng Thuê</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
+                  )}
+
+                  {lead.status === 'converted' && (
+                    <div className="w-full py-2 rounded-xl bg-purple-950/40 border border-purple-500/30 text-purple-300 font-mono text-xs text-center font-medium">
+                      ✓ Đã chuyển thành Hợp đồng thuê
                     </div>
                   )}
-                  {lead.notes && (
-                    <p className="text-slate-300 text-xs italic bg-slate-950/40 p-2.5 rounded-lg border border-slate-800/80 mt-1">
-                      "{lead.notes}"
-                    </p>
-                  )}
                 </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="pt-3 border-t border-slate-800/80 flex flex-wrap gap-2">
-                {lead.status === 'new' && (
-                  <>
-                    <button
-                      onClick={() => onUpdateLeadStatus(lead.id, 'viewing_scheduled')}
-                      className="flex-1 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-mono text-xs font-semibold transition-all flex items-center justify-center gap-1"
-                    >
-                      <Calendar className="w-3.5 h-3.5" />
-                      <span>Hẹn Xem Nhà</span>
-                    </button>
-                    <button
-                      onClick={() => onUpdateLeadStatus(lead.id, 'approved')}
-                      className="py-2 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-semibold transition-all"
-                      title="Duyệt hồ sơ"
-                    >
-                      <Check className="w-4 h-4" />
-                    </button>
-                  </>
-                )}
-
-                {lead.status === 'viewing_scheduled' && (
-                  <>
-                    <button
-                      onClick={() => onUpdateLeadStatus(lead.id, 'approved')}
-                      className="flex-1 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-mono text-xs font-semibold transition-all flex items-center justify-center gap-1"
-                    >
-                      <CheckCircle2 className="w-3.5 h-3.5" />
-                      <span>Đã Xem & Duyệt</span>
-                    </button>
-                    <button
-                      onClick={() => onUpdateLeadStatus(lead.id, 'rejected')}
-                      className="py-2 px-3 rounded-xl bg-slate-800 hover:bg-rose-950 text-slate-400 hover:text-rose-300 font-mono text-xs transition-all"
-                      title="Từ chối"
-                    >
-                      <XCircle className="w-4 h-4" />
-                    </button>
-                  </>
-                )}
-
-                {lead.status === 'approved' && (
-                  <button
-                    onClick={() => onCreateContractFromLead(lead)}
-                    className="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-lg shadow-emerald-500/20"
-                  >
-                    <FileText className="w-4 h-4" />
-                    <span>Lập Hợp Đồng Thuê</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                )}
-
-                {lead.status === 'converted' && (
-                  <div className="w-full py-2 rounded-xl bg-purple-950/40 border border-purple-500/30 text-purple-300 font-mono text-xs text-center font-medium">
-                    ✓ Đã chuyển thành Hợp đồng thuê
-                  </div>
-                )}
               </div>
             </div>
           ))}

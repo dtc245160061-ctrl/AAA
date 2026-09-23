@@ -178,8 +178,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
             {/* Dual Orbiting Clockwise Light Beams (Symmetrical & Non-Clipping) */}
             <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
 
-            <div className="relative z-10 flex items-center rounded-[14px] bg-slate-950/90 [data-theme='light']_:bg-white/95 backdrop-blur-md p-1.5 sm:p-2 gap-1.5">
-              <div className="pl-3 pr-1 text-emerald-400 [data-theme='light']_:text-emerald-600">
+            <div className="relative z-10 flex items-center rounded-[14px] bg-slate-950/90 dark:bg-slate-950/90 light:bg-white backdrop-blur-md p-1.5 sm:p-2 gap-1.5 border border-slate-800 dark:border-slate-800 light:border-slate-200 shadow-md">
+              <div className="pl-3 pr-1 text-emerald-400 light:text-emerald-600">
                 <Sparkles className="w-5 h-5 animate-pulse" />
               </div>
               <input
@@ -187,7 +187,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                 value={aiPromptInput}
                 onChange={(e) => setAiPromptInput(e.target.value)}
                 placeholder='Nói hoặc nhập: "căn 2 phòng ở Thái Nguyên tầm 8 củ có ô tô"'
-                className="w-full bg-transparent border-none text-white [data-theme='light']_:text-slate-900 placeholder:text-slate-400 [data-theme='light']_:placeholder:text-slate-500 text-sm md:text-base focus:outline-none focus:ring-0 pr-2 py-2 sm:py-2.5 font-sans font-medium"
+                className="w-full bg-transparent border-none text-white dark:text-white light:text-slate-900 placeholder:text-slate-400 light:placeholder:text-slate-500 text-sm md:text-base focus:outline-none focus:ring-0 pr-2 py-2 sm:py-2.5 font-sans font-medium"
               />
               {/* Mic Voice Search Button */}
               <button
@@ -197,14 +197,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
                 className={`p-2.5 rounded-xl transition-all flex items-center justify-center shrink-0 ${
                   isListening
                     ? 'bg-rose-500 text-white animate-pulse shadow-lg shadow-rose-500/30 ring-2 ring-rose-400'
-                    : 'bg-slate-850 [data-theme="light"]_:bg-slate-100 text-slate-300 [data-theme="light"]_:text-slate-700 hover:text-emerald-400 hover:bg-slate-800'
+                    : 'bg-slate-800 dark:bg-slate-800 light:bg-slate-100 text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-emerald-400 hover:bg-slate-700'
                 }`}
               >
                 {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
               </button>
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 [data-theme='light']_:bg-emerald-600 [data-theme='light']_:hover:bg-emerald-500 text-slate-950 [data-theme='light']_:text-white font-bold text-sm transition-all duration-200 shadow-lg shadow-emerald-500/25 shrink-0 hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 light:bg-emerald-600 light:hover:bg-emerald-500 text-slate-950 light:text-white font-bold text-sm transition-all duration-200 shadow-lg shadow-emerald-500/25 shrink-0 hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span className="hidden sm:inline">Hỏi AI</span>
                 <ArrowRight className="w-4 h-4" />
@@ -214,13 +214,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
 
           {/* Quick Suggestions */}
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-3 text-xs font-mono">
-            <span className="text-slate-200 [data-theme='light']_:text-slate-700 font-bold mr-1">Gợi ý:</span>
+            <span className="text-slate-200 dark:text-slate-300 light:text-slate-800 font-bold mr-1">Gợi ý:</span>
             {quickSuggestions.map((s) => (
               <button
                 key={s.query}
                 type="button"
                 onClick={() => onSearch(s.query)}
-                className="px-2.5 py-1 rounded-lg bg-slate-900/90 [data-theme='light']_:bg-white/90 hover:bg-emerald-950/90 [data-theme='light']_:hover:bg-emerald-100 border border-slate-700/80 [data-theme='light']_:border-slate-300 hover:border-emerald-500/50 text-slate-100 [data-theme='light']_:text-slate-800 hover:text-emerald-300 [data-theme='light']_:hover:text-emerald-800 transition-colors backdrop-blur-sm font-semibold shadow-sm"
+                className="light-hero-chip px-2.5 py-1 rounded-lg font-semibold shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
               >
                 "{s.label}"
               </button>

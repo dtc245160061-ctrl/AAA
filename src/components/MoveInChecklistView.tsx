@@ -74,96 +74,123 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
 
   return (
     <div className="space-y-8 pb-16 animate-in fade-in duration-300">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
-            <ClipboardCheck className="w-4 h-4" />
-            <span>Biên Bản Bàn Giao Hiện Trạng 15 Hạng Mục (Move-in Condition Handover)</span>
-          </div>
-          <h1 className="text-3xl md:text-4xl font-serif text-slate-100 font-bold mt-1">
-            Bảo Vệ Tiền Cọc: Kiểm Kê Hiện Trạng Khi Nhận Phòng
-          </h1>
-          <p className="text-slate-400 text-sm mt-1 max-w-2xl">
-            Lưu vết ảnh chụp, số công tơ điện nước và tình trạng 15 hạng mục cốt lõi làm căn cứ hoàn 100% tiền cọc khi kết thúc hợp đồng.
-          </p>
-        </div>
+      {/* Header Banner with Radiating Central Halo & Sheen Sweep */}
+      <div className="relative rounded-3xl p-[2.5px] overflow-hidden shadow-2xl group transition-all">
+        {/* Central Radiating Halo / Clockwise Light Beams */}
+        <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
 
-        {onBackToDirectory && (
-          <button
-            onClick={onBackToDirectory}
-            className="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-xs font-mono hover:bg-slate-800 transition-colors self-start md:self-auto"
-          >
-            Quay lại tìm kiếm
-          </button>
-        )}
+        <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel haven-sheen-sweep p-6 sm:p-8 space-y-4">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
+                <ClipboardCheck className="w-4 h-4 text-emerald-400 animate-pulse" />
+                <span>Biên Bản Bàn Giao Hiện Trạng 15 Hạng Mục (Move-in Condition Handover)</span>
+              </div>
+              <h1 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold mt-1">
+                Bảo Vệ Tiền Cọc: Kiểm Kê Hiện Trạng Khi Nhận Phòng
+              </h1>
+              <p className="text-slate-400 text-sm mt-1 max-w-2xl">
+                Lưu vết ảnh chụp, số công tơ điện nước và tình trạng 15 hạng mục cốt lõi làm căn cứ hoàn 100% tiền cọc khi kết thúc hợp đồng.
+              </p>
+            </div>
+
+            {onBackToDirectory && (
+              <button
+                onClick={onBackToDirectory}
+                className="haven-btn-beam px-4 py-2 rounded-xl bg-slate-900/90 border border-slate-700 text-slate-200 text-xs font-mono hover:bg-slate-800 transition-colors self-start md:self-auto cursor-pointer"
+              >
+                Quay lại tìm kiếm
+              </button>
+            )}
+          </div>
+        </div>
       </div>
 
-      {/* Unit Selector & Meter Indicators Bar */}
+      {/* Unit Selector & Meter Indicators Bar with Radiating Aura Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {/* Apartment Selection */}
-        <div className="haven-card-interactive p-5 rounded-2xl atmospheric-panel border border-slate-800 [data-theme='light']_:border-slate-200 space-y-2 hover:border-emerald-500/60 hover:shadow-xl transition-all duration-200 cursor-pointer">
-          <label className="text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-600 uppercase tracking-wider font-bold block">
-            Căn Hộ Bàn Giao
-          </label>
-          <select
-            value={selectedUnitId}
-            onChange={(e) => setSelectedUnitId(e.target.value)}
-            className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 [data-theme='light']_:bg-slate-50 border border-slate-700 [data-theme='light']_:border-slate-300 text-slate-100 [data-theme='light']_:text-slate-900 font-sans text-sm focus:outline-none focus:border-emerald-500 cursor-pointer"
-          >
-            {units.map(u => (
-              <option key={u.id} value={u.id}>
-                {u.name || u.id} ({u.district})
-              </option>
-            ))}
-          </select>
+        <div className="group relative rounded-2xl p-[1.5px] shadow-lg transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1 haven-beam-emerald">
+          <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+            <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-70 group-hover:opacity-100" />
+          </div>
+          <div className="relative z-10 w-full h-full p-4 rounded-[14px] atmospheric-panel haven-sheen-sweep border border-emerald-500/30 space-y-2">
+            <label className="text-xs font-mono text-emerald-400 [data-theme='light']_:text-emerald-700 uppercase tracking-wider font-bold block">
+              Căn Hộ Bàn Giao
+            </label>
+            <select
+              value={selectedUnitId}
+              onChange={(e) => setSelectedUnitId(e.target.value)}
+              className="w-full px-3 py-2 rounded-xl bg-slate-900 [data-theme='light']_:bg-slate-50 border border-slate-700 [data-theme='light']_:border-slate-300 text-slate-100 [data-theme='light']_:text-slate-900 font-sans text-xs focus:outline-none focus:border-emerald-500 cursor-pointer"
+            >
+              {units.map(u => (
+                <option key={u.id} value={u.id}>
+                  {u.name || u.id} ({u.district})
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {/* Handover Date */}
-        <div className="haven-card-interactive p-5 rounded-2xl atmospheric-panel border border-slate-800 [data-theme='light']_:border-slate-200 space-y-2 hover:border-emerald-500/60 hover:shadow-xl transition-all duration-200 cursor-pointer">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-600 uppercase tracking-wider font-bold flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-emerald-400" /> Ngày Bàn Giao
-            </span>
+        <div className="group relative rounded-2xl p-[1.5px] shadow-lg transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1 haven-beam-purple">
+          <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+            <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-70 group-hover:opacity-100" />
           </div>
-          <input
-            type="date"
-            value={handoverDate}
-            onChange={(e) => setHandoverDate(e.target.value)}
-            className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 [data-theme='light']_:bg-slate-50 border border-slate-700 [data-theme='light']_:border-slate-300 text-slate-100 [data-theme='light']_:text-slate-900 font-mono text-xs focus:outline-none focus:border-emerald-500 cursor-pointer"
-          />
+          <div className="relative z-10 w-full h-full p-4 rounded-[14px] atmospheric-panel haven-sheen-sweep border border-purple-500/30 space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-mono text-purple-300 [data-theme='light']_:text-purple-700 uppercase tracking-wider font-bold flex items-center gap-1.5">
+                <Calendar className="w-3.5 h-3.5 text-purple-400" /> Ngày Bàn Giao
+              </span>
+            </div>
+            <input
+              type="date"
+              value={handoverDate}
+              onChange={(e) => setHandoverDate(e.target.value)}
+              className="w-full px-3 py-2 rounded-xl bg-slate-900 [data-theme='light']_:bg-slate-50 border border-slate-700 [data-theme='light']_:border-slate-300 text-slate-100 [data-theme='light']_:text-slate-900 font-mono text-xs focus:outline-none focus:border-purple-500 cursor-pointer"
+            />
+          </div>
         </div>
 
         {/* Initial Electric Meter Reading */}
-        <div className="haven-card-interactive p-5 rounded-2xl atmospheric-panel border border-amber-500/30 space-y-2 hover:border-amber-400 hover:shadow-xl hover:shadow-amber-500/10 transition-all duration-200 cursor-pointer">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-mono text-amber-300 [data-theme='light']_:text-amber-700 font-bold flex items-center gap-1.5">
-              <Zap className="w-4 h-4 text-amber-400" /> Chỉ Số Công Tơ Điện Ban Đầu
-            </span>
-            <span className="text-[10px] font-mono text-slate-400 font-bold">kWh</span>
+        <div className="group relative rounded-2xl p-[1.5px] shadow-lg transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1 haven-beam-gold">
+          <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+            <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-70 group-hover:opacity-100" />
           </div>
-          <input
-            type="text"
-            value={electricMeterNumber}
-            onChange={(e) => setElectricMeterNumber(e.target.value)}
-            className="w-full px-3.5 py-2 rounded-xl bg-slate-900 [data-theme='light']_:bg-amber-50/50 border border-slate-700 [data-theme='light']_:border-amber-300 text-amber-300 [data-theme='light']_:text-amber-800 font-mono font-bold text-lg cursor-pointer"
-          />
+          <div className="relative z-10 w-full h-full p-4 rounded-[14px] atmospheric-panel haven-sheen-sweep border border-amber-500/30 space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-mono text-amber-300 [data-theme='light']_:text-amber-700 font-bold flex items-center gap-1.5">
+                <Zap className="w-4 h-4 text-amber-400" /> Công Tơ Điện
+              </span>
+              <span className="text-[10px] font-mono text-slate-400 font-bold">kWh</span>
+            </div>
+            <input
+              type="text"
+              value={electricMeterNumber}
+              onChange={(e) => setElectricMeterNumber(e.target.value)}
+              className="w-full px-3 py-1.5 rounded-xl bg-slate-900 [data-theme='light']_:bg-amber-50/50 border border-slate-700 [data-theme='light']_:border-amber-300 text-amber-300 [data-theme='light']_:text-amber-800 font-mono font-bold text-base cursor-pointer"
+            />
+          </div>
         </div>
 
         {/* Initial Water Meter Reading */}
-        <div className="haven-card-interactive p-5 rounded-2xl atmospheric-panel border border-sky-500/30 space-y-2 hover:border-sky-400 hover:shadow-xl hover:shadow-sky-500/10 transition-all duration-200 cursor-pointer">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-mono text-sky-300 [data-theme='light']_:text-sky-700 font-bold flex items-center gap-1.5">
-              <Droplets className="w-4 h-4 text-sky-400" /> Chỉ Số Đồng Hồ Nước Ban Đầu
-            </span>
-            <span className="text-[10px] font-mono text-slate-400 font-bold">m³</span>
+        <div className="group relative rounded-2xl p-[1.5px] shadow-lg transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1 haven-beam-cyan">
+          <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+            <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-70 group-hover:opacity-100" />
           </div>
-          <input
-            type="text"
-            value={waterMeterNumber}
-            onChange={(e) => setWaterMeterNumber(e.target.value)}
-            className="w-full px-3.5 py-2 rounded-xl bg-slate-900 [data-theme='light']_:bg-sky-50/50 border border-slate-700 [data-theme='light']_:border-sky-300 text-sky-300 [data-theme='light']_:text-sky-800 font-mono font-bold text-lg cursor-pointer"
-          />
+          <div className="relative z-10 w-full h-full p-4 rounded-[14px] atmospheric-panel haven-sheen-sweep border border-sky-500/30 space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-mono text-sky-300 [data-theme='light']_:text-sky-700 font-bold flex items-center gap-1.5">
+                <Droplets className="w-4 h-4 text-sky-400" /> Đồng Hồ Nước
+              </span>
+              <span className="text-[10px] font-mono text-slate-400 font-bold">m³</span>
+            </div>
+            <input
+              type="text"
+              value={waterMeterNumber}
+              onChange={(e) => setWaterMeterNumber(e.target.value)}
+              className="w-full px-3 py-1.5 rounded-xl bg-slate-900 [data-theme='light']_:bg-sky-50/50 border border-slate-700 [data-theme='light']_:border-sky-300 text-sky-300 [data-theme='light']_:text-sky-800 font-mono font-bold text-base cursor-pointer"
+            />
+          </div>
         </div>
       </div>
 
@@ -207,10 +234,10 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
       </div>
 
       {/* 15-Item Checklist Table */}
-      <div className="overflow-x-auto rounded-3xl border border-slate-800 [data-theme='light']_:border-slate-200 bg-slate-950/80 [data-theme='light']_:bg-white shadow-2xl">
+      <div className="overflow-x-auto rounded-3xl border border-slate-800/80 [data-theme='light']_:border-slate-200/80 bg-slate-900/60 [data-theme='light']_:bg-white/80 backdrop-blur-xl shadow-2xl">
         <table className="w-full text-left text-xs font-mono border-collapse min-w-[750px]">
           <thead>
-            <tr className="border-b border-slate-800 [data-theme='light']_:border-slate-200 bg-slate-900/80 [data-theme='light']_:bg-slate-50 text-slate-400 [data-theme='light']_:text-slate-600 font-bold">
+            <tr className="border-b border-slate-800/80 [data-theme='light']_:border-slate-200/80 bg-slate-950/60 [data-theme='light']_:bg-slate-50/80 text-slate-400 [data-theme='light']_:text-slate-600 font-bold">
               <th className="p-4 w-12 text-center">STT</th>
               <th className="p-4 w-48">Phân Nhóm</th>
               <th className="p-4">Hạng Mục Kiểm Tra</th>

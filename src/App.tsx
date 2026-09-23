@@ -9,7 +9,6 @@ import { UserHomeView } from './components/UserHomeView';
 import { UserSearchView } from './components/UserSearchView';
 import { UserUnitDetailView } from './components/UserUnitDetailView';
 import { UserCompareView } from './components/UserCompareView';
-import { ConfidenceMapView } from './components/ConfidenceMapView';
 import { MoveInChecklistView } from './components/MoveInChecklistView';
 import { UserAiAdvisorDrawer } from './components/UserAiAdvisorDrawer';
 import { NeighborhoodGuideView } from './components/NeighborhoodGuideView';
@@ -335,8 +334,8 @@ export function App() {
 
   return (
     <div className="h-screen w-screen overflow-hidden canvas-surface text-slate-200 flex relative selection:bg-emerald-500/20 selection:text-emerald-200 transition-colors duration-300">
-      {/* Glass-like cursor trail with refraction, blur and lush brush stroke */}
-      <GlassCursor dampening={0.75} trailLength={13} />
+      {/* Glass-like cursor trail with refraction and blur (React Bits Pro) */}
+      <GlassCursor />
 
       {/* Global 60FPS Animated 3D Shader Gradient Background (Dark & Light) */}
       <ShaderBackground themeMode={themeMode} />
@@ -372,6 +371,7 @@ export function App() {
         {/* Topbar Header - Permanently fixed at top */}
         <Topbar
           isAdminView={isAdminView}
+          activeModule={activeModule}
           savedCount={savedUnitIds.length}
           onOpenSaved={() => {
             setIsAdminView(false);
@@ -458,17 +458,6 @@ export function App() {
                 setInitialAiQuery(district);
                 setActiveModule('user_search');
               }}
-            />
-          )}
-
-          {!isAdminView && activeModule === 'user_map' && (
-            <ConfidenceMapView
-              units={units}
-              onSelectUnit={(id) => {
-                setSelectedUnitId(id);
-                setActiveModule('user_detail');
-              }}
-              onBackToDirectory={() => setActiveModule('user_search')}
             />
           )}
 
@@ -610,11 +599,11 @@ export function App() {
         </main>
       </div>
 
-      {/* PERSISTENT FLOATING NOTION-AI COMPACT CIRCULAR BUTTON (HIDES WHEN DRAWER IS OPEN) */}
+      {/* PERSISTENT FLOATING LUXURY BIOPHILIC AI CIRCULAR ORB (HIDES WHEN DRAWER IS OPEN) */}
       {!isUserAiAdvisorOpen && !isAiCopilotOpen && (
-        <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40 p-[2px] rounded-full overflow-hidden shadow-2xl shadow-emerald-500/30 transition-all duration-200 hover:scale-110 active:scale-95 group">
-          {/* Dual Symmetrical Opposing Orbiting Light Beams (180° apart, crisp, non-clipping) */}
-          <div className="floating-ai-beam" />
+        <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40 group cursor-pointer">
+          {/* Soft Biophilic Ambient Breathing Aura */}
+          <div className="absolute -inset-2 rounded-full bg-emerald-500/25 blur-xl opacity-75 group-hover:opacity-100 animate-pulse transition-opacity duration-700 pointer-events-none" />
 
           <button
             onClick={() => {
@@ -624,11 +613,16 @@ export function App() {
                 setIsUserAiAdvisorOpen(prev => !prev);
               }
             }}
-            className="relative z-10 w-12 h-12 rounded-full bg-slate-950/95 [data-theme='light']_:bg-white/95 backdrop-blur-md border border-emerald-500/40 group-hover:border-emerald-400 flex items-center justify-center transition-all duration-150 shadow-lg"
-            title={isAdminView ? "Mở Haven AI Copilot Quản Trị" : "Mở Haven AI Tư Vấn Căn Hộ"}
+            className="relative z-10 w-12 h-12 sm:w-14 sm:h-14 rounded-full p-[2px] overflow-hidden flex items-center justify-center bg-slate-950 [data-theme='light']_:bg-white shadow-[0_10px_28px_rgba(0,0,0,0.5),0_0_20px_rgba(16,185,129,0.25)] transition-all duration-300 group-hover:scale-110 active:scale-95 cursor-pointer haven-ai-breathing-aura"
+            title={isAdminView ? "Mở Haven AI Copilot Quản Trị" : "Haven AI — Tư Vấn Căn Hộ 24/7"}
+            aria-label="Haven AI"
           >
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-md shadow-emerald-500/40 shrink-0">
-              <Sparkles className="w-4 h-4 fill-slate-950 text-slate-950" />
+            {/* Soft Circular Running Border Beam */}
+            <div className="floating-ai-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
+
+            {/* Inner Circular Core with Pulsing AI Sparkle */}
+            <div className="relative z-10 w-full h-full rounded-full bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 [data-theme='light']_:from-emerald-500 [data-theme='light']_:via-teal-400 [data-theme='light']_:to-emerald-600 border border-emerald-500/40 [data-theme='light']_:border-emerald-300 flex items-center justify-center shadow-lg shadow-emerald-500/30">
+              <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400 [data-theme='light']_:text-slate-950 group-hover:text-emerald-300 [data-theme='light']_:group-hover:text-slate-900 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 animate-pulse" />
             </div>
           </button>
         </div>

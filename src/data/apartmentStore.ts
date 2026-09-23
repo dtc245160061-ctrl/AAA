@@ -232,7 +232,7 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
   {
     id: 'starter',
     targetAudience: 'landlord',
-    name: 'Gói Cơ Bản (Starter)',
+    name: 'Gói Cơ Bản',
     tagline: 'Dành cho chủ nhà cá nhân quản lý từ 1 - 5 căn hộ',
     priceVND: 0,
     billingCycle: 'monthly',
@@ -248,7 +248,7 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
   {
     id: 'pro',
     targetAudience: 'landlord',
-    name: 'HAVEN Pro (Chuyên Nghiệp)',
+    name: 'HAVEN Pro',
     tagline: 'Tự động hóa quản trị, nhắc nợ Zalo & ưu tiên tìm khách',
     priceVND: 499000,
     billingCycle: 'monthly',
@@ -266,7 +266,7 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
   {
     id: 'enterprise',
     targetAudience: 'landlord',
-    name: 'HAVEN Enterprise (Trọn Gói)',
+    name: 'HAVEN Enterprise',
     tagline: 'Ủy thác vận hành toàn diện & cam kết tỷ lệ lấp đầy >92%',
     priceVND: 1999000,
     billingCycle: 'monthly',
@@ -364,7 +364,369 @@ const STORAGE_KEYS = {
   DOCUMENTS: 'haven_documents_v3'
 };
 
-export function enrichUnit(unit: ApartmentUnit): ApartmentUnit {
+export const normalizeCity = (city?: string): string => {
+  if (!city) return 'Hà Nội';
+  const c = city.trim();
+  if (c === 'Hanoi' || c === 'Hà Nội') return 'Hà Nội';
+  if (c === 'Ho Chi Minh City' || c === 'TP. Hồ Chí Minh' || c === 'TP.HCM' || c === 'TP Hồ Chí Minh') return 'TP. Hồ Chí Minh';
+  if (c === 'Da Nang' || c === 'Đà Nẵng') return 'Đà Nẵng';
+  if (c === 'Hai Phong' || c === 'Hải Phòng') return 'Hải Phòng';
+  if (c === 'Binh Duong' || c === 'Bình Dương') return 'Bình Dương';
+  if (c === 'Nha Trang' || c === 'Khánh Hòa') return 'Khánh Hòa';
+  if (c === 'Can Tho' || c === 'Cần Thơ') return 'Cần Thơ';
+  if (c === 'Vung Tau' || c === 'Bà Rịa - Vũng Tàu') return 'Bà Rịa - Vũng Tàu';
+  if (c === 'Ha Long' || c === 'Quảng Ninh') return 'Quảng Ninh';
+  if (c === 'Da Lat' || c === 'Lâm Đồng') return 'Lâm Đồng';
+  if (c === 'Hue' || c === 'Thừa Thiên Huế') return 'Thừa Thiên Huế';
+  if (c === 'Quy Nhon' || c === 'Bình Định') return 'Bình Định';
+  if (c === 'Bien Hoa' || c === 'Đồng Nai') return 'Đồng Nai';
+  if (c === 'Vinh' || c === 'Nghệ An') return 'Nghệ An';
+  if (c === 'Thanh Hoa' || c === 'Thanh Hóa') return 'Thanh Hóa';
+  if (c === 'Buon Ma Thuot' || c === 'Đắk Lắk') return 'Đắk Lắk';
+  if (c === 'Thai Nguyen' || c === 'Thái Nguyên') return 'Thái Nguyên';
+  if (c === 'Bac Ninh' || c === 'Bắc Ninh') return 'Bắc Ninh';
+  return c;
+};
+
+export const EXTRA_REGIONAL_UNITS: any[] = [
+  // --- THÁI NGUYÊN (8 units) ---
+  {
+    id: 'TN-TP-101',
+    name: 'Căn Hộ Tecco Elite City — Thịnh Đán, TP. Thái Nguyên',
+    floor: 18,
+    unitNumber: '1808',
+    type: 'Deluxe Apartment',
+    sqm: 76,
+    bedrooms: 2,
+    bathrooms: 2,
+    status: 'vacant',
+    monthlyRentUSD: 420,
+    monthlyRentVND: 10500000,
+    city: 'Thái Nguyên',
+    district: 'TP. Thái Nguyên',
+    address: 'Tòa E, Tecco Elite City, Phường Thịnh Đán, TP. Thái Nguyên',
+    images: [
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200'
+    ],
+    hasCarParking: true,
+    hasMotorbikeParking: true,
+    hasElevator: true,
+    hasBackupPower: true,
+    floodingRisk: 'Low',
+    noiseLevel: 'Quiet',
+    trafficDensity: 'Low',
+    orientation: 'Đông Nam',
+    petFriendly: true,
+    viewType: 'View Đồi Chè & Thành Phố'
+  },
+  {
+    id: 'TN-PY-202',
+    name: 'Studio Samsung Display Residence — Yên Bình, Phổ Yên',
+    floor: 9,
+    unitNumber: '904',
+    type: 'Studio',
+    sqm: 45,
+    bedrooms: 1,
+    bathrooms: 1,
+    status: 'vacant',
+    monthlyRentUSD: 300,
+    monthlyRentVND: 7500000,
+    city: 'Thái Nguyên',
+    district: 'Phổ Yên',
+    address: 'Khu Đô Thị Yên Bình, Gần Tổ Hợp Samsung Electronics, Phổ Yên, Thái Nguyên',
+    images: [
+      'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200'
+    ],
+    hasCarParking: true,
+    hasMotorbikeParking: true,
+    hasElevator: true,
+    hasBackupPower: true,
+    floodingRisk: 'Low',
+    noiseLevel: 'Quiet',
+    trafficDensity: 'Moderate',
+    orientation: 'Nam',
+    petFriendly: false,
+    viewType: 'View Công Viên Nội Khu'
+  },
+  {
+    id: 'TN-SC-303',
+    name: 'Biệt Thự Sinh Thái Hồ Núi Cốc View — Đại Từ, Thái Nguyên',
+    floor: 3,
+    unitNumber: 'BT-08',
+    type: 'Villa',
+    sqm: 180,
+    bedrooms: 3,
+    bathrooms: 3,
+    status: 'vacant',
+    monthlyRentUSD: 880,
+    monthlyRentVND: 22000000,
+    city: 'Thái Nguyên',
+    district: 'Đại Từ',
+    address: 'Khu Nghỉ Dưỡng Sinh Thái Hồ Núi Cốc, Huyện Đại Từ, Thái Nguyên',
+    images: [
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200'
+    ],
+    hasCarParking: true,
+    hasMotorbikeParking: true,
+    hasElevator: false,
+    hasBackupPower: true,
+    floodingRisk: 'Low',
+    noiseLevel: 'Quiet',
+    trafficDensity: 'Low',
+    orientation: 'Đông Nam',
+    petFriendly: true,
+    viewType: 'View Hồ Núi Cốc & Rừng Thông'
+  },
+  {
+    id: 'TN-TP-404',
+    name: 'Căn Hộ T&T Landmark — Phan Bội Châu, TP. Thái Nguyên',
+    floor: 15,
+    unitNumber: '1502',
+    type: 'Executive Suite',
+    sqm: 85,
+    bedrooms: 2,
+    bathrooms: 2,
+    status: 'vacant',
+    monthlyRentUSD: 560,
+    monthlyRentVND: 14000000,
+    city: 'Thái Nguyên',
+    district: 'TP. Thái Nguyên',
+    address: 'Tháp T&T Tower, Đường Phan Bội Châu, Phường Trưng Vương, TP. Thái Nguyên',
+    images: [
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&q=80&w=1200'
+    ],
+    hasCarParking: true,
+    hasMotorbikeParking: true,
+    hasElevator: true,
+    hasBackupPower: true,
+    floodingRisk: 'Low',
+    noiseLevel: 'Quiet',
+    trafficDensity: 'Moderate',
+    orientation: 'Đông',
+    petFriendly: false,
+    viewType: 'View Sông Cầu & Thành Phố'
+  },
+  {
+    id: 'TN-TP-505',
+    name: 'Penthouse Sky Garden Thái Nguyên — Hoàng Văn Thụ',
+    floor: 25,
+    unitNumber: 'PH-2501',
+    type: 'Penthouse',
+    sqm: 165,
+    bedrooms: 3,
+    bathrooms: 3,
+    status: 'vacant',
+    monthlyRentUSD: 1100,
+    monthlyRentVND: 28000000,
+    city: 'Thái Nguyên',
+    district: 'TP. Thái Nguyên',
+    address: 'Tầng 25, Tháp Thiên Lộc, Đại Lộ Hoàng Văn Thụ, TP. Thái Nguyên',
+    images: [
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&q=80&w=1200'
+    ],
+    hasCarParking: true,
+    hasMotorbikeParking: true,
+    hasElevator: true,
+    hasBackupPower: true,
+    floodingRisk: 'Low',
+    noiseLevel: 'Quiet',
+    trafficDensity: 'Low',
+    orientation: 'Đông Nam',
+    petFriendly: true,
+    viewType: 'View Panorama Toàn Cảnh Núi Cốc'
+  },
+  {
+    id: 'TN-PY-606',
+    name: 'Căn Hộ Chuyên Gia KCN Điềm Thụy — Phú Bình',
+    floor: 6,
+    unitNumber: '608',
+    type: 'Deluxe Apartment',
+    sqm: 68,
+    bedrooms: 2,
+    bathrooms: 1,
+    status: 'vacant',
+    monthlyRentUSD: 360,
+    monthlyRentVND: 9000000,
+    city: 'Thái Nguyên',
+    district: 'Phú Bình',
+    address: 'Khu Dịch Vụ Cư Dân KCN Điềm Thụy, Huyện Phú Bình, Thái Nguyên',
+    images: [
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200'
+    ],
+    hasCarParking: true,
+    hasMotorbikeParking: true,
+    hasElevator: true,
+    hasBackupPower: true,
+    floodingRisk: 'Low',
+    noiseLevel: 'Quiet',
+    trafficDensity: 'Low',
+    orientation: 'Nam',
+    petFriendly: true,
+    viewType: 'View Cây Xanh Nội Khu'
+  },
+  {
+    id: 'TN-SC-707',
+    name: 'Căn Hộ Xanh Eco Home — Sông Công, Thái Nguyên',
+    floor: 8,
+    unitNumber: '802',
+    type: 'Deluxe Apartment',
+    sqm: 62,
+    bedrooms: 2,
+    bathrooms: 1,
+    status: 'vacant',
+    monthlyRentUSD: 320,
+    monthlyRentVND: 8000000,
+    city: 'Thái Nguyên',
+    district: 'Sông Công',
+    address: 'Khu Đô Thị Kosy, Đường Thắng Lợi, TP. Sông Công, Thái Nguyên',
+    images: [
+      'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200'
+    ],
+    hasCarParking: true,
+    hasMotorbikeParking: true,
+    hasElevator: true,
+    hasBackupPower: true,
+    floodingRisk: 'Low',
+    noiseLevel: 'Quiet',
+    trafficDensity: 'Low',
+    orientation: 'Đông',
+    petFriendly: true,
+    viewType: 'View Công Viên Sông Công'
+  },
+  // --- BẮC NINH (2 units) ---
+  {
+    id: 'BN-TP-101',
+    name: 'Căn Hộ Vinhomes Bắc Ninh — Ngã 6 Trung Tâm',
+    floor: 21,
+    unitNumber: '2105',
+    type: 'Executive Suite',
+    sqm: 78,
+    bedrooms: 2,
+    bathrooms: 2,
+    status: 'vacant',
+    monthlyRentUSD: 600,
+    monthlyRentVND: 15000000,
+    city: 'Bắc Ninh',
+    district: 'TP. Bắc Ninh',
+    address: 'Vinhomes Bắc Ninh, Vòng Xoay Ngã 6, Đường Trần Hưng Đạo, TP. Bắc Ninh',
+    images: [
+      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200'
+    ],
+    hasCarParking: true,
+    hasMotorbikeParking: true,
+    hasElevator: true,
+    hasBackupPower: true,
+    floodingRisk: 'Low',
+    noiseLevel: 'Quiet',
+    trafficDensity: 'Moderate',
+    orientation: 'Đông Nam',
+    petFriendly: false,
+    viewType: 'View Ngã 6 Sầm Uất'
+  },
+  {
+    id: 'BN-YP-202',
+    name: 'Căn Hộ Chuyên Gia KCN Yên Phong — Viglacera Residence',
+    floor: 11,
+    unitNumber: '1103',
+    type: 'Deluxe Apartment',
+    sqm: 72,
+    bedrooms: 2,
+    bathrooms: 2,
+    status: 'vacant',
+    monthlyRentUSD: 480,
+    monthlyRentVND: 12000000,
+    city: 'Bắc Ninh',
+    district: 'Yên Phong',
+    address: 'Khu Đô Thị Yên Phong Viglacera, Huyện Yên Phong, Bắc Ninh',
+    images: [
+      'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200'
+    ],
+    hasCarParking: true,
+    hasMotorbikeParking: true,
+    hasElevator: true,
+    hasBackupPower: true,
+    floodingRisk: 'Low',
+    noiseLevel: 'Quiet',
+    trafficDensity: 'Low',
+    orientation: 'Nam',
+    petFriendly: true,
+    viewType: 'View Hồ Điều Hòa Yên Phong'
+  },
+  // --- HẢI PHÒNG (1 unit) ---
+  {
+    id: 'HP-LQ-101',
+    name: 'Căn Hộ Vinhomes Marina Cầu Rào 2 — Lê Chân, Hải Phòng',
+    floor: 16,
+    unitNumber: '1604',
+    type: 'Executive Suite',
+    sqm: 90,
+    bedrooms: 2,
+    bathrooms: 2,
+    status: 'vacant',
+    monthlyRentUSD: 720,
+    monthlyRentVND: 18000000,
+    city: 'Hải Phòng',
+    district: 'Lê Chân',
+    address: 'Vinhomes Marina, Đường Võ Nguyên Giáp, Quận Lê Chân, Hải Phòng',
+    images: [
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200'
+    ],
+    hasCarParking: true,
+    hasMotorbikeParking: true,
+    hasElevator: true,
+    hasBackupPower: true,
+    floodingRisk: 'Low',
+    noiseLevel: 'Quiet',
+    trafficDensity: 'Moderate',
+    orientation: 'Đông Nam',
+    petFriendly: true,
+    viewType: 'View Hồ Điều Hòa Marina'
+  },
+  // --- BÌNH DƯƠNG (1 unit) ---
+  {
+    id: 'BD-TDM-101',
+    name: 'Căn Hộ Sora Gardens Tokyu — TP. Mới Bình Dương',
+    floor: 19,
+    unitNumber: '1906',
+    type: 'Deluxe Apartment',
+    sqm: 82,
+    bedrooms: 2,
+    bathrooms: 2,
+    status: 'vacant',
+    monthlyRentUSD: 600,
+    monthlyRentVND: 15000000,
+    city: 'Bình Dương',
+    district: 'Thủ Dầu Một',
+    address: 'Sora Gardens II, Đại Lộ Hùng Vương, TP. Mới Bình Dương',
+    images: [
+      'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200'
+    ],
+    hasCarParking: true,
+    hasMotorbikeParking: true,
+    hasElevator: true,
+    hasBackupPower: true,
+    floodingRisk: 'Low',
+    noiseLevel: 'Quiet',
+    trafficDensity: 'Low',
+    orientation: 'Đông',
+    petFriendly: true,
+    viewType: 'View Công Viên Trung Tâm 120ha'
+  }
+];
+
+export function enrichUnit(unit: any): ApartmentUnit {
+  const normCity = normalizeCity(unit.city);
   const baseRent = unit.monthlyRentVND || 15000000;
   const bedrooms = unit.bedrooms || 2;
   const sqm = unit.sqm || 80;
@@ -414,7 +776,7 @@ export function enrichUnit(unit: ApartmentUnit): ApartmentUnit {
 
   const landlord = unit.landlord || {
     id: `host-${unit.district ? unit.district.replace(/\s+/g, '').toLowerCase() : 'haven'}`,
-    name: unit.city === 'Hanoi' ? 'Nguyễn Văn Minh' : unit.city === 'Ho Chi Minh City' ? 'Lê Hoàng Sơn' : 'Phạm Đức Anh',
+    name: normCity === 'Hà Nội' ? 'Nguyễn Văn Minh' : normCity === 'TP. Hồ Chí Minh' ? 'Lê Hoàng Sơn' : normCity === 'Thái Nguyên' ? 'Hoàng Việt Dũng' : 'Phạm Đức Anh',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300',
     phone: '0909 888 777',
     verificationLevel: verificationLevel,
@@ -441,7 +803,34 @@ export function enrichUnit(unit: ApartmentUnit): ApartmentUnit {
   };
 
   return {
+    furnished: true,
+    balcony: true,
+    airConditioning: true,
+    washingMachine: true,
+    kitchen: true,
+    wifi: true,
+    rating: 4.8,
+    reviewCount: 12,
+    aiInsights: {
+      whyFit: ['Căn hộ cao cấp tại vị trí đắc địa', 'Tiện ích hiện đại và an ninh bảo đảm'],
+      worthConsidering: ['Nhu cầu thuê cao trong khu vực']
+    },
+    environmentalData: {
+      weatherNotes: 'Khí hậu mát mẻ quanh năm',
+      floodNotes: 'Khu vực địa hình cao ráo, tuyệt đối không ngập nước',
+      powerNotes: 'Hạ tầng điện ổn định, máy phát điện dự phòng 100%',
+      trafficNotes: 'Giao thông thông thoáng, kết nối nhanh chóng'
+    },
+    sensors: {
+      smartLockBattery: 95,
+      hvacStatus: 'Optimal',
+      targetTempC: 24,
+      energyConsumptionKwh: 120,
+      waterUsageLiters: 450,
+      securityAlarmDisarmed: true
+    },
     ...unit,
+    city: normCity,
     trueCost,
     pcccReport,
     landlord,
@@ -453,16 +842,22 @@ export function enrichUnit(unit: ApartmentUnit): ApartmentUnit {
 export class ApartmentStore {
   // Units
   static getUnits(): ApartmentUnit[] {
+    const allPool = [...EXTRA_REGIONAL_UNITS, ...MOCK_UNITS];
     try {
       const data = localStorage.getItem(STORAGE_KEYS.UNITS);
       if (data) {
         const parsed: ApartmentUnit[] = JSON.parse(data);
-        return parsed.map(enrichUnit);
+        if (parsed.length >= 10) {
+          // Merge with extra regional units to guarantee Thai Nguyen etc. are present
+          const existingIds = new Set(parsed.map(u => u.id));
+          const missingExtras = EXTRA_REGIONAL_UNITS.filter(u => !existingIds.has(u.id));
+          return [...missingExtras, ...parsed].map(enrichUnit);
+        }
       }
     } catch (e) {
       console.error(e);
     }
-    return MOCK_UNITS.map(enrichUnit);
+    return allPool.map(enrichUnit);
   }
 
   static saveUnits(units: ApartmentUnit[]) {
@@ -1045,6 +1440,102 @@ export class ApartmentStore {
         description: 'Thiên đường nghỉ dưỡng với bờ biển Mỹ Khê top đẹp nhất hành tinh và bán đảo Sơn Trà rừng nguyên sinh mát mẻ.',
         coverImage: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800',
         highlights: ['Đi bộ vài bước ra bãi tắm cát trắng mịn', 'Không khí trong lành đón gió biển Đông', 'Nhiều căn hộ studio và condotel đầy đủ nội thất chỉ xách vali vào ở']
+      },
+      {
+        id: 'nh-nguhanhson',
+        name: 'Quận Ngũ Hành Sơn — Resort Ven Biển Non Nước & Làng Đại Học',
+        city: 'Da Nang',
+        district: 'Quận Ngũ Hành Sơn',
+        averageRentVND: 15500000,
+        priceTrendPercent: 4.8,
+        securityScore: 9.6,
+        floodRiskLevel: 'Low',
+        lifestyleTags: ['Resort', 'Biển Non Nước', 'Yên bình', 'Quốc tế'],
+        schoolsCount: 10,
+        hospitalsCount: 3,
+        description: 'Quần thể nghỉ dưỡng ven biển cát trắng Non Nước, liền kề các sân golf quốc tế và các trường đại học quốc tế.',
+        coverImage: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&q=80&w=800',
+        highlights: ['Tập trung các resort và căn hộ nghỉ dưỡng 5 sao', 'Không gian thoáng đãng, mật độ dân cư văn minh', 'Chỉ 15 phút vào trung tâm thành phố qua cầu Rồng']
+      },
+      {
+        id: 'nh-phunhuan',
+        name: 'Quận Phú Nhuận — Phố Ẩm Thực Phan Xích Long & Trục Sân Bay',
+        city: 'Ho Chi Minh City',
+        district: 'Quận Phú Nhuận',
+        averageRentVND: 16500000,
+        priceTrendPercent: 4.2,
+        securityScore: 9.4,
+        floodRiskLevel: 'Low',
+        lifestyleTags: ['Phan Xích Long', 'Ẩm thực', 'Trung tâm', 'Gần sân bay'],
+        schoolsCount: 16,
+        hospitalsCount: 4,
+        description: 'Vị trí giao thương đắc địa giữa Quận 1 và sân bay Tân Sơn Nhất, phố ẩm thực sầm uất ngày đêm.',
+        coverImage: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=800',
+        highlights: ['Phố ẩm thực Phan Xích Long quy tụ hàng trăm thương hiệu', 'Chỉ 8 phút tới sân bay Tân Sơn Nhất và 7 phút tới Quận 1', 'Địa hình cao ráo, hiếm khi ngập úng mùa mưa']
+      },
+      {
+        id: 'nh-tanbinh',
+        name: 'Quận Tân Bình — Cửa Ngõ Sân Bay Quốc Tế Tân Sơn Nhất',
+        city: 'Ho Chi Minh City',
+        district: 'Quận Tân Bình',
+        averageRentVND: 14500000,
+        priceTrendPercent: 3.9,
+        securityScore: 9.2,
+        floodRiskLevel: 'Low',
+        lifestyleTags: ['Sân bay', 'Logistics', 'Công viên Hoàng Văn Thụ', 'Năng động'],
+        schoolsCount: 22,
+        hospitalsCount: 5,
+        description: 'Đô thị logistics năng động bao quanh sân bay Tân Sơn Nhất với các công viên cây xanh Hoàng Văn Thụ, Gia Định.',
+        coverImage: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=800',
+        highlights: ['Tiện lợi tối đa cho phi công, tiếp viên và chuyên gia hàng không', 'Hệ sinh thái văn phòng cho thuê và trung tâm thương mại đa dạng', 'Nhiều căn hộ dịch vụ cao cấp đầy đủ tiện nghi']
+      },
+      {
+        id: 'nh-thainguyen',
+        name: 'TP. Thái Nguyên — Trung Tâm Giáo Dục & Đô Thị Chè Thủ Đô Gió Ngàn',
+        city: 'Thái Nguyên',
+        district: 'TP. Thái Nguyên',
+        averageRentVND: 11000000,
+        priceTrendPercent: 6.2,
+        securityScore: 9.5,
+        floodRiskLevel: 'Low',
+        lifestyleTags: ['Đại học Thái Nguyên', 'Hồ Núi Cốc', 'Không khí sạch', 'KCN Samsung'],
+        schoolsCount: 35,
+        hospitalsCount: 6,
+        description: 'Thủ phủ vùng trung du miền núi phía Bắc với tổ hợp Đại học Thái Nguyên, bệnh viện Trung ương và hạ tầng cao tốc kết nối Hà Nội chỉ 50 phút.',
+        coverImage: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800',
+        highlights: ['Tổ hợp chung cư cao tầng Tecco Elite City, T&T Landmark', 'Chỉ 15 phút di chuyển tới tổ hợp Samsung Electronics Phổ Yên', 'Không gian xanh mát, không khí trong lành, ẩm thực đồi chè độc đáo']
+      },
+      {
+        id: 'nh-haiphong',
+        name: 'Quận Lê Chân — Đô Thị Cảng Biển Năng Động & Vinhomes Marina',
+        city: 'Hải Phòng',
+        district: 'Quận Lê Chân',
+        averageRentVND: 15000000,
+        priceTrendPercent: 5.8,
+        securityScore: 9.6,
+        floodRiskLevel: 'Low',
+        lifestyleTags: ['Vinhomes Marina', 'Cảng biển', 'Ẩm thực Hải Phòng', 'Hiện đại'],
+        schoolsCount: 18,
+        hospitalsCount: 4,
+        description: 'Tâm điểm phát triển mới của thành phố hoa phượng đỏ với quần thể Vinhomes Marina Cầu Rào 2 và đại siêu thị Aeon Mall Lê Chân.',
+        coverImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800',
+        highlights: ['Đại siêu thị Aeon Mall lớn nhất miền Bắc', 'Hệ sinh thái nhà phố và căn hộ cao cấp ven sông Lạch Tray', 'Cao tốc Hà Nội - Hải Phòng kết nối cực nhanh']
+      },
+      {
+        id: 'nh-binhduong',
+        name: 'TP. Thủ Dầu Một — Thành Phố Thông Minh & Thủ Phủ Công Nghiệp',
+        city: 'Bình Dương',
+        district: 'Thành phố Thủ Dầu Một',
+        averageRentVND: 14000000,
+        priceTrendPercent: 5.5,
+        securityScore: 9.5,
+        floodRiskLevel: 'Low',
+        lifestyleTags: ['Thành phố mới', 'Chuyên gia', 'Sora Gardens', 'Quy hoạch xanh'],
+        schoolsCount: 20,
+        hospitalsCount: 5,
+        description: 'Đô thị thông minh hiện đại bậc nhất Đông Nam Bộ, tập trung hàng nghìn chuyên gia quốc tế tại các KCN VSIP 1, 2 và Sora Gardens.',
+        coverImage: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=800',
+        highlights: ['Đường phố rộng thoáng, quy hoạch bài bản không kẹt xe', 'Căn hộ tiêu chuẩn Nhật Bản Tokyu Sora Gardens', 'Công viên trung tâm TP Mới 120ha rộng lớn']
       }
     ];
   }

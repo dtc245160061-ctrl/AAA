@@ -10,6 +10,9 @@ import {
   Check
 } from 'lucide-react';
 import type { ApartmentUnit, UnitStatus } from '../types/apartment';
+import { normalizeCity } from '../data/apartmentStore';
+
+const ADMIN_CITIES = ['Tất Cả', 'Hà Nội', 'TP. Hồ Chí Minh', 'Đà Nẵng', 'Thái Nguyên', 'Bắc Ninh', 'Hải Phòng', 'Bình Dương'] as const;
 
 interface UnitsViewProps {
   units: ApartmentUnit[];
@@ -31,14 +34,14 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
   const [editingUnit, setEditingUnit] = useState<ApartmentUnit | null>(null);
   const [deletingUnit, setDeletingUnit] = useState<ApartmentUnit | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [cityFilter, setCityFilter] = useState<'All' | 'Hanoi' | 'Ho Chi Minh City' | 'Da Nang'>('All');
+  const [cityFilter, setCityFilter] = useState<string>('Tất Cả');
   const [statusFilter, setStatusFilter] = useState<string>('all');
 
   const filteredUnits = units.filter(unit => {
     const matchesSearch = (unit.name || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
                           unit.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           unit.district.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCity = cityFilter === 'All' || unit.city === cityFilter;
+    const matchesCity = cityFilter === 'Tất Cả' || normalizeCity(unit.city) === normalizeCity(cityFilter);
     const matchesStatus = statusFilter === 'all' || unit.status === statusFilter;
     return matchesSearch && matchesCity && matchesStatus;
   });
@@ -62,94 +65,90 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
 
   return (
     <div className="space-y-8 text-left pb-16 animate-in fade-in duration-300">
-      {/* Header Banner */}
-      <div className="p-8 rounded-3xl atmospheric-panel border border-emerald-500/30 space-y-6 shadow-2xl backdrop-blur-2xl">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="space-y-1">
-            <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
-              <Building className="w-4 h-4 text-emerald-400" />
-              <span>Kho Căn Hộ Cho Thuê (Inventory & Availability)</span>
+      {/* Header Banner with Radiating Luxury Aura */}
+      <div className="relative rounded-3xl p-[2.5px] overflow-hidden shadow-2xl group">
+        <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
+        <div className="p-6 sm:p-8 rounded-[22px] atmospheric-panel haven-sheen-sweep space-y-6 shadow-2xl backdrop-blur-2xl relative overflow-hidden">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
+                <Building className="w-4 h-4 text-emerald-400" />
+                <span>Kho Căn Hộ Cho Thuê (Inventory & Availability)</span>
+              </div>
+              <h1 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold">
+                Danh Mục Căn Hộ & Tình Trạng
+              </h1>
+              <p className="text-sm text-slate-400">
+                Quản lý toàn bộ {units.length} căn hộ trong hệ sinh thái HAVEN: Hà Nội, TP. Hồ Chí Minh & Đà Nẵng.
+              </p>
             </div>
-            <h1 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold">
-              Danh Mục Căn Hộ & Tình Trạng
-            </h1>
-            <p className="text-sm text-slate-400">
-              Quản lý toàn bộ {units.length} căn hộ trong hệ sinh thái HAVEN: Hà Nội, TP. Hồ Chí Minh & Đà Nẵng.
-            </p>
-          </div>
 
-          {/* Quick Metrics & AI Listing Button */}
-          <div className="flex items-center gap-2 font-mono text-xs flex-wrap">
-            <button
-              onClick={onOpenQuickAction}
-              className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold shadow-lg shadow-emerald-500/25 transition-all flex items-center gap-1.5 hover:scale-105"
-            >
-              <span className="text-sm">✨</span>
-              <span>Đăng Tin Mới Bằng AI</span>
-            </button>
-            <span className="px-3 py-1.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              {vacantCount} Trống
-            </span>
-            <span className="px-3 py-1.5 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/20">
-              {occupiedCount} Đang thuê
-            </span>
-            <span className="px-3 py-1.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
-              {reservedCount} Đã cọc
-            </span>
-          </div>
-        </div>
-
-        {/* Filters */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-800/80">
-          <div className="flex flex-wrap items-center gap-2">
-            {/* City Filter */}
-            {(['All', 'Hanoi', 'Ho Chi Minh City', 'Da Nang'] as const).map(city => (
+            {/* Quick Metrics & AI Listing Button */}
+            <div className="flex items-center gap-2 font-mono text-xs flex-wrap">
               <button
-                key={city}
-                onClick={() => setCityFilter(city)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-mono transition-all border ${
-                  cityFilter === city
-                    ? 'bg-emerald-500 text-slate-950 font-bold border-emerald-500'
-                    : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200'
-                }`}
+                onClick={onOpenQuickAction}
+                className="haven-btn-beam px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold shadow-lg shadow-emerald-500/25 transition-all flex items-center gap-1.5 hover:scale-105 cursor-pointer"
               >
-                {city === 'All' ? 'Tất cả Thành phố' : city === 'Hanoi' ? 'Hà Nội' : city === 'Ho Chi Minh City' ? 'TP. HCM' : 'Đà Nẵng'}
+                <span className="text-sm">✨</span>
+                <span>Đăng Tin Mới Bằng AI</span>
               </button>
-            ))}
-
-            <div className="h-4 w-px bg-slate-800 mx-1 hidden sm:block" />
-
-            {/* Status Filter */}
-            {[
-              { id: 'all', label: 'Tất cả' },
-              { id: 'vacant', label: 'Trống' },
-              { id: 'occupied', label: 'Đang thuê' },
-              { id: 'reserved', label: 'Đã cọc' },
-              { id: 'maintenance', label: 'Bảo trì' },
-            ].map(tab => (
-              <button
-                key={tab.id}
-                onClick={() => setStatusFilter(tab.id)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-mono transition-all border ${
-                  statusFilter === tab.id
-                    ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300 font-semibold'
-                    : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+              <span className="px-3 py-1.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                {vacantCount} Trống
+              </span>
+              <span className="px-3 py-1.5 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                {occupiedCount} Đang thuê
+              </span>
+              <span className="px-3 py-1.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                {reservedCount} Đã cọc
+              </span>
+            </div>
           </div>
 
-          <div className="relative">
-            <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Tìm theo mã phòng, tòa nhà, quận..."
-              className="pl-9 pr-4 py-1.5 text-xs bg-slate-900/80 border border-slate-700 rounded-xl text-slate-200 placeholder:text-slate-500 font-mono focus:outline-none focus:border-emerald-500"
-            />
+          {/* Filters */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-800/80">
+            <div className="flex flex-wrap items-center gap-2">
+              {/* City Filter */}
+              <div className="flex items-center gap-1 bg-slate-900/80 [data-theme='light']_:bg-slate-100 p-1 rounded-xl border border-slate-700 [data-theme='light']_:border-slate-300 text-xs font-mono overflow-x-auto max-w-full">
+                {ADMIN_CITIES.map(city => (
+                  <button
+                    key={city}
+                    onClick={() => setCityFilter(city)}
+                    className={`px-3 py-1 rounded-lg transition-all whitespace-nowrap cursor-pointer ${
+                      cityFilter === city
+                        ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
+                        : 'text-slate-400 hover:text-slate-200 [data-theme=\'light\']_:text-slate-600 [data-theme=\'light\']_:hover:text-slate-900'
+                    }`}
+                  >
+                    {city}
+                  </button>
+                ))}
+              </div>
+
+              {/* Status Filter */}
+              <select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-700 text-slate-200 text-xs font-mono focus:outline-none focus:border-emerald-500 cursor-pointer"
+              >
+                <option value="all">Tất cả trạng thái</option>
+                <option value="vacant">Sẵn sàng (Trống)</option>
+                <option value="occupied">Đang cho thuê</option>
+                <option value="reserved">Đã nhận cọc</option>
+                <option value="maintenance">Đang bảo trì</option>
+              </select>
+            </div>
+
+            {/* Search Input */}
+            <div className="relative flex-1 max-w-xs">
+              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Tìm theo mã phòng, tòa nhà, quận..."
+                className="w-full pl-9 pr-4 py-1.5 text-xs bg-slate-900/80 border border-slate-700 rounded-xl text-slate-200 placeholder:text-slate-500 font-mono focus:outline-none focus:border-emerald-500"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -159,101 +158,114 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
         {filteredUnits.map(unit => (
           <div
             key={unit.id}
-            className="group haven-card-interactive rounded-3xl atmospheric-panel border border-slate-800/80 hover:border-emerald-400/80 hover:shadow-2xl hover:shadow-emerald-500/15 p-5 space-y-4 shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer"
+            className="group relative rounded-3xl p-[1.5px] overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-1.5 cursor-pointer"
           >
-            <div className="space-y-3">
-              {/* Top Row: Image & Status */}
-              <div className="relative h-44 rounded-2xl overflow-hidden bg-slate-900">
-                <img
-                  src={unit.images[0]}
-                  alt={unit.name || unit.id}
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200';
+            <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-60 group-hover:opacity-100" />
+            <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel haven-sheen-sweep border border-slate-800/80 [data-theme='light']_:border-slate-200/80 group-hover:border-emerald-500/40 p-5 space-y-4 flex flex-col justify-between">
+              <div className="space-y-3">
+                {/* Top Row: Tall Architectural Photo & Badges */}
+                <div className="relative h-56 sm:h-64 rounded-2xl overflow-hidden bg-slate-900 group/img">
+                  <img
+                    src={unit.images[0]}
+                    alt={unit.name || unit.id}
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200';
+                    }}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none" />
+                  
+                  <div className="absolute top-3 left-3">
+                    {getStatusBadge(unit.status)}
+                  </div>
+                  
+                  <div className="absolute top-3 right-3">
+                    <span className="px-2.5 py-1 rounded-xl bg-slate-950/80 backdrop-blur-md border border-slate-700 text-[11px] font-mono text-slate-300 font-bold">
+                      #{unit.id}
+                    </span>
+                  </div>
+
+                  <div className="absolute bottom-3 right-3 px-3 py-1.5 rounded-xl bg-slate-950/85 backdrop-blur-md border border-emerald-500/40 text-xs font-mono font-bold text-emerald-400 shadow-xl flex items-baseline gap-1">
+                    <span>{(unit.monthlyRentVND / 1000000).toFixed(0)}Tr</span>
+                    <span className="text-[10px] text-slate-400 font-normal">/tháng</span>
+                  </div>
+                </div>
+
+                {/* Title & Location */}
+                <div>
+                  <h3 className="font-serif text-lg font-bold text-slate-100 [data-theme='light']_:text-slate-900 group-hover:text-emerald-300 [data-theme='light']_:group-hover:text-emerald-700 transition-colors line-clamp-1">
+                    {unit.name || unit.id}
+                  </h3>
+                  <div className="flex items-center gap-1.5 text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-600 mt-1">
+                    <MapPin className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <span className="line-clamp-1">{unit.district}, {normalizeCity(unit.city)}</span>
+                  </div>
+                </div>
+
+                {/* Specs */}
+                <div className="grid grid-cols-3 gap-2 py-2 border-y border-slate-800/60 [data-theme='light']_:border-slate-200/80 text-center font-mono text-xs">
+                  <div>
+                    <span className="text-slate-500 [data-theme='light']_:text-slate-400 text-[10px] block">DIỆN TÍCH</span>
+                    <span className="text-slate-200 [data-theme='light']_:text-slate-800 font-medium">{unit.sqm} m²</span>
+                  </div>
+                  <div>
+                    <span className="text-slate-500 [data-theme='light']_:text-slate-400 text-[10px] block">PHÒNG NGỦ</span>
+                    <span className="text-slate-200 [data-theme='light']_:text-slate-800 font-medium">{unit.bedrooms} PN • {unit.bathrooms} WC</span>
+                  </div>
+                  <div>
+                    <span className="text-slate-500 [data-theme='light']_:text-slate-400 text-[10px] block">TẦNG</span>
+                    <span className="text-slate-200 [data-theme='light']_:text-slate-800 font-medium">Tầng {unit.floor}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Actions */}
+              <div className="pt-3 flex items-center gap-2 border-t border-slate-800/80 [data-theme='light']_:border-slate-200/80">
+                <select
+                  value={unit.status}
+                  onChange={(e) => onUpdateUnitStatus?.(unit.id, e.target.value as UnitStatus)}
+                  className="flex-1 px-3 py-2 rounded-xl bg-slate-900/90 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-300 text-slate-300 [data-theme='light']_:text-slate-800 text-xs font-mono focus:outline-none focus:border-emerald-500 cursor-pointer"
+                >
+                  <option value="vacant">Trạng thái: Trống</option>
+                  <option value="occupied">Trạng thái: Đang thuê</option>
+                  <option value="reserved">Trạng thái: Đã cọc</option>
+                  <option value="maintenance">Trạng thái: Bảo trì</option>
+                </select>
+
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setEditingUnit({ ...unit });
                   }}
-                  className="w-full h-full object-cover transition-opacity duration-300"
-                />
-                <div className="absolute top-3 left-3">
-                  {getStatusBadge(unit.status)}
-                </div>
-                <div className="absolute bottom-3 right-3 px-3 py-1 rounded-xl bg-slate-950/85 backdrop-blur-md border border-slate-700 text-xs font-mono font-bold text-emerald-400">
-                  {(unit.monthlyRentVND / 1000000).toFixed(0)}Tr/tháng
-                </div>
-              </div>
+                  className="p-2 rounded-xl bg-slate-900/90 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-300 hover:border-amber-400 text-slate-300 [data-theme='light']_:text-slate-700 hover:text-amber-400 transition-colors cursor-pointer"
+                  title="Sửa thông tin căn hộ"
+                >
+                  <Edit2 className="w-4 h-4" />
+                </button>
 
-              {/* Title & Location */}
-              <div>
-                <h3 className="font-serif text-lg font-bold text-slate-100 group-hover:text-emerald-300 transition-colors line-clamp-1">
-                  {unit.name || unit.id}
-                </h3>
-                <div className="flex items-center gap-1.5 text-xs font-mono text-slate-400 mt-1">
-                  <MapPin className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span className="line-clamp-1">{unit.district}, {unit.city === 'Hanoi' ? 'Hà Nội' : unit.city === 'Ho Chi Minh City' ? 'TP. Hồ Chí Minh' : 'Đà Nẵng'}</span>
-                </div>
-              </div>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setDeletingUnit(unit);
+                  }}
+                  className="p-2 rounded-xl bg-slate-900/90 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-300 hover:border-rose-400 text-slate-300 [data-theme='light']_:text-slate-700 hover:text-rose-400 transition-colors cursor-pointer"
+                  title="Xóa căn hộ"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
 
-              {/* Specs */}
-              <div className="grid grid-cols-3 gap-2 py-2 border-y border-slate-800/60 text-center font-mono text-xs">
-                <div>
-                  <span className="text-slate-500 text-[10px] block">DIỆN TÍCH</span>
-                  <span className="text-slate-200 font-medium">{unit.sqm} m²</span>
-                </div>
-                <div>
-                  <span className="text-slate-500 text-[10px] block">PHÒNG NGỦ</span>
-                  <span className="text-slate-200 font-medium">{unit.bedrooms} PN • {unit.bathrooms} WC</span>
-                </div>
-                <div>
-                  <span className="text-slate-500 text-[10px] block">TẦNG</span>
-                  <span className="text-slate-200 font-medium">Tầng {unit.floor}</span>
-                </div>
+                <button
+                  onClick={() => onSelectUnit(unit.id)}
+                  className="p-2 rounded-xl bg-slate-900/90 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-300 hover:border-emerald-500 text-slate-300 [data-theme='light']_:text-slate-700 hover:text-emerald-400 transition-colors cursor-pointer"
+                  title="Xem chi tiết căn"
+                >
+                  <Eye className="w-4 h-4" />
+                </button>
               </div>
             </div>
-
-            {/* Actions */}
-            <div className="pt-2 flex items-center gap-2 border-t border-slate-800/80">
-              <select
-                value={unit.status}
-                onChange={(e) => onUpdateUnitStatus?.(unit.id, e.target.value as UnitStatus)}
-                className="flex-1 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-xs font-mono focus:outline-none focus:border-emerald-500 cursor-pointer"
-              >
-                <option value="vacant">Trạng thái: Trống</option>
-                <option value="occupied">Trạng thái: Đang thuê</option>
-                <option value="reserved">Trạng thái: Đã cọc</option>
-                <option value="maintenance">Trạng thái: Bảo trì</option>
-              </select>
-
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setEditingUnit({ ...unit });
-                }}
-                className="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-amber-400 text-slate-300 hover:text-amber-400 transition-colors"
-                title="Sửa thông tin căn hộ"
-              >
-                <Edit2 className="w-4 h-4" />
-              </button>
-
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setDeletingUnit(unit);
-                }}
-                className="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-rose-400 text-slate-300 hover:text-rose-400 transition-colors"
-                title="Xóa căn hộ"
-              >
-                <Trash2 className="w-4 h-4" />
-              </button>
-
-              <button
-                onClick={() => onSelectUnit(unit.id)}
-                className="p-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-emerald-500 text-slate-300 hover:text-white transition-colors"
-                title="Xem chi tiết căn"
-              >
-                <Eye className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+        </div>
+      ))}
+    </div>
 
       {/* Edit Unit Modal */}
       {editingUnit && (

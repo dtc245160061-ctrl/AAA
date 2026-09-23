@@ -9,6 +9,8 @@ export default defineConfig({
     tailwindcss(),
   ],
   server: {
+    host: true,
+    port: 5173,
     watch: {
       ignored: ['**/scripts/**', '**/*.tmp', '**/*.bak', '**/Ứng dụng trí tuệ nhân tạo**'],
     },

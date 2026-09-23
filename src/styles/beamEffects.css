@@ -9,127 +9,176 @@
 :root {
   /* ── 1. MASTER COLOR TOKENS ── */
   /* Default: Haven Biophilic Emerald */
-  --beam-color-primary: #34d399;                  /* Laser tip highlight */
-  --beam-color-secondary: rgba(52, 211, 153, 0.5); /* Mid body glow */
-  --beam-color-ambient: rgba(16, 185, 129, 0.15);  /* Ambient card aura */
-  --beam-color-glow: rgba(52, 211, 153, 0.45);     /* Outer bloom */
+  --beam-color-primary: #34d399;                  /* Soft laser tip */
+  --beam-color-secondary: rgba(52, 211, 153, 0.45); /* Mid body glow */
+  --beam-color-ambient: rgba(16, 185, 129, 0.12);  /* Ambient card aura */
+  --beam-color-glow: rgba(52, 211, 153, 0.35);     /* Outer bloom */
 
-  /* Animation Speeds */
-  --beam-speed-card: 4.8s;
-  --beam-speed-button: 2.8s;
-  --beam-speed-ai: 3.2s;
+  /* Gentle, peaceful speeds (gliding aura, not frantic spinning) */
+  --beam-speed-card: 7.5s;
+  --beam-speed-button: 4.2s;
+  --beam-speed-ai: 5.5s;
 
-  /* Master Dual Opposing Laser Gradient (30° narrow pulses at 90° and 270°, 100% transparent elsewhere) */
+  /* Master Dual Opposing Luminous Plumes (Two 180° Symmetrical Arcs, NO WHITE HOTSPOT) */
   --beam-gradient-master: conic-gradient(
     from 0deg,
     transparent 0deg,
-    transparent 74deg,
-    var(--beam-color-secondary) 82deg,
+    transparent 20deg,
+    var(--beam-color-ambient) 45deg,
+    var(--beam-color-secondary) 70deg,
     var(--beam-color-primary) 90deg,
-    var(--beam-color-secondary) 98deg,
-    transparent 106deg,
-    transparent 254deg,
-    var(--beam-color-secondary) 262deg,
+    var(--beam-color-secondary) 110deg,
+    var(--beam-color-ambient) 130deg,
+    transparent 155deg,
+    transparent 200deg,
+    var(--beam-color-ambient) 225deg,
+    var(--beam-color-secondary) 250deg,
     var(--beam-color-primary) 270deg,
-    var(--beam-color-secondary) 278deg,
-    transparent 286deg,
+    var(--beam-color-secondary) 290deg,
+    var(--beam-color-ambient) 310deg,
+    transparent 335deg,
     transparent 360deg
   );
 
-  /* Pre-calculated palettes for instant theme swapping */
+  /* Pre-calculated palettes for instant theme swapping (Dual Opposing Plumes, NO WHITE) */
   --beam-gradient-emerald: conic-gradient(
     from 0deg,
     transparent 0deg,
-    transparent 74deg,
-    rgba(52, 211, 153, 0.5) 82deg,
+    transparent 20deg,
+    rgba(16, 185, 129, 0.15) 45deg,
+    rgba(52, 211, 153, 0.5) 70deg,
     #34d399 90deg,
-    rgba(52, 211, 153, 0.5) 98deg,
-    transparent 106deg,
-    transparent 254deg,
-    rgba(52, 211, 153, 0.5) 262deg,
+    rgba(52, 211, 153, 0.5) 110deg,
+    rgba(16, 185, 129, 0.15) 130deg,
+    transparent 155deg,
+    transparent 200deg,
+    rgba(16, 185, 129, 0.15) 225deg,
+    rgba(52, 211, 153, 0.5) 250deg,
     #34d399 270deg,
-    rgba(52, 211, 153, 0.5) 278deg,
-    transparent 286deg,
+    rgba(52, 211, 153, 0.5) 290deg,
+    rgba(16, 185, 129, 0.15) 310deg,
+    transparent 335deg,
     transparent 360deg
   );
 
   --beam-gradient-gold: conic-gradient(
     from 0deg,
     transparent 0deg,
-    transparent 74deg,
-    rgba(251, 191, 36, 0.5) 82deg,
+    transparent 20deg,
+    rgba(245, 158, 11, 0.15) 45deg,
+    rgba(251, 191, 36, 0.5) 70deg,
     #fbbf24 90deg,
-    rgba(251, 191, 36, 0.5) 98deg,
-    transparent 106deg,
-    transparent 254deg,
-    rgba(251, 191, 36, 0.5) 262deg,
+    rgba(251, 191, 36, 0.5) 110deg,
+    rgba(245, 158, 11, 0.15) 130deg,
+    transparent 155deg,
+    transparent 200deg,
+    rgba(245, 158, 11, 0.15) 225deg,
+    rgba(251, 191, 36, 0.5) 250deg,
     #fbbf24 270deg,
-    rgba(251, 191, 36, 0.5) 278deg,
-    transparent 286deg,
+    rgba(251, 191, 36, 0.5) 290deg,
+    rgba(245, 158, 11, 0.15) 310deg,
+    transparent 335deg,
     transparent 360deg
   );
 
   --beam-gradient-cyan: conic-gradient(
     from 0deg,
     transparent 0deg,
-    transparent 74deg,
-    rgba(34, 211, 238, 0.5) 82deg,
+    transparent 20deg,
+    rgba(6, 182, 212, 0.15) 45deg,
+    rgba(34, 211, 238, 0.5) 70deg,
     #22d3ee 90deg,
-    rgba(34, 211, 238, 0.5) 98deg,
-    transparent 106deg,
-    transparent 254deg,
-    rgba(34, 211, 238, 0.5) 262deg,
+    rgba(34, 211, 238, 0.5) 110deg,
+    rgba(6, 182, 212, 0.15) 130deg,
+    transparent 155deg,
+    transparent 200deg,
+    rgba(6, 182, 212, 0.15) 225deg,
+    rgba(34, 211, 238, 0.5) 250deg,
     #22d3ee 270deg,
-    rgba(34, 211, 238, 0.5) 278deg,
-    transparent 286deg,
+    rgba(34, 211, 238, 0.5) 290deg,
+    rgba(6, 182, 212, 0.15) 310deg,
+    transparent 335deg,
     transparent 360deg
   );
 
   --beam-gradient-white: conic-gradient(
     from 0deg,
     transparent 0deg,
-    transparent 74deg,
-    rgba(255, 255, 255, 0.5) 82deg,
-    #ffffff 90deg,
-    rgba(255, 255, 255, 0.5) 98deg,
-    transparent 106deg,
-    transparent 254deg,
-    rgba(255, 255, 255, 0.5) 262deg,
-    #ffffff 270deg,
-    rgba(255, 255, 255, 0.5) 278deg,
-    transparent 286deg,
+    transparent 20deg,
+    rgba(255, 255, 255, 0.12) 45deg,
+    rgba(255, 255, 255, 0.45) 70deg,
+    rgba(255, 255, 255, 0.85) 90deg,
+    rgba(255, 255, 255, 0.45) 110deg,
+    rgba(255, 255, 255, 0.12) 130deg,
+    transparent 155deg,
+    transparent 200deg,
+    rgba(255, 255, 255, 0.12) 225deg,
+    rgba(255, 255, 255, 0.45) 250deg,
+    rgba(255, 255, 255, 0.85) 270deg,
+    rgba(255, 255, 255, 0.45) 290deg,
+    rgba(255, 255, 255, 0.12) 310deg,
+    transparent 335deg,
     transparent 360deg
   );
 
   --beam-gradient-purple: conic-gradient(
     from 0deg,
     transparent 0deg,
-    transparent 74deg,
-    rgba(168, 85, 247, 0.5) 82deg,
+    transparent 20deg,
+    rgba(147, 51, 234, 0.15) 45deg,
+    rgba(168, 85, 247, 0.5) 70deg,
     #a855f7 90deg,
-    rgba(168, 85, 247, 0.5) 98deg,
-    transparent 106deg,
-    transparent 254deg,
-    rgba(168, 85, 247, 0.5) 262deg,
+    rgba(168, 85, 247, 0.5) 110deg,
+    rgba(147, 51, 234, 0.15) 130deg,
+    transparent 155deg,
+    transparent 200deg,
+    rgba(147, 51, 234, 0.15) 225deg,
+    rgba(168, 85, 247, 0.5) 250deg,
     #a855f7 270deg,
-    rgba(168, 85, 247, 0.5) 278deg,
-    transparent 286deg,
+    rgba(168, 85, 247, 0.5) 290deg,
+    rgba(147, 51, 234, 0.15) 310deg,
+    transparent 335deg,
     transparent 360deg
   );
 
   --beam-gradient-slate: conic-gradient(
     from 0deg,
     transparent 0deg,
-    transparent 74deg,
-    rgba(148, 163, 184, 0.5) 82deg,
+    transparent 20deg,
+    rgba(100, 116, 139, 0.15) 45deg,
+    rgba(148, 163, 184, 0.5) 70deg,
     #94a3b8 90deg,
-    rgba(148, 163, 184, 0.5) 98deg,
-    transparent 106deg,
-    transparent 254deg,
-    rgba(148, 163, 184, 0.5) 262deg,
+    rgba(148, 163, 184, 0.5) 110deg,
+    rgba(100, 116, 139, 0.15) 130deg,
+    transparent 155deg,
+    transparent 200deg,
+    rgba(100, 116, 139, 0.15) 225deg,
+    rgba(148, 163, 184, 0.5) 250deg,
     #94a3b8 270deg,
-    rgba(148, 163, 184, 0.5) 278deg,
-    transparent 286deg,
+    rgba(148, 163, 184, 0.5) 290deg,
+    rgba(100, 116, 139, 0.15) 310deg,
+    transparent 335deg,
+    transparent 360deg
+  );
+
+  /* Dual Circular Orbit for Floating AI Button (Two Symmetrical Waves, No White Hotspot) */
+  --beam-gradient-ai-streak: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 20deg,
+    rgba(52, 211, 153, 0.12) 45deg,
+    rgba(52, 211, 153, 0.5) 70deg,
+    #34d399 90deg,
+    rgba(52, 211, 153, 0.5) 110deg,
+    rgba(52, 211, 153, 0.12) 130deg,
+    transparent 155deg,
+    transparent 200deg,
+    rgba(52, 211, 153, 0.12) 225deg,
+    rgba(52, 211, 153, 0.5) 250deg,
+    #34d399 270deg,
+    rgba(52, 211, 153, 0.5) 290deg,
+    rgba(52, 211, 153, 0.12) 310deg,
+    transparent 335deg,
     transparent 360deg
   );
 }
@@ -183,7 +232,6 @@
   --beam-gradient-master: var(--beam-gradient-emerald);
 }
 
-/* ── 3. HARDWARE-ACCELERATED KEYFRAMES (60 FPS on Firefox & WebKit) ── */
 @keyframes haven-spin-beam {
   0% {
     transform: translate(-50%, -50%) rotate(0deg);
@@ -191,6 +239,52 @@
   100% {
     transform: translate(-50%, -50%) rotate(360deg);
   }
+}
+
+/* ── Elastic Dynamic Rhythm for Floating AI Button: Cruise -> Swift Sprint & Stretch ("vèo một cái") -> Decelerate & Snap ── */
+@keyframes haven-ai-beam-elastic {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  22% {
+    /* Cruise speed */
+    transform: translate(-50%, -50%) rotate(65deg) scale(1.05);
+  }
+  36% {
+    /* Swift sprint & stretch ("vèo một cái!") */
+    transform: translate(-50%, -50%) rotate(155deg) scale(1.35);
+  }
+  50% {
+    /* Decelerate smoothly & snap */
+    transform: translate(-50%, -50%) rotate(215deg) scale(0.95);
+  }
+  72% {
+    /* Second swift arc & elongated light streak */
+    transform: translate(-50%, -50%) rotate(305deg) scale(1.3);
+  }
+  88% {
+    /* Ease into finish */
+    transform: translate(-50%, -50%) rotate(345deg) scale(0.98);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) scale(1);
+  }
+}
+
+/* ── Breathing Glow Aura for Floating AI Button (Sáng dần lên rồi tối dần đi) ── */
+@keyframes haven-ai-breathe {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(52, 211, 153, 0.35), 0 0 35px rgba(16, 185, 129, 0.2);
+    border-color: rgba(52, 211, 153, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 36px rgba(52, 211, 153, 0.85), 0 0 70px rgba(52, 211, 153, 0.45);
+    border-color: rgba(52, 211, 153, 0.95);
+  }
+}
+
+.haven-ai-breathing-aura {
+  animation: haven-ai-breathe 3.2s ease-in-out infinite;
 }
 
 /* ── 4. GLOBAL INTERACTIVE HOVER POINTER (Hands cursor for all buttons) ── */
@@ -208,7 +302,7 @@ input[type="radio"],
   cursor: pointer !important;
 }
 
-/* ── 5. ROTATING BEAM QUAD (Panels, Cards, Search Bars) ── */
+/* ── 5. ROTATING BEAM QUAD (Panels, Cards, Search Bars - Soft Gaussian Diffusion) ── */
 .animate-spin-beam {
   position: absolute;
   top: 50%;
@@ -219,6 +313,8 @@ input[type="radio"],
   pointer-events: none;
   background: var(--beam-gradient-master);
   animation: haven-spin-beam var(--beam-speed-card) linear infinite;
+  filter: blur(2.5px);
+  -webkit-filter: blur(2.5px);
   will-change: transform;
   transform: translate(-50%, -50%) rotate(0deg);
   -webkit-transform: translate(-50%, -50%) rotate(0deg);
@@ -226,17 +322,19 @@ input[type="radio"],
   -webkit-backface-visibility: hidden;
 }
 
-/* ── 6. FLOATING AI CHAT BUTTON BEAM (Compact Orbit) ── */
+/* ── 6. FLOATING AI CHAT BUTTON BEAM (Soft Circular Aura, No Sharp Jitter) ── */
 .floating-ai-beam {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 260%;
-  height: 260%;
+  width: 320%;
+  height: 320%;
   aspect-ratio: 1 / 1;
   pointer-events: none;
-  background: var(--beam-gradient-master);
+  background: var(--beam-gradient-ai-streak);
   animation: haven-spin-beam var(--beam-speed-ai) linear infinite;
+  filter: blur(2px);
+  -webkit-filter: blur(2px);
   will-change: transform;
   transform: translate(-50%, -50%) rotate(0deg);
   backface-visibility: hidden;
@@ -260,6 +358,8 @@ input[type="radio"],
   height: 320%;
   aspect-ratio: 1 / 1;
   background: var(--beam-gradient-master);
+  filter: blur(2px);
+  -webkit-filter: blur(2px);
   transform: translate(-50%, -50%) rotate(0deg);
   animation: haven-spin-beam var(--beam-speed-button) linear infinite;
   opacity: 0;

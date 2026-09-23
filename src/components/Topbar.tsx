@@ -5,6 +5,7 @@ import { VoiceRecognitionService } from '../services/voiceRecognitionService';
 
 interface TopbarProps {
   isAdminView?: boolean;
+  activeModule?: string;
   savedCount?: number;
   onOpenSaved?: () => void;
   onOpenAiCopilot?: () => void;
@@ -20,6 +21,7 @@ interface TopbarProps {
 
 export const Topbar: React.FC<TopbarProps> = ({
   isAdminView = false,
+  activeModule: _activeModule,
   savedCount = 0,
   onOpenSaved,
   onOpenAiCopilot: _onOpenAiCopilot,
@@ -167,7 +169,7 @@ export const Topbar: React.FC<TopbarProps> = ({
           </div>
         </div>
 
-        {/* Center: Global Search with Microphone Voice Input - Always accessible even when scrolled */}
+        {/* Center: Global Search with Microphone Voice Input (Always Present on Topbar) */}
         <form onSubmit={handleSearchSubmit} className="flex-1 max-w-md mx-1.5 sm:mx-3">
           <div className="relative flex items-center">
             <Search className="w-3.5 h-3.5 text-[var(--haven-text-muted)] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />

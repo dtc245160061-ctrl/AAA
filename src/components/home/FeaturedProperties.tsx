@@ -169,9 +169,9 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
               tabIndex={0}
               role="button"
               aria-label={`Xem dữ liệu xác thực của căn hộ ${unit.name || unit.id}`}
-              className="group relative rounded-2xl p-[1.5px] cursor-pointer shadow-xl transition-all duration-300"
+              className="group relative rounded-2xl p-[2px] cursor-pointer shadow-xl transition-all duration-300"
             >
-              {/* Dynamic Orbiting Dual Laser Beam strictly contained in border shell */}
+              {/* Dynamic Orbiting Dual Laser Beam strictly contained in 2px border shell */}
               <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
                 <div
                   className={`animate-spin-beam pointer-events-none transition-opacity duration-300 ${
@@ -180,10 +180,10 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
                 />
               </div>
 
-              {/* Card Inner Container */}
+              {/* Card Inner Container - 100% Opaque to completely prevent beam leaking through card face */}
               <div
-                className={`relative z-10 w-full h-full rounded-[14.5px] flex flex-col justify-between transition-all duration-200 bg-[var(--haven-surface-elevated)] ${
-                  isFocal ? 'bg-[var(--haven-surface-raised)] shadow-[0_0_30px_rgba(16,185,129,0.25)]' : ''
+                className={`haven-card-face relative z-10 w-full h-full rounded-[14px] flex flex-col justify-between transition-all duration-200 bg-[#0B101B] dark:bg-[#0B101B] light:bg-white border border-slate-800/80 light:border-slate-200 ${
+                  isFocal ? 'shadow-[0_0_30px_rgba(16,185,129,0.25)]' : ''
                 }`}
               >
                 {/* Photo & Overlays */}

@@ -1,5 +1,5 @@
 export type UnitStatus = 'vacant' | 'occupied' | 'reserved' | 'pending_handover' | 'maintenance';
-export type UnitType = 'Penthouse' | 'Sky Villa' | 'Executive Suite' | 'Deluxe Apartment' | 'Studio' | 'Duplex';
+export type UnitType = 'Penthouse' | 'Sky Villa' | 'Executive Suite' | 'Deluxe Apartment' | 'Studio' | 'Duplex' | 'Villa';
 
 export interface Resident {
   id: string;
@@ -126,6 +126,7 @@ export interface ApartmentUnit {
   resident?: Resident;
   sensors: IoTSensors;
   viewType: string;
+  orientation?: string;
   isVerifiedPlus?: boolean; // VIP Boosted
   verificationLevel?: VerificationLevel;
   trueCost?: TrueCostBreakdown;
@@ -289,7 +290,7 @@ export interface ServiceOrder {
 export interface NeighborhoodProfile {
   id: string;
   name: string;
-  city: 'Hanoi' | 'Ho Chi Minh City' | 'Da Nang';
+  city: string;
   district: string;
   averageRentVND: number;
   priceTrendPercent: number; // e.g. +4.5%

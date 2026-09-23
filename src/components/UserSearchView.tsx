@@ -17,14 +17,11 @@ import {
   CheckCircle2,
   X,
   Filter,
-  Mic,
-  MicOff,
-  Search,
   Box
 } from 'lucide-react';
 import type { ApartmentUnit } from '../types/apartment';
 import { type ConsumerFilters, parseNaturalLanguageQuery, calculateMatchScore } from '../services/aiAdvisorService';
-import { VoiceRecognitionService } from '../services/voiceRecognitionService';
+import { normalizeCity } from '../data/apartmentStore';
 
 interface UserSearchViewProps {
   units: ApartmentUnit[];
@@ -47,7 +44,6 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
   const [aiFollowUp, setAiFollowUp] = useState<string | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const [searchInput, setSearchInput] = useState<string>('');
-  const [isListening, setIsListening] = useState<boolean>(false);
 
   // Filter States
   const [cityFilter, setCityFilter] = useState<string>('All');
@@ -104,58 +100,11 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     }
   };
 
-  const handleSearchSubmitNow = () => {
-    let finalQuery = searchInput.trim();
-    if (isListening) {
-      const captured = VoiceRecognitionService.stop();
-      setIsListening(false);
-      if (captured && captured.trim()) {
-        finalQuery = captured.trim();
-        setSearchInput(finalQuery);
-      }
-    }
-    if (finalQuery) {
-      handleApplyAiPrompt(finalQuery);
-    }
-  };
-
-  const toggleVoiceSearch = () => {
-    if (isListening) {
-      const captured = VoiceRecognitionService.stop();
-      setIsListening(false);
-      if (captured && captured.trim()) {
-        setSearchInput(captured);
-        handleApplyAiPrompt(captured);
-      }
-      return;
-    }
-
-    const started = VoiceRecognitionService.start({
-      lang: 'vi-VN',
-      onStart: () => setIsListening(true),
-      onEnd: () => setIsListening(false),
-      onResult: (transcript, isFinal) => {
-        setSearchInput(transcript);
-        if (isFinal) {
-          handleApplyAiPrompt(transcript);
-        }
-      },
-      onError: (err) => {
-        console.warn('Voice search error:', err);
-        setIsListening(false);
-      }
-    });
-
-    if (!started) {
-      alert('Trình duyệt của bạn chưa hỗ trợ nhận diện giọng nói hoặc chưa cấp quyền micro.');
-    }
-  };
-
   // Distinct sorted cities from all available units (covering all 63 provinces)
   const availableCities = useMemo(() => {
     const citySet = new Set<string>();
     units.forEach(u => {
-      if (u.city) citySet.add(u.city);
+      if (u.city) citySet.add(normalizeCity(u.city));
     });
     return Array.from(citySet).sort((a, b) => a.localeCompare(b, 'vi'));
   }, [units]);
@@ -196,7 +145,11 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
         return { unit, score, matchReasons };
       })
       .filter(item => {
-        if (cityFilter !== 'All' && item.unit.city !== cityFilter) return false;
+        if (cityFilter !== 'All') {
+          const normUnitCity = normalizeCity(item.unit.city);
+          const normFilterCity = normalizeCity(cityFilter);
+          if (normUnitCity !== normFilterCity && item.unit.city !== cityFilter) return false;
+        }
         if (districtFilter && !item.unit.district.toLowerCase().includes(districtFilter.toLowerCase())) return false;
         if (bedroomsFilter > 0 && item.unit.bedrooms < bedroomsFilter) return false;
         
@@ -345,48 +298,28 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
           </div>
         </div>
 
-        {/* AI Voice & Natural Language Search Bar */}
-        <div className="relative p-[1.5px] rounded-2xl overflow-hidden shadow-lg shadow-emerald-500/10 group">
-          <div className="animate-spin-beam pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
-          <div className="relative z-10 flex items-center rounded-[14px] bg-slate-900/90 [data-theme='light']_:bg-white/95 backdrop-blur-md p-1.5 sm:p-2 gap-2">
-            <div className="pl-2 text-emerald-400 [data-theme='light']_:text-emerald-600">
-              <Search className="w-4 h-4" />
+        {/* Active AI Query Status Pill (Seamlessly Driven by Topbar Global Search) */}
+        {searchInput && (
+          <div className="flex items-center justify-between gap-2 px-3.5 py-2 rounded-xl bg-emerald-950/40 dark:bg-emerald-950/40 light:bg-emerald-50 border border-emerald-500/30 text-xs font-mono shadow-sm">
+            <div className="flex items-center gap-2 min-w-0">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0 animate-pulse" />
+              <span className="text-emerald-300 dark:text-emerald-300 light:text-emerald-800 truncate">
+                Đang tìm kiếm: <strong className="font-bold text-white dark:text-white light:text-emerald-950">"{searchInput}"</strong>
+              </span>
             </div>
-            <input
-              type="text"
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  e.preventDefault();
-                  handleSearchSubmitNow();
-                }
+            <button
+              type="button"
+              onClick={() => {
+                setSearchInput('');
+                handleResetFilters();
               }}
-              placeholder='Tìm bằng giọng nói hoặc nhập text (vd: "căn 2 phòng ở Thái Nguyên tầm 8 triệu có ô tô")'
-              className="flex-1 bg-transparent border-none text-white [data-theme='light']_:text-slate-900 placeholder:text-slate-400 text-xs sm:text-sm focus:outline-none focus:ring-0 font-sans"
-            />
-            {/* Microphone Voice Search Button */}
-            <button
-              type="button"
-              onClick={toggleVoiceSearch}
-              title={isListening ? "Đang lắng nghe... Nhấn để dừng & tìm ngay" : "Nhấn để nói bằng giọng nói"}
-              className={`p-2 rounded-xl transition-all flex items-center justify-center shrink-0 ${
-                isListening
-                  ? 'bg-rose-500 text-white animate-pulse shadow-lg shadow-rose-500/30 ring-2 ring-rose-400'
-                  : 'bg-slate-800 [data-theme="light"]_:bg-slate-100 text-slate-300 [data-theme="light"]_:text-slate-700 hover:text-emerald-400 hover:bg-slate-700'
-              }`}
+              className="text-slate-400 hover:text-rose-400 text-[11px] font-bold shrink-0 ml-2 cursor-pointer transition-colors"
+              title="Xóa bộ lọc tìm kiếm"
             >
-              {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
-            </button>
-            <button
-              type="button"
-              onClick={handleSearchSubmitNow}
-              className="px-3.5 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs font-mono transition-all shrink-0 shadow-md shadow-emerald-500/20 active:scale-95"
-            >
-              Lọc AI
+              ✕ Xóa bộ lọc
             </button>
           </div>
-        </div>
+        )}
 
         {/* Quick City Filter Pills - Fast 1-click filtering without opening sidebar */}
         <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-1 text-xs font-mono">
@@ -679,19 +612,23 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                 const isSaved = savedUnitIds.includes(unit.id);
                 const trueCostTotal = unit.trueCost?.totalMonthlyEstimatedVND || unit.monthlyRentVND;
                 const extraFees = trueCostTotal - unit.monthlyRentVND;
-
-                // Grid View Card (Tall, Architectural Proportions with Dynamic Orbiting Beam)
+                // Grid View Card (Tall, Architectural Proportions)
                 return (
                   <div
                     key={unit.id}
-                    className="group relative rounded-3xl p-[1.5px] shadow-lg transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5"
+                    className="group relative rounded-3xl p-[2.5px] shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5"
                   >
-                    {/* Dynamic Orbiting Dual Laser Beam on Hover */}
+                    {/* Dynamic Orbiting Dual Laser Beam */}
                     <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
-                      <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+                      <div
+                        className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+                      />
                     </div>
 
-                    <div className="relative z-10 w-full h-full rounded-[22.5px] overflow-hidden flex flex-col justify-between bg-[var(--haven-surface-raised)] border border-[var(--haven-border)]">
+                    {/* Inner Container: Translucent atmospheric-panel */}
+                    <div
+                      className="relative z-10 w-full h-full rounded-[22px] overflow-hidden flex flex-col justify-between atmospheric-panel border border-slate-800/80 light:border-slate-200"
+                    >
                       {/* Image Area - TALL & MAJESTIC (h-64 sm:h-72) */}
                       <div
                         className="relative h-64 sm:h-72 bg-slate-900 cursor-pointer overflow-hidden rounded-t-[22.5px]"

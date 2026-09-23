@@ -4,6 +4,7 @@
 @import "./styles/beamEffects.css";
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *, .dark, .dark *));
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *, .light, .light *));
 
 @layer base {
   :root {
@@ -207,24 +208,27 @@
   height: 220%;
   background: linear-gradient(
     45deg,
-    transparent 42%,
-    rgba(255, 255, 255, 0.07) 48%,
-    rgba(52, 211, 153, 0.15) 50%,
-    rgba(255, 255, 255, 0.07) 52%,
-    transparent 58%
+    transparent 40%,
+    rgba(255, 255, 255, 0.04) 47%,
+    rgba(52, 211, 153, 0.12) 50%,
+    rgba(255, 255, 255, 0.04) 53%,
+    transparent 60%
   );
   transform: rotate(25deg);
-  animation: haven-sheen-flare 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: haven-sheen-flare 11s cubic-bezier(0.25, 1, 0.5, 1) infinite;
   pointer-events: none;
   z-index: 1;
 }
 
 @keyframes haven-sheen-flare {
   0% {
-    transform: translateX(-120%) rotate(25deg);
+    transform: translateX(-140%) rotate(25deg);
   }
-  25%, 100% {
-    transform: translateX(120%) rotate(25deg);
+  50% {
+    transform: translateX(140%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(140%) rotate(25deg);
   }
 }
 
@@ -352,22 +356,26 @@
 
 [data-theme="light"] .bg-slate-800:not(.always-dark),
 .light .bg-slate-800:not(.always-dark) {
-  background: #FFFFFF !important;
-  border-color: #E2E8F0 !important;
-  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05) !important;
+  background: #F1F5F9 !important;
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05) !important;
 }
 
 [data-theme="light"] .bg-slate-900:not(.always-dark),
 [data-theme="light"] .bg-slate-900\/60:not(.always-dark),
 [data-theme="light"] .bg-slate-900\/70:not(.always-dark),
 [data-theme="light"] .bg-slate-900\/80:not(.always-dark),
+[data-theme="light"] .bg-slate-900\/90:not(.always-dark),
 .light .bg-slate-900:not(.always-dark),
 .light .bg-slate-900\/60:not(.always-dark),
 .light .bg-slate-900\/70:not(.always-dark),
-.light .bg-slate-900\/80:not(.always-dark) {
+.light .bg-slate-900\/80:not(.always-dark),
+.light .bg-slate-900\/90:not(.always-dark) {
   background: #FFFFFF !important;
   backdrop-filter: blur(16px);
   border-color: #E2E8F0 !important;
+  color: #0F172A !important;
   box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.06) !important;
 }
 
@@ -375,12 +383,49 @@
 [data-theme="light"] .bg-slate-950\/60:not(.always-dark),
 [data-theme="light"] .bg-slate-950\/70:not(.always-dark),
 [data-theme="light"] .bg-slate-950\/80:not(.always-dark),
+[data-theme="light"] .bg-slate-950\/85:not(.always-dark),
+[data-theme="light"] .bg-slate-950\/90:not(.always-dark),
 .light .bg-slate-950:not(.always-dark),
 .light .bg-slate-950\/60:not(.always-dark),
 .light .bg-slate-950\/70:not(.always-dark),
-.light .bg-slate-950\/80:not(.always-dark) {
-  background: #F8FAFC !important;
+.light .bg-slate-950\/80:not(.always-dark),
+.light .bg-slate-950\/85:not(.always-dark),
+.light .bg-slate-950\/90:not(.always-dark) {
+  background: #FFFFFF !important;
   border-color: #E2E8F0 !important;
+  color: #0F172A !important;
+}
+
+/* Specific Card Face and Arbitrary Slate-Navy Overrides in Light Mode */
+[data-theme="light"] .haven-card-face,
+[data-theme="light"] .bg-\[\#0B101B\],
+.light .haven-card-face,
+.light .bg-\[\#0B101B\] {
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  color: #0F172A !important;
+}
+
+/* Light Mode Hero Suggestion Chips */
+.light-hero-chip {
+  background-color: rgba(15, 23, 42, 0.85);
+  color: #F1F5F9;
+  border: 1px solid rgba(51, 65, 85, 0.8);
+}
+
+[data-theme="light"] .light-hero-chip,
+.light .light-hero-chip {
+  background-color: #FFFFFF !important;
+  color: #1E293B !important;
+  border: 1px solid #CBD5E1 !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+}
+
+[data-theme="light"] .light-hero-chip:hover,
+.light .light-hero-chip:hover {
+  background-color: #ECFDF5 !important;
+  color: #047857 !important;
+  border-color: #34D399 !important;
 }
 
 [data-theme="light"] .border-slate-800,
@@ -435,9 +480,11 @@
 .light .light-hero-gradient {
   display: block;
   background: linear-gradient(135deg,
-      rgba(240, 253, 244, 0.92) 0%,
-      rgba(248, 250, 252, 0.88) 45%,
-      rgba(224, 242, 254, 0.85) 100%);
+      rgba(240, 253, 244, 0.42) 0%,
+      rgba(248, 250, 252, 0.35) 45%,
+      rgba(224, 242, 254, 0.30) 100%);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
 }
 
 /* ── Font Display utility (maps to design token) ── */

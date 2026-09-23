@@ -1,200 +1,134 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
-interface GlassCursorProps {
-  dampening?: number;
-  trailLength?: number;
+export interface GlassCursorProps {
   color?: string;
-  showBrushTrail?: boolean;
+  className?: string;
 }
-
-interface CursorPoint {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-}
-
-type CursorMode = 'default' | 'pointer' | 'text';
 
 export const GlassCursor: React.FC<GlassCursorProps> = ({
-  dampening = 0.75,
-  trailLength = 13,
-  color = '#2dd4bf',
-  showBrushTrail = true,
+  className = '',
 }) => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const mousePos = useRef({ x: -200, y: -200 });
-  const isHovered = useRef(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const [cursorMode, setCursorMode] = useState<CursorMode>('default');
-  const [isClicking, setIsClicking] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const dotRef = useRef<HTMLDivElement | null>(null);
+  const lensRef = useRef<HTMLDivElement | null>(null);
 
-  // Array of trailing glass points with physics (spring/damping)
-  const points = useRef<CursorPoint[]>([]);
-  // History for lush digital brush stroke trail
-  const brushHistory = useRef<{ x: number; y: number; time: number }[]>([]);
+  // Position tracking (target from pointermove, cur for smooth lerp follow)
+  const pos = useRef({
+    targetX: -200,
+    targetY: -200,
+    curX: -200,
+    curY: -200,
+    scale: 1,
+    targetScale: 1,
+    isHovering: false,
+    isClicking: false,
+    isVisible: false,
+  });
 
   useEffect(() => {
-    // Touch detection
+    // 1. Disable on touch devices
     if (window.matchMedia('(pointer: coarse)').matches) {
-      setIsTouchDevice(true);
       return;
     }
 
-    // Initialize trail points
-    points.current = Array.from({ length: trailLength }, () => ({
-      x: -200,
-      y: -200,
-      vx: 0,
-      vy: 0,
-    }));
-
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d', { alpha: true });
-    if (!ctx) return;
+    const dot = dotRef.current;
+    const lens = lensRef.current;
+    if (!dot || !lens) return;
 
     let animId: number;
 
-    const handleResize = () => {
-      if (canvas) {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize, { passive: true });
+    const onPointerMove = (e: PointerEvent) => {
+      pos.current.targetX = e.clientX;
+      pos.current.targetY = e.clientY;
 
-    const handlePointerMove = (e: PointerEvent) => {
-      mousePos.current.x = e.clientX;
-      mousePos.current.y = e.clientY;
-      if (!isHovered.current) {
-        isHovered.current = true;
-        setIsVisible(true);
+      if (!pos.current.isVisible) {
+        pos.current.curX = e.clientX;
+        pos.current.curY = e.clientY;
+        pos.current.isVisible = true;
+        dot.style.opacity = '1';
+        lens.style.opacity = '1';
       }
 
-      // Record brush history point
-      brushHistory.current.push({
-        x: e.clientX,
-        y: e.clientY,
-        time: performance.now(),
-      });
-
-      // Interactive element detection
+      // Check if hovering clickable/interactive target
       const target = e.target as HTMLElement | null;
       if (target) {
-        const isTextInput =
-          target.tagName === 'INPUT' ||
-          target.tagName === 'TEXTAREA' ||
-          target.isContentEditable ||
-          target.closest('input') !== null ||
-          target.closest('textarea') !== null;
-
-        if (isTextInput) {
-          setCursorMode('text');
-          return;
-        }
-
-        const isInteractive =
+        const isClickable =
           target.tagName === 'BUTTON' ||
           target.tagName === 'A' ||
+          target.tagName === 'INPUT' ||
           target.tagName === 'SELECT' ||
+          target.tagName === 'TEXTAREA' ||
           target.getAttribute('role') === 'button' ||
           target.closest('button') !== null ||
           target.closest('a') !== null ||
           target.closest('[role="button"]') !== null ||
-          target.classList.contains('cursor-pointer') ||
           target.closest('.cursor-pointer') !== null ||
           target.closest('.haven-card-interactive') !== null ||
-          target.closest('.haven-btn-beam') !== null;
+          target.closest('.haven-btn-beam') !== null ||
+          target.classList.contains('cursor-pointer');
 
-        if (isInteractive) {
-          setCursorMode('pointer');
-          return;
-        }
-
-        setCursorMode('default');
+        pos.current.isHovering = Boolean(isClickable);
       }
     };
 
-    const handlePointerDown = () => setIsClicking(true);
-    const handlePointerUp = () => setIsClicking(false);
-    const handleMouseLeave = () => {
-      isHovered.current = false;
-      setIsVisible(false);
-    };
-    const handleMouseEnter = () => {
-      isHovered.current = true;
-      setIsVisible(true);
+    const onPointerDown = () => {
+      pos.current.isClicking = true;
     };
 
-    window.addEventListener('pointermove', handlePointerMove, { passive: true });
-    window.addEventListener('pointerdown', handlePointerDown);
-    window.addEventListener('pointerup', handlePointerUp);
-    document.addEventListener('mouseleave', handleMouseLeave);
-    document.addEventListener('mouseenter', handleMouseEnter);
+    const onPointerUp = () => {
+      pos.current.isClicking = false;
+    };
 
-    // Animation Render Loop
+    const onMouseLeave = () => {
+      pos.current.isVisible = false;
+      if (dot && lens) {
+        dot.style.opacity = '0';
+        lens.style.opacity = '0';
+      }
+    };
+
+    const onMouseEnter = () => {
+      pos.current.isVisible = true;
+      if (dot && lens) {
+        dot.style.opacity = '1';
+        lens.style.opacity = '1';
+      }
+    };
+
+    window.addEventListener('pointermove', onPointerMove, { passive: true });
+    window.addEventListener('pointerdown', onPointerDown, { passive: true });
+    window.addEventListener('pointerup', onPointerUp, { passive: true });
+    document.addEventListener('mouseleave', onMouseLeave);
+    document.addEventListener('mouseenter', onMouseEnter);
+
+    // 2. High-performance 60-120 FPS hardware-accelerated Lerp loop
+    const lerp = (start: number, end: number, factor: number) => start + (end - start) * factor;
+
     const render = () => {
-      const now = performance.now();
+      const p = pos.current;
 
-      // Physics update: lead point follows mouse with dampening
-      const targetX = mousePos.current.x;
-      const targetY = mousePos.current.y;
+      // Smooth liquid glass easing
+      p.curX = lerp(p.curX, p.targetX, 0.22);
+      p.curY = lerp(p.curY, p.targetY, 0.22);
 
-      const p0 = points.current[0];
-      if (p0) {
-        const ax = (targetX - p0.x) * (1 - dampening);
-        const ay = (targetY - p0.y) * (1 - dampening);
-        p0.vx = (p0.vx + ax) * dampening;
-        p0.vy = (p0.vy + ay) * dampening;
-        p0.x += p0.vx;
-        p0.y += p0.vy;
-      }
+      // Target scale computation (Click squash & hover expand)
+      let targetScale = 1;
+      if (p.isHovering) targetScale = 1.45;
+      if (p.isClicking) targetScale *= 0.85;
 
-      // Successive points follow predecessor with smooth cascading dampening
-      for (let i = 1; i < points.current.length; i++) {
-        const prev = points.current[i - 1];
-        const curr = points.current[i];
-        const ax = (prev.x - curr.x) * (1 - dampening * 0.92);
-        const ay = (prev.y - curr.y) * (1 - dampening * 0.92);
-        curr.vx = (curr.vx + ax) * (dampening * 0.88);
-        curr.vy = (curr.vy + ay) * (dampening * 0.88);
-        curr.x += curr.vx;
-        curr.y += curr.vy;
-      }
+      p.scale = lerp(p.scale, targetScale, 0.2);
 
-      // Filter brush history older than 360ms
-      brushHistory.current = brushHistory.current.filter((p) => now - p.time < 360);
+      // Instant center photon dot
+      dot.style.transform = `translate3d(${p.targetX}px, ${p.targetY}px, 0) translate(-50%, -50%) scale(${p.isClicking ? 0.7 : 1})`;
 
-      // Draw Brush Stroke on Canvas
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Smooth floating liquid glass lens
+      lens.style.transform = `translate3d(${p.curX}px, ${p.curY}px, 0) translate(-50%, -50%) scale(${p.scale})`;
 
-      if (showBrushTrail && brushHistory.current.length > 2) {
-        ctx.save();
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
-
-        // Draw lush, thick digital brush stroke (cyan/emerald blend)
-        for (let i = 1; i < brushHistory.current.length; i++) {
-          const pt1 = brushHistory.current[i - 1];
-          const pt2 = brushHistory.current[i];
-          const age = (now - pt2.time) / 360; // 0 = newest, 1 = oldest
-          const opacity = Math.max(0, (1 - age) * 0.7);
-          // Lush thick stroke (width 16px down to 3px)
-          const strokeWidth = Math.max(2, (1 - age) * 16);
-
-          ctx.beginPath();
-          ctx.moveTo(pt1.x, pt1.y);
-          ctx.lineTo(pt2.x, pt2.y);
-          ctx.strokeStyle = color.startsWith('#') ? `${color}${Math.round(opacity * 255).toString(16).padStart(2, '0')}` : color;
-          ctx.lineWidth = strokeWidth;
-          ctx.shadowBlur = 10;
-          ctx.shadowColor = color;
-          ctx.stroke();
-        }
-        ctx.restore();
+      if (p.isHovering) {
+        lens.style.borderColor = 'rgba(52, 211, 153, 0.75)';
+        lens.style.boxShadow = '0 0 25px rgba(52, 211, 153, 0.45), inset 0 0 12px rgba(52, 211, 153, 0.25)';
+      } else {
+        lens.style.borderColor = 'rgba(52, 211, 153, 0.35)';
+        lens.style.boxShadow = '0 0 16px rgba(52, 211, 153, 0.25), inset 0 0 8px rgba(255, 255, 255, 0.15)';
       }
 
       animId = requestAnimationFrame(render);
@@ -204,130 +138,39 @@ export const GlassCursor: React.FC<GlassCursorProps> = ({
 
     return () => {
       cancelAnimationFrame(animId);
-      window.removeEventListener('resize', handleResize);
-      window.removeEventListener('pointermove', handlePointerMove);
-      window.removeEventListener('pointerdown', handlePointerDown);
-      window.removeEventListener('pointerup', handlePointerUp);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-      document.removeEventListener('mouseenter', handleMouseEnter);
+      window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointerdown', onPointerDown);
+      window.removeEventListener('pointerup', onPointerUp);
+      document.removeEventListener('mouseleave', onMouseLeave);
+      document.removeEventListener('mouseenter', onMouseEnter);
     };
-  }, [dampening, trailLength, color, showBrushTrail]);
-
-  if (isTouchDevice) return null;
+  }, []);
 
   return (
-    <>
-      {/* Canvas for Digital Brush Stroke Trail */}
-      <canvas
-        ref={canvasRef}
-        className="fixed inset-0 pointer-events-none z-[999990] transition-opacity duration-300"
-        style={{ opacity: isVisible ? 1 : 0 }}
-      />
-
-      {/* Glass Cursor Trail Nodes (13 Refraction & Blur Lenses) */}
+    <div
+      className={`fixed inset-0 pointer-events-none z-[9999] overflow-hidden ${className}`}
+      aria-hidden="true"
+    >
+      {/* 1. Fluid Liquid Optical Glass Lens (Refractive Backdrop Blur & Specular Ring) */}
       <div
-        className="fixed inset-0 pointer-events-none z-[999995] overflow-hidden"
-        style={{ opacity: isVisible ? 1 : 0 }}
-      >
-        {points.current.map((pt, idx) => {
-          // Decreasing size along the 13 nodes (36px down to 8px)
-          const progress = idx / (trailLength - 1);
-          const size = Math.max(8, 36 * (1 - progress * 0.75));
-          const opacity = Math.max(0.08, (1 - progress) * 0.7);
-
-          return (
-            <div
-              key={idx}
-              className="absolute rounded-full pointer-events-none transition-transform duration-75"
-              style={{
-                width: `${size}px`,
-                height: `${size}px`,
-                transform: `translate3d(${pt.x - size / 2}px, ${pt.y - size / 2}px, 0)`,
-                backdropFilter: 'blur(8px) saturate(140%)',
-                WebkitBackdropFilter: 'blur(8px) saturate(140%)',
-                background: `radial-gradient(circle at 35% 35%, rgba(255, 255, 255, ${opacity * 0.6}), rgba(45, 212, 191, ${opacity * 0.25}))`,
-                border: `1px solid rgba(255, 255, 255, ${opacity * 0.4})`,
-                boxShadow: `inset 0 0 ${6 * (1 - progress)}px rgba(255, 255, 255, 0.4), 0 4px 16px rgba(45, 212, 191, ${opacity * 0.3})`,
-                willChange: 'transform',
-              }}
-            />
-          );
-        })}
-      </div>
-
-      {/* Custom Biophilic Sanctuary Lead Cursor Head */}
-      <div
-        className="fixed top-0 left-0 pointer-events-none z-[999999] transition-opacity duration-200"
+        ref={lensRef}
+        className="fixed top-0 left-0 w-9 h-9 rounded-full pointer-events-none opacity-0 transition-opacity duration-200 backdrop-blur-[10px] backdrop-saturate-[180%] bg-emerald-500/10 border border-emerald-400/35 shadow-[0_0_18px_rgba(52,211,153,0.3)] will-change-transform"
         style={{
-          opacity: isVisible ? 1 : 0,
-          transform: `translate3d(${mousePos.current.x}px, ${mousePos.current.y}px, 0)`,
-          willChange: 'transform',
+          transform: 'translate3d(-200px, -200px, 0) translate(-50%, -50%)',
         }}
       >
-        {cursorMode === 'text' && (
-          <div className="relative -top-3 -left-1.5 flex flex-col items-center">
-            <div className="w-3 h-[1.5px] bg-cyan-300 shadow-[0_0_8px_#2dd4bf]" />
-            <div className="w-[1.5px] h-5 bg-cyan-400 shadow-[0_0_8px_#10b981]" />
-            <div className="w-3 h-[1.5px] bg-cyan-300 shadow-[0_0_8px_#2dd4bf]" />
-          </div>
-        )}
-
-        {cursorMode === 'pointer' && (
-          <div
-            className={`relative -top-3 -left-3 transition-transform duration-150 ${
-              isClicking ? 'scale-75' : 'scale-100'
-            }`}
-          >
-            <div className="absolute -inset-2 rounded-full bg-cyan-400/20 blur-[8px] animate-ping" />
-            <div className="relative w-7 h-7 rounded-full border border-cyan-300/80 bg-cyan-500/20 backdrop-blur-[4px] flex items-center justify-center shadow-[0_0_15px_rgba(45,212,191,0.6)]">
-              <div className="w-2 h-2 rounded-full bg-white shadow-[0_0_8px_#fff]" />
-            </div>
-          </div>
-        )}
-
-        {cursorMode === 'default' && (
-          <div
-            className={`relative -top-1.5 -left-1.5 transition-transform duration-150 ${
-              isClicking ? 'scale-75' : 'scale-100'
-            }`}
-          >
-            <div className="absolute -inset-1.5 rounded-full bg-emerald-400/25 blur-[6px]" />
-            {/* Stylized Leaf SVG */}
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="relative drop-shadow-[0_0_8px_rgba(45,212,191,0.9)]"
-            >
-              <path
-                d="M3 21C3 21 4 12 12 6C17 2 21 3 21 3C21 3 22 7 18 12C12 20 3 21 3 21Z"
-                fill="url(#glassLeafGradient)"
-                stroke="#2dd4bf"
-                strokeWidth="1.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M3 21C8 16 14 11 21 3"
-                stroke="#a7f3d0"
-                strokeWidth="1"
-                strokeLinecap="round"
-              />
-              <circle cx="21" cy="3" r="1.5" fill="#ffffff" />
-              <defs>
-                <linearGradient id="glassLeafGradient" x1="3" y1="21" x2="21" y2="3" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#059669" stopOpacity="0.85" />
-                  <stop offset="50%" stopColor="#10B981" stopOpacity="0.9" />
-                  <stop offset="100%" stopColor="#2dd4bf" stopOpacity="0.95" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-        )}
+        {/* Optical Specular Glint Crescent */}
+        <div className="absolute top-1 left-2 w-3.5 h-1.5 rounded-full bg-white/40 blur-[0.6px] -rotate-12 pointer-events-none" />
       </div>
-    </>
+
+      {/* 2. Pinpoint Center Photon Dot (Zero Lag, Instant Tracking) */}
+      <div
+        ref={dotRef}
+        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full pointer-events-none opacity-0 transition-opacity duration-200 bg-emerald-400 shadow-[0_0_8px_#34d399] will-change-transform"
+        style={{
+          transform: 'translate3d(-200px, -200px, 0) translate(-50%, -50%)',
+        }}
+      />
+    </div>
   );
 };
-export default GlassCursor;

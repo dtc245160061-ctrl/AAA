@@ -225,31 +225,44 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
                   <button
                     key={unit.id}
                     onClick={() => setSelectedUnitId(unit.id)}
-                    className={`w-full max-w-[220px] p-2.5 rounded-2xl transition-all duration-300 flex items-center gap-2.5 text-left shadow-2xl backdrop-blur-xl group hover:scale-105 active:scale-95 ${
-                      isSelected
-                        ? 'bg-emerald-100 dark:bg-emerald-950/95 border-2 border-emerald-500 dark:border-emerald-400 ring-4 ring-emerald-500/30 z-20 shadow-emerald-500/20'
-                        : 'bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700 hover:border-emerald-500/60 z-10'
+                    className={`w-full max-w-[220px] p-[2px] rounded-2xl transition-all duration-300 relative overflow-hidden group shadow-xl hover:scale-105 active:scale-95 text-left ${
+                      isSelected ? 'z-20 scale-105 ring-1 ring-emerald-400/50' : 'z-10'
                     }`}
                   >
-                    <div className={`p-2 rounded-xl flex items-center justify-center shrink-0 ${
-                      unit.pcccReport?.inspectionCertificateStatus === 'certified'
-                        ? 'bg-emerald-100 dark:bg-emerald-500/20 text-emerald-800 dark:text-emerald-400'
-                        : 'bg-amber-100 dark:bg-amber-500/20 text-amber-800 dark:text-amber-400'
-                    }`}>
-                      <Building2 className="w-4 h-4" />
+                    {/* Pure 2px running border beam - strictly on border, NO face light */}
+                    <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+                      <div
+                        className={`animate-spin-beam pointer-events-none transition-opacity duration-300 ${
+                          isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                        }`}
+                      />
                     </div>
 
-                    <div className="space-y-0.5 min-w-0 flex-1">
-                      <div className="flex items-center gap-1">
-                        <span className="font-serif text-xs font-bold text-slate-950 dark:text-slate-100 truncate">
-                          {unit.name || unit.id}
-                        </span>
-                        {unit.floodingRisk === 'Low' && activeLayers.floodRisk && (
-                          <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" title="Không ngập" />
-                        )}
+                    <div className={`relative z-10 w-full h-full p-2.5 rounded-[14px] flex items-center gap-2.5 bg-[#0B101B] [data-theme='light']_:bg-white border ${
+                      isSelected
+                        ? 'border-emerald-500 shadow-lg shadow-emerald-500/20'
+                        : 'border-slate-800 [data-theme="light"]_:border-slate-300 group-hover:border-emerald-500/40'
+                    }`}>
+                      <div className={`p-2 rounded-xl flex items-center justify-center shrink-0 ${
+                        unit.pcccReport?.inspectionCertificateStatus === 'certified'
+                          ? 'bg-emerald-500/20 text-emerald-400'
+                          : 'bg-amber-500/20 text-amber-400'
+                      }`}>
+                        <Building2 className="w-4 h-4" />
                       </div>
-                      <div className="text-[11px] font-mono font-bold text-emerald-700 dark:text-emerald-400">
-                        {trueCostM.toFixed(1)}Tr/tháng
+
+                      <div className="space-y-0.5 min-w-0 flex-1">
+                        <div className="flex items-center gap-1">
+                          <span className="font-serif text-xs font-bold text-slate-100 [data-theme='light']_:text-slate-900 truncate">
+                            {unit.name || unit.id}
+                          </span>
+                          {unit.floodingRisk === 'Low' && activeLayers.floodRisk && (
+                            <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" title="Không ngập" />
+                          )}
+                        </div>
+                        <div className="text-[11px] font-mono font-bold text-emerald-400 [data-theme='light']_:text-emerald-700">
+                          {trueCostM.toFixed(1)}Tr/tháng
+                        </div>
                       </div>
                     </div>
                   </button>
@@ -284,7 +297,11 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
         {/* Right Selected Unit Deep-Dive Card (5 cols) */}
         <div className="lg:col-span-5 space-y-6">
           {activeUnit ? (
-            <div className="p-6 md:p-8 rounded-3xl liquid-glass-origin border border-emerald-500/40 space-y-6 shadow-2xl backdrop-blur-2xl">
+            <div className="group relative p-[2px] rounded-3xl overflow-hidden shadow-2xl transition-all">
+              <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+                <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+              </div>
+              <div className="relative z-10 w-full h-full p-6 md:p-8 rounded-[22px] bg-[#0B101B] [data-theme='light']_:bg-white border border-emerald-500/40 space-y-6">
               {/* Unit Title & District */}
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
@@ -380,7 +397,8 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
-          ) : (
+          </div>
+        ) : (
             <div className="p-8 rounded-3xl atmospheric-panel border border-slate-800 text-center">
               <p className="text-xs font-mono text-slate-400">Chọn một căn hộ trên bản đồ để xem báo cáo an tâm.</p>
             </div>
