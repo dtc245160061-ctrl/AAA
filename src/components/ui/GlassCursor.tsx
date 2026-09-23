@@ -48,7 +48,7 @@ export const GlassCursor: React.FC<GlassCursorProps> = ({
         lens.style.opacity = '1';
       }
 
-      // Check if hovering clickable/interactive target
+      // Check if hovering clickable/interactive target with a single combined query
       const target = e.target as HTMLElement | null;
       if (target) {
         const isClickable =
@@ -57,14 +57,7 @@ export const GlassCursor: React.FC<GlassCursorProps> = ({
           target.tagName === 'INPUT' ||
           target.tagName === 'SELECT' ||
           target.tagName === 'TEXTAREA' ||
-          target.getAttribute('role') === 'button' ||
-          target.closest('button') !== null ||
-          target.closest('a') !== null ||
-          target.closest('[role="button"]') !== null ||
-          target.closest('.cursor-pointer') !== null ||
-          target.closest('.haven-card-interactive') !== null ||
-          target.closest('.haven-btn-beam') !== null ||
-          target.classList.contains('cursor-pointer');
+          Boolean(target.closest('button, a, [role="button"], .cursor-pointer, .haven-btn-beam, .haven-card-interactive'));
 
         pos.current.isHovering = Boolean(isClickable);
       }
@@ -120,15 +113,15 @@ export const GlassCursor: React.FC<GlassCursorProps> = ({
       // Instant center photon dot
       dot.style.transform = `translate3d(${p.targetX}px, ${p.targetY}px, 0) translate(-50%, -50%) scale(${p.isClicking ? 0.7 : 1})`;
 
-      // Smooth floating liquid glass lens
+      // Smooth floating liquid luminous lens (Zero composite lag)
       lens.style.transform = `translate3d(${p.curX}px, ${p.curY}px, 0) translate(-50%, -50%) scale(${p.scale})`;
 
       if (p.isHovering) {
-        lens.style.borderColor = 'rgba(52, 211, 153, 0.75)';
-        lens.style.boxShadow = '0 0 25px rgba(52, 211, 153, 0.45), inset 0 0 12px rgba(52, 211, 153, 0.25)';
+        lens.style.borderColor = 'rgba(52, 211, 153, 0.85)';
+        lens.style.boxShadow = '0 0 20px rgba(52, 211, 153, 0.5), inset 0 0 10px rgba(52, 211, 153, 0.3)';
       } else {
-        lens.style.borderColor = 'rgba(52, 211, 153, 0.35)';
-        lens.style.boxShadow = '0 0 16px rgba(52, 211, 153, 0.25), inset 0 0 8px rgba(255, 255, 255, 0.15)';
+        lens.style.borderColor = 'rgba(52, 211, 153, 0.45)';
+        lens.style.boxShadow = '0 0 14px rgba(52, 211, 153, 0.25), inset 0 0 6px rgba(255, 255, 255, 0.2)';
       }
 
       animId = requestAnimationFrame(render);
@@ -151,16 +144,16 @@ export const GlassCursor: React.FC<GlassCursorProps> = ({
       className={`fixed inset-0 pointer-events-none z-[9999] overflow-hidden ${className}`}
       aria-hidden="true"
     >
-      {/* 1. Fluid Liquid Optical Glass Lens (Refractive Backdrop Blur & Specular Ring) */}
+      {/* 1. Fluid Liquid Luminous Lens (Hardware accelerated, Zero GPU rasterization lag) */}
       <div
         ref={lensRef}
-        className="fixed top-0 left-0 w-9 h-9 rounded-full pointer-events-none opacity-0 transition-opacity duration-200 backdrop-blur-[10px] backdrop-saturate-[180%] bg-emerald-500/10 border border-emerald-400/35 shadow-[0_0_18px_rgba(52,211,153,0.3)] will-change-transform"
+        className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none opacity-0 transition-opacity duration-200 bg-emerald-500/10 border border-emerald-400/40 shadow-[0_0_16px_rgba(52,211,153,0.35)] will-change-transform"
         style={{
           transform: 'translate3d(-200px, -200px, 0) translate(-50%, -50%)',
         }}
       >
         {/* Optical Specular Glint Crescent */}
-        <div className="absolute top-1 left-2 w-3.5 h-1.5 rounded-full bg-white/40 blur-[0.6px] -rotate-12 pointer-events-none" />
+        <div className="absolute top-1 left-1.5 w-3 h-1.5 rounded-full bg-white/50 -rotate-12 pointer-events-none" />
       </div>
 
       {/* 2. Pinpoint Center Photon Dot (Zero Lag, Instant Tracking) */}

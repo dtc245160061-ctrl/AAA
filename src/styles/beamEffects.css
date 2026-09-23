@@ -302,24 +302,31 @@ input[type="radio"],
   cursor: pointer !important;
 }
 
-/* ── 5. ROTATING BEAM QUAD (Panels, Cards, Search Bars - Soft Gaussian Diffusion) ── */
+/* ── 5. ROTATING BEAM QUAD (Panels, Cards, Search Bars - Ultra-Optimized GPU Pipeline) ── */
 .animate-spin-beam {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 400%;
-  height: 400%;
+  width: 300%;
+  height: 300%;
   aspect-ratio: 1 / 1;
   pointer-events: none;
   background: var(--beam-gradient-master);
   animation: haven-spin-beam var(--beam-speed-card) linear infinite;
-  filter: blur(2.5px);
-  -webkit-filter: blur(2.5px);
+  animation-play-state: paused;
   will-change: transform;
-  transform: translate(-50%, -50%) rotate(0deg);
-  -webkit-transform: translate(-50%, -50%) rotate(0deg);
+  transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  -webkit-transform: translate3d(-50%, -50%, 0) rotate(0deg);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+}
+
+/* Run spin beam animation smoothly on hover only (Zero CPU/GPU idle cost) */
+.group:hover .animate-spin-beam,
+*:hover > .animate-spin-beam,
+.animate-spin-beam-active,
+.animate-spin-beam:hover {
+  animation-play-state: running;
 }
 
 /* ── 6. FLOATING AI CHAT BUTTON BEAM (Soft Circular Aura, No Sharp Jitter) ── */
