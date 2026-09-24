@@ -8,6 +8,7 @@ import {
   Award
 } from 'lucide-react';
 import type { LandlordProfile, ApartmentUnit } from '../types/apartment';
+import { SmartImage } from './common/SmartImage';
 
 interface LandlordProfileModalProps {
   landlord: LandlordProfile;
@@ -220,10 +221,13 @@ export const LandlordProfileModal: React.FC<LandlordProfileModalProps> = ({
                   }}
                   className="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/50 transition-all cursor-pointer flex gap-3 group"
                 >
-                  <img
+                  <SmartImage
                     src={unit.images[0]}
                     alt={unit.name || unit.id}
-                    className="w-24 h-24 rounded-xl object-cover shrink-0"
+                    width={200}
+                    quality={70}
+                    containerClassName="w-24 h-24 rounded-xl shrink-0"
+                    className="w-full h-full object-cover"
                   />
                   <div className="space-y-1 overflow-hidden">
                     <h5 className="font-serif font-bold text-sm text-slate-100 line-clamp-1 group-hover:text-emerald-300 transition-colors">

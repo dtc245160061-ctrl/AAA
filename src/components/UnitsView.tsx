@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import type { ApartmentUnit, UnitStatus } from '../types/apartment';
 import { normalizeCity } from '../data/apartmentStore';
+import { SmartImage } from './common/SmartImage';
 
 const ADMIN_CITIES = ['Tất Cả', 'Hà Nội', 'TP. Hồ Chí Minh', 'Đà Nẵng', 'Thái Nguyên', 'Bắc Ninh', 'Hải Phòng', 'Bình Dương'] as const;
 
@@ -194,15 +195,12 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                   className="relative h-64 sm:h-72 bg-slate-900 cursor-pointer overflow-hidden rounded-t-[22.5px]"
                   onClick={() => onSelectUnit(unit.id)}
                 >
-                  <img
-                    src={unit.images[0]?.replace('w=1200', 'w=600&q=75') || unit.images[0]}
+                  <SmartImage
+                    src={unit.images[0]}
                     alt={unit.name || unit.id}
-                    loading="lazy"
-                    decoding="async"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=75&w=600';
-                    }}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    width={600}
+                    quality={75}
+                    className="transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent pointer-events-none" />
 

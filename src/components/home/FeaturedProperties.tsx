@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { MapPin, ArrowRight, Bookmark, CheckCircle2, Zap, CloudRain, Car, VolumeX, Sparkles, ArrowDown } from 'lucide-react';
 import type { ApartmentUnit } from '../../types/apartment';
 import { calculateMatchScore } from '../../services/aiAdvisorService';
+import { SmartImage } from '../common/SmartImage';
 
 export type FeatureBenefitKey = 'power' | 'flood' | 'parking' | 'quiet';
 
@@ -194,12 +195,14 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
                     onSelectUnit(unit.id);
                   }}
                 >
-                  <img
+                  <SmartImage
                     src={unit.images[0]}
                     alt={unit.name || unit.id}
-                    className="w-full h-full object-cover transition-transform duration-300"
+                    width={600}
+                    quality={75}
+                    className="transition-transform duration-300"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/20 to-transparent pointer-events-none" />
 
                   {/* Top: AI Score + Focal Badge + Bookmark */}
                   <div className="absolute top-3 left-3 right-3 flex items-center justify-between">

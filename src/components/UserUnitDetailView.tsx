@@ -26,6 +26,7 @@ import {
   Check
 } from 'lucide-react';
 import type { ApartmentUnit, LandlordProfile } from '../types/apartment';
+import { SmartImage } from './common/SmartImage';
 
 interface UserUnitDetailViewProps {
   unit: ApartmentUnit;
@@ -192,10 +193,13 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         {/* Main Hero Photo (Takes 7 cols) */}
         <div className="lg:col-span-7 relative h-[360px] sm:h-[400px] md:h-[440px] rounded-3xl overflow-hidden border border-slate-800 bg-slate-900 shadow-2xl group">
-          <img
+          <SmartImage
             src={galleryImages[selectedPhotoIdx] || galleryImages[0]}
             alt={unit.name || unit.id}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            width={1200}
+            quality={80}
+            priority={true}
+            className="transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
           
@@ -229,13 +233,15 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
                   : 'border-slate-800 opacity-80 hover:opacity-100 hover:border-slate-600'
               }`}
             >
-              <img 
+              <SmartImage 
                 src={imgUrl} 
                 alt={`Ảnh ${idx + 1}`} 
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" 
+                width={480}
+                quality={70}
+                className="transition-transform duration-300 group-hover:scale-105" 
               />
-              <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors" />
-              <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-slate-950/80 backdrop-blur-sm text-[10px] font-mono text-slate-300 border border-slate-700">
+              <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors pointer-events-none" />
+              <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-slate-950/80 backdrop-blur-sm text-[10px] font-mono text-slate-300 border border-slate-700 pointer-events-none">
                 #{idx + 1}
               </span>
             </div>

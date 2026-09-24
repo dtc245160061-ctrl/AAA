@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import type { ApartmentUnit } from '../types/apartment';
 import { ApartmentStore, normalizeCity } from '../data/apartmentStore';
+import { SmartImage } from './common/SmartImage';
 
 interface NeighborhoodGuideViewProps {
   units: ApartmentUnit[];
@@ -350,16 +351,14 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
                       className="relative h-64 sm:h-72 bg-slate-900 cursor-pointer overflow-hidden rounded-t-[22.5px]"
                       onClick={() => onSelectUnit(unit.id)}
                     >
-                      <img
+                      <SmartImage
                         src={unit.images[0]}
                         alt={unit.name || unit.id}
-                        loading="lazy"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200';
-                        }}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        width={600}
+                        quality={75}
+                        className="transition-transform duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent pointer-events-none" />
 
                       {/* Top Badges Overlay */}
                       <div className="absolute top-3 left-3 right-3 flex items-start justify-between gap-2 pointer-events-none">

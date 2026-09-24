@@ -353,7 +353,7 @@ export const ADDON_SERVICES: AddonService[] = [
 ];
 
 const STORAGE_KEYS = {
-  UNITS: 'haven_units_data_v6',
+  UNITS: 'haven_units_data_v7',
   LEADS: 'haven_rental_leads_v4',
   CONTRACTS: 'haven_lease_contracts_v4',
   INVOICES: 'haven_rental_invoices_v4',

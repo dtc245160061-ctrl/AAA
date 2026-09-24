@@ -18,6 +18,7 @@ import { HeroSection } from './home/HeroSection';
 import { FeaturedProperties, type FeatureBenefitKey } from './home/FeaturedProperties';
 import { GuidedPath } from './home/GuidedPath';
 import { FeatureStrip } from './home/FeatureStrip';
+import { SmartImage } from './common/SmartImage';
 
 interface UserHomeViewProps {
   units: ApartmentUnit[];
@@ -346,10 +347,12 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
               <div className="animate-spin-beam pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
             </div>
             <div className="relative z-10 w-full h-full rounded-[21px] overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=800"
+              <SmartImage
+                src="https://images.unsplash.com/photo-1509042239860-f550ce710b93"
                 alt="Hà Nội"
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                width={800}
+                quality={75}
+                className="transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent pointer-events-none" />
               <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-emerald-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -372,10 +375,12 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
               <div className="animate-spin-beam pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
             </div>
             <div className="relative z-10 w-full h-full rounded-[21px] overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&q=80&w=800"
+              <SmartImage
+                src="https://images.unsplash.com/photo-1583417319070-4a69db38a482"
                 alt="TP. Hồ Chí Minh"
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                width={800}
+                quality={75}
+                className="transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent pointer-events-none" />
               <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-emerald-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -398,10 +403,12 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
               <div className="animate-spin-beam pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
             </div>
             <div className="relative z-10 w-full h-full rounded-[21px] overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&q=80&w=800"
+              <SmartImage
+                src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b"
                 alt="Đà Nẵng"
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                width={800}
+                quality={75}
+                className="transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent pointer-events-none" />
               <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-emerald-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
