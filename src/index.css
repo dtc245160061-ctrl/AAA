@@ -501,5 +501,4 @@
 .apartment-card {
   content-visibility: auto;
   contain-intrinsic-size: 380px;
-  will-change: transform;
 }

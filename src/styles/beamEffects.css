@@ -307,20 +307,30 @@ input[type="radio"],
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 300%;
-  height: 300%;
+  width: 220%;
+  height: 220%;
+  max-width: 800px;
+  max-height: 800px;
   aspect-ratio: 1 / 1;
   pointer-events: none;
   background: var(--beam-gradient-master);
   animation: haven-spin-beam var(--beam-speed-card) linear infinite !important;
   animation-play-state: running !important;
   opacity: 0.85 !important;
-  will-change: transform;
-  transform: translate3d(-50%, -50%, 0) rotate(0deg);
-  -webkit-transform: translate3d(-50%, -50%, 0) rotate(0deg);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  transform: translate(-50%, -50%) rotate(0deg);
+  -webkit-transform: translate(-50%, -50%) rotate(0deg);
+  contain: strict;
   transition: opacity 0.3s ease;
+}
+
+/* Universal bulletproof clipping for any container harboring beam effects */
+:has(> .animate-spin-beam),
+:has(> * > .animate-spin-beam),
+.beam-container {
+  isolation: isolate;
+  contain: paint;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
 }
 
 /* Enhanced bloom on hover */

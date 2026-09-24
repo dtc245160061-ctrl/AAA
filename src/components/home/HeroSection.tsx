@@ -103,10 +103,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
   };
 
   return (
-    <section className="relative rounded-3xl p-[2px] overflow-hidden shadow-2xl group transition-all">
-      {/* Dual Orbiting Clockwise Continuous Light Beams */}
-      <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
-
+    <section className="relative rounded-3xl p-[1.5px] overflow-hidden shadow-2xl border border-emerald-500/30 bg-gradient-to-b from-emerald-500/15 via-slate-950/80 to-slate-950 group transition-all">
       <div className="relative z-10 w-full h-full rounded-[22px] overflow-hidden min-h-[520px] md:min-h-[560px] flex flex-col justify-between p-6 sm:p-8 md:p-12 lg:p-14 border border-[var(--haven-border)] bg-slate-950 dark:bg-slate-950">
         {/* Background: Real Architectural Luxury Residence + Layered Scrims */}
         <div className="absolute inset-0 z-0">

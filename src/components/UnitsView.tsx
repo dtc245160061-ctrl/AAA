@@ -84,9 +84,8 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
 
   return (
     <div className="space-y-8 text-left pb-16 animate-in fade-in duration-300">
-      {/* Header Banner with Radiating Luxury Aura */}
-      <div className="relative rounded-3xl p-[2.5px] overflow-hidden shadow-2xl group">
-        <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
+      {/* Header Banner with Luxury Ambient Border */}
+      <div className="relative rounded-3xl p-[1.5px] overflow-hidden shadow-2xl border border-emerald-500/30 bg-gradient-to-b from-emerald-500/10 via-transparent to-transparent group">
         <div className="p-6 sm:p-8 rounded-[22px] atmospheric-panel haven-sheen-sweep space-y-6 shadow-2xl backdrop-blur-2xl relative overflow-hidden">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="space-y-1">

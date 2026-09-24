@@ -349,9 +349,8 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
 
   return (
     <div className="space-y-6 pb-16 animate-in fade-in duration-300 relative">
-      {/* Section Header: Radiating Continuous Laser Beam Luxury Banner */}
-      <div className="relative rounded-3xl p-[2.5px] overflow-hidden shadow-2xl group">
-        <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
+      {/* Section Header: Luxury Ambient Banner */}
+      <div className="relative rounded-3xl p-[1.5px] overflow-hidden shadow-2xl border border-emerald-500/30 bg-gradient-to-b from-emerald-500/10 via-transparent to-transparent group">
         <div className="p-4 md:p-6 rounded-[22px] atmospheric-panel haven-sheen-sweep space-y-3.5 shadow-2xl backdrop-blur-2xl relative overflow-hidden">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 relative z-10">
             <div className="space-y-0.5">

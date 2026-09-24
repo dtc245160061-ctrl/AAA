@@ -89,11 +89,8 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
       {/* ═══ NEW: Product-Native Hero with Entrance Choreography ═══ */}
       <HeroSection onSearch={onNavigateSearch} />
 
-      {/* ═══ Sanctuary Tuning Dials with Thicker 2.5px Running Light Beam ═══ */}
-      <section className="relative rounded-3xl p-[2.5px] overflow-hidden shadow-2xl group transition-all">
-        {/* Dual Orbiting Clockwise Symmetrical Light Beams (Thicker, Richer Glow) */}
-        <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
-
+      {/* ═══ Sanctuary Tuning Dials with Luxury Ambient Border ═══ */}
+      <section className="relative rounded-3xl p-[1.5px] overflow-hidden shadow-2xl border border-emerald-500/30 bg-gradient-to-b from-emerald-500/10 via-transparent to-transparent group transition-all">
         <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel haven-sheen-sweep p-6 sm:p-8 md:p-10 space-y-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="space-y-1">
@@ -345,7 +342,9 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             onClick={() => onNavigateSearch("Hà Nội")}
             className="group relative rounded-3xl p-[2.5px] overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/25 hover:-translate-y-1.5 transition-all duration-300 h-64 sm:h-72"
           >
-            <div className="animate-spin-beam pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+              <div className="animate-spin-beam pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
+            </div>
             <div className="relative z-10 w-full h-full rounded-[21px] overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=800"
@@ -369,7 +368,9 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             onClick={() => onNavigateSearch("TP. Hồ Chí Minh")}
             className="group relative rounded-3xl p-[2.5px] overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/25 hover:-translate-y-1.5 transition-all duration-300 h-64 sm:h-72"
           >
-            <div className="animate-spin-beam pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+              <div className="animate-spin-beam pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
+            </div>
             <div className="relative z-10 w-full h-full rounded-[21px] overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&q=80&w=800"
@@ -393,7 +394,9 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             onClick={() => onNavigateSearch("Đà Nẵng")}
             className="group relative rounded-3xl p-[2.5px] overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/25 hover:-translate-y-1.5 transition-all duration-300 h-64 sm:h-72"
           >
-            <div className="animate-spin-beam pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+              <div className="animate-spin-beam pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
+            </div>
             <div className="relative z-10 w-full h-full rounded-[21px] overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&q=80&w=800"
