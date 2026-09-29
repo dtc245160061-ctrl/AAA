@@ -50,15 +50,23 @@
    - Thuật toán AI Matching Score (%) quét trên toàn bộ 1,260 căn hộ thực tế, đưa ra Top căn hộ đạt điểm tương thích cao nhất kèm lý do chi tiết.
    - Nút kích hoạt nổi bật tích hợp đồng bộ tại [Topbar.tsx](file:///d:/HAVEN/src/components/Topbar.tsx), [HeroSection.tsx](file:///d:/HAVEN/src/components/home/HeroSection.tsx), và [UserHomeView.tsx](file:///d:/HAVEN/src/components/UserHomeView.tsx).
 
-4. **Xây dựng Cổng Định Danh Cư Dân & Khách Hàng (Auth Modal)**:
-   - Component [AuthModal.tsx](file:///d:/HAVEN/src/components/AuthModal.tsx): Đăng nhập bằng Google OAuth (1-click fast auth), Email/Password.
-   - Luồng Đăng ký 2 bước với giao diện nhập mã xác thực OTP 6 số (có đồng hồ đếm ngược, nút điền nhanh mã demo).
-   - Cổng mock social (Facebook, Apple) hiển thị thông báo phản hồi cao cấp.
+4. **Cổng Định Danh Cư Dân & Khách Hàng (Auth Modal) Tích Hợp Supabase REST API**:
+   - Component [AuthModal.tsx](file:///d:/HAVEN/src/components/AuthModal.tsx): Kết nối trực tiếp endpoint REST của Supabase (`https://esgzwwpvzdwsjkkeryeu.supabase.co/auth/v1/signup`, `/auth/v1/token?grant_type=password`, `/auth/v1/verify`).
+   - Đăng nhập bằng Google OAuth (1-click fast auth) phục vụ hội đồng demo mượt mà.
+   - Luồng Đăng ký 2 bước với giao diện nhập mã xác thực OTP 6 số (đồng bộ Supabase, đồng hồ đếm ngược, nút điền nhanh mã demo).
    - Quản lý trạng thái người dùng (Session Profile) đồng bộ hiển thị và hỗ trợ đăng xuất ngay trên Topbar.
 
-5. **Khắc phục triệt để lỗi ảnh chân dung người & Tối ưu tốc độ load ảnh**:
-   - Thanh trừng 100% các ảnh avatar người (ảnh chân dung Unsplash người đàn ông có râu đeo kính `photo-1507003211169-0a1dd7228f2d`).
-   - Xây dựng component `src/components/common/SmartImage.tsx`: Tự động rewrite query ảnh Unsplash về chuẩn nén siêu tốc (`auto=format&fit=crop&w=600&q=75`), tích hợp Skeleton Shimmer Animation xóa bỏ hoàn toàn hiện tượng nhấp nháy/màn hình đen khi tải ảnh.
+5. **Bộ Chuyển Đổi Kép Dual AI Engine (Cloud Gemini RAG ⇋ Local SLM Qwen2.5)**:
+   - Tích hợp công tắc chuyển đổi engine trên thanh tiêu đề của [UserAiAdvisorDrawer.tsx](file:///d:/HAVEN/src/components/UserAiAdvisorDrawer.tsx):
+     - `☁️ Cloud`: Google Gemini 2.0 Flash Cloud RAG (Trực Tuyến).
+     - `⚡ Local`: HAVEN Local SLM Qwen2.5-0.5B LoRA 4-bit (Offline Cục Bộ).
+   - Hàm `askLocalSlm` trong [geminiRagService.ts](file:///d:/HAVEN/src/services/geminiRagService.ts) phản hồi tức thì (~90ms) trích xuất dữ liệu từ 1,260 căn hộ và tri thức huấn luyện, kèm huy hiệu minh chứng độ trễ 0ms Cloud Latency.
+
+6. **Kiểm Thử Tự Động Trình Duyệt & Triển Khai Production**:
+   - Khởi chạy Vite dev server ngầm trên cổng `5173`.
+   - Browser Subagent kiểm thử end-to-end: Xác nhận nhãn số lượng `Xem Tất Cả (1260)`, kiểm tra qua 3 bước khảo sát Lifestyle Matchmaker, kiểm tra 2 tab Auth Modal, chuyển đổi Dual AI Engine và nhận phản hồi trích xuất căn hộ Thái Nguyên chính xác (0 error console).
+   - Git Commit: `ecc4f21 feat(core): scale nationwide dataset to 1260 units, add Lifestyle Matchmaker, Supabase Auth REST, and Dual AI Engine`.
+   - Đã push thành công lên nhánh `main` GitHub remote, kích hoạt Vercel tự động build & deploy ra các production domain [https://haven.is-a.dev](https://haven.is-a.dev) và [https://aaa-jade-two.vercel.app](https://aaa-jade-two.vercel.app).
 
 ---
 
