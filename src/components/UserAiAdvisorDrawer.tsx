@@ -13,7 +13,6 @@ import {
 } from 'lucide-react';
 import type { ApartmentUnit } from '../types/apartment';
 import { 
-  askGeminiRag, 
   askLocalSlm,
   type RagRetrievalResult 
 } from '../services/geminiRagService';
@@ -44,12 +43,11 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
   units: _units,
   onApplyAiSearch
 }) => {
-  const [aiEngine, setAiEngine] = useState<'cloud' | 'local'>('cloud');
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'msg-1',
       sender: 'ai',
-      text: `Xin chào bạn! Tôi là Haven AI — Trợ lý Không Gian Sống HAVEN.\n\nBạn có thể hỏi bất kỳ điều gì, từ tư vấn 1,260 căn hộ toàn quốc (Thái Nguyên, Hà Nội, TP.HCM, Đà Nẵng...), tính toán chi phí True Cost, đến chính sách bảo chứng cọc Escrow nhé!`
+      text: `Xin chào bạn! Tôi là HAVEN Local AI — Trợ lý Không Gian Sống Cục Bộ vận hành trên mô hình SLM Qwen2.5 (100% Offline, bảo mật tối đa).\n\nBạn có thể hỏi tôi bất kỳ điều gì: tư vấn trong số 1,260 căn hộ toàn quốc (Thái Nguyên, Hà Nội, TP.HCM, Đà Nẵng...), tính toán chi phí True Cost, hoặc cơ chế bảo chứng cọc Escrow an toàn nhé!`
     }
   ]);
   const [inputValue, setInputValue] = useState('');
@@ -220,9 +218,7 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
         text: m.text
       }));
 
-      const res = aiEngine === 'local'
-        ? await askLocalSlm(query, history)
-        : await askGeminiRag(query, 'consumer', history);
+      const res = await askLocalSlm(query, history, 'consumer');
 
       const aiMsg: Message = {
         id: `ai-${Date.now()}`,
@@ -316,40 +312,20 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
                     </h3>
                     <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[8.5px] font-mono text-emerald-400 font-bold">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>{aiEngine === 'local' ? 'Edge SLM' : 'Cloud RAG'}</span>
+                      <span>Local SLM Offline</span>
                     </span>
                   </div>
                   <p className="text-[9.5px] font-mono text-slate-400 [data-theme='light']_:text-slate-500">
-                    {aiEngine === 'local' ? 'Qwen2.5-0.5B Offline • 1,260 Căn Hộ' : 'Tư vấn không gian sống • Gemini 2.0'}
+                    Qwen2.5-0.5B Edge Intelligence • 1,260 Căn Hộ
                   </p>
                 </div>
               </div>
 
               <div className="flex items-center gap-1.5">
-                {/* Dual Engine Switcher */}
-                <div className="flex items-center gap-0.5 bg-slate-950/80 p-0.5 rounded-lg border border-slate-700/60">
-                  <button
-                    onClick={() => setAiEngine('cloud')}
-                    className={`px-1.5 py-0.5 rounded text-[9px] font-mono transition-all ${
-                      aiEngine === 'cloud' 
-                        ? 'bg-emerald-500/25 text-emerald-300 font-bold border border-emerald-500/40 shadow-sm' 
-                        : 'text-slate-400 hover:text-slate-200'
-                    }`}
-                    title="Google Gemini 2.0 Flash Cloud RAG (Trực Tuyến)"
-                  >
-                    ☁️ Cloud
-                  </button>
-                  <button
-                    onClick={() => setAiEngine('local')}
-                    className={`px-1.5 py-0.5 rounded text-[9px] font-mono transition-all ${
-                      aiEngine === 'local' 
-                        ? 'bg-emerald-500/35 text-emerald-300 font-bold border border-emerald-400/60 shadow-sm shadow-emerald-500/30' 
-                        : 'text-slate-400 hover:text-slate-200'
-                    }`}
-                    title="HAVEN Local SLM Qwen2.5-0.5B LoRA 4-bit (Offline Cục Bộ)"
-                  >
-                    ⚡ Local
-                  </button>
+                {/* 100% Offline Edge Chip */}
+                <div className="hidden sm:flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/25 text-[9px] font-mono text-emerald-400">
+                  <span className="w-1 h-1 rounded-full bg-emerald-400" />
+                  <span>0ms Latency • 100% Private</span>
                 </div>
 
                 <div 

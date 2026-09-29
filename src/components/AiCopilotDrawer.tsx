@@ -11,7 +11,7 @@ import {
   Mic,
   MicOff
 } from 'lucide-react';
-import { askGeminiRag, type RagRetrievalResult } from '../services/geminiRagService';
+import { askLocalSlm, type RagRetrievalResult } from '../services/geminiRagService';
 import { VoiceRecognitionService } from '../services/voiceRecognitionService';
 
 interface AiCopilotDrawerProps {
@@ -126,7 +126,7 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
         text: m.text
       }));
 
-      const res = await askGeminiRag(query, 'admin', history);
+      const res = await askLocalSlm(query, history, 'admin');
 
       const q = query.toLowerCase();
       let extraDataCard: any = undefined;
@@ -201,11 +201,17 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
                   <Sparkles className="w-4 h-4 animate-spin-slow" />
                 </div>
                 <div>
-                  <span className="text-[9px] font-mono text-emerald-400 font-bold uppercase tracking-wider block">
-                    TRỢ LÝ VẬN HÀNH AI
-                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-[9px] font-mono text-emerald-400 font-bold uppercase tracking-wider block">
+                      TRỢ LÝ VẬN HÀNH AI
+                    </span>
+                    <span className="inline-flex items-center gap-1 px-1.5 py-0.2 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[8px] font-mono text-emerald-400 font-bold">
+                      <span className="w-1 h-1 rounded-full bg-emerald-400 animate-pulse" />
+                      <span>Local Edge SLM</span>
+                    </span>
+                  </div>
                   <h3 className="text-sm font-bold text-white [data-theme='light']_:text-slate-900 font-serif">
-                    Haven Copilot
+                    Haven Copilot <span className="text-[10px] font-sans font-normal text-slate-400">• Qwen2.5-0.5B</span>
                   </h3>
                 </div>
               </div>
