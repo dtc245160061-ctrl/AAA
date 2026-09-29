@@ -15,9 +15,11 @@ dist-ssr
 .env.*
 !.env.example
 key.txt
+key.env
 *.key
 *.pem
 credentials.json
+*.exe
 
 # Editor directories and files
 .vscode/*

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, ArrowRight, ShieldCheck, CloudRain, Car, Zap, Mic, MicOff } from 'lucide-react';
+import { Sparkles, ArrowRight, ShieldCheck, CloudRain, Car, Zap, Mic, MicOff, Compass } from 'lucide-react';
 import { useFirstLoadReveal } from '../../hooks/useFirstLoadReveal';
 import { VoiceRecognitionService } from '../../services/voiceRecognitionService';
 
 interface HeroSectionProps {
   onSearch: (query?: string) => void;
+  onOpenLifestyleMatchmaker?: () => void;
 }
 
 const quickSuggestions = [
@@ -64,7 +65,7 @@ const badgeItemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'easeOut' as const } },
 };
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
+export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch, onOpenLifestyleMatchmaker }) => {
   const [aiPromptInput, setAiPromptInput] = useState('');
   const [isListening, setIsListening] = useState(false);
   const phase = useFirstLoadReveal();
@@ -223,6 +224,24 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
               </button>
             ))}
           </div>
+
+          {/* Lifestyle Matchmaker Highlight CTA */}
+          {onOpenLifestyleMatchmaker && (
+            <div className="pt-3">
+              <button
+                type="button"
+                onClick={onOpenLifestyleMatchmaker}
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-500/20 via-emerald-500/10 to-teal-500/20 hover:from-emerald-500/30 hover:to-teal-500/30 text-emerald-300 border border-emerald-500/40 text-xs font-mono font-bold transition-all shadow-md shadow-emerald-500/15 hover:scale-[1.02] active:scale-[0.98] cursor-pointer group"
+              >
+                <Compass className="w-4 h-4 text-emerald-400 group-hover:rotate-45 transition-transform" />
+                <span>Khảo Sát Không Gian Sống Tương Thích AI (Lifestyle Matchmaker)</span>
+                <span className="px-1.5 py-0.5 rounded-md bg-emerald-500 text-slate-950 text-[9px] font-bold">
+                  WOW FEATURE
+                </span>
+                <ArrowRight className="w-3.5 h-3.5 text-emerald-400 group-hover:translate-x-0.5 transition-transform" />
+              </button>
+            </div>
+          )}
         </motion.form>
       </div>
 

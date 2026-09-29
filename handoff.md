@@ -2,8 +2,8 @@
 
 > **Dự án**: Hệ thống Nền tảng PropTech Cho Thuê & Quản Lý Căn Hộ Tích Hợp Trí Tuệ Nhân Tạo (HAVEN)  
 > **Môn học**: Ứng dụng Trí tuệ Nhân tạo trong Phát triển Phần mềm (KHMT K23A)  
-> **Phiên bản**: v2.5.0-RAG-Production  
-> **Ngày bàn giao**: 26/08/2026  
+> **Phiên bản**: v2.6.0-Production-Ready (Quy mô 1,260 Căn Hộ)  
+> **Cập nhật gần nhất**: 29/09/2026  
 
 ---
 
@@ -12,59 +12,84 @@
 - **Production Vercel URL**: [https://aaa-jade-two.vercel.app](https://aaa-jade-two.vercel.app)
 - **Custom Domain**: [https://haven.is-a.dev](https://haven.is-a.dev)
 - **GitHub Repository**: [https://github.com/dtc245160061-ctrl/AAA](https://github.com/dtc245160061-ctrl/AAA) (Branch: `main`)
-- **Local Dev Server**: `http://localhost:5173/` (Khởi chạy bằng `npm run dev`)
+- **Local Dev Server**: `http://localhost:5173/` (Khởi chạy bằng `HAVEN.exe` 1-click hoặc `npm run dev`)
 
 ---
 
-## 2. TECH STACK & CÔNG NGHỆ CỐT LÕI
+## 2. TECH STACK & FILE CẤU HÌNH CỐT LÕI
 
-- **Frontend**: React 19, TypeScript, Vite 8.2.1 (Build siêu tốc ~400ms, 0 lỗi biên dịch).
-- **Styling & Design System**: Tailwind CSS v4 + Vanilla CSS Tokens (`src/index.css`), phong cách **Midnight Navy (`rgba(15, 23, 42)`) + Emerald Accent (`#10B981`)**, hiệu ứng **Atmospheric Panel** và **Liquid Glass** với blur 24px/16px.
-- **AI & RAG Engine**:
-  - **Mô hình sinh ngôn ngữ**: Google Gemini 2.0 Flash (`gemini-2.0-flash`), Google Gemini 1.5 Flash (`gemini-1.5-flash`).
-  - **Mô hình Vector Embedding**: `text-embedding-004` (Google Generative AI) kết hợp thuật toán **Cosine Similarity** và bộ nhớ đệm Embedding Cache (`localStorage`).
-  - **Cơ sở dữ liệu tri thức (RAG Corpus)**: Tự động trích xuất và vector hoá toàn bộ 150 căn hộ, chính sách minh bạch True Cost, quy chuẩn an toàn PCCC QCVN 06:2022/BXD, cơ chế bảo chứng cọc Escrow và dữ liệu vận hành dòng tiền / hợp đồng.
-  - **Quản lý Key & Key Pool**: Hỗ trợ `.env` (`VITE_GEMINI_API_KEY`, `VITE_GEMINI_API_KEYS`), nạp tự động danh sách key từ `C:\Users\zeecu\OneDrive\Tài liệu\key.txt`, hỗ trợ xoay vòng key và cơ chế Natural Semantic Fallback mượt mà khi offline.
-- **State Management**: Reactive Central Store `ApartmentStore` (`src/data/apartmentStore.ts`) đồng bộ hai chiều với `localStorage`.
-
----
-
-## 3. CÁC TÍNH NĂNG ĐÃ HOÀN THIỆN 100%
-
-### A. Phân Hệ Khách Thuê (Consumer / Tenant Experience)
-1. **Trang Chủ Lắng Đọng (UserHomeView)**: Hero section nghệ thuật, bộ tinh chỉnh phong cách sống (10 dials), khám phá thành phố trọng điểm (Hà Nội, TP.HCM, Đà Nẵng) với lớp phủ gradient sáng/tối tự thích ứng, Featured Properties và Guided Path ribbon.
-2. **Tìm Kiếm & Lọc Toàn Diện (UserSearchView)**: Lưới 3 cột cao cấp, bộ lọc True Cost, khoảng tầng, tiện ích, PCCC, chống ngập lụt.
-3. **Chi Tiết Căn Hộ (UserUnitDetailView)**: Chiết tính chi phí minh bạch True Cost, hồ sơ PCCC QCVN 06, chỉ số IoT thời gian thực, đặt lịch xem phòng.
-4. **So Sánh Đa Chiều (UserCompareView)**: Biểu đồ Radar 5 trục trực quan (Giá cả, PCCC, Vị trí, Tiện ích, Độ yên tĩnh).
-5. **Haven AI Housing Advisor (RAG Chatbot)**:
-   - Khung chat nổi bo tròn (`rounded-3xl`), dịch chuyển sang trái tạo khoảng cách thoáng đãng.
-   - Giao tiếp ngôn ngữ tự nhiên, trả lời chào hỏi thân thiện, tư vấn căn hộ có trích dẫn chi tiết và nút "Áp dụng bộ lọc này vào trang tìm kiếm".
-   - Không chứa các nhãn rác kỹ thuật trên giao diện người dùng.
-6. **Bản Đồ An Toàn & Ngập Lụt (ConfidenceMapView)**: Đồ thị rủi ro ngập lụt và nghiệm thu PCCC.
-7. **Biên Bản Bàn Giao (MoveInChecklistView)** & **Kho Hồ Sơ (DocumentVaultView)** & **Chợ Dịch Vụ VAS (ServicesMarketplaceView)**.
-
-### B. Phân Hệ Quản Trị Vận Hành (Admin Operations)
-1. **Dashboard Điều Hành**: Tỷ lệ lấp đầy (94.2%), doanh thu thực nhận, công nợ quá hạn và danh sách yêu cầu thuê mới.
-2. **Quản Lý 150 Căn Hộ (UnitsView)** & **Sơ Đồ Tầng**: Cập nhật trạng thái phòng tức thì.
-3. **Quản Lý Yêu Cầu Thuê & Lead CRM (LeadsView)**: Chuyển đổi Lead sang Hợp đồng thuê 1-chạm.
-4. **Hộp Thư Tin Nhắn Khách Hàng (AdminInboxView)** & **Hợp Đồng Thuê (ContractsView)** & **Sổ Quỹ Hóa Đơn (PaymentsView)**.
-5. **Haven Operations Copilot (Admin AI Chatbot)**: Tra cứu nhanh nợ quá hạn, hợp đồng sắp hết hạn trong 60 ngày và sự cố bảo trì.
+- **Frontend Core**: React 19, TypeScript, Vite 8.2.1 (`vite.config.ts`, `tsconfig.json`, `package.json`).
+- **Styling & Tokens**: Tailwind CSS v4 (`@tailwindcss/vite`), Vanilla CSS Design Tokens (`src/index.css`), phong cách **Midnight Navy (`rgba(15, 23, 42)`) + Emerald Accent (`#10B981`)** kết hợp **Atmospheric Glassmorphism**.
+- **State & Data Store**: `src/data/apartmentStore.ts` (Reactive Central Store quản trị **1,260 căn hộ**, tự động đồng bộ `localStorage` với version key `haven_units_data_v8`, ngưỡng kích hoạt `>= 1200`).
+- **Dataset Căn Hộ Thực Tế**: `src/data/mockData.ts` và `data/mock_units_1260.json` (1,260 căn hộ độc bản trên 11 tỉnh/thành phố, chia 6 chunk để tối ưu kiểu union cho TypeScript compiler).
+- **AI RAG Service**: `src/services/geminiRagService.ts` (Google Gemini 2.0 Flash / 1.5 Flash + `text-embedding-004` + Cosine Vector Matching + Key Rotation Fallback).
+- **Native Launcher Engine**:
+  - `HAVEN.exe`: Trình khởi chạy Windows GUI Subsystem (`/target:winexe`, biên dịch từ `launcher/Program.cs` bằng `csc.exe`).
+  - `launcher/serve.js`: Trình chạy Vite programmatic engine qua Node.js ngầm (`CreateNoWindow = true`).
+  - `launcher/haven.ico`: Bộ icon đa phân giải (16x16 đến 256x256) phong cách Sanctuary Emerald.
 
 ---
 
-## 4. QUY TẮC LÀM VIỆC & LƯU Ý CHO PHIÊN LÀM VIỆC MỚI
+## 3. VIỆC ĐÃ HOÀN TẤT TRONG PHIÊN NÀY
 
-1. **Quy tắc về API Key**: Khi cần nạp hoặc cập nhật key, luôn tự động lấy từ đường dẫn `C:\Users\zeecu\OneDrive\Tài liệu\key.txt` để cập nhật vào `.env` và `geminiRagService.ts` mà không cần hỏi lại người dùng.
-2. **Nguyên tắc giao diện**:
-   - Bảo toàn phong cách Dark Mode Midnight Navy + Green / Light Mode Sage Gray `#E6EBE8`.
-   - Giữ giao diện Chatbot sạch sẽ, không hiển thị các từ ngữ/nút bấm kỹ thuật của nhà phát triển trên giao diện người dùng cuối.
-3. **Ý tưởng đang chờ triển khai tiếp (Backlog)**:
-   - Video nền chuyển động 6FPS màu gradient cho trang chủ (người dùng đã đề xuất để sau).
-   - Tiếp tục hoàn thiện các phần thuyết trình / slide môn học nếu có yêu cầu mới.
+1. **Nâng cấp Quy Mô Dữ Liệu Lên Hơn 1,200 Căn (1,260 Căn Hộ Độc Bản)**:
+   - Mở rộng toàn diện từ 536 căn lên **1,260 căn hộ thực tế** trải dài khắp 11 tỉnh thành trọng điểm: **Thái Nguyên** (150 căn trọng điểm), **Hà Nội** (260 căn), **TP. Hồ Chí Minh** (280 căn), **Đà Nẵng** (130 căn), **Hải Phòng** (80 căn), **Cần Thơ** (60 căn), **Nha Trang** (70 căn), **Vũng Tàu** (60 căn), **Bình Dương** (70 căn), **Đồng Nai** (50 căn), **Quảng Ninh** (50 căn).
+   - Kiểm định tính duy nhất đạt **100%**: 1,260 ID duy nhất, 1,260 tên căn hộ duy nhất, 1,260 địa chỉ chính xác duy nhất.
+   - Kho ảnh kiến trúc chuẩn sạch: 818 ảnh kiến trúc/nội thất cao cấp, đã thanh trừng triệt để ảnh avatar người và ảnh lỗi.
+   - Giải quyết lỗi TypeScript TS2590 (Expression produces a union type that is too complex to represent) bằng kỹ thuật chia mảng 6 chunk nội bộ trong `src/data/mockData.ts`, giúp `tsc -b && vite build` vượt qua 100% không tốn thời gian.
+   - Cập nhật kho lưu trữ `src/data/apartmentStore.ts`: Khóa lưu trữ nâng lên `haven_units_data_v8`, ngưỡng nạp kiểm tra `>= 1200` căn hộ.
+
+2. **Tái Huấn Luyện Bộ Dữ Liệu AI Cục Bộ (Local AI Dataset)**:
+   - Nâng cấp [generate_local_ai_dataset.py](file:///d:/HAVEN/scripts/generate_local_ai_dataset.py) trích xuất dữ liệu từ toàn bộ 1,260 căn hộ mới.
+   - Xuất file dataset `d:\HAVEN\data\01_haven_qa_dataset.jsonl` gồm **2,507 mẫu câu hỏi - trả lời đối thoại ChatML chuẩn xác**.
+   - Nén thành file `d:\HAVEN\data\01_haven_qa_dataset.zip` và tự động đồng bộ sang Google Drive tại `G:\My Drive\COLAB\01_haven_qa_dataset.zip` phục vụ notebook fine-tuning Colab T4.
+
+3. **Xây dựng Tính Năng WOW: HAVEN Lifestyle & Spatial Matchmaker**:
+   - Component [LifestyleMatchmakerModal.tsx](file:///d:/HAVEN/src/components/LifestyleMatchmakerModal.tsx): Bộ khảo sát 6 bước tương tác cao cấp (Thú cưng, Xe ô tô/xe điện, Chạy bộ/thể thao ngoài trời, Độ ồn/kính cách âm, Hướng ban công đón nắng, Ngân sách thuê).
+   - Biểu đồ Radar đa giác (Spider Chart) 5 trục tính toán bằng SVG thuần (không thêm thư viện ngoài).
+   - Thuật toán AI Matching Score (%) quét trên toàn bộ 1,260 căn hộ thực tế, đưa ra Top căn hộ đạt điểm tương thích cao nhất kèm lý do chi tiết.
+   - Nút kích hoạt nổi bật tích hợp đồng bộ tại [Topbar.tsx](file:///d:/HAVEN/src/components/Topbar.tsx), [HeroSection.tsx](file:///d:/HAVEN/src/components/home/HeroSection.tsx), và [UserHomeView.tsx](file:///d:/HAVEN/src/components/UserHomeView.tsx).
+
+4. **Xây dựng Cổng Định Danh Cư Dân & Khách Hàng (Auth Modal)**:
+   - Component [AuthModal.tsx](file:///d:/HAVEN/src/components/AuthModal.tsx): Đăng nhập bằng Google OAuth (1-click fast auth), Email/Password.
+   - Luồng Đăng ký 2 bước với giao diện nhập mã xác thực OTP 6 số (có đồng hồ đếm ngược, nút điền nhanh mã demo).
+   - Cổng mock social (Facebook, Apple) hiển thị thông báo phản hồi cao cấp.
+   - Quản lý trạng thái người dùng (Session Profile) đồng bộ hiển thị và hỗ trợ đăng xuất ngay trên Topbar.
+
+5. **Khắc phục triệt để lỗi ảnh chân dung người & Tối ưu tốc độ load ảnh**:
+   - Thanh trừng 100% các ảnh avatar người (ảnh chân dung Unsplash người đàn ông có râu đeo kính `photo-1507003211169-0a1dd7228f2d`).
+   - Xây dựng component `src/components/common/SmartImage.tsx`: Tự động rewrite query ảnh Unsplash về chuẩn nén siêu tốc (`auto=format&fit=crop&w=600&q=75`), tích hợp Skeleton Shimmer Animation xóa bỏ hoàn toàn hiện tượng nhấp nháy/màn hình đen khi tải ảnh.
 
 ---
 
-## 5. TÌNH TRẠNG LỖI & KIỂM THỬ (STATUS: CLEAN)
-- **Lỗi tồn đọng**: **0 bug**.
-- **Build Status**: `npm run build` thành công 100% trong ~400ms.
-- **Git Status**: Toàn bộ mã nguồn đã được commit và đồng bộ lên branch `main` GitHub.
+## 4. VIỆC ĐANG DỞ DANG / BUG CHƯA FIX
+
+- **Trạng thái lỗi**: **0 bug, 0 lỗi TypeScript**. `tsc -b && vite build` (hoàn tất chỉ trong 830ms) và `oxlint` (0 error) đều vượt qua 100%.
+- **Chiến lược AI**: Giữ nguyên hệ thống Cloud RAG (Gemini + Groq Llama 3.3 70B) hoạt động ổn định trong khi người dùng chạy thử nghiệm notebook trên Colab. Khi mô hình cục bộ hoàn tất nghiệm thu, sẽ chuyển đổi sang 100% Local AI theo đúng kế hoạch.
+
+---
+
+## 5. VÙNG NHẠY CẢM CẤM CHẠM VÀO (FRAGILE AREAS)
+
+1. **`localStorage` Version Key (`src/data/apartmentStore.ts`)**:
+   - Hiện tại đang là `haven_units_data_v8`. Nếu có thay đổi cấu trúc hoặc danh sách căn hộ trong `mockData.ts`, BẮT BUỘC phải tăng version key (ví dụ lên `v9`), nếu không trình duyệt sẽ tiếp tục dùng dữ liệu cũ trong `localStorage`.
+2. **Cấu hình Cổng Port 5173 (`vite.config.ts` & `launcher/Program.cs`)**:
+   - `HAVEN.exe` và `serve.js` được cấu hình cố định theo dõi và lắng nghe cổng `5173`. Tuyệt đối không thay đổi port của Vite nếu không cập nhật đồng bộ trong `Program.cs` và biên dịch lại `HAVEN.exe`.
+3. **Thư mục `launcher/`**:
+   - Chứa mã nguồn biên dịch `Program.cs`, `serve.js`, và file icon `haven.ico`. Không được xóa thư mục này vì `HAVEN.exe` phụ thuộc vào `launcher/serve.js` để nạp Vite dev server.
+4. **Cơ chế nạp API Key RAG (`src/services/geminiRagService.ts`)**:
+   - Luôn nạp key từ `C:\Users\zeecu\OneDrive\Tài liệu\key.txt` khi xoay vòng hoặc cập nhật key môi trường, không ghi đè cấu trúc key rotation.
+
+---
+
+## 6. QUYẾT ĐỊNH KIẾN TRÚC VỪA THỐNG NHẤT
+
+- **Loại bỏ hoàn toàn file Batch (`.bat`)**: Chuyển đổi 100% sang ứng dụng nhị phân native Windows C# (`HAVEN.exe`) để đảm bảo trải nghiệm người dùng cao cấp, không bị giật/nháy cửa sổ dòng lệnh đen và có icon thương hiệu sắc nét.
+- **Tối ưu hình ảnh tự động qua `SmartImage`**: Mọi ảnh bất động sản từ Unsplash đều được ép qua tham số truy vấn nén WebP/JPEG tối ưu kích thước hiển thị hiển thị trên lưới kèm hiệu ứng Skeleton Shimmer.
+
+---
+
+## 7. BƯỚC CHÍNH XÁC TIẾP THEO CẦN LÀM KHI MỞ CHAT MỚI
+
+1. Nhấp 1-click vào icon **HAVEN** trên Desktop (hoặc Taskbar) để khởi động và trải nghiệm ứng dụng `http://localhost:5173/`.
+2. Tiếp tục thực hiện yêu cầu mới của User (phát triển tính năng mới, chuẩn bị demo bảo vệ đồ án, hoặc bổ sung các module nghiệp vụ theo chỉ đạo).

@@ -353,7 +353,7 @@ export const ADDON_SERVICES: AddonService[] = [
 ];
 
 const STORAGE_KEYS = {
-  UNITS: 'haven_units_data_v7',
+  UNITS: 'haven_units_data_v8',
   LEADS: 'haven_rental_leads_v4',
   CONTRACTS: 'haven_lease_contracts_v4',
   INVOICES: 'haven_rental_invoices_v4',
@@ -846,7 +846,7 @@ export class ApartmentStore {
       const data = localStorage.getItem(STORAGE_KEYS.UNITS);
       if (data) {
         const parsed: ApartmentUnit[] = JSON.parse(data);
-        if (parsed.length >= 500 && parsed[0]?.images?.length >= 4 && parsed[0]?.city === 'Hà Nội') {
+        if (parsed.length >= 1200 && (parsed[0]?.images?.length ?? 0) >= 4 && Boolean(parsed[0]?.city)) {
           return parsed.map(enrichUnit);
         }
       }

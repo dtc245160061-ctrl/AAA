@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Plus, Moon, Sun, Monitor, RotateCcw, Bookmark, Menu, Clock, Shield, Calendar, CheckCircle2, ChevronDown, Mic, MicOff } from 'lucide-react';
+import { Search, Plus, Moon, Sun, Monitor, RotateCcw, Bookmark, Menu, Clock, Shield, Calendar, CheckCircle2, ChevronDown, Mic, MicOff, Compass, LogIn, LogOut } from 'lucide-react';
 import type { ThemeMode } from '../App';
 import { VoiceRecognitionService } from '../services/voiceRecognitionService';
 
@@ -17,6 +17,10 @@ interface TopbarProps {
   onToggleAdminView?: () => void;
   onNavigate?: (module: string) => void;
   onSearchSubmit?: (query: string) => void;
+  onOpenLifestyleMatchmaker?: () => void;
+  onOpenAuthModal?: () => void;
+  currentUser?: { name: string; email: string; avatar: string; role: string } | null;
+  onLogout?: () => void;
 }
 
 export const Topbar: React.FC<TopbarProps> = ({
@@ -33,6 +37,10 @@ export const Topbar: React.FC<TopbarProps> = ({
   onToggleAdminView,
   onNavigate,
   onSearchSubmit,
+  onOpenLifestyleMatchmaker,
+  onOpenAuthModal,
+  currentUser,
+  onLogout,
 }) => {
   const [time, setTime] = useState<string>('');
   const [themeDropdownOpen, setThemeDropdownOpen] = useState<boolean>(false);
@@ -207,6 +215,18 @@ export const Topbar: React.FC<TopbarProps> = ({
 
         {/* Right: Normalized Control Group */}
         <div className="flex items-center gap-2">
+          {/* Lifestyle Matchmaker AI (Consumer) */}
+          {!isAdminView && onOpenLifestyleMatchmaker && (
+            <button
+              onClick={onOpenLifestyleMatchmaker}
+              className="h-8 flex items-center gap-1.5 px-3 text-[var(--text-xs)] font-mono font-bold text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 rounded-[var(--radius-lg)] hover:bg-emerald-500/25 transition-all focus-ring shrink-0 hover:scale-105 active:scale-95 shadow-sm group cursor-pointer"
+              title="Khảo sát phong cách sống AI (Lifestyle Matchmaker)"
+            >
+              <Compass className="w-3.5 h-3.5 text-emerald-400 group-hover:rotate-45 transition-transform" />
+              <span className="hidden sm:inline">Khảo Sát AI</span>
+            </button>
+          )}
+
           {/* Saved Units (Consumer) */}
           {!isAdminView && (
             <button
@@ -307,26 +327,47 @@ export const Topbar: React.FC<TopbarProps> = ({
                   {/* User Profile Header */}
                   <div className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-950/80 [data-theme='light']_:bg-slate-50 border border-slate-800 [data-theme='light']_:border-slate-200">
                     <img
-                      src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150"
-                      alt="Nguyễn An"
+                      src={currentUser?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150"}
+                      alt={currentUser?.name || "Nguyễn An"}
                       className="h-10 w-10 rounded-xl object-cover border border-emerald-500/40"
                     />
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-1">
-                        <span className="font-serif font-bold text-sm text-white [data-theme='light']_:text-slate-900 truncate">Nguyễn An</span>
+                        <span className="font-serif font-bold text-sm text-white [data-theme='light']_:text-slate-900 truncate">
+                          {currentUser?.name || 'Nguyễn An'}
+                        </span>
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                       </div>
-                      <div className="text-[10px] font-mono text-emerald-400 font-bold">
-                        {isAdminView ? 'Ban Quản Trị Sàn' : 'Sanctuary Member'}
+                      <div className="text-[10px] font-mono text-emerald-400 font-bold truncate">
+                        {isAdminView ? 'Ban Quản Trị Sàn' : (currentUser?.role || 'Sanctuary Member')}
                       </div>
                       <div className="text-[10px] font-mono text-slate-200 [data-theme='light']_:text-slate-600 font-medium truncate">
-                        an.nguyen@haven.luxury
+                        {currentUser?.email || 'an.nguyen@haven.luxury'}
                       </div>
                     </div>
                   </div>
 
                   {/* Menu Items */}
                   <div className="space-y-1 pt-1">
+                    {/* Auth Access Hub Modal Trigger */}
+                    {onOpenAuthModal && (
+                      <button
+                        onClick={() => {
+                          onOpenAuthModal();
+                          setProfileDropdownOpen(false);
+                        }}
+                        className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-mono text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 transition-colors text-left font-semibold cursor-pointer"
+                      >
+                        <div className="flex items-center gap-2">
+                          <LogIn className="w-3.5 h-3.5 text-emerald-400" />
+                          <span>{currentUser ? 'Đổi Tài Khoản / Định Danh' : 'Đăng Nhập / Đăng Ký'}</span>
+                        </div>
+                        <span className="px-1.5 py-0.5 rounded-md bg-emerald-500 text-slate-950 text-[9px] font-bold">
+                          AUTH
+                        </span>
+                      </button>
+                    )}
+
                     {/* Role Switcher - Essential for Presentation */}
                     {onToggleAdminView && (
                       <button
@@ -380,7 +421,21 @@ export const Topbar: React.FC<TopbarProps> = ({
 
                   <div className="divider my-1 border-t border-slate-800 [data-theme='light']_:border-slate-200" />
 
-                  {/* Reset Demo & Logout */}
+                  {/* Logout if authenticated */}
+                  {currentUser && onLogout && (
+                    <button
+                      onClick={() => {
+                        onLogout();
+                        setProfileDropdownOpen(false);
+                      }}
+                      className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-mono text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-colors text-left font-semibold cursor-pointer"
+                    >
+                      <LogOut className="w-3.5 h-3.5 text-slate-400" />
+                      <span>Đăng Xuất Tài Khoản</span>
+                    </button>
+                  )}
+
+                  {/* Reset Demo */}
                   <button
                     onClick={() => {
                       handleResetDemo();

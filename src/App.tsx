@@ -19,6 +19,8 @@ import { DepositEscrowModal } from './components/DepositEscrowModal';
 import { VirtualTourModal } from './components/VirtualTourModal';
 import { LandlordProfileModal } from './components/LandlordProfileModal';
 import { SmartListingCreatorModal } from './components/SmartListingCreatorModal';
+import { LifestyleMatchmakerModal } from './components/LifestyleMatchmakerModal';
+import { AuthModal } from './components/AuthModal';
 import { DashboardView } from './components/DashboardView';
 import { UnitsView } from './components/UnitsView';
 import { LeadsView } from './components/LeadsView';
@@ -101,6 +103,26 @@ export function App() {
   const [activeVirtualTourUnit, setActiveVirtualTourUnit] = useState<ApartmentUnit | null>(null);
   const [activeLandlordProfile, setActiveLandlordProfile] = useState<LandlordProfile | null>(null);
   const [isSmartListingOpen, setIsSmartListingOpen] = useState<boolean>(false);
+  const [isLifestyleMatchmakerOpen, setIsLifestyleMatchmakerOpen] = useState<boolean>(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
+  const [currentUser, setCurrentUser] = useState<{ name: string; email: string; avatar: string; role: string } | null>(() => {
+    try {
+      const saved = localStorage.getItem('haven_current_user');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
+
+  const handleLogout = () => {
+    localStorage.removeItem('haven_current_user');
+    setCurrentUser(null);
+    showToast('info', 'Đã đăng xuất', 'Hẹn gặp lại bạn tại HAVEN.');
+  };
+
+  const handleAuthSuccess = (user: { name: string; email: string; avatar: string; role: string }) => {
+    setCurrentUser(user);
+  };
 
   // Form fields for Booking Modal
   const [bookingName, setBookingName] = useState('');
@@ -400,6 +422,10 @@ export function App() {
             setInitialAiQuery(query);
             setActiveModule('user_search');
           }}
+          onOpenLifestyleMatchmaker={() => setIsLifestyleMatchmakerOpen(true)}
+          onOpenAuthModal={() => setIsAuthModalOpen(true)}
+          currentUser={currentUser}
+          onLogout={handleLogout}
         />
 
         {/* Dynamic View Body Container - ONLY element that scrolls */}
@@ -415,6 +441,7 @@ export function App() {
               onToggleSaveUnit={handleToggleSaveUnit}
               onSelectUnit={handleInspectUnit}
               onNavigateSearch={handleNavigateSearch}
+              onOpenLifestyleMatchmaker={() => setIsLifestyleMatchmakerOpen(true)}
             />
           )}
 
@@ -867,6 +894,28 @@ export function App() {
           }}
         />
       )}
+
+      {/* HAVEN Lifestyle & Spatial Matchmaker Modal */}
+      <LifestyleMatchmakerModal
+        isOpen={isLifestyleMatchmakerOpen}
+        onClose={() => setIsLifestyleMatchmakerOpen(false)}
+        units={units}
+        savedUnitIds={savedUnitIds}
+        onToggleSaveUnit={handleToggleSaveUnit}
+        onSelectUnit={(id) => {
+          setSelectedUnitId(id);
+          setIsAdminView(false);
+          setActiveModule('user_detail');
+        }}
+      />
+
+      {/* HAVEN Sanctuary Access & Supabase Auth Modal */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        onAuthSuccess={handleAuthSuccess}
+        onShowToast={showToast}
+      />
 
 
 
