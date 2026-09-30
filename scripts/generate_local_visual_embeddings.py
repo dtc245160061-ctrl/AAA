@@ -88,7 +88,7 @@ export interface VisualImageVector {{
     name: string;
     type: string;
     city: string;
-    rentVND: number;
+    rentVND?: number;
   }}>;
   vector: number[];
 }}

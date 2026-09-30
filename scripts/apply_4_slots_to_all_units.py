@@ -110,7 +110,13 @@ def main():
         u_type = u.get('type', '')
         u_city = u.get('city', '')
         for img in u['images']:
-            img_to_units[img].append({'id': u_id, 'name': u_name, 'type': u_type, 'city': u_city})
+            img_to_units[img].append({
+                'id': u_id,
+                'name': u_name,
+                'type': u_type,
+                'city': u_city,
+                'rentVND': u.get('monthlyRentVND', 0)
+            })
             # Vibe tag
             n_low = u_name.lower()
             if 'indochine' in n_low or 'đông dương' in n_low:

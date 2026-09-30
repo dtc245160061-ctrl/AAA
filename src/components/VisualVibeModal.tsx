@@ -11,18 +11,14 @@ import {
   AlertTriangle,
   Building2,
   MapPin,
-  Flame,
-  CheckCircle2,
   ChevronRight
 } from 'lucide-react';
 import { SmartImage } from './common/SmartImage';
 import { 
   PRECOMPUTED_IMAGE_VECTORS, 
   ARCHETYPE_CENTERS, 
-  cosineSimilarity,
-  type VisualImageVector 
+  cosineSimilarity
 } from '../data/visualEmbeddings';
-import type { ApartmentUnit } from '../types/apartment';
 
 interface VisualVibeModalProps {
   isOpen: boolean;
@@ -212,7 +208,7 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
             name: linked.name,
             type: linked.type,
             city: linked.city,
-            rentVND: linked.rentVND,
+            rentVND: linked.rentVND ?? 0,
             photoUrl: item.img.url,
             styleName: item.img.primaryStyle,
             similarityPercent: Math.round(item.score * 100)
