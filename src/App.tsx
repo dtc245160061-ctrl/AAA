@@ -21,6 +21,7 @@ import { LandlordProfileModal } from './components/LandlordProfileModal';
 import { SmartListingCreatorModal } from './components/SmartListingCreatorModal';
 import { LifestyleMatchmakerModal } from './components/LifestyleMatchmakerModal';
 import { AuthModal } from './components/AuthModal';
+import { VisualVibeModal } from './components/VisualVibeModal';
 import { DashboardView } from './components/DashboardView';
 import { UnitsView } from './components/UnitsView';
 import { LeadsView } from './components/LeadsView';
@@ -105,6 +106,7 @@ export function App() {
   const [isSmartListingOpen, setIsSmartListingOpen] = useState<boolean>(false);
   const [isLifestyleMatchmakerOpen, setIsLifestyleMatchmakerOpen] = useState<boolean>(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
+  const [isVisualVibeModalOpen, setIsVisualVibeModalOpen] = useState<boolean>(false);
   const [currentUser, setCurrentUser] = useState<{ name: string; email: string; avatar: string; role: string } | null>(() => {
     try {
       const saved = localStorage.getItem('haven_current_user');
@@ -442,6 +444,7 @@ export function App() {
               onSelectUnit={handleInspectUnit}
               onNavigateSearch={handleNavigateSearch}
               onOpenLifestyleMatchmaker={() => setIsLifestyleMatchmakerOpen(true)}
+              onOpenVisualVibeModal={() => setIsVisualVibeModalOpen(true)}
             />
           )}
 
@@ -452,6 +455,7 @@ export function App() {
               onToggleSaveUnit={handleToggleSaveUnit}
               onSelectUnit={handleInspectUnit}
               onOpenVirtualTour={(u) => setActiveVirtualTourUnit(u)}
+              onOpenVisualVibeModal={() => setIsVisualVibeModalOpen(true)}
               initialAiQuery={initialAiQuery}
             />
           )}
@@ -915,6 +919,17 @@ export function App() {
         onClose={() => setIsAuthModalOpen(false)}
         onAuthSuccess={handleAuthSuccess}
         onShowToast={showToast}
+      />
+
+      {/* Visual Vibe Matcher AI Modal (Camera & Image Search) */}
+      <VisualVibeModal
+        isOpen={isVisualVibeModalOpen}
+        onClose={() => setIsVisualVibeModalOpen(false)}
+        onApplyVisualFilter={(filterKeyword) => {
+          setInitialAiQuery(filterKeyword);
+          setActiveModule('user_search');
+          showToast('info', 'Tìm kiếm thị giác AI', `Đang lọc các căn hộ mang phong cách "${filterKeyword}"`);
+        }}
       />
 
 

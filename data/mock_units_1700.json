@@ -1,6 +1,4 @@
-import type { ApartmentUnit, MaintenanceTicket, Amenity } from '../types/apartment';
-
-const _UNITS_PART_1: ApartmentUnit[] = [
+[
   {
     "id": "TN-0001",
     "name": "Căn Hộ Tecco Elite City Thịnh Đán #A04-02-#0001 — Ban Công Kính Đón Gió Tự Nhiên",
@@ -30250,10 +30248,7 @@ const _UNITS_PART_1: ApartmentUnit[] = [
       ],
       "depositProtectionActive": true
     }
-  }
-];
-
-const _UNITS_PART_2: ApartmentUnit[] = [
+  },
   {
     "id": "HN-0251",
     "name": "Căn Hộ Mipec Riverside Long Biên #B23-12-#0251 — Tầm Nhìn Trọn Vẹn Cảnh Quan",
@@ -60503,10 +60498,7 @@ const _UNITS_PART_2: ApartmentUnit[] = [
       ],
       "depositProtectionActive": true
     }
-  }
-];
-
-const _UNITS_PART_3: ApartmentUnit[] = [
+  },
   {
     "id": "HN-0501",
     "name": "Căn Hộ Goldmark City Hồ Tùng Mậu #C09-10-#0501 — Ban Công Rộng Rào Lưới An Toàn Thú Cưng",
@@ -90756,10 +90748,7 @@ const _UNITS_PART_3: ApartmentUnit[] = [
       ],
       "depositProtectionActive": true
     }
-  }
-];
-
-const _UNITS_PART_4: ApartmentUnit[] = [
+  },
   {
     "id": "SG-0751",
     "name": "Căn Hộ The Tresor Bến Vân Đồn #D28-08-#0751 — Ban Công Kính Đón Gió Tự Nhiên",
@@ -121009,10 +120998,7 @@ const _UNITS_PART_4: ApartmentUnit[] = [
       ],
       "depositProtectionActive": true
     }
-  }
-];
-
-const _UNITS_PART_5: ApartmentUnit[] = [
+  },
   {
     "id": "SG-1001",
     "name": "Căn Hộ Sky Center Phổ Quang #F14-06-#1001 — Tầm Nhìn Trọn Vẹn Cảnh Quan",
@@ -151262,10 +151248,7 @@ const _UNITS_PART_5: ApartmentUnit[] = [
       ],
       "depositProtectionActive": true
     }
-  }
-];
-
-const _UNITS_PART_6: ApartmentUnit[] = [
+  },
   {
     "id": "DN-1251",
     "name": "Căn Hộ The Point Danang Golf View #A33-04-#1251 — Ban Công Rộng Rào Lưới An Toàn Thú Cưng",
@@ -181515,10 +181498,7 @@ const _UNITS_PART_6: ApartmentUnit[] = [
       ],
       "depositProtectionActive": true
     }
-  }
-];
-
-const _UNITS_PART_7: ApartmentUnit[] = [
+  },
   {
     "id": "BD-1501",
     "name": "Căn Hộ Opal Boulevard Đất Xanh #B19-02-#1501 — Tầm Nhìn Trọn Vẹn Cảnh Quan",
@@ -205719,73 +205699,4 @@ const _UNITS_PART_7: ApartmentUnit[] = [
       "depositProtectionActive": true
     }
   }
-];
-
-export const MOCK_UNITS: ApartmentUnit[] = _UNITS_PART_1.concat(_UNITS_PART_2, _UNITS_PART_3, _UNITS_PART_4, _UNITS_PART_5, _UNITS_PART_6, _UNITS_PART_7);
-
-export const MOCK_TICKETS: MaintenanceTicket[] = [
-  {
-    id: 'TKT-8092',
-    unitId: 'HN-TA-2401',
-    residentName: 'Alexander Vance',
-    category: 'Smart Lock',
-    title: 'Kiểm tra pin khóa thông minh & hiệu chuẩn cảm biến thẻ từ',
-    priority: 'Urgent',
-    status: 'In Progress',
-    reportedAt: '10 phút trước',
-    assignedTechnician: 'Nguyễn Văn Minh (Chuyên viên IoT)'
-  },
-  {
-    id: 'TKT-8088',
-    unitId: 'SG-QU-1601',
-    residentName: 'Elena Rostova',
-    category: 'HVAC',
-    title: 'Bảo dưỡng định kỳ màng lọc khí tươi điều hòa trung tâm VRV',
-    priority: 'Medium',
-    status: 'Open',
-    reportedAt: '2 giờ trước'
-  },
-  {
-    id: 'TKT-8075',
-    unitId: 'DN-SO-1202',
-    residentName: 'Kenji Sato',
-    category: 'Plumbing',
-    title: 'Hiệu chuẩn cảm biến lưu lượng nước thông minh',
-    priority: 'Low',
-    status: 'Resolved',
-    reportedAt: '1 ngày trước'
-  }
-];
-
-export const MOCK_AMENITIES: Amenity[] = [
-  {
-    id: 'am-01',
-    name: 'Hồ Bơi Vô Cực Chân Mây & Lounge',
-    location: 'Tầng Thượng — Tầng 25',
-    image: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&q=80&w=600',
-    capacity: 20,
-    openingHours: '06:00 - 23:00',
-    pricePerHourUSD: 0,
-    availableSlotsToday: ['09:00 - 11:00', '14:00 - 16:00', '18:30 - 20:30', '21:00 - 23:00']
-  },
-  {
-    id: 'am-02',
-    name: 'Hầm Rượu Vang & Phòng Tiếp Khách VIP',
-    location: 'Khu Điều Hành — Tầng 18',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&q=80&w=600',
-    capacity: 12,
-    openingHours: '16:00 - 02:00',
-    pricePerHourUSD: 150,
-    availableSlotsToday: ['17:00 - 19:00', '20:00 - 22:00', '22:30 - 00:30']
-  },
-  {
-    id: 'am-03',
-    name: 'Rạp Chiếu Phim Riêng Tư Dolby Atmos',
-    location: 'Tầng Giải Trí — Tầng 2',
-    image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&q=80&w=600',
-    capacity: 16,
-    openingHours: '10:00 - 00:00',
-    pricePerHourUSD: 80,
-    availableSlotsToday: ['13:00 - 15:30', '16:00 - 18:30', '19:00 - 21:30', '22:00 - 00:30']
-  }
-];
+]

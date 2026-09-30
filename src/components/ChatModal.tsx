@@ -80,10 +80,14 @@ export const ChatModal: React.FC<ChatModalProps> = ({
         botResponse = unit.petFriendly 
           ? `Căn hộ này CHO PHÉP nuôi thú cưng nhỏ (chó/mèo dưới 10kg). Tòa nhà có khuôn viên dạo bộ riêng và không phụ thu phí thú cưng!`
           : `Rất tiếc, quy chế tòa nhà này hiện KHÔNG cho phép nuôi thú cưng để đảm bảo yên tĩnh tuyệt đối cho cư dân.`;
-      } else if (lower.includes('xe') || lower.includes('ô tô')) {
+      } else if (lower.includes('xe') || lower.includes('ô tô') || lower.includes('xe máy') || lower.includes('đỗ xe')) {
         botResponse = unit.hasCarParking
           ? `Căn hộ CÓ SẴN chỗ đỗ ô tô định danh tại tầng hầm B1/B2 với cổng sạc xe điện EV. Phí gửi ô tô là 1.200.000 đ/tháng.`
           : `Tòa nhà có bãi đỗ xe máy không giới hạn (120k/tháng), riêng ô tô có thể gửi tại bãi đỗ thương mại cách sảnh 100m.`;
+      } else if (lower.includes('đàm phán') || lower.includes('giảm giá') || lower.includes('thương lượng') || lower.includes('bớt') || lower.includes('mặc cả')) {
+        const baseM = (unit.monthlyRentVND / 1000000).toFixed(0);
+        const discountTarget = (unit.monthlyRentVND * 0.95 / 1000000).toFixed(1);
+        botResponse = `🤝 [AI CỐ VẤN ĐÀM PHÁN HAVEN]: Căn hộ ${unit.name || unit.id} đang niêm yết ${baseM} Tr/tháng. Dưới đây là 3 chiến lược đàm phán tối ưu nhất cho bạn:\n\n1️⃣ Đề xuất giảm về ~${discountTarget} Tr/tháng nếu bạn ký HĐ 12 tháng và thanh toán 3 hoặc 6 tháng/lần.\n2️⃣ Giữ nguyên giá thuê nhưng xin chủ nhà MIỄN PHÍ tiền gửi ${unit.hasCarParking ? 'ô tô' : 'xe máy'} và phí quản lý tòa nhà (tiết kiệm ~300k - 1.2tr/tháng).\n3️⃣ Đề xuất giảm tiền cọc từ ${unit.depositTerms?.months || 2} tháng xuống 1 tháng qua cơ chế Ký Quỹ Bảo Chứng HAVEN Escrow.\n\n👉 Bạn có thể nhắn mẫu: "Chào anh/chị, em rất ưng căn hộ và dự định ở lâu dài. Nếu em ký 1 năm và thanh toán 6 tháng thì anh/chị hỗ trợ giá tốt nhất là bao nhiêu ạ?"`;
       }
 
       const convs = ApartmentStore.getConversations();
@@ -106,6 +110,7 @@ export const ChatModal: React.FC<ChatModalProps> = ({
   };
 
   const dynamicQuickReplies = [
+    { label: '🤝 AI Cố Vấn Đàm Phán', text: 'Tư vấn giúp mình chiến lược đàm phán giá thuê và hợp đồng tốt nhất cho căn này?' },
     { label: '📅 Lịch xem phòng', text: 'Cho mình hỏi lịch xem phòng còn trống vào khung giờ nào?' },
     { label: '💡 Tổng chi phí điện nước', text: 'Tổng chi phí thực tế gồm điện, nước và phí quản lý hàng tháng là bao nhiêu?' },
     { label: '🔥 Kiểm tra an toàn PCCC', text: 'Tòa nhà đã nghiệm thu PCCC và có mấy thang thoát hiểm?' },

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, ArrowRight, ShieldCheck, CloudRain, Car, Zap, Mic, MicOff, Compass } from 'lucide-react';
+import { Sparkles, ArrowRight, ShieldCheck, CloudRain, Car, Zap, Mic, MicOff, Compass, Camera } from 'lucide-react';
 import { useFirstLoadReveal } from '../../hooks/useFirstLoadReveal';
 import { VoiceRecognitionService } from '../../services/voiceRecognitionService';
 
 interface HeroSectionProps {
   onSearch: (query?: string) => void;
   onOpenLifestyleMatchmaker?: () => void;
+  onOpenVisualVibeModal?: () => void;
 }
 
 const quickSuggestions = [
@@ -65,7 +66,11 @@ const badgeItemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'easeOut' as const } },
 };
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch, onOpenLifestyleMatchmaker }) => {
+export const HeroSection: React.FC<HeroSectionProps> = ({ 
+  onSearch, 
+  onOpenLifestyleMatchmaker,
+  onOpenVisualVibeModal
+}) => {
   const [aiPromptInput, setAiPromptInput] = useState('');
   const [isListening, setIsListening] = useState(false);
   const phase = useFirstLoadReveal();
@@ -200,6 +205,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch, onOpenLifest
               >
                 {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
               </button>
+
+              {/* Visual Vibe / Camera Search Button */}
+              {onOpenVisualVibeModal && (
+                <button
+                  type="button"
+                  onClick={onOpenVisualVibeModal}
+                  title="Tìm kiếm phong cách căn hộ bằng hình ảnh hoặc camera (Visual Vibe Matcher)"
+                  className="p-2.5 rounded-xl transition-all flex items-center justify-center shrink-0 bg-slate-800 dark:bg-slate-800 light:bg-slate-100 text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-emerald-400 hover:bg-slate-700 group cursor-pointer"
+                >
+                  <Camera className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                </button>
+              )}
+
               <button
                 type="submit"
                 className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 light:bg-emerald-600 light:hover:bg-emerald-500 text-slate-950 light:text-white font-bold text-sm transition-all duration-200 shadow-lg shadow-emerald-500/25 shrink-0 hover:scale-[1.02] active:scale-[0.98]"
@@ -231,13 +249,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch, onOpenLifest
               <button
                 type="button"
                 onClick={onOpenLifestyleMatchmaker}
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-500/20 via-emerald-500/10 to-teal-500/20 hover:from-emerald-500/30 hover:to-teal-500/30 text-emerald-300 border border-emerald-500/40 text-xs font-mono font-bold transition-all shadow-md shadow-emerald-500/15 hover:scale-[1.02] active:scale-[0.98] cursor-pointer group"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-emerald-300 border border-emerald-500/30 text-xs font-mono font-medium transition-all shadow-md hover:scale-[1.01] active:scale-[0.99] cursor-pointer group"
               >
                 <Compass className="w-4 h-4 text-emerald-400 group-hover:rotate-45 transition-transform" />
-                <span>Khảo Sát Không Gian Sống Tương Thích AI (Lifestyle Matchmaker)</span>
-                <span className="px-1.5 py-0.5 rounded-md bg-emerald-500 text-slate-950 text-[9px] font-bold">
-                  WOW FEATURE
-                </span>
+                <span>Khảo Sát Nhu Cầu Sống (Pet, Ô tô, Hướng nắng & Yên tĩnh)</span>
                 <ArrowRight className="w-3.5 h-3.5 text-emerald-400 group-hover:translate-x-0.5 transition-transform" />
               </button>
             </div>

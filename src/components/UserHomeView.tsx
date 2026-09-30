@@ -28,6 +28,7 @@ interface UserHomeViewProps {
   onSelectUnit: (id: string) => void;
   onNavigateSearch: (initialQuery?: string) => void;
   onOpenLifestyleMatchmaker?: () => void;
+  onOpenVisualVibeModal?: () => void;
 }
 
 export const UserHomeView: React.FC<UserHomeViewProps> = ({
@@ -37,6 +38,7 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
   onSelectUnit,
   onNavigateSearch,
   onOpenLifestyleMatchmaker,
+  onOpenVisualVibeModal,
 }) => {
   // Signature Experience: Property-to-Benefit Sanctuary Journey State
   const [activeFocalUnitId, setActiveFocalUnitId] = useState<string>(units[0]?.id || 'HN-HM-0101');
@@ -91,7 +93,11 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
   return (
     <div className="space-y-12 md:space-y-16 pb-16">
       {/* ═══ NEW: Product-Native Hero with Entrance Choreography ═══ */}
-      <HeroSection onSearch={onNavigateSearch} onOpenLifestyleMatchmaker={onOpenLifestyleMatchmaker} />
+      <HeroSection 
+        onSearch={onNavigateSearch} 
+        onOpenLifestyleMatchmaker={onOpenLifestyleMatchmaker} 
+        onOpenVisualVibeModal={onOpenVisualVibeModal}
+      />
 
       {/* ═══ Sanctuary Tuning Dials with Luxury Ambient Border ═══ */}
       <section className="relative rounded-3xl p-[1.5px] overflow-hidden shadow-2xl border border-emerald-500/30 bg-gradient-to-b from-emerald-500/10 via-transparent to-transparent group transition-all">
@@ -118,7 +124,7 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
                   className="inline-flex items-center gap-2 px-4 py-2.5 sm:py-3 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/35 text-emerald-300 font-mono text-xs font-bold transition-all shadow-md hover:scale-105 active:scale-95 cursor-pointer"
                 >
                   <Compass className="w-4 h-4 text-emerald-400" />
-                  <span>Khảo Sát Radar Đa Chiều</span>
+                  <span>Khảo Sát Nhu Cầu Sống</span>
                 </button>
               )}
               <button

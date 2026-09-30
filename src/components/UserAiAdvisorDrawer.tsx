@@ -47,7 +47,7 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
     {
       id: 'msg-1',
       sender: 'ai',
-      text: `Xin chào bạn! Tôi là HAVEN Local AI — Trợ lý Không Gian Sống Cục Bộ vận hành trên mô hình SLM Qwen2.5 (100% Offline, bảo mật tối đa).\n\nBạn có thể hỏi tôi bất kỳ điều gì: tư vấn trong số 1,260 căn hộ toàn quốc (Thái Nguyên, Hà Nội, TP.HCM, Đà Nẵng...), tính toán chi phí True Cost, hoặc cơ chế bảo chứng cọc Escrow an toàn nhé!`
+      text: `Xin chào bạn! Tôi là HAVEN Local AI — Trợ lý Không Gian Sống Cục Bộ vận hành trên mô hình SLM Qwen2.5 (100% Offline, bảo mật tối đa).\n\nBạn có thể hỏi tôi bất kỳ điều gì: tư vấn trong số 1,700 căn hộ toàn quốc (Thái Nguyên, Hà Nội, TP.HCM, Đà Nẵng...), tính toán chi phí True Cost, hoặc cơ chế bảo chứng cọc Escrow an toàn nhé!`
     }
   ]);
   const [inputValue, setInputValue] = useState('');
@@ -316,7 +316,7 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
                     </span>
                   </div>
                   <p className="text-[9.5px] font-mono text-slate-400 [data-theme='light']_:text-slate-500">
-                    Qwen2.5-0.5B Edge Intelligence • 1,260 Căn Hộ
+                    Qwen2.5-0.5B Edge Intelligence • 1,700 Căn Hộ
                   </p>
                 </div>
               </div>

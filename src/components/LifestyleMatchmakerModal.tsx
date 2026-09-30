@@ -763,9 +763,9 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
               type="button"
               onClick={onClose}
               className="text-xs font-mono text-slate-400 hover:text-emerald-400 transition-colors cursor-pointer px-3 py-1.5 rounded-lg hover:bg-slate-800/60"
-              title="Đóng khảo sát và xem toàn bộ danh sách căn hộ"
+              title="Đóng và xem trực tiếp toàn bộ danh sách căn hộ"
             >
-              Bỏ qua khảo sát
+              Bỏ qua
             </button>
 
             <button

@@ -19,7 +19,8 @@ import {
   Filter,
   Box,
   ArrowRight,
-  Search
+  Search,
+  Camera
 } from 'lucide-react';
 import type { ApartmentUnit } from '../types/apartment';
 import { type ConsumerFilters, parseNaturalLanguageQuery, calculateMatchScore } from '../services/aiAdvisorService';
@@ -61,6 +62,7 @@ interface UserSearchViewProps {
   onToggleSaveUnit: (id: string) => void;
   onSelectUnit: (id: string) => void;
   onOpenVirtualTour?: (unit: ApartmentUnit) => void;
+  onOpenVisualVibeModal?: () => void;
   initialAiQuery?: string;
 }
 
@@ -70,6 +72,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
   onToggleSaveUnit,
   onSelectUnit,
   onOpenVirtualTour,
+  onOpenVisualVibeModal,
   initialAiQuery = ''
 }) => {
   const [aiUnderstoodText, setAiUnderstoodText] = useState<string | null>(null);
@@ -90,12 +93,12 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
   const [petFriendlyOnly, setPetFriendlyOnly] = useState<boolean>(false);
   const [pcccCertifiedOnly, setPcccCertifiedOnly] = useState<boolean>(false);
   const [verifiedLandlordOnly, setVerifiedLandlordOnly] = useState<boolean>(false);
-  const [displayLimit, setDisplayLimit] = useState<number>(12);
+  const [displayLimit, setDisplayLimit] = useState<number>(36);
   const observerRef = useRef<HTMLDivElement | null>(null);
 
   // Reset pagination when search or filters change to keep rendering buttery smooth
   useEffect(() => {
-    setDisplayLimit(12);
+    setDisplayLimit(36);
   }, [
     cityFilter,
     districtFilter,
@@ -111,6 +114,28 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     verifiedLandlordOnly,
     searchInput
   ]);
+
+  // High-performance pre-fetching Infinite Scroll Observer (rootMargin 600px for buttery smooth experience)
+  useEffect(() => {
+    const target = observerRef.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setDisplayLimit((prev) => prev + 24);
+        }
+      },
+      {
+        root: null,
+        rootMargin: '600px',
+        threshold: 0.1
+      }
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [displayLimit, filteredUnits.length]);
 
 
 
@@ -418,30 +443,44 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
           </div>
         )}
 
-        {/* Real-time In-Page Search Bar */}
-        <div className="relative w-full max-w-2xl">
-          <Search className="w-4 h-4 text-emerald-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-          <input
-            type="text"
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-            placeholder="Tìm theo tên căn hộ, quận huyện, dự án hoặc từ khóa..."
-            className="w-full pl-10 pr-24 py-2.5 text-xs sm:text-sm bg-slate-950/70 [data-theme='light']_:bg-white border border-slate-700/80 [data-theme='light']_:border-slate-300 rounded-xl text-slate-100 [data-theme='light']_:text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/50 transition-all font-mono shadow-inner"
-          />
-          <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
-            {searchInput && (
-              <button
-                type="button"
-                onClick={() => setSearchInput('')}
-                className="px-2 py-0.5 text-[11px] font-mono rounded-md bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors cursor-pointer"
-              >
-                ✕ Xóa
-              </button>
-            )}
-            <span className="px-2 py-0.5 text-[10px] font-mono font-bold rounded-md bg-emerald-950/80 border border-emerald-500/30 text-emerald-400">
-              {filteredUnits.length} căn
-            </span>
+        {/* Real-time In-Page Search Bar & Visual Vibe Button */}
+        <div className="flex items-center gap-2.5 w-full max-w-2xl">
+          <div className="relative flex-1">
+            <Search className="w-4 h-4 text-emerald-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <input
+              type="text"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              placeholder="Tìm theo tên căn hộ, quận huyện, dự án hoặc từ khóa..."
+              className="w-full pl-10 pr-24 py-2.5 text-xs sm:text-sm bg-slate-950/70 [data-theme='light']_:bg-white border border-slate-700/80 [data-theme='light']_:border-slate-300 rounded-xl text-slate-100 [data-theme='light']_:text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/50 transition-all font-mono shadow-inner"
+            />
+            <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
+              {searchInput && (
+                <button
+                  type="button"
+                  onClick={() => setSearchInput('')}
+                  className="px-2 py-0.5 text-[11px] font-mono rounded-md bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors cursor-pointer"
+                >
+                  ✕ Xóa
+                </button>
+              )}
+              <span className="px-2 py-0.5 text-[10px] font-mono font-bold rounded-md bg-emerald-950/80 border border-emerald-500/30 text-emerald-400">
+                {filteredUnits.length} căn
+              </span>
+            </div>
           </div>
+
+          {onOpenVisualVibeModal && (
+            <button
+              type="button"
+              onClick={onOpenVisualVibeModal}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/35 text-emerald-300 text-xs font-mono font-bold transition-all shadow-sm hover:scale-105 active:scale-95 cursor-pointer shrink-0"
+              title="Tìm kiếm căn hộ bằng hình ảnh hoặc camera (Visual Vibe Matcher)"
+            >
+              <Camera className="w-4 h-4 text-emerald-400" />
+              <span className="hidden sm:inline">Tìm Bằng Ảnh</span>
+            </button>
+          )}
         </div>
 
         {/* Quick City Filter Pills - Fast 1-click filtering without opening sidebar */}

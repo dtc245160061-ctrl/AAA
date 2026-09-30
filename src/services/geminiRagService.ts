@@ -781,7 +781,7 @@ export async function askLocalSlm(
   if (roleMode === 'admin') {
     if (normQuery.includes('quá hạn') || normQuery.includes('nợ') || normQuery.includes('tiền thuê') || normQuery.includes('overdue')) {
       return {
-        answer: `[⚡ HAVEN Local SLM • Quản Trị Vận Hành]\n\nBáo cáo tài chính quá hạn trên hệ thống 1,260 căn hộ:\n• Tổng số căn chậm thanh toán kỳ hiện tại: **2 căn**\n• Căn **HN-HM-0101** (Hoàng Mai, Hà Nội): Quá hạn 12 ngày (18.500.000 VNĐ). Đã gửi thông báo nhắc cọc tự động qua SMS Escrow.\n• Căn **SG-D1-1601** (Quận 1, TP.HCM): Quá hạn 5 ngày (32.000.000 VNĐ). Khách thuê cam kết thanh toán trước ngày 02 tới.\n\nTỷ lệ thu hồi tiền thuê đạt **98.4%**, an toàn trong hạn mức quy định.`,
+        answer: `[⚡ HAVEN Local SLM • Quản Trị Vận Hành]\n\nBáo cáo tài chính quá hạn trên hệ thống 1,700 căn hộ:\n• Tổng số căn chậm thanh toán kỳ hiện tại: **2 căn**\n• Căn **HN-HM-0101** (Hoàng Mai, Hà Nội): Quá hạn 12 ngày (18.500.000 VNĐ). Đã gửi thông báo nhắc cọc tự động qua SMS Escrow.\n• Căn **SG-D1-1601** (Quận 1, TP.HCM): Quá hạn 5 ngày (32.000.000 VNĐ). Khách thuê cam kết thanh toán trước ngày 02 tới.\n\nTỷ lệ thu hồi tiền thuê đạt **98.4%**, an toàn trong hạn mức quy định.`,
         sources: [],
         modelUsed: 'Local SLM Qwen2.5-0.5B (Edge GGUF Q4_K_M)',
         usedRealApi: false
@@ -808,7 +808,7 @@ export async function askLocalSlm(
 
     if (normQuery.includes('pccc') || normQuery.includes('cháy nổ') || normQuery.includes('an toàn')) {
       return {
-        answer: `[⚡ HAVEN Local SLM • Quản Trị Vận Hành]\n\nChỉ số an toàn PCCC toàn hệ thống 1,260 căn hộ theo chuẩn QCVN 06:\n• 100% tòa nhà đạt chứng nhận kiểm định an toàn PCCC định kỳ.\n• Hệ thống báo cháy tự động IoT kết nối trạm trực 24/7.\n• Cửa chống cháy ngăn khói 90 phút và thang thoát hiểm áp suất dương hoạt động chuẩn xác.`,
+        answer: `[⚡ HAVEN Local SLM • Quản Trị Vận Hành]\n\nChỉ số an toàn PCCC toàn hệ thống 1,700 căn hộ theo chuẩn QCVN 06:\n• 100% tòa nhà đạt chứng nhận kiểm định an toàn PCCC định kỳ.\n• Hệ thống báo cháy tự động IoT kết nối trạm trực 24/7.\n• Cửa chống cháy ngăn khói 90 phút và thang thoát hiểm áp suất dương hoạt động chuẩn xác.`,
         sources: [],
         modelUsed: 'Local SLM Qwen2.5-0.5B (Edge GGUF Q4_K_M)',
         usedRealApi: false
@@ -823,7 +823,7 @@ export async function askLocalSlm(
   // 1. Kiến thức chuyên sâu hệ thống HAVEN (Từ bộ 2,507 mẫu dataset huấn luyện)
   if (normQuery.includes('matchmaker') || normQuery.includes('radar') || normQuery.includes('khảo sát')) {
     return {
-      answer: `[⚡ HAVEN Local SLM • Qwen2.5-0.5B Edge Engine]\n\nHệ thống **HAVEN Lifestyle Matchmaker** là thuật toán phân tích đa chiều độc quyền khảo sát 5 trục phong cách sống:\n1. 🐕 **Thân thiện thú cưng**: Ban công rào bảo vệ, gần công viên dạo bộ.\n2. 🚗 **Tiện ích phương tiện**: Hầm ô tô thông minh 2 tầng, trạm sạc xe điện an toàn.\n3. 🏃 **Thể thao & Không gian xanh**: Chạy bộ quanh hồ, gym và bể bơi nội khu.\n4. 🔇 **Chỉ số yên tĩnh**: Tầng cao, kính hộp Low-E 2 lớp cách âm.\n5. ☀️ **Vi khí hậu**: Đón nắng ban mai sớm (Đông/Đông Nam), tránh nắng Tây gay gắt.\n\nAI sẽ tổng hợp và vẽ biểu đồ Radar tương thích, chỉ định chính xác các căn hộ đạt điểm số Match Index cao nhất trên kho **1,260 căn hộ thực tế**.`,
+      answer: `[⚡ HAVEN Local SLM • Qwen2.5-0.5B Edge Engine]\n\nHệ thống **HAVEN Lifestyle Matchmaker** là thuật toán phân tích đa chiều độc quyền khảo sát 5 trục phong cách sống:\n1. 🐕 **Thân thiện thú cưng**: Ban công rào bảo vệ, gần công viên dạo bộ.\n2. 🚗 **Tiện ích phương tiện**: Hầm ô tô thông minh 2 tầng, trạm sạc xe điện an toàn.\n3. 🏃 **Thể thao & Không gian xanh**: Chạy bộ quanh hồ, gym và bể bơi nội khu.\n4. 🔇 **Chỉ số yên tĩnh**: Tầng cao, kính hộp Low-E 2 lớp cách âm.\n5. ☀️ **Vi khí hậu**: Đón nắng ban mai sớm (Đông/Đông Nam), tránh nắng Tây gay gắt.\n\nAI sẽ tổng hợp và vẽ biểu đồ Radar tương thích, chỉ định chính xác các căn hộ đạt điểm số Match Index cao nhất trên kho **1,700 căn hộ thực tế**.`,
       sources: [],
       modelUsed: 'Local SLM Qwen2.5-0.5B (Edge GGUF Q4_K_M)',
       usedRealApi: false
@@ -841,7 +841,7 @@ export async function askLocalSlm(
 
   if (normQuery.includes('local') || normQuery.includes('ưu điểm') || normQuery.includes('offline') || normQuery.includes('qwen') || normQuery.includes('slm')) {
     return {
-      answer: `[⚡ HAVEN Local SLM • Qwen2.5-0.5B Edge Engine]\n\nMô hình **AI Cục Bộ (Local SLM Qwen2.5-0.5B)** của HAVEN sở hữu 4 ưu thế vượt trội:\n1. ⚡ **Độ trễ bằng 0**: Chạy trực tiếp trên thiết bị (Edge NPU/CPU), phản hồi chỉ mất ~80ms mà không cần gửi dữ liệu lên máy chủ đám mây.\n2. 🔒 **Bảo mật tuyệt đối 100%**: Mọi thông tin hội thoại, nhu cầu tìm nhà và tài chính của người dùng không bao giờ rời khỏi thiết bị.\n3. 🌐 **Hoạt động Offline hoàn toàn**: Kể cả khi mất kết nối mạng Internet, mô hình vẫn tra cứu và tư vấn thông suốt trên 1,260 căn hộ.\n4. 💰 **Không tốn chi phí API**: Không lo hết quota token hay nghẽn mạng từ các nhà cung cấp đám mây.`,
+      answer: `[⚡ HAVEN Local SLM • Qwen2.5-0.5B Edge Engine]\n\nMô hình **AI Cục Bộ (Local SLM Qwen2.5-0.5B)** của HAVEN sở hữu 4 ưu thế vượt trội:\n1. ⚡ **Độ trễ bằng 0**: Chạy trực tiếp trên thiết bị (Edge NPU/CPU), phản hồi chỉ mất ~80ms mà không cần gửi dữ liệu lên máy chủ đám mây.\n2. 🔒 **Bảo mật tuyệt đối 100%**: Mọi thông tin hội thoại, nhu cầu tìm nhà và tài chính của người dùng không bao giờ rời khỏi thiết bị.\n3. 🌐 **Hoạt động Offline hoàn toàn**: Kể cả khi mất kết nối mạng Internet, mô hình vẫn tra cứu và tư vấn thông suốt trên 1,700 căn hộ.\n4. 💰 **Không tốn chi phí API**: Không lo hết quota token hay nghẽn mạng từ các nhà cung cấp đám mây.`,
       sources: [],
       modelUsed: 'Local SLM Qwen2.5-0.5B (Edge GGUF Q4_K_M)',
       usedRealApi: false
@@ -904,7 +904,7 @@ export async function askLocalSlm(
   }).join('\n\n');
 
   return {
-    answer: `[⚡ HAVEN Local SLM • Qwen2.5-0.5B Edge Engine]\n\nDựa trên dữ liệu 1,260 căn hộ được nạp trực tiếp trong bộ nhớ thiết bị, HAVEN xin đề xuất các phương án phù hợp nhất với nhu cầu của bạn:\n\n${candidateListStr}\n\n*Phản hồi tạo bởi mô hình Qwen2.5-0.5B LoRA Offline (0ms Cloud Latency).*`,
+    answer: `[⚡ HAVEN Local SLM • Qwen2.5-0.5B Edge Engine]\n\nDựa trên dữ liệu 1,700 căn hộ được nạp trực tiếp trong bộ nhớ thiết bị, HAVEN xin đề xuất các phương án phù hợp nhất với nhu cầu của bạn:\n\n${candidateListStr}\n\n*Phản hồi tạo bởi mô hình Qwen2.5-0.5B LoRA Offline (0ms Cloud Latency).*`,
     sources: candidates.map(u => ({
       chunk: {
         id: u.id,
