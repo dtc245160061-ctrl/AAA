@@ -147,19 +147,20 @@ export const GlassCursor: React.FC<GlassCursorProps> = ({
       {/* 1. Fluid Liquid Luminous Lens (Hardware accelerated, Zero GPU rasterization lag) */}
       <div
         ref={lensRef}
-        className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none opacity-0 transition-opacity duration-200 bg-emerald-500/10 border border-emerald-400/40 shadow-[0_0_16px_rgba(52,211,153,0.35)] will-change-transform"
+        className="fixed top-0 left-0 w-14 h-14 rounded-full pointer-events-none opacity-0 transition-opacity duration-200 bg-emerald-500/12 border border-emerald-400/50 shadow-[0_0_24px_rgba(52,211,153,0.45)] will-change-transform backdrop-blur-[0.5px]"
         style={{
           transform: 'translate3d(-200px, -200px, 0) translate(-50%, -50%)',
         }}
       >
         {/* Optical Specular Glint Crescent */}
-        <div className="absolute top-1 left-1.5 w-3 h-1.5 rounded-full bg-white/50 -rotate-12 pointer-events-none" />
+        <div className="absolute top-2 left-2.5 w-4 h-2 rounded-full bg-white/60 -rotate-12 pointer-events-none blur-[0.3px]" />
+        <div className="absolute inset-0 rounded-full border border-white/20 pointer-events-none" />
       </div>
 
       {/* 2. Pinpoint Center Photon Dot (Zero Lag, Instant Tracking) */}
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full pointer-events-none opacity-0 transition-opacity duration-200 bg-emerald-400 shadow-[0_0_8px_#34d399] will-change-transform"
+        className="fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none opacity-0 transition-opacity duration-200 bg-emerald-400 shadow-[0_0_10px_#34d399] will-change-transform"
         style={{
           transform: 'translate3d(-200px, -200px, 0) translate(-50%, -50%)',
         }}
