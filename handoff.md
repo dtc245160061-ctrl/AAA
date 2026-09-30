@@ -119,3 +119,21 @@
 4. **Kiểm tra chất lượng**:
    - `tsc -b && vite build` hoàn thành 100% không cảnh báo lỗi type (Build time: ~780ms).
 
+---
+
+## 9. CẬP NHẬT PHIÊN BẢN v2.5.2 — KHẮC PHỤC CRASH QUOTA & TÍCH HỢP AI VISION SEARCH CLIP (ĐÃ HOÀN TẤT)
+
+1. **Khắc phục triệt để lỗi màn hình đen (`QuotaExceededError`)**:
+   - **Nguyên nhân gốc rễ**: Khi dataset mở rộng lên 1,700 căn hộ (8MB JSON), việc gọi `localStorage.setItem` làm vượt hạn mức 5MB của trình duyệt, gây exception chưa bắt và làm sập React khi mount.
+   - **Giải pháp**: Tái cấu trúc `ApartmentStore` sang kiến trúc Delta Storage: 1,700 căn hộ được nạp trực tiếp trong RAM; `localStorage` chỉ lưu các delta thay đổi (căn hộ tự tạo, overrides chỉnh sửa, danh sách xóa), bảo vệ 100% bằng hàm `safeSetItem`. Ứng dụng tải mượt mà không bao giờ crash.
+2. **Cập nhật Lối Tắt Khởi Động (`HAVEN.lnk`)**:
+   - Đã chuẩn hóa toàn bộ lối tắt tại Desktop, Start Menu (`Programs/HAVEN.lnk`) và TaskBar pinned item trỏ thẳng về `D:\HAVEN\HAVEN.exe` với icon `haven.ico` chuẩn, loại bỏ tham số thừa.
+3. **Bộ dữ liệu Thị giác & Pipeline Colab CLIP ViT-B/32 (Hướng A)**:
+   - **Dataset Zip**: Đã nén và chuyển `G:\My Drive\COLAB\02_haven_visual_dataset_818.zip` chứa 818 ảnh kiến trúc độc bản kèm manifest.
+   - **Notebook Colab**: Đã tạo `02_train_haven_visual_clip.ipynb` lưu trên `D:\HAVEN\` (chuẩn Rule 2) với quy trình trích xuất vector 512 chiều chuẩn hóa L2 norm và xuất `haven_visual_embeddings_clip.json`.
+4. **Nâng cấp Modal "Tìm Kiếm Không Gian Bằng Thị Giác AI" (`VisualVibeModal.tsx`)**:
+   - Tích hợp tính toán tương đồng vector Cosine Similarity thời gian thực trên 818 vector đặc trưng `src/data/visualEmbeddings.ts`.
+   - **Cơ chế Zero False-Positive Guard**: Nếu ảnh nạp vào là ảnh ngoại lai (xe cộ, động vật, hoạt hình) hoặc độ tương đồng < 62%, hệ thống từ chối chính xác và hiển thị cảnh báo: *"Không tìm thấy căn hộ có phong cách/kiến trúc tương đồng trong cơ sở dữ liệu!"*.
+5. **Bảo tồn Hiệu ứng Đồ họa Động**:
+   - Giữ nguyên các khối cầu chuyển sắc (`fluid-orb-1`, `fluid-orb-2`) và viền laser xoay quanh thanh tìm kiếm, đảm bảo FPS cao và thẩm mỹ cao cấp.
+

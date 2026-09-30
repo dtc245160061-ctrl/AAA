@@ -930,6 +930,11 @@ export function App() {
           setActiveModule('user_search');
           showToast('info', 'Tìm kiếm thị giác AI', `Đang lọc các căn hộ mang phong cách "${filterKeyword}"`);
         }}
+        onSelectUnit={(id) => {
+          setSelectedUnitId(id);
+          setIsAdminView(false);
+          setActiveModule('user_detail');
+        }}
       />
 
 

@@ -364,6 +364,14 @@ const STORAGE_KEYS = {
   DOCUMENTS: 'haven_documents_v4'
 };
 
+export function safeSetItem(key: string, value: string): void {
+  try {
+    localStorage.setItem(key, value);
+  } catch (err) {
+    console.warn(`[ApartmentStore] Failed to save to localStorage (${key}):`, err);
+  }
+}
+
 export const normalizeCity = (city?: string): string => {
   if (!city) return 'Hà Nội';
   const c = city.trim();
@@ -840,69 +848,113 @@ export function enrichUnit(unit: any): ApartmentUnit {
 }
 
 export class ApartmentStore {
-  // Units
+  // Units (Quota-Safe Memory + Delta Storage)
   static getUnits(): ApartmentUnit[] {
     try {
-      const data = localStorage.getItem(STORAGE_KEYS.UNITS);
-      if (data) {
-        const parsed: ApartmentUnit[] = JSON.parse(data);
-        if (parsed.length >= 1200 && (parsed[0]?.images?.length ?? 0) >= 4 && Boolean(parsed[0]?.city)) {
-          return parsed.map(enrichUnit);
-        }
+      // Purge massive legacy key that blew the 5MB browser quota
+      if (localStorage.getItem(STORAGE_KEYS.UNITS)) {
+        localStorage.removeItem(STORAGE_KEYS.UNITS);
       }
-    } catch (e) {
-      console.error(e);
+    } catch {
+      // ignore
     }
-    const units = MOCK_UNITS.map(enrichUnit);
-    this.saveUnits(units);
-    return units;
+
+    let customUnits: ApartmentUnit[] = [];
+    let overrides: Record<string, Partial<ApartmentUnit>> = {};
+    let deletedIds: string[] = [];
+
+    try {
+      const c = localStorage.getItem('haven_custom_units_v1');
+      if (c) customUnits = JSON.parse(c);
+      const o = localStorage.getItem('haven_unit_overrides_v1');
+      if (o) overrides = JSON.parse(o);
+      const d = localStorage.getItem('haven_deleted_unit_ids_v1');
+      if (d) deletedIds = JSON.parse(d);
+    } catch (e) {
+      console.warn('Error reading unit overrides:', e);
+    }
+
+    const deletedSet = new Set(deletedIds);
+    const baseUnits = MOCK_UNITS.filter(u => !deletedSet.has(u.id)).map(enrichUnit);
+
+    const modifiedBase = baseUnits.map(u => {
+      if (overrides[u.id]) {
+        return enrichUnit({ ...u, ...overrides[u.id] });
+      }
+      return u;
+    });
+
+    return [...customUnits.map(enrichUnit), ...modifiedBase];
   }
 
-  static saveUnits(units: ApartmentUnit[]) {
-    localStorage.setItem(STORAGE_KEYS.UNITS, JSON.stringify(units));
+  static saveUnits(_units: ApartmentUnit[]) {
+    // Deliberately no-op for entire array to never exceed localStorage 5MB quota.
+    // Mutations are safely tracked via addUnit, updateUnit, updateUnitStatus, deleteUnit delta keys.
   }
 
   static addUnit(unitData: Omit<ApartmentUnit, 'id'> & { id?: string }): ApartmentUnit {
-    const units = this.getUnits();
     const newId = unitData.id || `UNIT-${Date.now().toString().slice(-4)}`;
     const newUnit: ApartmentUnit = enrichUnit({
       ...unitData,
       id: newId
     } as ApartmentUnit);
-    units.unshift(newUnit);
-    this.saveUnits(units);
+    try {
+      const c = localStorage.getItem('haven_custom_units_v1');
+      const customUnits: ApartmentUnit[] = c ? JSON.parse(c) : [];
+      customUnits.unshift(newUnit);
+      safeSetItem('haven_custom_units_v1', JSON.stringify(customUnits));
+    } catch (e) {
+      console.warn('Error saving custom unit:', e);
+    }
     return newUnit;
   }
 
   static updateUnitStatus(unitId: string, status: UnitStatus) {
-    const units = this.getUnits();
-    const idx = units.findIndex(u => u.id === unitId);
-    if (idx !== -1) {
-      units[idx].status = status;
-      this.saveUnits(units);
-    }
+    this.updateUnit(unitId, { status });
   }
 
   static updateUnit(unitId: string, updates: Partial<ApartmentUnit>): ApartmentUnit | null {
-    const units = this.getUnits();
-    const idx = units.findIndex(u => u.id === unitId);
-    if (idx !== -1) {
-      units[idx] = enrichUnit({ ...units[idx], ...updates });
-      this.saveUnits(units);
-      return units[idx];
+    try {
+      const c = localStorage.getItem('haven_custom_units_v1');
+      let customUnits: ApartmentUnit[] = c ? JSON.parse(c) : [];
+      const cIdx = customUnits.findIndex(u => u.id === unitId);
+      if (cIdx !== -1) {
+        customUnits[cIdx] = enrichUnit({ ...customUnits[cIdx], ...updates });
+        safeSetItem('haven_custom_units_v1', JSON.stringify(customUnits));
+        return customUnits[cIdx];
+      }
+
+      const o = localStorage.getItem('haven_unit_overrides_v1');
+      const overrides: Record<string, Partial<ApartmentUnit>> = o ? JSON.parse(o) : {};
+      overrides[unitId] = { ...(overrides[unitId] || {}), ...updates };
+      safeSetItem('haven_unit_overrides_v1', JSON.stringify(overrides));
+    } catch (e) {
+      console.warn('Error saving unit update:', e);
     }
     return null;
   }
 
   static deleteUnit(unitId: string): boolean {
-    let units = this.getUnits();
-    const initialLen = units.length;
-    units = units.filter(u => u.id !== unitId);
-    if (units.length !== initialLen) {
-      this.saveUnits(units);
+    try {
+      const c = localStorage.getItem('haven_custom_units_v1');
+      let customUnits: ApartmentUnit[] = c ? JSON.parse(c) : [];
+      const filteredCustom = customUnits.filter(u => u.id !== unitId);
+      if (filteredCustom.length !== customUnits.length) {
+        safeSetItem('haven_custom_units_v1', JSON.stringify(filteredCustom));
+        return true;
+      }
+
+      const d = localStorage.getItem('haven_deleted_unit_ids_v1');
+      const deletedIds: string[] = d ? JSON.parse(d) : [];
+      if (!deletedIds.includes(unitId)) {
+        deletedIds.push(unitId);
+        safeSetItem('haven_deleted_unit_ids_v1', JSON.stringify(deletedIds));
+      }
       return true;
+    } catch (e) {
+      console.warn('Error deleting unit:', e);
+      return false;
     }
-    return false;
   }
 
   // Leads
@@ -917,7 +969,7 @@ export class ApartmentStore {
   }
 
   static saveLeads(leads: RentalLead[]) {
-    localStorage.setItem(STORAGE_KEYS.LEADS, JSON.stringify(leads));
+    safeSetItem(STORAGE_KEYS.LEADS, JSON.stringify(leads));
   }
 
   static addLead(lead: Omit<RentalLead, 'id' | 'createdAt' | 'status'>): RentalLead {
@@ -954,7 +1006,7 @@ export class ApartmentStore {
   }
 
   static saveContracts(contracts: LeaseContract[]) {
-    localStorage.setItem(STORAGE_KEYS.CONTRACTS, JSON.stringify(contracts));
+    safeSetItem(STORAGE_KEYS.CONTRACTS, JSON.stringify(contracts));
   }
 
   static addContract(contract: Omit<LeaseContract, 'id' | 'createdAt'>): LeaseContract {
@@ -986,7 +1038,7 @@ export class ApartmentStore {
   }
 
   static saveInvoices(invoices: RentalInvoice[]) {
-    localStorage.setItem(STORAGE_KEYS.INVOICES, JSON.stringify(invoices));
+    safeSetItem(STORAGE_KEYS.INVOICES, JSON.stringify(invoices));
   }
 
   static markInvoicePaid(id: string) {
@@ -1012,7 +1064,7 @@ export class ApartmentStore {
   }
 
   static saveConversations(convs: ChatConversation[]) {
-    localStorage.setItem(STORAGE_KEYS.CONVERSATIONS, JSON.stringify(convs));
+    safeSetItem(STORAGE_KEYS.CONVERSATIONS, JSON.stringify(convs));
   }
 
   static getOrCreateConversation(unitId: string, unitName: string, customerName: string, customerPhone: string): ChatConversation {
@@ -1084,7 +1136,7 @@ export class ApartmentStore {
   }
 
   static setSubscription(tier: SubscriptionTier) {
-    localStorage.setItem(STORAGE_KEYS.ACTIVE_SUBSCRIPTION, tier);
+    safeSetItem(STORAGE_KEYS.ACTIVE_SUBSCRIPTION, tier);
   }
 
   // Service Orders (VAS)
@@ -1132,7 +1184,7 @@ export class ApartmentStore {
       status: 'confirmed'
     };
     orders.unshift(newOrder);
-    localStorage.setItem(STORAGE_KEYS.SERVICE_ORDERS, JSON.stringify(orders));
+    safeSetItem(STORAGE_KEYS.SERVICE_ORDERS, JSON.stringify(orders));
     return newOrder;
   }
 
@@ -1151,7 +1203,7 @@ export class ApartmentStore {
               if (id === 'SG-D1-1601') return 'HN-HO-0303';
               return id;
             });
-            localStorage.setItem(STORAGE_KEYS.SAVED, JSON.stringify(migrated));
+            safeSetItem(STORAGE_KEYS.SAVED, JSON.stringify(migrated));
             return migrated;
           }
           return parsed;
@@ -1164,7 +1216,7 @@ export class ApartmentStore {
   }
 
   static saveSavedUnitIds(ids: string[]) {
-    localStorage.setItem(STORAGE_KEYS.SAVED, JSON.stringify(ids));
+    safeSetItem(STORAGE_KEYS.SAVED, JSON.stringify(ids));
   }
 
   // Legal Documents Vault
@@ -1236,7 +1288,7 @@ export class ApartmentStore {
       hashSignature: `HAVEN-HASH-${Math.random().toString(36).substr(2, 9).toUpperCase()}`
     };
     docs.unshift(newDoc);
-    localStorage.setItem(STORAGE_KEYS.DOCUMENTS || 'haven_documents_v3', JSON.stringify(docs));
+    safeSetItem(STORAGE_KEYS.DOCUMENTS || 'haven_documents_v3', JSON.stringify(docs));
     return newDoc;
   }
 
@@ -1644,7 +1696,7 @@ export class ApartmentStore {
     const item = queue.find(q => q.id === id);
     if (item) {
       item.status = status;
-      localStorage.setItem('haven_moderation_queue_v3', JSON.stringify(queue));
+      safeSetItem('haven_moderation_queue_v3', JSON.stringify(queue));
     }
   }
 
@@ -1666,16 +1718,21 @@ export class ApartmentStore {
   }
 
   static resetAll() {
-    localStorage.removeItem(STORAGE_KEYS.UNITS);
-    localStorage.removeItem(STORAGE_KEYS.LEADS);
-    localStorage.removeItem(STORAGE_KEYS.CONTRACTS);
-    localStorage.removeItem(STORAGE_KEYS.INVOICES);
-    localStorage.removeItem(STORAGE_KEYS.SAVED);
-    localStorage.removeItem(STORAGE_KEYS.CONVERSATIONS);
-    localStorage.removeItem(STORAGE_KEYS.ACTIVE_SUBSCRIPTION);
-    localStorage.removeItem(STORAGE_KEYS.SERVICE_ORDERS);
-    localStorage.removeItem('haven_documents_v3');
-    localStorage.removeItem('haven_moderation_queue_v3');
+    try {
+      localStorage.removeItem(STORAGE_KEYS.UNITS);
+      localStorage.removeItem('haven_custom_units_v1');
+      localStorage.removeItem('haven_unit_overrides_v1');
+      localStorage.removeItem('haven_deleted_unit_ids_v1');
+      localStorage.removeItem(STORAGE_KEYS.LEADS);
+      localStorage.removeItem(STORAGE_KEYS.CONTRACTS);
+      localStorage.removeItem(STORAGE_KEYS.INVOICES);
+      localStorage.removeItem(STORAGE_KEYS.SAVED);
+      localStorage.removeItem(STORAGE_KEYS.CONVERSATIONS);
+      localStorage.removeItem(STORAGE_KEYS.ACTIVE_SUBSCRIPTION);
+      localStorage.removeItem(STORAGE_KEYS.SERVICE_ORDERS);
+      localStorage.removeItem('haven_documents_v3');
+      localStorage.removeItem('haven_moderation_queue_v3');
+    } catch {}
   }
 }
 

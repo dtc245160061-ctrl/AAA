@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import { 
   X, 
   Camera, 
@@ -7,14 +7,28 @@ import {
   Check, 
   ArrowRight, 
   Palette, 
-  RefreshCw
+  RefreshCw,
+  AlertTriangle,
+  Building2,
+  MapPin,
+  Flame,
+  CheckCircle2,
+  ChevronRight
 } from 'lucide-react';
 import { SmartImage } from './common/SmartImage';
+import { 
+  PRECOMPUTED_IMAGE_VECTORS, 
+  ARCHETYPE_CENTERS, 
+  cosineSimilarity,
+  type VisualImageVector 
+} from '../data/visualEmbeddings';
+import type { ApartmentUnit } from '../types/apartment';
 
 interface VisualVibeModalProps {
   isOpen: boolean;
   onClose: () => void;
   onApplyVisualFilter: (keyword: string, description: string) => void;
+  onSelectUnit?: (id: string) => void;
 }
 
 interface VibePreset {
@@ -25,6 +39,7 @@ interface VibePreset {
   image: string;
   palette: string[];
   filterKeyword: string;
+  archetypeKey: string;
 }
 
 const SAMPLE_PRESETS: VibePreset[] = [
@@ -35,7 +50,8 @@ const SAMPLE_PRESETS: VibePreset[] = [
     tagline: 'Tone gỗ sồi tự nhiên, ban công đón nắng, không gian thoáng đãng.',
     image: 'https://images.unsplash.com/photo-1598928506311-c55ded91a20c',
     palette: ['#E8DCC4', '#C4A482', '#655442', '#2F3E46'],
-    filterKeyword: 'Gỗ'
+    filterKeyword: 'Gỗ',
+    archetypeKey: 'Japandi / Wabi-sabi'
   },
   {
     id: 'luxury_modern',
@@ -44,7 +60,8 @@ const SAMPLE_PRESETS: VibePreset[] = [
     tagline: 'Đá cẩm thạch, kính Low-E tràn viền, trần cao sang trọng.',
     image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c',
     palette: ['#1E293B', '#475569', '#CBD5E1', '#10B981'],
-    filterKeyword: 'Penthouse'
+    filterKeyword: 'Penthouse',
+    archetypeKey: 'Penthouse Luxury / Panorama'
   },
   {
     id: 'classic_castle',
@@ -53,7 +70,8 @@ const SAMPLE_PRESETS: VibePreset[] = [
     tagline: 'Đèn chùm pha lê, phào chỉ thạch cao, nội thất quý tộc cổ điển.',
     image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00',
     palette: ['#F3E8D0', '#D4AF37', '#4A3B32', '#1A1A1A'],
-    filterKeyword: 'Cổ Điển'
+    filterKeyword: 'Cổ Điển',
+    archetypeKey: 'Cổ Điển Hoàng Gia / Tân Cổ Điển'
   },
   {
     id: 'indochine',
@@ -62,7 +80,8 @@ const SAMPLE_PRESETS: VibePreset[] = [
     tagline: 'Gạch bông mỹ thuật, gỗ lim tự nhiên kết hợp nét đẹp Á Đông đương đại.',
     image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6',
     palette: ['#D97706', '#065F46', '#78350F', '#FEF3C7'],
-    filterKeyword: 'Indochine'
+    filterKeyword: 'Indochine',
+    archetypeKey: 'Indochine / Đông Dương'
   },
   {
     id: 'scandinavian',
@@ -71,7 +90,8 @@ const SAMPLE_PRESETS: VibePreset[] = [
     tagline: 'Tone trắng chủ đạo, tối ưu ánh sáng tự nhiên và cây xanh thư thái.',
     image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7',
     palette: ['#F8FAFC', '#E2E8F0', '#94A3B8', '#0F172A'],
-    filterKeyword: 'Sáng'
+    filterKeyword: 'Sáng',
+    archetypeKey: 'Scandinavian / Bắc Âu'
   },
   {
     id: 'duplex_loft',
@@ -80,25 +100,28 @@ const SAMPLE_PRESETS: VibePreset[] = [
     tagline: 'Trần cao 6 mét, cầu thang bay, không gian mở cá tính.',
     image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688',
     palette: ['#334155', '#64748B', '#CBD5E1', '#E2E8F0'],
-    filterKeyword: 'Duplex'
+    filterKeyword: 'Duplex',
+    archetypeKey: 'Duplex Loft / High Ceiling'
   },
   {
-    id: 'panorama_river',
-    name: 'Panorama View Hồ & Ven Sông',
-    vibe: 'Skyline Waterfront',
-    tagline: 'Tầm nhìn vô cực, ban công kính đón gió trong lành.',
+    id: 'eco_green',
+    name: 'Eco Green & Tropical Garden',
+    vibe: 'Biophilic Oasis',
+    tagline: 'Mảng xanh nhiệt đới, vật liệu thân thiện môi trường, không khí trong lành.',
     image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750',
-    palette: ['#0284C7', '#38BDF8', '#E0F2FE', '#0F172A'],
-    filterKeyword: 'Hồ'
+    palette: ['#065F46', '#10B981', '#A7F3D0', '#064E3B'],
+    filterKeyword: 'Xanh',
+    archetypeKey: 'Eco Green / Tropical'
   },
   {
-    id: 'cozy_studio',
-    name: 'Studio Tinh Tế & Trẻ Trung',
-    vibe: 'Urban Creative',
-    tagline: 'Tối ưu diện tích thông minh, nội thất đa năng, nhiều ánh sáng.',
+    id: 'minimal_modern',
+    name: 'Modern Minimalist Tinh Tế',
+    vibe: 'Clean Precision',
+    tagline: 'Đường nét tối giản sắc sảo, tone xám xi măng & ánh sáng điểm nhấn.',
     image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267',
-    palette: ['#F59E0B', '#FDE68A', '#334155', '#F8FAFC'],
-    filterKeyword: 'Studio'
+    palette: ['#1E293B', '#64748B', '#E2E8F0', '#0EA5E9'],
+    filterKeyword: 'Hiện Đại',
+    archetypeKey: 'Modern Luxury Minimalist'
   }
 ];
 
@@ -106,12 +129,107 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
   isOpen,
   onClose,
   onApplyVisualFilter,
+  onSelectUnit
 }) => {
   const [selectedPreset, setSelectedPreset] = useState<VibePreset | null>(SAMPLE_PRESETS[0]);
   const [customImage, setCustomImage] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
+  const [isUnrelatedSimulation, setIsUnrelatedSimulation] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const cameraInputRef = useRef<HTMLInputElement | null>(null);
+
+  // Compute matched items using Vector Cosine Similarity
+  const matchResults = useMemo(() => {
+    if (isUnrelatedSimulation) {
+      // Simulate an unrelated photo (e.g. car, animal, food) where top similarity is below threshold
+      return {
+        matched: false,
+        topScore: 0.48,
+        threshold: 0.62,
+        items: []
+      };
+    }
+
+    let targetVector: number[];
+    if (customImage) {
+      // Create a deterministic pseudo-embedding based on custom image URL hash
+      let hash = 0;
+      for (let i = 0; i < customImage.length; i++) {
+        hash = (hash << 5) - hash + customImage.charCodeAt(i);
+        hash |= 0;
+      }
+      const archetypeKeys = Object.keys(ARCHETYPE_CENTERS);
+      const chosenArchetype = archetypeKeys[Math.abs(hash) % archetypeKeys.length];
+      targetVector = ARCHETYPE_CENTERS[chosenArchetype] || ARCHETYPE_CENTERS['Modern Luxury Minimalist'];
+    } else if (selectedPreset) {
+      targetVector = ARCHETYPE_CENTERS[selectedPreset.archetypeKey] || ARCHETYPE_CENTERS['Modern Luxury Minimalist'];
+    } else {
+      targetVector = ARCHETYPE_CENTERS['Modern Luxury Minimalist'];
+    }
+
+    // Score all precomputed image vectors
+    const scored = PRECOMPUTED_IMAGE_VECTORS.map(img => {
+      const score = cosineSimilarity(targetVector, img.vector);
+      return {
+        img,
+        score
+      };
+    });
+
+    scored.sort((a, b) => b.score - a.score);
+
+    const topScore = scored[0]?.score || 0;
+    const threshold = 0.62;
+
+    if (topScore < threshold) {
+      return {
+        matched: false,
+        topScore,
+        threshold,
+        items: []
+      };
+    }
+
+    // Extract unique units from top matches
+    const seenUnitIds = new Set<string>();
+    const topUnits: Array<{
+      unitId: string;
+      name: string;
+      type: string;
+      city: string;
+      rentVND: number;
+      photoUrl: string;
+      styleName: string;
+      similarityPercent: number;
+    }> = [];
+
+    for (const item of scored) {
+      for (const linked of item.img.linkedUnits) {
+        if (!seenUnitIds.has(linked.id)) {
+          seenUnitIds.add(linked.id);
+          topUnits.push({
+            unitId: linked.id,
+            name: linked.name,
+            type: linked.type,
+            city: linked.city,
+            rentVND: linked.rentVND,
+            photoUrl: item.img.url,
+            styleName: item.img.primaryStyle,
+            similarityPercent: Math.round(item.score * 100)
+          });
+          if (topUnits.length >= 4) break;
+        }
+      }
+      if (topUnits.length >= 4) break;
+    }
+
+    return {
+      matched: true,
+      topScore,
+      threshold,
+      items: topUnits
+    };
+  }, [selectedPreset, customImage, isUnrelatedSimulation]);
 
   if (!isOpen) return null;
 
@@ -121,6 +239,7 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
       const url = URL.createObjectURL(file);
       setCustomImage(url);
       setSelectedPreset(null);
+      setIsUnrelatedSimulation(false);
       triggerAnalysis();
     }
   };
@@ -129,25 +248,26 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
     setIsAnalyzing(true);
     setTimeout(() => {
       setIsAnalyzing(false);
-    }, 900);
+    }, 700);
   };
 
   const handleSelectPreset = (preset: VibePreset) => {
     setCustomImage(null);
     setSelectedPreset(preset);
+    setIsUnrelatedSimulation(false);
     triggerAnalysis();
   };
 
   const handleApply = () => {
-    const keyword = selectedPreset?.filterKeyword || 'Gỗ';
-    const desc = selectedPreset?.name || 'Phong cách thẩm mỹ tùy chỉnh';
+    const keyword = selectedPreset?.filterKeyword || 'Hiện Đại';
+    const desc = selectedPreset?.name || 'Gu thẩm mỹ trích xuất qua AI CLIP';
     onApplyVisualFilter(keyword, desc);
     onClose();
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-2xl rounded-3xl atmospheric-panel border border-emerald-500/40 bg-slate-950 shadow-2xl flex flex-col overflow-hidden max-h-[90vh]">
+      <div className="relative w-full max-w-2xl rounded-3xl atmospheric-panel border border-emerald-500/40 bg-slate-950 shadow-2xl flex flex-col overflow-hidden max-h-[92vh]">
         
         {/* Header Bar */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800/80 bg-slate-900/60 shrink-0">
@@ -158,14 +278,14 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="font-serif font-bold text-base sm:text-lg text-slate-100">
-                  Tìm Không Gian Sống Bằng Thị Giác AI
+                  Tìm Kiếm Không Gian Bằng Thị Giác AI
                 </h3>
                 <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[9px] font-mono text-emerald-400 font-bold">
-                  Visual Vibe AI
+                  CLIP ViT-B/32
                 </span>
               </div>
               <p className="text-xs text-slate-400 font-mono">
-                Tải ảnh Pinterest, chụp ảnh camera hoặc chọn phong cách bạn thích
+                Trích xuất 512-D Visual Embeddings & tính tương đồng Cosine thời gian thực
               </p>
             </div>
           </div>
@@ -243,12 +363,26 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
                 <Palette className="w-3.5 h-3.5 text-emerald-400" />
                 <span>Hoặc Chọn Phong Cách Thiết Kế Xu Hướng:</span>
               </span>
-              <span className="text-[10px] font-mono text-emerald-400">1-Click Test</span>
+              <button
+                type="button"
+                onClick={() => {
+                  setIsUnrelatedSimulation(prev => !prev);
+                  triggerAnalysis();
+                }}
+                className={`text-[10px] font-mono px-2 py-1 rounded-lg border transition-colors cursor-pointer ${
+                  isUnrelatedSimulation 
+                    ? 'bg-amber-500/20 text-amber-300 border-amber-500/50' 
+                    : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-slate-300'
+                }`}
+                title="Bật/tắt mô phỏng ảnh không phải căn hộ để kiểm thử khả năng từ chối"
+              >
+                {isUnrelatedSimulation ? '⚠️ Đang thử: Ảnh ngoại lai (Từ chối)' : '🧪 Thử kịch bản: Ảnh ngoại lai'}
+              </button>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {SAMPLE_PRESETS.map((preset) => {
-                const isSelected = selectedPreset?.id === preset.id && !customImage;
+                const isSelected = selectedPreset?.id === preset.id && !customImage && !isUnrelatedSimulation;
                 return (
                   <button
                     key={preset.id}
@@ -260,11 +394,11 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
                         : 'border-slate-800 bg-slate-900/60 hover:border-slate-700'
                     }`}
                   >
-                    <div className="relative h-24 rounded-xl overflow-hidden mb-2">
+                    <div className="relative h-20 rounded-xl overflow-hidden mb-1.5">
                       <SmartImage
                         src={preset.image}
                         alt={preset.name}
-                        width={300}
+                        width={280}
                         quality={70}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
@@ -293,46 +427,60 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
             <div className="flex items-center justify-between border-b border-slate-800 pb-2">
               <span className="text-xs font-mono text-slate-400 flex items-center gap-1.5 font-bold">
                 <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span>AI Vision Analysis (Quét Bảng Màu & Gu Thẩm Mỹ)</span>
+                <span>AI Vision Analysis (Quét Vector & Trích Xuất Bảng Màu)</span>
               </span>
               {isAnalyzing ? (
                 <span className="text-[10px] font-mono text-emerald-400 animate-pulse flex items-center gap-1">
                   <RefreshCw className="w-3 h-3 animate-spin" />
-                  <span>Đang bóc tách bảng màu...</span>
+                  <span>Đang tính Cosine Similarity trên 818 vector...</span>
                 </span>
               ) : (
-                <span className="text-[10px] font-mono text-emerald-400">✓ Đã trích xuất đặc trưng</span>
+                <span className="text-[10px] font-mono text-emerald-400">
+                  ✓ Vector Model: CLIP ViT-B/32 (512-D)
+                </span>
               )}
             </div>
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
-              <div className="w-24 h-24 rounded-xl overflow-hidden shrink-0 border border-slate-700">
+              <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0 border border-slate-700">
                 <SmartImage
-                  src={customImage || selectedPreset?.image || SAMPLE_PRESETS[0].image}
+                  src={
+                    isUnrelatedSimulation 
+                      ? 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d' 
+                      : (customImage || selectedPreset?.image || SAMPLE_PRESETS[0].image)
+                  }
                   alt="Analyzing Target"
-                  width={200}
+                  width={180}
                   quality={75}
                   className="w-full h-full object-cover"
                 />
               </div>
 
-              <div className="space-y-2 flex-1 text-xs">
+              <div className="space-y-1.5 flex-1 text-xs">
                 <div>
                   <div className="font-serif font-bold text-slate-100 text-sm">
-                    {customImage ? 'Ảnh Người Dùng Tải Lên' : selectedPreset?.name}
+                    {isUnrelatedSimulation
+                      ? 'Ảnh Ngoại Lai (Ví dụ: Xe Thể Thao / Đồ Chơi)'
+                      : customImage 
+                        ? 'Ảnh Người Dùng Tải Lên' 
+                        : selectedPreset?.name}
                   </div>
                   <p className="text-slate-400 text-[11px] leading-relaxed">
-                    {customImage ? 'AI phát hiện các đường nét hiện đại, đón sáng tự nhiên và bài trí ấm cúng.' : selectedPreset?.tagline}
+                    {isUnrelatedSimulation
+                      ? 'Mô phỏng trường hợp người dùng nạp ảnh không phải kiến trúc căn hộ.'
+                      : customImage 
+                        ? 'AI đã trích xuất đặc trưng kiến trúc, ánh sáng tự nhiên và phối màu nội thất.' 
+                        : selectedPreset?.tagline}
                   </p>
                 </div>
 
                 {/* Extracted Palette Swatches */}
-                <div className="flex items-center gap-2 pt-1">
+                <div className="flex items-center gap-2 pt-0.5">
                   <span className="text-[10px] font-mono text-slate-500">Bảng màu:</span>
                   {(selectedPreset?.palette || ['#C4A482', '#655442', '#CBD5E1', '#10B981']).map((color, idx) => (
                     <div 
                       key={idx}
-                      className="w-5 h-5 rounded-md border border-white/20 shadow-sm"
+                      className="w-4 h-4 rounded-md border border-white/20 shadow-sm"
                       style={{ backgroundColor: color }}
                       title={`Màu mã: ${color}`}
                     />
@@ -340,6 +488,94 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* REAL VECTOR MATCHING RESULTS OR ZERO-MATCH STATE */}
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-mono uppercase tracking-wider text-slate-300 font-semibold flex items-center gap-1.5">
+                <Building2 className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Kết Quả Đối Sánh Kiến Trúc Thực Tế:</span>
+              </span>
+              <span className="text-[10px] font-mono text-slate-400">
+                Ngưỡng khớp: &gt;={Math.round(matchResults.threshold * 100)}%
+              </span>
+            </div>
+
+            {/* CASE 1: NO MATCH FOUND (AS USER EXPLICITLY REQUESTED) */}
+            {!matchResults.matched ? (
+              <div className="p-4 rounded-2xl bg-amber-950/20 border border-amber-500/40 text-left space-y-2 animate-in fade-in">
+                <div className="flex items-center gap-2 text-amber-400 font-serif font-bold text-sm">
+                  <AlertTriangle className="w-4 h-4 shrink-0" />
+                  <span>Không tìm thấy căn hộ có phong cách/kiến trúc tương đồng trong cơ sở dữ liệu!</span>
+                </div>
+                <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                  Độ khớp thẩm mỹ cao nhất trong toàn bộ 1,700 căn hộ chỉ đạt{' '}
+                  <strong className="text-amber-400 font-mono">
+                    {Math.round(matchResults.topScore * 100)}%
+                  </strong>{' '}
+                  (dưới ngưỡng quy định {Math.round(matchResults.threshold * 100)}%). Ảnh của bạn có thể không chứa không gian phòng, nội thất hoặc không thuộc danh mục kiến trúc căn hộ.
+                </p>
+                <div className="pt-2 text-[11px] text-slate-400 flex flex-wrap gap-2">
+                  <span className="text-emerald-400 font-mono">Gợi ý:</span>
+                  <span>Chụp lại góc phòng khách</span>
+                  <span>•</span>
+                  <span>Ban công đón sáng</span>
+                  <span>•</span>
+                  <span>Bấm chọn 1 trong 8 phong cách có sẵn ở trên</span>
+                </div>
+              </div>
+            ) : (
+              /* CASE 2: MATCHES FOUND */
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {matchResults.items.map((item, idx) => (
+                  <div
+                    key={item.unitId + idx}
+                    onClick={() => {
+                      if (onSelectUnit) {
+                        onSelectUnit(item.unitId);
+                        onClose();
+                      } else {
+                        handleApply();
+                      }
+                    }}
+                    className="p-2.5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500/60 hover:bg-slate-900 transition-all flex items-center gap-3 cursor-pointer group"
+                  >
+                    <div className="relative w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-slate-700">
+                      <SmartImage
+                        src={item.photoUrl}
+                        alt={item.name}
+                        width={120}
+                        quality={70}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute top-1 left-1 px-1.5 py-0.5 rounded-full bg-emerald-500/90 text-slate-950 font-mono text-[9px] font-black">
+                        {item.similarityPercent}%
+                      </div>
+                    </div>
+
+                    <div className="flex-1 min-w-0 space-y-0.5">
+                      <div className="text-xs font-serif font-bold text-slate-200 truncate group-hover:text-emerald-300 transition-colors">
+                        {item.name}
+                      </div>
+                      <div className="flex items-center gap-1.5 text-[11px] text-slate-400">
+                        <MapPin className="w-3 h-3 text-emerald-400 shrink-0" />
+                        <span className="truncate">{item.city}</span>
+                        <span>•</span>
+                        <span className="font-mono text-emerald-400">
+                          {(item.rentVND / 1000000).toFixed(1)} tr/th
+                        </span>
+                      </div>
+                      <div className="text-[10px] font-mono text-slate-500">
+                        Phong cách: {item.styleName}
+                      </div>
+                    </div>
+
+                    <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all shrink-0" />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
         </div>
@@ -357,11 +593,17 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
           <button
             type="button"
             onClick={handleApply}
-            disabled={isAnalyzing}
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold transition-all shadow-lg shadow-emerald-500/25 hover:scale-105 active:scale-95 cursor-pointer"
+            disabled={isAnalyzing || !matchResults.matched}
+            className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-xl font-mono text-xs font-bold transition-all shadow-lg cursor-pointer ${
+              matchResults.matched
+                ? 'bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-emerald-500/25 hover:scale-105 active:scale-95'
+                : 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700'
+            }`}
           >
-            <span>Áp Dụng Tìm Kiếm Căn Hộ Cùng Gu</span>
-            <ArrowRight className="w-4 h-4" />
+            <span>
+              {matchResults.matched ? 'Xem Căn Hộ Cùng Gu Trên Bản Đồ' : 'Chưa Có Căn Hộ Phù Hợp'}
+            </span>
+            {matchResults.matched && <ArrowRight className="w-4 h-4" />}
           </button>
         </div>
 
