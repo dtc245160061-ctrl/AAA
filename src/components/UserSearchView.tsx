@@ -20,7 +20,8 @@ import {
   Box,
   ArrowRight,
   Search,
-  Camera
+  Camera,
+  Upload
 } from 'lucide-react';
 import type { ApartmentUnit } from '../types/apartment';
 import { type ConsumerFilters, parseNaturalLanguageQuery, calculateMatchScore } from '../services/aiAdvisorService';
@@ -277,10 +278,10 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          setDisplayLimit(prev => Math.min(prev + 24, filteredUnits.length));
+          setDisplayLimit(prev => Math.min(prev + 36, filteredUnits.length));
         }
       },
-      { rootMargin: '600px 0px' }
+      { rootMargin: '1200px 0px' }
     );
 
     observer.observe(observerRef.current);
@@ -449,15 +450,26 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
           </div>
 
           {onOpenVisualVibeModal && (
-            <button
-              type="button"
-              onClick={onOpenVisualVibeModal}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/35 text-emerald-300 text-xs font-mono font-bold transition-all shadow-sm hover:scale-105 active:scale-95 cursor-pointer shrink-0"
-              title="Tìm kiếm căn hộ bằng hình ảnh hoặc camera (Visual Vibe Matcher)"
-            >
-              <Camera className="w-4 h-4 text-emerald-400" />
-              <span className="hidden sm:inline">Tìm Bằng Ảnh</span>
-            </button>
+            <div className="flex items-center gap-1.5 shrink-0">
+              <button
+                type="button"
+                onClick={onOpenVisualVibeModal}
+                className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/35 text-emerald-300 text-xs font-mono font-bold transition-all shadow-sm hover:scale-105 active:scale-95 cursor-pointer"
+                title="Chụp ảnh phòng hoặc camera"
+              >
+                <Camera className="w-4 h-4 text-emerald-400" />
+                <span className="hidden sm:inline">Camera</span>
+              </button>
+              <button
+                type="button"
+                onClick={onOpenVisualVibeModal}
+                className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-mono font-bold transition-all shadow-sm hover:scale-105 active:scale-95 cursor-pointer"
+                title="Tải ảnh phòng từ thiết bị"
+              >
+                <Upload className="w-4 h-4 text-slate-300" />
+                <span className="hidden sm:inline">Tải ảnh</span>
+              </button>
+            </div>
           )}
         </div>
 
@@ -759,10 +771,10 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                     key={unit.id}
                     className="group relative rounded-3xl p-[2.5px] shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5 apartment-card"
                   >
-                    {/* Dynamic Orbiting Dual Laser Beam */}
+                    {/* Dynamic Orbiting Dual Laser Beam - Only active on hover to guarantee native 144 FPS */}
                     <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
                       <div
-                        className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-75 group-hover:opacity-100"
+                        className="pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100 group-hover:animate-spin-beam"
                       />
                     </div>
 

@@ -22,14 +22,7 @@ interface AuthModalProps {
 type AuthTab = 'login' | 'register';
 type RegisterStep = 'input_info' | 'verify_otp';
 
-const COUNTRY_CODES = [
-  { code: '+84', flag: '🇻🇳', name: 'VN' },
-  { code: '+1', flag: '🇺🇸', name: 'US' },
-  { code: '+81', flag: '🇯🇵', name: 'JP' },
-  { code: '+82', flag: '🇰🇷', name: 'KR' },
-  { code: '+65', flag: '🇸🇬', name: 'SG' },
-  { code: '+44', flag: '🇬🇧', name: 'UK' }
-];
+import { ALL_COUNTRY_CODES, type CountryCode } from '../data/countries';
 
 export const AuthModal: React.FC<AuthModalProps> = ({
   isOpen,
@@ -40,8 +33,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   const [activeTab, setActiveTab] = useState<AuthTab>('login');
   const [registerStep, setRegisterStep] = useState<RegisterStep>('input_info');
   const [authInputType, setAuthInputType] = useState<'email' | 'phone'>('email');
-  const [selectedCountry, setSelectedCountry] = useState(COUNTRY_CODES[0]);
+  const [selectedCountry, setSelectedCountry] = useState<CountryCode>(ALL_COUNTRY_CODES[0]);
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+  const [countrySearch, setCountrySearch] = useState('');
 
   // Form Fields
   const [email, setEmail] = useState('');
@@ -464,25 +458,45 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                       </button>
 
                       {isCountryDropdownOpen && (
-                        <div className="absolute left-0 top-full mt-1 w-36 rounded-xl bg-slate-900 border border-slate-700 shadow-xl z-50 p-1 space-y-0.5">
-                          {COUNTRY_CODES.map((c) => (
-                            <button
-                              key={c.code}
-                              type="button"
-                              onClick={() => {
-                                setSelectedCountry(c);
-                                setIsCountryDropdownOpen(false);
-                              }}
-                              className={`w-full px-2.5 py-1.5 rounded-lg text-left text-xs font-mono flex items-center justify-between transition-colors ${
-                                selectedCountry.code === c.code
-                                  ? 'bg-emerald-500/20 text-emerald-300 font-bold'
-                                  : 'text-slate-300 hover:bg-slate-800'
-                              }`}
-                            >
-                              <span>{c.flag} {c.name}</span>
-                              <span className="text-[10px] text-slate-400">{c.code}</span>
-                            </button>
-                          ))}
+                        <div className="absolute left-0 top-full mt-1 w-64 max-h-64 rounded-xl bg-slate-900 border border-slate-700 shadow-2xl z-50 p-2 flex flex-col gap-1.5 backdrop-blur-xl">
+                          <input
+                            type="text"
+                            value={countrySearch}
+                            onChange={(e) => setCountrySearch(e.target.value)}
+                            placeholder="Tìm quốc gia / đầu số..."
+                            className="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-[11px] font-mono text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-emerald-500"
+                            autoFocus
+                          />
+                          <div className="overflow-y-auto max-h-48 space-y-0.5 pr-1">
+                            {ALL_COUNTRY_CODES
+                              .filter(c => 
+                                c.name.toLowerCase().includes(countrySearch.toLowerCase()) || 
+                                c.code.includes(countrySearch) ||
+                                c.iso.toLowerCase().includes(countrySearch.toLowerCase())
+                              )
+                              .map((c) => (
+                                <button
+                                  key={`${c.iso}-${c.code}`}
+                                  type="button"
+                                  onClick={() => {
+                                    setSelectedCountry(c);
+                                    setIsCountryDropdownOpen(false);
+                                    setCountrySearch('');
+                                  }}
+                                  className={`w-full px-2 py-1.5 rounded-lg text-left text-xs font-mono flex items-center justify-between transition-colors ${
+                                    selectedCountry.iso === c.iso && selectedCountry.code === c.code
+                                      ? 'bg-emerald-500/20 text-emerald-300 font-bold'
+                                      : 'text-slate-300 hover:bg-slate-800'
+                                  }`}
+                                >
+                                  <span className="flex items-center gap-1.5 truncate pr-2">
+                                    <span className="text-base">{c.flag}</span> 
+                                    <span className="truncate">{c.name}</span>
+                                  </span>
+                                  <span className="text-[11px] text-slate-400 font-semibold shrink-0">{c.code}</span>
+                                </button>
+                              ))}
+                          </div>
                         </div>
                       )}
                     </div>

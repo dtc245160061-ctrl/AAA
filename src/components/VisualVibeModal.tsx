@@ -47,6 +47,42 @@ const SAMPLE_PRESETS: VibePreset[] = [
     filterKeyword: 'Penthouse'
   },
   {
+    id: 'classic_castle',
+    name: 'Cổ Điển & Lâu Đài Châu Âu',
+    vibe: 'Neo-Classic Royal',
+    tagline: 'Đèn chùm pha lê, phào chỉ thạch cao, nội thất quý tộc cổ điển.',
+    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00',
+    palette: ['#F3E8D0', '#D4AF37', '#4A3B32', '#1A1A1A'],
+    filterKeyword: 'Cổ Điển'
+  },
+  {
+    id: 'indochine',
+    name: 'Indochine Đông Dương Hoài Cổ',
+    vibe: 'Heritage Tropical',
+    tagline: 'Gạch bông mỹ thuật, gỗ lim tự nhiên kết hợp nét đẹp Á Đông đương đại.',
+    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6',
+    palette: ['#D97706', '#065F46', '#78350F', '#FEF3C7'],
+    filterKeyword: 'Indochine'
+  },
+  {
+    id: 'scandinavian',
+    name: 'Scandinavian Bắc Âu Tinh Khôi',
+    vibe: 'Nordic Pure Light',
+    tagline: 'Tone trắng chủ đạo, tối ưu ánh sáng tự nhiên và cây xanh thư thái.',
+    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7',
+    palette: ['#F8FAFC', '#E2E8F0', '#94A3B8', '#0F172A'],
+    filterKeyword: 'Sáng'
+  },
+  {
+    id: 'duplex_loft',
+    name: 'Duplex & Loft Thông Tầng',
+    vibe: 'Industrial High Ceiling',
+    tagline: 'Trần cao 6 mét, cầu thang bay, không gian mở cá tính.',
+    image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688',
+    palette: ['#334155', '#64748B', '#CBD5E1', '#E2E8F0'],
+    filterKeyword: 'Duplex'
+  },
+  {
     id: 'panorama_river',
     name: 'Panorama View Hồ & Ven Sông',
     vibe: 'Skyline Waterfront',
@@ -75,6 +111,7 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
   const [customImage, setCustomImage] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const cameraInputRef = useRef<HTMLInputElement | null>(null);
 
   if (!isOpen) return null;
 
@@ -145,29 +182,55 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
         {/* Modal Body */}
         <div className="p-6 overflow-y-auto space-y-6">
           
-          {/* Upload / Camera Dropzone */}
-          <div 
-            onClick={() => fileInputRef.current?.click()}
-            className="border-2 border-dashed border-emerald-500/30 hover:border-emerald-500/70 bg-emerald-950/10 hover:bg-emerald-950/20 rounded-2xl p-6 text-center cursor-pointer transition-all group"
-          >
-            <input 
-              ref={fileInputRef}
-              type="file" 
-              accept="image/*" 
-              className="hidden" 
-              onChange={handleFileUpload}
-            />
-            
-            <div className="flex flex-col items-center gap-2">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 flex items-center justify-center group-hover:scale-110 transition-transform">
+          {/* Dual Action Cards: Camera & File Upload */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {/* 1. Direct Camera Capture */}
+            <div 
+              onClick={() => cameraInputRef.current?.click()}
+              className="border-2 border-dashed border-emerald-500/40 hover:border-emerald-500/80 bg-emerald-950/20 hover:bg-emerald-950/30 rounded-2xl p-4 text-center cursor-pointer transition-all group flex items-center gap-3.5"
+            >
+              <input 
+                ref={cameraInputRef}
+                type="file" 
+                accept="image/*" 
+                capture="environment"
+                className="hidden" 
+                onChange={handleFileUpload}
+              />
+              <div className="w-12 h-12 rounded-xl bg-emerald-500/25 border border-emerald-500/40 text-emerald-300 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
+                <Camera className="w-6 h-6" />
+              </div>
+              <div className="text-left space-y-0.5">
+                <div className="font-mono text-xs font-bold text-slate-100 group-hover:text-emerald-300 transition-colors">
+                  Chụp Ảnh Bằng Camera
+                </div>
+                <p className="text-[11px] text-slate-400">
+                  Mở camera chụp góc phòng hoặc ban công thực tế
+                </p>
+              </div>
+            </div>
+
+            {/* 2. File Upload */}
+            <div 
+              onClick={() => fileInputRef.current?.click()}
+              className="border-2 border-dashed border-slate-700 hover:border-slate-500 bg-slate-900/40 hover:bg-slate-900/60 rounded-2xl p-4 text-center cursor-pointer transition-all group flex items-center gap-3.5"
+            >
+              <input 
+                ref={fileInputRef}
+                type="file" 
+                accept="image/*" 
+                className="hidden" 
+                onChange={handleFileUpload}
+              />
+              <div className="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
                 <Upload className="w-6 h-6" />
               </div>
-              <div className="space-y-1">
-                <div className="font-mono text-xs font-bold text-slate-200 group-hover:text-emerald-300 transition-colors">
-                  Tải ảnh từ máy tính hoặc chụp trực tiếp từ Camera
+              <div className="text-left space-y-0.5">
+                <div className="font-mono text-xs font-bold text-slate-100 group-hover:text-slate-200 transition-colors">
+                  Tải Ảnh Từ Thiết Bị
                 </div>
-                <p className="text-[11px] text-slate-400 font-sans">
-                  Hỗ trợ định dạng JPG, PNG, WebP từ Pinterest, Instagram hoặc ảnh thực tế
+                <p className="text-[11px] text-slate-400">
+                  Tải ảnh mẫu từ Pinterest, Instagram, album ảnh
                 </p>
               </div>
             </div>

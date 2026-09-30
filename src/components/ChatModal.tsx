@@ -84,10 +84,17 @@ export const ChatModal: React.FC<ChatModalProps> = ({
         botResponse = unit.hasCarParking
           ? `Căn hộ CÓ SẴN chỗ đỗ ô tô định danh tại tầng hầm B1/B2 với cổng sạc xe điện EV. Phí gửi ô tô là 1.200.000 đ/tháng.`
           : `Tòa nhà có bãi đỗ xe máy không giới hạn (120k/tháng), riêng ô tô có thể gửi tại bãi đỗ thương mại cách sảnh 100m.`;
-      } else if (lower.includes('đàm phán') || lower.includes('giảm giá') || lower.includes('thương lượng') || lower.includes('bớt') || lower.includes('mặc cả')) {
+      } else if (lower.includes('đàm phán') || lower.includes('giảm giá') || lower.includes('thương lượng') || lower.includes('bớt') || lower.includes('mặc cả') || lower.includes('mách')) {
         const baseM = (unit.monthlyRentVND / 1000000).toFixed(0);
-        const discountTarget = (unit.monthlyRentVND * 0.95 / 1000000).toFixed(1);
-        botResponse = `🤝 [AI CỐ VẤN ĐÀM PHÁN HAVEN]: Căn hộ ${unit.name || unit.id} đang niêm yết ${baseM} Tr/tháng. Dưới đây là 3 chiến lược đàm phán tối ưu nhất cho bạn:\n\n1️⃣ Đề xuất giảm về ~${discountTarget} Tr/tháng nếu bạn ký HĐ 12 tháng và thanh toán 3 hoặc 6 tháng/lần.\n2️⃣ Giữ nguyên giá thuê nhưng xin chủ nhà MIỄN PHÍ tiền gửi ${unit.hasCarParking ? 'ô tô' : 'xe máy'} và phí quản lý tòa nhà (tiết kiệm ~300k - 1.2tr/tháng).\n3️⃣ Đề xuất giảm tiền cọc từ ${unit.depositTerms?.months || 2} tháng xuống 1 tháng qua cơ chế Ký Quỹ Bảo Chứng HAVEN Escrow.\n\n👉 Bạn có thể nhắn mẫu: "Chào anh/chị, em rất ưng căn hộ và dự định ở lâu dài. Nếu em ký 1 năm và thanh toán 6 tháng thì anh/chị hỗ trợ giá tốt nhất là bao nhiêu ạ?"`;
+        const discountTarget = (unit.monthlyRentVND * 0.92 / 1000000).toFixed(1);
+        botResponse = `Căn này chủ đang chào ${baseM} triệu/tháng. Nói thật, đi thuê nhà ở mình đừng ngại mặc cả, chủ nhà nào cũng tính sẵn khoảng thương lượng 5-10% rồi. 3 bài đàm phán thực chiến nhất đây:
+
+1. Đòn thanh toán & ở lâu: Nói khéo "Em đi làm văn phòng ổn định, giữ nhà kỹ, muốn ký luôn 1-2 năm. Nếu em đóng trước 3 hoặc 6 tháng thì anh/chị để em giá ${discountTarget} triệu được không?". Chủ nhà ngán nhất khách thuê vài tháng lại dọn đi, nghe câu này là dễ xuôi ngay.
+2. Mặc cả vào tiện ích: Nếu chủ cứng giá không chịu bớt tiền phòng, quay sang bảo "Vậy anh/chị bao em phí dịch vụ quản lý với tiền gửi xe ${unit.hasCarParking ? 'ô tô' : 'xe máy'} nhé". Tính ra mỗi tháng tiết kiệm được 300k - 1 triệu mà chủ lại dễ gật đầu hơn bớt tiền thuê.
+3. Kèo tiền cọc: Nếu cọc ${unit.depositTerms?.months || 2} tháng thấy nặng ví quá, cứ bảo "Em cam kết cọc 1 tháng nhưng qua bảo chứng HAVEN Escrow để cả hai bên cùng yên tâm, được thì em chốt cọc giữ chỗ luôn hôm nay".
+
+👉 Văn mẫu gửi thẳng chủ nhà (copy gửi luôn được):
+"Chào anh/chị, em xem căn nhà thấy rất ưng và muốn ở lâu dài. Em đi làm công sở đàng hoàng, nếu em ký hợp đồng 1 năm luôn thì anh/chị để em giá tốt nhất là bao nhiêu ạ?"`;
       }
 
       const convs = ApartmentStore.getConversations();
@@ -97,7 +104,7 @@ export const ChatModal: React.FC<ChatModalProps> = ({
           id: `bot-${Date.now()}`,
           conversationId: conversation.id,
           sender: 'bot',
-          senderName: 'Trợ Lý Tự Động HAVEN',
+          senderName: 'Trợ Lý HAVEN',
           text: botResponse,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         };
@@ -110,11 +117,11 @@ export const ChatModal: React.FC<ChatModalProps> = ({
   };
 
   const dynamicQuickReplies = [
-    { label: '🤝 AI Cố Vấn Đàm Phán', text: 'Tư vấn giúp mình chiến lược đàm phán giá thuê và hợp đồng tốt nhất cho căn này?' },
+    { label: '🤝 Mách nước đàm phán giá', text: 'Mách mình cách mặc cả giá thuê căn này với chủ nhà sao cho khéo?' },
     { label: '📅 Lịch xem phòng', text: 'Cho mình hỏi lịch xem phòng còn trống vào khung giờ nào?' },
-    { label: '💡 Tổng chi phí điện nước', text: 'Tổng chi phí thực tế gồm điện, nước và phí quản lý hàng tháng là bao nhiêu?' },
-    { label: '🔥 Kiểm tra an toàn PCCC', text: 'Tòa nhà đã nghiệm thu PCCC và có mấy thang thoát hiểm?' },
-    { label: '💰 Điều khoản hoàn cọc', text: 'Chính sách đặt cọc và cam kết hoàn cọc trong 72 giờ như thế nào?' },
+    { label: '💡 Chi phí điện nước', text: 'Tổng chi phí thực tế gồm điện, nước và phí quản lý hàng tháng là bao nhiêu?' },
+    { label: '🔥 An toàn PCCC', text: 'Tòa nhà đã nghiệm thu PCCC và có mấy thang thoát hiểm?' },
+    { label: '💰 Quy định hoàn cọc', text: 'Chính sách đặt cọc và cam kết hoàn cọc trong 72 giờ như thế nào?' },
     ...(unit.petFriendly ? [{ label: '🐾 Nuôi thú cưng', text: 'Nuôi mèo hoặc cún nhỏ ở căn này có quy định gì không?' }] : [])
   ];
 
