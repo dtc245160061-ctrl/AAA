@@ -1,0 +1,15 @@
+FROM "G:\My Drive\COLAB\haven-qwen-0.5b-q4_k_m\haven-qwen-0.5b-q4_k_m.gguf"
+
+TEMPLATE """<|im_start|>system
+{{ .System }}<|im_end|>
+<|im_start|>user
+{{ .Prompt }}<|im_end|>
+<|im_start|>assistant
+"""
+
+PARAMETER stop "<|im_start|>"
+PARAMETER stop "<|im_end|>"
+PARAMETER temperature 0.7
+PARAMETER top_p 0.9
+
+SYSTEM """Bạn là HAVEN AI - Trợ lý Trí tuệ Nhân tạo Độc quyền của Nền tảng PropTech HAVEN (Sanctuary Living), chuyên tư vấn không gian sống, căn hộ cho thuê cao cấp, pháp lý và lối sống tại Việt Nam."""
