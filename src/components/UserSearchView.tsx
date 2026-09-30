@@ -771,10 +771,10 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                     key={unit.id}
                     className="group relative rounded-3xl p-[2.5px] shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5 apartment-card"
                   >
-                    {/* Dynamic Orbiting Dual Laser Beam - Only active on hover to guarantee native 144 FPS */}
+                    {/* Dynamic Orbiting Dual Laser Beam */}
                     <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
                       <div
-                        className="pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100 group-hover:animate-spin-beam"
+                        className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-75 group-hover:opacity-100"
                       />
                     </div>
 
