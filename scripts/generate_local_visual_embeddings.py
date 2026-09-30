@@ -50,10 +50,10 @@ def generate_local_embeddings():
             'image_id': item['image_id'],
             'url': item['url'],
             'primary_style': primary,
-            'style_tags': item['style_tags'],
-            'property_types': item['property_types'],
-            'cities': item['cities'],
-            'linked_units': item['linked_units'],
+            'style_tags': item.get('style_tags', []),
+            'property_types': item.get('property_types', []),
+            'cities': item.get('cities', []),
+            'linked_units': item.get('linked_units', []),
             'vector': normalized_vec
         })
 

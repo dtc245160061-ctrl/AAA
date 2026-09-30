@@ -92,7 +92,7 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
   };
 
   return (
-    <div className="space-y-12 md:space-y-16 pb-16">
+    <div className="space-y-10 md:space-y-12 pb-0">
       {/* ═══ NEW: Product-Native Hero with Entrance Choreography ═══ */}
       <HeroSection 
         onSearch={onNavigateSearch} 

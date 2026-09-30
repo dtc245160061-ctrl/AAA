@@ -103,25 +103,25 @@ export const GlassCursor: React.FC<GlassCursorProps> = ({
       p.curX = lerp(p.curX, p.targetX, 0.22);
       p.curY = lerp(p.curY, p.targetY, 0.22);
 
-      // Target scale computation (Click squash & hover expand)
+      // Target scale computation (Click squash & subtle hover micro-expand)
       let targetScale = 1;
-      if (p.isHovering) targetScale = 1.45;
-      if (p.isClicking) targetScale *= 0.85;
+      if (p.isHovering) targetScale = 1.10; // Gentle 10% micro-pulse, no abnormal ballooning
+      if (p.isClicking) targetScale *= 0.88;
 
-      p.scale = lerp(p.scale, targetScale, 0.2);
+      p.scale = lerp(p.scale, targetScale, 0.22);
 
       // Instant center photon dot
-      dot.style.transform = `translate3d(${p.targetX}px, ${p.targetY}px, 0) translate(-50%, -50%) scale(${p.isClicking ? 0.7 : 1})`;
+      dot.style.transform = `translate3d(${p.targetX}px, ${p.targetY}px, 0) translate(-50%, -50%) scale(${p.isClicking ? 0.75 : 1})`;
 
       // Smooth floating liquid luminous lens (Zero composite lag)
       lens.style.transform = `translate3d(${p.curX}px, ${p.curY}px, 0) translate(-50%, -50%) scale(${p.scale})`;
 
       if (p.isHovering) {
-        lens.style.borderColor = 'rgba(52, 211, 153, 0.85)';
-        lens.style.boxShadow = '0 0 20px rgba(52, 211, 153, 0.5), inset 0 0 10px rgba(52, 211, 153, 0.3)';
+        lens.style.borderColor = 'rgba(52, 211, 153, 0.75)';
+        lens.style.boxShadow = '0 0 16px rgba(52, 211, 153, 0.4), inset 0 0 6px rgba(52, 211, 153, 0.25)';
       } else {
         lens.style.borderColor = 'rgba(52, 211, 153, 0.45)';
-        lens.style.boxShadow = '0 0 14px rgba(52, 211, 153, 0.25), inset 0 0 6px rgba(255, 255, 255, 0.2)';
+        lens.style.boxShadow = '0 0 12px rgba(52, 211, 153, 0.2), inset 0 0 4px rgba(255, 255, 255, 0.15)';
       }
 
       animId = requestAnimationFrame(render);
@@ -144,23 +144,23 @@ export const GlassCursor: React.FC<GlassCursorProps> = ({
       className={`fixed inset-0 pointer-events-none z-[9999] overflow-hidden ${className}`}
       aria-hidden="true"
     >
-      {/* 1. Fluid Liquid Luminous Lens (Hardware accelerated, Zero GPU rasterization lag) */}
+      {/* 1. Fluid Liquid Luminous Lens (Refined 44px, Hardware accelerated) */}
       <div
         ref={lensRef}
-        className="fixed top-0 left-0 w-14 h-14 rounded-full pointer-events-none opacity-0 transition-opacity duration-200 bg-emerald-500/12 border border-emerald-400/50 shadow-[0_0_24px_rgba(52,211,153,0.45)] will-change-transform backdrop-blur-[0.5px]"
+        className="fixed top-0 left-0 w-11 h-11 rounded-full pointer-events-none opacity-0 transition-opacity duration-200 bg-emerald-500/10 border border-emerald-400/45 shadow-[0_0_16px_rgba(52,211,153,0.35)] will-change-transform backdrop-blur-[0.5px]"
         style={{
           transform: 'translate3d(-200px, -200px, 0) translate(-50%, -50%)',
         }}
       >
         {/* Optical Specular Glint Crescent */}
-        <div className="absolute top-2 left-2.5 w-4 h-2 rounded-full bg-white/60 -rotate-12 pointer-events-none blur-[0.3px]" />
-        <div className="absolute inset-0 rounded-full border border-white/20 pointer-events-none" />
+        <div className="absolute top-1.5 left-2 w-3.5 h-1.5 rounded-full bg-white/55 -rotate-12 pointer-events-none blur-[0.3px]" />
+        <div className="absolute inset-0 rounded-full border border-white/15 pointer-events-none" />
       </div>
 
       {/* 2. Pinpoint Center Photon Dot (Zero Lag, Instant Tracking) */}
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none opacity-0 transition-opacity duration-200 bg-emerald-400 shadow-[0_0_10px_#34d399] will-change-transform"
+        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full pointer-events-none opacity-0 transition-opacity duration-200 bg-emerald-400 shadow-[0_0_8px_#34d399] will-change-transform"
         style={{
           transform: 'translate3d(-200px, -200px, 0) translate(-50%, -50%)',
         }}

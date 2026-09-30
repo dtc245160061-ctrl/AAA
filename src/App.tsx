@@ -433,7 +433,7 @@ export function App() {
         {/* Dynamic View Body Container - ONLY element that scrolls */}
         <main
           id="haven-main-scroll"
-          className="flex-1 overflow-y-auto px-4 md:px-8 py-6 max-w-[1600px] w-full mx-auto space-y-8 pb-24 md:pb-12 scroll-smooth"
+          className="flex-1 overflow-y-auto px-4 md:px-8 py-6 max-w-[1600px] w-full mx-auto space-y-8 pb-6 md:pb-6 scroll-smooth"
         >
           {/* USER MODE CONSUMER VIEWS */}
           {!isAdminView && activeModule === 'user_home' && (
