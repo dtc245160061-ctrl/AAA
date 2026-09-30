@@ -7,10 +7,8 @@ import {
   Check, 
   ArrowRight, 
   Palette, 
-  SlidersHorizontal,
   RefreshCw
 } from 'lucide-react';
-import type { ApartmentUnit } from '../types/apartment';
 import { SmartImage } from './common/SmartImage';
 
 interface VisualVibeModalProps {

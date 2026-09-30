@@ -115,28 +115,6 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     searchInput
   ]);
 
-  // High-performance pre-fetching Infinite Scroll Observer (rootMargin 600px for buttery smooth experience)
-  useEffect(() => {
-    const target = observerRef.current;
-    if (!target) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setDisplayLimit((prev) => prev + 24);
-        }
-      },
-      {
-        root: null,
-        rootMargin: '600px',
-        threshold: 0.1
-      }
-    );
-
-    observer.observe(target);
-    return () => observer.disconnect();
-  }, [displayLimit, filteredUnits.length]);
-
 
 
   // Process initial AI query on mount if passed
@@ -299,7 +277,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          setDisplayLimit(prev => Math.min(prev + 12, filteredUnits.length));
+          setDisplayLimit(prev => Math.min(prev + 24, filteredUnits.length));
         }
       },
       { rootMargin: '600px 0px' }
