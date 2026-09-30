@@ -253,7 +253,7 @@ def build_notebook():
             "    print(f'🎉 TÌM THẤY {len(scores[:5])} CĂN HỘ PHÙ HỢP NHẤT:')\n",
             "    for rank, (score, it) in enumerate(scores[:5], 1):\n",
             "        linked = it['linked_units'][0] if it['linked_units'] else {}\n",
-            "        print(f'  {rank}. [{score*100:.1f}% Match] {linked.get(\"name\", \"Căn hộ HAVEN\")} — Phong cách: {it[\"primary_style\"]} ({linked.get(\"city\", \"\")})')\n",
+            "        print(f'  {rank}. [{score*100:.0f}%] {linked.get(\"name\", \"Căn hộ HAVEN\")} — Phong cách: {it[\"primary_style\"]} ({linked.get(\"city\", \"\")})')\n",
             "    return scores[:5]\n",
             "\n",
             "# Chạy thử 2 kịch bản:\n",

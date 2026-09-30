@@ -20,6 +20,7 @@ import { FeaturedProperties, type FeatureBenefitKey } from './home/FeaturedPrope
 import { GuidedPath } from './home/GuidedPath';
 import { FeatureStrip } from './home/FeatureStrip';
 import { SmartImage } from './common/SmartImage';
+import { Footer } from './Footer';
 
 interface UserHomeViewProps {
   units: ApartmentUnit[];
@@ -492,6 +493,13 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           }
         }}
         activeUnitName={activeUnit?.name || activeUnit?.id}
+      />
+
+      {/* ═══ Luxury PropTech Footer ═══ */}
+      <Footer
+        onNavigateToSearch={onNavigateSearch}
+        onOpenLifestyleModal={onOpenLifestyleMatchmaker}
+        onOpenVisualModal={onOpenVisualVibeModal}
       />
     </div>
   );
