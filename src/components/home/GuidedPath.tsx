@@ -144,9 +144,9 @@ export const GuidedPath: React.FC<GuidedPathProps> = ({
             {/* Layer 1: Wide Atmospheric Diffuse Aura (32px width) */}
             <motion.path
               d={currentPath.d}
-              stroke="#22d3ee"
+              stroke="var(--guided-beam-aura)"
               strokeWidth="32"
-              strokeOpacity="0.18"
+              strokeOpacity="0.25"
               strokeLinecap="round"
               fill="none"
               initial={{ pathLength: 0, opacity: 0 }}
@@ -157,9 +157,9 @@ export const GuidedPath: React.FC<GuidedPathProps> = ({
             {/* Layer 2: Radiant Emerald Energy Sheath (16px width with Laser Glow) */}
             <motion.path
               d={currentPath.d}
-              stroke="#10b981"
+              stroke="var(--guided-beam-sheath)"
               strokeWidth="16"
-              strokeOpacity="0.4"
+              strokeOpacity="0.45"
               strokeLinecap="round"
               fill="none"
               filter="url(#laserGlow)"
@@ -180,12 +180,12 @@ export const GuidedPath: React.FC<GuidedPathProps> = ({
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             />
 
-            {/* Layer 4: High-Luminance White Hot Laser Core (2.5px width) */}
+            {/* Layer 4: High-Luminance Laser Core Ribbon (2.5px width) */}
             <motion.path
               d={currentPath.d}
-              stroke="#ffffff"
+              stroke="var(--guided-beam-core)"
               strokeWidth="2.5"
-              strokeOpacity="0.9"
+              strokeOpacity="0.95"
               strokeLinecap="round"
               fill="none"
               initial={{ pathLength: 0, opacity: 0 }}
@@ -195,16 +195,16 @@ export const GuidedPath: React.FC<GuidedPathProps> = ({
 
             {/* Top Anchor Port (Where Ribbon Connects to the Active Unit) */}
             <g transform={`translate(${currentPath.startX}, 0)`}>
-              <circle r="12" fill="rgba(34, 211, 238, 0.25)" className="animate-ping" />
-              <circle r="7" fill="#10b981" stroke="#ffffff" strokeWidth="2" />
-              <circle r="2.5" fill="#ffffff" />
+              <circle r="12" fill="var(--guided-beam-aura)" className="animate-ping" />
+              <circle r="7" fill="var(--guided-beam-sheath)" stroke="var(--guided-beam-core)" strokeWidth="2" />
+              <circle r="2.5" fill="var(--guided-beam-port)" />
             </g>
 
             {/* Bottom Termination Port (Where Ribbon Delivers Data to Environmental Pillar) */}
             <g transform={`translate(${currentPath.endX}, 120)`}>
-              <circle r="14" fill="rgba(16, 185, 129, 0.3)" className="animate-ping" />
-              <circle r="8" fill="#22d3ee" stroke="#ffffff" strokeWidth="2" />
-              <circle r="3" fill="#ffffff" />
+              <circle r="14" fill="var(--guided-beam-aura)" className="animate-ping" />
+              <circle r="8" fill="var(--guided-beam-sheath)" stroke="var(--guided-beam-core)" strokeWidth="2" />
+              <circle r="3" fill="var(--guided-beam-port)" />
             </g>
           </g>
         </svg>

@@ -230,3 +230,18 @@
   border-radius: inherit;
   overflow: hidden;
 }
+
+/* ── Light Mode Border Glow Optics ── */
+[data-theme="light"] .border-glow-card::after,
+.light .border-glow-card::after,
+[data-theme="light"] .border-glow-card > .edge-light,
+.light .border-glow-card > .edge-light {
+  mix-blend-mode: normal !important;
+}
+
+[data-theme="light"] .haven-ambient-glow-box--blur,
+.light .haven-ambient-glow-box--blur {
+  opacity: 0.92;
+  filter: blur(14px) drop-shadow(0 4px 14px rgba(4, 120, 87, 0.22));
+  -webkit-filter: blur(14px) drop-shadow(0 4px 14px rgba(4, 120, 87, 0.22));
+}
