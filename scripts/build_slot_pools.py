@@ -6,7 +6,7 @@ if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8')
 
 def build_slot_pools():
-    pool_path = os.path.join(os.path.dirname(__file__), '100_percent_verified_alive_pool.json')
+    pool_path = os.path.join(os.path.dirname(__file__), 'zero_face_master_pool.json')
     with open(pool_path, 'r', encoding='utf-8') as f:
         pool = json.load(f)
 

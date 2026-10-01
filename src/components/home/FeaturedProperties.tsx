@@ -172,11 +172,21 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
               aria-label={`Xem dữ liệu xác thực của căn hộ ${unit.name || unit.id}`}
               className="group relative rounded-2xl p-[2px] cursor-pointer shadow-xl transition-all duration-300"
             >
+              {/* Soft outer glow bloom (CodePen / LIYRO style) */}
+              <div
+                className={`absolute -inset-2 rounded-2xl overflow-hidden pointer-events-none filter blur-xl transition-opacity duration-300 ${
+                  isFocal ? 'opacity-75' : 'opacity-35 group-hover:opacity-65'
+                }`}
+                aria-hidden="true"
+              >
+                <div className="animate-spin-beam pointer-events-none" />
+              </div>
+
               {/* Dynamic Orbiting Dual Laser Beam strictly contained in 2px border shell */}
               <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
                 <div
                   className={`animate-spin-beam pointer-events-none transition-opacity duration-300 ${
-                    isFocal ? 'opacity-90' : 'opacity-0 group-hover:opacity-85'
+                    isFocal ? 'opacity-100' : 'opacity-65 group-hover:opacity-95'
                   }`}
                 />
               </div>

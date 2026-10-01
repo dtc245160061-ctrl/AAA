@@ -20,6 +20,7 @@ import { FeaturedProperties, type FeatureBenefitKey } from './home/FeaturedPrope
 import { GuidedPath } from './home/GuidedPath';
 import { FeatureStrip } from './home/FeatureStrip';
 import { SmartImage } from './common/SmartImage';
+import { BorderGlowCard } from './ui/BorderGlowCard';
 import { Footer } from './Footer';
 
 interface UserHomeViewProps {
@@ -361,20 +362,20 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Hanoi */}
-          <div
+          <BorderGlowCard
             onClick={() => onNavigateSearch("Hà Nội")}
-            className="group relative rounded-3xl p-[2.5px] overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/25 hover:-translate-y-1.5 transition-all duration-300 h-64 sm:h-72"
+            borderRadius={24}
+            glowRadius={36}
+            edgeSensitivity={25}
+            className="cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/25 hover:-translate-y-1.5 transition-all duration-300 h-64 sm:h-72"
           >
-            <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
-              <div className="animate-spin-beam pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
-            </div>
-            <div className="relative z-10 w-full h-full rounded-[21px] overflow-hidden">
+            <div className="relative w-full h-full overflow-hidden rounded-[22px]">
               <SmartImage
                 src="https://images.unsplash.com/photo-1509042239860-f550ce710b93"
                 alt="Hà Nội"
                 width={800}
                 quality={75}
-                className="transition-transform duration-700 ease-out group-hover:scale-105"
+                className="transition-transform duration-700 ease-out group-hover:scale-105 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent pointer-events-none" />
               <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-emerald-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -386,23 +387,23 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
                 <p className="text-xs text-slate-200 font-medium drop-shadow always-white">Penthouse Hồ Tây, Hoàn Kiếm Heritage & Cầu Giấy</p>
               </div>
             </div>
-          </div>
+          </BorderGlowCard>
 
           {/* Ho Chi Minh City */}
-          <div
+          <BorderGlowCard
             onClick={() => onNavigateSearch("TP. Hồ Chí Minh")}
-            className="group relative rounded-3xl p-[2.5px] overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/25 hover:-translate-y-1.5 transition-all duration-300 h-64 sm:h-72"
+            borderRadius={24}
+            glowRadius={36}
+            edgeSensitivity={25}
+            className="cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/25 hover:-translate-y-1.5 transition-all duration-300 h-64 sm:h-72"
           >
-            <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
-              <div className="animate-spin-beam pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
-            </div>
-            <div className="relative z-10 w-full h-full rounded-[21px] overflow-hidden">
+            <div className="relative w-full h-full overflow-hidden rounded-[22px]">
               <SmartImage
                 src="https://images.unsplash.com/photo-1583417319070-4a69db38a482"
                 alt="TP. Hồ Chí Minh"
                 width={800}
                 quality={75}
-                className="transition-transform duration-700 ease-out group-hover:scale-105"
+                className="transition-transform duration-700 ease-out group-hover:scale-105 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent pointer-events-none" />
               <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-emerald-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -414,23 +415,23 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
                 <p className="text-xs text-slate-200 font-medium drop-shadow always-white">View Sông Sài Gòn Quận 1, Thảo Điền & Phú Mỹ Hưng</p>
               </div>
             </div>
-          </div>
+          </BorderGlowCard>
 
           {/* Da Nang */}
-          <div
+          <BorderGlowCard
             onClick={() => onNavigateSearch("Đà Nẵng")}
-            className="group relative rounded-3xl p-[2.5px] overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/25 hover:-translate-y-1.5 transition-all duration-300 h-64 sm:h-72"
+            borderRadius={24}
+            glowRadius={36}
+            edgeSensitivity={25}
+            className="cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/25 hover:-translate-y-1.5 transition-all duration-300 h-64 sm:h-72"
           >
-            <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
-              <div className="animate-spin-beam pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity" />
-            </div>
-            <div className="relative z-10 w-full h-full rounded-[21px] overflow-hidden">
+            <div className="relative w-full h-full overflow-hidden rounded-[22px]">
               <SmartImage
                 src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b"
                 alt="Đà Nẵng"
                 width={800}
                 quality={75}
-                className="transition-transform duration-700 ease-out group-hover:scale-105"
+                className="transition-transform duration-700 ease-out group-hover:scale-105 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent pointer-events-none" />
               <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-emerald-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -442,7 +443,7 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
                 <p className="text-xs text-slate-200 font-medium drop-shadow always-white">Sky Villa Biển Mỹ Khê & Bán Đảo Sơn Trà</p>
               </div>
             </div>
-          </div>
+          </BorderGlowCard>
         </div>
       </section>
 

@@ -100,13 +100,25 @@ export const FeatureStrip: React.FC<FeatureStripProps> = ({
               tabIndex={0}
               role="button"
               aria-label={`Chi tiết minh chứng ${feature.title}`}
-              className={`p-5 rounded-2xl transition-all duration-200 cursor-pointer outline-none relative flex flex-col justify-between border border-[var(--haven-border)] ${
+              className={`group p-5 rounded-2xl transition-all duration-300 cursor-pointer outline-none relative flex flex-col justify-between overflow-hidden border border-[var(--haven-border)] ${
                 isActive
-                  ? 'bg-[var(--haven-surface-elevated)] haven-beam-active shadow-xl -translate-y-1.5'
-                  : 'bg-[var(--haven-surface-raised)] haven-beam-hover hover:shadow-xl hover:-translate-y-1'
+                  ? 'bg-[var(--haven-surface-elevated)] shadow-xl shadow-emerald-500/20 -translate-y-1.5 border-emerald-500/50'
+                  : 'bg-[var(--haven-surface-raised)] hover:shadow-xl hover:shadow-emerald-500/10 hover:-translate-y-1 hover:border-emerald-500/40'
               }`}
             >
-              <div>
+              {/* Dynamic Orbiting Ambient Laser Beam */}
+              <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+                <div
+                  className={`animate-spin-beam pointer-events-none transition-opacity duration-300 ${
+                    isActive ? 'opacity-85' : 'opacity-40 group-hover:opacity-80'
+                  }`}
+                />
+              </div>
+
+              {/* Opaque Backdrop Mask */}
+              <div className="absolute inset-[1.5px] rounded-[14.5px] bg-[var(--haven-surface-raised)] group-hover:bg-[var(--haven-surface-elevated)] pointer-events-none z-0 transition-colors" />
+
+              <div className="relative z-10">
                 {/* Header Icon + Active Status */}
                 <div className="flex items-center justify-between mb-3.5">
                   <div
@@ -137,7 +149,7 @@ export const FeatureStrip: React.FC<FeatureStripProps> = ({
               </div>
 
               {/* Verified Proof Metric */}
-              <div className="pt-3 border-t border-[var(--haven-border)]">
+              <div className="relative z-10 pt-3 border-t border-[var(--haven-border)]">
                 <div className="flex items-center gap-1.5 text-[11px] font-mono text-[var(--haven-emerald-400)] font-semibold">
                   <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
                   <span>{feature.proofMetric}</span>

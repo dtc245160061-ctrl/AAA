@@ -1,0 +1,244 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   HAVEN DUAL-TIER LUMINOUS SYSTEM:
+   1. Continuous Ambient Running Beam (Dynamic Easing Curve & Soft Outer Glow)
+   2. Interactive Cursor-Tracking Edge Proximity Glow (ReactBits Inspired)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Dynamic Breathing Rotation with Non-Linear Easing Curve ── */
+@keyframes haven-breathing-beam {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  35% {
+    transform: translate(-50%, -50%) rotate(140deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+  85% {
+    transform: translate(-50%, -50%) rotate(320deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* ── 1. CONTINUOUS AMBIENT GLOW BOX (Soft Outer Blur & Multi-Color Beam) ── */
+.haven-ambient-glow-box {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  isolation: isolate;
+  contain: paint;
+}
+
+/* Outer Soft Glow Layer (Bóng mờ mờ mềm mại bên ngoài) */
+.haven-ambient-glow-box--blur {
+  position: absolute;
+  inset: -8px;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(20px);
+  -webkit-filter: blur(20px);
+  opacity: 0.75;
+  transition: opacity 0.4s ease;
+}
+
+.haven-ambient-glow-box:before,
+.haven-ambient-glow-box--blur:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250%;
+  height: 250%;
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%) rotate(0deg);
+  background-repeat: no-repeat;
+  /* Luxurious Multi-Color Palette: Emerald, Cyan, Violet, Amber, Rose */
+  background-image: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 35deg,
+    rgba(16, 185, 129, 0.2) 60deg,
+    rgba(52, 211, 153, 0.7) 80deg,
+    #34d399 90deg,
+    rgba(56, 189, 248, 0.8) 105deg,
+    #c084fc 120deg,
+    rgba(245, 158, 11, 0.4) 140deg,
+    transparent 165deg,
+    transparent 215deg,
+    rgba(16, 185, 129, 0.2) 240deg,
+    rgba(52, 211, 153, 0.7) 260deg,
+    #34d399 270deg,
+    rgba(56, 189, 248, 0.8) 285deg,
+    #f472b6 300deg,
+    rgba(245, 158, 11, 0.4) 320deg,
+    transparent 345deg,
+    transparent 360deg
+  );
+  animation: haven-breathing-beam 7.5s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+  will-change: transform;
+}
+
+/* Refined, thin inner mask (Không bị dày cứng, viền mỏng 1.2px) */
+.haven-ambient-glow-box:after {
+  content: '';
+  position: absolute;
+  inset: 1.2px;
+  border-radius: inherit;
+  background: var(--card-bg, #0B0F17);
+  z-index: 1;
+}
+
+/* ── 2. INTERACTIVE CURSOR-TRACKING BORDER GLOW (ReactBits Engine) ── */
+.border-glow-card {
+  --edge-proximity: 0;
+  --cursor-angle: 45deg;
+  --edge-sensitivity: 25;
+  --color-sensitivity: calc(var(--edge-sensitivity) + 15);
+  --border-radius: 24px;
+  --glow-padding: 30px;
+  --cone-spread: 28;
+  --fill-opacity: 0.35;
+
+  position: relative;
+  border-radius: var(--border-radius);
+  isolation: isolate;
+  transform: translate3d(0, 0, 0.01px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--card-bg, #0B0F17);
+  overflow: visible;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.border-glow-card:hover {
+  border-color: rgba(52, 211, 153, 0.35);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(16, 185, 129, 0.15);
+}
+
+/* Hover Edge Light Pseudo Elements */
+.border-glow-card::before,
+.border-glow-card::after,
+.border-glow-card > .edge-light {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transition: opacity 0.3s ease-out;
+  pointer-events: none;
+}
+
+.border-glow-card:not(:hover):not(.sweep-active)::before,
+.border-glow-card:not(:hover):not(.sweep-active)::after,
+.border-glow-card:not(:hover):not(.sweep-active) > .edge-light {
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+}
+
+/* Colored mesh-gradient border reacting to cursor proximity */
+.border-glow-card::before {
+  z-index: 2;
+  border: 1.5px solid transparent;
+  background:
+    linear-gradient(var(--card-bg, #0B0F17) 0 100%) padding-box,
+    linear-gradient(rgba(255, 255, 255, 0) 0% 100%) border-box,
+    var(--gradient-one, radial-gradient(at 80% 55%, #c084fc 0px, transparent 50%)) border-box,
+    var(--gradient-two, radial-gradient(at 69% 34%, #f472b6 0px, transparent 50%)) border-box,
+    var(--gradient-three, radial-gradient(at 8% 6%, #34d399 0px, transparent 50%)) border-box,
+    var(--gradient-four, radial-gradient(at 41% 38%, #38bdf8 0px, transparent 50%)) border-box,
+    var(--gradient-five, radial-gradient(at 86% 85%, #fbbf24 0px, transparent 50%)) border-box,
+    var(--gradient-base, linear-gradient(#34d399 0 100%)) border-box;
+
+  opacity: calc((var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity)));
+
+  mask-image:
+    conic-gradient(
+      from var(--cursor-angle) at center,
+      black calc(var(--cone-spread) * 1%),
+      transparent calc((var(--cone-spread) + 15) * 1%),
+      transparent calc((100 - var(--cone-spread) - 15) * 1%),
+      black calc((100 - var(--cone-spread)) * 1%)
+    );
+  -webkit-mask-image:
+    conic-gradient(
+      from var(--cursor-angle) at center,
+      black calc(var(--cone-spread) * 1%),
+      transparent calc((var(--cone-spread) + 15) * 1%),
+      transparent calc((100 - var(--cone-spread) - 15) * 1%),
+      black calc((100 - var(--cone-spread)) * 1%)
+    );
+}
+
+/* Colored ambient background fill near edges on cursor hover */
+.border-glow-card::after {
+  z-index: 1;
+  border: 1px solid transparent;
+  background:
+    var(--gradient-one, radial-gradient(at 80% 55%, #c084fc 0px, transparent 50%)) padding-box,
+    var(--gradient-two, radial-gradient(at 69% 34%, #f472b6 0px, transparent 50%)) padding-box,
+    var(--gradient-three, radial-gradient(at 8% 6%, #34d399 0px, transparent 50%)) padding-box,
+    var(--gradient-four, radial-gradient(at 41% 38%, #38bdf8 0px, transparent 50%)) padding-box,
+    var(--gradient-five, radial-gradient(at 86% 85%, #fbbf24 0px, transparent 50%)) padding-box,
+    var(--gradient-base, linear-gradient(#34d399 0 100%)) padding-box;
+
+  mask-image:
+    radial-gradient(ellipse at center, transparent 40%, black 80%),
+    conic-gradient(from var(--cursor-angle) at center, transparent 5%, black 20%, black 80%, transparent 95%);
+  -webkit-mask-image:
+    radial-gradient(ellipse at center, transparent 40%, black 80%),
+    conic-gradient(from var(--cursor-angle) at center, transparent 5%, black 20%, black 80%, transparent 95%);
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
+
+  opacity: calc(var(--fill-opacity, 0.35) * (var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity)));
+  mix-blend-mode: screen;
+}
+
+/* Outer Bloom Light Layer reacting to cursor angle */
+.border-glow-card > .edge-light {
+  inset: calc(var(--glow-padding) * -1);
+  pointer-events: none;
+  z-index: 3;
+  filter: blur(12px);
+  -webkit-filter: blur(12px);
+
+  mask-image:
+    conic-gradient(
+      from var(--cursor-angle) at center, black 3%, transparent 12%, transparent 88%, black 97%
+    );
+  -webkit-mask-image:
+    conic-gradient(
+      from var(--cursor-angle) at center, black 3%, transparent 12%, transparent 88%, black 97%
+    );
+
+  opacity: calc((var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity)));
+  mix-blend-mode: screen;
+}
+
+.border-glow-card > .edge-light::before {
+  content: "";
+  position: absolute;
+  inset: var(--glow-padding);
+  border-radius: inherit;
+  box-shadow:
+    0 0 12px 1px var(--glow-color, rgba(52, 211, 153, 0.7)),
+    0 0 24px 2px var(--glow-color-60, rgba(56, 189, 248, 0.5)),
+    0 0 40px 4px var(--glow-color-30, rgba(192, 132, 252, 0.35));
+}
+
+.border-glow-inner {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+}
