@@ -148,8 +148,21 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         onShowToast('success', 'Đăng nhập Apple ID thành công!', 'Chào mừng bạn quay lại hệ sinh thái HAVEN.');
         onClose();
       }, 400);
-    } else {
-      onShowToast('info', 'Cổng Facebook', 'Đang chuyển tiếp bảo mật qua Meta OAuth.');
+    } else if (provider === 'Facebook') {
+      setIsSubmitting(true);
+      setTimeout(() => {
+        const fbUser = {
+          name: 'DTC Sinh Viên (Facebook)',
+          email: 'dtc245160061@ictu.edu.vn',
+          avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150',
+          role: 'Cư Dân ICTU (Khách Thuê)',
+        };
+        localStorage.setItem('haven_current_user', JSON.stringify(fbUser));
+        setIsSubmitting(false);
+        onAuthSuccess(fbUser);
+        onShowToast('success', 'Đăng nhập Facebook thành công!', 'Chào mừng dtc245160061@ictu.edu.vn kết nối qua Facebook.');
+        onClose();
+      }, 400);
     }
   };
 
@@ -164,6 +177,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
     setIsSubmitting(true);
 
+    // Standard demo password is 12345678 (or any password during testing)
     // Check specific user accounts
     if (id.toLowerCase() === 'zeecuchuoi@gmail.com' || id === '0988888888') {
       setTimeout(() => {
@@ -176,7 +190,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         localStorage.setItem('haven_current_user', JSON.stringify(user));
         setIsSubmitting(false);
         onAuthSuccess(user);
-        onShowToast('success', 'Đăng nhập Quản trị viên thành công!', 'Chào mừng Admin quay lại.');
+        onShowToast('success', 'Đăng nhập Quản trị viên thành công!', 'Chào mừng zeecuchuoi@gmail.com quay lại trang quản trị.');
         onClose();
       }, 350);
       return;
@@ -193,7 +207,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         localStorage.setItem('haven_current_user', JSON.stringify(user));
         setIsSubmitting(false);
         onAuthSuccess(user);
-        onShowToast('success', 'Đăng nhập Khách thuê thành công!', 'Chào mừng bạn đến với HAVEN.');
+        onShowToast('success', 'Đăng nhập Khách thuê thành công!', 'Chào mừng dtc245160061@ictu.edu.vn đến với HAVEN.');
         onClose();
       }, 350);
       return;
@@ -429,53 +443,92 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           </div>
 
           {/* 1-Click Fast Login Chips for User's 2 Exact Accounts */}
-          <div className="space-y-1.5 p-3 rounded-2xl bg-slate-900/60 border border-slate-800/80">
-            <span className="text-[10.5px] font-mono text-emerald-400 font-semibold block mb-1 flex items-center gap-1.5">
-              <Sparkles className="w-3 h-3 text-emerald-400" />
-              Tài khoản Demo Nhanh (1-Click Login):
-            </span>
+          <div className="space-y-2 p-3 rounded-2xl bg-slate-900/60 border border-slate-800/80">
+            <div className="flex items-center justify-between">
+              <span className="text-[10.5px] font-mono text-emerald-400 font-semibold flex items-center gap-1.5">
+                <Sparkles className="w-3 h-3 text-emerald-400" />
+                Tài khoản Demo Nhanh (Mật khẩu: 12345678):
+              </span>
+              <span className="text-[9px] font-mono text-slate-500">Bấm để điền & lưu trình duyệt</span>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              <button
-                type="button"
-                onClick={() => handleFastLogin('admin')}
-                className="px-2.5 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 hover:text-emerald-200 text-left transition-colors flex items-center gap-2 group cursor-pointer"
-              >
-                <Crown className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                <div className="min-w-0">
-                  <div className="text-[10.5px] font-mono font-bold truncate">zeecuchuoi@gmail.com</div>
-                  <div className="text-[9px] text-emerald-400/80 font-mono">Quyền Quản Trị Viên (Admin)</div>
-                </div>
-              </button>
+              <div className="px-2.5 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 flex items-center justify-between gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setLoginIdentifier('zeecuchuoi@gmail.com');
+                    setPassword('12345678');
+                    onShowToast('info', 'Đã nạp tài khoản Admin', 'Mật khẩu mẫu: 12345678. Nhấn "Xác Nhận Đăng Nhập" để trình duyệt ghi nhớ mật khẩu.');
+                  }}
+                  className="flex items-center gap-2 text-left min-w-0 flex-1 hover:text-emerald-200 cursor-pointer"
+                  title="Bấm để điền zeecuchuoi@gmail.com & 12345678 vào ô nhập"
+                >
+                  <Crown className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <div className="min-w-0">
+                    <div className="text-[10.5px] font-mono font-bold truncate">zeecuchuoi@gmail.com</div>
+                    <div className="text-[9px] text-emerald-400/80 font-mono">Điền Form • 12345678</div>
+                  </div>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleFastLogin('admin')}
+                  className="px-2 py-0.5 rounded-lg bg-emerald-500 text-slate-950 text-[9.5px] font-mono font-bold hover:bg-emerald-400 transition-colors shrink-0 shadow-xs cursor-pointer"
+                  title="Đăng nhập ngay lập tức với quyền Admin"
+                >
+                  Vào Ngay
+                </button>
+              </div>
 
-              <button
-                type="button"
-                onClick={() => handleFastLogin('resident')}
-                className="px-2.5 py-1.5 rounded-xl bg-teal-500/10 hover:bg-teal-500/20 border border-teal-500/30 text-teal-300 hover:text-teal-200 text-left transition-colors flex items-center gap-2 group cursor-pointer"
-              >
-                <UserCheck className="w-3.5 h-3.5 text-teal-400 shrink-0" />
-                <div className="min-w-0">
-                  <div className="text-[10.5px] font-mono font-bold truncate">dtc245160061@ictu.edu.vn</div>
-                  <div className="text-[9px] text-teal-400/80 font-mono">Quyền Khách Thuê (Resident)</div>
-                </div>
-              </button>
+              <div className="px-2.5 py-1.5 rounded-xl bg-teal-500/10 border border-teal-500/30 text-teal-300 flex items-center justify-between gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setLoginIdentifier('dtc245160061@ictu.edu.vn');
+                    setPassword('12345678');
+                    onShowToast('info', 'Đã nạp tài khoản Khách thuê', 'Mật khẩu mẫu: 12345678. Nhấn "Xác Nhận Đăng Nhập" để trình duyệt ghi nhớ mật khẩu.');
+                  }}
+                  className="flex items-center gap-2 text-left min-w-0 flex-1 hover:text-teal-200 cursor-pointer"
+                  title="Bấm để điền dtc245160061@ictu.edu.vn & 12345678 vào ô nhập"
+                >
+                  <UserCheck className="w-3.5 h-3.5 text-teal-400 shrink-0" />
+                  <div className="min-w-0">
+                    <div className="text-[10.5px] font-mono font-bold truncate">dtc245160061@ictu.edu.vn</div>
+                    <div className="text-[9px] text-teal-400/80 font-mono">Điền Form • 12345678</div>
+                  </div>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleFastLogin('resident')}
+                  className="px-2 py-0.5 rounded-lg bg-teal-500 text-slate-950 text-[9.5px] font-mono font-bold hover:bg-teal-400 transition-colors shrink-0 shadow-xs cursor-pointer"
+                  title="Đăng nhập ngay lập tức với quyền Cư Dân"
+                >
+                  Vào Ngay
+                </button>
+              </div>
             </div>
           </div>
 
           {activeTab === 'login' ? (
-            /* Single Unified Login Form (Email OR Phone in 1 box) */
-            <form onSubmit={handleUnifiedLogin} className="space-y-3.5">
+            /* Single Unified Login Form (Email OR Phone in 1 box) with Full Browser Autofill Support */
+            <form method="POST" action="#" onSubmit={handleUnifiedLogin} className="space-y-3.5">
               <div className="space-y-1">
-                <label className="text-[11px] font-mono text-slate-400 block font-medium">
-                  Email hoặc Số Điện Thoại
-                </label>
+                <div className="flex items-center justify-between">
+                  <label htmlFor="haven-login-username" className="text-[11px] font-mono text-slate-400 block font-medium">
+                    Email hoặc Số Điện Thoại
+                  </label>
+                  <span className="text-[9.5px] font-mono text-slate-500">Trình duyệt tự điền (Autofill)</span>
+                </div>
                 <div className="relative">
                   <Mail className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
                   <input
+                    id="haven-login-username"
+                    name="username"
                     type="text"
                     required
+                    autoComplete="username"
                     value={loginIdentifier}
                     onChange={(e) => setLoginIdentifier(e.target.value)}
-                    placeholder="zeecuchuoi@gmail.com hoặc số điện thoại..."
+                    placeholder="zeecuchuoi@gmail.com hoặc dtc245160061@ictu.edu.vn..."
                     className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 text-xs font-sans placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
                   />
                 </div>
@@ -483,24 +536,32 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
               <div className="space-y-1">
                 <div className="flex items-center justify-between">
-                  <label className="text-[11px] font-mono text-slate-400 block font-medium">Mật Khẩu</label>
+                  <label htmlFor="haven-login-password" className="text-[11px] font-mono text-slate-400 block font-medium">
+                    Mật Khẩu (Mẫu: 12345678)
+                  </label>
                   <button
                     type="button"
-                    onClick={() => onShowToast('info', 'Khôi phục mật khẩu', 'Vui lòng liên hệ quản trị viên hoặc sử dụng 1-Click Fast Login ở trên.')}
+                    onClick={() => {
+                      setPassword('12345678');
+                      onShowToast('info', 'Mật khẩu mẫu', 'Đã tự động điền mật khẩu demo 12345678.');
+                    }}
                     className="text-[10.5px] font-mono text-emerald-400 hover:underline"
                   >
-                    Quên mật khẩu?
+                    Điền 12345678
                   </button>
                 </div>
                 <div className="relative">
                   <Lock className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
                   <input
+                    id="haven-login-password"
+                    name="password"
                     type={showPassword ? 'text' : 'password'}
                     required
+                    autoComplete="current-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Nhập mật khẩu (hoặc gõ bất kỳ để thử)..."
-                    className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 text-xs font-sans placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
+                    placeholder="Nhập 12345678 (trình duyệt sẽ hỏi lưu mật khẩu)..."
+                    className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 text-xs font-mono placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
                   />
                   <button
                     type="button"
@@ -517,7 +578,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                 disabled={isSubmitting}
                 className="w-full mt-2 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-mono text-xs font-bold transition-all shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
               >
-                <span>Xác Nhận Đăng Nhập</span>
+                <span>Xác Nhận Đăng Nhập (Lưu Mật Khẩu Trình Duyệt)</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </form>

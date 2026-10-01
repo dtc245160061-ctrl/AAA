@@ -80,10 +80,18 @@ export function App() {
   // Persist active module in URL hash and localStorage across reloads
   useEffect(() => {
     if (activeModule) {
-      window.location.hash = activeModule;
+      const currentHash = window.location.hash.replace('#', '').trim();
+      if (currentHash !== activeModule) {
+        window.location.hash = activeModule;
+      }
       localStorage.setItem('haven_active_module', activeModule);
+      try {
+        window.history.replaceState({ module: activeModule, unitId: selectedUnitId, isAdmin: isAdminView }, '', `#${activeModule}`);
+      } catch {
+        // ignore state error in sandbox
+      }
     }
-  }, [activeModule]);
+  }, [activeModule, selectedUnitId, isAdminView]);
 
   useEffect(() => {
     localStorage.setItem('haven_is_admin_view', isAdminView ? 'true' : 'false');
@@ -242,15 +250,22 @@ export function App() {
 
   // Browser History Navigation (Alt + Left Arrow / Back Button)
   useEffect(() => {
-    window.history.replaceState({ module: activeModule, unitId: selectedUnitId, isAdmin: isAdminView }, '');
+    try {
+      window.history.replaceState({ module: activeModule, unitId: selectedUnitId, isAdmin: isAdminView }, '', `#${activeModule}`);
+    } catch {
+      // ignore
+    }
 
     const handlePopState = (e: PopStateEvent) => {
+      const hash = window.location.hash.replace('#', '').trim();
+      const normalizedHash = normalizeModule(hash);
       if (e.state && e.state.module) {
-        setActiveModule(e.state.module);
+        const nextMod = normalizeModule(e.state.module);
+        setActiveModule(nextMod);
         if (e.state.unitId) setSelectedUnitId(e.state.unitId);
         if (e.state.isAdmin !== undefined) setIsAdminView(e.state.isAdmin);
-      } else {
-        setActiveModule('user_home');
+      } else if (normalizedHash) {
+        setActiveModule(normalizedHash);
       }
     };
 
@@ -261,15 +276,14 @@ export function App() {
   const navigateToModule = (mod: any, unitId?: string) => {
     setActiveModule(mod);
     if (unitId) setSelectedUnitId(unitId);
-    window.history.pushState({ module: mod, unitId: unitId || selectedUnitId, isAdmin: isAdminView }, '');
+    try {
+      window.history.pushState({ module: mod, unitId: unitId || selectedUnitId, isAdmin: isAdminView }, '', `#${mod}`);
+    } catch {
+      // ignore
+    }
   };
 
   const handleToggleSaveUnit = (unitId: string) => {
-    if (!currentUser) {
-      setIsAuthModalOpen(true);
-      showToast('info', 'Đăng nhập để lưu', 'Vui lòng đăng nhập để lưu căn hộ vào danh sách yêu thích cá nhân của bạn.');
-      return;
-    }
     const updated = savedUnitIds.includes(unitId)
       ? savedUnitIds.filter(id => id !== unitId)
       : [...savedUnitIds, unitId];
@@ -277,7 +291,9 @@ export function App() {
     ApartmentStore.saveSavedUnitIds(updated);
 
     if (updated.includes(unitId)) {
-      showToast('info', 'Đã lưu căn hộ', `Căn ${unitId} đã được thêm vào danh sách so sánh.`);
+      showToast('info', 'Đã lưu căn hộ', `Căn ${unitId} đã được thêm vào danh sách yêu thích.`);
+    } else {
+      showToast('info', 'Đã bỏ lưu', `Đã xóa căn ${unitId} khỏi danh sách yêu thích.`);
     }
   };
 

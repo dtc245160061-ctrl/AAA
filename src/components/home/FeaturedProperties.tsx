@@ -170,7 +170,7 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
               tabIndex={0}
               role="button"
               aria-label={`Xem dữ liệu xác thực của căn hộ ${unit.name || unit.id}`}
-              className="group relative rounded-2xl p-[2px] cursor-pointer shadow-xl transition-all duration-300"
+              className="group relative rounded-2xl p-[2px] cursor-pointer shadow-xl transition-all duration-300 overflow-visible"
             >
               {/* Soft outer glow bloom (CodePen / LIYRO style) */}
               <div
@@ -193,7 +193,7 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
 
               {/* Card Inner Container - 100% Opaque to completely prevent beam leaking through card face */}
               <div
-                className={`haven-card-face relative z-10 w-full h-full rounded-[14px] flex flex-col justify-between transition-all duration-200 bg-[#0B101B] dark:bg-[#0B101B] light:bg-white border border-slate-800/80 light:border-slate-200 ${
+                className={`haven-card-face relative z-10 w-full h-full rounded-[14px] flex flex-col justify-between transition-all duration-200 bg-[#0B101B] dark:bg-[#0B101B] light:bg-white border border-slate-800/80 light:border-slate-200 overflow-visible ${
                   isFocal ? 'shadow-[0_0_30px_rgba(16,185,129,0.25)]' : ''
                 }`}
               >
@@ -352,7 +352,7 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
 
                 {/* Bottom Anchor Node for Active Focal State — Fully visible, unclipped */}
                 {isFocal && (
-                  <div className="hidden md:flex absolute -bottom-3.5 left-1/2 -translate-x-1/2 items-center gap-1.5 px-3 py-0.5 rounded-full bg-[var(--haven-emerald-500)] text-white text-[10px] font-mono font-bold shadow-lg z-30 pointer-events-none border border-emerald-300/40 animate-in fade-in">
+                  <div className="hidden md:flex absolute -bottom-3 left-1/2 -translate-x-1/2 items-center gap-1.5 px-3.5 py-1 rounded-full bg-[var(--haven-emerald-500)] text-white text-[10.5px] font-mono font-bold shadow-xl z-40 pointer-events-none border border-emerald-300/60 animate-in fade-in">
                     <span>Dẫn truyền dữ liệu</span>
                     <ArrowDown className="w-3 h-3 animate-bounce" />
                   </div>

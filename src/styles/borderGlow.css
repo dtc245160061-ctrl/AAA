@@ -35,17 +35,17 @@
   contain: paint;
 }
 
-/* Outer Soft Glow Layer (Bóng mờ mờ mềm mại bên ngoài) */
+/* Outer Soft Glow Layer (Bóng mờ mờ tỏa rộng ra bên ngoài) */
 .haven-ambient-glow-box--blur {
   position: absolute;
-  inset: -8px;
+  inset: -12px;
   border-radius: inherit;
   overflow: hidden;
   pointer-events: none;
   z-index: -1;
-  filter: blur(20px);
-  -webkit-filter: blur(20px);
-  opacity: 0.75;
+  filter: blur(18px) saturate(160%);
+  -webkit-filter: blur(18px) saturate(160%);
+  opacity: 0.85;
   transition: opacity 0.4s ease;
 }
 
@@ -84,11 +84,11 @@
   will-change: transform;
 }
 
-/* Refined, thin inner mask (Không bị dày cứng, viền mỏng 1.2px) */
+/* Substantial, crisp LED border line (Độ dày 1.85px chuẩn mực, không bị mỏng) */
 .haven-ambient-glow-box:after {
   content: '';
   position: absolute;
-  inset: 1.2px;
+  inset: 1.85px;
   border-radius: inherit;
   background: var(--card-bg, #0B0F17);
   z-index: 1;

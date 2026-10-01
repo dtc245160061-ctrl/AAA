@@ -334,9 +334,8 @@ input[type="radio"],
   transition: opacity 0.3s ease;
 }
 
-/* Universal bulletproof clipping for any container harboring beam effects */
+/* Universal bulletproof clipping strictly for direct containers harboring beam effects */
 :has(> .animate-spin-beam),
-:has(> * > .animate-spin-beam),
 .beam-container {
   isolation: isolate;
   contain: paint;
@@ -459,6 +458,16 @@ input[type="radio"],
   --beam-color-primary: #22d3ee;
   --beam-color-secondary: rgba(34, 211, 238, 0.5);
   --beam-color-glow: rgba(6, 182, 212, 0.45);
+}
+
+/* ── Light Mode Editorial Beam Palette ── */
+[data-theme="light"],
+.light {
+  --beam-color-primary: #059669;
+  --beam-color-secondary: rgba(4, 120, 87, 0.45);
+  --beam-color-ambient: rgba(16, 185, 129, 0.12);
+  --beam-color-glow: rgba(5, 150, 105, 0.25);
+  --card-bg: #FFFFFF;
 }
 
 /* ── 10. FIREFOX PERFORMANCE OPTIMIZATIONS ── */

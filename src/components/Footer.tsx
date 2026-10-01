@@ -21,14 +21,14 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenVisualModal
 }) => {
   return (
-    <footer className="relative w-full mt-6 pt-5 pb-3 bg-transparent text-slate-400 border-t border-white/[0.08]">
+    <footer className="relative w-full mt-4 pt-4 pb-1 bg-transparent text-slate-400 border-t border-white/[0.08]">
       {/* Subtle Hairline Gradient Top Border */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/35 via-slate-600/30 to-transparent" />
 
-      <div className="w-full px-2 sm:px-4 space-y-8">
+      <div className="w-full px-2 sm:px-4 space-y-5">
         
-        {/* Main 4-Column Footer Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+        {/* Main 4-Column Footer Grid - Bottom-aligned (items-end) per user specification */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-end">
           
           {/* Column 1: Brand & Identity */}
           <div className="space-y-3.5 sm:pr-4">
@@ -213,8 +213,8 @@ export const Footer: React.FC<FooterProps> = ({
 
         </div>
 
-        {/* Bottom Bar: Clean Minimal Copyright */}
-        <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-slate-500">
+        {/* Bottom Bar: Clean Minimal Copyright Touching Bottom Floor */}
+        <div className="pt-2 pb-0.5 border-t border-white/[0.06] flex items-baseline justify-between text-xs font-mono text-slate-500">
           <span>© 2026 HAVEN</span>
           <span className="text-[11px] text-slate-600">Residential Intelligence</span>
         </div>

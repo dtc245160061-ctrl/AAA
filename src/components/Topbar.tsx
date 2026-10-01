@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Plus, Moon, Sun, Monitor, RotateCcw, Bookmark, Menu, Clock, Shield, Calendar, CheckCircle2, ChevronDown, Mic, MicOff, Compass, LogIn, LogOut, Crown, UserCheck } from 'lucide-react';
+import { Search, Plus, Moon, Sun, Monitor, RotateCcw, Bookmark, Menu, Clock, Leaf, Shield, Calendar, CheckCircle2, ChevronDown, Mic, MicOff, Compass, LogIn, LogOut, Crown, UserCheck } from 'lucide-react';
 import type { ThemeMode } from '../App';
 import { VoiceRecognitionService } from '../services/voiceRecognitionService';
 
@@ -175,15 +175,17 @@ export const Topbar: React.FC<TopbarProps> = ({
               className="font-mono text-xs text-emerald-400 hover:text-emerald-300 hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-2 cursor-pointer group select-none px-2 py-1 rounded-lg hover:bg-emerald-500/10 border border-transparent hover:border-emerald-500/30"
               title={isAdminView ? "Quay về Bảng điều khiển" : "Quay về Trang Chủ"}
             >
-              <div className="w-5 h-5 rounded-md bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
-                <Shield className="w-3 h-3 fill-emerald-400/20" />
+              <div className="w-5 h-5 rounded-md bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform shrink-0">
+                <Leaf className="w-3 h-3 text-emerald-400 fill-emerald-400/20" />
               </div>
-              <span className="font-serif text-sm font-bold text-slate-100 group-hover:text-emerald-300 transition-colors">
-                HAVEN
-              </span>
-              <span className="text-[10px] text-emerald-400 font-mono tracking-widest font-bold hidden lg:inline">
-                {isAdminView ? 'OPERATIONS' : 'RESIDENTIAL'}
-              </span>
+              <div className="flex items-baseline gap-1.5 leading-none">
+                <span className="font-serif text-sm font-bold text-slate-100 [data-theme='light']_:text-slate-900 group-hover:text-emerald-300 transition-colors leading-none">
+                  HAVEN
+                </span>
+                <span className="text-[10px] text-emerald-400 [data-theme='light']_:text-emerald-700 font-mono tracking-widest font-bold hidden lg:inline leading-none">
+                  {isAdminView ? 'OPERATIONS' : 'RESIDENTIAL'}
+                </span>
+              </div>
             </button>
             <span className="text-[var(--haven-text-muted)]">•</span>
             <span className="flex items-center gap-1 text-[var(--haven-text-secondary)] font-medium">

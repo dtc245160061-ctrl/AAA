@@ -191,13 +191,71 @@
 
 /* ── Running Border Beams are centralized in ./styles/beamEffects.css ── */
 
-/* ── Luxury Diagonal Sheen Flare Across Panels (Disabled to prevent diagonal cut-off artifacts) ── */
+/* ── Luxury Diagonal Sheen Flare Across Panels (Restored with Organic Speed Curve) ── */
+@keyframes haven-diagonal-sheen {
+  0% {
+    transform: translate3d(-120%, -120%, 0) rotate(25deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  /* Slower velocity while sweeping gracefully across the center content */
+  45% {
+    transform: translate3d(-15%, -15%, 0) rotate(25deg);
+    opacity: 1;
+  }
+  65% {
+    transform: translate3d(20%, 20%, 0) rotate(25deg);
+    opacity: 0.95;
+  }
+  85% {
+    transform: translate3d(120%, 120%, 0) rotate(25deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(120%, 120%, 0) rotate(25deg);
+    opacity: 0;
+  }
+}
+
 .haven-sheen-sweep {
   position: relative;
+  overflow: hidden;
 }
 
 .haven-sheen-sweep::after {
-  display: none !important;
+  content: '';
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.05) 47%,
+    rgba(52, 211, 153, 0.14) 50%,
+    rgba(255, 255, 255, 0.06) 53%,
+    transparent 58%
+  );
+  animation: haven-diagonal-sheen 9.5s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  will-change: transform, opacity;
+  mix-blend-mode: screen;
+  z-index: 12;
+}
+
+[data-theme="light"] .haven-sheen-sweep::after {
+  background: linear-gradient(
+    115deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.45) 47%,
+    rgba(16, 185, 129, 0.22) 50%,
+    rgba(255, 255, 255, 0.45) 53%,
+    transparent 58%
+  );
+  mix-blend-mode: overlay;
 }
 
 .liquid-glass {

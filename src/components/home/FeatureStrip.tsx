@@ -106,27 +106,27 @@ export const FeatureStrip: React.FC<FeatureStripProps> = ({
                   : 'bg-[var(--haven-surface-raised)] hover:shadow-xl hover:shadow-emerald-500/10 hover:-translate-y-1 hover:border-emerald-500/40'
               }`}
             >
-              {/* Soft outer glow bloom */}
+              {/* Soft outer glow bloom - Subtle and refined */}
               <div
                 className={`absolute -inset-2 rounded-2xl overflow-hidden pointer-events-none filter blur-xl transition-opacity duration-300 ${
-                  isActive ? 'opacity-65' : 'opacity-25 group-hover:opacity-50'
+                  isActive ? 'opacity-40' : 'opacity-15 group-hover:opacity-30'
                 }`}
                 aria-hidden="true"
               >
                 <div className="animate-spin-beam pointer-events-none" />
               </div>
 
-              {/* Dynamic Orbiting Ambient Laser Beam */}
+              {/* Dynamic Orbiting Ambient Laser Beam strictly along border */}
               <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
                 <div
                   className={`animate-spin-beam pointer-events-none transition-opacity duration-300 ${
-                    isActive ? 'opacity-85' : 'opacity-40 group-hover:opacity-80'
+                    isActive ? 'opacity-75' : 'opacity-25 group-hover:opacity-50'
                   }`}
                 />
               </div>
 
-              {/* Opaque Backdrop Mask */}
-              <div className="absolute inset-[1.5px] rounded-[14.5px] bg-[var(--haven-surface-raised)] group-hover:bg-[var(--haven-surface-elevated)] pointer-events-none z-0 transition-colors" />
+              {/* Solid Opaque Backdrop Mask — Completely stops beam leaking into card center */}
+              <div className="absolute inset-[1.5px] rounded-[14.5px] bg-[#0B101B] dark:bg-[#0B101B] [data-theme='light']_:bg-white pointer-events-none z-0 transition-colors" />
 
               <div className="relative z-10">
                 {/* Header Icon + Active Status */}
