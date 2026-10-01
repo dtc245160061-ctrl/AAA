@@ -21,7 +21,7 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenVisualModal
 }) => {
   return (
-    <footer className="relative w-full mt-12 pt-8 pb-6 bg-transparent text-slate-400 border-t border-white/[0.08]">
+    <footer className="relative w-full mt-6 pt-5 pb-3 bg-transparent text-slate-400 border-t border-white/[0.08]">
       {/* Subtle Hairline Gradient Top Border */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/35 via-slate-600/30 to-transparent" />
 
@@ -213,22 +213,10 @@ export const Footer: React.FC<FooterProps> = ({
 
         </div>
 
-        {/* Bottom Bar: Academic Credentials & Copyright */}
-        <div className="pt-5 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-slate-500">
-          <div className="flex items-center gap-2 text-center sm:text-left">
-            <span>Đồ án Chuyên ngành Ứng dụng Trí tuệ Nhân tạo</span>
-            <span className="text-slate-600">•</span>
-            <span className="text-emerald-400/90 font-bold">KHMT K23A</span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-slate-400">Local Edge Engine: Hoạt động</span>
-            </div>
-            <span className="text-slate-600">•</span>
-            <span>© 2026 HAVEN Platform</span>
-          </div>
+        {/* Bottom Bar: Clean Minimal Copyright */}
+        <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-slate-500">
+          <span>© 2026 HAVEN</span>
+          <span className="text-[11px] text-slate-600">Residential Intelligence</span>
         </div>
 
       </div>

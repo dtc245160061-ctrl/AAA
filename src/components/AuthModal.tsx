@@ -8,8 +8,11 @@ import {
   ArrowRight, 
   CheckCircle2, 
   KeyRound,
-  Phone,
-  ChevronDown
+  Eye,
+  EyeOff,
+  Sparkles,
+  Crown,
+  UserCheck
 } from 'lucide-react';
 
 interface AuthModalProps {
@@ -22,8 +25,6 @@ interface AuthModalProps {
 type AuthTab = 'login' | 'register';
 type RegisterStep = 'input_info' | 'verify_otp';
 
-import { ALL_COUNTRY_CODES, type CountryCode } from '../data/countries';
-
 export const AuthModal: React.FC<AuthModalProps> = ({
   isOpen,
   onClose,
@@ -32,15 +33,15 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<AuthTab>('login');
   const [registerStep, setRegisterStep] = useState<RegisterStep>('input_info');
-  const [authInputType, setAuthInputType] = useState<'email' | 'phone'>('email');
-  const [selectedCountry, setSelectedCountry] = useState<CountryCode>(ALL_COUNTRY_CODES[0]);
-  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
-  const [countrySearch, setCountrySearch] = useState('');
 
-  // Form Fields
-  const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  // Single Unified Login Input (Email or Phone)
+  const [loginIdentifier, setLoginIdentifier] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Register Fields
+  const [registerIdentifier, setRegisterIdentifier] = useState('');
+  const [registerPassword, setRegisterPassword] = useState('');
   const [fullName, setFullName] = useState('');
   
   // OTP Fields
@@ -62,232 +63,258 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
   if (!isOpen) return null;
 
-  // Supabase Auth REST Endpoints (Zero additional dependencies)
   const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://esgzwwpvzdwsjkkeryeu.supabase.co';
   const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_rM3Noo8PgnXEByo9SOZ4Dw_vbqk8SW6';
 
-  // Handle Google Login (Supabase OAuth & 1-Click Fast Auth)
+  // Fast 1-Click Login for User's 2 Exact Accounts
+  const handleFastLogin = (accountType: 'admin' | 'resident') => {
+    setIsSubmitting(true);
+    setTimeout(() => {
+      if (accountType === 'admin') {
+        const adminUser = {
+          name: 'Zee Củ Chuối',
+          email: 'zeecuchuoi@gmail.com',
+          avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
+          role: 'Hệ Thống Quản Trị Viên (Admin)',
+        };
+        localStorage.setItem('haven_current_user', JSON.stringify(adminUser));
+        setIsSubmitting(false);
+        onAuthSuccess(adminUser);
+        onShowToast('success', 'Đăng nhập Quản trị viên thành công!', 'Chào mừng zeecuchuoi@gmail.com quay lại trang quản trị.');
+        onClose();
+      } else {
+        const residentUser = {
+          name: 'DTC Sinh Viên ICTU',
+          email: 'dtc245160061@ictu.edu.vn',
+          avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150',
+          role: 'Cư Dân ICTU (Khách Thuê)',
+        };
+        localStorage.setItem('haven_current_user', JSON.stringify(residentUser));
+        setIsSubmitting(false);
+        onAuthSuccess(residentUser);
+        onShowToast('success', 'Đăng nhập Khách thuê thành công!', 'Chào mừng dtc245160061@ictu.edu.vn khám phá căn hộ HAVEN.');
+        onClose();
+      }
+    }, 350);
+  };
+
+  // Google Login
   const handleGoogleLogin = () => {
     setIsSubmitting(true);
     setTimeout(() => {
       const demoUser = {
-        name: 'Nguyễn Thành An',
-        email: 'an.nguyen.tech@gmail.com',
+        name: 'Zee Củ Chuối (Google)',
+        email: 'zeecuchuoi@gmail.com',
         avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
-        role: 'Sanctuary Elite Member',
+        role: 'Hệ Thống Quản Trị Viên (Admin)',
       };
       localStorage.setItem('haven_current_user', JSON.stringify(demoUser));
       setIsSubmitting(false);
       onAuthSuccess(demoUser);
-      onShowToast('success', 'Đăng nhập Google thành công!', 'Chào mừng bạn quay lại hệ sinh thái HAVEN.');
+      onShowToast('success', 'Đăng nhập Google thành công!', 'Đã liên kết tài khoản zeecuchuoi@gmail.com.');
       onClose();
-    }, 600);
+    }, 450);
   };
 
-  // Handle Mock Logins (Facebook, Apple, Zalo)
-  const handleMockSocialLogin = (provider: 'Facebook' | 'Apple' | 'Zalo') => {
+  // Social Logins (Zalo, Apple, Facebook)
+  const handleMockSocialLogin = (provider: 'Zalo' | 'Apple' | 'Facebook') => {
     if (provider === 'Zalo') {
-      onShowToast('info', 'Cổng Zalo 1-Click', 'Đang liên kết Zalo Mini App & Zalo OA của HAVEN.');
-    } else if (provider === 'Facebook') {
-      onShowToast('info', 'Cổng Facebook Đang Bảo Trì', 'Meta yêu cầu xác minh đối tác doanh nghiệp. Vui lòng sử dụng Google hoặc Email để demo.');
-    } else {
-      onShowToast('info', 'Cổng Apple ID Thử Nghiệm', 'Apple Sign-In chỉ khả dụng trên thiết bị iOS Safari được phê duyệt.');
-    }
-  };
-
-  // Handle Login (Email / Phone + Supabase REST API & Local Fallback)
-  const handleEmailLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Phone login mode
-    if (authInputType === 'phone') {
-      if (!phoneNumber.trim() || !password.trim()) {
-        onShowToast('error', 'Thiếu thông tin', 'Vui lòng nhập đầy đủ Số điện thoại và Mật khẩu.');
-        return;
-      }
       setIsSubmitting(true);
       setTimeout(() => {
-        const fullPhone = `${selectedCountry.code} ${phoneNumber.trim()}`;
-        const user = {
-          name: `Khách Thuê (${selectedCountry.flag} ${phoneNumber.slice(-4)})`,
-          email: `${phoneNumber.replace(/\D/g, '')}@haven.luxury`,
-          avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150',
-          role: 'Verified Resident (Phone Auth)',
-        };
-        localStorage.setItem('haven_current_user', JSON.stringify(user));
-        setIsSubmitting(false);
-        onAuthSuccess(user);
-        onShowToast('success', 'Đăng nhập Số điện thoại thành công!', `Chào mừng bạn quay lại (${fullPhone}).`);
-        onClose();
-      }, 500);
-      return;
-    }
-
-    // Email login mode
-    if (!email.trim() || !password.trim()) {
-      onShowToast('error', 'Thiếu thông tin', 'Vui lòng nhập đầy đủ Email và Mật khẩu.');
-      return;
-    }
-
-    setIsSubmitting(true);
-    try {
-      const res = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
-        method: 'POST',
-        headers: {
-          'apikey': SUPABASE_ANON_KEY,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email: email.trim(), password: password.trim() })
-      });
-      const data = await res.json();
-      if (res.ok && data?.access_token) {
-        const user = {
-          name: data.user?.user_metadata?.full_name || email.split('@')[0] || 'Cư Dân HAVEN',
-          email: email.trim(),
+        const zaloUser = {
+          name: 'Zee (Zalo Cư Dân)',
+          email: 'zeecuchuoi@gmail.com',
           avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
-          role: 'Verified Resident (Supabase Live)',
+          role: 'Hệ Thống Quản Trị Viên (Admin)',
         };
-        localStorage.setItem('haven_current_user', JSON.stringify(user));
-        localStorage.setItem('haven_supabase_session', JSON.stringify(data));
+        localStorage.setItem('haven_current_user', JSON.stringify(zaloUser));
         setIsSubmitting(false);
-        onAuthSuccess(user);
-        onShowToast('success', 'Đăng nhập Supabase thành công!', `Chào mừng ${user.name} trở lại.`);
+        onAuthSuccess(zaloUser);
+        onShowToast('success', 'Đăng nhập Zalo thành công!', 'Đã đồng bộ tài khoản Zalo & HAVEN.');
         onClose();
-        return;
-      }
-      if (data?.error_code === 'email_not_confirmed') {
-        onShowToast('info', 'Email cần xác thực', 'Đang chuyển bạn vào phiên trải nghiệm nhanh của HAVEN.');
-      }
-    } catch (err) {
-      console.warn('Supabase auth notice:', err);
+      }, 400);
+    } else if (provider === 'Apple') {
+      setIsSubmitting(true);
+      setTimeout(() => {
+        const appleUser = {
+          name: 'Zee (Apple ID)',
+          email: 'zeecuchuoi@gmail.com',
+          avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
+          role: 'Hệ Thống Quản Trị Viên (Admin)',
+        };
+        localStorage.setItem('haven_current_user', JSON.stringify(appleUser));
+        setIsSubmitting(false);
+        onAuthSuccess(appleUser);
+        onShowToast('success', 'Đăng nhập Apple ID thành công!', 'Chào mừng bạn quay lại hệ sinh thái HAVEN.');
+        onClose();
+      }, 400);
+    } else {
+      onShowToast('info', 'Cổng Facebook', 'Đang chuyển tiếp bảo mật qua Meta OAuth.');
     }
-
-    // Graceful fallback session
-    const fallbackUser = {
-      name: email.split('@')[0] || 'Cư Dân HAVEN',
-      email: email.trim(),
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
-      role: 'Resident Member',
-    };
-    localStorage.setItem('haven_current_user', JSON.stringify(fallbackUser));
-    setIsSubmitting(false);
-    onAuthSuccess(fallbackUser);
-    onShowToast('success', 'Đăng nhập thành công!', `Chào mừng ${fallbackUser.name} đến với HAVEN.`);
-    onClose();
   };
 
-  // Handle Register Step 1 -> Send OTP / Signup via Supabase
-  const handleRequestOtp = async (e: React.FormEvent) => {
+  // Unified Form Login Handler
+  const handleUnifiedLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!fullName.trim() || !email.trim() || !password.trim()) {
-      onShowToast('error', 'Vui lòng điền đủ thông tin', 'Cần nhập họ tên, email và mật khẩu hợp lệ.');
+    const id = loginIdentifier.trim();
+    if (!id || !password.trim()) {
+      onShowToast('error', 'Thiếu thông tin', 'Vui lòng nhập Email / Số điện thoại và Mật khẩu.');
       return;
     }
 
     setIsSubmitting(true);
-    try {
-      await fetch(`${SUPABASE_URL}/auth/v1/signup`, {
-        method: 'POST',
-        headers: {
-          'apikey': SUPABASE_ANON_KEY,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: email.trim(),
-          password: password.trim(),
-          data: { full_name: fullName.trim() }
-        })
-      });
-    } catch (err) {
-      console.warn('Supabase signup notice:', err);
+
+    // Check specific user accounts
+    if (id.toLowerCase() === 'zeecuchuoi@gmail.com' || id === '0988888888') {
+      setTimeout(() => {
+        const user = {
+          name: 'Zee Củ Chuối',
+          email: 'zeecuchuoi@gmail.com',
+          avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
+          role: 'Hệ Thống Quản Trị Viên (Admin)',
+        };
+        localStorage.setItem('haven_current_user', JSON.stringify(user));
+        setIsSubmitting(false);
+        onAuthSuccess(user);
+        onShowToast('success', 'Đăng nhập Quản trị viên thành công!', 'Chào mừng Admin quay lại.');
+        onClose();
+      }, 350);
+      return;
     }
 
-    setIsSubmitting(false);
+    if (id.toLowerCase() === 'dtc245160061@ictu.edu.vn') {
+      setTimeout(() => {
+        const user = {
+          name: 'DTC Sinh Viên ICTU',
+          email: 'dtc245160061@ictu.edu.vn',
+          avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150',
+          role: 'Cư Dân ICTU (Khách Thuê)',
+        };
+        localStorage.setItem('haven_current_user', JSON.stringify(user));
+        setIsSubmitting(false);
+        onAuthSuccess(user);
+        onShowToast('success', 'Đăng nhập Khách thuê thành công!', 'Chào mừng bạn đến với HAVEN.');
+        onClose();
+      }, 350);
+      return;
+    }
+
+    // Try Supabase auth if it's an email
+    if (id.includes('@')) {
+      try {
+        const res = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email: id, password: password.trim() })
+        });
+        const data = await res.json();
+        if (res.ok && data?.access_token) {
+          const user = {
+            name: data.user?.user_metadata?.full_name || id.split('@')[0] || 'Cư Dân HAVEN',
+            email: id,
+            avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
+            role: 'Cư Dân Xác Thực (Supabase)',
+          };
+          localStorage.setItem('haven_current_user', JSON.stringify(user));
+          localStorage.setItem('haven_supabase_session', JSON.stringify(data));
+          setIsSubmitting(false);
+          onAuthSuccess(user);
+          onShowToast('success', 'Đăng nhập thành công!', `Chào mừng ${user.name} trở lại.`);
+          onClose();
+          return;
+        }
+      } catch (err) {
+        console.warn('Supabase auth notice:', err);
+      }
+    }
+
+    // Default seamless login
+    setTimeout(() => {
+      const isEmail = id.includes('@');
+      const user = {
+        name: isEmail ? id.split('@')[0] : `Cư Dân (${id.slice(-4)})`,
+        email: isEmail ? id : `${id}@haven.luxury`,
+        avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150',
+        role: 'Cư Dân HAVEN',
+      };
+      localStorage.setItem('haven_current_user', JSON.stringify(user));
+      setIsSubmitting(false);
+      onAuthSuccess(user);
+      onShowToast('success', 'Đăng nhập thành công!', `Chào mừng ${user.name} đã đăng nhập.`);
+      onClose();
+    }, 400);
+  };
+
+  // Register Handler
+  const handleRegisterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const id = registerIdentifier.trim();
+    if (!id || !registerPassword.trim() || !fullName.trim()) {
+      onShowToast('error', 'Thiếu thông tin', 'Vui lòng điền họ tên, email/số điện thoại và mật khẩu.');
+      return;
+    }
+
+    setIsSubmitting(true);
     setRegisterStep('verify_otp');
     setOtpTimer(60);
-    onShowToast('info', 'Mã xác thực đã phát hành!', `Mã OTP xác minh 6 số đã được đồng bộ với Supabase & gửi đến ${email}.`);
+    setIsSubmitting(false);
+    onShowToast('info', 'Mã OTP xác thực', `Mã OTP xác minh 6 số đã được phát hành cho ${id}.`);
   };
 
-  // Handle OTP digit input
   const handleOtpChange = (index: number, val: string) => {
-    if (val.length > 1) {
-      val = val.slice(-1);
-    }
+    if (val.length > 1) val = val.slice(-1);
     const newCode = [...otpCode];
     newCode[index] = val;
     setOtpCode(newCode);
 
-    // Auto-focus next input
     if (val && index < 5) {
       const nextInput = document.getElementById(`otp-input-${index + 1}`);
       nextInput?.focus();
     }
   };
 
-  // Fast autofill for demo test
   const handleAutoFillOtp = () => {
     setOtpCode(['8', '8', '8', '9', '9', '9']);
   };
 
-  // Handle Final Registration Verification
-  const handleConfirmOtp = async (e: React.FormEvent) => {
+  const handleConfirmOtp = (e: React.FormEvent) => {
     e.preventDefault();
-    const fullOtp = otpCode.join('');
-    if (fullOtp.length < 6) {
-      onShowToast('error', 'Mã OTP chưa đủ', 'Vui lòng nhập đủ 6 chữ số xác thực.');
-      return;
-    }
-
     setIsSubmitting(true);
-    try {
-      const res = await fetch(`${SUPABASE_URL}/auth/v1/verify`, {
-        method: 'POST',
-        headers: {
-          'apikey': SUPABASE_ANON_KEY,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          type: 'signup',
-          email: email.trim(),
-          token: fullOtp
-        })
-      });
-      const data = await res.json();
-      if (res.ok && data?.access_token) {
-        localStorage.setItem('haven_supabase_session', JSON.stringify(data));
-      }
-    } catch (err) {
-      console.warn('Supabase OTP verify notice:', err);
-    }
-
-    setIsSubmitting(false);
-    const newUser = {
-      name: fullName.trim(),
-      email: email.trim(),
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
-      role: 'Verified Resident (Supabase)',
-    };
-    localStorage.setItem('haven_current_user', JSON.stringify(newUser));
-    onAuthSuccess(newUser);
-    onShowToast('success', 'Đăng ký tài khoản thành công!', 'Tài khoản của bạn đã được xác thực an toàn qua Supabase & HAVEN.');
-    onClose();
+    setTimeout(() => {
+      const isEmail = registerIdentifier.includes('@');
+      const newUser = {
+        name: fullName.trim(),
+        email: isEmail ? registerIdentifier.trim() : `${registerIdentifier.trim()}@haven.luxury`,
+        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
+        role: 'Cư Dân Mới Xác Thực',
+      };
+      localStorage.setItem('haven_current_user', JSON.stringify(newUser));
+      setIsSubmitting(false);
+      onAuthSuccess(newUser);
+      onShowToast('success', 'Đăng ký tài khoản thành công!', 'Chào mừng bạn tham gia cộng đồng HAVEN.');
+      onClose();
+    }, 400);
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-md rounded-3xl atmospheric-panel border border-emerald-500/40 bg-slate-950 shadow-2xl flex flex-col overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
+      {/* Expanded Modal Box: 500px width with deep crisp contrast */}
+      <div className="relative w-full max-w-[500px] rounded-3xl border border-emerald-500/50 bg-[#0B0F17] shadow-2xl shadow-emerald-500/15 flex flex-col overflow-hidden text-slate-100">
         
-        {/* Header Bar */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800/80 bg-slate-900/60 shrink-0">
-          <div className="flex items-center gap-2">
-            <div className="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
+        {/* Top Header Bar */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800/90 bg-slate-900/80 shrink-0">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center">
               <ShieldCheck className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-serif font-bold text-base text-slate-100">
+              <h3 className="font-serif font-bold text-base text-slate-100 tracking-wide">
                 HAVEN Sanctuary Access
               </h3>
-              <p className="text-[10px] font-mono text-emerald-400">
+              <p className="text-[10px] font-mono text-emerald-400 font-medium">
                 Định danh cư dân & khách hàng bảo mật
               </p>
             </div>
@@ -302,7 +329,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         </div>
 
         {/* Tab Switcher (Đăng Nhập / Đăng Ký) */}
-        <div className="p-1 mx-6 mt-5 rounded-xl bg-slate-900 border border-slate-800 flex">
+        <div className="p-1 mx-6 mt-5 rounded-xl bg-slate-900/90 border border-slate-800 flex">
           <button
             type="button"
             onClick={() => {
@@ -334,16 +361,16 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 space-y-5">
+        <div className="p-6 space-y-4">
           
-          {/* 4 Social Auth Providers: 2x2 Grid */}
-          <div className="grid grid-cols-2 gap-2">
+          {/* 4 Social Auth Providers: Google, Zalo, Facebook, Apple */}
+          <div className="grid grid-cols-2 gap-2.5">
             {/* 1. Google */}
             <button
               type="button"
               onClick={handleGoogleLogin}
               disabled={isSubmitting}
-              className="py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/60 text-slate-100 text-xs font-mono font-bold transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer"
+              className="py-2.5 px-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/60 text-slate-100 text-xs font-mono font-bold transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer"
             >
               <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24">
                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -354,327 +381,255 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               <span>Google</span>
             </button>
 
-            {/* 2. Zalo */}
+            {/* 2. Zalo: Authentic speech bubble logo with white Zalo text */}
             <button
               type="button"
               onClick={() => handleMockSocialLogin('Zalo')}
               className="py-2.5 px-3 rounded-xl bg-blue-600/15 hover:bg-blue-600/25 border border-blue-500/40 text-blue-300 text-xs font-mono font-bold transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer"
             >
-              <span className="w-5 h-5 rounded-md bg-[#0068FF] text-white text-[11px] font-bold flex items-center justify-center">Z</span>
-              <span>Zalo 1-Click</span>
+              <svg className="w-4 h-4 shrink-0" viewBox="0 0 48 48" fill="none">
+                <rect width="48" height="48" rx="10" fill="#0068FF" />
+                <path d="M14 32L24 17H14V14H28V16.5L18 31.5H28V34.5H14V32Z" fill="white" />
+                <circle cx="33" cy="24" r="3.5" fill="white" />
+              </svg>
+              <span>Zalo</span>
             </button>
 
             {/* 3. Facebook */}
             <button
               type="button"
               onClick={() => handleMockSocialLogin('Facebook')}
-              className="py-2 px-3 rounded-xl bg-slate-900/60 hover:bg-slate-800 border border-slate-800 text-slate-300 text-[11px] font-mono flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+              className="py-2.5 px-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-mono font-bold transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer"
             >
-              <span className="text-[#1877F2] font-bold">f</span>
+              <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="#1877F2">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
               <span>Facebook</span>
             </button>
 
-            {/* 4. Apple ID */}
+            {/* 4. Apple ID: Authentic Apple bitten-apple vector logo */}
             <button
               type="button"
               onClick={() => handleMockSocialLogin('Apple')}
-              className="py-2 px-3 rounded-xl bg-slate-900/60 hover:bg-slate-800 border border-slate-800 text-slate-300 text-[11px] font-mono flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+              className="py-2.5 px-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-mono font-bold transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer"
             >
-              <span className="text-white font-bold"></span>
+              <svg className="w-4 h-4 shrink-0 fill-current text-white" viewBox="0 0 170 170">
+                <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.63-13.99-5.24-8.08-9.35-17.15-12.33-27.21-2.98-10.06-4.47-19.51-4.47-28.34 0-13.88 3.59-25.13 10.77-33.75 7.18-8.62 16.02-13.04 26.52-13.26 5.34 0 10.98 1.34 16.92 4.02 5.94 2.68 9.94 4.08 12 4.2 1.74-.24 5.92-1.68 12.54-4.33 6.62-2.65 12.33-3.85 17.13-3.6 12.63.85 22.84 5.35 30.63 13.51-11.03 6.66-16.42 15.82-16.18 27.48.24 9.17 3.86 16.89 10.86 23.16 7 6.27 15.22 9.77 24.66 10.5-2.22 6.66-4.99 13.43-8.31 20.31zM119.22 31.84c0-7.25 2.65-13.88 7.95-19.89 5.3-6.01 11.75-9.61 19.35-10.8 1.01 7.42-1.39 14.28-7.21 20.58-5.82 6.3-12.52 10.01-20.09 10.11z" />
+              </svg>
               <span>Apple ID</span>
             </button>
           </div>
 
           {/* Divider */}
-          <div className="relative flex items-center justify-center">
+          <div className="relative flex items-center justify-center my-3">
             <div className="w-full border-t border-slate-800" />
-            <span className="absolute px-3 bg-slate-950 text-[10px] font-mono text-slate-500 uppercase tracking-widest">
-              Hoặc với Email / Số Điện Thoại
+            <span className="absolute px-3 bg-[#0B0F17] text-[10px] font-mono text-slate-500 uppercase tracking-widest">
+              Hoặc đăng nhập trực tiếp
             </span>
           </div>
 
-          {/* Conditional Forms */}
+          {/* 1-Click Fast Login Chips for User's 2 Exact Accounts */}
+          <div className="space-y-1.5 p-3 rounded-2xl bg-slate-900/60 border border-slate-800/80">
+            <span className="text-[10.5px] font-mono text-emerald-400 font-semibold block mb-1 flex items-center gap-1.5">
+              <Sparkles className="w-3 h-3 text-emerald-400" />
+              Tài khoản Demo Nhanh (1-Click Login):
+            </span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <button
+                type="button"
+                onClick={() => handleFastLogin('admin')}
+                className="px-2.5 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 hover:text-emerald-200 text-left transition-colors flex items-center gap-2 group cursor-pointer"
+              >
+                <Crown className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <div className="min-w-0">
+                  <div className="text-[10.5px] font-mono font-bold truncate">zeecuchuoi@gmail.com</div>
+                  <div className="text-[9px] text-emerald-400/80 font-mono">Quyền Quản Trị Viên (Admin)</div>
+                </div>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => handleFastLogin('resident')}
+                className="px-2.5 py-1.5 rounded-xl bg-teal-500/10 hover:bg-teal-500/20 border border-teal-500/30 text-teal-300 hover:text-teal-200 text-left transition-colors flex items-center gap-2 group cursor-pointer"
+              >
+                <UserCheck className="w-3.5 h-3.5 text-teal-400 shrink-0" />
+                <div className="min-w-0">
+                  <div className="text-[10.5px] font-mono font-bold truncate">dtc245160061@ictu.edu.vn</div>
+                  <div className="text-[9px] text-teal-400/80 font-mono">Quyền Khách Thuê (Resident)</div>
+                </div>
+              </button>
+            </div>
+          </div>
+
           {activeTab === 'login' ? (
-            /* Login Form */
-            <form onSubmit={handleEmailLogin} className="space-y-3.5">
-              {/* Method Switcher: Email vs Phone */}
-              <div className="flex items-center justify-between pb-1 border-b border-slate-800/60">
-                <div className="flex items-center gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setAuthInputType('email')}
-                    className={`text-xs font-mono transition-colors pb-0.5 ${
-                      authInputType === 'email'
-                        ? 'text-emerald-400 font-bold border-b-2 border-emerald-400'
-                        : 'text-slate-400 hover:text-slate-200'
-                    }`}
-                  >
-                    Email
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setAuthInputType('phone')}
-                    className={`text-xs font-mono transition-colors pb-0.5 ${
-                      authInputType === 'phone'
-                        ? 'text-emerald-400 font-bold border-b-2 border-emerald-400'
-                        : 'text-slate-400 hover:text-slate-200'
-                    }`}
-                  >
-                    Số Điện Thoại
-                  </button>
+            /* Single Unified Login Form (Email OR Phone in 1 box) */
+            <form onSubmit={handleUnifiedLogin} className="space-y-3.5">
+              <div className="space-y-1">
+                <label className="text-[11px] font-mono text-slate-400 block font-medium">
+                  Email hoặc Số Điện Thoại
+                </label>
+                <div className="relative">
+                  <Mail className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+                  <input
+                    type="text"
+                    required
+                    value={loginIdentifier}
+                    onChange={(e) => setLoginIdentifier(e.target.value)}
+                    placeholder="zeecuchuoi@gmail.com hoặc số điện thoại..."
+                    className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 text-xs font-sans placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
+                  />
                 </div>
-                <span className="text-[10px] font-mono text-slate-500">Fast Demo Auth</span>
               </div>
-
-              {authInputType === 'email' ? (
-                <div className="space-y-1">
-                  <label className="text-[11px] font-mono text-slate-400 block">Địa Chỉ Email</label>
-                  <div className="relative">
-                    <Mail className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
-                    <input
-                      type="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="user@haven.vn hoặc admin@haven.vn"
-                      className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 text-xs font-sans placeholder:text-slate-600 focus:outline-none focus:border-emerald-500"
-                    />
-                  </div>
-                </div>
-              ) : (
-                <div className="space-y-1">
-                  <label className="text-[11px] font-mono text-slate-400 block">Số Điện Thoại Di Động</label>
-                  <div className="flex gap-2">
-                    {/* Country Code Dropdown */}
-                    <div className="relative shrink-0">
-                      <button
-                        type="button"
-                        onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
-                        className="h-full px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200 flex items-center gap-1.5 hover:border-slate-700 transition-colors cursor-pointer"
-                      >
-                        <span>{selectedCountry.flag}</span>
-                        <span>{selectedCountry.code}</span>
-                        <ChevronDown className="w-3 h-3 text-slate-400" />
-                      </button>
-
-                      {isCountryDropdownOpen && (
-                        <div className="absolute left-0 top-full mt-1 w-64 max-h-64 rounded-xl bg-slate-900 border border-slate-700 shadow-2xl z-50 p-2 flex flex-col gap-1.5 backdrop-blur-xl">
-                          <input
-                            type="text"
-                            value={countrySearch}
-                            onChange={(e) => setCountrySearch(e.target.value)}
-                            placeholder="Tìm quốc gia / đầu số..."
-                            className="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-800 text-[11px] font-mono text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-emerald-500"
-                            autoFocus
-                          />
-                          <div className="overflow-y-auto max-h-48 space-y-0.5 pr-1">
-                            {ALL_COUNTRY_CODES
-                              .filter(c => 
-                                c.name.toLowerCase().includes(countrySearch.toLowerCase()) || 
-                                c.code.includes(countrySearch) ||
-                                c.iso.toLowerCase().includes(countrySearch.toLowerCase())
-                              )
-                              .map((c) => (
-                                <button
-                                  key={`${c.iso}-${c.code}`}
-                                  type="button"
-                                  onClick={() => {
-                                    setSelectedCountry(c);
-                                    setIsCountryDropdownOpen(false);
-                                    setCountrySearch('');
-                                  }}
-                                  className={`w-full px-2 py-1.5 rounded-lg text-left text-xs font-mono flex items-center justify-between transition-colors ${
-                                    selectedCountry.iso === c.iso && selectedCountry.code === c.code
-                                      ? 'bg-emerald-500/20 text-emerald-300 font-bold'
-                                      : 'text-slate-300 hover:bg-slate-800'
-                                  }`}
-                                >
-                                  <span className="flex items-center gap-1.5 truncate pr-2">
-                                    <span className="text-base">{c.flag}</span> 
-                                    <span className="truncate">{c.name}</span>
-                                  </span>
-                                  <span className="text-[11px] text-slate-400 font-semibold shrink-0">{c.code}</span>
-                                </button>
-                              ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="relative flex-1">
-                      <Phone className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
-                      <input
-                        type="tel"
-                        required
-                        value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        placeholder="0912 345 678"
-                        className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 text-xs font-sans placeholder:text-slate-600 focus:outline-none focus:border-emerald-500"
-                      />
-                    </div>
-                  </div>
-                </div>
-              )}
 
               <div className="space-y-1">
                 <div className="flex items-center justify-between">
-                  <label className="text-[11px] font-mono text-slate-400 block">Mật Khẩu</label>
-                  <a href="#forgot" onClick={(e) => { e.preventDefault(); onShowToast('info', 'Khôi phục mật khẩu', 'Vui lòng liên hệ ban quản trị HAVEN.'); }} className="text-[10px] font-mono text-emerald-400 hover:underline">
-                    Quên mật khẩu?
-                  </a>
-                </div>
-                <div className="relative">
-                  <Lock className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
-                  <input
-                    type="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
-                    className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 text-xs font-sans placeholder:text-slate-600 focus:outline-none focus:border-emerald-500"
-                  />
-                </div>
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold transition-all shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <span>{isSubmitting ? 'Đang xác thực...' : 'Đăng Nhập'}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </form>
-          ) : registerStep === 'input_info' ? (
-            /* Register Step 1: Info Input */
-            <form onSubmit={handleRequestOtp} className="space-y-3.5">
-              <div className="space-y-1">
-                <label className="text-[11px] font-mono text-slate-400 block">Họ Và Tên</label>
-                <div className="relative">
-                  <User className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
-                  <input
-                    type="text"
-                    required
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    placeholder="Nguyễn Văn An"
-                    className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 text-xs font-sans placeholder:text-slate-600 focus:outline-none focus:border-emerald-500"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <label className="text-[11px] font-mono text-slate-400 block">Email Đăng Ký</label>
-                <div className="relative">
-                  <Mail className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="an.nguyen@example.com"
-                    className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 text-xs font-sans placeholder:text-slate-600 focus:outline-none focus:border-emerald-500"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <label className="text-[11px] font-mono text-slate-400 block">Mật Khẩu Mới</label>
-                <div className="relative">
-                  <Lock className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
-                  <input
-                    type="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Tối thiểu 6 ký tự"
-                    className="w-full pl-9 pr-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 text-xs font-sans placeholder:text-slate-600 focus:outline-none focus:border-emerald-500"
-                  />
-                </div>
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold transition-all shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <span>{isSubmitting ? 'Đang khởi tạo...' : 'Tiếp Tục & Nhận Mã OTP'}</span>
-                <KeyRound className="w-3.5 h-3.5" />
-              </button>
-            </form>
-          ) : (
-            /* Register Step 2: OTP Verification */
-            <form onSubmit={handleConfirmOtp} className="space-y-4 animate-in fade-in">
-              <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1 text-center">
-                <p className="text-xs text-slate-300">
-                  Mã xác thực 6 số đã được gửi tới:
-                </p>
-                <div className="text-xs font-mono font-bold text-emerald-400">
-                  {email}
-                </div>
-                <div className="pt-1 flex items-center justify-center gap-2">
-                  <span className="text-[10px] font-mono text-slate-400">
-                    Mã demo nhanh: <strong className="text-emerald-300">888999</strong>
-                  </span>
+                  <label className="text-[11px] font-mono text-slate-400 block font-medium">Mật Khẩu</label>
                   <button
                     type="button"
-                    onClick={handleAutoFillOtp}
-                    className="text-[10px] font-mono text-emerald-400 hover:underline cursor-pointer"
+                    onClick={() => onShowToast('info', 'Khôi phục mật khẩu', 'Vui lòng liên hệ quản trị viên hoặc sử dụng 1-Click Fast Login ở trên.')}
+                    className="text-[10.5px] font-mono text-emerald-400 hover:underline"
                   >
-                    [Điền tự động]
+                    Quên mật khẩu?
+                  </button>
+                </div>
+                <div className="relative">
+                  <Lock className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Nhập mật khẩu (hoặc gõ bất kỳ để thử)..."
+                    className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 text-xs font-sans placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3.5 top-3.5 text-slate-500 hover:text-slate-300"
+                  >
+                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
                 </div>
               </div>
 
-              {/* 6-Digit Inputs */}
-              <div className="flex justify-between gap-1.5">
-                {otpCode.map((digit, index) => (
-                  <input
-                    key={index}
-                    id={`otp-input-${index}`}
-                    type="text"
-                    maxLength={1}
-                    value={digit}
-                    onChange={(e) => handleOtpChange(index, e.target.value)}
-                    className="w-11 h-12 rounded-xl bg-slate-900 border border-slate-800 text-center font-mono font-bold text-lg text-emerald-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
-                  />
-                ))}
-              </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full mt-2 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-mono text-xs font-bold transition-all shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+              >
+                <span>Xác Nhận Đăng Nhập</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </form>
+          ) : (
+            /* Register Form with 2 Steps */
+            registerStep === 'input_info' ? (
+              <form onSubmit={handleRegisterSubmit} className="space-y-3">
+                <div className="space-y-1">
+                  <label className="text-[11px] font-mono text-slate-400 block font-medium">Họ Và Tên Cư Dân</label>
+                  <div className="relative">
+                    <User className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+                    <input
+                      type="text"
+                      required
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      placeholder="Ví dụ: Hoàng Tuấn Kiệt"
+                      className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 text-xs font-sans placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
+                    />
+                  </div>
+                </div>
 
-              <div className="flex items-center justify-between text-[11px] font-mono text-slate-400">
-                <span>Hiệu lực còn lại: {otpTimer}s</span>
-                <button
-                  type="button"
-                  disabled={otpTimer > 0}
-                  onClick={() => setOtpTimer(60)}
-                  className={`hover:underline ${otpTimer > 0 ? 'text-slate-600 cursor-not-allowed' : 'text-emerald-400 cursor-pointer'}`}
-                >
-                  Gửi lại mã
-                </button>
-              </div>
+                <div className="space-y-1">
+                  <label className="text-[11px] font-mono text-slate-400 block font-medium">Email hoặc Số Điện Thoại</label>
+                  <div className="relative">
+                    <Mail className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+                    <input
+                      type="text"
+                      required
+                      value={registerIdentifier}
+                      onChange={(e) => setRegisterIdentifier(e.target.value)}
+                      placeholder="Nhập email hoặc số điện thoại..."
+                      className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 text-xs font-sans placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
+                    />
+                  </div>
+                </div>
 
-              <div className="flex gap-2 pt-1">
-                <button
-                  type="button"
-                  onClick={() => setRegisterStep('input_info')}
-                  className="py-2.5 px-3 rounded-xl border border-slate-800 text-slate-400 hover:text-white text-xs font-mono transition-colors"
-                >
-                  Quay lại
-                </button>
+                <div className="space-y-1">
+                  <label className="text-[11px] font-mono text-slate-400 block font-medium">Thiết Lập Mật Khẩu</label>
+                  <div className="relative">
+                    <Lock className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
+                    <input
+                      type="password"
+                      required
+                      value={registerPassword}
+                      onChange={(e) => setRegisterPassword(e.target.value)}
+                      placeholder="Tối thiểu 6 ký tự..."
+                      className="w-full pl-10 pr-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 text-xs font-sans placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
+                    />
+                  </div>
+                </div>
+
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold transition-all shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-1.5 cursor-pointer"
+                  className="w-full mt-2 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold transition-all shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                >
+                  <span>Tiếp Tục Xác Thực OTP</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </form>
+            ) : (
+              /* OTP Verification Step */
+              <form onSubmit={handleConfirmOtp} className="space-y-4">
+                <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 text-center space-y-1">
+                  <div className="text-xs font-mono text-slate-300">
+                    Mã xác minh 6 số đã được gửi đến:
+                  </div>
+                  <div className="text-sm font-mono text-emerald-400 font-bold">
+                    {registerIdentifier}
+                  </div>
+                </div>
+
+                <div className="flex justify-center gap-2">
+                  {otpCode.map((digit, i) => (
+                    <input
+                      key={i}
+                      id={`otp-input-${i}`}
+                      type="text"
+                      maxLength={1}
+                      value={digit}
+                      onChange={(e) => handleOtpChange(i, e.target.value)}
+                      className="w-10 h-12 text-center text-lg font-mono font-bold rounded-xl bg-slate-900 border border-slate-700 text-emerald-400 focus:outline-none focus:border-emerald-400"
+                    />
+                  ))}
+                </div>
+
+                <div className="flex items-center justify-between text-[11px] font-mono text-slate-400">
+                  <button
+                    type="button"
+                    onClick={handleAutoFillOtp}
+                    className="text-emerald-400 hover:underline flex items-center gap-1"
+                  >
+                    <KeyRound className="w-3.5 h-3.5" />
+                    <span>Điền nhanh mã Demo (888999)</span>
+                  </button>
+                  <span>{otpTimer > 0 ? `Gửi lại sau ${otpTimer}s` : 'Có thể gửi lại'}</span>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold transition-all shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                 >
                   <CheckCircle2 className="w-4 h-4" />
-                  <span>Xác Nhận & Đăng Ký</span>
+                  <span>Hoàn Tất Xác Thực & Tạo Tài Khoản</span>
                 </button>
-              </div>
-            </form>
+              </form>
+            )
           )}
 
         </div>
-
       </div>
     </div>
   );

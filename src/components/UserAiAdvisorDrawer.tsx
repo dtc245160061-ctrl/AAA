@@ -12,10 +12,8 @@ import {
   Maximize2
 } from 'lucide-react';
 import type { ApartmentUnit } from '../types/apartment';
-import { 
-  askLocalSlm,
-  type RagRetrievalResult 
-} from '../services/geminiRagService';
+import { type RagRetrievalResult } from '../services/geminiRagService';
+import { askHavenLocalSlm, checkLocalSlmStatus } from '../services/localAiService';
 import { VoiceRecognitionService } from '../services/voiceRecognitionService';
 
 interface Message {
@@ -53,6 +51,19 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isListening, setIsListening] = useState(false);
+  const [slmStatus, setSlmStatus] = useState<{ isAvailable: boolean; model: string }>({
+    isAvailable: false,
+    model: ''
+  });
+
+  // Dynamically check Local Edge SLM status when drawer opens
+  useEffect(() => {
+    if (isOpen) {
+      checkLocalSlmStatus().then(st => {
+        setSlmStatus({ isAvailable: st.isAvailable, model: st.model });
+      });
+    }
+  }, [isOpen]);
 
   // Resizable drawer state (default 440px wide x 560px high)
   const [dimensions, setDimensions] = useState<{ width: number; height: number }>({
@@ -218,7 +229,7 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
         text: m.text
       }));
 
-      const res = await askLocalSlm(query, history, 'consumer');
+      const res = await askHavenLocalSlm(query, history, 'consumer');
 
       const aiMsg: Message = {
         id: `ai-${Date.now()}`,
@@ -310,13 +321,17 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
                     <h3 className="font-serif text-[13px] font-bold text-slate-100 [data-theme='light']_:text-slate-900">
                       Haven AI Advisor
                     </h3>
-                    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[8.5px] font-mono text-emerald-400 font-bold">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>Local SLM Offline</span>
+                    <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full ${
+                      slmStatus.isAvailable
+                        ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400'
+                        : 'bg-teal-500/15 border-teal-500/30 text-teal-300'
+                    } border text-[8.5px] font-mono font-bold`}>
+                      <span className={`w-1.5 h-1.5 rounded-full ${slmStatus.isAvailable ? 'bg-emerald-400' : 'bg-teal-400'} animate-pulse`} />
+                      <span>{slmStatus.isAvailable ? `Local SLM (${slmStatus.model || 'Active'})` : 'Hybrid Cloud Gateway'}</span>
                     </span>
                   </div>
                   <p className="text-[9.5px] font-mono text-slate-400 [data-theme='light']_:text-slate-500">
-                    Qwen2.5-0.5B Edge Intelligence • 1,700 Căn Hộ
+                    {slmStatus.isAvailable ? 'Edge SLM On-Device • 1,700 Căn Hộ RAG' : 'Gemini 3.5/3.1 Flash-Lite & RAG 1,700 Căn Hộ'}
                   </p>
                 </div>
               </div>

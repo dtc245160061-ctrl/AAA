@@ -1192,20 +1192,9 @@ export class ApartmentStore {
   static getSavedUnitIds(): string[] {
     try {
       const data = localStorage.getItem(STORAGE_KEYS.SAVED);
-      if (data) {
+      if (data !== null) {
         const parsed = JSON.parse(data);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          // If stored IDs contain old deprecated IDs, migrate them to valid IDs
-          const hasDeadIds = parsed.includes('HN-TH-2401') || parsed.includes('SG-D1-1601');
-          if (hasDeadIds) {
-            const migrated = parsed.map((id: string) => {
-              if (id === 'HN-TH-2401') return 'HN-TÂ-1001';
-              if (id === 'SG-D1-1601') return 'HN-HO-0303';
-              return id;
-            });
-            safeSetItem(STORAGE_KEYS.SAVED, JSON.stringify(migrated));
-            return migrated;
-          }
+        if (Array.isArray(parsed)) {
           return parsed;
         }
       }

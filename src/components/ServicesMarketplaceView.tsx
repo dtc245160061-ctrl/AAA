@@ -69,32 +69,28 @@ export const ServicesMarketplaceView: React.FC<ServicesMarketplaceViewProps> = (
 
   return (
     <div className="space-y-10 text-left pb-16 animate-in fade-in duration-300">
-      {/* Header Banner with Radiating Central Halo & Sheen Sweep */}
-      <div className="relative rounded-3xl p-[2.5px] overflow-hidden shadow-2xl group transition-all">
-        {/* Central Radiating Halo / Clockwise Light Beams */}
-        <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
-
-        <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel haven-sheen-sweep p-6 sm:p-8 space-y-4">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="space-y-1">
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
-                <Sparkles className="w-4 h-4 animate-pulse" />
-                <span>Chợ Tiện Ích Đời Sống & Dịch Vụ Gia Tăng (VAS Marketplace)</span>
-              </div>
-              <h1 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold">
-                Dịch Vụ Chăm Sóc Căn Hộ & Cư Dân
-              </h1>
-              <p className="text-sm text-slate-400">
-                Đặt nhanh các dịch vụ dọn vệ sinh theo giờ, chuyển nhà trọn gói, lắp khóa vân tay thông minh và bảo hiểm tài sản.
-              </p>
+      {/* Header Banner with Clean Luxurious Luminous Border */}
+      <div className="relative rounded-2xl overflow-hidden bg-slate-900/80 border border-emerald-500/30 shadow-[0_0_30px_-8px_rgba(16,185,129,0.15)] p-6 sm:p-8 space-y-4 bg-gradient-to-b from-emerald-500/[0.05] to-transparent">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
+              <Sparkles className="w-4 h-4 animate-pulse" />
+              <span>Chợ Tiện Ích Đời Sống & Dịch Vụ Gia Tăng (VAS Marketplace)</span>
             </div>
+            <h1 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold">
+              Dịch Vụ Chăm Sóc Căn Hộ & Cư Dân
+            </h1>
+            <p className="text-sm text-slate-400">
+              Đặt nhanh các dịch vụ dọn vệ sinh theo giờ, chuyển nhà trọn gói, lắp khóa vân tay thông minh và bảo hiểm tài sản.
+            </p>
+          </div>
 
-            <div className="flex items-center gap-2">
-              <div className="px-4 py-2 rounded-2xl bg-slate-900/80 border border-slate-800 text-xs font-mono text-slate-300">
-                <span className="text-emerald-400 font-bold">{serviceOrders.length}</span> đơn dịch vụ đã đặt
-              </div>
+          <div className="flex items-center gap-2">
+            <div className="px-4 py-2 rounded-2xl bg-slate-900/80 border border-slate-800 text-xs font-mono text-slate-300">
+              <span className="text-emerald-400 font-bold">{serviceOrders.length}</span> đơn dịch vụ đã đặt
             </div>
           </div>
+        </div>
 
           {/* Categories Bar */}
           <div className="pt-2 flex items-center gap-2 overflow-x-auto no-scrollbar">
@@ -119,7 +115,6 @@ export const ServicesMarketplaceView: React.FC<ServicesMarketplaceViewProps> = (
             ))}
           </div>
         </div>
-      </div>
 
       {/* Services Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

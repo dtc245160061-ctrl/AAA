@@ -11,7 +11,8 @@ import {
   Mic,
   MicOff
 } from 'lucide-react';
-import { askLocalSlm, type RagRetrievalResult } from '../services/geminiRagService';
+import { type RagRetrievalResult } from '../services/geminiRagService';
+import { askHavenLocalSlm } from '../services/localAiService';
 import { VoiceRecognitionService } from '../services/voiceRecognitionService';
 
 interface AiCopilotDrawerProps {
@@ -126,7 +127,7 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
         text: m.text
       }));
 
-      const res = await askLocalSlm(query, history, 'admin');
+      const res = await askHavenLocalSlm(query, history, 'admin');
 
       const q = query.toLowerCase();
       let extraDataCard: any = undefined;

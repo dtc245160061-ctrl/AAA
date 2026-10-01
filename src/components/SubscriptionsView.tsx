@@ -176,19 +176,19 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
           return (
             <div
               key={plan.id}
-              className={`group relative rounded-3xl p-[2.5px] shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5 h-full ${beamThemeClass}`}
+              className={`group relative rounded-2xl p-[1.5px] shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1 h-full ${beamThemeClass}`}
             >
               {/* Dynamic Orbiting Laser Beam strictly contained in border shell */}
-              <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+              <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
                 <div
                   className={`animate-spin-beam pointer-events-none transition-opacity duration-300 ${
-                    isCurrent ? 'opacity-95' : 'opacity-70 group-hover:opacity-100'
+                    isCurrent ? 'opacity-90' : 'opacity-60 group-hover:opacity-95'
                   }`}
                 />
               </div>
 
               {/* Inner card with React Bits Pro ShaderCard background effect */}
-              <div className="relative z-10 w-full h-full rounded-[22px] overflow-hidden atmospheric-panel border border-slate-800 flex flex-col justify-between">
+              <div className="relative z-10 w-full h-full rounded-[14.5px] overflow-hidden atmospheric-panel border border-slate-800/80 flex flex-col justify-between">
                 <ShaderCard
                   speed={0.1}
                   positionY={0.15}
@@ -273,12 +273,9 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
         })}
       </div>
 
-      {/* PropTech Monetization Breakdown with Radiating Central Halo & Sheen Flare */}
-      <div className="relative rounded-3xl p-[2.5px] overflow-hidden shadow-2xl group transition-all max-w-7xl mx-auto">
-        <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
-
-        <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel haven-sheen-sweep p-6 sm:p-8 space-y-6">
-          <div className="flex items-center gap-3">
+      {/* PropTech Monetization Breakdown with Clean Luminous Border */}
+      <div className="relative rounded-2xl overflow-hidden bg-slate-900/80 border border-emerald-500/30 shadow-[0_0_30px_-8px_rgba(16,185,129,0.15)] p-6 sm:p-8 space-y-6 max-w-7xl mx-auto bg-gradient-to-b from-emerald-500/[0.05] to-transparent">
+        <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
               <DollarSign className="w-5 h-5 animate-pulse" />
             </div>
@@ -359,6 +356,5 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
           </div>
         </div>
       </div>
-    </div>
   );
 };

@@ -74,35 +74,30 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
 
   return (
     <div className="space-y-8 pb-16 animate-in fade-in duration-300">
-      {/* Header Banner with Radiating Central Halo & Sheen Sweep */}
-      <div className="relative rounded-3xl p-[2.5px] overflow-hidden shadow-2xl group transition-all">
-        {/* Central Radiating Halo / Clockwise Light Beams */}
-        <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
-
-        <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel haven-sheen-sweep p-6 sm:p-8 space-y-4">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
-                <ClipboardCheck className="w-4 h-4 text-emerald-400 animate-pulse" />
-                <span>Biên Bản Bàn Giao Hiện Trạng 15 Hạng Mục (Move-in Condition Handover)</span>
-              </div>
-              <h1 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold mt-1">
-                Bảo Vệ Tiền Cọc: Kiểm Kê Hiện Trạng Khi Nhận Phòng
-              </h1>
-              <p className="text-slate-400 text-sm mt-1 max-w-2xl">
-                Lưu vết ảnh chụp, số công tơ điện nước và tình trạng 15 hạng mục cốt lõi làm căn cứ hoàn 100% tiền cọc khi kết thúc hợp đồng.
-              </p>
+      {/* Header Banner with Clean Luxurious Luminous Border */}
+      <div className="relative rounded-2xl overflow-hidden bg-slate-900/80 border border-emerald-500/30 shadow-[0_0_30px_-8px_rgba(16,185,129,0.15)] p-6 sm:p-8 space-y-4 bg-gradient-to-b from-emerald-500/[0.05] to-transparent">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
+              <ClipboardCheck className="w-4 h-4 text-emerald-400 animate-pulse" />
+              <span>Biên Bản Bàn Giao Hiện Trạng 15 Hạng Mục (Move-in Condition Handover)</span>
             </div>
-
-            {onBackToDirectory && (
-              <button
-                onClick={onBackToDirectory}
-                className="haven-btn-beam px-4 py-2 rounded-xl bg-slate-900/90 border border-slate-700 text-slate-200 text-xs font-mono hover:bg-slate-800 transition-colors self-start md:self-auto cursor-pointer"
-              >
-                Quay lại tìm kiếm
-              </button>
-            )}
+            <h1 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold mt-1">
+              Bảo Vệ Tiền Cọc: Kiểm Kê Hiện Trạng Khi Nhận Phòng
+            </h1>
+            <p className="text-slate-400 text-sm mt-1 max-w-2xl">
+              Lưu vết ảnh chụp, số công tơ điện nước và tình trạng 15 hạng mục cốt lõi làm căn cứ hoàn 100% tiền cọc khi kết thúc hợp đồng.
+            </p>
           </div>
+
+          {onBackToDirectory && (
+            <button
+              onClick={onBackToDirectory}
+              className="px-4 py-2 rounded-xl bg-slate-900/90 border border-slate-700/80 text-slate-300 text-xs font-mono hover:text-emerald-400 hover:border-emerald-500/50 hover:bg-slate-800 transition-all self-start md:self-auto cursor-pointer"
+            >
+              ← Quay lại tìm kiếm
+            </button>
+          )}
         </div>
       </div>
 

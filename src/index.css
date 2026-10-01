@@ -191,43 +191,13 @@
 
 /* ── Running Border Beams are centralized in ./styles/beamEffects.css ── */
 
-/* ── Luxury Diagonal Sheen Flare Across Panels ── */
+/* ── Luxury Diagonal Sheen Flare Across Panels (Disabled to prevent diagonal cut-off artifacts) ── */
 .haven-sheen-sweep {
   position: relative;
-  overflow: hidden;
 }
 
 .haven-sheen-sweep::after {
-  content: '';
-  position: absolute;
-  top: -60%;
-  left: -60%;
-  width: 220%;
-  height: 220%;
-  background: linear-gradient(
-    45deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.04) 47%,
-    rgba(52, 211, 153, 0.12) 50%,
-    rgba(255, 255, 255, 0.04) 53%,
-    transparent 60%
-  );
-  transform: rotate(25deg);
-  animation: haven-sheen-flare 11s cubic-bezier(0.25, 1, 0.5, 1) infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes haven-sheen-flare {
-  0% {
-    transform: translateX(-140%) rotate(25deg);
-  }
-  50% {
-    transform: translateX(140%) rotate(25deg);
-  }
-  100% {
-    transform: translateX(140%) rotate(25deg);
-  }
+  display: none !important;
 }
 
 .liquid-glass {

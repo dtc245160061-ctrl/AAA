@@ -36,11 +36,10 @@ const STORAGE_KEY_API_KEY = 'haven_gemini_api_key';
 const STORAGE_KEY_GROQ_API_KEY = 'haven_groq_api_key';
 const STORAGE_KEY_EMBEDDING_CACHE = 'haven_rag_embeddings_cache_v1';
 
-// Primary Gemini models requested by user: 3.5 Flash-Lite & 3.1 Flash-Lite
+// User Locked Rule: Always use 3.5 Flash-Lite & 3.1 Flash-Lite, remove 2.5 Flash
 export const GEMINI_GENERATION_MODELS = [
   'gemini-3.5-flash-lite',
-  'gemini-3.1-flash-lite',
-  'gemini-2.5-flash'
+  'gemini-3.1-flash-lite'
 ];
 const GEMINI_EMBEDDING_MODEL = 'text-embedding-004';
 

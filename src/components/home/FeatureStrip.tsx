@@ -26,8 +26,8 @@ const features: EnvironmentalFeatureItem[] = [
     title: 'Nguy Cơ Ngập Mùa Mưa',
     description: 'Kiểm tra cốt nền thực địa, hệ thống thoát nước hạ tầng và lịch sử ngập úng.',
     proofMetric: 'Cốt nền cao +0.8m so với vỉa hè',
-    iconColor: 'text-sky-500',
-    bgAccent: 'var(--haven-sky-muted)',
+    iconColor: 'text-emerald-400',
+    bgAccent: 'rgba(16, 185, 129, 0.1)',
   },
   {
     key: 'power',
@@ -35,8 +35,8 @@ const features: EnvironmentalFeatureItem[] = [
     title: 'Máy Phát Điện Dự Phòng',
     description: 'Xác thực nguồn phát điện 100% công suất đảm bảo thang máy, ánh sáng và điều hòa.',
     proofMetric: 'Tự động kích hoạt sau 15 giây',
-    iconColor: 'text-amber-500',
-    bgAccent: 'var(--haven-amber-muted)',
+    iconColor: 'text-emerald-400',
+    bgAccent: 'rgba(16, 185, 129, 0.1)',
   },
   {
     key: 'parking',
@@ -44,8 +44,8 @@ const features: EnvironmentalFeatureItem[] = [
     title: 'Chỗ Đỗ Xe Ô Tô SUV',
     description: 'Đo lường kích thước hầm xe thực tế, lối ram dốc xe gầm thấp và trạm sạc EV.',
     proofMetric: 'Hầm cao 2.2m • Sạc EV tiêu chuẩn',
-    iconColor: 'text-emerald-500',
-    bgAccent: 'var(--haven-emerald-muted)',
+    iconColor: 'text-emerald-400',
+    bgAccent: 'rgba(16, 185, 129, 0.1)',
   },
   {
     key: 'quiet',
@@ -53,8 +53,8 @@ const features: EnvironmentalFeatureItem[] = [
     title: 'Yên Tĩnh & Cách Âm',
     description: 'Đo lường chỉ số tiếng ồn theo độ cao tầng và khả năng triệt tiêu âm thanh kính Low-E.',
     proofMetric: 'Dưới 42dB ban đêm (Tiêu chuẩn resort)',
-    iconColor: 'text-emerald-500',
-    bgAccent: 'var(--haven-emerald-muted)',
+    iconColor: 'text-emerald-400',
+    bgAccent: 'rgba(16, 185, 129, 0.1)',
   },
 ];
 

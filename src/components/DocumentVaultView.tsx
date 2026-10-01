@@ -76,34 +76,29 @@ export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
 
   return (
     <div className="space-y-8 pb-16 animate-in fade-in duration-300">
-      {/* Header Banner with Radiating Central Halo & Sheen Sweep */}
-      <div className="relative rounded-3xl p-[2.5px] overflow-hidden shadow-2xl group transition-all">
-        {/* Central Radiating Halo / Clockwise Light Beams */}
-        <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
-
-        <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel haven-sheen-sweep p-6 sm:p-8 space-y-4">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
-                <FolderLock className="w-4 h-4 text-emerald-400 animate-pulse" />
-                <span>Kho Lưu Trữ Tài Liệu Pháp Lý Số (Document Vault)</span>
-              </div>
-              <h1 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold mt-1">
-                Bảo Mật Hợp Đồng, Giấy Tờ PCCC & Biên Lai Ký Quỹ
-              </h1>
-              <p className="text-sm text-slate-400 mt-1 max-w-2xl">
-                Toàn bộ hợp đồng điện tử, biên bản bàn giao và chứng nhận an toàn tòa nhà được mã hóa và lưu trữ vĩnh viễn trên nền tảng.
-              </p>
+      {/* Header Banner with Clean Luxurious Luminous Border */}
+      <div className="relative rounded-2xl overflow-hidden bg-slate-900/80 border border-emerald-500/30 shadow-[0_0_30px_-8px_rgba(16,185,129,0.15)] p-6 sm:p-8 space-y-4 bg-gradient-to-b from-emerald-500/[0.05] to-transparent">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
+              <FolderLock className="w-4 h-4 text-emerald-400 animate-pulse" />
+              <span>Kho Lưu Trữ Tài Liệu Pháp Lý Số (Document Vault)</span>
             </div>
-
-            <button
-              onClick={() => setIsUploadModalOpen(true)}
-              className="haven-btn-beam px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono font-bold text-xs shadow-lg shadow-emerald-500/20 transition-all flex items-center gap-1.5 self-start md:self-auto cursor-pointer"
-            >
-              <Plus className="w-4 h-4" />
-              <span>Tải Lên Tài Liệu Mới</span>
-            </button>
+            <h1 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold mt-1">
+              Bảo Mật Hợp Đồng, Giấy Tờ PCCC & Biên Lai Ký Quỹ
+            </h1>
+            <p className="text-sm text-slate-400 mt-1 max-w-2xl">
+              Toàn bộ hợp đồng điện tử, biên bản bàn giao và chứng nhận an toàn tòa nhà được mã hóa và lưu trữ vĩnh viễn trên nền tảng.
+            </p>
           </div>
+
+          <button
+            onClick={() => setIsUploadModalOpen(true)}
+            className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono font-bold text-xs shadow-lg shadow-emerald-500/20 transition-all flex items-center gap-1.5 self-start md:self-auto cursor-pointer"
+          >
+            <Plus className="w-4 h-4" />
+            <span>Tải Lên Tài Liệu Mới</span>
+          </button>
         </div>
       </div>
 

@@ -227,11 +227,21 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
         // Keyword Search Filter (name, district, city, address, unit id)
         if (searchInput.trim()) {
           const q = searchInput.trim().toLowerCase();
-          const unaccentQ = q.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd');
-          const target = `${unit.name || ''} ${unit.district} ${unit.city} ${unit.address} ${unit.id}`.toLowerCase();
-          const unaccentTarget = target.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd');
-          if (!target.includes(q) && !unaccentTarget.includes(unaccentQ)) {
-            return false;
+          const isNaturalSentence = q.includes(' ') && (
+            q.includes('tìm') || q.includes('căn') || q.includes('phòng') ||
+            q.includes('giá') || q.includes('triệu') || q.includes('củ') ||
+            q.includes('dưới') || q.includes('tại') || q.includes('ở') ||
+            q.includes('cho') || q.includes('muốn') || q.length > 25
+          );
+
+          // Only perform rigid substring search if it's a specific short keyword/name, not a natural query
+          if (!isNaturalSentence) {
+            const unaccentQ = q.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd');
+            const target = `${unit.name || ''} ${unit.district} ${unit.city} ${unit.address} ${unit.id}`.toLowerCase();
+            const unaccentTarget = target.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd');
+            if (!target.includes(q) && !unaccentTarget.includes(unaccentQ)) {
+              return false;
+            }
           }
         }
 

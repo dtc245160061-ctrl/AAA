@@ -49,18 +49,57 @@ import type {
 export type ThemeMode = 'dark' | 'light' | 'system';
 
 export function App() {
-  // Read initial view from URL query parameter e.g. ?view=admin
+  // Read initial view from URL query parameter or localStorage
   const [isAdminView, setIsAdminView] = useState<boolean>(() => {
     const params = new URLSearchParams(window.location.search);
-    return params.get('view') === 'admin';
+    if (params.get('view') === 'admin') return true;
+    return localStorage.getItem('haven_is_admin_view') === 'true';
   });
 
-  const [activeModule, setActiveModule] = useState<string>(() => isAdminView ? 'dashboard' : 'user_home');
+  const normalizeModule = (mod: string) => {
+    if (mod === 'user_neighborhood') return 'user_neighborhoods';
+    if (mod === 'home') return 'user_home';
+    if (mod === 'search') return 'user_search';
+    if (mod === 'admin_dashboard') return 'dashboard';
+    return mod;
+  };
+
+  const [activeModule, setActiveModule] = useState<string>(() => {
+    const hash = window.location.hash.replace('#', '').trim();
+    if (hash) return normalizeModule(hash);
+    const saved = localStorage.getItem('haven_active_module');
+    if (saved) return normalizeModule(saved);
+    return isAdminView ? 'dashboard' : 'user_home';
+  });
   const [selectedUnitId, setSelectedUnitId] = useState<string>('HN-TH-2401');
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(() => {
     return localStorage.getItem('haven_sidebar_collapsed') === 'true';
   });
   const [initialAiQuery, setInitialAiQuery] = useState<string>('');
+
+  // Persist active module in URL hash and localStorage across reloads
+  useEffect(() => {
+    if (activeModule) {
+      window.location.hash = activeModule;
+      localStorage.setItem('haven_active_module', activeModule);
+    }
+  }, [activeModule]);
+
+  useEffect(() => {
+    localStorage.setItem('haven_is_admin_view', isAdminView ? 'true' : 'false');
+  }, [isAdminView]);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '').trim();
+      const normalized = normalizeModule(hash);
+      if (normalized && normalized !== activeModule) {
+        setActiveModule(normalized);
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [activeModule]);
 
   // Reactive Central State from ApartmentStore
   const [units, setUnits] = useState<ApartmentUnit[]>(() => ApartmentStore.getUnits());
@@ -124,6 +163,26 @@ export function App() {
 
   const handleAuthSuccess = (user: { name: string; email: string; avatar: string; role: string }) => {
     setCurrentUser(user);
+    if (user.role.toLowerCase().includes('admin') || user.email === 'zeecuchuoi@gmail.com') {
+      setIsAdminView(true);
+      setActiveModule('dashboard');
+    } else {
+      setIsAdminView(false);
+    }
+  };
+
+  const handleSwitchAccount = (account: { name: string; email: string; role: string; avatar: string; isAdmin: boolean }) => {
+    const profile = {
+      name: account.name,
+      email: account.email,
+      role: account.role,
+      avatar: account.avatar
+    };
+    setCurrentUser(profile);
+    localStorage.setItem('haven_current_user', JSON.stringify(profile));
+    setIsAdminView(account.isAdmin);
+    setActiveModule(account.isAdmin ? 'dashboard' : 'user_home');
+    showToast('success', `Đã chuyển sang tài khoản ${account.name}`, account.email);
   };
 
   // Form fields for Booking Modal
@@ -206,6 +265,11 @@ export function App() {
   };
 
   const handleToggleSaveUnit = (unitId: string) => {
+    if (!currentUser) {
+      setIsAuthModalOpen(true);
+      showToast('info', 'Đăng nhập để lưu', 'Vui lòng đăng nhập để lưu căn hộ vào danh sách yêu thích cá nhân của bạn.');
+      return;
+    }
     const updated = savedUnitIds.includes(unitId)
       ? savedUnitIds.filter(id => id !== unitId)
       : [...savedUnitIds, unitId];
@@ -428,6 +492,7 @@ export function App() {
           onOpenAuthModal={() => setIsAuthModalOpen(true)}
           currentUser={currentUser}
           onLogout={handleLogout}
+          onSwitchUserAccount={handleSwitchAccount}
         />
 
         {/* Dynamic View Body Container - ONLY element that scrolls */}
