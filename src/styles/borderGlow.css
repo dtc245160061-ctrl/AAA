@@ -60,26 +60,24 @@
   aspect-ratio: 1 / 1;
   transform: translate(-50%, -50%) rotate(0deg);
   background-repeat: no-repeat;
-  /* Luxurious Multi-Color Palette: Emerald, Cyan, Violet, Amber, Rose */
+  /* Pure Unified Monochromatic Emerald Spectrum */
   background-image: conic-gradient(
     from 0deg,
     transparent 0deg,
-    transparent 35deg,
-    rgba(16, 185, 129, 0.2) 60deg,
-    rgba(52, 211, 153, 0.7) 80deg,
-    #34d399 90deg,
-    rgba(56, 189, 248, 0.8) 105deg,
-    #c084fc 120deg,
-    rgba(245, 158, 11, 0.4) 140deg,
-    transparent 165deg,
-    transparent 215deg,
-    rgba(16, 185, 129, 0.2) 240deg,
-    rgba(52, 211, 153, 0.7) 260deg,
-    #34d399 270deg,
-    rgba(56, 189, 248, 0.8) 285deg,
-    #f472b6 300deg,
-    rgba(245, 158, 11, 0.4) 320deg,
-    transparent 345deg,
+    transparent 20deg,
+    var(--beam-color-ambient, rgba(16, 185, 129, 0.15)) 45deg,
+    var(--beam-color-secondary, rgba(52, 211, 153, 0.5)) 70deg,
+    var(--beam-color-primary, #34d399) 90deg,
+    var(--beam-color-secondary, rgba(52, 211, 153, 0.5)) 110deg,
+    var(--beam-color-ambient, rgba(16, 185, 129, 0.15)) 130deg,
+    transparent 155deg,
+    transparent 200deg,
+    var(--beam-color-ambient, rgba(16, 185, 129, 0.15)) 225deg,
+    var(--beam-color-secondary, rgba(52, 211, 153, 0.5)) 250deg,
+    var(--beam-color-primary, #34d399) 270deg,
+    var(--beam-color-secondary, rgba(52, 211, 153, 0.5)) 290deg,
+    var(--beam-color-ambient, rgba(16, 185, 129, 0.15)) 310deg,
+    transparent 335deg,
     transparent 360deg
   );
   animation: haven-breathing-beam 7.5s cubic-bezier(0.42, 0, 0.58, 1) infinite;
@@ -148,12 +146,7 @@
   background:
     linear-gradient(var(--card-bg, #0B0F17) 0 100%) padding-box,
     linear-gradient(rgba(255, 255, 255, 0) 0% 100%) border-box,
-    var(--gradient-one, radial-gradient(at 80% 55%, #c084fc 0px, transparent 50%)) border-box,
-    var(--gradient-two, radial-gradient(at 69% 34%, #f472b6 0px, transparent 50%)) border-box,
-    var(--gradient-three, radial-gradient(at 8% 6%, #34d399 0px, transparent 50%)) border-box,
-    var(--gradient-four, radial-gradient(at 41% 38%, #38bdf8 0px, transparent 50%)) border-box,
-    var(--gradient-five, radial-gradient(at 86% 85%, #fbbf24 0px, transparent 50%)) border-box,
-    var(--gradient-base, linear-gradient(#34d399 0 100%)) border-box;
+    var(--gradient-base, linear-gradient(var(--glow-color, #34d399) 0 100%)) border-box;
 
   opacity: calc((var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity)));
 
@@ -180,12 +173,7 @@
   z-index: 1;
   border: 1px solid transparent;
   background:
-    var(--gradient-one, radial-gradient(at 80% 55%, #c084fc 0px, transparent 50%)) padding-box,
-    var(--gradient-two, radial-gradient(at 69% 34%, #f472b6 0px, transparent 50%)) padding-box,
-    var(--gradient-three, radial-gradient(at 8% 6%, #34d399 0px, transparent 50%)) padding-box,
-    var(--gradient-four, radial-gradient(at 41% 38%, #38bdf8 0px, transparent 50%)) padding-box,
-    var(--gradient-five, radial-gradient(at 86% 85%, #fbbf24 0px, transparent 50%)) padding-box,
-    var(--gradient-base, linear-gradient(#34d399 0 100%)) padding-box;
+    var(--gradient-base, linear-gradient(var(--glow-color, #34d399) 0 100%)) padding-box;
 
   mask-image:
     radial-gradient(ellipse at center, transparent 40%, black 80%),
@@ -228,8 +216,8 @@
   border-radius: inherit;
   box-shadow:
     0 0 12px 1px var(--glow-color, rgba(52, 211, 153, 0.7)),
-    0 0 24px 2px var(--glow-color-60, rgba(56, 189, 248, 0.5)),
-    0 0 40px 4px var(--glow-color-30, rgba(192, 132, 252, 0.35));
+    0 0 24px 2px var(--glow-color-60, rgba(52, 211, 153, 0.4)),
+    0 0 40px 4px var(--glow-color-30, rgba(16, 185, 129, 0.2));
 }
 
 .border-glow-inner {

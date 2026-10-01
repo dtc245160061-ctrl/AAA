@@ -20,7 +20,6 @@ import { FeaturedProperties, type FeatureBenefitKey } from './home/FeaturedPrope
 import { GuidedPath } from './home/GuidedPath';
 import { FeatureStrip } from './home/FeatureStrip';
 import { SmartImage } from './common/SmartImage';
-import { BorderGlowCard } from './ui/BorderGlowCard';
 import { Footer } from './Footer';
 
 interface UserHomeViewProps {
@@ -102,8 +101,18 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
       />
 
       {/* ═══ Sanctuary Tuning Dials with Luxury Ambient Border ═══ */}
-      <section className="relative rounded-3xl p-[1.5px] overflow-hidden shadow-2xl border border-emerald-500/30 bg-gradient-to-b from-emerald-500/10 via-transparent to-transparent group transition-all">
-        <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel haven-sheen-sweep p-6 sm:p-8 md:p-10 space-y-6">
+      <section className="relative rounded-3xl p-[2px] overflow-hidden shadow-2xl group transition-all">
+        {/* Soft outer glow bloom */}
+        <div className="absolute -inset-2 rounded-3xl overflow-hidden pointer-events-none filter blur-xl transition-opacity duration-300 opacity-35 group-hover:opacity-65" aria-hidden="true">
+          <div className="animate-spin-beam pointer-events-none" />
+        </div>
+
+        {/* Dynamic Orbiting Dual Laser Beam strictly contained in 2px border shell */}
+        <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+          <div className="animate-spin-beam pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+        </div>
+
+        <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel haven-sheen-sweep p-6 sm:p-8 md:p-10 space-y-6 bg-slate-950/90 dark:bg-slate-950/90 light:bg-white border border-slate-800/80">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="space-y-1">
               <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
@@ -362,14 +371,21 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Hanoi */}
-          <BorderGlowCard
+          <div
             onClick={() => onNavigateSearch("Hà Nội")}
-            borderRadius={24}
-            glowRadius={36}
-            edgeSensitivity={25}
-            className="cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/25 hover:-translate-y-1.5 transition-all duration-300 h-64 sm:h-72"
+            className="group relative rounded-3xl p-[2px] cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/25 hover:-translate-y-1.5 transition-all duration-300 h-64 sm:h-72"
           >
-            <div className="relative w-full h-full overflow-hidden rounded-[22px]">
+            {/* Soft outer glow bloom */}
+            <div className="absolute -inset-2 rounded-3xl overflow-hidden pointer-events-none filter blur-xl transition-opacity duration-300 opacity-35 group-hover:opacity-65" aria-hidden="true">
+              <div className="animate-spin-beam pointer-events-none" />
+            </div>
+
+            {/* Dynamic Orbiting Dual Laser Beam strictly contained in 2px border shell */}
+            <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+              <div className="animate-spin-beam pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+
+            <div className="relative z-10 w-full h-full rounded-[22px] overflow-hidden">
               <SmartImage
                 src="https://images.unsplash.com/photo-1509042239860-f550ce710b93"
                 alt="Hà Nội"
@@ -387,17 +403,24 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
                 <p className="text-xs text-slate-200 font-medium drop-shadow always-white">Penthouse Hồ Tây, Hoàn Kiếm Heritage & Cầu Giấy</p>
               </div>
             </div>
-          </BorderGlowCard>
+          </div>
 
           {/* Ho Chi Minh City */}
-          <BorderGlowCard
+          <div
             onClick={() => onNavigateSearch("TP. Hồ Chí Minh")}
-            borderRadius={24}
-            glowRadius={36}
-            edgeSensitivity={25}
-            className="cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/25 hover:-translate-y-1.5 transition-all duration-300 h-64 sm:h-72"
+            className="group relative rounded-3xl p-[2px] cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/25 hover:-translate-y-1.5 transition-all duration-300 h-64 sm:h-72"
           >
-            <div className="relative w-full h-full overflow-hidden rounded-[22px]">
+            {/* Soft outer glow bloom */}
+            <div className="absolute -inset-2 rounded-3xl overflow-hidden pointer-events-none filter blur-xl transition-opacity duration-300 opacity-35 group-hover:opacity-65" aria-hidden="true">
+              <div className="animate-spin-beam pointer-events-none" />
+            </div>
+
+            {/* Dynamic Orbiting Dual Laser Beam strictly contained in 2px border shell */}
+            <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+              <div className="animate-spin-beam pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+
+            <div className="relative z-10 w-full h-full rounded-[22px] overflow-hidden">
               <SmartImage
                 src="https://images.unsplash.com/photo-1583417319070-4a69db38a482"
                 alt="TP. Hồ Chí Minh"
@@ -415,17 +438,24 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
                 <p className="text-xs text-slate-200 font-medium drop-shadow always-white">View Sông Sài Gòn Quận 1, Thảo Điền & Phú Mỹ Hưng</p>
               </div>
             </div>
-          </BorderGlowCard>
+          </div>
 
           {/* Da Nang */}
-          <BorderGlowCard
+          <div
             onClick={() => onNavigateSearch("Đà Nẵng")}
-            borderRadius={24}
-            glowRadius={36}
-            edgeSensitivity={25}
-            className="cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/25 hover:-translate-y-1.5 transition-all duration-300 h-64 sm:h-72"
+            className="group relative rounded-3xl p-[2px] cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-emerald-500/25 hover:-translate-y-1.5 transition-all duration-300 h-64 sm:h-72"
           >
-            <div className="relative w-full h-full overflow-hidden rounded-[22px]">
+            {/* Soft outer glow bloom */}
+            <div className="absolute -inset-2 rounded-3xl overflow-hidden pointer-events-none filter blur-xl transition-opacity duration-300 opacity-35 group-hover:opacity-65" aria-hidden="true">
+              <div className="animate-spin-beam pointer-events-none" />
+            </div>
+
+            {/* Dynamic Orbiting Dual Laser Beam strictly contained in 2px border shell */}
+            <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+              <div className="animate-spin-beam pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+            </div>
+
+            <div className="relative z-10 w-full h-full rounded-[22px] overflow-hidden">
               <SmartImage
                 src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b"
                 alt="Đà Nẵng"
@@ -443,7 +473,7 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
                 <p className="text-xs text-slate-200 font-medium drop-shadow always-white">Sky Villa Biển Mỹ Khê & Bán Đảo Sơn Trà</p>
               </div>
             </div>
-          </BorderGlowCard>
+          </div>
         </div>
       </section>
 

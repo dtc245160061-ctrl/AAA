@@ -19,26 +19,24 @@
   --beam-speed-button: 4.2s;
   --beam-speed-ai: 5.5s;
 
-  /* Master Dual Opposing Luminous Plumes (Two 180° Symmetrical Arcs with Iridescent Chromatic Accents) */
+  /* Master Dual Opposing Luminous Plumes (Two 180° Symmetrical Arcs, Pure Unified Monochromatic Spectrum) */
   --beam-gradient-master: conic-gradient(
     from 0deg,
     transparent 0deg,
-    transparent 25deg,
-    var(--beam-color-ambient, rgba(16, 185, 129, 0.2)) 50deg,
-    var(--beam-color-secondary, rgba(52, 211, 153, 0.6)) 75deg,
-    var(--beam-color-primary, #34d399) 90deg,
-    rgba(56, 189, 248, 0.75) 105deg,
-    rgba(192, 132, 252, 0.6) 120deg,
-    var(--beam-color-ambient, rgba(16, 185, 129, 0.2)) 140deg,
-    transparent 165deg,
-    transparent 205deg,
-    var(--beam-color-ambient, rgba(16, 185, 129, 0.2)) 230deg,
-    var(--beam-color-secondary, rgba(52, 211, 153, 0.6)) 255deg,
-    var(--beam-color-primary, #34d399) 270deg,
-    rgba(56, 189, 248, 0.75) 285deg,
-    rgba(244, 114, 182, 0.6) 300deg,
-    var(--beam-color-ambient, rgba(16, 185, 129, 0.2)) 320deg,
-    transparent 345deg,
+    transparent 20deg,
+    var(--beam-color-ambient) 45deg,
+    var(--beam-color-secondary) 70deg,
+    var(--beam-color-primary) 90deg,
+    var(--beam-color-secondary) 110deg,
+    var(--beam-color-ambient) 130deg,
+    transparent 155deg,
+    transparent 200deg,
+    var(--beam-color-ambient) 225deg,
+    var(--beam-color-secondary) 250deg,
+    var(--beam-color-primary) 270deg,
+    var(--beam-color-secondary) 290deg,
+    var(--beam-color-ambient) 310deg,
+    transparent 335deg,
     transparent 360deg
   );
 

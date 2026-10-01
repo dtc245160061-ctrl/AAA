@@ -106,6 +106,16 @@ export const FeatureStrip: React.FC<FeatureStripProps> = ({
                   : 'bg-[var(--haven-surface-raised)] hover:shadow-xl hover:shadow-emerald-500/10 hover:-translate-y-1 hover:border-emerald-500/40'
               }`}
             >
+              {/* Soft outer glow bloom */}
+              <div
+                className={`absolute -inset-2 rounded-2xl overflow-hidden pointer-events-none filter blur-xl transition-opacity duration-300 ${
+                  isActive ? 'opacity-65' : 'opacity-25 group-hover:opacity-50'
+                }`}
+                aria-hidden="true"
+              >
+                <div className="animate-spin-beam pointer-events-none" />
+              </div>
+
               {/* Dynamic Orbiting Ambient Laser Beam */}
               <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
                 <div
