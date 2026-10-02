@@ -67,16 +67,16 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
     switch (level) {
       case 'full_ownership_verified':
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-950/90 border border-emerald-400 text-emerald-300 text-[10px] font-mono font-bold backdrop-blur-md shadow-lg shadow-emerald-500/20">
-            <ShieldCheck className="w-3 h-3 text-emerald-400 shrink-0" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2570EB] text-white text-[10px] font-bold shadow-xs">
+            <ShieldCheck className="w-3.5 h-3.5 text-white shrink-0" />
             <span>✓✓ Sổ Đỏ & Ảnh Thật</span>
           </span>
         );
       case 'id_verified':
       default:
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-sky-950/90 border border-sky-400 text-sky-300 text-[10px] font-mono font-bold backdrop-blur-md shadow-lg">
-            <CheckCircle2 className="w-3 h-3 text-sky-400 shrink-0" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#9FE870] text-[#163300] text-[10px] font-bold shadow-xs">
+            <CheckCircle2 className="w-3.5 h-3.5 text-[#163300] shrink-0" />
             <span>✓ Xác Minh CCCD</span>
           </span>
         );
@@ -85,89 +85,83 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
 
   return (
     <div className="space-y-8 text-left pb-16 animate-in fade-in duration-300">
-      {/* Header Banner with Luxury Ambient Border */}
-      <div className="relative rounded-3xl p-[1.5px] overflow-hidden shadow-2xl border border-emerald-500/30 bg-gradient-to-b from-emerald-500/10 via-transparent to-transparent group">
-        <div className="p-6 sm:p-8 rounded-[22px] atmospheric-panel haven-sheen-sweep space-y-6 shadow-2xl backdrop-blur-2xl relative overflow-hidden">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="space-y-1">
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
-                <Building className="w-4 h-4 text-emerald-400" />
-                <span>Kho Căn Hộ Cho Thuê (Inventory & Availability)</span>
-              </div>
-              <h1 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold">
-                Danh Mục Căn Hộ & Tình Trạng
-              </h1>
-              <p className="text-sm text-slate-400">
-                Quản lý toàn bộ {units.length} không gian sống trong hệ sinh thái HAVEN: Hà Nội, TP. Hồ Chí Minh, Đà Nẵng & Thái Nguyên.
-              </p>
+      {/* Header Banner - Pure Wise Clean Surface */}
+      <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-[28px] p-6 sm:p-8 shadow-sm space-y-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="space-y-1.5">
+            <div className="inline-flex items-center gap-2 text-xs font-bold text-[#163300]/70 dark:text-[#9FE870] uppercase tracking-wider">
+              <Building className="w-4 h-4 text-[#2570EB]" />
+              <span>Kho Căn Hộ Cho Thuê (Inventory & Availability)</span>
             </div>
-
-            {/* Quick Metrics & AI Listing Button */}
-            <div className="flex items-center gap-2 font-mono text-xs flex-wrap">
-              <button
-                onClick={onOpenQuickAction}
-                className="haven-btn-beam px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold shadow-lg shadow-emerald-500/25 transition-all flex items-center gap-1.5 hover:scale-105 cursor-pointer"
-              >
-                <span className="text-sm">✨</span>
-                <span>Đăng Tin Mới Bằng AI</span>
-              </button>
-              <span className="px-3 py-1.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                {vacantCount} Trống
-              </span>
-              <span className="px-3 py-1.5 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/20">
-                {occupiedCount} Đang thuê
-              </span>
-              <span className="px-3 py-1.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                {reservedCount} Đã cọc
-              </span>
-            </div>
+            <h1 className="text-2xl md:text-3xl font-bold text-[#163300] dark:text-slate-100 tracking-tight">
+              Danh Mục Căn Hộ & Tình Trạng
+            </h1>
+            <p className="text-sm text-slate-500 dark:text-slate-400">
+              Quản lý toàn bộ {units.length} không gian sống trong hệ sinh thái HAVEN: Hà Nội, TP. Hồ Chí Minh, Đà Nẵng & Thái Nguyên.
+            </p>
           </div>
 
-          {/* Filters */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-800/80">
-            <div className="flex flex-wrap items-center gap-2">
-              {/* City Filter */}
-              <div className="flex items-center gap-1 bg-slate-900/80 [data-theme='light']_:bg-slate-100 p-1 rounded-xl border border-slate-700 [data-theme='light']_:border-slate-300 text-xs font-mono overflow-x-auto max-w-full">
-                {ADMIN_CITIES.map(city => (
-                  <button
-                    key={city}
-                    onClick={() => setCityFilter(city)}
-                    className={`px-3 py-1 rounded-lg transition-all whitespace-nowrap cursor-pointer ${
-                      cityFilter === city
-                        ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
-                        : 'text-slate-400 hover:text-slate-200 [data-theme=\'light\']_:text-slate-600 [data-theme=\'light\']_:hover:text-slate-900'
-                    }`}
-                  >
-                    {city}
-                  </button>
-                ))}
-              </div>
+          {/* Quick Metrics & AI Listing Button */}
+          <div className="flex items-center gap-2 text-xs flex-wrap">
+            <button
+              onClick={onOpenQuickAction}
+              className="px-5 py-2.5 rounded-full bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] font-bold shadow-sm transition-all flex items-center gap-1.5 cursor-pointer hover:scale-105 active:scale-95"
+            >
+              <Sparkles className="w-4 h-4 text-[#163300]" />
+              <span>Đăng Tin Mới Bằng AI</span>
+            </button>
+            <span className="px-3.5 py-1.5 rounded-full bg-[#9FE870]/20 text-[#163300] dark:text-[#9FE870] border border-[#9FE870]/30 font-bold">
+              {vacantCount} Trống
+            </span>
+            <span className="px-3.5 py-1.5 rounded-full bg-[#2570EB]/10 text-[#2570EB] dark:text-sky-300 border border-[#2570EB]/20 font-bold">
+              {occupiedCount} Đang thuê
+            </span>
+            <span className="px-3.5 py-1.5 rounded-full bg-[#FFC83B]/20 text-[#7A5200] dark:text-[#FFC83B] border border-[#FFC83B]/30 font-bold">
+              {reservedCount} Đã cọc
+            </span>
+          </div>
+        </div>
 
-              {/* Status Filter */}
-              <select
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-700 text-slate-200 text-xs font-mono focus:outline-none focus:border-emerald-500 cursor-pointer"
-              >
-                <option value="all">Tất cả trạng thái</option>
-                <option value="vacant">Sẵn sàng (Trống)</option>
-                <option value="occupied">Đang cho thuê</option>
-                <option value="reserved">Đã nhận cọc</option>
-                <option value="maintenance">Đang bảo trì</option>
-              </select>
+        {/* Filters */}
+        <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+          <div className="flex flex-wrap items-center gap-2.5">
+            {/* City Filter Wise Pill Container */}
+            <div className="wise-pill-tabs overflow-x-auto max-w-full">
+              {ADMIN_CITIES.map(city => (
+                <button
+                  key={city}
+                  onClick={() => setCityFilter(city)}
+                  className={cityFilter === city ? 'wise-pill-tab-active' : 'wise-pill-tab'}
+                >
+                  {city}
+                </button>
+              ))}
             </div>
 
-            {/* Search Input */}
-            <div className="relative flex-1 max-w-xs">
-              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Tìm theo mã phòng, tòa nhà, quận..."
-                className="w-full pl-9 pr-4 py-1.5 text-xs bg-slate-900/80 border border-slate-700 rounded-xl text-slate-200 placeholder:text-slate-500 font-mono focus:outline-none focus:border-emerald-500"
-              />
-            </div>
+            {/* Status Filter */}
+            <select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              className="px-4 py-2 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-slate-200 text-xs font-bold focus:outline-none focus:ring-2 focus:ring-[#9FE870] cursor-pointer"
+            >
+              <option value="all">Tất cả trạng thái</option>
+              <option value="vacant">Sẵn sàng (Trống)</option>
+              <option value="occupied">Đang cho thuê</option>
+              <option value="reserved">Đã nhận cọc</option>
+              <option value="maintenance">Đang bảo trì</option>
+            </select>
+          </div>
+
+          {/* Search Input */}
+          <div className="relative flex-1 max-w-xs">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Tìm theo mã phòng, tòa nhà, quận..."
+              className="w-full pl-10 pr-4 py-2 text-xs bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-[#163300] dark:text-slate-200 placeholder:text-slate-400 font-sans focus:outline-none focus:ring-2 focus:ring-[#9FE870]"
+            />
           </div>
         </div>
       </div>
@@ -181,18 +175,12 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
           return (
             <div
               key={unit.id}
-              className="group relative rounded-3xl p-[2.5px] shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5 apartment-card"
+              className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-[24px] overflow-hidden shadow-sm hover:shadow-md hover:border-[#163300]/30 dark:hover:border-slate-700 transition-all duration-200 flex flex-col justify-between"
             >
-              {/* Dynamic Orbiting Dual Laser Beam */}
-              <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
-                <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-75 group-hover:opacity-100" />
-              </div>
-
-              {/* Inner Container: Translucent atmospheric-panel */}
-              <div className="relative z-10 w-full h-full rounded-[22px] overflow-hidden flex flex-col justify-between atmospheric-panel border border-slate-800/80 [data-theme='light']_:border-slate-200">
-                {/* Image Area - TALL & MAJESTIC (h-64 sm:h-72) */}
+              <div className="flex flex-col justify-between h-full">
+                {/* Image Area */}
                 <div
-                  className="relative h-64 sm:h-72 bg-slate-900 cursor-pointer overflow-hidden rounded-t-[22.5px]"
+                  className="relative h-64 sm:h-72 bg-slate-100 dark:bg-slate-950 cursor-pointer overflow-hidden"
                   onClick={() => onSelectUnit(unit.id)}
                 >
                   <SmartImage
@@ -200,45 +188,45 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                     alt={unit.name || unit.id}
                     width={600}
                     quality={75}
-                    className="transition-transform duration-500 group-hover:scale-105"
+                    className="transition-transform duration-500 hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
 
                   {/* Top Badges Overlay */}
                   <div className="absolute top-3 left-3 right-3 flex items-start justify-between gap-2 pointer-events-none">
                     <div className="flex flex-col gap-1.5 items-start pointer-events-auto">
                       {renderVerificationBadge(unit.verificationLevel)}
-                      <span className="px-2.5 py-0.5 rounded-full bg-emerald-950/90 backdrop-blur-md border border-emerald-400 text-emerald-300 text-[10px] font-mono font-bold shadow-md">
+                      <span className="px-3 py-1 rounded-full bg-[#8B5CF6] text-white text-[10px] font-bold shadow-xs">
                         99% Khớp AI
                       </span>
                     </div>
 
                     <div className="flex items-center gap-1.5 pointer-events-auto">
-                      <span className="px-2.5 py-1 rounded-full bg-slate-950/90 backdrop-blur-md border border-amber-500/40 text-amber-300 text-[11px] font-mono font-bold flex items-center gap-0.5 shadow-md">
-                        <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+                      <span className="px-3 py-1 rounded-full bg-[#FFC83B] text-[#7A5200] text-[11px] font-bold flex items-center gap-1 shadow-xs">
+                        <Star className="w-3 h-3 fill-[#7A5200] text-[#7A5200]" />
                         <span>{unit.landlord?.trustScore || 4.8}★</span>
                       </span>
 
-                      <span className="px-2.5 py-1 rounded-full bg-slate-950/90 backdrop-blur-md border border-slate-700 text-slate-300 text-[11px] font-mono font-bold">
+                      <span className="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white text-[11px] font-mono font-bold">
                         #{unit.id}
                       </span>
                     </div>
                   </div>
 
                   {/* Bottom Info Bar Overlay */}
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono text-white">
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white">
                     <span className="flex items-center gap-1.5 text-[11px] truncate max-w-[65%] font-medium">
-                      <MapPin className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                      <MapPin className="w-3.5 h-3.5 text-[#9FE870] shrink-0" />
                       <span className="truncate">{unit.district}, {normalizeCity(unit.city)}</span>
                     </span>
                     
                     <div className="flex items-center gap-1.5 text-[10px] shrink-0">
                       {unit.pcccReport?.inspectionCertificateStatus === 'certified' && (
-                        <span className="px-2 py-0.5 rounded bg-rose-950/80 border border-rose-500/40 text-rose-300 flex items-center gap-0.5 font-semibold">
-                          <Flame className="w-2.5 h-2.5 text-rose-400" /> PCCC ✓
+                        <span className="px-2.5 py-0.5 rounded-full bg-[#FF5436] text-white flex items-center gap-1 font-bold shadow-xs">
+                          <Flame className="w-3 h-3 text-white" /> PCCC ✓
                         </span>
                       )}
-                      <span className="px-2 py-0.5 rounded bg-slate-950/80 border border-white/20">
+                      <span className="px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20">
                         Tầng {unit.floor}
                       </span>
                     </div>
@@ -248,11 +236,11 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                 {/* Content Details */}
                 <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                   <div className="space-y-1.5 cursor-pointer" onClick={() => onSelectUnit(unit.id)}>
-                    <h3 className="font-serif text-lg font-bold text-slate-100 [data-theme='light']_:text-slate-900 group-hover:text-emerald-500 transition-colors line-clamp-1">
+                    <h3 className="text-base font-bold text-[#163300] dark:text-slate-100 hover:text-[#2570EB] transition-colors line-clamp-1">
                       {unit.name || unit.id}
                     </h3>
 
-                    <div className="flex items-center gap-2 text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-500">
+                    <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
                       <span>{unit.bedrooms} PN</span>
                       <span>•</span>
                       <span>{unit.bathrooms} WC</span>
@@ -262,34 +250,34 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                   </div>
 
                   {/* AI Match Reasons Box */}
-                  <div className="p-3 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-xs space-y-1.5">
-                    <span className="text-[10px] font-mono text-emerald-400 [data-theme='light']_:text-emerald-600 uppercase tracking-wider font-bold flex items-center gap-1">
-                      <Sparkles className="w-3 h-3 text-emerald-500 shrink-0" />
+                  <div className="p-3.5 rounded-[16px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 text-xs space-y-1.5">
+                    <span className="text-[10px] font-bold text-[#163300]/70 dark:text-[#9FE870] uppercase tracking-wider flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5 text-[#2570EB] shrink-0" />
                       <span>ĐIỂM KHỚP NHU CẦU:</span>
                     </span>
-                    <ul className="space-y-1 text-slate-300 [data-theme='light']_:text-slate-700 font-sans text-xs">
+                    <ul className="space-y-1 text-slate-700 dark:text-slate-300 text-xs">
                       <li className="flex items-center gap-1.5 leading-snug">
-                        <Check className="w-3 h-3 text-emerald-500 shrink-0" />
+                        <Check className="w-3.5 h-3.5 text-[#20A05A] shrink-0" />
                         <span className="truncate">Đã kiểm định an toàn PCCC & Pháp lý</span>
                       </li>
                       <li className="flex items-center gap-1.5 leading-snug">
-                        <Check className="w-3 h-3 text-emerald-500 shrink-0" />
+                        <Check className="w-3.5 h-3.5 text-[#20A05A] shrink-0" />
                         <span className="truncate">{unit.hasCarParking ? 'Có chỗ đỗ ô tô hầm thông minh' : 'Tòa nhà văn minh, an ninh 24/7'}</span>
                       </li>
                     </ul>
                   </div>
 
                   {/* Pricing & 3D / Chi Tiết Action Row */}
-                  <div className="pt-3 border-t border-slate-800/80 [data-theme='light']_:border-slate-200 flex items-center justify-between gap-2">
+                  <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
                     <div className="min-w-0">
                       <div className="flex items-baseline gap-1 flex-wrap">
-                        <span className="text-xl font-serif font-bold text-emerald-400 [data-theme='light']_:text-emerald-600">
+                        <span className="text-xl font-bold font-mono text-[#163300] dark:text-[#9FE870]">
                           {(trueCostTotal / 1000000).toFixed(1)} Tr
                         </span>
-                        <span className="text-xs text-slate-400 [data-theme='light']_:text-slate-500 font-mono">/tháng</span>
+                        <span className="text-xs text-slate-400 font-normal">/tháng</span>
                       </div>
                       
-                      <div className="text-[10px] font-mono text-slate-500 [data-theme='light']_:text-slate-400 truncate mt-0.5">
+                      <div className="text-[10px] text-slate-400 truncate mt-0.5 font-mono">
                         Gốc: {(unit.monthlyRentVND / 1000000).toFixed(0)}Tr (+{(extraFees / 1000000).toFixed(1)}Tr phí)
                       </div>
                     </div>
@@ -297,33 +285,30 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                     <div className="flex items-center gap-1.5 shrink-0">
                       <button
                         onClick={() => onSelectUnit(unit.id)}
-                        className="px-2.5 py-1.5 rounded-xl bg-purple-950/80 [data-theme='light']_:bg-purple-50 hover:bg-purple-900 [data-theme='light']_:hover:bg-purple-100 border border-purple-500/40 [data-theme='light']_:border-purple-200 text-purple-300 [data-theme='light']_:text-purple-700 text-xs font-mono font-bold flex items-center gap-1 shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                        className="px-3 py-1.5 rounded-full bg-[#8B5CF6]/10 text-[#8B5CF6] hover:bg-[#8B5CF6]/20 font-bold text-xs flex items-center gap-1 transition-all cursor-pointer"
                         title="Xem phối cảnh 3D"
                       >
-                        <Box className="w-3.5 h-3.5 text-purple-400 [data-theme='light']_:text-purple-600" />
+                        <Box className="w-3.5 h-3.5 text-[#8B5CF6]" />
                         <span>3D</span>
                       </button>
                       <button
                         onClick={() => onSelectUnit(unit.id)}
-                        className="group/btn relative px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-500 hover:via-teal-400 hover:to-cyan-400 text-white font-mono text-xs font-bold transition-all duration-300 shadow-md shadow-emerald-500/25 hover:shadow-cyan-400/50 hover:scale-105 active:scale-95 shrink-0 whitespace-nowrap cursor-pointer flex items-center gap-1.5 border border-cyan-400/40 hover:border-cyan-300 ring-1 ring-cyan-500/20 hover:ring-cyan-400/70 overflow-hidden"
+                        className="px-4 py-2 rounded-full bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] font-bold text-xs transition-all shadow-sm flex items-center gap-1.5 cursor-pointer hover:scale-105 active:scale-95"
                       >
-                        <span className="relative z-10 flex items-center gap-1">
-                          Chi Tiết
-                          <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5" />
-                        </span>
-                        <span className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
+                        <span>Chi Tiết</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   </div>
 
-                  {/* Admin Operations Bar (Elevated Glass Toolbar) */}
-                  <div className="pt-2.5 border-t border-slate-800/80 [data-theme='light']_:border-slate-200 flex items-center gap-2">
+                  {/* Admin Operations Bar */}
+                  <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center gap-2">
                     {/* Status Selector with Live Colored Dot */}
                     <div className="flex-1 relative">
                       <select
                         value={unit.status}
                         onChange={(e) => onUpdateUnitStatus?.(unit.id, e.target.value as UnitStatus)}
-                        className="w-full pl-7 pr-3 py-2 rounded-xl bg-slate-950/90 [data-theme='light']_:bg-white border border-slate-800 [data-theme='light']_:border-slate-200 text-slate-200 [data-theme='light']_:text-slate-800 text-[11px] font-mono focus:outline-none focus:border-emerald-500 cursor-pointer shadow-xs"
+                        className="w-full pl-7 pr-3 py-1.5 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-slate-200 text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-[#9FE870] cursor-pointer"
                       >
                         <option value="vacant">Trống (Sẵn sàng)</option>
                         <option value="occupied">Đang cho thuê</option>
@@ -331,9 +316,9 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                         <option value="maintenance">Đang bảo trì</option>
                       </select>
                       <span className={`absolute left-2.5 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full pointer-events-none ${
-                        unit.status === 'vacant' ? 'bg-emerald-400 animate-pulse' :
-                        unit.status === 'occupied' ? 'bg-sky-400' :
-                        unit.status === 'reserved' ? 'bg-amber-400 animate-pulse' : 'bg-rose-400'
+                        unit.status === 'vacant' ? 'bg-[#20A05A]' :
+                        unit.status === 'occupied' ? 'bg-[#2570EB]' :
+                        unit.status === 'reserved' ? 'bg-[#FFC83B]' : 'bg-[#FF5436]'
                       }`} />
                     </div>
 
@@ -343,7 +328,7 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                         e.stopPropagation();
                         setEditingUnit({ ...unit });
                       }}
-                      className="p-2 rounded-xl bg-slate-950/80 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-200 hover:border-amber-400/70 hover:bg-amber-500/15 text-slate-300 [data-theme='light']_:text-slate-600 hover:text-amber-500 transition-all cursor-pointer shadow-xs"
+                      className="p-2 rounded-full bg-[#F2F5F0] hover:bg-amber-50 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 hover:text-[#7A5200] dark:text-slate-300 transition-all cursor-pointer"
                       title="Sửa thông tin căn hộ"
                     >
                       <Edit2 className="w-3.5 h-3.5" />
@@ -355,7 +340,7 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                         e.stopPropagation();
                         setDeletingUnit(unit);
                       }}
-                      className="p-2 rounded-xl bg-slate-950/80 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-200 hover:border-rose-400/70 hover:bg-rose-500/15 text-slate-300 [data-theme='light']_:text-slate-600 hover:text-rose-500 transition-all cursor-pointer shadow-xs"
+                      className="p-2 rounded-full bg-[#F2F5F0] hover:bg-rose-50 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 hover:text-[#FF5436] dark:text-slate-300 transition-all cursor-pointer"
                       title="Xóa căn hộ"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
@@ -367,17 +352,17 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
           );
         })}
 
-        {/* Load More Button For Butter-Smooth Progressive Loading */}
+        {/* Load More Button - Wise Forest Pill */}
         {displayLimit < filteredUnits.length && (
           <div className="col-span-full pt-6 flex flex-col items-center justify-center gap-3">
             <button
               onClick={() => setDisplayLimit(prev => Math.min(prev + 12, filteredUnits.length))}
-              className="haven-btn-beam px-8 py-3.5 rounded-2xl bg-slate-900/90 hover:bg-emerald-500 hover:text-slate-950 text-slate-100 border border-emerald-500/40 text-xs font-mono font-bold shadow-xl transition-all hover:scale-105 cursor-pointer flex items-center gap-2"
+              className="px-8 py-3.5 rounded-full bg-[#163300] hover:bg-[#204500] text-[#9FE870] font-bold text-xs shadow-sm transition-all hover:scale-105 cursor-pointer flex items-center gap-2"
             >
-              <Sparkles className="w-4 h-4 text-emerald-400" />
+              <Sparkles className="w-4 h-4 text-[#9FE870]" />
               <span>Xem Thêm 12 Căn Hộ Tiếp Theo (Còn {filteredUnits.length - displayLimit} căn)</span>
             </button>
-            <span className="text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-600">
+            <span className="text-xs text-slate-500 dark:text-slate-400">
               Đang hiển thị {displayLimit} / {filteredUnits.length} căn hộ trong kho
             </span>
           </div>

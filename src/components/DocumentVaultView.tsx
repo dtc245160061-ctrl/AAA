@@ -7,7 +7,9 @@ import {
   Search, 
   Plus, 
   Lock,
-  Building
+  Building,
+  UploadCloud,
+  X
 } from 'lucide-react';
 import type { LegalDocumentItem, ApartmentUnit } from '../types/apartment';
 import { ApartmentStore } from '../data/apartmentStore';
@@ -43,15 +45,15 @@ export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
   const getCategoryBadge = (cat: LegalDocumentItem['category']) => {
     switch (cat) {
       case 'contract':
-        return <span className="px-2.5 py-1 rounded-full bg-emerald-950/90 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-bold whitespace-nowrap inline-block">Hợp Đồng Số</span>;
+        return <span className="px-3 py-1 rounded-full bg-[#E8F8EC] text-[#163300] border border-[#9FE870] text-xs font-bold whitespace-nowrap inline-block">Hợp Đồng Số</span>;
       case 'deposit_escrow':
-        return <span className="px-2.5 py-1 rounded-full bg-amber-950/90 text-amber-400 border border-amber-500/30 text-[10px] font-mono font-bold whitespace-nowrap inline-block">Biên Nhận Cọc Escrow</span>;
+        return <span className="px-3 py-1 rounded-full bg-[#FFF8E6] text-[#9A6700] border border-[#FFC83B] text-xs font-bold whitespace-nowrap inline-block">Biên Nhận Cọc Escrow</span>;
       case 'pccc_cert':
-        return <span className="px-2.5 py-1 rounded-full bg-rose-950/90 text-rose-400 border border-rose-500/30 text-[10px] font-mono font-bold whitespace-nowrap inline-block">Nghiệm Thu PCCC</span>;
+        return <span className="px-3 py-1 rounded-full bg-[#FEECEB] text-[#D92D20] border border-[#FF5436] text-xs font-bold whitespace-nowrap inline-block">Nghiệm Thu PCCC</span>;
       case 'handover_report':
-        return <span className="px-2.5 py-1 rounded-full bg-sky-950/90 text-sky-400 border border-sky-500/30 text-[10px] font-mono font-bold whitespace-nowrap inline-block">Bàn Giao 15 Mục</span>;
+        return <span className="px-3 py-1 rounded-full bg-[#EBF2FF] text-[#2570EB] border border-[#2570EB] text-xs font-bold whitespace-nowrap inline-block">Bàn Giao 15 Mục</span>;
       case 'ownership_doc':
-        return <span className="px-2.5 py-1 rounded-full bg-purple-950/90 text-purple-400 border border-purple-500/30 text-[10px] font-mono font-bold whitespace-nowrap inline-block">Sổ Đỏ / Ủy Quyền</span>;
+        return <span className="px-3 py-1 rounded-full bg-[#F5F0FF] text-[#8B5CF6] border border-[#8B5CF6] text-xs font-bold whitespace-nowrap inline-block">Sổ Đỏ / Căn Hộ</span>;
     }
   };
 
@@ -76,25 +78,25 @@ export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
 
   return (
     <div className="space-y-8 pb-16 animate-in fade-in duration-300">
-      {/* Header Banner with Clean Luxurious Luminous Border */}
-      <div className="relative rounded-2xl overflow-hidden bg-slate-900/80 border border-emerald-500/30 shadow-[0_0_30px_-8px_rgba(16,185,129,0.15)] p-6 sm:p-8 space-y-4 bg-gradient-to-b from-emerald-500/[0.05] to-transparent">
+      {/* Header Banner - Wise Signature Style */}
+      <div className="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200/90 dark:border-slate-800 p-6 sm:p-8 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
-              <FolderLock className="w-4 h-4 text-emerald-400 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F8EC] text-[#163300] font-bold text-xs uppercase tracking-wider mb-2">
+              <FolderLock className="w-4 h-4 text-[#20A05A]" />
               <span>Kho Lưu Trữ Tài Liệu Pháp Lý Số (Document Vault)</span>
             </div>
-            <h1 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold mt-1">
+            <h1 className="text-2xl md:text-3xl font-bold text-[#163300] dark:text-white mt-1">
               Bảo Mật Hợp Đồng, Giấy Tờ PCCC & Biên Lai Ký Quỹ
             </h1>
-            <p className="text-sm text-slate-400 mt-1 max-w-2xl">
-              Toàn bộ hợp đồng điện tử, biên bản bàn giao và chứng nhận an toàn tòa nhà được mã hóa và lưu trữ vĩnh viễn trên nền tảng.
+            <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 max-w-2xl leading-relaxed">
+              Toàn bộ hợp đồng điện tử, biên bản bàn giao và chứng nhận an toàn tòa nhà được mã hóa SHA-256 và lưu trữ vĩnh viễn trên nền tảng.
             </p>
           </div>
 
           <button
             onClick={() => setIsUploadModalOpen(true)}
-            className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono font-bold text-xs shadow-lg shadow-emerald-500/20 transition-all flex items-center gap-1.5 self-start md:self-auto cursor-pointer"
+            className="px-6 py-2.5 rounded-full bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] font-bold text-xs shadow-sm hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5 self-start md:self-auto cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>Tải Lên Tài Liệu Mới</span>
@@ -102,22 +104,22 @@ export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
         </div>
       </div>
 
-      {/* Filter Toolbar */}
-      <div className="p-5 rounded-2xl atmospheric-panel border border-slate-800 flex flex-wrap items-center justify-between gap-4 shadow-xl">
+      {/* Filter Toolbar - Wise Style */}
+      <div className="p-4 sm:p-6 rounded-[28px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4 shadow-sm">
         {/* Search */}
         <div className="relative flex-1 min-w-[240px]">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Tìm theo tên văn bản, căn hộ hoặc mã hash..."
-            className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 text-xs font-mono focus:outline-none focus:border-emerald-500"
+            className="w-full pl-11 pr-4 py-2.5 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white text-xs font-medium focus:outline-none focus:ring-2 focus:ring-[#9FE870]"
           />
         </div>
 
-        {/* Category Filter */}
-        <div className="flex items-center gap-1.5 flex-wrap text-xs font-mono">
+        {/* Category Filter Pills */}
+        <div className="wise-pill-tabs flex items-center gap-1.5 flex-wrap">
           {[
             { id: 'all', label: 'Tất cả tài liệu' },
             { id: 'contract', label: 'Hợp đồng số' },
@@ -128,11 +130,7 @@ export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
             <button
               key={tab.id}
               onClick={() => setCategoryFilter(tab.id)}
-              className={`px-3 py-1.5 rounded-xl transition-all ${
-                categoryFilter === tab.id
-                  ? 'bg-emerald-500 text-slate-950 font-bold shadow-md'
-                  : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-200'
-              }`}
+              className={`wise-pill-tab ${categoryFilter === tab.id ? 'wise-pill-tab-active' : ''}`}
             >
               {tab.label}
             </button>
@@ -140,30 +138,24 @@ export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
         </div>
       </div>
 
-      {/* Documents Grid */}
+      {/* Documents Grid - Wise Clean Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filteredDocs.map((doc) => (
           <div
             key={doc.id}
-            className="group relative p-[2px] rounded-2xl overflow-hidden cursor-pointer shadow-xl transition-all duration-300 hover:-translate-y-1"
+            className="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200/90 dark:border-slate-800 p-6 shadow-sm hover:shadow-md transition-all space-y-4"
           >
-            {/* 2px running border beam */}
-            <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
-              <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-65 group-hover:opacity-100" />
-            </div>
-
-            <div className="relative z-10 w-full h-full p-5 rounded-[14px] atmospheric-panel backdrop-blur-xl border border-slate-800/80 [data-theme='light']_:border-slate-200/80 bg-slate-900/60 [data-theme='light']_:bg-white/80 space-y-4 shadow-xl">
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-start gap-3">
-                <div className="p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 shrink-0 mt-0.5">
+                <div className="p-3 rounded-2xl bg-[#E8F8EC] text-[#20A05A] shrink-0 mt-0.5">
                   <FileText className="w-5 h-5" />
                 </div>
                 <div className="space-y-1">
-                  <h4 className="font-serif font-bold text-base text-slate-100 group-hover:text-emerald-300 transition-colors">
+                  <h4 className="font-bold text-base text-[#163300] dark:text-white">
                     {doc.title}
                   </h4>
-                  <p className="text-xs font-mono text-slate-400 flex items-center gap-1.5">
-                    <Building className="w-3.5 h-3.5 text-emerald-400" />
+                  <p className="text-xs text-slate-500 flex items-center gap-1.5">
+                    <Building className="w-3.5 h-3.5 text-[#20A05A]" />
                     <span>{doc.unitName} ({doc.unitId})</span>
                   </p>
                 </div>
@@ -172,27 +164,26 @@ export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
               {getCategoryBadge(doc.category)}
             </div>
 
-            <div className="p-3 rounded-xl bg-slate-950/60 [data-theme='light']_:bg-slate-50/80 border border-slate-800/80 [data-theme='light']_:border-slate-200/80 text-[11px] font-mono text-slate-400 [data-theme='light']_:text-slate-600 space-y-1">
+            <div className="p-4 rounded-[20px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700 text-xs text-slate-600 dark:text-slate-300 space-y-2">
               <div className="flex items-center justify-between">
                 <span>Dung lượng: {(doc.fileSizeKb / 1024).toFixed(1)} MB</span>
                 <span>Ngày tạo: {doc.uploadedAt}</span>
               </div>
-              <div className="flex items-center justify-between text-emerald-400/90 [data-theme='light']_:text-emerald-700 pt-1 border-t border-slate-800/60 [data-theme='light']_:border-slate-200/60">
-                <span className="flex items-center gap-1">
-                  <Lock className="w-3 h-3" /> Mã băm SHA-256:
+              <div className="flex items-center justify-between text-[#163300] dark:text-[#9FE870] pt-2 border-t border-slate-200 dark:border-slate-700">
+                <span className="flex items-center gap-1 font-bold">
+                  <Lock className="w-3.5 h-3.5" /> SHA-256 Hash:
                 </span>
-                <span className="font-bold truncate max-w-[180px]">{doc.hashSignature}</span>
+                <span className="font-mono font-bold truncate max-w-[180px]">{doc.hashSignature}</span>
               </div>
             </div>
 
-            <div className="flex items-center justify-between pt-1">
-              <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
-                <ShieldCheck className="w-3.5 h-3.5" /> Đã xác thực bảo chứng sàn
+            <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-800">
+              <span className="text-xs font-bold text-[#163300] dark:text-[#9FE870] flex items-center gap-1">
+                <ShieldCheck className="w-4 h-4 text-[#20A05A]" /> Đã xác thực bảo chứng sàn
               </span>
 
               <button
                 onClick={() => {
-                  // Trigger real file download
                   const content = `======================================================
 CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
 Độc lập - Tự do - Hạnh phúc
@@ -225,7 +216,7 @@ Văn bản này có giá trị pháp lý tương đương bản cứng theo quy 
                     onShowToast('success', 'Đã tải tài liệu về máy', `Tập tin "${doc.title}" đã được lưu vào máy tính của bạn.`);
                   }
                 }}
-                className="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-100 active:scale-90 active:bg-emerald-400 border border-slate-700 hover:border-emerald-400 text-xs font-mono font-bold transition-all flex items-center gap-1.5 shadow-sm"
+                className="px-4 py-2 rounded-full bg-[#163300] hover:bg-[#234c03] text-[#9FE870] font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
                 title="Tải bản gốc tài liệu đã ký số về máy"
               >
                 <Download className="w-3.5 h-3.5" />
@@ -233,36 +224,43 @@ Văn bản này có giá trị pháp lý tương đương bản cứng theo quy 
               </button>
             </div>
           </div>
-          </div>
         ))}
       </div>
 
-      {/* Upload Modal */}
+      {/* Upload Modal - Wise Style */}
       {isUploadModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in">
-          <div className="relative w-full max-w-lg rounded-3xl atmospheric-panel border border-emerald-500/40 p-6 md:p-8 space-y-5 shadow-2xl">
-            <h3 className="font-serif text-xl font-bold text-slate-100">Tải Lên Tài Liệu Pháp Lý Mới</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
+          <div className="relative w-full max-w-lg rounded-[28px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 md:p-8 space-y-6 shadow-2xl">
+            <div className="flex items-center justify-between">
+              <h3 className="text-xl font-bold text-[#163300] dark:text-white">Tải Lên Tài Liệu Pháp Lý Mới</h3>
+              <button
+                onClick={() => setIsUploadModalOpen(false)}
+                className="p-2 rounded-full hover:bg-[#F2F5F0] dark:hover:bg-slate-800 text-slate-500 cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
             
-            <form onSubmit={handleUploadSubmit} className="space-y-4 text-xs font-mono">
+            <form onSubmit={handleUploadSubmit} className="space-y-4 text-xs">
               <div>
-                <label className="text-slate-400 block mb-1">Tên Văn Bản / Giấy Tờ *</label>
+                <label className="text-slate-600 dark:text-slate-400 font-bold block mb-1.5">Tên Văn Bản / Giấy Tờ *</label>
                 <input
                   type="text"
                   required
                   value={docTitle}
                   onChange={(e) => setDocTitle(e.target.value)}
                   placeholder="Ví dụ: Giấy nghiệm thu PCCC đợt 2"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 font-sans focus:outline-none focus:border-emerald-500"
+                  className="w-full px-4 py-2.5 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white font-medium focus:outline-none focus:ring-2 focus:ring-[#9FE870]"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-slate-400 block mb-1">Phân Loại *</label>
+                  <label className="text-slate-600 dark:text-slate-400 font-bold block mb-1.5">Phân Loại *</label>
                   <select
                     value={docCategory}
                     onChange={(e) => setDocCategory(e.target.value as any)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 font-sans focus:outline-none focus:border-emerald-500"
+                    className="w-full px-4 py-2.5 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white font-bold focus:outline-none focus:ring-2 focus:ring-[#9FE870] cursor-pointer"
                   >
                     <option value="contract">Hợp đồng số</option>
                     <option value="deposit_escrow">Biên nhận cọc Escrow</option>
@@ -273,11 +271,11 @@ Văn bản này có giá trị pháp lý tương đương bản cứng theo quy 
                 </div>
 
                 <div>
-                  <label className="text-slate-400 block mb-1">Căn Hộ Tương Ứng *</label>
+                  <label className="text-slate-600 dark:text-slate-400 font-bold block mb-1.5">Căn Hộ Tương Ứng *</label>
                   <select
                     value={docUnitId}
                     onChange={(e) => setDocUnitId(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 font-sans focus:outline-none focus:border-emerald-500"
+                    className="w-full px-4 py-2.5 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white font-bold focus:outline-none focus:ring-2 focus:ring-[#9FE870] cursor-pointer"
                   >
                     {units.map(u => (
                       <option key={u.id} value={u.id}>{u.name || u.id}</option>
@@ -286,23 +284,23 @@ Văn bản này có giá trị pháp lý tương đương bản cứng theo quy 
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl border-2 border-dashed border-slate-700 text-center space-y-1">
-                <FileText className="w-8 h-8 text-slate-500 mx-auto" />
-                <p className="text-slate-300">Kéo thả file PDF hoặc ảnh scan vào đây</p>
-                <span className="text-[10px] text-slate-500">Tự động mã hóa AES-256 khi lưu</span>
+              <div className="p-6 rounded-[24px] border-2 border-dashed border-slate-200 dark:border-slate-700 text-center space-y-2 bg-[#F2F5F0]/50 dark:bg-slate-800/50">
+                <UploadCloud className="w-8 h-8 text-[#20A05A] mx-auto" />
+                <p className="text-slate-700 dark:text-slate-300 font-medium">Kéo thả file PDF hoặc ảnh scan vào đây</p>
+                <span className="text-[11px] text-slate-500 font-mono">Tự động mã hóa AES-256 khi lưu</span>
               </div>
 
               <div className="flex gap-3 pt-2">
                 <button
                   type="button"
                   onClick={() => setIsUploadModalOpen(false)}
-                  className="flex-1 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700"
+                  className="flex-1 py-3 rounded-full bg-[#F2F5F0] hover:bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold cursor-pointer"
                 >
                   Hủy
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold shadow-lg shadow-emerald-500/20"
+                  className="flex-1 py-3 rounded-full bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] font-bold shadow-sm cursor-pointer hover:scale-105 active:scale-95"
                 >
                   Lưu Bảo Chứng
                 </button>

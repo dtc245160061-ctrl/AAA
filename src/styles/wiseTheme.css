@@ -1,9 +1,10 @@
 /* ============================================================
-   WISE DESIGN SYSTEM (v3.0.0) — Official Tokens & Component Classes
-   Inspired by & 1:1 aligned with wise.com & wise.design
+   WISE DESIGN SYSTEM (v3.2.0) — Complete Multi-Accent Spectrum
+   Aligned with wise.com, wise.design & global flag/currency palette
    ============================================================ */
 
 :root {
+  /* ── Core Forest & Lime ── */
   --wise-forest:          #163300;
   --wise-forest-deep:     #0E1E09;
   --wise-forest-light:    #223D0D;
@@ -12,20 +13,56 @@
   --wise-lime-active:     #7AC74D;
   --wise-lime-soft:       #E2F7D4;
   --wise-lime-subtle:     rgba(159, 232, 112, 0.15);
+
+  /* ── Canvas & Surfaces ── */
   --wise-canvas:          #F2F5F0;
   --wise-canvas-pure:     #FFFFFF;
+  --wise-canvas-warm:     #FAFBF8;
   --wise-card-bg:         #FFFFFF;
-  --wise-border:          rgba(22, 51, 0, 0.12);
-  --wise-border-subtle:   rgba(22, 51, 0, 0.06);
-  --wise-border-strong:   rgba(22, 51, 0, 0.22);
+
+  /* ── Borders & Outlines ── */
+  --wise-border:          rgba(22, 51, 0, 0.10);
+  --wise-border-subtle:   rgba(22, 51, 0, 0.05);
+  --wise-border-strong:   rgba(22, 51, 0, 0.20);
+
+  /* ── Typography & Neutrals ── */
   --wise-text-primary:    #163300;
   --wise-text-secondary:  #495E35;
   --wise-text-muted:      #738565;
+
+  /* ── Wise Global Currency & Flag Palette Accents ── */
+  /* 1. Terracotta / Warm Coral (Japan, Singapore, Canada) */
+  --wise-coral:           #FF5436;
+  --wise-coral-soft:      #FFEAE5;
+  --wise-coral-dark:      #8C1F08;
+
+  /* 2. Sunshine Gold / Amber (Germany, Colombia, Vietnam) */
+  --wise-gold:            #FFC83B;
+  --wise-gold-soft:       #FFF6DB;
+  --wise-gold-dark:       #7A5200;
+
+  /* 3. Electric Cobalt / Sky (UK, USA, Greece, Argentina) */
+  --wise-cobalt:          #2570EB;
+  --wise-cobalt-soft:     #EBF2FF;
+  --wise-cobalt-dark:     #0F2E6B;
+
+  /* 4. Royal Iris / Violet */
+  --wise-violet:          #8B5CF6;
+  --wise-violet-soft:     #F3E8FF;
+  --wise-violet-dark:     #431A7A;
+
+  /* 5. Seafoam Teal (Brazil, Saudi Arabia) */
+  --wise-teal:            #059669;
+  --wise-teal-soft:       #E6F7F0;
+  --wise-teal-dark:       #064E3B;
+
+  /* ── Shadows ── */
   --wise-shadow-card:     0 4px 24px -2px rgba(22, 51, 0, 0.06), 0 1px 3px rgba(22, 51, 0, 0.04);
   --wise-shadow-elevated: 0 12px 36px -4px rgba(22, 51, 0, 0.09), 0 2px 8px rgba(22, 51, 0, 0.04);
+  --wise-shadow-pop:      0 20px 48px -8px rgba(22, 51, 0, 0.14);
 }
 
-/* Wise Headline Typography (Bold, Tight Tracking, Confident) */
+/* Wise Headline Typography */
 .wise-headline {
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   font-weight: 800;
@@ -33,7 +70,7 @@
   color: var(--wise-forest);
 }
 
-/* Wise Primary Action Button (Pill, Neon Spring Lime) */
+/* Wise Primary Action Button */
 .wise-btn-primary {
   display: inline-flex;
   align-items: center;
@@ -41,7 +78,7 @@
   gap: 0.5rem;
   background-color: var(--wise-lime);
   color: var(--wise-forest);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.9375rem;
   padding: 0.875rem 1.75rem;
   border-radius: 9999px;
@@ -63,7 +100,7 @@
   transform: translateY(0);
 }
 
-/* Wise Dark Action Button */
+/* Wise Dark Button */
 .wise-btn-dark {
   display: inline-flex;
   align-items: center;
@@ -71,7 +108,7 @@
   gap: 0.5rem;
   background-color: var(--wise-forest);
   color: var(--wise-lime);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.9375rem;
   padding: 0.875rem 1.75rem;
   border-radius: 9999px;
@@ -86,25 +123,92 @@
   transform: translateY(-1px);
 }
 
-/* Wise Secondary Outline Button */
-.wise-btn-outline {
+/* Wise Coral / Orange Button */
+.wise-btn-coral {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: transparent;
-  color: var(--wise-forest);
-  border: 1.5px solid var(--wise-forest);
-  font-weight: 700;
+  background-color: var(--wise-coral);
+  color: #FFFFFF;
+  font-weight: 800;
   font-size: 0.9375rem;
-  padding: 0.8125rem 1.625rem;
+  padding: 0.875rem 1.75rem;
   border-radius: 9999px;
   transition: all 0.2s ease;
   cursor: pointer;
+  border: none;
 }
 
-.wise-btn-outline:hover {
-  background-color: rgba(22, 51, 0, 0.05);
+.wise-btn-coral:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+/* Wise Pill Badge Variations */
+.wise-badge-lime {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background: var(--wise-lime-soft);
+  color: var(--wise-forest);
+  font-weight: 700;
+  font-size: 0.75rem;
+  border: 1px solid rgba(22, 51, 0, 0.12);
+}
+
+.wise-badge-coral {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background: var(--wise-coral-soft);
+  color: var(--wise-coral-dark);
+  font-weight: 700;
+  font-size: 0.75rem;
+  border: 1px solid rgba(255, 84, 54, 0.2);
+}
+
+.wise-badge-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background: var(--wise-gold-soft);
+  color: var(--wise-gold-dark);
+  font-weight: 700;
+  font-size: 0.75rem;
+  border: 1px solid rgba(255, 200, 59, 0.3);
+}
+
+.wise-badge-cobalt {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background: var(--wise-cobalt-soft);
+  color: var(--wise-cobalt-dark);
+  font-weight: 700;
+  font-size: 0.75rem;
+  border: 1px solid rgba(37, 112, 235, 0.2);
+}
+
+.wise-badge-violet {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background: var(--wise-violet-soft);
+  color: var(--wise-violet-dark);
+  font-weight: 700;
+  font-size: 0.75rem;
+  border: 1px solid rgba(139, 92, 246, 0.2);
 }
 
 /* Wise Card Container */
@@ -121,82 +225,203 @@
   border-color: rgba(22, 51, 0, 0.18);
 }
 
-/* Wise Calculator Specific Components */
-.wise-calc-box {
-  background: #FFFFFF;
-  border-radius: 1.75rem;
-  border: 1px solid rgba(22, 51, 0, 0.12);
-  box-shadow: 0 16px 40px -8px rgba(22, 51, 0, 0.08);
-  padding: 2rem;
+/* Atmospheric Panel Override in Light Mode -> Pure Wise Card */
+[data-theme="light"] .atmospheric-panel,
+.light .atmospheric-panel {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(22, 51, 0, 0.10) !important;
+  box-shadow: 0 4px 24px -2px rgba(22, 51, 0, 0.06), 0 1px 3px rgba(22, 51, 0, 0.04) !important;
+  color: #163300 !important;
 }
 
-.wise-calc-input-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #F7FAF6;
-  border: 1.5px solid rgba(22, 51, 0, 0.12);
-  border-radius: 1rem;
-  padding: 0.75rem 1rem;
-  transition: all 0.2s ease;
+/* Table styles in Wise design */
+[data-theme="light"] table,
+.light table {
+  color: #163300;
 }
 
-.wise-calc-input-row:focus-within {
-  border-color: var(--wise-forest);
-  background: #FFFFFF;
-  box-shadow: 0 0 0 3px rgba(159, 232, 112, 0.35);
+[data-theme="light"] th,
+.light th {
+  background-color: #F7FAF6;
+  color: #495E35;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1.5px solid rgba(22, 51, 0, 0.10);
 }
 
-.wise-calc-route-step {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.8125rem;
-  color: var(--wise-text-secondary);
-  position: relative;
-  padding-left: 2rem;
+[data-theme="light"] td,
+.light td {
+  border-bottom: 1px solid rgba(22, 51, 0, 0.07);
 }
 
-.wise-calc-route-step::before {
-  content: '';
-  position: absolute;
-  left: 0.5625rem;
-  top: -1rem;
-  bottom: -1rem;
-  width: 2px;
-  background: rgba(22, 51, 0, 0.12);
+[data-theme="light"] tr:hover td,
+.light tr:hover td {
+  background-color: #F2F5F0;
 }
 
-.wise-calc-route-step .step-dot {
-  position: absolute;
-  left: 0.25rem;
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 9999px;
-  background: #FFFFFF;
-  border: 2px solid var(--wise-forest);
-  z-index: 2;
+/* Wise Clean Input & Select */
+[data-theme="light"] input:not([type="checkbox"]):not([type="radio"]),
+[data-theme="light"] select,
+[data-theme="light"] textarea,
+.light input:not([type="checkbox"]):not([type="radio"]),
+.light select,
+.light textarea {
+  background-color: #FFFFFF !important;
+  color: #163300 !important;
+  border: 1px solid rgba(22, 51, 0, 0.15) !important;
+  border-radius: 0.75rem;
 }
 
-/* Wise Flags / Provinces Marquee Ticker */
-.wise-ticker-pill {
+[data-theme="light"] input:focus,
+[data-theme="light"] select:focus,
+[data-theme="light"] textarea:focus,
+.light input:focus,
+.light select:focus,
+.light textarea:focus {
+  border-color: #163300 !important;
+  box-shadow: 0 0 0 3px rgba(159, 232, 112, 0.35) !important;
+}
+
+/* ── Wise Pill Tabs ── */
+.wise-pill-tabs {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  background: #FFFFFF;
-  border: 1px solid rgba(22, 51, 0, 0.10);
+  gap: 0.375rem;
+  padding: 0.375rem;
+  background-color: #E8ECE5;
   border-radius: 9999px;
-  padding: 0.5rem 1rem;
-  font-weight: 600;
-  font-size: 0.875rem;
-  color: var(--wise-forest);
-  white-space: nowrap;
-  transition: all 0.2s ease;
-  cursor: pointer;
+}
+[data-theme="dark"] .wise-pill-tabs {
+  background-color: #122405;
 }
 
-.wise-ticker-pill:hover {
-  background: var(--wise-lime);
-  border-color: var(--wise-lime);
+.wise-pill-tab {
+  padding: 0.5rem 1.125rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #495E35;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.wise-pill-tab:hover {
+  color: #163300;
+}
+[data-theme="dark"] .wise-pill-tab:hover {
+  color: #9FE870;
+}
+.wise-pill-tab-active {
+  background-color: #163300 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(22, 51, 0, 0.15);
+}
+[data-theme="dark"] .wise-pill-tab-active {
+  background-color: #9FE870 !important;
+  color: #163300 !important;
+}
+
+/* ── Wise KPI Metric Cards ── */
+.wise-kpi-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(22, 51, 0, 0.08);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px -2px rgba(22, 51, 0, 0.05);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-theme="dark"] .wise-kpi-card {
+  background: #142805;
+  border-color: rgba(159, 232, 112, 0.15);
+}
+.wise-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px -4px rgba(22, 51, 0, 0.10);
+}
+
+/* ── Additional Wise Button Variants ── */
+.wise-btn-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #FFFFFF;
+  color: var(--wise-forest);
+  border: 1.5px solid rgba(22, 51, 0, 0.18);
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+.wise-btn-white:hover {
+  border-color: var(--wise-forest);
+  background-color: #F8FAF7;
   transform: translateY(-1px);
 }
+
+.wise-btn-cobalt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--wise-cobalt);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+.wise-btn-cobalt:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.wise-btn-violet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--wise-violet);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+.wise-btn-violet:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.wise-btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--wise-gold);
+  color: var(--wise-forest);
+  font-weight: 800;
+  font-size: 0.875rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+.wise-btn-gold:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+

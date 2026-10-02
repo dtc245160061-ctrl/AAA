@@ -333,27 +333,32 @@
 /* Light Mode Semantic Text Overrides */
 [data-theme="light"] .text-white:not(.always-white),
 .light .text-white:not(.always-white) {
-  color: #0F172A;
+  color: #163300;
 }
 
 [data-theme="light"] .text-slate-100:not(.always-white),
 .light .text-slate-100:not(.always-white) {
-  color: #0F172A;
+  color: #163300;
 }
 
 [data-theme="light"] .text-slate-200:not(.always-white),
 .light .text-slate-200:not(.always-white) {
-  color: #1E293B;
+  color: #223D0D;
 }
 
 [data-theme="light"] .text-slate-300:not(.always-white),
 .light .text-slate-300:not(.always-white) {
-  color: #334155;
+  color: #495E35;
 }
 
 [data-theme="light"] .text-slate-400:not(.always-white),
 .light .text-slate-400:not(.always-white) {
-  color: #64748B;
+  color: #5F734C;
+}
+
+[data-theme="light"] .text-slate-500:not(.always-white),
+.light .text-slate-500:not(.always-white) {
+  color: #738565;
 }
 
 /* Hero Section Scrim Protection: preserves luminous crisp white text over photographic scrims */
@@ -413,10 +418,10 @@
 
 [data-theme="light"] .bg-slate-800:not(.always-dark),
 .light .bg-slate-800:not(.always-dark) {
-  background: #F1F5F9 !important;
-  border-color: #CBD5E1 !important;
-  color: #0F172A !important;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05) !important;
+  background: #FFFFFF !important;
+  border-color: rgba(22, 51, 0, 0.10) !important;
+  color: #163300 !important;
+  box-shadow: 0 2px 8px rgba(22, 51, 0, 0.04) !important;
 }
 
 [data-theme="light"] .bg-slate-900:not(.always-dark),
@@ -431,9 +436,9 @@
 .light .bg-slate-900\/90:not(.always-dark) {
   background: #FFFFFF !important;
   backdrop-filter: blur(16px);
-  border-color: #E2E8F0 !important;
-  color: #0F172A !important;
-  box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.06) !important;
+  border-color: rgba(22, 51, 0, 0.10) !important;
+  color: #163300 !important;
+  box-shadow: 0 4px 24px -2px rgba(22, 51, 0, 0.06), 0 1px 3px rgba(22, 51, 0, 0.04) !important;
 }
 
 [data-theme="light"] .bg-slate-950:not(.always-dark),
@@ -449,8 +454,8 @@
 .light .bg-slate-950\/85:not(.always-dark),
 .light .bg-slate-950\/90:not(.always-dark) {
   background: #FFFFFF !important;
-  border-color: #E2E8F0 !important;
-  color: #0F172A !important;
+  border-color: rgba(22, 51, 0, 0.10) !important;
+  color: #163300 !important;
 }
 
 /* Specific Card Face and Arbitrary Slate-Navy Overrides in Light Mode */
@@ -459,8 +464,8 @@
 .light .haven-card-face,
 .light .bg-\[\#0B101B\] {
   background-color: #FFFFFF !important;
-  border-color: #E2E8F0 !important;
-  color: #0F172A !important;
+  border-color: rgba(22, 51, 0, 0.10) !important;
+  color: #163300 !important;
 }
 
 /* Light Mode Hero Suggestion Chips */

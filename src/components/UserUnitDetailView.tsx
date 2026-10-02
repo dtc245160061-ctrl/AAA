@@ -271,43 +271,41 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
           </div>
 
           {/* Quick Specs Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-2xl bg-slate-950/80 border border-slate-800 text-xs font-mono shadow-xl">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-[20px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs shadow-sm">
             <div>
-              <span className="text-slate-500 uppercase text-[10px]">Phòng Ngủ</span>
-              <p className="text-slate-100 text-base font-serif font-semibold mt-0.5">{unit.bedrooms} Phòng</p>
+              <span className="text-slate-400 font-bold uppercase text-[10px] tracking-wider">Phòng Ngủ</span>
+              <p className="text-[#163300] dark:text-slate-100 text-base font-bold mt-0.5">{unit.bedrooms} Phòng</p>
             </div>
             <div>
-              <span className="text-slate-500 uppercase text-[10px]">Phòng Tắm / WC</span>
-              <p className="text-slate-100 text-base font-serif font-semibold mt-0.5">{unit.bathrooms} Phòng</p>
+              <span className="text-slate-400 font-bold uppercase text-[10px] tracking-wider">Phòng Tắm / WC</span>
+              <p className="text-[#163300] dark:text-slate-100 text-base font-bold mt-0.5">{unit.bathrooms} Phòng</p>
             </div>
             <div>
-              <span className="text-slate-500 uppercase text-[10px]">Diện Tích Sàn</span>
-              <p className="text-slate-100 text-base font-serif font-semibold mt-0.5">{unit.sqm} m²</p>
+              <span className="text-slate-400 font-bold uppercase text-[10px] tracking-wider">Diện Tích Sàn</span>
+              <p className="text-[#163300] dark:text-slate-100 text-base font-bold mt-0.5">{unit.sqm} m²</p>
             </div>
             <div>
-              <span className="text-slate-500 uppercase text-[10px]">Vị Trí Tầng</span>
-              <p className="text-slate-100 text-base font-serif font-semibold mt-0.5">Tầng {unit.floor}</p>
+              <span className="text-slate-400 font-bold uppercase text-[10px] tracking-wider">Vị Trí Tầng</span>
+              <p className="text-[#163300] dark:text-slate-100 text-base font-bold mt-0.5">Tầng {unit.floor}</p>
             </div>
           </div>
 
-          {/* 1. SIGNATURE P0: TRUE COST BREAKDOWN PANEL */}
-          <div className="relative rounded-3xl p-[2.5px] overflow-hidden group shadow-2xl haven-beam-emerald">
-            <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
-            <div className="rounded-[22px] atmospheric-panel haven-sheen-sweep border border-emerald-500/40 p-6 md:p-8 space-y-6 shadow-2xl backdrop-blur-2xl relative overflow-hidden">
-              <div className="flex items-center justify-between border-b border-emerald-500/20 pb-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2.5 rounded-2xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shadow-md shadow-emerald-500/20">
-                    <Calculator className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-xl text-slate-100 font-bold">Bảng Tính Tổng Chi Phí Thực Tế (True Cost)</h3>
-                    <p className="text-xs text-slate-400 font-mono">Bóc tách toàn bộ chi phí sinh hoạt hàng tháng — Không phí ẩn</p>
-                  </div>
+          {/* 1. SIGNATURE P0: TRUE COST BREAKDOWN PANEL - Wise Calculator Style */}
+          <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-[28px] p-6 md:p-8 shadow-sm space-y-6">
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 rounded-full bg-[#9FE870]/20 text-[#163300] dark:text-[#9FE870]">
+                  <Calculator className="w-5 h-5" />
                 </div>
+                <div>
+                  <h3 className="text-xl font-bold text-[#163300] dark:text-slate-100">Bảng Tính Tổng Chi Phí Thực Tế (Wise True Cost)</h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Bóc tách toàn bộ chi phí sinh hoạt hàng tháng — Cam kết 100% không phí ẩn</p>
+                </div>
+              </div>
 
               <button
                 onClick={() => setShowCostDetails(!showCostDetails)}
-                className="text-xs font-mono text-emerald-400 hover:underline"
+                className="text-xs font-bold text-[#2570EB] hover:underline cursor-pointer"
               >
                 {showCostDetails ? 'Thu gọn' : 'Xem chi tiết'}
               </button>
@@ -316,168 +314,161 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
             {showCostDetails && (
               <div className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
-                  <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
-                    <span className="text-slate-300 flex items-center gap-2">
-                      <Building className="w-4 h-4 text-emerald-400" /> Tiền thuê phòng niêm yết:
+                  <div className="p-3.5 rounded-[16px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
+                    <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-sans">
+                      <Building className="w-4 h-4 text-[#2570EB]" /> Tiền thuê phòng niêm yết:
                     </span>
-                    <span className="font-bold text-slate-100">{(trueCost.baseRentVND / 1000000).toFixed(1)} Tr</span>
+                    <span className="font-bold text-[#163300] dark:text-slate-100">{(trueCost.baseRentVND / 1000000).toFixed(1)} Tr</span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
-                    <span className="text-slate-300 flex items-center gap-2">
-                      <Zap className="w-4 h-4 text-amber-400" /> Điện ước tính (~3.500đ/kWh):
+                  <div className="p-3.5 rounded-[16px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
+                    <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-sans">
+                      <Zap className="w-4 h-4 text-[#FFC83B]" /> Điện ước tính (~3.500đ/kWh):
                     </span>
-                    <span className="font-bold text-slate-100">{(trueCost.estimatedElectricityVND / 1000).toLocaleString()} đ</span>
+                    <span className="font-bold text-[#163300] dark:text-slate-100">{(trueCost.estimatedElectricityVND / 1000).toLocaleString()} đ</span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
-                    <span className="text-slate-300 flex items-center gap-2">
-                      <Droplets className="w-4 h-4 text-sky-400" /> Nước sinh hoạt:
+                  <div className="p-3.5 rounded-[16px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
+                    <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-sans">
+                      <Droplets className="w-4 h-4 text-[#2570EB]" /> Nước sinh hoạt:
                     </span>
-                    <span className="font-bold text-slate-100">{(trueCost.waterFeeVND / 1000).toLocaleString()} đ</span>
+                    <span className="font-bold text-[#163300] dark:text-slate-100">{(trueCost.waterFeeVND / 1000).toLocaleString()} đ</span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
-                    <span className="text-slate-300 flex items-center gap-2">
-                      <Wifi className="w-4 h-4 text-purple-400" /> Internet cáp quang tốc độ cao:
+                  <div className="p-3.5 rounded-[16px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
+                    <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-sans">
+                      <Wifi className="w-4 h-4 text-[#8B5CF6]" /> Internet cáp quang tốc độ cao:
                     </span>
-                    <span className="font-bold text-slate-100">{(trueCost.internetFeeVND / 1000).toLocaleString()} đ</span>
+                    <span className="font-bold text-[#163300] dark:text-slate-100">{(trueCost.internetFeeVND / 1000).toLocaleString()} đ</span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
-                    <span className="text-slate-300 flex items-center gap-2">
-                      <ShieldCheck className="w-4 h-4 text-emerald-400" /> Phí quản lý tòa nhà & an ninh:
+                  <div className="p-3.5 rounded-[16px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
+                    <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-sans">
+                      <ShieldCheck className="w-4 h-4 text-[#20A05A]" /> Phí quản lý tòa nhà & an ninh:
                     </span>
-                    <span className="font-bold text-slate-100">{(trueCost.managementFeeVND / 1000).toLocaleString()} đ</span>
+                    <span className="font-bold text-[#163300] dark:text-slate-100">{(trueCost.managementFeeVND / 1000).toLocaleString()} đ</span>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
-                    <span className="text-slate-300 flex items-center gap-2">
-                      <Car className="w-4 h-4 text-indigo-400" /> Phí gửi xe ({unit.hasCarParking ? 'Ô tô' : 'Xe máy'}):
+                  <div className="p-3.5 rounded-[16px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
+                    <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-sans">
+                      <Car className="w-4 h-4 text-[#FF5436]" /> Phí gửi xe ({unit.hasCarParking ? 'Ô tô' : 'Xe máy'}):
                     </span>
-                    <span className="font-bold text-slate-100">{(trueCost.parkingFeeVND / 1000).toLocaleString()} đ</span>
+                    <span className="font-bold text-[#163300] dark:text-slate-100">{(trueCost.parkingFeeVND / 1000).toLocaleString()} đ</span>
                   </div>
                 </div>
 
-                {/* Total True Cost Summary Box */}
-                <div className="p-5 rounded-2xl bg-emerald-950/40 border-2 border-emerald-500/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl">
+                {/* Total True Cost Summary Box - Wise Forest & Lime Hero Style */}
+                <div className="p-6 rounded-[20px] bg-[#163300] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
                   <div>
-                    <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
+                    <span className="text-xs uppercase tracking-wider font-bold text-[#9FE870]">
                       Tổng Chi Phí Thực Tế Hàng Tháng:
                     </span>
-                    <div className="text-3xl font-serif font-bold text-emerald-300 mt-1">
-                      {(trueCost.totalMonthlyEstimatedVND / 1000000).toFixed(2)} Triệu <span className="text-xs text-slate-400 font-sans font-normal">/tháng</span>
+                    <div className="text-3xl font-mono font-bold text-[#9FE870] mt-1">
+                      {(trueCost.totalMonthlyEstimatedVND / 1000000).toFixed(2)} Triệu <span className="text-xs text-white/70 font-sans font-normal">/tháng</span>
                     </div>
                   </div>
 
-                  <div className="sm:text-right border-t sm:border-t-0 sm:border-l border-emerald-500/30 pt-3 sm:pt-0 sm:pl-6">
-                    <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">
+                  <div className="sm:text-right border-t sm:border-t-0 sm:border-l border-white/20 pt-3 sm:pt-0 sm:pl-6">
+                    <span className="text-xs text-white/70 uppercase tracking-wider font-bold">
                       Cần Chuẩn Bị Khi Dọn Vào:
                     </span>
-                    <div className="text-xl font-serif font-bold text-slate-100 mt-0.5">
+                    <div className="text-xl font-bold font-mono text-white mt-0.5">
                       {(trueCost.moveInTotalRequiredVND / 1000000).toFixed(1)} Triệu
                     </div>
-                    <span className="text-[11px] font-mono text-emerald-400/90">
+                    <span className="text-[11px] text-[#9FE870]">
                       (Cọc {trueCost.depositMonths} tháng + Tháng đầu tiên)
                     </span>
                   </div>
                 </div>
               </div>
             )}
-            </div>
           </div>
 
           {/* 2. SIGNATURE P0: PCCC TRANSPARENCY CARD */}
-          <div className="relative rounded-3xl p-[2.5px] overflow-hidden group shadow-2xl haven-beam-rose">
-            <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
-            <div className="p-6 md:p-8 rounded-[22px] atmospheric-panel haven-sheen-sweep border border-rose-500/30 space-y-6 shadow-2xl relative overflow-hidden">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2.5 rounded-2xl bg-rose-500/20 text-rose-300 border border-rose-500/30 shadow-md shadow-rose-500/20">
-                    <Flame className="w-5 h-5 text-rose-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-xl text-slate-100 font-bold">Minh Bạch An Toàn PCCC & Thoát Hiểm</h3>
-                    <p className="text-xs text-slate-400 font-mono">Tiêu chuẩn an toàn theo quy chuẩn QCVN 06:2022</p>
-                  </div>
+          <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-[28px] p-6 md:p-8 shadow-sm space-y-6">
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 rounded-full bg-[#FF5436]/15 text-[#FF5436]">
+                  <Flame className="w-5 h-5 text-[#FF5436]" />
                 </div>
+                <div>
+                  <h3 className="text-xl font-bold text-[#163300] dark:text-slate-100">Minh Bạch An Toàn PCCC & Thoát Hiểm</h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Tiêu chuẩn an toàn theo quy chuẩn quốc gia QCVN 06:2022</p>
+                </div>
+              </div>
 
-              <span className="px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs font-mono font-bold">
+              <span className="px-3.5 py-1 rounded-full bg-[#9FE870] text-[#163300] text-xs font-bold shadow-xs">
                 ✓ Đã Nghiệm Thu PCCC
               </span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
-              <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
-                <span className="text-slate-400 uppercase text-[10px]">Thang Bộ Thoát Hiểm</span>
-                <p className="text-slate-100 font-semibold text-sm flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-sans">
+              <div className="p-4 rounded-[16px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-1">
+                <span className="text-slate-400 uppercase text-[10px] font-bold">Thang Bộ Thoát Hiểm</span>
+                <p className="text-[#163300] dark:text-slate-100 font-bold text-sm flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-[#20A05A]" />
                   <span>{pccc.fireEscapeCount} Thang thoát hiểm điều áp chống khói</span>
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
-                <span className="text-slate-400 uppercase text-[10px]">Chữa Cháy Tự Động</span>
-                <p className="text-slate-100 font-semibold text-sm flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <div className="p-4 rounded-[16px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-1">
+                <span className="text-slate-400 uppercase text-[10px] font-bold">Chữa Cháy Tự Động</span>
+                <p className="text-[#163300] dark:text-slate-100 font-bold text-sm flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-[#20A05A]" />
                   <span>Đầu phun Sprinkler áp lực cao trang bị từng phòng</span>
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
-                <span className="text-slate-400 uppercase text-[10px]">Cảm Biến Khói & Báo Cháy</span>
-                <p className="text-slate-100 font-semibold text-sm flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <div className="p-4 rounded-[16px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-1">
+                <span className="text-slate-400 uppercase text-[10px] font-bold">Cảm Biến Khói & Báo Cháy</span>
+                <p className="text-[#163300] dark:text-slate-100 font-bold text-sm flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-[#20A05A]" />
                   <span>Hệ thống cảm biến nối tủ trung tâm 24/7</span>
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
-                <span className="text-slate-400 uppercase text-[10px]">Kiểm Định Lần Cuối</span>
-                <p className="text-slate-100 font-semibold text-sm flex items-center gap-1.5">
-                  <FileCheck2 className="w-4 h-4 text-emerald-400" />
+              <div className="p-4 rounded-[16px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-1">
+                <span className="text-slate-400 uppercase text-[10px] font-bold">Kiểm Định Lần Cuối</span>
+                <p className="text-[#163300] dark:text-slate-100 font-bold text-sm flex items-center gap-1.5">
+                  <FileCheck2 className="w-4 h-4 text-[#20A05A]" />
                   <span>Ngày {pccc.lastInspectionDate} (Hiệu lực 12 tháng)</span>
                 </p>
               </div>
             </div>
 
-              <div className="p-3.5 rounded-xl bg-rose-950/20 border border-rose-500/20 text-[11px] font-mono text-rose-300/90 flex items-start gap-2">
-                <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
-                <span>
-                  ⚖️ <strong>Khuyến nghị an toàn</strong>: {pccc.disclaimer}
-                </span>
-              </div>
+            <div className="p-4 rounded-[16px] bg-[#FF5436]/10 border border-[#FF5436]/20 text-[11px] text-[#FF5436] dark:text-rose-300 flex items-start gap-2.5">
+              <AlertTriangle className="w-4 h-4 text-[#FF5436] shrink-0 mt-0.5" />
+              <span>
+                ⚖️ <strong>Khuyến nghị an toàn</strong>: {pccc.disclaimer}
+              </span>
             </div>
           </div>
 
           {/* 3. SIGNATURE P0: DEPOSIT TERMS PANEL */}
-          <div className="relative rounded-3xl p-[2.5px] overflow-hidden group shadow-2xl haven-beam-gold">
-            <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
-            <div className="p-6 md:p-8 rounded-[22px] atmospheric-panel haven-sheen-sweep border border-amber-500/30 space-y-5 shadow-2xl relative overflow-hidden">
-              <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
-                <div className="p-2.5 rounded-2xl bg-amber-500/20 text-amber-300 border border-amber-500/30 shadow-md shadow-amber-500/20">
-                  <Lock className="w-5 h-5 text-amber-400" />
-                </div>
-                <div>
-                  <h3 className="font-serif text-xl text-slate-100 font-bold flex items-center gap-2">
-                    <span>Điều Khoản Hoàn Tiền Cọc & Cam Kết Sanctuary</span>
-                    <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
-                  </h3>
-                  <p className="text-xs text-slate-400 font-mono">Bảo vệ quyền lợi khách thuê — Hoàn tiền minh bạch trong 72 giờ</p>
-                </div>
+          <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-[28px] p-6 md:p-8 shadow-sm space-y-5">
+            <div className="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
+              <div className="p-2.5 rounded-full bg-[#FFC83B]/20 text-[#7A5200] dark:text-[#FFC83B]">
+                <Lock className="w-5 h-5 text-[#7A5200] dark:text-[#FFC83B]" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-[#163300] dark:text-slate-100 flex items-center gap-2">
+                  <span>Điều Khoản Hoàn Tiền Cọc & Cam Kết Sanctuary</span>
+                </h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400">Bảo vệ quyền lợi khách thuê — Hoàn tiền minh bạch trong 72 giờ</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-sans">
+              <div className="p-4 rounded-[16px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700">
+                <span className="text-slate-400 uppercase text-[10px] font-bold">Mức Tiền Cọc</span>
+                <p className="text-[#163300] dark:text-slate-100 font-bold text-base mt-1">{depositTerms.months} Tháng tiền nhà</p>
+                <span className="text-[#20A05A] font-bold text-[11px] font-mono">({(depositTerms.amountVND / 1000000).toFixed(0)} Triệu VNĐ)</span>
               </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
-              <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-                <span className="text-slate-500 uppercase text-[10px]">Mức Tiền Cọc</span>
-                <p className="text-slate-100 font-semibold text-base mt-1">{depositTerms.months} Tháng tiền nhà</p>
-                <span className="text-emerald-400 text-[11px]">({(depositTerms.amountVND / 1000000).toFixed(0)} Triệu VNĐ)</span>
-              </div>
-
-              <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
-                <span className="text-slate-500 uppercase text-[10px]">Thời Gian Hoàn Tiền</span>
-                <p className="text-slate-100 font-semibold text-base mt-1">Trong vòng 72 giờ</p>
-                <span className="text-slate-400 text-[11px]">Chuyển khoản trực tiếp</span>
+              <div className="p-4 rounded-[16px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700">
+                <span className="text-slate-400 uppercase text-[10px] font-bold">Thời Gian Hoàn Tiền</span>
+                <p className="text-[#163300] dark:text-slate-100 font-bold text-base mt-1">Trong vòng 72 giờ</p>
+                <span className="text-slate-500 dark:text-slate-400 text-[11px]">Chuyển khoản trực tiếp</span>
               </div>
 
               <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
@@ -596,46 +587,44 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
         {/* Right Column: Pricing, Landlord & Rental CTA Box */}
         <div className="space-y-6">
           <div className="sticky top-24 space-y-6">
-            {/* Pricing Box with Continuous Laser Beam */}
-            <div className="relative rounded-3xl p-[2.5px] overflow-hidden group shadow-2xl haven-beam-emerald">
-              <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
-              <div className="p-6 md:p-8 rounded-[22px] atmospheric-panel haven-sheen-sweep border border-emerald-500/30 space-y-6 shadow-2xl backdrop-blur-2xl relative overflow-hidden">
-                <div>
-                  <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">Tổng Chi Phí Thực Tế</span>
-                  <div className="text-3xl font-serif font-bold text-emerald-400 mt-1">
-                    {(trueCost.totalMonthlyEstimatedVND / 1000000).toFixed(1)} Triệu
-                    <span className="text-xs text-slate-400 font-sans font-normal"> /tháng</span>
-                  </div>
-                  <div className="text-xs font-mono text-slate-400 mt-1">
-                    Giá thuê gốc: {(unit.monthlyRentVND / 1000000).toFixed(0)} Tr + Phí điện nước DV
-                  </div>
+            {/* Pricing Box - Wise Clean Surface */}
+            <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-[28px] p-6 md:p-8 shadow-sm space-y-6">
+              <div>
+                <span className="text-xs uppercase tracking-wider font-bold text-slate-400">Tổng Chi Phí Thực Tế</span>
+                <div className="text-3xl font-mono font-bold text-[#163300] dark:text-[#9FE870] mt-1">
+                  {(trueCost.totalMonthlyEstimatedVND / 1000000).toFixed(1)} Triệu
+                  <span className="text-xs text-slate-400 font-sans font-normal"> /tháng</span>
                 </div>
+                <div className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-mono">
+                  Giá thuê gốc: {(unit.monthlyRentVND / 1000000).toFixed(0)} Tr + Phí điện nước DV
+                </div>
+              </div>
 
-              <div className="pt-4 border-t border-slate-800 space-y-3">
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-3">
                 <button
                   onClick={() => onOpenBookingModal(unit)}
-                  className="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-sm font-mono transition-all shadow-lg shadow-emerald-500/30 text-center hover:scale-[1.02] active:scale-[0.98]"
+                  className="w-full py-4 rounded-full bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] font-bold text-sm transition-all shadow-sm text-center hover:scale-[1.01] active:scale-[0.98] cursor-pointer"
                 >
                   Đặt Lịch Xem Căn Hộ
                 </button>
 
-                {/* Shopee-style Direct Chat Button */}
+                {/* Direct Chat Button */}
                 <button
                   onClick={() => onOpenChat?.(unit)}
-                  className="w-full py-3.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/40 text-xs font-mono font-bold transition-all flex items-center justify-center gap-2 shadow-md hover:scale-[1.02]"
+                  className="w-full py-3.5 rounded-full bg-[#163300] hover:bg-[#204500] text-[#9FE870] border border-[#163300] text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-xs hover:scale-[1.01] cursor-pointer"
                 >
-                  <MessageSquare className="w-4 h-4 text-emerald-400" />
+                  <MessageSquare className="w-4 h-4 text-[#9FE870]" />
                   <span>Chat Trực Tiếp Với Chủ Nhà</span>
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse ml-1" />
+                  <span className="w-2 h-2 rounded-full bg-[#9FE870] animate-pulse ml-1" />
                 </button>
 
                 {/* Escrow Deposit Protection Button */}
                 {onOpenDepositEscrow && (
                   <button
                     onClick={() => onOpenDepositEscrow(unit)}
-                    className="w-full py-2.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/40 text-xs font-mono font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
+                    className="w-full py-3 rounded-full bg-[#FFC83B]/15 hover:bg-[#FFC83B]/25 text-[#7A5200] dark:text-[#FFC83B] border border-[#FFC83B]/30 text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-2xs cursor-pointer"
                   >
-                    <ShieldCheck className="w-4 h-4 text-amber-400" />
+                    <ShieldCheck className="w-4 h-4 text-[#7A5200] dark:text-[#FFC83B]" />
                     <span>Ký Quỹ Cọc Bảo Chứng (HAVEN Escrow)</span>
                   </button>
                 )}
@@ -646,42 +635,41 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
                       onShowToast('info', 'Kết nối Chuyên viên HAVEN 24/7', `Đang chuyển cuộc gọi tới chuyên viên hỗ trợ căn hộ ${unit.name || unit.id}...`);
                     }
                   }}
-                  className="w-full py-2.5 rounded-xl border border-slate-700 bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-slate-200 text-xs font-mono transition-colors flex items-center justify-center gap-2"
+                  className="w-full py-2.5 rounded-full border border-slate-200 dark:border-slate-700 bg-[#F2F5F0] hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold transition-colors flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <Phone className="w-3.5 h-3.5 text-slate-400" />
+                  <Phone className="w-3.5 h-3.5 text-slate-500" />
                   <span>Hotline Hỗ Trợ 24/7</span>
                 </button>
               </div>
 
               {/* Included Amenities Checklist */}
-              <div className="pt-4 border-t border-slate-800 space-y-2 text-xs font-mono text-slate-300">
-                <span className="text-slate-500 uppercase text-[10px]">Tiện Ích Đi Kèm</span>
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2 text-xs text-slate-600 dark:text-slate-300 font-sans">
+                <span className="text-slate-400 uppercase text-[10px] font-bold">Tiện Ích Đi Kèm</span>
                 <div className="grid grid-cols-2 gap-2 pt-1">
                   <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Chỗ đỗ ô tô
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#20A05A]" /> Chỗ đỗ ô tô
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Bãi xe máy
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#20A05A]" /> Bãi xe máy
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Điện dự phòng
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#20A05A]" /> Điện dự phòng
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Wi-Fi tốc độ cao
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#20A05A]" /> Wi-Fi tốc độ cao
                   </div>
                 </div>
               </div>
             </div>
-            </div>
 
-            {/* Landlord Profile Mini Card (D10 / C5) */}
+            {/* Landlord Profile Mini Card */}
             <div 
               onClick={() => onOpenLandlordProfile?.(landlord)}
-              className="p-5 rounded-2xl atmospheric-panel border border-slate-800 hover:border-emerald-500/50 transition-all space-y-4 shadow-xl cursor-pointer group"
+              className="p-5 rounded-[24px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-[#163300]/30 transition-all space-y-4 shadow-sm cursor-pointer group"
             >
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">Hồ Sơ Chủ Nhà Uy Tín</span>
-                <span className="px-2 py-0.5 rounded-full bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[10px] font-mono font-bold">
+                <span className="text-xs uppercase tracking-wider font-bold text-slate-400">Hồ Sơ Chủ Nhà Uy Tín</span>
+                <span className="px-3 py-0.5 rounded-full bg-[#9FE870]/20 text-[#163300] dark:text-[#9FE870] border border-[#9FE870]/30 text-[10px] font-bold">
                   ✓ Verified Host
                 </span>
               </div>
@@ -690,30 +678,30 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
                 <img
                   src={landlord.avatar}
                   alt={landlord.name}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-emerald-500/50 group-hover:border-emerald-400 transition-colors"
+                  className="w-12 h-12 rounded-full object-cover border-2 border-[#9FE870] transition-colors"
                 />
                 <div>
-                  <h4 className="text-sm font-serif font-bold text-slate-100 group-hover:text-emerald-300 transition-colors">{landlord.name}</h4>
-                  <div className="flex items-center gap-1 text-xs font-mono text-amber-400 mt-0.5">
-                    <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                  <h4 className="text-sm font-bold text-[#163300] dark:text-slate-100 group-hover:text-[#2570EB] transition-colors">{landlord.name}</h4>
+                  <div className="flex items-center gap-1 text-xs font-mono text-[#7A5200] dark:text-[#FFC83B] mt-0.5">
+                    <Star className="w-3.5 h-3.5 fill-[#FFC83B] text-[#FFC83B]" />
                     <span className="font-bold">{landlord.trustScore}★</span>
                     <span className="text-slate-400">({landlord.reviewCount} đánh giá)</span>
                   </div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-2 text-[11px] font-mono pt-2 border-t border-slate-800/80">
-                <div className="p-2 rounded-lg bg-slate-900/60 border border-slate-800">
-                  <span className="text-slate-500">Tỷ lệ phản hồi:</span>
-                  <p className="text-emerald-400 font-bold">{landlord.responseRatePercent}%</p>
+              <div className="grid grid-cols-2 gap-2 text-[11px] font-sans pt-2 border-t border-slate-100 dark:border-slate-800">
+                <div className="p-2.5 rounded-[14px] bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700">
+                  <span className="text-slate-400 text-[10px]">Tỷ lệ phản hồi:</span>
+                  <p className="text-[#20A05A] font-bold">{landlord.responseRatePercent}%</p>
                 </div>
-                <div className="p-2 rounded-lg bg-slate-900/60 border border-slate-800">
-                  <span className="text-slate-500">Tốc độ trả lời:</span>
-                  <p className="text-slate-200 font-bold">~{landlord.averageResponseMinutes} phút</p>
+                <div className="p-2.5 rounded-[14px] bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700">
+                  <span className="text-slate-400 text-[10px]">Tốc độ trả lời:</span>
+                  <p className="text-[#163300] dark:text-slate-200 font-bold">~{landlord.averageResponseMinutes} phút</p>
                 </div>
               </div>
 
-              <div className="text-[11px] font-mono text-center text-emerald-400/90 pt-1 group-hover:underline">
+              <div className="text-[11px] font-bold text-center text-[#2570EB] pt-1 group-hover:underline">
                 Xem toàn bộ hồ sơ & các căn hộ khác ➔
               </div>
             </div>

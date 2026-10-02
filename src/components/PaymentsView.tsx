@@ -48,22 +48,22 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({
     switch (status) {
       case 'paid':
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/80 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono font-bold whitespace-nowrap shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#9FE870] text-[#163300] text-[10px] font-bold whitespace-nowrap shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#163300]" />
             <span>Đã thanh toán</span>
           </span>
         );
       case 'pending':
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-950/80 text-amber-400 border border-amber-500/30 text-[10px] font-mono font-bold whitespace-nowrap shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFC83B] text-[#7A5200] text-[10px] font-bold whitespace-nowrap shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#7A5200]" />
             <span>Chờ thanh toán</span>
           </span>
         );
       case 'overdue':
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-950/80 text-rose-400 border border-rose-500/30 text-[10px] font-mono font-bold whitespace-nowrap shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FF5436] text-white text-[10px] font-bold whitespace-nowrap shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
             <span>Quá hạn nợ</span>
           </span>
         );
@@ -72,202 +72,183 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({
 
   return (
     <div className="space-y-8 text-left pb-16 animate-in fade-in duration-300">
-      {/* Header Banner with Rotating Border Beam */}
-      <div className="relative rounded-3xl p-[2.5px] overflow-hidden shadow-2xl group transition-all">
-        <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
-        <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel haven-sheen-sweep p-6 sm:p-8 space-y-6 shadow-2xl backdrop-blur-2xl">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="space-y-1">
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
-                <Receipt className="w-4 h-4 text-emerald-400" />
-                <span>Sổ Quỹ Thu Tiền Thuê Nhà & Hóa Đơn Dịch Vụ (Rent Ledger)</span>
-              </div>
-              <h1 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold">
-                Thu Tiền Nhà & Hóa Đơn
-              </h1>
-              <p className="text-sm text-slate-400">
-                Kiểm soát dòng tiền thực thu hàng tháng, tiền điện nước dịch vụ và đôn đốc thanh toán đúng hạn.
-              </p>
+      {/* Header Banner - Pure Wise Clean Surface */}
+      <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-[28px] p-6 sm:p-8 shadow-sm space-y-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="space-y-1.5">
+            <div className="inline-flex items-center gap-2 text-xs font-bold text-[#163300]/70 dark:text-[#9FE870] uppercase tracking-wider">
+              <Receipt className="w-4 h-4 text-[#2570EB]" />
+              <span>Sổ Quỹ Thu Tiền Thuê Nhà & Hóa Đơn Dịch Vụ (Rent Ledger)</span>
+            </div>
+            <h1 className="text-2xl md:text-3xl font-bold text-[#163300] dark:text-slate-100 tracking-tight">
+              Thu Tiền Nhà & Hóa Đơn
+            </h1>
+            <p className="text-sm text-slate-500 dark:text-slate-400">
+              Kiểm soát dòng tiền thực thu hàng tháng, tiền điện nước dịch vụ và đôn đốc thanh toán đúng hạn.
+            </p>
+          </div>
+        </div>
+
+        {/* 3 Cashflow Highlights - Wise KPI Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-4 border-t border-slate-100 dark:border-slate-800">
+          {/* Card 1: Đã thu */}
+          <div className="wise-kpi-card space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider">ĐÃ THU (THÁNG HIỆN TẠI)</span>
+              <span className="p-2 rounded-full bg-[#9FE870]/20 text-[#163300] dark:text-[#9FE870]">
+                <Wallet className="w-4 h-4" />
+              </span>
+            </div>
+            <div className="text-2xl lg:text-3xl font-bold font-mono text-[#163300] dark:text-[#9FE870]">
+              {(totalCollectedVND / 1000000).toFixed(0)} Triệu VNĐ
+            </div>
+            <div className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-[#20A05A]" />
+              <span>{invoices.filter(i => i.status === 'paid').length} hóa đơn đã hoàn tất thu</span>
             </div>
           </div>
 
-          {/* 3 Cashflow Highlights with Dual Rotating Beams */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-4 border-t border-slate-800/80">
-            {/* Card 1: Đã thu */}
-            <div className="group/card relative rounded-2xl p-[2px] overflow-hidden shadow-xl hover:-translate-y-1 transition-all duration-300">
-              <div className="animate-spin-beam pointer-events-none opacity-60 group-hover/card:opacity-100 transition-opacity" />
-              <div className="relative z-10 w-full h-full p-5 rounded-[14px] atmospheric-panel bg-slate-950/80 border border-emerald-500/30 group-hover/card:border-emerald-500/60 space-y-2 group-hover/card:shadow-[0_8px_30px_rgba(16,185,129,0.25)] transition-all">
-                <div className="flex items-center justify-between">
-                  <span className="text-slate-400 text-xs font-mono uppercase tracking-wider">ĐÃ THU (THÁNG HIỆN TẠI)</span>
-                  <span className="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 shadow-sm">
-                    <Wallet className="w-3.5 h-3.5" />
-                  </span>
-                </div>
-                <div className="text-2xl lg:text-3xl font-serif font-bold text-emerald-400 group-hover/card:text-emerald-300 group-hover/card:drop-shadow-[0_0_12px_rgba(52,211,153,0.8)] transition-all font-mono">
-                  {(totalCollectedVND / 1000000).toFixed(0)} Triệu VNĐ
-                </div>
-                <div className="text-[11px] text-slate-400 font-mono flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>{invoices.filter(i => i.status === 'paid').length} hóa đơn đã hoàn tất thu</span>
-                </div>
-              </div>
+          {/* Card 2: Chờ thu */}
+          <div className="wise-kpi-card space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider">CHỜ THU TRONG KỲ</span>
+              <span className="p-2 rounded-full bg-[#FFC83B]/20 text-[#7A5200] dark:text-[#FFC83B]">
+                <Clock className="w-4 h-4" />
+              </span>
             </div>
-
-            {/* Card 2: Chờ thu */}
-            <div className="group/card relative rounded-2xl p-[2px] overflow-hidden shadow-xl hover:-translate-y-1 transition-all duration-300">
-              <div className="animate-spin-beam pointer-events-none opacity-50 group-hover/card:opacity-100 transition-opacity" />
-              <div className="relative z-10 w-full h-full p-5 rounded-[14px] atmospheric-panel bg-slate-950/80 border border-amber-500/30 group-hover/card:border-amber-500/60 space-y-2 group-hover/card:shadow-[0_8px_30px_rgba(245,158,11,0.25)] transition-all">
-                <div className="flex items-center justify-between">
-                  <span className="text-slate-400 text-xs font-mono uppercase tracking-wider">CHỜ THU TRONG KỲ</span>
-                  <span className="p-1.5 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/30 shadow-sm">
-                    <Clock className="w-3.5 h-3.5" />
-                  </span>
-                </div>
-                <div className="text-2xl lg:text-3xl font-serif font-bold text-amber-400 group-hover/card:text-amber-300 group-hover/card:drop-shadow-[0_0_12px_rgba(251,191,36,0.8)] transition-all font-mono">
-                  {(pendingRevenueVND / 1000000).toFixed(0)} Triệu VNĐ
-                </div>
-                <div className="text-[11px] text-slate-400 font-mono flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                  <span>{invoices.filter(i => i.status === 'pending').length} căn hộ đến hạn kỳ này</span>
-                </div>
-              </div>
+            <div className="text-2xl lg:text-3xl font-bold font-mono text-[#7A5200] dark:text-[#FFC83B]">
+              {(pendingRevenueVND / 1000000).toFixed(0)} Triệu VNĐ
             </div>
-
-            {/* Card 3: Quá hạn */}
-            <div className="group/card relative rounded-2xl p-[2px] overflow-hidden shadow-xl hover:-translate-y-1 transition-all duration-300">
-              <div className="animate-spin-beam pointer-events-none opacity-50 group-hover/card:opacity-100 transition-opacity" />
-              <div className="relative z-10 w-full h-full p-5 rounded-[14px] atmospheric-panel bg-slate-950/80 border border-rose-500/30 group-hover/card:border-rose-500/60 space-y-2 group-hover/card:shadow-[0_8px_30px_rgba(244,63,94,0.25)] transition-all">
-                <div className="flex items-center justify-between">
-                  <span className="text-slate-400 text-xs font-mono uppercase tracking-wider">NỢ QUÁ HẠN CẦN THU HỒI</span>
-                  <span className="p-1.5 rounded-lg bg-rose-500/20 text-rose-400 border border-rose-500/30 shadow-sm">
-                    <AlertCircle className="w-3.5 h-3.5" />
-                  </span>
-                </div>
-                <div className="text-2xl lg:text-3xl font-serif font-bold text-rose-400 group-hover/card:text-rose-300 group-hover/card:drop-shadow-[0_0_12px_rgba(244,63,94,0.8)] transition-all font-mono">
-                  {(overdueRevenueVND / 1000000).toFixed(0)} Triệu VNĐ
-                </div>
-                <div className="text-[11px] text-slate-400 font-mono flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-rose-400" />
-                  <span>{invoices.filter(i => i.status === 'overdue').length} hóa đơn quá hạn cần đôn đốc</span>
-                </div>
-              </div>
+            <div className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-[#FFC83B]" />
+              <span>{invoices.filter(i => i.status === 'pending').length} căn hộ đến hạn kỳ này</span>
             </div>
           </div>
 
-          {/* Filter Tabs */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
-            <div className="flex items-center gap-2">
-              {[
-                { id: 'all', label: `Tất cả (${invoices.length})` },
-                { id: 'paid', label: 'Đã thanh toán' },
-                { id: 'pending', label: 'Chờ thanh toán' },
-                { id: 'overdue', label: 'Quá hạn' },
-              ].map(tab => (
-                <button
-                  key={tab.id}
-                  onClick={() => setStatusFilter(tab.id)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-mono transition-all border cursor-pointer ${
-                    statusFilter === tab.id
-                      ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300 font-semibold'
-                      : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
+          {/* Card 3: Quá hạn */}
+          <div className="wise-kpi-card space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider">NỢ QUÁ HẠN CẦN THU HỒI</span>
+              <span className="p-2 rounded-full bg-[#FF5436]/15 text-[#FF5436]">
+                <AlertCircle className="w-4 h-4" />
+              </span>
             </div>
+            <div className="text-2xl lg:text-3xl font-bold font-mono text-[#FF5436]">
+              {(overdueRevenueVND / 1000000).toFixed(0)} Triệu VNĐ
+            </div>
+            <div className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-[#FF5436]" />
+              <span>{invoices.filter(i => i.status === 'overdue').length} hóa đơn quá hạn cần đôn đốc</span>
+            </div>
+          </div>
+        </div>
 
-            <div className="relative">
-              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Tìm theo tên khách, phòng, mã HĐ..."
-                className="pl-9 pr-4 py-1.5 text-xs bg-slate-900/80 border border-slate-700 rounded-xl text-slate-200 placeholder:text-slate-500 font-mono focus:outline-none focus:border-emerald-500"
-              />
-            </div>
+        {/* Filter Tabs */}
+        <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
+          <div className="wise-pill-tabs overflow-x-auto max-w-full">
+            {[
+              { id: 'all', label: `Tất cả (${invoices.length})` },
+              { id: 'paid', label: 'Đã thanh toán' },
+              { id: 'pending', label: 'Chờ thanh toán' },
+              { id: 'overdue', label: 'Quá hạn' },
+            ].map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => setStatusFilter(tab.id)}
+                className={statusFilter === tab.id ? 'wise-pill-tab-active' : 'wise-pill-tab'}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="relative">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Tìm theo tên khách, phòng, mã HĐ..."
+              className="pl-10 pr-4 py-2 text-xs bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-[#163300] dark:text-slate-200 placeholder:text-slate-400 font-sans focus:outline-none focus:ring-2 focus:ring-[#9FE870]"
+            />
           </div>
         </div>
       </div>
 
-      {/* Invoices Ledger Table with Rotating Border Beam */}
-      <div className="relative rounded-3xl p-[2px] overflow-hidden shadow-2xl group/table transition-all">
-        <div className="animate-spin-beam pointer-events-none opacity-40 group-hover/table:opacity-75 transition-opacity" />
-        <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel overflow-hidden border border-slate-800/80 shadow-2xl">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs font-mono">
-              <thead className="bg-slate-900/90 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
-                <tr>
-                  <th className="p-4 whitespace-nowrap">Mã Thu / Kỳ Hạn</th>
-                  <th className="p-4 whitespace-nowrap">Người Thuê</th>
-                  <th className="p-4 whitespace-nowrap">Căn Hộ</th>
-                  <th className="p-4 whitespace-nowrap">Tiền Thuê</th>
-                  <th className="p-4 whitespace-nowrap">Dịch Vụ & Điện Nước</th>
-                  <th className="p-4 whitespace-nowrap">Tổng Thu</th>
-                  <th className="p-4 whitespace-nowrap">Trạng Thái</th>
-                  <th className="p-4 text-right whitespace-nowrap">Thao Tác</th>
+      {/* Invoices Ledger Table - Pure Wise Rounded-[24px] Card */}
+      <div className="bg-white dark:bg-slate-900 rounded-[24px] overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs">
+            <thead className="bg-[#F7FAF6] dark:bg-slate-800/90 text-[#163300] dark:text-slate-300 font-bold uppercase text-[10px] tracking-wider border-b border-slate-200 dark:border-slate-800">
+              <tr>
+                <th className="p-4 whitespace-nowrap">Mã Thu / Kỳ Hạn</th>
+                <th className="p-4 whitespace-nowrap">Người Thuê</th>
+                <th className="p-4 whitespace-nowrap">Căn Hộ</th>
+                <th className="p-4 whitespace-nowrap">Tiền Thuê</th>
+                <th className="p-4 whitespace-nowrap">Dịch Vụ & Điện Nước</th>
+                <th className="p-4 whitespace-nowrap">Tổng Thu</th>
+                <th className="p-4 whitespace-nowrap">Trạng Thái</th>
+                <th className="p-4 text-right whitespace-nowrap">Thao Tác</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-slate-700 dark:text-slate-300">
+              {filteredInvoices.map(inv => (
+                <tr
+                  key={inv.id}
+                  className="hover:bg-[#F2F5F0]/60 dark:hover:bg-slate-800/40 transition-colors cursor-pointer"
+                >
+                  <td className="p-4 whitespace-nowrap">
+                    <div className="inline-block px-3 py-1 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-bold text-[#163300] dark:text-slate-200 font-mono shadow-xs">
+                      {inv.invoiceCode}
+                    </div>
+                    <div className="text-slate-400 text-[10px] mt-1 flex items-center gap-1 font-mono">
+                      <Clock className="w-3 h-3 text-slate-400" />
+                      <span>{inv.monthYear} • Hạn {inv.dueDate}</span>
+                    </div>
+                  </td>
+                  <td className="p-4 whitespace-nowrap">
+                    <div className="font-bold text-[#163300] dark:text-slate-100 text-sm">{inv.tenantName}</div>
+                  </td>
+                  <td className="p-4 cursor-pointer" onClick={() => onSelectUnit(inv.unitId)}>
+                    <div className="font-bold text-[#163300] dark:text-slate-200 hover:text-[#2570EB] line-clamp-1">{inv.unitName}</div>
+                    <div className="text-slate-400 text-[10px] font-mono">{inv.unitId}</div>
+                  </td>
+                  <td className="p-4 text-slate-700 dark:text-slate-200 whitespace-nowrap font-mono">
+                    {(inv.rentAmountVND / 1000000).toFixed(0)} Tr
+                  </td>
+                  <td className="p-4 text-slate-500 dark:text-slate-400 whitespace-nowrap font-mono">
+                    <div>DV: {(inv.serviceFeeVND / 1000000).toFixed(1)} Tr</div>
+                    <div className="text-[10px] text-slate-400">Đ/N: {(inv.electricityWaterVND / 1000000).toFixed(1)} Tr</div>
+                  </td>
+                  <td className="p-4 font-bold text-[#163300] dark:text-[#9FE870] text-sm whitespace-nowrap font-mono">
+                    {(inv.totalAmountVND / 1000000).toFixed(1)} Triệu
+                  </td>
+                  <td className="p-4 whitespace-nowrap">
+                    {getStatusBadge(inv.status)}
+                    {inv.paidDate && (
+                      <div className="text-[10px] text-slate-400 mt-1 font-mono">Đã thu: {inv.paidDate}</div>
+                    )}
+                  </td>
+                  <td className="p-4 text-right whitespace-nowrap">
+                    {inv.status !== 'paid' ? (
+                      <button
+                        onClick={() => onMarkInvoicePaid(inv.id)}
+                        className="inline-flex items-center gap-1 px-4 py-1.5 rounded-full bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] text-xs font-bold transition-all shadow-xs cursor-pointer hover:scale-105 active:scale-95"
+                      >
+                        <Check className="w-3.5 h-3.5" />
+                        <span>Thu Tiền</span>
+                      </button>
+                    ) : (
+                      <span className="text-xs text-[#20A05A] font-bold whitespace-nowrap flex items-center justify-end gap-1">
+                        <Check className="w-3.5 h-3.5" />
+                        <span>Hoàn tất</span>
+                      </span>
+                    )}
+                  </td>
                 </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-800/60 text-slate-300">
-                {filteredInvoices.map(inv => (
-                  <tr
-                    key={inv.id}
-                    className="group/row hover:bg-slate-800/80 [data-theme='light']_:hover:bg-emerald-50/70 border-l-4 border-l-transparent hover:border-l-emerald-400 transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.18)] cursor-pointer"
-                  >
-                    <td className="p-4 whitespace-nowrap">
-                      <div className="inline-block px-2.5 py-1 rounded-lg bg-emerald-950/40 border border-emerald-500/20 group-hover/row:border-emerald-400/60 group-hover/row:bg-emerald-950/90 group-hover/row:text-emerald-300 group-hover/row:drop-shadow-[0_0_10px_rgba(52,211,153,0.9)] font-bold text-emerald-400 font-mono transition-all shadow-sm">
-                        {inv.invoiceCode}
-                      </div>
-                      <div className="text-slate-500 group-hover/row:text-slate-400 text-[10px] mt-1 transition-colors flex items-center gap-1">
-                        <Clock className="w-3 h-3 text-slate-500 group-hover/row:text-emerald-400/80" />
-                        <span>{inv.monthYear} • Hạn {inv.dueDate}</span>
-                      </div>
-                    </td>
-                    <td className="p-4 whitespace-nowrap">
-                      <div className="font-serif font-bold text-slate-100 group-hover/row:text-emerald-200 group-hover/row:drop-shadow-[0_0_8px_rgba(167,243,208,0.6)] text-sm transition-all">{inv.tenantName}</div>
-                    </td>
-                    <td className="p-4 cursor-pointer" onClick={() => onSelectUnit(inv.unitId)}>
-                      <div className="font-bold text-slate-200 group-hover/row:text-emerald-300 group-hover/row:drop-shadow-[0_0_8px_rgba(52,211,153,0.6)] transition-all line-clamp-1">{inv.unitName}</div>
-                      <div className="text-slate-500 group-hover/row:text-emerald-400/70 text-[10px] transition-colors">{inv.unitId}</div>
-                    </td>
-                    <td className="p-4 text-slate-200 group-hover/row:text-slate-100 whitespace-nowrap font-mono transition-colors">
-                      {(inv.rentAmountVND / 1000000).toFixed(0)}Tr
-                    </td>
-                    <td className="p-4 text-slate-400 whitespace-nowrap font-mono">
-                      <div>DV: {(inv.serviceFeeVND / 1000000).toFixed(1)}Tr</div>
-                      <div className="text-[10px] text-slate-500">Đ/N: {(inv.electricityWaterVND / 1000000).toFixed(1)}Tr</div>
-                    </td>
-                    <td className="p-4 font-bold text-emerald-400 group-hover/row:text-emerald-300 group-hover/row:drop-shadow-[0_0_12px_rgba(52,211,153,0.9)] text-sm whitespace-nowrap transition-all font-mono">
-                      {(inv.totalAmountVND / 1000000).toFixed(1)} Triệu
-                    </td>
-                    <td className="p-4 whitespace-nowrap">
-                      {getStatusBadge(inv.status)}
-                      {inv.paidDate && (
-                        <div className="text-[10px] text-slate-500 mt-1 font-mono">Đã thu: {inv.paidDate}</div>
-                      )}
-                    </td>
-                    <td className="p-4 text-right whitespace-nowrap">
-                      {inv.status !== 'paid' ? (
-                        <button
-                          onClick={() => onMarkInvoicePaid(inv.id)}
-                          className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500 group-hover/row:bg-emerald-500 text-emerald-300 group-hover/row:text-slate-950 border border-emerald-500/40 group-hover/row:border-emerald-400 text-[11px] font-mono transition-all font-semibold whitespace-nowrap shadow-sm group-hover/row:shadow-[0_0_12px_rgba(16,185,129,0.35)] cursor-pointer"
-                        >
-                          <Check className="w-3.5 h-3.5" />
-                          <span>Thu Tiền</span>
-                        </button>
-                      ) : (
-                        <span className="text-[11px] text-emerald-400 font-mono whitespace-nowrap flex items-center justify-end gap-1">
-                          <Check className="w-3.5 h-3.5" />
-                          <span>Hoàn tất</span>
-                        </span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

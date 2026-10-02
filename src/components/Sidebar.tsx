@@ -150,7 +150,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Navigation Items (Category label removed per user requirement so icons stay fixed) */}
-        <nav className="space-y-1 mt-2">
+        <nav className="space-y-1.5 mt-2">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeModule === item.id;
@@ -160,25 +160,27 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 onClick={() => setActiveModule(item.id)}
                 title={collapsed ? item.label : undefined}
                 className={`
-                  w-full h-11 flex items-center rounded-xl focus-ring
-                  transition-colors duration-150 relative
+                  w-full h-11 flex items-center rounded-full focus-ring
+                  transition-all duration-150 relative cursor-pointer
                   ${isActive
-                    ? 'bg-[var(--haven-emerald-muted)] text-[var(--haven-emerald-400)] font-semibold border border-[rgba(16,185,129,0.25)] shadow-xs'
-                    : 'text-[var(--haven-text-secondary)] hover:text-[var(--haven-text-primary)] hover:bg-[var(--haven-surface-hover)] border border-transparent'
+                    ? 'bg-[#9FE870] text-[#163300] font-extrabold shadow-xs'
+                    : 'text-[var(--haven-text-secondary)] [data-theme="light"]_:text-[#495E35] hover:text-[var(--haven-text-primary)] [data-theme="light"]_:hover:text-[#163300] hover:bg-[var(--haven-surface-hover)] [data-theme="light"]_:hover:bg-[#E2F7D4]/60'
                   }
                 `}
               >
                 {/* Fixed Icon Container: Exactly 44px wide, permanently at left-0 of button */}
                 <div className="w-11 h-11 flex items-center justify-center shrink-0">
-                  <Icon className={`w-5 h-5 shrink-0 ${isActive ? 'text-[var(--haven-emerald-400)]' : ''}`} />
+                  <Icon className={`w-5 h-5 shrink-0 ${isActive ? 'text-[#163300]' : ''}`} />
                 </div>
 
                 {/* Label text when expanded */}
                 {!collapsed && (
-                  <div className="flex-1 flex items-center justify-between pr-3 min-w-0 animate-in fade-in duration-150">
-                    <span className="truncate text-[13px] font-sans font-medium">{item.label}</span>
+                  <div className="flex-1 flex items-center justify-between pr-3.5 min-w-0 animate-in fade-in duration-150">
+                    <span className="truncate text-[13px] font-sans font-bold">{item.label}</span>
                     {item.badge !== undefined && (
-                      <span className="px-1.5 py-0.5 rounded-full bg-[var(--haven-emerald-500)] text-slate-950 text-[10px] font-mono font-bold min-w-[18px] text-center shadow-xs">
+                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold min-w-[20px] text-center shadow-xs ${
+                        isActive ? 'bg-[#163300] text-[#9FE870]' : 'bg-[#FF5436] text-white'
+                      }`}>
                         {item.badge}
                       </span>
                     )}
@@ -187,7 +189,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
                 {/* Badge dot when collapsed */}
                 {collapsed && item.badge !== undefined && (
-                  <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-[var(--haven-emerald-500)]" />
+                  <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-[#FF5436]" />
                 )}
               </button>
             );

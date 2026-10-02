@@ -13,13 +13,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&display=swap" rel="stylesheet">
     <style>
       html, body, #root {
-        background-color: #070A0F !important;
-        color: #F1F5F9;
         min-height: 100vh;
+      }
+      [data-theme="light"] body, [data-theme="light"] #root, .light body, .light #root {
+        background-color: #F2F5F0 !important;
+        color: #163300 !important;
+      }
+      [data-theme="dark"] body, [data-theme="dark"] #root, .dark body, .dark #root {
+        background-color: #0E1B00 !important;
+        color: #F1F5F9 !important;
       }
     </style>
   </head>
-  <body style="background-color: #070A0F; margin: 0;" class="antialiased selection:bg-emerald-500/30 selection:text-emerald-200 overflow-x-hidden">
+  <body class="antialiased selection:bg-[#9FE870] selection:text-[#163300] overflow-x-hidden">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

@@ -196,23 +196,23 @@ export const Topbar: React.FC<TopbarProps> = ({
           </div>
         </div>
 
-        {/* Center: Global Search with Microphone Voice Input (Always Present on Topbar) */}
+        {/* Center: Global Search with Microphone Voice Input */}
         <form onSubmit={handleSearchSubmit} className="flex-1 max-w-md mx-1.5 sm:mx-3">
           <div className="relative flex items-center">
-            <Search className="w-3.5 h-3.5 text-[var(--haven-text-muted)] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Search className="w-3.5 h-3.5 text-[#495E35] dark:text-emerald-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               placeholder={isVoiceListening ? "Đang lắng nghe bạn nói..." : (isAdminView ? "Tìm căn hộ, hợp đồng, cư dân..." : "Tìm thành phố, ngân sách... (Nhấn Enter)")}
-              className="w-full pl-9 pr-16 py-1.5 text-[var(--text-xs)] sm:text-[var(--text-sm)] bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] rounded-[var(--radius-lg)] text-[var(--haven-text-primary)] placeholder-[var(--haven-text-muted)] focus:outline-none focus:border-[var(--haven-border-focus)] transition-colors font-[var(--font-mono)]"
+              className="w-full pl-9 pr-16 py-2 text-xs sm:text-sm bg-white dark:bg-[#163300] border border-[#163300]/15 dark:border-[#9FE870]/30 rounded-full text-[#163300] dark:text-white placeholder-[#738565] dark:placeholder-emerald-200/60 focus:outline-none focus:ring-2 focus:ring-[#9FE870] transition-all font-sans shadow-xs"
             />
             {/* Topbar Action Buttons: Search & Voice */}
             <div className="absolute right-1.5 top-1/2 -translate-y-1/2 flex items-center gap-0.5">
               <button
                 type="submit"
                 title="Tìm kiếm ngay"
-                className="p-1.5 rounded-md text-[var(--haven-text-muted)] hover:text-emerald-400 hover:bg-[var(--haven-surface-hover)] transition-all flex items-center justify-center cursor-pointer"
+                className="p-1.5 rounded-full text-[#495E35] dark:text-emerald-300 hover:text-[#163300] hover:bg-[#E2F7D4] transition-all flex items-center justify-center cursor-pointer"
               >
                 <Search className="w-3.5 h-3.5" />
               </button>
@@ -220,10 +220,10 @@ export const Topbar: React.FC<TopbarProps> = ({
                 type="button"
                 onClick={toggleVoiceSearch}
                 title={isVoiceListening ? "Đang lắng nghe... Bấm để dừng" : "Tìm kiếm bằng giọng nói"}
-                className={`p-1.5 rounded-md transition-all flex items-center justify-center cursor-pointer ${
+                className={`p-1.5 rounded-full transition-all flex items-center justify-center cursor-pointer ${
                   isVoiceListening
-                    ? 'bg-rose-500 text-white animate-pulse scale-110 shadow-md shadow-rose-500/40 ring-1 ring-rose-400'
-                    : 'text-[var(--haven-text-muted)] hover:text-[var(--haven-emerald-400)] hover:bg-[var(--haven-surface-hover)]'
+                    ? 'bg-[#FF5436] text-white animate-pulse scale-110 shadow-md shadow-[#FF5436]/40'
+                    : 'text-[#495E35] dark:text-emerald-300 hover:text-[#163300] hover:bg-[#E2F7D4]'
                 }`}
               >
                 {isVoiceListening ? <MicOff className="w-3.5 h-3.5" /> : <Mic className="w-3.5 h-3.5" />}
@@ -232,40 +232,71 @@ export const Topbar: React.FC<TopbarProps> = ({
           </div>
         </form>
 
-        {/* Right: Normalized Control Group */}
+        {/* Right: Wise Pill Mode Switcher & Control Group */}
         <div className="flex items-center gap-2">
-          {/* Lifestyle Matchmaker AI (Consumer) */}
+          {/* Wise Quick Switcher between Tenant & Admin Ops */}
+          {onToggleAdminView && (
+            <div className="hidden xl:inline-flex items-center p-1 rounded-full bg-[#E8ECE5] dark:bg-[#122405] border border-[#163300]/10 dark:border-[#9FE870]/20">
+              <button
+                type="button"
+                onClick={() => {
+                  if (isAdminView) onToggleAdminView();
+                }}
+                className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                  !isAdminView
+                    ? 'bg-[#163300] text-white shadow-xs'
+                    : 'text-[#495E35] dark:text-emerald-200 hover:text-[#163300]'
+                }`}
+              >
+                Khách Thuê
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  if (!isAdminView) onToggleAdminView();
+                }}
+                className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                  isAdminView
+                    ? 'bg-[#9FE870] text-[#163300] shadow-xs'
+                    : 'text-[#495E35] dark:text-emerald-200 hover:text-[#163300]'
+                }`}
+              >
+                Quản Trị Sàn
+              </button>
+            </div>
+          )}
+
+          {/* Lifestyle Matchmaker AI (Consumer) - Wise Royal Violet Pill */}
           {!isAdminView && onOpenLifestyleMatchmaker && (
             <button
               onClick={onOpenLifestyleMatchmaker}
-              className="h-8 flex items-center gap-1.5 px-3 text-[var(--text-xs)] font-mono font-bold text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 rounded-[var(--radius-lg)] hover:bg-emerald-500/25 transition-all focus-ring shrink-0 hover:scale-105 active:scale-95 shadow-sm group cursor-pointer"
+              className="h-8 flex items-center gap-1.5 px-3 text-xs font-bold text-[#431A7A] bg-[#F3E8FF] border border-[#8B5CF6]/30 rounded-full hover:bg-[#E9D5FF] transition-all focus-ring shrink-0 hover:scale-105 active:scale-95 shadow-xs cursor-pointer"
               title="Khảo sát phong cách sống AI (Lifestyle Matchmaker)"
             >
-              <Compass className="w-3.5 h-3.5 text-emerald-400 group-hover:rotate-45 transition-transform" />
+              <Compass className="w-3.5 h-3.5 text-[#8B5CF6]" />
               <span className="hidden sm:inline">Khảo Sát AI</span>
             </button>
           )}
 
-          {/* Saved Units (Consumer) */}
+          {/* Saved Units (Consumer) - Wise Terracotta Coral Pill */}
           {!isAdminView && (
             <button
               onClick={onOpenSaved}
-              className="h-8 flex items-center gap-1.5 px-3 text-[var(--text-xs)] font-mono font-medium text-[var(--haven-emerald-400)] bg-[var(--haven-emerald-muted)] border border-[var(--haven-border-accent)] rounded-[var(--radius-lg)] hover:bg-[rgba(16,185,129,0.18)] transition-colors focus-ring shrink-0"
+              className="h-8 flex items-center gap-1.5 px-3 text-xs font-bold text-[#8C1F08] bg-[#FFEAE5] border border-[#FF5436]/25 rounded-full hover:bg-[#FFD6CD] transition-colors focus-ring shrink-0"
               title="Căn hộ đã lưu"
             >
-              <Bookmark className="w-3.5 h-3.5 fill-current" />
+              <Bookmark className="w-3.5 h-3.5 fill-current text-[#FF5436]" />
               <span>{savedCount}</span>
             </button>
           )}
 
-
-          {/* Quick Action (Admin) */}
+          {/* Quick Action (Admin) - Wise Spring Lime Pill */}
           {isAdminView && onOpenQuickAction && (
             <button
               onClick={onOpenQuickAction}
-              className="h-8 flex items-center gap-1.5 px-3 text-[var(--text-xs)] font-semibold text-[var(--haven-text-inverse)] bg-[var(--haven-emerald-500)] hover:bg-[var(--haven-emerald-400)] rounded-[var(--radius-lg)] transition-colors shadow-sm focus-ring shrink-0"
+              className="h-8 flex items-center gap-1.5 px-3.5 text-xs font-black text-[#163300] bg-[#9FE870] hover:bg-[#8CD85E] rounded-full transition-all shadow-xs focus-ring shrink-0 cursor-pointer hover:scale-105 active:scale-95"
             >
-              <Plus className="w-3.5 h-3.5" />
+              <Plus className="w-3.5 h-3.5 text-[#163300]" />
               <span className="hidden sm:inline">Tạo Mới</span>
             </button>
           )}
@@ -274,11 +305,11 @@ export const Topbar: React.FC<TopbarProps> = ({
           <div ref={themeRef} className="relative">
             <button
               onClick={() => setThemeDropdownOpen(!themeDropdownOpen)}
-              className="h-8 w-8 flex items-center justify-center text-[var(--haven-text-secondary)] hover:text-[var(--haven-text-primary)] bg-[var(--haven-surface-raised)] border border-[var(--haven-border)] rounded-[var(--radius-lg)] hover:bg-[var(--haven-surface-hover)] hover:border-[var(--haven-border-accent)] transition-colors focus-ring relative"
+              className="h-8 w-8 flex items-center justify-center text-[#163300] dark:text-emerald-300 bg-white dark:bg-[#163300] border border-[#163300]/15 dark:border-[#9FE870]/30 rounded-full hover:bg-[#F2F5F0] transition-colors focus-ring relative shadow-xs"
               title={`Giao diện hiện tại: ${themeMode === 'light' ? 'Sáng' : themeMode === 'dark' ? 'Tối' : 'Hệ thống'}`}
             >
-              <CurrentThemeIcon className="w-3.5 h-3.5 text-[var(--haven-emerald-400)]" />
-              <span className="absolute bottom-1 right-1 w-1.5 h-1.5 rounded-full bg-[var(--haven-emerald-400)]" />
+              <CurrentThemeIcon className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
+              <span className="absolute bottom-1 right-1 w-1.5 h-1.5 rounded-full bg-[#9FE870]" />
             </button>
 
             {themeDropdownOpen && (

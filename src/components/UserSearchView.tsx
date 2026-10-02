@@ -341,21 +341,21 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     switch (level) {
       case 'full_ownership_verified':
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-950/90 border border-emerald-400 text-emerald-300 text-[10px] font-mono font-bold backdrop-blur-md shadow-lg shadow-emerald-500/20">
-            <ShieldCheck className="w-3 h-3 text-emerald-400 shrink-0" />
+          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#2570EB] text-white text-[10px] font-bold shadow-md">
+            <ShieldCheck className="w-3 h-3 text-white shrink-0" />
             <span>✓✓ Sổ Đỏ & Ảnh Thật</span>
           </span>
         );
       case 'id_verified':
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-sky-950/90 border border-sky-400 text-sky-300 text-[10px] font-mono font-bold backdrop-blur-md shadow-lg">
-            <CheckCircle2 className="w-3 h-3 text-sky-400 shrink-0" />
+          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#9FE870] text-[#163300] text-[10px] font-black shadow-md">
+            <CheckCircle2 className="w-3 h-3 text-[#163300] shrink-0" />
             <span>✓ Xác Minh CCCD</span>
           </span>
         );
       default:
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-900/90 border border-slate-700 text-slate-400 text-[10px] font-mono">
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white/90 text-[#495E35] border border-[#163300]/15 text-[10px] font-semibold">
             <span>Chờ Xác Minh</span>
           </span>
         );
@@ -494,10 +494,10 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                 key={c}
                 type="button"
                 onClick={() => setCityFilter(c)}
-                className={`px-3 py-1 rounded-xl transition-all whitespace-nowrap shrink-0 font-semibold border ${
+                className={`px-3.5 py-1.5 rounded-full transition-all whitespace-nowrap shrink-0 font-bold text-xs border cursor-pointer ${
                   isSelected
-                    ? 'bg-emerald-500 text-slate-950 border-emerald-400 shadow-sm shadow-emerald-500/20'
-                    : 'bg-slate-900/60 [data-theme="light"]_:bg-slate-100 border-slate-800/80 [data-theme="light"]_:border-slate-200 text-slate-300 [data-theme="light"]_:text-slate-700 hover:text-emerald-400 hover:border-emerald-500/40'
+                    ? 'bg-[#9FE870] text-[#163300] border-[#9FE870] shadow-xs'
+                    : 'bg-white dark:bg-[#163300] border-[#163300]/15 dark:border-[#9FE870]/30 text-[#495E35] dark:text-emerald-200 hover:text-[#163300] hover:border-[#163300]'
                 }`}
               >
                 {label}
@@ -788,13 +788,13 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                       />
                     </div>
 
-                    {/* Inner Container: Translucent atmospheric-panel */}
+                    {/* Inner Container: Wise Pure Card */}
                     <div
-                      className="relative z-10 w-full h-full rounded-[22px] overflow-hidden flex flex-col justify-between atmospheric-panel border border-slate-800/80 light:border-slate-200"
+                      className="wise-card relative z-10 w-full h-full rounded-[24px] overflow-hidden flex flex-col justify-between bg-white dark:bg-[#142605] border border-[#163300]/10 dark:border-[#9FE870]/20 shadow-sm hover:shadow-xl transition-all"
                     >
                       {/* Image Area - TALL & MAJESTIC (h-64 sm:h-72) */}
                       <div
-                        className="relative h-64 sm:h-72 bg-slate-900 cursor-pointer overflow-hidden rounded-t-[22.5px]"
+                        className="relative h-64 sm:h-72 bg-[#F2F5F0] dark:bg-[#0E1B00] cursor-pointer overflow-hidden rounded-t-[23px]"
                         onClick={() => onSelectUnit(unit.id)}
                       >
                       <SmartImage
@@ -804,22 +804,22 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                         quality={75}
                         className="transition-transform duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
 
                       {/* Top Badges Overlay */}
                       <div className="absolute top-3 left-3 right-3 flex items-start justify-between gap-2 pointer-events-none">
                         <div className="flex flex-col gap-1.5 items-start pointer-events-auto">
                           {renderVerificationBadge(unit.verificationLevel)}
                           {score > 70 && (
-                            <span className="px-2.5 py-0.5 rounded-full bg-emerald-950/90 backdrop-blur-md border border-emerald-400 text-emerald-300 text-[10px] font-mono font-bold shadow-md always-white always-dark">
+                            <span className="px-3 py-1 rounded-full bg-[#9FE870] text-[#163300] text-[10px] font-black shadow-md">
                               {score}% Khớp AI
                             </span>
                           )}
                         </div>
 
                         <div className="flex items-center gap-1.5 pointer-events-auto">
-                          <span className="px-2.5 py-1 rounded-full bg-slate-950/90 backdrop-blur-md border border-amber-500/40 text-amber-300 text-[11px] font-mono font-bold flex items-center gap-0.5 shadow-md always-white always-dark">
-                            <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+                          <span className="px-2.5 py-1 rounded-full bg-[#FFF6DB] border border-[#FFC83B]/40 text-[#7A5200] text-[11px] font-bold flex items-center gap-0.5 shadow-md">
+                            <Star className="w-3 h-3 fill-[#FFC83B] text-[#FFC83B]" />
                             <span>{unit.landlord?.trustScore || 4.8}★</span>
                           </span>
 
@@ -828,10 +828,10 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                               e.stopPropagation();
                               onToggleSaveUnit(unit.id);
                             }}
-                            className={`p-2 rounded-full backdrop-blur-md border transition-all shadow-md always-white ${
+                            className={`p-2 rounded-full backdrop-blur-md border transition-all shadow-md cursor-pointer ${
                               isSaved
-                                ? 'bg-emerald-500 border-emerald-400 text-white scale-105'
-                                : 'bg-slate-950/70 border-white/20 text-white hover:bg-slate-950/90'
+                                ? 'bg-[#FF5436] border-[#FF5436] text-white scale-105'
+                                : 'bg-black/40 border-white/20 text-white hover:bg-black/60'
                             }`}
                             title={isSaved ? 'Đã lưu' : 'Lưu để so sánh'}
                           >
@@ -841,19 +841,19 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                       </div>
 
                       {/* Bottom Info Bar Overlay */}
-                      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono text-white always-white">
-                        <span className="flex items-center gap-1.5 text-[11px] truncate max-w-[65%] font-medium">
-                          <MapPin className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                          <span className="truncate">{unit.district}, {getCityDisplayName(unit.city)}</span>
+                      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white font-medium always-white">
+                        <span className="flex items-center gap-1.5 text-[11px] truncate max-w-[65%]">
+                          <MapPin className="w-3.5 h-3.5 text-[#9FE870] shrink-0" />
+                          <span className="truncate drop-shadow-sm">{unit.district}, {getCityDisplayName(unit.city)}</span>
                         </span>
                         
                         <div className="flex items-center gap-1.5 text-[10px] shrink-0">
                           {unit.pcccReport?.inspectionCertificateStatus === 'certified' && (
-                            <span className="px-2 py-0.5 rounded bg-rose-950/80 border border-rose-500/40 text-rose-300 flex items-center gap-0.5 always-white always-dark font-semibold">
-                              <Flame className="w-2.5 h-2.5 text-rose-400" /> PCCC ✓
+                            <span className="px-2.5 py-0.5 rounded-full bg-[#FFEAE5] border border-[#FF5436]/30 text-[#8C1F08] flex items-center gap-0.5 font-bold shadow-xs">
+                              <Flame className="w-2.5 h-2.5 text-[#FF5436]" /> PCCC ✓
                             </span>
                           )}
-                          <span className="px-2 py-0.5 rounded bg-slate-950/80 border border-white/20 always-white always-dark">
+                          <span className="px-2.5 py-0.5 rounded-full bg-black/60 text-white border border-white/20 backdrop-blur-md font-bold">
                             Tầng {unit.floor}
                           </span>
                         </div>
@@ -863,11 +863,11 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                     {/* Content Details */}
                     <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                       <div className="space-y-1.5 cursor-pointer" onClick={() => onSelectUnit(unit.id)}>
-                        <h3 className="font-serif text-lg font-bold text-[var(--haven-text-primary)] hover:text-emerald-500 transition-colors line-clamp-1">
+                        <h3 className="text-lg font-extrabold text-[#163300] dark:text-white hover:text-[#2570EB] transition-colors line-clamp-1">
                           {unit.name || unit.id}
                         </h3>
 
-                        <div className="flex items-center gap-2 text-xs font-mono text-[var(--haven-text-tertiary)]">
+                        <div className="flex items-center gap-2 text-xs font-semibold text-[#495E35] dark:text-emerald-200/80">
                           <span>{unit.bedrooms} PN</span>
                           <span>•</span>
                           <span>{unit.bathrooms} WC</span>
@@ -877,35 +877,35 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                       </div>
 
                       {/* AI Match Reasons */}
-                      <div className="p-3 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-xs space-y-1.5">
-                        <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 uppercase tracking-wider font-bold flex items-center gap-1">
-                          <Sparkles className="w-3 h-3 text-emerald-500 shrink-0" />
+                      <div className="p-3 rounded-2xl bg-[#E2F7D4]/50 dark:bg-[#163300]/40 border border-[#9FE870]/40 text-xs space-y-1.5">
+                        <span className="text-[10px] text-[#163300] dark:text-[#9FE870] uppercase tracking-wider font-extrabold flex items-center gap-1">
+                          <Sparkles className="w-3 h-3 text-[#20A05A] shrink-0" />
                           <span>Điểm Khớp Nhu Cầu:</span>
                         </span>
-                        <ul className="space-y-1 text-slate-700 dark:text-slate-300 font-sans text-xs">
+                        <ul className="space-y-1 text-[#495E35] dark:text-slate-200 text-xs">
                           {(matchReasons.length > 0 ? matchReasons.slice(0, 2) : [
                             'Đã kiểm định an toàn PCCC & Pháp lý',
                             unit.hasCarParking ? 'Có chỗ đỗ ô tô hầm thông minh' : 'Tòa nhà văn minh, an ninh 24/7'
                           ]).map((reason, idx) => (
                             <li key={idx} className="flex items-center gap-1.5 leading-snug">
-                              <Check className="w-3 h-3 text-emerald-500 shrink-0" />
-                              <span className="truncate">{reason}</span>
+                              <Check className="w-3 h-3 text-[#20A05A] shrink-0" />
+                              <span className="truncate font-medium">{reason}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
 
                       {/* True Cost Breakdown vs Rent Pricing */}
-                      <div className="pt-3 border-t border-[var(--haven-border)] flex items-center justify-between gap-2">
+                      <div className="pt-3.5 border-t border-[#163300]/10 dark:border-[#9FE870]/20 flex items-center justify-between gap-2">
                         <div className="min-w-0">
                           <div className="flex items-baseline gap-1 flex-wrap">
-                            <span className="text-xl font-serif font-bold text-emerald-600 dark:text-emerald-400">
+                            <span className="text-2xl font-black text-[#163300] dark:text-[#9FE870] tracking-tight">
                               {(trueCostTotal / 1000000).toFixed(1)} Tr
                             </span>
-                            <span className="text-xs text-[var(--haven-text-tertiary)] font-mono">/tháng</span>
+                            <span className="text-xs text-[#738565] dark:text-emerald-200/60 font-medium">/tháng</span>
                           </div>
                           
-                          <div className="text-[10px] font-mono text-[var(--haven-text-muted)] truncate mt-0.5">
+                          <div className="text-[11px] font-semibold text-[#738565] truncate mt-0.5">
                             Gốc: {(unit.monthlyRentVND / 1000000).toFixed(0)}Tr (+{(extraFees / 1000000).toFixed(1)}Tr phí)
                           </div>
                         </div>
@@ -917,25 +917,23 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                                 e.stopPropagation();
                                 onOpenVirtualTour(unit);
                               }}
-                              className="px-2.5 py-2.5 rounded-xl bg-purple-950/80 hover:bg-purple-900 border border-purple-500/40 text-purple-300 text-xs font-mono font-bold transition-all flex items-center gap-1 shadow-md hover:scale-105 active:scale-95"
+                              className="px-3 py-2 rounded-full bg-[#F3E8FF] hover:bg-[#E9D5FF] border border-[#8B5CF6]/30 text-[#431A7A] text-xs font-bold transition-all flex items-center gap-1 shadow-xs hover:scale-105 active:scale-95 cursor-pointer"
                               title="Xem 3D & Tour ảo 360°"
                             >
-                              <Box className="w-3.5 h-3.5 text-purple-400" />
+                              <Box className="w-3.5 h-3.5 text-[#8B5CF6]" />
                               <span className="hidden sm:inline text-[11px]">3D</span>
                             </button>
                           )}
                           <button
                             onClick={() => onSelectUnit(unit.id)}
-                            className="group/btn relative px-3.5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-500 hover:via-teal-400 hover:to-cyan-400 text-white font-mono text-xs font-bold transition-all duration-300 shadow-md shadow-emerald-500/25 hover:shadow-cyan-400/50 hover:scale-105 active:scale-95 shrink-0 whitespace-nowrap cursor-pointer flex items-center gap-1.5 border border-cyan-400/40 hover:border-cyan-300 ring-1 ring-cyan-500/20 hover:ring-cyan-400/70 overflow-hidden"
+                            className="px-5 py-2.5 rounded-full bg-[#163300] hover:bg-[#223D0D] text-white font-extrabold text-xs transition-all shadow-xs hover:scale-105 active:scale-95 shrink-0 whitespace-nowrap cursor-pointer flex items-center gap-1.5"
                           >
-                            <span className="relative z-10 flex items-center gap-1">
-                              Chi Tiết
-                              <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5" />
-                            </span>
-                            <span className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/25 to-transparent pointer-events-none" />
+                            <span>Chi Tiết</span>
+                            <ArrowRight className="w-3.5 h-3.5" />
                           </button>
                         </div>
                       </div>
+                    </div>
                     </div>
                     </div>
                   </div>

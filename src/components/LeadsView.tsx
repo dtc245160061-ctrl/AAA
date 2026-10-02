@@ -39,17 +39,17 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
   const getStatusBadge = (status: LeadStatus) => {
     switch (status) {
       case 'new':
-        return <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[11px] font-mono font-medium">Yêu cầu mới</span>;
+        return <span className="wise-badge-coral font-bold text-xs">Yêu cầu mới</span>;
       case 'viewing_scheduled':
-        return <span className="px-2.5 py-1 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30 text-[11px] font-mono font-medium">Đã hẹn xem nhà</span>;
+        return <span className="wise-badge-cobalt font-bold text-xs">Đã hẹn xem</span>;
       case 'approved':
-        return <span className="px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[11px] font-mono font-medium">Đã duyệt hồ sơ</span>;
+        return <span className="wise-badge-gold font-bold text-xs">Đã duyệt hồ sơ</span>;
       case 'converted':
-        return <span className="px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/30 text-[11px] font-mono font-medium">Đã ký hợp đồng</span>;
+        return <span className="wise-badge-lime font-bold text-xs">Đã ký hợp đồng</span>;
       case 'rejected':
-        return <span className="px-2.5 py-1 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30 text-[11px] font-mono font-medium">Từ chối / Hủy</span>;
+        return <span className="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 border border-slate-300 text-xs font-bold">Từ chối / Hủy</span>;
       default:
-        return <span className="px-2.5 py-1 rounded-full bg-slate-800 text-slate-400 text-[11px] font-mono">{status}</span>;
+        return <span className="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold">{status}</span>;
     }
   };
 
@@ -60,41 +60,41 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
   return (
     <div className="space-y-8 text-left pb-16 animate-in fade-in duration-300">
       {/* Header Banner */}
-      <div className="p-8 rounded-3xl atmospheric-panel border border-emerald-500/30 space-y-6 shadow-2xl backdrop-blur-2xl">
+      <div className="p-6 md:p-8 rounded-3xl bg-white dark:bg-[#142605] border border-[#163300]/10 dark:border-[#9FE870]/20 space-y-6 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="space-y-1">
-            <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
-              <Users className="w-4 h-4 text-emerald-400" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E2F7D4] dark:bg-[#163300] border border-[#9FE870]/40 text-xs font-bold text-[#163300] dark:text-[#9FE870] uppercase tracking-wider">
+              <Users className="w-4 h-4 text-[#20A05A]" />
               <span>Quản Lý Yêu Cầu Thuê & Lịch Hẹn Xem Phòng (Leads Pipeline)</span>
             </div>
-            <h1 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold">
+            <h1 className="text-2xl md:text-3xl font-black text-[#163300] dark:text-white tracking-tight">
               Khách Tiềm Năng & Lịch Hẹn Trực Tuyến
             </h1>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-[#495E35] dark:text-emerald-200/80 font-medium">
               Tiếp nhận và xử lý yêu cầu đặt lịch xem phòng gửi trực tiếp từ Cổng Khách Thuê HAVEN.
             </p>
           </div>
 
-          {/* Quick Metrics */}
+          {/* Quick Metrics with Flag Accents */}
           <div className="flex items-center gap-3">
-            <div className="px-4 py-2.5 rounded-2xl bg-slate-900/80 border border-emerald-500/30 text-center">
-              <div className="text-xl font-serif font-bold text-emerald-400">{newCount}</div>
-              <div className="text-[10px] font-mono text-slate-400 uppercase">Yêu cầu mới</div>
+            <div className="px-4 py-2.5 rounded-2xl bg-[#FFEAE5] dark:bg-[#8C1F08]/30 border border-[#FF5436]/30 text-center min-w-[90px]">
+              <div className="text-2xl font-black text-[#8C1F08] dark:text-[#FF5436]">{newCount}</div>
+              <div className="text-[10px] font-bold text-[#8C1F08] dark:text-[#FF5436] uppercase">Yêu cầu mới</div>
             </div>
-            <div className="px-4 py-2.5 rounded-2xl bg-slate-900/80 border border-sky-500/30 text-center">
-              <div className="text-xl font-serif font-bold text-sky-400">{scheduledCount}</div>
-              <div className="text-[10px] font-mono text-slate-400 uppercase">Đã hẹn xem</div>
+            <div className="px-4 py-2.5 rounded-2xl bg-[#EBF2FF] dark:bg-[#0F2E6B]/30 border border-[#2570EB]/30 text-center min-w-[90px]">
+              <div className="text-2xl font-black text-[#0F2E6B] dark:text-[#2570EB]">{scheduledCount}</div>
+              <div className="text-[10px] font-bold text-[#0F2E6B] dark:text-[#2570EB] uppercase">Đã hẹn xem</div>
             </div>
-            <div className="px-4 py-2.5 rounded-2xl bg-slate-900/80 border border-amber-500/30 text-center">
-              <div className="text-xl font-serif font-bold text-amber-400">{approvedCount}</div>
-              <div className="text-[10px] font-mono text-slate-400 uppercase">Chờ ký HĐ</div>
+            <div className="px-4 py-2.5 rounded-2xl bg-[#FFF6DB] dark:bg-[#7A5200]/30 border border-[#FFC83B]/30 text-center min-w-[90px]">
+              <div className="text-2xl font-black text-[#7A5200] dark:text-[#FFC83B]">{approvedCount}</div>
+              <div className="text-[10px] font-bold text-[#7A5200] dark:text-[#FFC83B] uppercase">Chờ ký HĐ</div>
             </div>
           </div>
         </div>
 
-        {/* Filter Controls */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-800/80">
-          <div className="flex flex-wrap items-center gap-2">
+        {/* Filter Controls with Wise Pill Tabs */}
+        <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#163300]/10 dark:border-[#9FE870]/20">
+          <div className="wise-pill-tabs flex-wrap">
             {[
               { id: 'all', label: `Tất cả (${leads.length})` },
               { id: 'new', label: `Mới nhận (${newCount})` },
@@ -105,10 +105,8 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
               <button
                 key={tab.id}
                 onClick={() => setSelectedFilter(tab.id)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-mono transition-all border ${
-                  selectedFilter === tab.id
-                    ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300 font-semibold'
-                    : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200'
+                className={`wise-pill-tab cursor-pointer ${
+                  selectedFilter === tab.id ? 'wise-pill-tab-active' : ''
                 }`}
               >
                 {tab.label}
@@ -116,23 +114,19 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
             ))}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="wise-pill-tabs">
             <button
               onClick={() => setActiveTab('pipeline')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all border ${
-                activeTab === 'pipeline'
-                  ? 'bg-slate-800 border-slate-700 text-white font-medium'
-                  : 'bg-slate-900/60 border-slate-800 text-slate-400'
+              className={`wise-pill-tab cursor-pointer ${
+                activeTab === 'pipeline' ? 'wise-pill-tab-active' : ''
               }`}
             >
               Dạng Thẻ (Pipeline)
             </button>
             <button
               onClick={() => setActiveTab('table')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all border ${
-                activeTab === 'table'
-                  ? 'bg-slate-800 border-slate-700 text-white font-medium'
-                  : 'bg-slate-900/60 border-slate-800 text-slate-400'
+              className={`wise-pill-tab cursor-pointer ${
+                activeTab === 'table' ? 'wise-pill-tab-active' : ''
               }`}
             >
               Dạng Bảng (Table)
@@ -153,32 +147,41 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
           {filteredLeads.map(lead => (
             <div
               key={lead.id}
-              className="group relative rounded-3xl p-[1.5px] overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-1.5"
+              className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200/90 dark:border-slate-800 p-5 shadow-sm hover:shadow-md hover:border-[#163300]/30 dark:hover:border-slate-700 transition-all duration-200 flex flex-col justify-between space-y-4"
             >
-              <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-60 group-hover:opacity-100" />
-              <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel haven-sheen-sweep border border-slate-800/80 [data-theme='light']_:border-slate-200/80 group-hover:border-emerald-500/40 p-5 space-y-4 flex flex-col justify-between">
-                <div className="space-y-3">
-                  {/* Header Row: Status & Timestamp */}
-                  <div className="flex items-center justify-between">
-                    {getStatusBadge(lead.status)}
-                    <span className="text-[11px] font-mono text-slate-400 [data-theme='light']_:text-slate-500 flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
-                      {lead.createdAt}
-                    </span>
-                  </div>
+              <div className="space-y-3.5">
+                {/* Header Row: Status & Timestamp */}
+                <div className="flex items-center justify-between">
+                  {getStatusBadge(lead.status)}
+                  <span className="text-[11px] font-mono text-slate-400 dark:text-slate-500 flex items-center gap-1">
+                    <Clock className="w-3 h-3" />
+                    {lead.createdAt}
+                  </span>
+                </div>
 
-                  {/* Customer Identity with Avatar */}
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500/20 to-teal-500/30 border border-emerald-500/40 text-emerald-400 font-serif font-bold text-base flex items-center justify-center shrink-0">
-                      {lead.customerName.charAt(0)}
+                {/* Customer Identity with Avatar */}
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-[#163300] text-[#9FE870] font-bold text-sm flex items-center justify-center shrink-0">
+                    {lead.customerName.charAt(0)}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-base font-bold text-[#163300] dark:text-slate-100 truncate">
+                      {lead.customerName}
+                    </h3>
+                    <div className="flex items-center gap-2 mt-0.5 text-xs text-slate-500 dark:text-slate-400 flex-wrap">
+                      <a href={`tel:${lead.phone}`} className="flex items-center gap-1 text-[#2570EB] font-bold hover:underline">
+                        <Phone className="w-3 h-3" />
+                        <span>{lead.phone}</span>
+                      </a>
+                      {lead.email && (
+                        <span className="flex items-center gap-1 text-slate-400 truncate max-w-[140px]">
+                          <Mail className="w-3.5 h-3.5 text-slate-400" />
+                          <span className="truncate">{lead.email}</span>
+                        </span>
+                      )}
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="text-base font-serif font-bold text-slate-100 [data-theme='light']_:text-slate-900 truncate">
-                        {lead.customerName}
-                      </h3>
-                      <div className="flex items-center gap-2 mt-0.5 text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-600 flex-wrap">
-                        <a href={`tel:${lead.phone}`} className="flex items-center gap-1 text-emerald-400 [data-theme='light']_:text-emerald-700 hover:underline">
-                          <Phone className="w-3 h-3" />
+                  </div>
+                </div>
                           <span>{lead.phone}</span>
                         </a>
                         {lead.email && (
@@ -194,32 +197,32 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
                   {/* Target Apartment Details */}
                   <div 
                     onClick={() => onSelectUnit(lead.unitId)}
-                    className="p-3 rounded-xl bg-slate-950/60 [data-theme='light']_:bg-slate-50/90 border border-slate-800/80 [data-theme='light']_:border-slate-200 hover:border-emerald-500/40 cursor-pointer transition-all space-y-1"
+                    className="p-3.5 rounded-[16px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 hover:border-[#163300]/30 dark:hover:border-[#9FE870]/40 cursor-pointer transition-all space-y-1.5"
                   >
-                    <div className="text-[10px] font-mono text-slate-400 [data-theme='light']_:text-slate-500 uppercase flex items-center gap-1">
-                      <Building className="w-3 h-3 text-emerald-400" />
-                      <span>Căn Hộ Yêu Cầu Thuê</span>
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-[#163300]/60 dark:text-slate-400 flex items-center gap-1.5">
+                      <Building className="w-3.5 h-3.5 text-[#2570EB]" />
+                      <span>Căn Hộ Đăng Ký Thuê</span>
                     </div>
-                    <h4 className="text-xs font-serif font-bold text-slate-100 [data-theme='light']_:text-slate-900 line-clamp-1">{lead.unitName}</h4>
-                    <div className="text-xs font-mono font-bold text-emerald-400 [data-theme='light']_:text-emerald-700">
-                      {(lead.unitPriceVND / 1000000).toFixed(0)}Tr/tháng
+                    <h4 className="text-xs font-bold text-[#163300] dark:text-slate-100 line-clamp-1">{lead.unitName}</h4>
+                    <div className="text-xs font-mono font-bold text-[#163300] dark:text-[#9FE870]">
+                      {(lead.unitPriceVND / 1000000).toFixed(0)} Triệu / tháng
                     </div>
                   </div>
 
                   {/* Requirements / Notes */}
-                  <div className="space-y-1 text-xs font-sans">
-                    <div className="flex items-center gap-2 text-slate-400 [data-theme='light']_:text-slate-600 font-mono text-[11px]">
-                      <Calendar className="w-3.5 h-3.5 text-sky-400" />
-                      <span>Dự kiến vào ở: <strong className="text-slate-200 [data-theme='light']_:text-slate-800">{lead.desiredMoveInDate || 'Càng sớm càng tốt'}</strong></span>
+                  <div className="space-y-1.5 text-xs">
+                    <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-[11px]">
+                      <Calendar className="w-3.5 h-3.5 text-[#2570EB]" />
+                      <span>Dự kiến vào ở: <strong className="text-[#163300] dark:text-slate-200">{lead.desiredMoveInDate || 'Càng sớm càng tốt'}</strong></span>
                     </div>
                     {lead.viewingDate && (
-                      <div className="flex items-center gap-2 text-slate-400 [data-theme='light']_:text-slate-600 font-mono text-[11px]">
-                        <Clock className="w-3.5 h-3.5 text-amber-400" />
-                        <span>Lịch hẹn xem: <strong className="text-amber-300 [data-theme='light']_:text-amber-700">{lead.viewingDate}</strong></span>
+                      <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-[11px]">
+                        <Clock className="w-3.5 h-3.5 text-[#7A5200] dark:text-[#FFC83B]" />
+                        <span>Lịch hẹn xem: <strong className="text-[#7A5200] dark:text-[#FFC83B]">{lead.viewingDate}</strong></span>
                       </div>
                     )}
                     {lead.notes && (
-                      <p className="text-slate-300 [data-theme='light']_:text-slate-700 text-xs italic bg-slate-950/40 [data-theme='light']_:bg-slate-100/80 p-2.5 rounded-lg border border-slate-800/80 [data-theme='light']_:border-slate-200 mt-1">
+                      <p className="text-slate-600 dark:text-slate-300 text-xs italic bg-[#F2F5F0]/60 dark:bg-slate-800/40 p-2.5 rounded-[12px] border border-slate-200 dark:border-slate-700/80 mt-1">
                         "{lead.notes}"
                       </p>
                     )}
@@ -227,19 +230,19 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
                 </div>
 
                 {/* Action Buttons */}
-                <div className="pt-3 border-t border-slate-800/80 [data-theme='light']_:border-slate-200/80 flex flex-wrap gap-2">
+                <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-2">
                   {lead.status === 'new' && (
                     <>
                       <button
                         onClick={() => onUpdateLeadStatus(lead.id, 'viewing_scheduled')}
-                        className="flex-1 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-mono text-xs font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer"
+                        className="flex-1 py-2 px-3 rounded-full bg-[#2570EB] hover:bg-[#1d58bc] text-white font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
                       >
                         <Calendar className="w-3.5 h-3.5" />
                         <span>Hẹn Xem Nhà</span>
                       </button>
                       <button
                         onClick={() => onUpdateLeadStatus(lead.id, 'approved')}
-                        className="py-2 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-semibold transition-all cursor-pointer"
+                        className="py-2 px-3.5 rounded-full bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] font-bold text-xs transition-all cursor-pointer shadow-sm"
                         title="Duyệt hồ sơ"
                       >
                         <Check className="w-4 h-4" />
@@ -251,14 +254,14 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
                     <>
                       <button
                         onClick={() => onUpdateLeadStatus(lead.id, 'approved')}
-                        className="flex-1 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-mono text-xs font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer"
+                        className="flex-1 py-2 px-3 rounded-full bg-[#FFC83B] hover:bg-[#f0ba2b] text-[#7A5200] font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
                       >
                         <CheckCircle2 className="w-3.5 h-3.5" />
                         <span>Đã Xem & Duyệt</span>
                       </button>
                       <button
                         onClick={() => onUpdateLeadStatus(lead.id, 'rejected')}
-                        className="py-2 px-3 rounded-xl bg-slate-800 hover:bg-rose-950 text-slate-400 hover:text-rose-300 font-mono text-xs transition-all cursor-pointer"
+                        className="py-2 px-3.5 rounded-full bg-slate-100 hover:bg-rose-50 text-slate-500 hover:text-rose-600 dark:bg-slate-800 dark:text-slate-400 font-bold text-xs transition-all cursor-pointer"
                         title="Từ chối"
                       >
                         <XCircle className="w-4 h-4" />
@@ -269,17 +272,17 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
                   {lead.status === 'approved' && (
                     <button
                       onClick={() => onCreateContractFromLead(lead)}
-                      className="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-lg shadow-emerald-500/20 cursor-pointer"
+                      className="w-full py-2.5 rounded-full bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
                     >
                       <FileText className="w-4 h-4" />
-                      <span>Lập Hợp Đồng Thuê</span>
+                      <span>Lập Hợp Đồng Thuê (Wise Escrow)</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   )}
 
                   {lead.status === 'converted' && (
-                    <div className="w-full py-2 rounded-xl bg-purple-950/40 border border-purple-500/30 text-purple-300 font-mono text-xs text-center font-medium">
-                      ✓ Đã chuyển thành Hợp đồng thuê
+                    <div className="w-full py-2 rounded-full bg-[#8B5CF6]/10 border border-[#8B5CF6]/20 text-[#8B5CF6] dark:text-[#a78bfa] text-xs text-center font-bold">
+                      ✓ Đã chuyển đổi thành Hợp Đồng Thuê
                     </div>
                   )}
                 </div>
@@ -289,10 +292,10 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
         </div>
       ) : (
         /* Table View */
-        <div className="atmospheric-panel rounded-2xl overflow-hidden border border-slate-800 shadow-xl">
+        <div className="bg-white dark:bg-slate-900 rounded-[24px] overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs font-mono">
-              <thead className="bg-slate-900/90 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
+            <table className="w-full text-left text-xs">
+              <thead className="bg-[#F7FAF6] dark:bg-slate-800/90 text-[#163300] dark:text-slate-300 font-bold uppercase text-[10px] tracking-wider border-b border-slate-200 dark:border-slate-800">
                 <tr>
                   <th className="p-4">Khách Hàng</th>
                   <th className="p-4">Căn Hộ</th>
@@ -302,34 +305,34 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
                   <th className="p-4 text-right">Thao Tác</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60 text-slate-300">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-slate-700 dark:text-slate-300">
                 {filteredLeads.map(lead => (
-                  <tr key={lead.id} className="hover:bg-slate-900/40 transition-colors">
+                  <tr key={lead.id} className="hover:bg-[#F2F5F0]/50 dark:hover:bg-slate-800/40 transition-colors">
                     <td className="p-4">
-                      <div className="font-serif font-bold text-slate-100 text-sm">{lead.customerName}</div>
-                      <div className="text-slate-400">{lead.phone}</div>
+                      <div className="font-bold text-[#163300] dark:text-slate-100 text-sm">{lead.customerName}</div>
+                      <div className="text-slate-500 font-mono text-[11px]">{lead.phone}</div>
                     </td>
                     <td className="p-4">
-                      <div className="font-bold text-slate-200 line-clamp-1">{lead.unitName}</div>
-                      <div className="text-slate-500">{lead.unitId}</div>
+                      <div className="font-bold text-[#163300] dark:text-slate-200 line-clamp-1">{lead.unitName}</div>
+                      <div className="text-slate-400 font-mono text-[11px]">{lead.unitId}</div>
                     </td>
-                    <td className="p-4 text-emerald-400 font-bold whitespace-nowrap">
-                      {(lead.unitPriceVND / 1000000).toFixed(0)}Tr/tháng
+                    <td className="p-4 text-[#163300] dark:text-[#9FE870] font-bold font-mono whitespace-nowrap">
+                      {(lead.unitPriceVND / 1000000).toFixed(0)} Tr/tháng
                     </td>
-                    <td className="p-4 text-slate-300">{lead.desiredMoveInDate}</td>
+                    <td className="p-4 text-slate-600 dark:text-slate-300">{lead.desiredMoveInDate}</td>
                     <td className="p-4">{getStatusBadge(lead.status)}</td>
                     <td className="p-4 text-right">
                       {lead.status === 'approved' ? (
                         <button
                           onClick={() => onCreateContractFromLead(lead)}
-                          className="px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold"
+                          className="px-4 py-1.5 rounded-full bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] font-bold text-xs transition-all shadow-sm"
                         >
                           Lập Hợp Đồng
                         </button>
                       ) : (
                         <button
                           onClick={() => onUpdateLeadStatus(lead.id, 'approved')}
-                          className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200"
+                          className="px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-[#163300] dark:text-slate-200 font-bold text-xs transition-all"
                         >
                           Duyệt
                         </button>

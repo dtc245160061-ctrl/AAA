@@ -191,15 +191,15 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
                 />
               </div>
 
-              {/* Card Inner Container - 100% Opaque to completely prevent beam leaking through card face */}
+              {/* Card Inner Container - Pure Wise Card Design */}
               <div
-                className={`haven-card-face relative z-10 w-full h-full rounded-[14px] flex flex-col justify-between transition-all duration-200 bg-[#0B101B] dark:bg-[#0B101B] light:bg-white border border-slate-800/80 light:border-slate-200 overflow-visible ${
-                  isFocal ? 'shadow-[0_0_30px_rgba(16,185,129,0.25)]' : ''
+                className={`wise-card relative z-10 w-full h-full rounded-[24px] flex flex-col justify-between transition-all duration-300 bg-white dark:bg-[#142605] border border-[#163300]/10 dark:border-[#9FE870]/25 overflow-visible ${
+                  isFocal ? 'ring-2 ring-[#9FE870] shadow-xl' : 'hover:shadow-lg'
                 }`}
               >
                 {/* Photo & Overlays */}
                 <div
-                  className="relative h-52 lg:h-56 overflow-hidden rounded-t-[14px] cursor-pointer bg-[var(--haven-bg-subtle)]"
+                  className="relative h-52 lg:h-56 overflow-hidden rounded-t-[23px] cursor-pointer bg-[#F2F5F0] dark:bg-[#0E1B00]"
                   onClick={(e) => {
                     e.stopPropagation();
                     onSelectUnit(unit.id);
@@ -210,18 +210,18 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
                     alt={unit.name || unit.id}
                     width={600}
                     quality={75}
-                    className="transition-transform duration-300"
+                    className="transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/20 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
 
                   {/* Top: AI Score + Focal Badge + Bookmark */}
                   <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
                     <div className="flex items-center gap-1.5">
-                      <span className="px-2.5 py-1 rounded-full bg-emerald-600 text-white text-[11px] font-mono font-semibold shadow-lg always-white">
+                      <span className="px-3 py-1 rounded-full bg-[#9FE870] text-[#163300] text-[11px] font-black shadow-md">
                         {matchInfo.score}% Tương thích AI
                       </span>
                       {isFocal && (
-                        <span className="px-2 py-0.5 rounded-full bg-slate-950/80 border border-emerald-400/50 text-emerald-300 text-[10px] font-mono font-bold tracking-wide backdrop-blur-md always-white animate-pulse">
+                        <span className="px-2.5 py-0.5 rounded-full bg-[#163300] text-[#9FE870] border border-[#9FE870]/50 text-[10px] font-extrabold tracking-wide shadow-md">
                           Đang chọn
                         </span>
                       )}
@@ -231,10 +231,10 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
                         e.stopPropagation();
                         onToggleSaveUnit(unit.id);
                       }}
-                      className={`p-2 rounded-full backdrop-blur-md border transition-all always-white cursor-pointer ${
+                      className={`p-2 rounded-full backdrop-blur-md border transition-all cursor-pointer ${
                         isSaved
-                          ? 'bg-emerald-500 border-emerald-400 text-white'
-                          : 'bg-slate-950/50 border-white/20 text-white/90 hover:text-white hover:bg-slate-950/70'
+                          ? 'bg-[#FF5436] border-[#FF5436] text-white shadow-md'
+                          : 'bg-black/40 border-white/20 text-white hover:bg-black/60'
                       }`}
                       title={isSaved ? 'Bỏ lưu căn hộ' : 'Lưu căn hộ'}
                     >
@@ -244,19 +244,19 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
 
                   {/* Bottom: Location + Floor */}
                   <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
-                    <div className="flex items-center gap-1.5 text-xs font-mono text-white/90 always-white">
-                      <MapPin className="w-3.5 h-3.5 text-emerald-400" />
-                      <span className="always-white">{unit.district}, {formatCity(unit.city)}</span>
+                    <div className="flex items-center gap-1.5 text-xs text-white font-medium always-white">
+                      <MapPin className="w-3.5 h-3.5 text-[#9FE870]" />
+                      <span className="always-white drop-shadow-sm">{unit.district}, {formatCity(unit.city)}</span>
                     </div>
-                    <span className="text-xs font-mono px-2 py-0.5 rounded bg-slate-950/80 text-white/95 border border-white/20 backdrop-blur-md always-white always-dark shadow-sm">
+                    <span className="text-xs px-2.5 py-0.5 rounded-full bg-black/60 text-white border border-white/20 backdrop-blur-md font-bold always-white">
                       Tầng {unit.floor}
                     </span>
                   </div>
                 </div>
 
                 {/* Card Body */}
-                <div className="p-4 sm:p-5 space-y-3.5 flex-1 flex flex-col justify-between">
-                  <div className="space-y-2">
+                <div className="p-5 space-y-4 flex-1 flex flex-col justify-between">
+                  <div className="space-y-1.5">
                     <div
                       className="cursor-pointer"
                       onClick={(e) => {
@@ -264,13 +264,13 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
                         onSelectUnit(unit.id);
                       }}
                     >
-                      <h3 className="font-serif text-lg font-bold group-hover:text-[var(--haven-emerald-400)] transition-colors line-clamp-1 text-[var(--haven-text-primary)]">
+                      <h3 className="text-lg font-extrabold text-[#163300] dark:text-white group-hover:text-[#2570EB] transition-colors line-clamp-1">
                         {unit.name || unit.id}
                       </h3>
                     </div>
 
                     {/* Specs */}
-                    <div className="flex items-center gap-2.5 text-xs font-mono text-[var(--haven-text-tertiary)]">
+                    <div className="flex items-center gap-2 text-xs font-semibold text-[#495E35] dark:text-emerald-200/80">
                       <span>{unit.bedrooms} Phòng ngủ</span>
                       <span>•</span>
                       <span>{unit.bathrooms} WC</span>
@@ -279,15 +279,32 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
                     </div>
                   </div>
 
-                  {/* Interactive Environmental Proof Pills (Direct Causality to Feature Strip) */}
+                  {/* Wise Environmental Proof Multi-Accent Flag Pills */}
                   <div className="space-y-1.5 pt-1">
-                    <div className="text-[10px] font-mono text-[var(--haven-text-tertiary)] uppercase tracking-wider font-semibold">
+                    <div className="text-[11px] font-bold text-[#738565] uppercase tracking-wider">
                       Minh Chứng Môi Trường Đã Xác Thực:
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                       {cardConfig.tags.map((feat) => {
                         const FeatIcon = feat.icon;
                         const isFeatureActive = activeFeatureKey === feat.key && isFocal;
+                        
+                        // Wise Multi-accent flag color logic per feature
+                        let pillClass = "bg-[#F2F5F0] text-[#163300] border-[#163300]/15";
+                        if (feat.key === 'power') {
+                          pillClass = "bg-[#FFF6DB] text-[#7A5200] border-[#FFC83B]/30 hover:border-[#FFC83B]";
+                        } else if (feat.key === 'flood') {
+                          pillClass = "bg-[#EBF2FF] text-[#0F2E6B] border-[#2570EB]/30 hover:border-[#2570EB]";
+                        } else if (feat.key === 'parking') {
+                          pillClass = "bg-[#FFEAE5] text-[#8C1F08] border-[#FF5436]/30 hover:border-[#FF5436]";
+                        } else if (feat.key === 'quiet') {
+                          pillClass = "bg-[#F3E8FF] text-[#431A7A] border-[#8B5CF6]/30 hover:border-[#8B5CF6]";
+                        }
+
+                        if (isFeatureActive) {
+                          pillClass = "bg-[#163300] text-[#9FE870] border-[#163300] font-black shadow-xs";
+                        }
+
                         return (
                           <button
                             key={feat.key}
@@ -302,13 +319,9 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
                               onSelectUnitFocal(unit.id, feat.key, index);
                               onSelectFeatureKey(feat.key);
                             }}
-                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-mono transition-all duration-150 border cursor-pointer ${
-                              isFeatureActive
-                                ? 'bg-[var(--haven-emerald-500)] text-white border-[var(--haven-emerald-400)] shadow-sm font-semibold'
-                                : 'bg-[var(--haven-surface-hover)] text-[var(--haven-text-secondary)] border-[var(--haven-border)] hover:border-[var(--haven-emerald-400)] hover:text-[var(--haven-text-primary)]'
-                            }`}
+                            className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold transition-all border cursor-pointer ${pillClass}`}
                           >
-                            <FeatIcon className={`w-3 h-3 ${isFeatureActive ? 'text-white' : 'text-[var(--haven-emerald-400)]'}`} />
+                            <FeatIcon className="w-3.5 h-3.5 shrink-0" />
                             <span>{feat.label}</span>
                           </button>
                         );
@@ -316,25 +329,25 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
                     </div>
                   </div>
 
-                  {/* AI Insight Snippet */}
-                  <div className="p-2.5 rounded-xl text-xs space-y-1 bg-[var(--haven-emerald-muted)] border border-[var(--haven-border-accent)]">
-                    <div className="flex items-center gap-1.5 text-[var(--haven-emerald-400)] font-mono font-semibold text-[11px]">
-                      <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                  {/* AI Insight Snippet in Wise Soft Tint Card */}
+                  <div className="p-3 rounded-2xl text-xs space-y-1 bg-[#E2F7D4]/60 dark:bg-[#163300]/50 border border-[#9FE870]/40">
+                    <div className="flex items-center gap-1.5 text-[#163300] dark:text-[#9FE870] font-bold text-xs">
+                      <CheckCircle2 className="w-3.5 h-3.5 shrink-0 text-[#20A05A]" />
                       <span>Lợi Ích Sống Nổi Bật</span>
                     </div>
-                    <p className="line-clamp-2 leading-relaxed text-[var(--haven-text-secondary)] text-[11px]">
+                    <p className="line-clamp-2 leading-relaxed text-[#495E35] dark:text-emerald-200/90 text-xs font-medium">
                       {unit.aiInsights.whyFit[0]}
                     </p>
                   </div>
 
-                  {/* Price + CTA */}
-                  <div className="pt-3 flex items-center justify-between border-t border-[var(--haven-border)]">
+                  {/* Price + Wise Pill CTA Button */}
+                  <div className="pt-3.5 flex items-center justify-between border-t border-[#163300]/10 dark:border-[#9FE870]/20">
                     <div className="min-w-0">
-                      <div className="text-xl font-serif font-bold text-[var(--haven-emerald-400)]">
+                      <div className="text-2xl font-black text-[#163300] dark:text-[#9FE870] tracking-tight">
                         {(unit.monthlyRentVND / 1000000).toFixed(0)} Triệu
-                        <span className="text-xs font-sans font-normal ml-0.5 text-[var(--haven-text-tertiary)]">/tháng</span>
+                        <span className="text-xs font-normal ml-0.5 text-[#738565] dark:text-emerald-200/60">/tháng</span>
                       </div>
-                      <div className="text-[11px] font-mono text-[var(--haven-text-muted)] truncate">
+                      <div className="text-[11px] font-semibold text-[#738565] truncate">
                         Giá thuê niêm yết
                       </div>
                     </div>
@@ -343,16 +356,17 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
                         e.stopPropagation();
                         onSelectUnit(unit.id);
                       }}
-                      className="haven-btn-beam px-3.5 py-2 rounded-xl text-xs font-mono font-medium transition-all duration-150 border bg-[var(--haven-surface-hover)] border-[var(--haven-border)] text-[var(--haven-text-primary)] hover:bg-[var(--haven-emerald-500)] hover:text-white hover:border-[var(--haven-emerald-500)] shrink-0 whitespace-nowrap cursor-pointer shadow-sm"
+                      className="px-5 py-2.5 rounded-full bg-[#163300] hover:bg-[#223D0D] text-white font-extrabold text-xs transition-all shadow-xs hover:scale-105 active:scale-95 shrink-0 whitespace-nowrap cursor-pointer flex items-center gap-1.5"
                     >
-                      Chi Tiết
+                      <span>Xem Chi Tiết</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </div>
 
-                {/* Bottom Anchor Node for Active Focal State — Fully visible, unclipped */}
+                {/* Bottom Anchor Node for Active Focal State */}
                 {isFocal && (
-                  <div className="hidden md:flex absolute -bottom-3 left-1/2 -translate-x-1/2 items-center gap-1.5 px-3.5 py-1 rounded-full bg-[var(--haven-emerald-500)] text-white text-[10.5px] font-mono font-bold shadow-xl z-40 pointer-events-none border border-emerald-300/60 animate-in fade-in">
+                  <div className="hidden md:flex absolute -bottom-3 left-1/2 -translate-x-1/2 items-center gap-1.5 px-4 py-1 rounded-full bg-[#163300] text-[#9FE870] text-xs font-bold shadow-xl z-40 pointer-events-none border border-[#9FE870]/60 animate-in fade-in">
                     <span>Dẫn truyền dữ liệu</span>
                     <ArrowDown className="w-3 h-3 animate-bounce" />
                   </div>

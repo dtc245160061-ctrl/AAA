@@ -74,9 +74,9 @@ export const UserCompareView: React.FC<UserCompareViewProps> = ({
   };
 
   const colorPalette = [
-    { stroke: '#10b981', fill: 'rgba(16, 185, 129, 0.25)', label: 'Emerald' },
-    { stroke: '#38bdf8', fill: 'rgba(56, 189, 248, 0.25)', label: 'Sky' },
-    { stroke: '#f59e0b', fill: 'rgba(245, 158, 11, 0.25)', label: 'Amber' }
+    { stroke: '#163300', fill: 'rgba(159, 232, 112, 0.4)', label: 'Wise Forest & Lime' },
+    { stroke: '#2570EB', fill: 'rgba(37, 112, 235, 0.3)', label: 'Wise Cobalt' },
+    { stroke: '#FF5436', fill: 'rgba(255, 84, 54, 0.3)', label: 'Wise Coral' }
   ];
 
   // SVG Radar Polygon generator

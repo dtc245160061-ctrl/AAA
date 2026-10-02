@@ -81,221 +81,211 @@ export const ContractsView: React.FC<ContractsViewProps> = ({
   const getStatusBadge = (status: ContractStatus) => {
     switch (status) {
       case 'active':
-        return <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[11px] font-mono font-medium">Đang hiệu lực</span>;
+        return <span className="px-3 py-1 rounded-full bg-[#9FE870] text-[#163300] text-[11px] font-bold shadow-xs">Đang hiệu lực</span>;
       case 'expiring_soon':
-        return <span className="px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[11px] font-mono font-medium">Sắp hết hạn (30 ngày)</span>;
+        return <span className="px-3 py-1 rounded-full bg-[#FFC83B] text-[#7A5200] text-[11px] font-bold shadow-xs">Sắp hết hạn (30 ngày)</span>;
       case 'pending_signature':
-        return <span className="px-2.5 py-1 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30 text-[11px] font-mono font-medium">Chờ ký kết</span>;
+        return <span className="px-3 py-1 rounded-full bg-[#2570EB] text-white text-[11px] font-bold shadow-xs">Chờ ký kết</span>;
       case 'terminated':
-        return <span className="px-2.5 py-1 rounded-full bg-slate-800 text-slate-400 border border-slate-700 text-[11px] font-mono font-medium">Đã thanh lý</span>;
+        return <span className="px-3 py-1 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[11px] font-bold">Đã thanh lý</span>;
     }
   };
 
   return (
     <div className="space-y-8 text-left pb-16 animate-in fade-in duration-300">
-      {/* Header Banner with Radiating Beam */}
-      <div className="relative rounded-3xl p-[2.5px] overflow-hidden shadow-2xl group transition-all">
-        <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
-        <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel haven-sheen-sweep p-6 sm:p-8 space-y-6 shadow-2xl backdrop-blur-2xl">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="space-y-1">
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
-                <FileText className="w-4 h-4 text-emerald-400" />
-                <span>Quản Lý Hợp Đồng Cho Thuê Căn Hộ (Lease Management)</span>
-              </div>
-              <h1 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold">
-                Hợp Đồng Cho Thuê & Pháp Lý
-              </h1>
-              <p className="text-sm text-slate-400">
-                Quản lý danh sách hợp đồng cho thuê căn hộ, điều khoản tiền cọc, kỳ thanh toán và cảnh báo gia hạn.
-              </p>
+      {/* Header Banner - Pure Wise Clean Surface */}
+      <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-[28px] p-6 sm:p-8 shadow-sm space-y-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="space-y-1.5">
+            <div className="inline-flex items-center gap-2 text-xs font-bold text-[#163300]/70 dark:text-[#9FE870] uppercase tracking-wider">
+              <FileText className="w-4 h-4 text-[#2570EB]" />
+              <span>Quản Lý Hợp Đồng Cho Thuê Căn Hộ (Lease Management)</span>
             </div>
-
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold transition-all shadow-lg shadow-emerald-500/25 shrink-0 self-start md:self-auto hover:scale-105 cursor-pointer"
-            >
-              <Plus className="w-4 h-4" />
-              <span>Lập Hợp Đồng Mới</span>
-            </button>
+            <h1 className="text-2xl md:text-3xl font-bold text-[#163300] dark:text-slate-100 tracking-tight">
+              Hợp Đồng Cho Thuê & Pháp Lý
+            </h1>
+            <p className="text-sm text-slate-500 dark:text-slate-400">
+              Quản lý danh sách hợp đồng cho thuê căn hộ, điều khoản tiền cọc, kỳ thanh toán và cảnh báo gia hạn.
+            </p>
           </div>
 
-          {/* Search and Filters */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-800/80">
-            <div className="flex items-center gap-2">
-              {[
-                { id: 'all', label: `Tất cả (${contracts.length})` },
-                { id: 'active', label: 'Đang hiệu lực' },
-                { id: 'expiring_soon', label: 'Sắp hết hạn' },
-                { id: 'terminated', label: 'Đã thanh lý' },
-              ].map(tab => (
-                <button
-                  key={tab.id}
-                  onClick={() => setStatusFilter(tab.id)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-mono transition-all border cursor-pointer ${
-                    statusFilter === tab.id
-                      ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300 font-semibold'
-                      : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200'
-                  }`}
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] font-bold text-xs transition-all shadow-sm shrink-0 self-start md:self-auto hover:scale-105 active:scale-95 cursor-pointer"
+          >
+            <Plus className="w-4 h-4" />
+            <span>Lập Hợp Đồng Mới</span>
+          </button>
+        </div>
+
+        {/* Search and Filters */}
+        <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+          <div className="wise-pill-tabs overflow-x-auto max-w-full">
+            {[
+              { id: 'all', label: `Tất cả (${contracts.length})` },
+              { id: 'active', label: 'Đang hiệu lực' },
+              { id: 'expiring_soon', label: 'Sắp hết hạn' },
+              { id: 'terminated', label: 'Đã thanh lý' },
+            ].map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => setStatusFilter(tab.id)}
+                className={statusFilter === tab.id ? 'wise-pill-tab-active' : 'wise-pill-tab'}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="relative">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Tìm theo tên khách, mã HĐ..."
+              className="pl-10 pr-4 py-2 text-xs bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-[#163300] dark:text-slate-200 placeholder:text-slate-400 font-sans focus:outline-none focus:ring-2 focus:ring-[#9FE870]"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Contracts Table - Pure Wise Rounded-[24px] Card */}
+      <div className="bg-white dark:bg-slate-900 rounded-[24px] overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs">
+            <thead className="bg-[#F7FAF6] dark:bg-slate-800/90 text-[#163300] dark:text-slate-300 font-bold uppercase text-[10px] tracking-wider border-b border-slate-200 dark:border-slate-800">
+              <tr>
+                <th className="p-4 whitespace-nowrap">Mã Hợp Đồng</th>
+                <th className="p-4 whitespace-nowrap">Người Thuê</th>
+                <th className="p-4 whitespace-nowrap">Căn Hộ</th>
+                <th className="p-4 whitespace-nowrap">Giá Thuê & Tiền Cọc</th>
+                <th className="p-4 whitespace-nowrap">Thời Hạn Thuê</th>
+                <th className="p-4 whitespace-nowrap">Trạng Thái</th>
+                <th className="p-4 text-right whitespace-nowrap">Chi Tiết</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-slate-700 dark:text-slate-300">
+              {filteredContracts.map(contract => (
+                <tr
+                  key={contract.id}
+                  className="hover:bg-[#F2F5F0]/60 dark:hover:bg-slate-800/40 transition-colors cursor-pointer"
                 >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
+                  <td className="p-4 whitespace-nowrap">
+                    <span className="font-mono font-bold text-[#163300] dark:text-[#9FE870] px-3 py-1 rounded-full bg-[#9FE870]/20 dark:bg-slate-800 border border-[#9FE870]/30 inline-block shadow-xs">
+                      {contract.contractNumber}
+                    </span>
+                  </td>
+                  <td className="p-4 whitespace-nowrap">
+                    <div className="font-bold text-[#163300] dark:text-slate-100 text-sm">
+                      {contract.tenantName}
+                    </div>
+                    <div className="text-slate-500 font-mono text-[11px] flex items-center gap-1 mt-0.5">
+                      <Phone className="w-3 h-3 text-[#2570EB]" />
+                      <span>{contract.tenantPhone}</span>
+                    </div>
+                  </td>
+                  <td className="p-4 cursor-pointer" onClick={() => onSelectUnit(contract.unitId)}>
+                    <div className="font-bold text-[#163300] dark:text-slate-200 line-clamp-1 hover:text-[#2570EB]">
+                      {contract.unitName}
+                    </div>
+                    <div className="text-slate-400 font-mono text-[10px]">
+                      {contract.unitId}
+                    </div>
+                  </td>
+                  <td className="p-4 whitespace-nowrap font-mono">
+                    <div className="font-bold text-[#163300] dark:text-[#9FE870]">
+                      {(contract.monthlyRentVND / 1000000).toFixed(0)} Tr/tháng
+                    </div>
+                    <div className="text-[10px] text-slate-400">
+                      Cọc: {(contract.depositVND / 1000000).toFixed(0)} Tr
+                    </div>
+                  </td>
+                  <td className="p-4 text-slate-600 dark:text-slate-300 whitespace-nowrap">
+                    <div>{contract.startDate} → {contract.endDate}</div>
+                    <div className="text-[10px] text-slate-400">Chu kỳ: {contract.paymentCycleMonths} tháng/lần</div>
+                  </td>
+                  <td className="p-4 whitespace-nowrap">{getStatusBadge(contract.status)}</td>
+                  <td className="p-4 text-right whitespace-nowrap">
+                    <div className="flex items-center justify-end gap-2">
+                      <button
+                        onClick={() => setSigningContract(contract)}
+                        className="px-3.5 py-1.5 rounded-full bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] text-xs font-bold transition-all flex items-center gap-1 shadow-xs cursor-pointer hover:scale-105 active:scale-95"
+                        title="Vẽ chữ ký điện tử trên màn hình"
+                      >
+                        <PenTool className="w-3.5 h-3.5" />
+                        <span>Ký Số E-Sign</span>
+                      </button>
 
-            <div className="relative">
-              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Tìm theo tên khách, mã HĐ..."
-                className="pl-9 pr-4 py-1.5 text-xs bg-slate-900/80 border border-slate-700 rounded-xl text-slate-200 placeholder:text-slate-500 font-mono focus:outline-none focus:border-emerald-500"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Contracts Table with Running Border Beam */}
-      <div className="relative rounded-3xl p-[2px] overflow-hidden shadow-2xl group transition-all">
-        <div className="animate-spin-beam pointer-events-none opacity-40 group-hover:opacity-75 transition-opacity" />
-        <div className="relative z-10 w-full h-full rounded-[22px] atmospheric-panel overflow-hidden border border-slate-800/80 shadow-2xl">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs font-mono">
-              <thead className="bg-slate-900/90 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
-                <tr>
-                  <th className="p-4 whitespace-nowrap">Mã Hợp Đồng</th>
-                  <th className="p-4 whitespace-nowrap">Người Thuê</th>
-                  <th className="p-4 whitespace-nowrap">Căn Hộ</th>
-                  <th className="p-4 whitespace-nowrap">Giá Thuê & Tiền Cọc</th>
-                  <th className="p-4 whitespace-nowrap">Thời Hạn Thuê</th>
-                  <th className="p-4 whitespace-nowrap">Trạng Thái</th>
-                  <th className="p-4 text-right whitespace-nowrap">Chi Tiết</th>
+                      <button
+                        onClick={() => {
+                          if (onShowToast) {
+                            onShowToast('info', 'Đang tải hợp đồng điện tử', `Hợp đồng mã ${contract.contractNumber} kèm chữ ký số SHA-256.`);
+                          }
+                        }}
+                        className="p-2 rounded-full bg-[#F2F5F0] hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-colors cursor-pointer"
+                        title="Xem & Tải Hợp Đồng"
+                      >
+                        <Download className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </td>
                 </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-800/60 text-slate-300">
-                {filteredContracts.map(contract => (
-                  <tr
-                    key={contract.id}
-                    className="group hover:bg-slate-800/80 [data-theme='light']_:hover:bg-emerald-50/70 border-l-4 border-l-transparent hover:border-l-emerald-400 transition-all duration-300 hover:shadow-[0_0_25px_rgba(16,185,129,0.18)] cursor-pointer"
-                  >
-                    <td className="p-4 whitespace-nowrap">
-                      <span className="font-mono font-bold text-emerald-400 group-hover:text-emerald-300 group-hover:drop-shadow-[0_0_10px_rgba(52,211,153,0.9)] px-2.5 py-1 rounded-lg bg-emerald-950/40 border border-emerald-500/20 group-hover:border-emerald-400/60 group-hover:bg-emerald-950/90 transition-all inline-block shadow-sm">
-                        {contract.contractNumber}
-                      </span>
-                    </td>
-                    <td className="p-4 whitespace-nowrap">
-                      <div className="font-serif font-bold text-slate-100 group-hover:text-emerald-200 group-hover:drop-shadow-[0_0_8px_rgba(167,243,208,0.6)] text-sm transition-all">
-                        {contract.tenantName}
-                      </div>
-                      <div className="text-slate-400 group-hover:text-slate-300 flex items-center gap-1 mt-0.5 transition-colors">
-                        <Phone className="w-3 h-3 text-slate-500 group-hover:text-emerald-400/80" />
-                        <span>{contract.tenantPhone}</span>
-                      </div>
-                    </td>
-                    <td className="p-4 cursor-pointer" onClick={() => onSelectUnit(contract.unitId)}>
-                      <div className="font-bold text-slate-200 group-hover:text-emerald-300 group-hover:drop-shadow-[0_0_8px_rgba(52,211,153,0.6)] transition-all line-clamp-1">
-                        {contract.unitName}
-                      </div>
-                      <div className="text-slate-500 group-hover:text-emerald-400/70 text-[10px] transition-colors">
-                        {contract.unitId}
-                      </div>
-                    </td>
-                    <td className="p-4 whitespace-nowrap">
-                      <div className="font-bold text-slate-100 group-hover:text-emerald-300 transition-colors">
-                        {(contract.monthlyRentVND / 1000000).toFixed(0)}Tr/tháng
-                      </div>
-                      <div className="text-[10px] text-slate-400">
-                        Cọc: {(contract.depositVND / 1000000).toFixed(0)}Tr
-                      </div>
-                    </td>
-                    <td className="p-4 text-slate-300 whitespace-nowrap">
-                      <div className="group-hover:text-slate-200 transition-colors">{contract.startDate} → {contract.endDate}</div>
-                      <div className="text-[10px] text-slate-500">Chu kỳ: {contract.paymentCycleMonths} tháng/lần</div>
-                    </td>
-                    <td className="p-4 whitespace-nowrap">{getStatusBadge(contract.status)}</td>
-                    <td className="p-4 text-right whitespace-nowrap">
-                      <div className="flex items-center justify-end gap-2">
-                        <button
-                          onClick={() => setSigningContract(contract)}
-                          className="px-3 py-1.5 rounded-lg bg-emerald-500/20 group-hover:bg-emerald-500 text-emerald-300 group-hover:text-slate-950 text-xs font-mono font-bold border border-emerald-500/40 group-hover:border-emerald-400 transition-all flex items-center gap-1 shadow-sm group-hover:shadow-[0_0_12px_rgba(16,185,129,0.35)] whitespace-nowrap cursor-pointer"
-                          title="Vẽ chữ ký điện tử trên màn hình"
-                        >
-                          <PenTool className="w-3.5 h-3.5" />
-                          <span>Ký Số E-Sign</span>
-                        </button>
-
-                        <button
-                          onClick={() => {
-                            if (onShowToast) {
-                              onShowToast('info', 'Đang tải hợp đồng điện tử', `Hợp đồng mã ${contract.contractNumber} kèm chữ ký số SHA-256.`);
-                            }
-                          }}
-                          className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 group-hover:bg-slate-700/90 text-slate-300 hover:text-white transition-colors cursor-pointer"
-                          title="Xem & Tải Hợp Đồng"
-                        >
-                          <Download className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
 
-      {/* New Contract Modal */}
+      {/* New Contract Modal - Wise Clean Surface */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in">
-          <div className="max-w-2xl w-full rounded-3xl atmospheric-panel border border-emerald-500/30 p-6 md:p-8 space-y-6 shadow-2xl backdrop-blur-2xl max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm animate-in fade-in">
+          <div className="max-w-2xl w-full rounded-[28px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 md:p-8 space-y-6 shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
               <div>
-                <h3 className="font-serif text-2xl text-slate-100 font-bold">Lập Hợp Đồng Thuê Căn Hộ Mới</h3>
-                <p className="text-xs font-mono text-emerald-400 mt-0.5">Xác lập thỏa thuận thuê nhà và đưa căn hộ vào trạng thái đang thuê</p>
+                <h3 className="text-xl md:text-2xl font-bold text-[#163300] dark:text-slate-100">Lập Hợp Đồng Thuê Căn Hộ Mới</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Xác lập thỏa thuận thuê nhà và bảo chứng ký số điện tử HAVEN</p>
               </div>
               <button 
                 onClick={() => {
                   setIsModalOpen(false);
                   onClearLeadContractData?.();
                 }}
-                className="p-2 rounded-xl text-slate-400 hover:text-white bg-slate-900 border border-slate-800"
+                className="p-2 rounded-full text-slate-400 hover:text-slate-700 dark:hover:text-white bg-[#F2F5F0] dark:bg-slate-800 transition-colors"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4 text-xs font-mono">
+            <form onSubmit={handleSubmit} className="space-y-4 text-xs">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-slate-400 block mb-1">Họ và Tên Khách Thuê *</label>
+                  <label className="text-slate-600 dark:text-slate-400 font-bold block mb-1.5">Họ và Tên Khách Thuê *</label>
                   <input
                     type="text"
                     required
                     value={tenantName}
                     onChange={(e) => setTenantName(e.target.value)}
                     placeholder="Ví dụ: Nguyễn Văn An"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-emerald-500 font-sans"
+                    className="w-full px-4 py-2.5 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#9FE870] font-sans"
                   />
                 </div>
                 <div>
-                  <label className="text-slate-400 block mb-1">Số Điện Thoại *</label>
+                  <label className="text-slate-600 dark:text-slate-400 font-bold block mb-1.5">Số Điện Thoại *</label>
                   <input
                     type="text"
                     required
                     value={tenantPhone}
                     onChange={(e) => setTenantPhone(e.target.value)}
                     placeholder="Ví dụ: 0912 345 678"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-emerald-500 font-sans"
+                    className="w-full px-4 py-2.5 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#9FE870] font-sans"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-slate-400 block mb-1">Căn Hộ Cho Thuê *</label>
+                  <label className="text-slate-600 dark:text-slate-400 font-bold block mb-1.5">Căn Hộ Cho Thuê *</label>
                   <select
                     value={selectedUnitId}
                     onChange={(e) => {
@@ -306,77 +296,77 @@ export const ContractsView: React.FC<ContractsViewProps> = ({
                         setDepositVND(u.monthlyRentVND * 2);
                       }
                     }}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-emerald-500 font-sans"
+                    className="w-full px-4 py-2.5 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#9FE870] font-sans cursor-pointer"
                   >
                     {units.map(unit => (
                       <option key={unit.id} value={unit.id}>
-                        {unit.id} - {unit.name || unit.district} ({(unit.monthlyRentVND / 1000000).toFixed(0)}Tr/tháng)
+                        {unit.id} - {unit.name || unit.district} ({(unit.monthlyRentVND / 1000000).toFixed(0)} Tr/tháng)
                       </option>
                     ))}
                   </select>
                 </div>
                 <div>
-                  <label className="text-slate-400 block mb-1">Số CCCD / Hộ Chiếu *</label>
+                  <label className="text-slate-600 dark:text-slate-400 font-bold block mb-1.5">Số CCCD / Hộ Chiếu *</label>
                   <input
                     type="text"
                     value={tenantIdCard}
                     onChange={(e) => setTenantIdCard(e.target.value)}
                     placeholder="001099012345"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-emerald-500 font-sans"
+                    className="w-full px-4 py-2.5 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#9FE870] font-sans"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-slate-400 block mb-1">Giá Thuê Hàng Tháng (VNĐ) *</label>
+                  <label className="text-slate-600 dark:text-slate-400 font-bold block mb-1.5">Giá Thuê Hàng Tháng (VNĐ) *</label>
                   <input
                     type="number"
                     required
                     value={monthlyRentVND}
                     onChange={(e) => setMonthlyRentVND(Number(e.target.value))}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-emerald-500 font-sans"
+                    className="w-full px-4 py-2.5 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#9FE870] font-mono"
                   />
                 </div>
                 <div>
-                  <label className="text-slate-400 block mb-1">Tiền Đặt Cọc (VNĐ) *</label>
+                  <label className="text-slate-600 dark:text-slate-400 font-bold block mb-1.5">Tiền Đặt Cọc (VNĐ) *</label>
                   <input
                     type="number"
                     required
                     value={depositVND}
                     onChange={(e) => setDepositVND(Number(e.target.value))}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-emerald-500 font-sans"
+                    className="w-full px-4 py-2.5 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#9FE870] font-mono"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label className="text-slate-400 block mb-1">Ngày Bắt Đầu *</label>
+                  <label className="text-slate-600 dark:text-slate-400 font-bold block mb-1.5">Ngày Bắt Đầu *</label>
                   <input
                     type="date"
                     required
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-emerald-500 font-sans"
+                    className="w-full px-4 py-2.5 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#9FE870] font-sans"
                   />
                 </div>
                 <div>
-                  <label className="text-slate-400 block mb-1">Ngày Hết Hạn *</label>
+                  <label className="text-slate-600 dark:text-slate-400 font-bold block mb-1.5">Ngày Hết Hạn *</label>
                   <input
                     type="date"
                     required
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-emerald-500 font-sans"
+                    className="w-full px-4 py-2.5 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#9FE870] font-sans"
                   />
                 </div>
                 <div>
-                  <label className="text-slate-400 block mb-1">Chu Kỳ Thu Tiền</label>
+                  <label className="text-slate-600 dark:text-slate-400 font-bold block mb-1.5">Chu Kỳ Thu Tiền</label>
                   <select
                     value={paymentCycleMonths}
                     onChange={(e) => setPaymentCycleMonths(Number(e.target.value))}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-emerald-500 font-sans"
+                    className="w-full px-4 py-2.5 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#9FE870] font-sans cursor-pointer"
                   >
                     <option value={1}>1 tháng / lần</option>
                     <option value={3}>3 tháng / lần</option>
@@ -387,29 +377,29 @@ export const ContractsView: React.FC<ContractsViewProps> = ({
               </div>
 
               <div>
-                <label className="text-slate-400 block mb-1">Tóm Tắt Điều Khoản & Ghi Chú</label>
+                <label className="text-slate-600 dark:text-slate-400 font-bold block mb-1.5">Tóm Tắt Điều Khoản & Ghi Chú</label>
                 <textarea
                   rows={2}
                   value={termsSummary}
                   onChange={(e) => setTermsSummary(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-emerald-500 font-sans"
+                  className="w-full px-4 py-2.5 rounded-[16px] bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#9FE870] font-sans"
                 />
               </div>
 
-              <div className="flex gap-3 pt-3 border-t border-slate-800">
+              <div className="flex gap-3 pt-3 border-t border-slate-100 dark:border-slate-800">
                 <button
                   type="button"
                   onClick={() => {
                     setIsModalOpen(false);
                     onClearLeadContractData?.();
                   }}
-                  className="flex-1 py-3 rounded-xl border border-slate-800 text-slate-400 hover:text-slate-200"
+                  className="flex-1 py-3 rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold transition-all cursor-pointer"
                 >
                   Hủy Bỏ
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold shadow-lg shadow-emerald-500/25 transition-all"
+                  className="flex-1 py-3 rounded-full bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] font-bold shadow-sm transition-all cursor-pointer hover:scale-105 active:scale-95"
                 >
                   Xác Nhận Ký Hợp Đồng
                 </button>

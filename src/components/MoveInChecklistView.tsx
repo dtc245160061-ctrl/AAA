@@ -7,7 +7,9 @@ import {
   Zap, 
   Droplets, 
   ShieldCheck,
-  Calendar
+  Calendar,
+  Building,
+  Check
 } from 'lucide-react';
 import type { ApartmentUnit } from '../types/apartment';
 
@@ -74,26 +76,26 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
 
   return (
     <div className="space-y-8 pb-16 animate-in fade-in duration-300">
-      {/* Header Banner with Clean Luxurious Luminous Border */}
-      <div className="relative rounded-2xl overflow-hidden bg-slate-900/80 border border-emerald-500/30 shadow-[0_0_30px_-8px_rgba(16,185,129,0.15)] p-6 sm:p-8 space-y-4 bg-gradient-to-b from-emerald-500/[0.05] to-transparent">
+      {/* Header Banner - Wise Signature Style */}
+      <div className="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200/90 dark:border-slate-800 p-6 sm:p-8 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
-              <ClipboardCheck className="w-4 h-4 text-emerald-400 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F8EC] text-[#163300] font-bold text-xs uppercase tracking-wider mb-2">
+              <ClipboardCheck className="w-4 h-4 text-[#20A05A]" />
               <span>Biên Bản Bàn Giao Hiện Trạng 15 Hạng Mục (Move-in Condition Handover)</span>
             </div>
-            <h1 className="text-2xl md:text-3xl font-serif text-slate-100 font-bold mt-1">
+            <h1 className="text-2xl md:text-3xl font-bold text-[#163300] dark:text-white mt-1">
               Bảo Vệ Tiền Cọc: Kiểm Kê Hiện Trạng Khi Nhận Phòng
             </h1>
-            <p className="text-slate-400 text-sm mt-1 max-w-2xl">
-              Lưu vết ảnh chụp, số công tơ điện nước và tình trạng 15 hạng mục cốt lõi làm căn cứ hoàn 100% tiền cọc khi kết thúc hợp đồng.
+            <p className="text-slate-600 dark:text-slate-400 text-sm mt-2 max-w-2xl leading-relaxed">
+              Lưu vết ảnh chụp, số công tơ điện nước và tình trạng 15 hạng mục cốt lõi làm căn cứ hoàn 100% tiền cọc khi kết thúc hợp đồng minh bạch.
             </p>
           </div>
 
           {onBackToDirectory && (
             <button
               onClick={onBackToDirectory}
-              className="px-4 py-2 rounded-xl bg-slate-900/90 border border-slate-700/80 text-slate-300 text-xs font-mono hover:text-emerald-400 hover:border-emerald-500/50 hover:bg-slate-800 transition-all self-start md:self-auto cursor-pointer"
+              className="px-5 py-2.5 rounded-full bg-[#F2F5F0] hover:bg-slate-200 dark:bg-slate-800 text-[#163300] dark:text-white font-bold text-xs transition-colors self-start md:self-auto cursor-pointer"
             >
               ← Quay lại tìm kiếm
             </button>
@@ -101,112 +103,92 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
         </div>
       </div>
 
-      {/* Unit Selector & Meter Indicators Bar with Radiating Aura Cards */}
+      {/* Unit Selector & Meter Indicators Bar - Wise Multi-Accent Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {/* Apartment Selection */}
-        <div className="group relative rounded-2xl p-[1.5px] shadow-lg transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1 haven-beam-emerald">
-          <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
-            <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-70 group-hover:opacity-100" />
-          </div>
-          <div className="relative z-10 w-full h-full p-4 rounded-[14px] atmospheric-panel haven-sheen-sweep border border-emerald-500/30 space-y-2">
-            <label className="text-xs font-mono text-emerald-400 [data-theme='light']_:text-emerald-700 uppercase tracking-wider font-bold block">
-              Căn Hộ Bàn Giao
-            </label>
-            <select
-              value={selectedUnitId}
-              onChange={(e) => setSelectedUnitId(e.target.value)}
-              className="w-full px-3 py-2 rounded-xl bg-slate-900 [data-theme='light']_:bg-slate-50 border border-slate-700 [data-theme='light']_:border-slate-300 text-slate-100 [data-theme='light']_:text-slate-900 font-sans text-xs focus:outline-none focus:border-emerald-500 cursor-pointer"
-            >
-              {units.map(u => (
-                <option key={u.id} value={u.id}>
-                  {u.name || u.id} ({u.district})
-                </option>
-              ))}
-            </select>
-          </div>
+        <div className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200/90 dark:border-slate-800 p-5 shadow-sm space-y-2 border-l-4 border-l-[#9FE870]">
+          <label className="text-xs font-bold text-[#163300] dark:text-[#9FE870] uppercase tracking-wider block flex items-center gap-1.5">
+            <Building className="w-3.5 h-3.5 text-[#20A05A]" /> Căn Hộ Bàn Giao
+          </label>
+          <select
+            value={selectedUnitId}
+            onChange={(e) => setSelectedUnitId(e.target.value)}
+            className="w-full px-3 py-2 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white font-bold text-xs focus:outline-none focus:ring-2 focus:ring-[#9FE870] cursor-pointer"
+          >
+            {units.map(u => (
+              <option key={u.id} value={u.id}>
+                {u.name || u.id} ({u.district})
+              </option>
+            ))}
+          </select>
         </div>
 
         {/* Handover Date */}
-        <div className="group relative rounded-2xl p-[1.5px] shadow-lg transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1 haven-beam-purple">
-          <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
-            <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-70 group-hover:opacity-100" />
+        <div className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200/90 dark:border-slate-800 p-5 shadow-sm space-y-2 border-l-4 border-l-[#8B5CF6]">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-bold text-[#8B5CF6] uppercase tracking-wider flex items-center gap-1.5">
+              <Calendar className="w-3.5 h-3.5 text-[#8B5CF6]" /> Ngày Bàn Giao
+            </span>
           </div>
-          <div className="relative z-10 w-full h-full p-4 rounded-[14px] atmospheric-panel haven-sheen-sweep border border-purple-500/30 space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-mono text-purple-300 [data-theme='light']_:text-purple-700 uppercase tracking-wider font-bold flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-purple-400" /> Ngày Bàn Giao
-              </span>
-            </div>
-            <input
-              type="date"
-              value={handoverDate}
-              onChange={(e) => setHandoverDate(e.target.value)}
-              className="w-full px-3 py-2 rounded-xl bg-slate-900 [data-theme='light']_:bg-slate-50 border border-slate-700 [data-theme='light']_:border-slate-300 text-slate-100 [data-theme='light']_:text-slate-900 font-mono text-xs focus:outline-none focus:border-purple-500 cursor-pointer"
-            />
-          </div>
+          <input
+            type="date"
+            value={handoverDate}
+            onChange={(e) => setHandoverDate(e.target.value)}
+            className="w-full px-3 py-2 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white font-bold text-xs focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] cursor-pointer"
+          />
         </div>
 
         {/* Initial Electric Meter Reading */}
-        <div className="group relative rounded-2xl p-[1.5px] shadow-lg transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1 haven-beam-gold">
-          <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
-            <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-70 group-hover:opacity-100" />
+        <div className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200/90 dark:border-slate-800 p-5 shadow-sm space-y-2 border-l-4 border-l-[#FFC83B]">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-bold text-[#9A6700] dark:text-[#FFC83B] uppercase tracking-wider flex items-center gap-1.5">
+              <Zap className="w-3.5 h-3.5 text-[#FFC83B]" /> Công Tơ Điện
+            </span>
+            <span className="text-[11px] font-bold text-slate-500">kWh</span>
           </div>
-          <div className="relative z-10 w-full h-full p-4 rounded-[14px] atmospheric-panel haven-sheen-sweep border border-amber-500/30 space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-mono text-amber-300 [data-theme='light']_:text-amber-700 font-bold flex items-center gap-1.5">
-                <Zap className="w-4 h-4 text-amber-400" /> Công Tơ Điện
-              </span>
-              <span className="text-[10px] font-mono text-slate-400 font-bold">kWh</span>
-            </div>
-            <input
-              type="text"
-              value={electricMeterNumber}
-              onChange={(e) => setElectricMeterNumber(e.target.value)}
-              className="w-full px-3 py-1.5 rounded-xl bg-slate-900 [data-theme='light']_:bg-amber-50/50 border border-slate-700 [data-theme='light']_:border-amber-300 text-amber-300 [data-theme='light']_:text-amber-800 font-mono font-bold text-base cursor-pointer"
-            />
-          </div>
+          <input
+            type="text"
+            value={electricMeterNumber}
+            onChange={(e) => setElectricMeterNumber(e.target.value)}
+            className="w-full px-3.5 py-1.5 rounded-full bg-[#FFF8E6] dark:bg-slate-800 border border-[#FFC83B] text-[#9A6700] dark:text-[#FFC83B] font-mono font-bold text-sm"
+          />
         </div>
 
         {/* Initial Water Meter Reading */}
-        <div className="group relative rounded-2xl p-[1.5px] shadow-lg transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1 haven-beam-cyan">
-          <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
-            <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-70 group-hover:opacity-100" />
+        <div className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200/90 dark:border-slate-800 p-5 shadow-sm space-y-2 border-l-4 border-l-[#2570EB]">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-bold text-[#2570EB] uppercase tracking-wider flex items-center gap-1.5">
+              <Droplets className="w-3.5 h-3.5 text-[#2570EB]" /> Đồng Hồ Nước
+            </span>
+            <span className="text-[11px] font-bold text-slate-500">m³</span>
           </div>
-          <div className="relative z-10 w-full h-full p-4 rounded-[14px] atmospheric-panel haven-sheen-sweep border border-sky-500/30 space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-mono text-sky-300 [data-theme='light']_:text-sky-700 font-bold flex items-center gap-1.5">
-                <Droplets className="w-4 h-4 text-sky-400" /> Đồng Hồ Nước
-              </span>
-              <span className="text-[10px] font-mono text-slate-400 font-bold">m³</span>
-            </div>
-            <input
-              type="text"
-              value={waterMeterNumber}
-              onChange={(e) => setWaterMeterNumber(e.target.value)}
-              className="w-full px-3 py-1.5 rounded-xl bg-slate-900 [data-theme='light']_:bg-sky-50/50 border border-slate-700 [data-theme='light']_:border-sky-300 text-sky-300 [data-theme='light']_:text-sky-800 font-mono font-bold text-base cursor-pointer"
-            />
-          </div>
+          <input
+            type="text"
+            value={waterMeterNumber}
+            onChange={(e) => setWaterMeterNumber(e.target.value)}
+            className="w-full px-3.5 py-1.5 rounded-full bg-[#EBF2FF] dark:bg-slate-800 border border-[#2570EB] text-[#2570EB] dark:text-blue-300 font-mono font-bold text-sm"
+          />
         </div>
       </div>
 
-      {/* Overview Status Metrics */}
-      <div className="p-6 rounded-3xl liquid-glass-origin border border-emerald-500/30 flex flex-wrap items-center justify-between gap-4 shadow-xl backdrop-blur-2xl">
-        <div className="flex items-center gap-4 flex-wrap">
-          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-emerald-950/80 [data-theme=\'light\']_:bg-emerald-50 border border-emerald-500/40 [data-theme=\'light\']_:border-emerald-300 text-emerald-300 [data-theme=\'light\']_:text-emerald-900 text-xs font-mono font-bold shadow-sm">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+      {/* Overview Status Metrics - Wise Pill Bar */}
+      <div className="p-6 rounded-[28px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4 shadow-sm">
+        <div className="flex items-center gap-3 flex-wrap">
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#E8F8EC] text-[#163300] text-xs font-bold border border-[#9FE870]">
+            <CheckCircle2 className="w-4 h-4 text-[#20A05A]" />
             <span>{goodCount} / 15 Đạt Chuẩn Tốt</span>
           </div>
 
           {minorCount > 0 && (
-            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-amber-950/80 [data-theme=\'light\']_:bg-amber-50 border border-amber-500/40 [data-theme=\'light\']_:border-amber-300 text-amber-300 [data-theme=\'light\']_:text-amber-900 text-xs font-mono font-bold shadow-sm">
-              <AlertTriangle className="w-4 h-4 text-amber-400" />
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFF8E6] text-[#9A6700] text-xs font-bold border border-[#FFC83B]">
+              <AlertTriangle className="w-4 h-4 text-[#FFC83B]" />
               <span>{minorCount} Vết Xước Nhẹ (Chấp nhận)</span>
             </div>
           )}
 
           {repairCount > 0 && (
-            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-rose-950/80 [data-theme=\'light\']_:bg-rose-50 border border-rose-500/40 [data-theme=\'light\']_:border-rose-300 text-rose-300 [data-theme=\'light\']_:text-rose-900 text-xs font-mono font-bold shadow-sm">
-              <AlertTriangle className="w-4 h-4 text-rose-400" />
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#FEECEB] text-[#D92D20] text-xs font-bold border border-[#FF5436]">
+              <AlertTriangle className="w-4 h-4 text-[#FF5436]" />
               <span>{repairCount} Cần Chủ Nhà Khắc Phục</span>
             </div>
           )}
@@ -220,85 +202,89 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
                 onShowToast('success', 'Đã khóa biên bản bàn giao 15 hạng mục', `Căn hộ ${currentUnit.name || currentUnit.id} - Mã BB: BB-HAVEN-${Date.now().toString().slice(-6)}`);
               }
             }}
-            className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono font-bold text-xs shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-2"
+            className={`px-6 py-2.5 rounded-full font-bold text-xs transition-all flex items-center gap-2 cursor-pointer shadow-sm ${
+              isFinalized 
+                ? 'bg-[#163300] text-[#9FE870]'
+                : 'bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] hover:scale-105 active:scale-95'
+            }`}
           >
-            <ShieldCheck className="w-4 h-4" />
+            {isFinalized ? <Check className="w-4 h-4" /> : <ShieldCheck className="w-4 h-4" />}
             <span>{isFinalized ? 'Đã Khóa Bảo Chứng' : 'Khóa Biên Bản & Lưu Hồ Sơ'}</span>
           </button>
         </div>
       </div>
 
-      {/* 15-Item Checklist Table */}
-      <div className="overflow-x-auto rounded-3xl border border-slate-800/80 [data-theme='light']_:border-slate-200/80 bg-slate-900/60 [data-theme='light']_:bg-white/80 backdrop-blur-xl shadow-2xl">
-        <table className="w-full text-left text-xs font-mono border-collapse min-w-[750px]">
+      {/* 15-Item Checklist Table - Clean Wise Style */}
+      <div className="overflow-x-auto rounded-[28px] border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-2 sm:p-4">
+        <table className="w-full text-left text-xs border-collapse min-w-[750px]">
           <thead>
-            <tr className="border-b border-slate-800/80 [data-theme='light']_:border-slate-200/80 bg-slate-950/60 [data-theme='light']_:bg-slate-50/80 text-slate-400 [data-theme='light']_:text-slate-600 font-bold">
-              <th className="p-4 w-12 text-center">STT</th>
-              <th className="p-4 w-48">Phân Nhóm</th>
-              <th className="p-4">Hạng Mục Kiểm Tra</th>
-              <th className="p-4 w-52">Tình Trạng Hiện Tại</th>
-              <th className="p-4">Ghi Chú Chi Tiết</th>
-              <th className="p-4 w-28 text-center">Ảnh Minh Chứng</th>
+            <tr className="bg-[#F2F5F0] dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 font-bold uppercase text-[11px] tracking-wider rounded-xl">
+              <th className="p-3.5 w-12 text-center rounded-l-xl">STT</th>
+              <th className="p-3.5 w-48">Phân Nhóm</th>
+              <th className="p-3.5">Hạng Mục Kiểm Tra</th>
+              <th className="p-3.5 w-56">Tình Trạng Hiện Tại</th>
+              <th className="p-3.5">Ghi Chú Chi Tiết</th>
+              <th className="p-3.5 w-32 text-center rounded-r-xl">Ảnh Minh Chứng</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800/80 [data-theme='light']_:divide-slate-200 text-slate-300 [data-theme='light']_:text-slate-800">
+          <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
             {items.map((item, idx) => (
-              <tr key={item.id} className="hover:bg-emerald-950/50 hover:text-emerald-200 border-l-4 border-l-transparent hover:border-l-emerald-400 transition-all duration-150">
-                <td className="p-4 text-center text-slate-500 [data-theme='light']_:text-slate-400 font-bold">{idx + 1}</td>
-                <td className="p-4 text-slate-400 [data-theme='light']_:text-slate-600 font-semibold">{item.category}</td>
-                <td className="p-4 font-serif text-sm font-bold text-slate-100 [data-theme='light']_:text-slate-900">{item.name}</td>
-                <td className="p-4">
+              <tr key={item.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                <td className="p-3.5 text-center text-slate-400 font-bold">{idx + 1}</td>
+                <td className="p-3.5 text-slate-500 font-semibold">{item.category}</td>
+                <td className="p-3.5 font-bold text-[#163300] dark:text-white">{item.name}</td>
+                <td className="p-3.5">
                   <div className="flex items-center gap-1.5">
                     <button
                       onClick={() => handleUpdateStatus(item.id, 'good')}
-                      className={`px-2 py-1 rounded-lg text-[11px] font-mono transition-all font-bold ${
+                      className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer ${
                         item.status === 'good'
-                          ? 'bg-emerald-500 text-slate-950 shadow-md'
-                          : 'bg-slate-900 [data-theme=\'light\']_:bg-slate-100 text-slate-400 [data-theme=\'light\']_:text-slate-600 border border-slate-800 [data-theme=\'light\']_:border-slate-200'
+                          ? 'bg-[#9FE870] text-[#163300] shadow-sm'
+                          : 'bg-[#F2F5F0] dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200'
                       }`}
                     >
                       Tốt
                     </button>
                     <button
                       onClick={() => handleUpdateStatus(item.id, 'minor_issue')}
-                      className={`px-2 py-1 rounded-lg text-[11px] font-mono transition-all font-bold ${
+                      className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer ${
                         item.status === 'minor_issue'
-                          ? 'bg-amber-500 text-slate-950 shadow-md'
-                          : 'bg-slate-900 [data-theme=\'light\']_:bg-slate-100 text-slate-400 [data-theme=\'light\']_:text-slate-600 border border-slate-800 [data-theme=\'light\']_:border-slate-200'
+                          ? 'bg-[#FFC83B] text-[#163300] shadow-sm'
+                          : 'bg-[#F2F5F0] dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200'
                       }`}
                     >
                       Xước nhẹ
                     </button>
                     <button
                       onClick={() => handleUpdateStatus(item.id, 'needs_repair')}
-                      className={`px-2 py-1 rounded-lg text-[11px] font-mono transition-all font-bold ${
+                      className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer ${
                         item.status === 'needs_repair'
-                          ? 'bg-rose-500 text-slate-950 shadow-md'
-                          : 'bg-slate-900 [data-theme=\'light\']_:bg-slate-100 text-slate-400 [data-theme=\'light\']_:text-slate-600 border border-slate-800 [data-theme=\'light\']_:border-slate-200'
+                          ? 'bg-[#FF5436] text-white shadow-sm'
+                          : 'bg-[#F2F5F0] dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200'
                       }`}
                     >
                       Cần sửa
                     </button>
                   </div>
                 </td>
-                <td className="p-4">
+                <td className="p-3.5">
                   <input
                     type="text"
                     value={item.notes}
                     onChange={(e) => handleUpdateNotes(item.id, e.target.value)}
-                    className="w-full px-2.5 py-1.5 rounded-lg bg-slate-900/80 [data-theme='light']_:bg-slate-50 border border-slate-800 [data-theme='light']_:border-slate-200 text-slate-200 [data-theme='light']_:text-slate-900 font-sans text-xs focus:outline-none focus:border-emerald-500 font-medium"
+                    className="w-full px-3 py-1.5 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white font-medium text-xs focus:outline-none focus:ring-2 focus:ring-[#9FE870]"
                   />
                 </td>
-                <td className="p-4 text-center">
+                <td className="p-3.5 text-center">
                   <button
                     onClick={() => {
                       if (onShowToast) {
                         onShowToast('info', `Ảnh hiện trạng: ${item.name}`, `Đang tải ${item.photoCount} ảnh minh chứng độ phân giải cao.`);
                       }
                     }}
-                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-200 text-slate-300 [data-theme='light']_:text-slate-700 hover:text-emerald-500 text-[11px] font-mono transition-colors font-semibold"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#F2F5F0] hover:bg-slate-200 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-slate-200 text-[11px] font-bold transition-colors cursor-pointer"
                   >
-                    <Camera className="w-3.5 h-3.5 text-emerald-400" />
+                    <Camera className="w-3.5 h-3.5 text-[#20A05A]" />
                     <span>{item.photoCount} ảnh</span>
                   </button>
                 </td>
