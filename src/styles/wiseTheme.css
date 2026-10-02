@@ -1,0 +1,202 @@
+/* ============================================================
+   WISE DESIGN SYSTEM (v3.0.0) — Official Tokens & Component Classes
+   Inspired by & 1:1 aligned with wise.com & wise.design
+   ============================================================ */
+
+:root {
+  --wise-forest:          #163300;
+  --wise-forest-deep:     #0E1E09;
+  --wise-forest-light:    #223D0D;
+  --wise-lime:            #9FE870;
+  --wise-lime-hover:      #8CD85E;
+  --wise-lime-active:     #7AC74D;
+  --wise-lime-soft:       #E2F7D4;
+  --wise-lime-subtle:     rgba(159, 232, 112, 0.15);
+  --wise-canvas:          #F2F5F0;
+  --wise-canvas-pure:     #FFFFFF;
+  --wise-card-bg:         #FFFFFF;
+  --wise-border:          rgba(22, 51, 0, 0.12);
+  --wise-border-subtle:   rgba(22, 51, 0, 0.06);
+  --wise-border-strong:   rgba(22, 51, 0, 0.22);
+  --wise-text-primary:    #163300;
+  --wise-text-secondary:  #495E35;
+  --wise-text-muted:      #738565;
+  --wise-shadow-card:     0 4px 24px -2px rgba(22, 51, 0, 0.06), 0 1px 3px rgba(22, 51, 0, 0.04);
+  --wise-shadow-elevated: 0 12px 36px -4px rgba(22, 51, 0, 0.09), 0 2px 8px rgba(22, 51, 0, 0.04);
+}
+
+/* Wise Headline Typography (Bold, Tight Tracking, Confident) */
+.wise-headline {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--wise-forest);
+}
+
+/* Wise Primary Action Button (Pill, Neon Spring Lime) */
+.wise-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--wise-lime);
+  color: var(--wise-forest);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 9999px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(22, 51, 0, 0.08);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.wise-btn-primary:hover {
+  background-color: var(--wise-lime-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(22, 51, 0, 0.12);
+}
+
+.wise-btn-primary:active {
+  background-color: var(--wise-lime-active);
+  transform: translateY(0);
+}
+
+/* Wise Dark Action Button */
+.wise-btn-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--wise-forest);
+  color: var(--wise-lime);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.wise-btn-dark:hover {
+  background-color: var(--wise-forest-light);
+  transform: translateY(-1px);
+}
+
+/* Wise Secondary Outline Button */
+.wise-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--wise-forest);
+  border: 1.5px solid var(--wise-forest);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  padding: 0.8125rem 1.625rem;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.wise-btn-outline:hover {
+  background-color: rgba(22, 51, 0, 0.05);
+}
+
+/* Wise Card Container */
+.wise-card {
+  background-color: var(--wise-card-bg);
+  border-radius: 1.5rem;
+  border: 1px solid var(--wise-border);
+  box-shadow: var(--wise-shadow-card);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wise-card:hover {
+  box-shadow: var(--wise-shadow-elevated);
+  border-color: rgba(22, 51, 0, 0.18);
+}
+
+/* Wise Calculator Specific Components */
+.wise-calc-box {
+  background: #FFFFFF;
+  border-radius: 1.75rem;
+  border: 1px solid rgba(22, 51, 0, 0.12);
+  box-shadow: 0 16px 40px -8px rgba(22, 51, 0, 0.08);
+  padding: 2rem;
+}
+
+.wise-calc-input-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #F7FAF6;
+  border: 1.5px solid rgba(22, 51, 0, 0.12);
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.wise-calc-input-row:focus-within {
+  border-color: var(--wise-forest);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(159, 232, 112, 0.35);
+}
+
+.wise-calc-route-step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--wise-text-secondary);
+  position: relative;
+  padding-left: 2rem;
+}
+
+.wise-calc-route-step::before {
+  content: '';
+  position: absolute;
+  left: 0.5625rem;
+  top: -1rem;
+  bottom: -1rem;
+  width: 2px;
+  background: rgba(22, 51, 0, 0.12);
+}
+
+.wise-calc-route-step .step-dot {
+  position: absolute;
+  left: 0.25rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 9999px;
+  background: #FFFFFF;
+  border: 2px solid var(--wise-forest);
+  z-index: 2;
+}
+
+/* Wise Flags / Provinces Marquee Ticker */
+.wise-ticker-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #FFFFFF;
+  border: 1px solid rgba(22, 51, 0, 0.10);
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--wise-forest);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.wise-ticker-pill:hover {
+  background: var(--wise-lime);
+  border-color: var(--wise-lime);
+  transform: translateY(-1px);
+}

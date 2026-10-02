@@ -1,7 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useId } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, ArrowRight, ShieldCheck, CloudRain, Car, Zap, Mic, MicOff, Compass, Camera, Upload } from 'lucide-react';
-import { useFirstLoadReveal } from '../../hooks/useFirstLoadReveal';
+import { 
+  ArrowRight, 
+  ShieldCheck, 
+  Zap, 
+  Mic, 
+  MicOff, 
+  Compass, 
+  Camera, 
+  Upload,
+  CheckCircle2,
+  ChevronDown,
+  Building,
+  Sparkles
+} from 'lucide-react';
 import { VoiceRecognitionService } from '../../services/voiceRecognitionService';
 
 interface HeroSectionProps {
@@ -10,74 +22,58 @@ interface HeroSectionProps {
   onOpenVisualVibeModal?: () => void;
 }
 
+const PROVINCES = [
+  'Toàn quốc (11 tỉnh)',
+  'Hà Nội',
+  'TP. Hồ Chí Minh',
+  'Đà Nẵng',
+  'Thái Nguyên',
+  'Hải Phòng',
+  'Cần Thơ',
+  'Nha Trang',
+  'Bình Dương',
+  'Vũng Tàu',
+  'Huế',
+  'Quảng Ninh'
+];
+
+const ROOM_TYPES = [
+  'Tất cả loại phòng',
+  'Studio / 1 Phòng Ngủ',
+  '2 Phòng Ngủ',
+  '3+ Phòng Ngủ',
+  'Duplex / Penthouse'
+];
+
 const quickSuggestions = [
-  { label: 'căn 2 phòng ở Thái Nguyên tầm 8 củ', query: 'căn 2 phòng ở Thái Nguyên tầm 8 củ có ô tô' },
-  { label: 'căn 2 phòng HN tầm 18 củ có ô tô', query: 'căn 2 phòng ở HN tầm 18 củ có ô tô' },
-  { label: '2pn tây hồ dưới 20 củ, tầng cao', query: '2pn tây hồ dưới 20 củ, tầng cao' },
-  { label: 'vợ chồng 1 con, cầu giấy, yên tĩnh', query: 'vợ chồng 1 con, cầu giấy, yên tĩnh' },
-  { label: 'sky villa ngắm biển mỹ khê', query: 'sky villa ngắm biển mỹ khê' },
+  { label: 'Căn 2 phòng Thái Nguyên 8 củ có ô tô', query: 'căn 2 phòng ở Thái Nguyên tầm 8 củ có ô tô' },
+  { label: '2PN Tây Hồ dưới 20 củ, tầng cao', query: '2pn tây hồ dưới 20 củ, tầng cao' },
+  { label: 'Vợ chồng 1 con, Cầu Giấy, yên tĩnh', query: 'vợ chồng 1 con, cầu giấy, yên tĩnh' },
+  { label: 'Sky villa ngắm biển Mỹ Khê', query: 'sky villa ngắm biển mỹ khê' },
 ];
-
-const trustBadges = [
-  { icon: ShieldCheck, label: 'Kiểm Định Pháp Lý Rõ Ràng', color: 'text-emerald-500' },
-  { icon: Car, label: 'Chỗ Đỗ Ô Tô Hầm Thông Minh', color: 'text-sky-500' },
-  { icon: CloudRain, label: 'Đánh Giá Ngập Úng & Mưa Bão', color: 'text-emerald-500' },
-  { icon: Zap, label: 'Điện Dự Phòng 100% Tự Động', color: 'text-amber-500' },
-];
-
-// Animation variants for staggered entrance
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
-  },
-};
-
-const lineVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const },
-  },
-};
-
-const searchBarVariants = {
-  hidden: { opacity: 0, y: 16, scale: 0.97 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const, delay: 0.4 },
-  },
-};
-
-const badgeContainerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.06, delayChildren: 0.7 },
-  },
-};
-
-const badgeItemVariants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'easeOut' as const } },
-};
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ 
   onSearch, 
   onOpenLifestyleMatchmaker,
   onOpenVisualVibeModal
 }) => {
-  const [aiPromptInput, setAiPromptInput] = useState('');
+  const [budgetVND, setBudgetVND] = useState<number>(15000000);
+  const [selectedProvince, setSelectedProvince] = useState<string>('Hà Nội');
+  const [selectedRoomType, setSelectedRoomType] = useState<string>('2 Phòng Ngủ');
   const [isListening, setIsListening] = useState(false);
-  const phase = useFirstLoadReveal();
+  const [aiPromptInput, setAiPromptInput] = useState('');
+  const budgetInputId = useId();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Dynamic calculation for matching units based on budget
+  const estimatedMatches = Math.max(12, Math.min(86, Math.round(budgetVND / 420000)));
+
+  const handleCalculatorSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(aiPromptInput.trim() || undefined);
+    const provQuery = selectedProvince.includes('Toàn quốc') ? '' : selectedProvince;
+    const roomQuery = selectedRoomType.includes('Tất cả') ? '' : selectedRoomType;
+    const budgetQuery = `tầm ${(budgetVND / 1000000).toFixed(0)} triệu`;
+    const fullQuery = [roomQuery, provQuery, budgetQuery].filter(Boolean).join(' ');
+    onSearch(fullQuery);
   };
 
   const toggleVoice = () => {
@@ -109,181 +105,264 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   };
 
   return (
-    <section className="relative rounded-3xl p-[1.5px] overflow-hidden shadow-2xl border border-emerald-500/30 bg-gradient-to-b from-emerald-500/15 via-slate-950/80 to-slate-950 group transition-all">
-      <div className="hero-scrim-container relative z-10 w-full h-full rounded-[22px] overflow-hidden min-h-[520px] md:min-h-[560px] flex flex-col justify-between p-6 sm:p-8 md:p-12 lg:p-14 border border-[var(--haven-border)] bg-slate-950 dark:bg-slate-950">
-        {/* Background: Real Architectural Luxury Residence + Layered Scrims */}
-        <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1600"
-          alt="HAVEN Architecture"
-          className="w-full h-full object-cover object-center filter brightness-[0.55] transition-transform duration-1000 scale-[1.02]"
-        />
-        {/* Deep atmospheric gradient scrims for dark mode */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/85 to-slate-950/50" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/40" />
+    <section className="relative w-full bg-[#F2F5F0] dark:bg-[#0E1E09] rounded-3xl p-6 sm:p-10 lg:p-14 border border-[#163300]/10 dark:border-[#9FE870]/20 shadow-sm transition-colors duration-300">
+      {/* 2-Column Wise Hero Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
         
-        {/* Radiant luminous ambient overlay in light mode */}
-        <div className="light-hero-gradient absolute inset-0 z-0" />
-        
-        {/* Ambient glow accent */}
-        <div className="absolute -bottom-20 -right-20 w-80 h-80 rounded-full bg-emerald-500/15 blur-3xl pointer-events-none" />
-      </div>
-
-      {/* Top Tagline & Contextual AI Status Bar */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={phase >= 1 ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.4, ease: 'easeOut' }}
-        className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
-      >
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 border border-emerald-500/40 text-emerald-300 text-xs font-mono tracking-wider uppercase backdrop-blur-md shadow-lg self-start font-semibold">
-          <Sparkles className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
-          <span>HAVEN — Không Gian Sống An Yên</span>
-        </div>
-        <div className="flex items-center gap-3 text-xs font-mono text-slate-200 font-semibold drop-shadow">
-          <span>63 Tỉnh Thành Toàn Quốc</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-emerald-300 font-bold">Haven AI Tìm Bằng Giọng Nói</span>
-        </div>
-      </motion.div>
-
-      {/* Center: Headline + Search */}
-      <div className="relative z-10 max-w-3xl my-6 md:my-8 space-y-6">
-        {/* Staggered headline */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={phase >= 2 ? 'visible' : 'hidden'}
-          className="space-y-1"
-        >
-          <motion.h1 variants={lineVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-[1.15] drop-shadow-md">
-            Tìm nơi ở
-          </motion.h1>
-          <motion.h1 variants={lineVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-[1.15]">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-emerald-400 to-teal-300 drop-shadow-sm">
-              thực sự thuộc về bạn.
-            </span>
-          </motion.h1>
-          <motion.p variants={lineVariants} className="text-slate-100 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed mt-4 font-sans font-medium drop-shadow">
-            Không chỉ là 4 bức tường. HAVEN thấu hiểu phong cách sống và đánh giá toàn diện nguy cơ ngập úng, độ ồn, chỗ đỗ xe ô tô và nguồn điện dự phòng trên khắp 63 tỉnh thành.
-          </motion.p>
-        </motion.div>
-
-        {/* AI Search Bar with Gemini-like Breathing Sparkle */}
-        <motion.form
-          variants={searchBarVariants}
-          initial="hidden"
-          animate={phase >= 3 ? 'visible' : 'hidden'}
-          onSubmit={handleSubmit}
-          className="relative max-w-2xl"
-        >
-          <div className="relative p-[1.5px] rounded-2xl overflow-hidden shadow-2xl shadow-emerald-500/25 group">
-            {/* Dual Orbiting Clockwise Light Beams (Symmetrical & Non-Clipping) */}
-            <div className="animate-spin-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
-
-            <div className="relative z-10 flex items-center rounded-[14px] bg-slate-950/90 dark:bg-slate-950/90 [data-theme='light']_:bg-slate-900/95 backdrop-blur-md p-1.5 sm:p-2 gap-1.5 border border-slate-800 dark:border-slate-800 [data-theme='light']_:border-emerald-500/40 shadow-xl">
-              <div className="pl-3 pr-1 text-emerald-400">
-                <Sparkles className="w-5 h-5 animate-pulse" />
-              </div>
-              <input
-                type="text"
-                value={aiPromptInput}
-                onChange={(e) => setAiPromptInput(e.target.value)}
-                placeholder='Nói hoặc nhập: "căn 2 phòng ở Thái Nguyên tầm 8 củ có ô tô"'
-                className="w-full bg-transparent border-none text-white placeholder:text-slate-400 text-sm md:text-base focus:outline-none focus:ring-0 pr-2 py-2 sm:py-2.5 font-sans font-medium"
-              />
-              {/* Mic Voice Search Button */}
-              <button
-                type="button"
-                onClick={toggleVoice}
-                title={isListening ? "Đang lắng nghe... Bấm để dừng" : "Bấm để tìm kiếm bằng giọng nói tiếng Việt"}
-                className={`p-2.5 rounded-xl transition-all flex items-center justify-center shrink-0 ${
-                  isListening
-                    ? 'bg-rose-500 text-white animate-pulse shadow-lg shadow-rose-500/30 ring-2 ring-rose-400'
-                    : 'bg-slate-800 text-slate-300 hover:text-emerald-400 hover:bg-slate-700'
-                }`}
-              >
-                {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
-              </button>
-
-              {/* Visual Vibe: Camera & Upload Buttons */}
-              {onOpenVisualVibeModal && (
-                <div className="flex items-center gap-1 shrink-0">
-                  <button
-                    type="button"
-                    onClick={onOpenVisualVibeModal}
-                    title="Chụp ảnh phòng hoặc camera"
-                    className="p-2.5 rounded-xl transition-all flex items-center justify-center bg-slate-800 text-slate-300 hover:text-emerald-400 hover:bg-slate-700 group cursor-pointer"
-                  >
-                    <Camera className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={onOpenVisualVibeModal}
-                    title="Tải ảnh lên từ thiết bị"
-                    className="p-2.5 rounded-xl transition-all flex items-center justify-center bg-slate-800 text-slate-300 hover:text-emerald-400 hover:bg-slate-700 group cursor-pointer"
-                  >
-                    <Upload className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                  </button>
-                </div>
-              )}
-
-              <button
-                type="submit"
-                className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition-all duration-200 shadow-lg shadow-emerald-500/25 shrink-0 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
-              >
-                <span className="hidden sm:inline">Hỏi AI</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
+        {/* ─── LEFT COLUMN: Wise Confident Typography & Narrative ─── */}
+        <div className="lg:col-span-7 space-y-6 sm:space-y-8">
+          {/* Top Pill Tag */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E2F7D4] dark:bg-[#163300] border border-[#163300]/15 dark:border-[#9FE870]/30 text-xs font-bold text-[#163300] dark:text-[#9FE870] uppercase tracking-wider">
+            <span className="w-2 h-2 rounded-full bg-[#163300] dark:bg-[#9FE870] animate-pulse" />
+            <span>HAVEN PROPTECH PLATFORM · KHMT K23A</span>
           </div>
 
-          {/* Quick Suggestions */}
-          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-3 text-xs font-mono">
-            <span className="text-slate-200 font-bold mr-1 drop-shadow">Gợi ý:</span>
+          {/* Wise Signature Heavy Headline */}
+          <div className="space-y-3">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#163300] dark:text-white tracking-tight leading-[1.05] uppercase">
+              THUÊ CĂN HỘ <br />
+              <span className="text-[#163300] dark:text-[#9FE870]">TIẾT KIỆM HƠN,</span> <br />
+              MINH BẠCH HƠN.
+            </h1>
+            <p className="text-base sm:text-lg text-[#495E35] dark:text-emerald-100/80 max-w-xl font-medium leading-relaxed">
+              Phương thức chuẩn xác để tìm và thuê 1,260 căn hộ độc bản tại 11 tỉnh thành. 100% kiểm định an toàn PCCC QCVN 06:2022, minh bạch chi phí thật và tư vấn bằng AI Local 80ms.
+            </p>
+          </div>
+
+          {/* Quick Voice / Prompt Search Bar */}
+          <form 
+            onSubmit={(e) => {
+              e.preventDefault();
+              onSearch(aiPromptInput.trim() || undefined);
+            }} 
+            className="flex items-center gap-2 max-w-xl bg-white dark:bg-[#163300] p-1.5 rounded-full border border-[#163300]/15 dark:border-[#9FE870]/30 shadow-md"
+          >
+            <div className="pl-4 pr-1 text-[#163300] dark:text-[#9FE870]">
+              <Sparkles className="w-5 h-5 animate-pulse" />
+            </div>
+            <input
+              type="text"
+              value={aiPromptInput}
+              onChange={(e) => setAiPromptInput(e.target.value)}
+              placeholder='Nhập hoặc nói: "2 phòng ngủ Thái Nguyên 8 củ có ô tô"'
+              className="w-full bg-transparent border-none text-[#163300] dark:text-white placeholder:text-[#738565] dark:placeholder:text-emerald-200/50 text-sm sm:text-base font-medium focus:outline-none focus:ring-0"
+            />
+            {/* Mic Button */}
+            <button
+              type="button"
+              onClick={toggleVoice}
+              title={isListening ? "Đang lắng nghe... Bấm để dừng" : "Tìm kiếm bằng giọng nói tiếng Việt"}
+              className={`p-3 rounded-full transition-all flex items-center justify-center shrink-0 ${
+                isListening
+                  ? 'bg-rose-500 text-white animate-pulse shadow-md ring-2 ring-rose-300'
+                  : 'bg-[#F2F5F0] dark:bg-[#0E1E09] text-[#163300] dark:text-[#9FE870] hover:bg-[#9FE870] hover:text-[#163300]'
+              }`}
+            >
+              {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+            </button>
+            <button
+              type="submit"
+              className="inline-flex items-center gap-1.5 px-5 py-3 rounded-full bg-[#9FE870] hover:bg-[#8CD85E] text-[#163300] font-bold text-sm transition-all duration-200 shadow-sm shrink-0 cursor-pointer active:scale-95"
+            >
+              <span>Tìm</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </form>
+
+          {/* Quick Suggestions Tags */}
+          <div className="flex flex-wrap items-center gap-2 pt-1 text-xs font-semibold">
+            <span className="text-[#495E35] dark:text-emerald-200/60 uppercase tracking-wider font-bold">Gợi ý:</span>
             {quickSuggestions.map((s) => (
               <button
                 key={s.query}
                 type="button"
                 onClick={() => onSearch(s.query)}
-                className="px-2.5 py-1 rounded-lg font-semibold shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer bg-slate-950/70 hover:bg-slate-900 text-emerald-300 border border-emerald-500/30 backdrop-blur-md"
+                className="px-3 py-1.5 rounded-full bg-white dark:bg-[#163300] text-[#163300] dark:text-emerald-200 border border-[#163300]/10 dark:border-[#9FE870]/20 hover:bg-[#9FE870] dark:hover:bg-[#9FE870] hover:text-[#163300] transition-colors shadow-xs cursor-pointer"
               >
-                "{s.label}"
+                {s.label}
               </button>
             ))}
           </div>
 
-          {/* Lifestyle Matchmaker Highlight CTA */}
-          {onOpenLifestyleMatchmaker && (
-            <div className="pt-3">
+          {/* Feature Action Buttons Row */}
+          <div className="flex flex-wrap items-center gap-3 pt-2">
+            {onOpenLifestyleMatchmaker && (
               <button
                 type="button"
                 onClick={onOpenLifestyleMatchmaker}
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-emerald-300 border border-emerald-500/30 text-xs font-mono font-medium transition-all shadow-md hover:scale-[1.01] active:scale-[0.99] cursor-pointer group backdrop-blur-md"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-[#163300] text-[#163300] dark:text-[#9FE870] border border-[#163300]/15 dark:border-[#9FE870]/30 font-bold text-xs sm:text-sm hover:bg-[#E2F7D4] dark:hover:bg-[#223D0D] transition-all shadow-xs cursor-pointer"
               >
-                <Compass className="w-4 h-4 text-emerald-400 group-hover:rotate-45 transition-transform" />
-                <span>Bộ lọc nhu cầu sống</span>
-                <ArrowRight className="w-3.5 h-3.5 text-emerald-400 group-hover:translate-x-0.5 transition-transform" />
+                <Compass className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
+                <span>Khảo sát nhu cầu sống 6 bước</span>
               </button>
-            </div>
-          )}
-        </motion.form>
-      </div>
+            )}
 
-      {/* Bottom Trust Badges */}
-      <motion.div
-        variants={badgeContainerVariants}
-        initial="hidden"
-        animate={phase >= 4 ? 'visible' : 'hidden'}
-        className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 pt-5 border-t border-white/15 text-xs font-mono text-slate-200 font-semibold drop-shadow"
-      >
-        {trustBadges.map((badge) => (
-          <motion.div key={badge.label} variants={badgeItemVariants} className="flex items-center gap-2">
-            <badge.icon className={`w-4 h-4 ${badge.color} shrink-0`} />
-            <span>{badge.label}</span>
-          </motion.div>
-        ))}
-      </motion.div>
+            {onOpenVisualVibeModal && (
+              <button
+                type="button"
+                onClick={onOpenVisualVibeModal}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-[#163300] text-[#163300] dark:text-[#9FE870] border border-[#163300]/15 dark:border-[#9FE870]/30 font-bold text-xs sm:text-sm hover:bg-[#E2F7D4] dark:hover:bg-[#223D0D] transition-all shadow-xs cursor-pointer"
+              >
+                <Camera className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
+                <span>Tìm kiếm bằng thị giác AI</span>
+              </button>
+            )}
+          </div>
+
+          {/* 3-Column Trust Strip (Wise bullet link style) */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#163300]/10 dark:border-[#9FE870]/20">
+            <div className="flex items-start gap-2.5">
+              <ShieldCheck className="w-5 h-5 text-[#163300] dark:text-[#9FE870] shrink-0 mt-0.5" />
+              <div>
+                <div className="font-bold text-xs text-[#163300] dark:text-white uppercase tracking-wider">Đạt Chuẩn PCCC</div>
+                <div className="text-[11px] text-[#495E35] dark:text-emerald-200/70 mt-0.5">Nghiệm thu QCVN 06:2022</div>
+              </div>
+            </div>
+            <div className="flex items-start gap-2.5">
+              <Zap className="w-5 h-5 text-[#163300] dark:text-[#9FE870] shrink-0 mt-0.5" />
+              <div>
+                <div className="font-bold text-xs text-[#163300] dark:text-white uppercase tracking-wider">AI Local 80ms</div>
+                <div className="text-[11px] text-[#495E35] dark:text-emerald-200/70 mt-0.5">Phản hồi tức thì, không lộ data</div>
+              </div>
+            </div>
+            <div className="flex items-start gap-2.5">
+              <CheckCircle2 className="w-5 h-5 text-[#163300] dark:text-[#9FE870] shrink-0 mt-0.5" />
+              <div>
+                <div className="font-bold text-xs text-[#163300] dark:text-white uppercase tracking-wider">True Cost Index</div>
+                <div className="text-[11px] text-[#495E35] dark:text-emerald-200/70 mt-0.5">0 phụ phí, rõ ràng chi phí thật</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ─── RIGHT COLUMN: Iconic Wise Calculator Widget ─── */}
+        <div className="lg:col-span-5">
+          <div className="bg-white dark:bg-[#163300] rounded-[28px] p-6 sm:p-8 border border-[#163300]/10 dark:border-[#9FE870]/20 shadow-[0_20px_48px_-12px_rgba(22,51,0,0.12)] space-y-5">
+            
+            {/* Calculator Header */}
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-xs font-bold text-[#738565] dark:text-emerald-200/60 uppercase tracking-wider">
+                  Dự Toán Ngân Sách
+                </div>
+                <h3 className="text-lg font-black text-[#163300] dark:text-white tracking-tight">
+                  Bộ Tính Chi Phí Thuê Chuẩn Xác
+                </h3>
+              </div>
+              <span className="px-2.5 py-1 rounded-full bg-[#E2F7D4] dark:bg-[#223D0D] text-[#163300] dark:text-[#9FE870] text-xs font-bold">
+                100% Free
+              </span>
+            </div>
+
+            <form onSubmit={handleCalculatorSubmit} className="space-y-4">
+              
+              {/* Row 1: You Send (Your Budget) */}
+              <div className="space-y-1.5">
+                <label htmlFor={budgetInputId} className="block text-xs font-bold text-[#495E35] dark:text-emerald-200/80">
+                  Ngân sách thuê hàng tháng của bạn
+                </label>
+                <div className="flex items-center justify-between bg-[#F7FAF6] dark:bg-[#0E1E09] border border-[#163300]/15 dark:border-[#9FE870]/30 rounded-2xl p-3 focus-within:border-[#163300] focus-within:ring-2 focus-within:ring-[#9FE870]/40 transition-all">
+                  <div className="flex-1 pr-2">
+                    <input
+                      id={budgetInputId}
+                      type="number"
+                      step={500000}
+                      min={3000000}
+                      max={100000000}
+                      value={budgetVND}
+                      onChange={(e) => setBudgetVND(Number(e.target.value))}
+                      className="w-full bg-transparent text-xl sm:text-2xl font-black text-[#163300] dark:text-white focus:outline-none"
+                    />
+                    <div className="text-[11px] text-[#738565] dark:text-emerald-200/60 font-semibold">
+                      {(budgetVND / 1000000).toLocaleString('vi-VN')} triệu VNĐ/tháng
+                    </div>
+                  </div>
+                  {/* Currency / Unit Pill */}
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white dark:bg-[#163300] border border-[#163300]/10 dark:border-[#9FE870]/30 text-xs font-bold text-[#163300] dark:text-[#9FE870] shrink-0">
+                    <span>🇻🇳 VND</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Wise Vertical Route Line with Breakdown Dots */}
+              <div className="space-y-2.5 pl-3 py-1 border-l-2 border-[#163300]/15 dark:border-[#9FE870]/30 ml-4">
+                {/* Dot 1: Service Fee */}
+                <div className="relative pl-4 flex items-center justify-between text-xs">
+                  <span className="absolute -left-[1.3125rem] w-3 h-3 rounded-full bg-white dark:bg-[#163300] border-2 border-[#163300] dark:border-[#9FE870]" />
+                  <span className="text-[#495E35] dark:text-emerald-200/80 font-medium">Phí dịch vụ & tư vấn AI</span>
+                  <span className="font-bold text-[#163300] dark:text-[#9FE870]">0 VND (Miễn phí)</span>
+                </div>
+
+                {/* Dot 2: PCCC & Safety */}
+                <div className="relative pl-4 flex items-center justify-between text-xs">
+                  <span className="absolute -left-[1.3125rem] w-3 h-3 rounded-full bg-white dark:bg-[#163300] border-2 border-[#163300] dark:border-[#9FE870]" />
+                  <span className="text-[#495E35] dark:text-emerald-200/80 font-medium">Tiêu chuẩn an toàn PCCC</span>
+                  <span className="font-bold text-[#163300] dark:text-[#9FE870]">Đạt chuẩn QCVN</span>
+                </div>
+
+                {/* Dot 3: Province Selector */}
+                <div className="relative pl-4 flex items-center justify-between text-xs">
+                  <span className="absolute -left-[1.3125rem] w-3 h-3 rounded-full bg-white dark:bg-[#163300] border-2 border-[#163300] dark:border-[#9FE870]" />
+                  <span className="text-[#495E35] dark:text-emerald-200/80 font-medium">Khu vực tìm kiếm</span>
+                  <select
+                    value={selectedProvince}
+                    onChange={(e) => setSelectedProvince(e.target.value)}
+                    className="bg-transparent font-bold text-[#163300] dark:text-[#9FE870] text-xs focus:outline-none cursor-pointer pr-1"
+                  >
+                    {PROVINCES.map((p) => (
+                      <option key={p} value={p} className="bg-white dark:bg-[#163300] text-[#163300] dark:text-white">
+                        {p}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Row 2: Recipient Gets (Apartments Matched) */}
+              <div className="space-y-1.5">
+                <label className="block text-xs font-bold text-[#495E35] dark:text-emerald-200/80">
+                  Số căn hộ AI gợi ý khớp chuẩn 100%
+                </label>
+                <div className="flex items-center justify-between bg-[#F7FAF6] dark:bg-[#0E1E09] border border-[#163300]/15 dark:border-[#9FE870]/30 rounded-2xl p-3 focus-within:border-[#163300] transition-all">
+                  <div className="flex-1 pr-2">
+                    <div className="text-xl sm:text-2xl font-black text-[#163300] dark:text-[#9FE870]">
+                      {estimatedMatches} Căn Hộ
+                    </div>
+                    <div className="text-[11px] text-[#738565] dark:text-emerald-200/60 font-semibold">
+                      Trong kho 1,260 căn hộ đã kiểm định
+                    </div>
+                  </div>
+                  {/* Room Type Selector Pill */}
+                  <select
+                    value={selectedRoomType}
+                    onChange={(e) => setSelectedRoomType(e.target.value)}
+                    className="px-3 py-1.5 rounded-full bg-white dark:bg-[#163300] border border-[#163300]/10 dark:border-[#9FE870]/30 text-xs font-bold text-[#163300] dark:text-[#9FE870] focus:outline-none cursor-pointer shrink-0"
+                  >
+                    {ROOM_TYPES.map((r) => (
+                      <option key={r} value={r} className="bg-white dark:bg-[#163300] text-[#163300] dark:text-white">
+                        {r}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Wise Primary Big Action Button */}
+              <button
+                type="submit"
+                className="w-full flex items-center justify-center gap-2 py-4 rounded-full bg-[#9FE870] hover:bg-[#8CD85E] text-[#163300] font-black text-base shadow-sm transition-all duration-200 active:scale-98 cursor-pointer mt-2"
+              >
+                <span>Xem {estimatedMatches} căn hộ phù hợp ngay</span>
+                <ArrowRight className="w-5 h-5" />
+              </button>
+
+              <p className="text-center text-[11px] text-[#738565] dark:text-emerald-200/60 font-medium">
+                Xác thực bởi True Cost Engine & Local SLM AI. Không phí môi giới ẩn.
+              </p>
+            </form>
+          </div>
+        </div>
+
       </div>
     </section>
   );

@@ -100,6 +100,110 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
         onOpenVisualVibeModal={onOpenVisualVibeModal}
       />
 
+      {/* ═══ WISE SECTION: 11 Provinces / Cities Ticker (Wise Flags Marquee) ═══ */}
+      <div className="w-full bg-white dark:bg-[#163300] rounded-2xl p-3 sm:p-4 border border-[#163300]/10 dark:border-[#9FE870]/20 shadow-xs flex items-center gap-3 overflow-hidden">
+        <div className="flex items-center gap-2 shrink-0 px-3 py-1.5 rounded-full bg-[#9FE870] text-[#163300] font-bold text-xs sm:text-sm">
+          <ArrowRight className="w-4 h-4" />
+          <span>11 Tỉnh Thành</span>
+        </div>
+        <div className="flex items-center gap-2.5 overflow-x-auto no-scrollbar py-1">
+          {[
+            { name: 'Hà Nội', icon: '🏛️', count: '320+' },
+            { name: 'TP. Hồ Chí Minh', icon: '🏙️', count: '410+' },
+            { name: 'Đà Nẵng', icon: '🌉', count: '180+' },
+            { name: 'Thái Nguyên', icon: '🌲', count: '95+' },
+            { name: 'Hải Phòng', icon: '⚓', count: '75+' },
+            { name: 'Cần Thơ', icon: '🛶', count: '50+' },
+            { name: 'Nha Trang', icon: '🏖️', count: '65+' },
+            { name: 'Bình Dương', icon: '🏭', count: '85+' },
+            { name: 'Vũng Tàu', icon: '🌊', count: '45+' },
+            { name: 'Huế', icon: '🏯', count: '35+' },
+            { name: 'Quảng Ninh', icon: '⛵', count: '40+' },
+          ].map((city) => (
+            <button
+              key={city.name}
+              type="button"
+              onClick={() => onNavigateSearch(city.name)}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F2F5F0] dark:bg-[#0E1E09] hover:bg-[#9FE870] dark:hover:bg-[#9FE870] text-[#163300] dark:text-emerald-100 hover:text-[#163300] dark:hover:text-[#163300] border border-[#163300]/10 dark:border-[#9FE870]/20 font-bold text-xs transition-all shrink-0 cursor-pointer shadow-2xs"
+            >
+              <span>{city.icon}</span>
+              <span>{city.name}</span>
+              <span className="text-[10px] font-semibold opacity-70">({city.count})</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* ═══ WISE SECTION: For People Going Places (Wise 2-Feature Cards) ═══ */}
+      <section className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-2xl sm:text-3xl font-black text-[#163300] dark:text-white uppercase tracking-tight">
+            DÀNH CHO NGƯỜI TÌM NHÀ THÔNG THÁI
+          </h2>
+          <span className="text-xs font-bold text-[#495E35] dark:text-emerald-200/70 uppercase tracking-wider hidden sm:inline">
+            Công Nghệ Độc Bản HAVEN
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Card 1: Wise Lime Green Card */}
+          <div className="bg-[#9FE870] rounded-3xl p-8 sm:p-10 flex flex-col justify-between min-h-[280px] shadow-sm transition-transform hover:-translate-y-1 duration-200">
+            <div className="space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#163300]/10 text-xs font-bold text-[#163300] uppercase tracking-wider">
+                <span>01 · Khảo Sát Giác Quan</span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-black text-[#163300] tracking-tight leading-tight">
+                Khảo sát Lifestyle 6 bước.<br />
+                Đo lường 10 tiêu chí giác quan.
+              </h3>
+              <p className="text-[#163300]/80 font-medium text-sm sm:text-base leading-relaxed">
+                Đánh giá mức độ cách âm, ban công đón nắng gió, an toàn ngập lụt và chỗ đỗ ô tô trước khi quyết định ký hợp đồng.
+              </p>
+            </div>
+            <div className="pt-6">
+              {onOpenLifestyleMatchmaker ? (
+                <button
+                  type="button"
+                  onClick={onOpenLifestyleMatchmaker}
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#163300] hover:bg-[#223D0D] text-[#9FE870] font-bold text-sm transition-all shadow-sm cursor-pointer active:scale-95"
+                >
+                  <span>Làm bài khảo sát 2 phút</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              ) : null}
+            </div>
+          </div>
+
+          {/* Card 2: Wise Dark Forest Green Card */}
+          <div className="bg-[#163300] rounded-3xl p-8 sm:p-10 flex flex-col justify-between min-h-[280px] shadow-sm transition-transform hover:-translate-y-1 duration-200">
+            <div className="space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#9FE870]/20 text-xs font-bold text-[#9FE870] uppercase tracking-wider">
+                <span>02 · Thị Giác AI CLIP</span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-black text-white always-white tracking-tight leading-tight">
+                Tìm kiếm bằng thị giác AI.<br />
+                Khớp 818 vector đặc trưng.
+              </h3>
+              <p className="text-emerald-100/80 always-white font-medium text-sm sm:text-base leading-relaxed">
+                Chỉ cần tải lên 1 tấm ảnh không gian bạn mơ ước từ Pinterest hay Instagram. Mô hình AI CLIP sẽ tìm ngay căn hộ tương đồng nhất.
+              </p>
+            </div>
+            <div className="pt-6">
+              {onOpenVisualVibeModal ? (
+                <button
+                  type="button"
+                  onClick={onOpenVisualVibeModal}
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#9FE870] hover:bg-[#8CD85E] text-[#163300] font-bold text-sm transition-all shadow-sm cursor-pointer active:scale-95"
+                >
+                  <span>Thử Visual Vibe ngay</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              ) : null}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ═══ Sanctuary Tuning Dials with Luxury Ambient Border ═══ */}
       <section className="relative rounded-3xl p-[2px] overflow-hidden shadow-2xl group transition-all">
         {/* Soft outer glow bloom */}
@@ -473,6 +577,47 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
                 <p className="text-xs text-slate-200 font-medium drop-shadow always-white">Sky Villa Biển Mỹ Khê & Bán Đảo Sơn Trà</p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ WISE SECTION: Meet Living Without Borders (Dark Forest Signature Section) ═══ */}
+      <section className="relative w-full rounded-3xl bg-[#163300] p-8 sm:p-12 lg:p-16 text-center space-y-6 overflow-hidden border border-[#9FE870]/30 shadow-lg">
+        {/* Subtle background glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#9FE870]/10 rounded-full blur-3xl pointer-events-none" />
+        
+        <div className="relative z-10 max-w-3xl mx-auto space-y-4">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#9FE870]/20 text-[#9FE870] font-bold text-xs uppercase tracking-widest">
+            <ShieldCheck className="w-4 h-4 text-[#9FE870]" />
+            <span>Minh Bạch 100% · Không Chi Phí Ẩn</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#9FE870] tracking-tight uppercase leading-tight">
+            SỐNG AN TÂM, KHÔNG LO PHỤ PHÍ.
+          </h2>
+
+          <p className="text-emerald-100/90 always-white text-sm sm:text-base md:text-lg leading-relaxed font-medium">
+            HAVEN xoá bỏ mọi rào cản thông tin giữa người thuê và chủ nhà. Mỗi căn hộ đều sở hữu hồ sơ nghiệm thu PCCC QCVN 06:2022, biểu đồ chi phí thực tế True Cost Index và cam kết không phát sinh bất kỳ khoản phí ngoài hợp đồng.
+          </p>
+
+          <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
+            <button
+              type="button"
+              onClick={() => onNavigateSearch()}
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#9FE870] hover:bg-[#8CD85E] text-[#163300] font-black text-sm sm:text-base transition-all shadow-md active:scale-95 cursor-pointer"
+            >
+              <span>Khám phá 1,260 căn hộ ngay</span>
+              <ArrowRight className="w-5 h-5" />
+            </button>
+            {onOpenLifestyleMatchmaker && (
+              <button
+                type="button"
+                onClick={onOpenLifestyleMatchmaker}
+                className="inline-flex items-center gap-2 px-6 py-4 rounded-full bg-transparent hover:bg-white/10 text-white always-white border border-white/30 font-bold text-sm sm:text-base transition-all cursor-pointer"
+              >
+                <span>Đo lường nhu cầu sống</span>
+              </button>
+            )}
           </div>
         </div>
       </section>

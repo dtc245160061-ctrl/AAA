@@ -3,6 +3,7 @@
 @import "./styles/utilities.css";
 @import "./styles/beamEffects.css";
 @import "./styles/borderGlow.css";
+@import "./styles/wiseTheme.css";
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *, .dark, .dark *));
 @custom-variant light (&:where([data-theme="light"], [data-theme="light"] *, .light, .light *));
@@ -19,12 +20,12 @@
 
   [data-theme="light"],
   .light {
-    --bg-canvas: #F8FAFC;
-    /* Clean, crisp off-white/slate-50 canvas */
-    --text-primary: #0F172A;
-    /* Deep slate-900 text for crisp readability */
-    --text-secondary: #334155;
-    /* Slate-700 secondary text */
+    --bg-canvas: #F2F5F0;
+    /* Official Wise Pale Mint/Linen Canvas */
+    --text-primary: #163300;
+    /* Wise Signature Deep Forest Green */
+    --text-secondary: #495E35;
+    /* Wise Signature Muted Forest */
   }
 
   html {

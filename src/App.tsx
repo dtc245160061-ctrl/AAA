@@ -208,7 +208,7 @@ export function App() {
     if (saved === 'light' || saved === 'dark' || saved === 'system') {
       return saved;
     }
-    return 'dark';
+    return 'light';
   });
 
   useEffect(() => {
