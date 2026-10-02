@@ -51,7 +51,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-xl font-bold tracking-wider text-white font-['Cinzel']">
+              <h1 className="text-xl font-black tracking-wider text-white font-sans">
                 AETHER
               </h1>
               <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest bg-amber-500/10 text-amber-400 border border-amber-500/30 rounded-full">

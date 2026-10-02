@@ -46,7 +46,7 @@ export const BuildingsView: React.FC<BuildingsViewProps> = ({
           <span className="text-[11px] font-mono-tech uppercase tracking-widest text-slate-400 font-medium block">
             BUILDING PORTFOLIO ASSET / ELEVATION MAP
           </span>
-          <h1 className="text-3xl sm:text-4xl font-serif-editorial text-white mt-1">
+          <h1 className="text-3xl sm:text-4xl font-sans font-black text-white mt-1">
             {selectedBuilding}
           </h1>
         </div>
@@ -99,7 +99,7 @@ export const BuildingsView: React.FC<BuildingsViewProps> = ({
       <div className="liquid-glass p-8 space-y-6">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800/80 pb-4">
           <div>
-            <h3 className="text-xl font-serif-editorial text-white">Floor Elevation Matrix & Unit Map</h3>
+            <h3 className="text-xl font-sans font-bold text-white">Floor Elevation Matrix & Unit Map</h3>
             <p className="text-xs font-mono-tech text-slate-400 mt-0.5">Click any suite block to inspect resident details & telemetry</p>
           </div>
 
@@ -145,7 +145,7 @@ export const BuildingsView: React.FC<BuildingsViewProps> = ({
                       </div>
 
                       <div className="mt-2 space-y-1">
-                        <span className="text-xs font-serif-editorial block">{u.type}</span>
+                        <span className="text-xs font-sans font-medium block">{u.type}</span>
                         <span className="text-[11px] font-mono-tech text-slate-300 block">
                           ${u.monthlyRentUSD.toLocaleString()}/mo • {u.sqm} sqm
                         </span>

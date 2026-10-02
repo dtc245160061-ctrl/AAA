@@ -53,47 +53,47 @@ export const GeminiKeyModal: React.FC<GeminiKeyModalProps> = ({ isOpen, onClose,
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="max-w-md w-full rounded-3xl atmospheric-panel border border-emerald-500/40 p-6 md:p-8 space-y-6 shadow-2xl backdrop-blur-2xl relative text-left">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/75 backdrop-blur-md animate-in fade-in duration-200 font-sans">
+      <div className="max-w-md w-full rounded-[32px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-6 md:p-8 space-y-6 shadow-2xl relative text-left text-slate-900 dark:text-slate-100">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div className="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-md shadow-emerald-500/25">
+            <div className="w-10 h-10 rounded-2xl bg-[#9FE870] text-[#163300] flex items-center justify-center shadow-xs shrink-0">
               <Key className="w-5 h-5" />
             </div>
             <div>
-              <div className="inline-flex items-center gap-1.5 text-[10px] font-mono text-emerald-400 uppercase tracking-widest font-bold">
+              <div className="inline-flex items-center gap-1.5 text-[10px] text-[#20A05A] dark:text-[#9FE870] uppercase tracking-wider font-bold">
                 <Sparkles className="w-3 h-3" />
                 <span>Google Gemini & RAG Setup</span>
               </div>
-              <h3 className="font-serif text-lg font-bold text-slate-100">
+              <h3 className="text-xl font-black text-[#163300] dark:text-white leading-tight">
                 Tích Hợp Google Gemini API
               </h3>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-xl text-slate-400 hover:text-white bg-slate-900/80 border border-slate-800 transition-colors"
+            className="p-2 rounded-full text-slate-400 hover:text-[#163300] dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
           >
-            <X className="w-4 h-4" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Description */}
-        <p className="text-xs text-slate-300 leading-relaxed font-sans">
+        <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
           Nhập <strong>Google Gemini API Key</strong> để kích hoạt mô hình sinh ngôn ngữ <strong>Gemini 2.0 Flash</strong> kết hợp công nghệ <strong>RAG (Retrieval-Augmented Generation)</strong> và mô hình <strong>text-embedding-004</strong> truy xuất cơ sở tri thức căn hộ, PCCC và vận hành tòa nhà.
         </p>
 
         {/* Input Form */}
-        <form onSubmit={handleTestAndSave} className="space-y-4 text-xs font-mono">
+        <form onSubmit={handleTestAndSave} className="space-y-4 text-xs font-medium">
           <div className="space-y-1.5">
-            <label className="text-slate-300 flex items-center justify-between">
+            <label className="text-slate-600 dark:text-slate-300 font-bold flex items-center justify-between">
               <span>Google AI Studio API Key</span>
               <a
                 href="https://aistudio.google.com/app/apikey"
                 target="_blank"
                 rel="noreferrer"
-                className="text-emerald-400 hover:text-emerald-300 inline-flex items-center gap-1 text-[11px]"
+                className="text-[#20A05A] dark:text-[#9FE870] hover:underline inline-flex items-center gap-1 text-[11px] font-bold"
               >
                 <span>Lấy key miễn phí</span>
                 <ExternalLink className="w-3 h-3" />
@@ -105,30 +105,30 @@ export const GeminiKeyModal: React.FC<GeminiKeyModalProps> = ({ isOpen, onClose,
                 value={apiKey}
                 onChange={(e) => setApiKeyInput(e.target.value)}
                 placeholder="AIzaSy..."
-                className="w-full pl-3.5 pr-10 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 font-mono text-xs"
+                className="w-full pl-4 pr-10 py-2.5 rounded-xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40 text-xs font-medium"
               />
-              <Key className="w-4 h-4 text-slate-500 absolute right-3 top-3 pointer-events-none" />
+              <Key className="w-4 h-4 text-slate-400 absolute right-3.5 top-3.5 pointer-events-none" />
             </div>
           </div>
 
           {/* Test Status Indicator */}
           {testResult && (
             <div
-              className={`p-3.5 rounded-xl border flex items-start gap-2.5 text-xs ${
+              className={`p-3.5 rounded-2xl border flex items-start gap-2.5 text-xs ${
                 testResult.valid
-                  ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
-                  : 'bg-rose-500/10 border-rose-500/30 text-rose-300'
+                  ? 'bg-[#E8F8EC] border-[#20A05A]/30 text-[#163300]'
+                  : 'bg-rose-50 dark:bg-rose-950/20 border-rose-200 dark:border-rose-800 text-rose-700 dark:text-rose-300'
               }`}
             >
               {testResult.valid ? (
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#20A05A] shrink-0 mt-0.5" />
               ) : (
-                <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                <AlertCircle className="w-4 h-4 text-[#FF5436] shrink-0 mt-0.5" />
               )}
               <div className="space-y-0.5">
                 <div className="font-bold">{testResult.message}</div>
                 {testResult.model && (
-                  <div className="text-[11px] font-mono text-emerald-400">
+                  <div className="text-[11px] text-[#20A05A] dark:text-[#9FE870] font-bold">
                     Mô hình hoạt động: {testResult.model} + text-embedding-004
                   </div>
                 )}
@@ -137,8 +137,8 @@ export const GeminiKeyModal: React.FC<GeminiKeyModalProps> = ({ isOpen, onClose,
           )}
 
           {/* Security Note */}
-          <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800 text-[11px] text-slate-400 flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+          <div className="p-3.5 rounded-2xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-xs text-slate-500 dark:text-slate-400 flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-[#20A05A] shrink-0" />
             <span>API Key được lưu an toàn trực tiếp trên trình duyệt của bạn (localStorage).</span>
           </div>
 
@@ -148,7 +148,7 @@ export const GeminiKeyModal: React.FC<GeminiKeyModalProps> = ({ isOpen, onClose,
               <button
                 type="button"
                 onClick={handleClearKey}
-                className="px-4 py-2.5 rounded-xl border border-slate-800 text-slate-400 hover:text-slate-200 text-xs font-mono transition-colors"
+                className="px-4 py-2.5 rounded-full border border-slate-200 dark:border-slate-700 text-slate-500 hover:text-[#FF5436] hover:border-[#FF5436]/40 text-xs font-bold transition-colors cursor-pointer"
               >
                 Gỡ Key
               </button>
@@ -156,14 +156,14 @@ export const GeminiKeyModal: React.FC<GeminiKeyModalProps> = ({ isOpen, onClose,
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 py-2.5 rounded-xl border border-slate-800 text-slate-300 hover:text-white text-xs font-mono transition-colors"
+              className="flex-1 py-2.5 rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-bold transition-colors cursor-pointer"
             >
               Đóng
             </button>
             <button
               type="submit"
               disabled={isTesting}
-              className="flex-1 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 disabled:bg-slate-800 text-slate-950 disabled:text-slate-500 font-mono text-xs font-bold shadow-lg shadow-emerald-500/25 transition-all flex items-center justify-center gap-1.5"
+              className="flex-1 py-2.5 rounded-full bg-[#9FE870] hover:bg-[#8ee05b] disabled:bg-slate-200 disabled:text-slate-400 text-[#163300] text-xs font-black shadow-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer hover:scale-[1.01] active:scale-[0.98]"
             >
               {isTesting ? (
                 <>

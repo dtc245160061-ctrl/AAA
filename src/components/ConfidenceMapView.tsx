@@ -80,14 +80,14 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">
-            <Layers className="w-4 h-4 text-emerald-400" />
+          <div className="flex items-center gap-2 text-xs text-[#20A05A] uppercase tracking-wider font-extrabold">
+            <Layers className="w-4 h-4 text-[#20A05A]" />
             <span>Bản Đồ PCCC & Ngập Lụt Đa Lớp (Environmental & Fire Safety Map)</span>
           </div>
-          <h1 className="text-3xl md:text-4xl font-serif text-slate-100 font-bold mt-1">
+          <h1 className="text-3xl md:text-4xl font-black text-[#163300] dark:text-white mt-1">
             Khảo Sát Rủi Ro Môi Trường & PCCC Trước Khi Cọc
           </h1>
-          <p className="text-sm font-sans text-slate-400 mt-1 max-w-2xl">
+          <p className="text-sm text-[#495E35] dark:text-slate-400 mt-1 max-w-2xl font-medium">
             Tích hợp lớp dữ liệu thoát nước ngập lụt đô thị, hồ sơ thẩm duyệt PCCC và bán kính tiện ích trường học/bệnh viện.
           </p>
         </div>
@@ -95,7 +95,7 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
         {onBackToDirectory && (
           <button
             onClick={onBackToDirectory}
-            className="px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-xs font-mono text-slate-300 transition-colors self-start md:self-auto"
+            className="px-5 py-2.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-[#163300] dark:text-white transition-all shadow-xs hover:border-[#163300] self-start md:self-auto cursor-pointer"
           >
             Quay lại tìm kiếm
           </button>
@@ -103,18 +103,18 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
       </div>
 
       {/* Layer Controls & City Selector Toolbar */}
-      <div className="p-5 rounded-2xl atmospheric-panel border border-slate-800 flex flex-wrap items-center justify-between gap-4 shadow-xl">
+      <div className="p-5 rounded-[24px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4 shadow-sm">
         {/* City Filter Pills */}
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-700 font-bold mr-1">Thành Phố:</span>
+          <span className="text-xs text-[#495E35] dark:text-slate-400 font-bold mr-1">Thành Phố:</span>
           {cities.slice(0, 8).map(c => (
             <button
               key={c}
               onClick={() => setSelectedCity(c)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all ${
+              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all border cursor-pointer ${
                 selectedCity === c
-                  ? 'bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20'
-                  : 'bg-slate-900/80 [data-theme=\'light\']_:bg-white border border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-400 [data-theme=\'light\']_:text-slate-700 hover:text-emerald-400'
+                  ? 'bg-[#9FE870] text-[#163300] border-[#9FE870] shadow-xs'
+                  : 'bg-[#F2F5F0] dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-[#495E35] dark:text-slate-300 hover:border-slate-400'
               }`}
             >
               {c === 'All' ? 'Tất cả' : getCityName(c)}
@@ -124,45 +124,45 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
 
         {/* Layer Toggles */}
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-700 font-bold mr-1">Lớp Bản Đồ:</span>
+          <span className="text-xs text-[#495E35] dark:text-slate-400 font-bold mr-1">Lớp Bản Đồ:</span>
 
           <button
             onClick={() => toggleLayer('floodRisk')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-mono flex items-center gap-1.5 border transition-all ${
+            className={`px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 border transition-all cursor-pointer ${
               activeLayers.floodRisk
-                ? 'bg-sky-950/80 [data-theme=\'light\']_:bg-sky-100 border-sky-400 [data-theme=\'light\']_:border-sky-500 text-sky-300 [data-theme=\'light\']_:text-sky-900 font-bold shadow-md'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-500 [data-theme=\'light\']_:text-slate-600'
+                ? 'bg-[#E8F8EC] border-[#20A05A]/40 text-[#163300] dark:text-[#9FE870] shadow-xs'
+                : 'bg-[#F2F5F0] dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-[#495E35] dark:text-slate-400 hover:border-slate-400'
             }`}
           >
-            <CloudRain className="w-3.5 h-3.5" />
+            <CloudRain className="w-3.5 h-3.5 text-sky-500" />
             <span>Rủi Ro Ngập Lụt</span>
-            {activeLayers.floodRisk && <span className="w-1.5 h-1.5 rounded-full bg-sky-400 ml-0.5" />}
+            {activeLayers.floodRisk && <span className="w-1.5 h-1.5 rounded-full bg-sky-500 ml-0.5" />}
           </button>
 
           <button
             onClick={() => toggleLayer('pcccSafety')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-mono flex items-center gap-1.5 border transition-all ${
+            className={`px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 border transition-all cursor-pointer ${
               activeLayers.pcccSafety
-                ? 'bg-rose-950/80 [data-theme=\'light\']_:bg-rose-100 border-rose-400 [data-theme=\'light\']_:border-rose-500 text-rose-300 [data-theme=\'light\']_:text-rose-900 font-bold shadow-md'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-500 [data-theme=\'light\']_:text-slate-600'
+                ? 'bg-[#FFEAE5] border-[#FF5436]/40 text-[#8C1F08] dark:text-rose-300 shadow-xs'
+                : 'bg-[#F2F5F0] dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-[#495E35] dark:text-slate-400 hover:border-slate-400'
             }`}
           >
-            <Flame className="w-3.5 h-3.5" />
+            <Flame className="w-3.5 h-3.5 text-[#FF5436]" />
             <span>Kiểm Định PCCC</span>
-            {activeLayers.pcccSafety && <span className="w-1.5 h-1.5 rounded-full bg-rose-400 ml-0.5" />}
+            {activeLayers.pcccSafety && <span className="w-1.5 h-1.5 rounded-full bg-[#FF5436] ml-0.5" />}
           </button>
 
           <button
             onClick={() => toggleLayer('amenities')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-mono flex items-center gap-1.5 border transition-all ${
+            className={`px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 border transition-all cursor-pointer ${
               activeLayers.amenities
-                ? 'bg-purple-950/80 [data-theme=\'light\']_:bg-purple-100 border-purple-400 [data-theme=\'light\']_:border-purple-500 text-purple-300 [data-theme=\'light\']_:text-purple-900 font-bold shadow-md'
-                : 'bg-slate-900/60 [data-theme=\'light\']_:bg-white border-slate-800 [data-theme=\'light\']_:border-slate-200 text-slate-500 [data-theme=\'light\']_:text-slate-600'
+                ? 'bg-purple-100 border-purple-300 dark:bg-purple-950/80 text-purple-900 dark:text-purple-300 shadow-xs'
+                : 'bg-[#F2F5F0] dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-[#495E35] dark:text-slate-400 hover:border-slate-400'
             }`}
           >
-            <GraduationCap className="w-3.5 h-3.5" />
+            <GraduationCap className="w-3.5 h-3.5 text-purple-500" />
             <span>Trường Học & Bệnh Viện</span>
-            {activeLayers.amenities && <span className="w-1.5 h-1.5 rounded-full bg-purple-400 ml-0.5" />}
+            {activeLayers.amenities && <span className="w-1.5 h-1.5 rounded-full bg-purple-500 ml-0.5" />}
           </button>
         </div>
       </div>
@@ -202,12 +202,12 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
               {activeLayers.floodRisk && (
                 <div className="absolute inset-0 pointer-events-none animate-in fade-in duration-300">
                   <div className="absolute top-[40%] left-[60%] w-36 h-28 rounded-full bg-sky-500/15 border-2 border-dashed border-sky-400/40 blur-[1px] flex items-center justify-center">
-                    <span className="text-[10px] font-mono text-sky-300 bg-slate-950/80 px-2 py-0.5 rounded border border-sky-500/30">
+                    <span className="text-[10px] font-bold text-sky-800 dark:text-sky-300 bg-white/90 dark:bg-slate-900/90 px-2.5 py-0.5 rounded-full border border-sky-300 dark:border-sky-500/30 shadow-xs">
                       Khu Vực Ngập Triều Cường (0.3m)
                     </span>
                   </div>
                   <div className="absolute bottom-[20%] left-[20%] w-44 h-32 rounded-full bg-sky-500/10 border border-sky-400/30 flex items-center justify-center">
-                    <span className="text-[10px] font-mono text-sky-300 bg-slate-950/80 px-2 py-0.5 rounded border border-sky-500/30">
+                    <span className="text-[10px] font-bold text-sky-800 dark:text-sky-300 bg-white/90 dark:bg-slate-900/90 px-2.5 py-0.5 rounded-full border border-sky-300 dark:border-sky-500/30 shadow-xs">
                       Điểm Trũng Cần Lưu Ý
                     </span>
                   </div>
@@ -253,15 +253,15 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
 
                       <div className="space-y-0.5 min-w-0 flex-1">
                         <div className="flex items-center gap-1">
-                          <span className="font-serif text-xs font-bold text-slate-100 [data-theme='light']_:text-slate-900 truncate">
+                          <span className="text-xs font-bold text-[#163300] dark:text-white truncate">
                             {unit.name || unit.id}
                           </span>
                           {unit.floodingRisk === 'Low' && activeLayers.floodRisk && (
-                            <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" title="Không ngập" />
+                            <span className="w-2 h-2 rounded-full bg-[#20A05A] shrink-0" title="Không ngập" />
                           )}
                         </div>
-                        <div className="text-[11px] font-mono font-bold text-emerald-400 [data-theme='light']_:text-emerald-700">
-                          {trueCostM.toFixed(1)}Tr/tháng
+                        <div className="text-[11px] font-black text-[#163300] dark:text-[#9FE870] tabular-nums">
+                          {trueCostM.toFixed(1)} Tr/tháng
                         </div>
                       </div>
                     </div>
@@ -271,24 +271,24 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
             </div>
 
             {/* Map Legend Overlay (Bottom Left) */}
-            <div className="absolute bottom-4 left-4 p-3.5 rounded-2xl bg-white dark:bg-slate-950/90 border border-slate-300 dark:border-slate-800 text-[11px] font-mono space-y-1.5 backdrop-blur-md shadow-xl">
-              <span className="text-slate-900 dark:text-slate-400 font-bold uppercase text-[10px] block">Chú Giải Lớp An Tâm:</span>
-              <div className="flex items-center gap-2 text-emerald-800 dark:text-emerald-300 font-semibold">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+            <div className="absolute bottom-4 left-4 p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 text-[11px] space-y-1.5 shadow-sm">
+              <span className="text-[#163300] dark:text-white font-black uppercase text-[10px] block">Chú Giải Lớp An Tâm:</span>
+              <div className="flex items-center gap-2 text-[#20A05A] font-bold">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#20A05A]" />
                 <span>Địa hình cao ráo, PCCC nghiệm thu ✓</span>
               </div>
-              <div className="flex items-center gap-2 text-sky-800 dark:text-sky-300 font-semibold">
+              <div className="flex items-center gap-2 text-sky-600 dark:text-sky-400 font-bold">
                 <span className="w-2.5 h-2.5 rounded-full bg-sky-500" />
                 <span>Vùng thoát nước kênh rạch</span>
               </div>
-              <div className="flex items-center gap-2 text-amber-800 dark:text-amber-300 font-semibold">
+              <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold">
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
                 <span>Khu vực mật độ giao thông cao</span>
               </div>
             </div>
 
             {/* Official Source Badge (Bottom Right) */}
-            <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-950/90 border border-emerald-500/40 text-[10px] font-mono text-emerald-800 dark:text-emerald-400 backdrop-blur-md font-semibold">
+            <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-[10px] text-[#495E35] dark:text-emerald-300 font-bold shadow-xs">
               Tham chiếu dữ liệu: UDI Maps & Cục PCCC
             </div>
           </div>
@@ -297,91 +297,87 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
         {/* Right Selected Unit Deep-Dive Card (5 cols) */}
         <div className="lg:col-span-5 space-y-6">
           {activeUnit ? (
-            <div className="group relative p-[2px] rounded-3xl overflow-hidden shadow-2xl transition-all">
-              <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
-                <div className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
-              </div>
-              <div className="relative z-10 w-full h-full p-6 md:p-8 rounded-[22px] bg-[#0B101B] [data-theme='light']_:bg-white border border-emerald-500/40 space-y-6">
+            <div className="rounded-[28px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-6 md:p-8 space-y-6 shadow-sm">
               {/* Unit Title & District */}
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-950/90 [data-theme='light']_:bg-emerald-100 border border-emerald-400 [data-theme='light']_:border-emerald-500 text-emerald-300 [data-theme='light']_:text-emerald-900 text-[10px] font-mono font-bold">
+                  <span className="px-3 py-1 rounded-full bg-[#E8F8EC] text-[#163300] dark:text-[#9FE870] text-[10px] font-bold">
                     ✓ Verified Sanctuary Căn Hộ
                   </span>
-                  <span className="text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-600 font-bold">
+                  <span className="text-xs text-[#738565] dark:text-slate-400 font-bold">
                     {getCityName(activeUnit.city)}
                   </span>
                 </div>
-                <h3 className="font-serif text-2xl font-bold text-slate-100 [data-theme='light']_:text-slate-900">
+                <h3 className="text-2xl font-black text-[#163300] dark:text-white">
                   {activeUnit.name || activeUnit.id}
                 </h3>
-                <p className="text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-600 flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <p className="text-xs text-[#738565] dark:text-slate-400 flex items-center gap-1.5 font-medium">
+                  <MapPin className="w-3.5 h-3.5 text-[#20A05A] shrink-0" />
                   <span>{activeUnit.address || `${activeUnit.district}, ${getCityName(activeUnit.city)}`}</span>
                 </p>
               </div>
 
               {/* True Cost vs Rent Bar - Clear & Uncrowded */}
-              <div className="p-4 rounded-2xl bg-slate-900/80 [data-theme='light']_:bg-white border border-emerald-500/30 space-y-2">
+              <div className="p-4 rounded-2xl bg-[#F2F5F0] dark:bg-slate-800/60 border border-slate-200/90 dark:border-slate-700 space-y-2">
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-                  <span className="text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-600">Tổng Chi Phí Hàng Tháng:</span>
-                  <span className="text-xl font-serif font-bold text-emerald-400 [data-theme='light']_:text-emerald-700">
+                  <span className="text-xs text-[#738565] dark:text-slate-400 font-bold">Tổng Chi Phí Hàng Tháng:</span>
+                  <span className="text-2xl font-black text-[#163300] dark:text-[#9FE870] tabular-nums">
                     {((activeUnit.trueCost?.totalMonthlyEstimatedVND || activeUnit.monthlyRentVND) / 1000000).toFixed(1)} Triệu/tháng
                   </span>
                 </div>
-                <div className="text-[11px] font-mono text-slate-400 [data-theme='light']_:text-slate-600 leading-normal pt-1.5 border-t border-slate-800/60 [data-theme='light']_:border-slate-100">
+                <div className="text-[11px] text-[#738565] dark:text-slate-400 leading-normal pt-1.5 border-t border-slate-200 dark:border-slate-700 font-medium">
                   Giá gốc: {(activeUnit.monthlyRentVND / 1000000).toFixed(0)} Tr · Phí DV & điện nước: ~{(((activeUnit.trueCost?.totalMonthlyEstimatedVND || activeUnit.monthlyRentVND) - activeUnit.monthlyRentVND) / 1000000).toFixed(1)} Tr
                 </div>
               </div>
 
               {/* Confidence Environmental Specs */}
               <div className="space-y-3">
-                <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 [data-theme='light']_:text-slate-700 font-bold">
+                <h4 className="text-xs uppercase tracking-wider text-[#495E35] dark:text-slate-400 font-bold">
                   Chỉ Số An Toàn Môi Trường:
                 </h4>
 
                 {/* Flood Risk */}
-                <div className="p-3.5 rounded-xl bg-slate-900/60 [data-theme='light']_:bg-white border border-slate-800 [data-theme='light']_:border-slate-200 flex items-start gap-3 text-xs">
-                  <div className={`p-2 rounded-lg shrink-0 ${
-                    activeUnit.floodingRisk === 'Low' ? 'bg-emerald-500/20 text-emerald-400 [data-theme="light"]_:text-emerald-700' : 'bg-amber-500/20 text-amber-400 [data-theme="light"]_:text-amber-700'
+                <div className="p-3.5 rounded-2xl bg-[#F9FAF8] dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700 flex items-start gap-3 text-xs">
+                  <div className={`p-2 rounded-xl shrink-0 ${
+                    activeUnit.floodingRisk === 'Low' ? 'bg-[#E8F8EC] text-[#20A05A]' : 'bg-amber-100 text-amber-700'
                   }`}>
                     <CloudRain className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="font-mono font-bold text-slate-200 [data-theme='light']_:text-slate-900">
+                    <span className="font-bold text-[#163300] dark:text-white">
                       Rủi ro ngập: {activeUnit.floodingRisk === 'Low' ? 'Thấp (Cao ráo)' : 'Trung bình (Đọng nước tạm thời)'}
                     </span>
-                    <p className="text-slate-400 [data-theme='light']_:text-slate-600 font-sans text-[11px] mt-0.5 leading-relaxed font-medium">
+                    <p className="text-[#738565] dark:text-slate-400 text-[11px] mt-0.5 leading-relaxed font-medium">
                       {activeUnit.environmentalData.floodNotes}
                     </p>
                   </div>
                 </div>
 
                 {/* PCCC Inspection */}
-                <div className="p-3.5 rounded-xl bg-slate-900/60 [data-theme='light']_:bg-white border border-slate-800 [data-theme='light']_:border-slate-200 flex items-start gap-3 text-xs">
-                  <div className="p-2 rounded-lg bg-rose-500/20 text-rose-400 [data-theme='light']_:text-rose-700 shrink-0">
+                <div className="p-3.5 rounded-2xl bg-[#F9FAF8] dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700 flex items-start gap-3 text-xs">
+                  <div className="p-2 rounded-xl bg-[#FFEAE5] text-[#FF5436] shrink-0">
                     <Flame className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="font-mono font-bold text-slate-200 [data-theme='light']_:text-slate-900">
+                    <span className="font-bold text-[#163300] dark:text-white">
                       PCCC: {activeUnit.pcccReport?.fireEscapeCount || 2} Thang thoát hiểm điều áp
                     </span>
-                    <p className="text-slate-400 [data-theme='light']_:text-slate-600 font-sans text-[11px] mt-0.5 leading-relaxed font-medium">
+                    <p className="text-[#738565] dark:text-slate-400 text-[11px] mt-0.5 leading-relaxed font-medium">
                       Đầu phun Sprinkler tự động & cảm biến khói đã nghiệm thu đạt chuẩn QCVN 06:2022.
                     </p>
                   </div>
                 </div>
 
                 {/* Backup Power */}
-                <div className="p-3.5 rounded-xl bg-slate-900/60 [data-theme='light']_:bg-white border border-slate-800 [data-theme='light']_:border-slate-200 flex items-start gap-3 text-xs">
-                  <div className="p-2 rounded-lg bg-amber-500/20 text-amber-400 [data-theme='light']_:text-amber-700 shrink-0">
+                <div className="p-3.5 rounded-2xl bg-[#F9FAF8] dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700 flex items-start gap-3 text-xs">
+                  <div className="p-2 rounded-xl bg-amber-100 text-amber-700 shrink-0">
                     <Zap className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="font-mono font-bold text-slate-200 [data-theme='light']_:text-slate-900">
+                    <span className="font-bold text-[#163300] dark:text-white">
                       Điện dự phòng: {activeUnit.hasBackupPower ? 'Máy phát 100% công suất' : 'Chiếu sáng khẩn cấp'}
                     </span>
-                    <p className="text-slate-400 [data-theme='light']_:text-slate-600 font-sans text-[11px] mt-0.5 leading-relaxed font-medium">
+                    <p className="text-[#738565] dark:text-slate-400 text-[11px] mt-0.5 leading-relaxed font-medium">
                       {activeUnit.environmentalData.powerNotes}
                     </p>
                   </div>
@@ -391,16 +387,15 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
               {/* Action Button */}
               <button
                 onClick={() => onSelectUnit(activeUnit.id)}
-                className="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono font-bold text-xs transition-all shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98]"
+                className="w-full py-3.5 rounded-full bg-[#163300] hover:bg-[#223D0D] text-white font-black text-xs transition-all shadow-xs flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
               >
                 <span>Xem Hồ Sơ Kiểm Định Chi Tiết Căn Hộ Này</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
-          </div>
-        ) : (
-            <div className="p-8 rounded-3xl atmospheric-panel border border-slate-800 text-center">
-              <p className="text-xs font-mono text-slate-400">Chọn một căn hộ trên bản đồ để xem báo cáo an tâm.</p>
+          ) : (
+            <div className="p-8 rounded-[28px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 text-center shadow-sm">
+              <p className="text-xs text-[#738565] dark:text-slate-400 font-bold">Chọn một căn hộ trên bản đồ để xem báo cáo an tâm.</p>
             </div>
           )}
         </div>

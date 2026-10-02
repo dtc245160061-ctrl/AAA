@@ -14,7 +14,7 @@ export const MaintenanceHub: React.FC<MaintenanceHubProps> = ({ tickets, onResol
         <div>
           <div className="flex items-center gap-2">
             <Wrench className="w-5 h-5 text-amber-400" />
-            <h2 className="text-xl font-bold text-white font-['Cinzel']">
+            <h2 className="text-xl font-bold text-white font-sans">
               Trung Tâm Bảo Trì IoT & Vé Yêu Cầu Cư Dân
             </h2>
           </div>

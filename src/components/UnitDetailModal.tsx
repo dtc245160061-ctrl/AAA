@@ -64,7 +64,7 @@ export const UnitDetailModal: React.FC<UnitDetailModalProps> = ({
               <span className="text-[11px] font-mono text-amber-400 font-bold uppercase tracking-wider">
                 {unit.type} • {unit.sqm} m²
               </span>
-              <h2 className="text-2xl font-bold text-white font-['Cinzel'] flex items-center gap-2">
+              <h2 className="text-2xl font-black text-white font-sans flex items-center gap-2">
                 Chi Tiết Căn Hộ {unit.id}
               </h2>
             </div>

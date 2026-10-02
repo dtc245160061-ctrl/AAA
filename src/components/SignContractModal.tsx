@@ -69,7 +69,7 @@ export const SignContractModal: React.FC<SignContractModalProps> = ({
 
     ctx.lineWidth = 2.5;
     ctx.lineCap = 'round';
-    ctx.strokeStyle = '#10b981'; // Emerald stroke
+    ctx.strokeStyle = document.documentElement.classList.contains('dark') ? '#9FE870' : '#163300';
     ctx.lineTo(clientX - rect.left, clientY - rect.top);
     ctx.stroke();
   };
@@ -93,52 +93,60 @@ export const SignContractModal: React.FC<SignContractModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-2xl rounded-3xl atmospheric-panel border border-emerald-500/40 p-6 md:p-8 space-y-6 shadow-2xl overflow-y-auto max-h-[90vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/75 backdrop-blur-md animate-in fade-in duration-200 font-sans">
+      <div className="relative w-full max-w-2xl rounded-[32px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-6 md:p-8 space-y-6 shadow-2xl overflow-y-auto max-h-[90vh] text-slate-900 dark:text-slate-100">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div className="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-4">
           <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-2xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+            <div className="w-10 h-10 rounded-2xl bg-[#E8F8EC] text-[#20A05A] flex items-center justify-center shrink-0">
               <FileText className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-serif text-xl text-slate-100 font-bold">Ký Hợp Đồng Thuê Nhà Số (E-Signature)</h3>
-              <p className="text-xs text-slate-400 font-mono">Bảo chứng điện tử an toàn • Mã hợp đồng: {contract.contractNumber}</p>
+              <h3 className="text-xl sm:text-2xl font-black text-[#163300] dark:text-white leading-tight">
+                Ký Hợp Đồng Thuê Nhà Số (E-Signature)
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+                Bảo chứng điện tử an toàn • Mã hợp đồng: <span className="font-bold tabular-nums">{contract.contractNumber}</span>
+              </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-full text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-2 rounded-full text-slate-400 hover:text-[#163300] dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Contract Summary Box */}
-        <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3 text-xs font-mono">
+        <div className="p-5 rounded-[24px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-3 text-xs">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <span className="text-slate-400">Căn hộ:</span>
-              <p className="text-slate-100 font-bold font-serif">{contract.unitName}</p>
+              <span className="text-slate-500 dark:text-slate-400 font-medium">Căn hộ:</span>
+              <p className="text-[#163300] dark:text-white font-black text-sm mt-0.5">{contract.unitName}</p>
             </div>
             <div>
-              <span className="text-slate-400">Khách thuê:</span>
-              <p className="text-slate-100 font-bold">{contract.tenantName} ({contract.tenantPhone})</p>
+              <span className="text-slate-500 dark:text-slate-400 font-medium">Khách thuê:</span>
+              <p className="text-[#163300] dark:text-white font-bold mt-0.5">{contract.tenantName} ({contract.tenantPhone})</p>
             </div>
             <div>
-              <span className="text-slate-400">Giá thuê:</span>
-              <p className="text-emerald-400 font-bold">{(contract.monthlyRentVND / 1000000).toFixed(0)} Triệu VNĐ/tháng</p>
+              <span className="text-slate-500 dark:text-slate-400 font-medium">Giá thuê hàng tháng:</span>
+              <p className="text-[#163300] dark:text-[#9FE870] font-black text-sm mt-0.5 tabular-nums">
+                {(contract.monthlyRentVND / 1000000).toFixed(0)} Triệu VNĐ/tháng
+              </p>
             </div>
             <div>
-              <span className="text-slate-400">Tiền cọc bảo chứng:</span>
-              <p className="text-slate-100 font-bold">{(contract.depositVND / 1000000).toFixed(0)} Triệu VNĐ</p>
+              <span className="text-slate-500 dark:text-slate-400 font-medium">Tiền cọc bảo chứng:</span>
+              <p className="text-[#163300] dark:text-white font-black text-sm mt-0.5 tabular-nums">
+                {(contract.depositVND / 1000000).toFixed(0)} Triệu VNĐ
+              </p>
             </div>
           </div>
 
-          <div className="pt-2 border-t border-slate-800 text-[11px] text-slate-400 flex items-center justify-between">
-            <span>Thời hạn: {contract.startDate} ➔ {contract.endDate}</span>
-            <span className="text-emerald-400 flex items-center gap-1 font-bold">
-              <Lock className="w-3 h-3" /> Mã Hash: {signatureHash.slice(0, 18)}...
+          <div className="pt-3 border-t border-slate-200 dark:border-slate-700/80 text-[11px] text-slate-500 dark:text-slate-400 flex items-center justify-between">
+            <span>Thời hạn: <strong className="text-slate-700 dark:text-slate-200">{contract.startDate}</strong> ➔ <strong className="text-slate-700 dark:text-slate-200">{contract.endDate}</strong></span>
+            <span className="text-[#20A05A] dark:text-[#9FE870] flex items-center gap-1 font-bold">
+              <Lock className="w-3 h-3" /> Hash: {signatureHash.slice(0, 16)}...
             </span>
           </div>
         </div>
@@ -146,21 +154,21 @@ export const SignContractModal: React.FC<SignContractModalProps> = ({
         {/* E-Signature Canvas */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className="text-xs font-mono text-slate-300 font-semibold flex items-center gap-1.5">
-              <PenTool className="w-3.5 h-3.5 text-emerald-400" />
+            <label className="text-xs text-[#163300] dark:text-slate-300 font-bold flex items-center gap-1.5">
+              <PenTool className="w-4 h-4 text-[#20A05A]" />
               <span>Vẽ Chữ Ký Điện Tử Trực Tiếp (Dùng chuột hoặc cảm ứng):</span>
             </label>
             <button
               type="button"
               onClick={handleClearSignature}
-              className="text-[11px] font-mono text-slate-400 hover:text-rose-400 flex items-center gap-1 transition-colors"
+              className="text-xs font-bold text-slate-500 hover:text-[#FF5436] flex items-center gap-1 transition-colors cursor-pointer"
             >
-              <RotateCcw className="w-3 h-3" />
+              <RotateCcw className="w-3.5 h-3.5" />
               <span>Ký lại</span>
             </button>
           </div>
 
-          <div className="relative rounded-2xl border-2 border-dashed border-emerald-500/40 bg-slate-950 overflow-hidden shadow-inner">
+          <div className="relative rounded-[20px] border-2 border-dashed border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 overflow-hidden shadow-inner">
             <canvas
               ref={canvasRef}
               width={560}
@@ -175,7 +183,7 @@ export const SignContractModal: React.FC<SignContractModalProps> = ({
               className="w-full h-[140px] cursor-crosshair touch-none"
             />
             {!hasSigned && (
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none text-xs font-mono text-slate-400">
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none text-xs font-medium text-slate-400">
                 ✍️ Ký tên vào khung này để xác nhận hợp đồng
               </div>
             )}
@@ -183,24 +191,24 @@ export const SignContractModal: React.FC<SignContractModalProps> = ({
         </div>
 
         {/* Terms Checkbox */}
-        <label className="flex items-start gap-2.5 text-xs text-slate-300 cursor-pointer">
+        <label className="flex items-start gap-2.5 text-xs text-slate-600 dark:text-slate-300 cursor-pointer">
           <input
             type="checkbox"
             checked={agreedTerms}
             onChange={(e) => setAgreedTerms(e.target.checked)}
-            className="rounded border-slate-700 bg-slate-900 text-emerald-500 focus:ring-emerald-500/20 mt-0.5"
+            className="w-4 h-4 rounded border-slate-300 dark:border-slate-700 accent-[#163300] dark:accent-[#9FE870] mt-0.5"
           />
-          <span className="font-sans leading-relaxed">
+          <span className="leading-relaxed">
             Tôi xác nhận đã đọc kỹ điều khoản hợp đồng thuê nhà, chính sách hoàn cọc minh bạch trong 72 giờ và cam kết tuân thủ quy chuẩn an toàn Sanctuary của HAVEN.
           </span>
         </label>
 
         {/* Actions */}
-        <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+        <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-200/80 dark:border-slate-800">
           <button
             type="button"
             onClick={onClose}
-            className="px-5 py-2.5 rounded-xl border border-slate-700 text-slate-300 text-xs font-mono hover:bg-slate-800 transition-colors"
+            className="px-5 py-2.5 rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
           >
             Hủy Bỏ
           </button>
@@ -208,7 +216,7 @@ export const SignContractModal: React.FC<SignContractModalProps> = ({
             type="button"
             disabled={!hasSigned || !agreedTerms}
             onClick={handleComplete}
-            className="px-6 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 disabled:opacity-40 disabled:cursor-not-allowed text-slate-950 font-mono text-xs font-bold transition-all shadow-lg shadow-emerald-500/20 flex items-center gap-2"
+            className="px-6 py-2.5 rounded-full bg-[#9FE870] hover:bg-[#8ee05b] disabled:opacity-40 disabled:cursor-not-allowed text-[#163300] text-xs font-black transition-all shadow-sm flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
           >
             <CheckCircle2 className="w-4 h-4" />
             <span>Kích Hoạt Hợp Đồng Số</span>

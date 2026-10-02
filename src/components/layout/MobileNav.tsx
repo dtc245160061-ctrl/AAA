@@ -80,7 +80,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
             <span className="relative">
               <Icon className="w-5 h-5" strokeWidth={isActive ? 2.5 : 1.75} />
               {item.badge !== undefined && (
-                <span className="absolute -top-1 -right-2 min-w-[16px] h-4 flex items-center justify-center px-1 rounded-full bg-[var(--haven-emerald-500)] text-[9px] font-mono font-bold text-[var(--haven-text-inverse)]">
+                <span className="absolute -top-1 -right-2 min-w-[16px] h-4 flex items-center justify-center px-1 rounded-full bg-[#9FE870] text-[9px] font-black tabular-nums text-[#163300] shadow-xs">
                   {item.badge}
                 </span>
               )}

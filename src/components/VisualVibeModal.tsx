@@ -262,25 +262,25 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-2xl rounded-3xl atmospheric-panel border border-emerald-500/40 bg-slate-950 shadow-2xl flex flex-col overflow-hidden max-h-[92vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="relative w-full max-w-2xl rounded-[32px] border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl flex flex-col overflow-hidden max-h-[92vh]">
         
         {/* Header Bar */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800/80 bg-slate-900/60 shrink-0">
-          <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/35">
+        <div className="flex items-center justify-between px-6 py-5 border-b border-slate-100 dark:border-slate-800 bg-[#F2F5F0]/60 dark:bg-slate-900/60 shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-[#E8F8EC] text-[#20A05A] flex items-center justify-center">
               <Camera className="w-5 h-5 animate-pulse" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-serif font-bold text-base sm:text-lg text-slate-100">
+                <h3 className="font-black text-base sm:text-lg text-[#163300] dark:text-white">
                   Tìm Kiếm Không Gian Bằng Thị Giác AI
                 </h3>
-                <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[9px] font-mono text-emerald-400 font-bold">
+                <span className="px-2.5 py-0.5 rounded-full bg-[#E8F8EC] text-[#163300] dark:text-[#9FE870] text-[10px] font-bold">
                   CLIP ViT-B/32
                 </span>
               </div>
-              <p className="text-xs text-slate-400 font-mono">
+              <p className="text-xs text-[#738565] dark:text-slate-400 font-medium">
                 Trích xuất 512-D Visual Embeddings & tính tương đồng Cosine thời gian thực
               </p>
             </div>
@@ -288,7 +288,7 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+            className="p-2 rounded-full text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
             title="Đóng"
           >
             <X className="w-5 h-5" />
@@ -303,7 +303,7 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
             {/* 1. Direct Camera Capture */}
             <div 
               onClick={() => cameraInputRef.current?.click()}
-              className="border-2 border-dashed border-emerald-500/40 hover:border-emerald-500/80 bg-emerald-950/20 hover:bg-emerald-950/30 rounded-2xl p-4 text-center cursor-pointer transition-all group flex items-center gap-3.5"
+              className="border-2 border-dashed border-[#20A05A]/40 hover:border-[#163300] bg-[#E8F8EC]/40 hover:bg-[#E8F8EC] rounded-2xl p-4 text-center cursor-pointer transition-all group flex items-center gap-3.5"
             >
               <input 
                 ref={cameraInputRef}
@@ -313,14 +313,14 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
                 className="hidden" 
                 onChange={handleFileUpload}
               />
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/25 border border-emerald-500/40 text-emerald-300 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-[#9FE870] text-[#163300] flex items-center justify-center group-hover:scale-110 transition-transform shrink-0 shadow-xs">
                 <Camera className="w-6 h-6" />
               </div>
               <div className="text-left space-y-0.5">
-                <div className="font-mono text-xs font-bold text-slate-100 group-hover:text-emerald-300 transition-colors">
+                <div className="text-xs font-bold text-[#163300] dark:text-white group-hover:text-[#20A05A] transition-colors">
                   Chụp Ảnh Bằng Camera
                 </div>
-                <p className="text-[11px] text-slate-400">
+                <p className="text-[11px] text-[#495E35] dark:text-slate-400 font-medium">
                   Mở camera chụp góc phòng hoặc ban công thực tế
                 </p>
               </div>
@@ -329,7 +329,7 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
             {/* 2. File Upload */}
             <div 
               onClick={() => fileInputRef.current?.click()}
-              className="border-2 border-dashed border-slate-700 hover:border-slate-500 bg-slate-900/40 hover:bg-slate-900/60 rounded-2xl p-4 text-center cursor-pointer transition-all group flex items-center gap-3.5"
+              className="border-2 border-dashed border-slate-200 dark:border-slate-700 hover:border-[#163300] bg-[#F2F5F0] dark:bg-slate-800/40 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-2xl p-4 text-center cursor-pointer transition-all group flex items-center gap-3.5"
             >
               <input 
                 ref={fileInputRef}
@@ -338,14 +338,14 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
                 className="hidden" 
                 onChange={handleFileUpload}
               />
-              <div className="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-[#163300] dark:text-slate-200 flex items-center justify-center group-hover:scale-110 transition-transform shrink-0 shadow-xs">
                 <Upload className="w-6 h-6" />
               </div>
               <div className="text-left space-y-0.5">
-                <div className="font-mono text-xs font-bold text-slate-100 group-hover:text-slate-200 transition-colors">
+                <div className="text-xs font-bold text-[#163300] dark:text-white group-hover:text-[#163300] transition-colors">
                   Tải Ảnh Từ Thiết Bị
                 </div>
-                <p className="text-[11px] text-slate-400">
+                <p className="text-[11px] text-[#738565] dark:text-slate-400 font-medium">
                   Tải ảnh mẫu từ Pinterest, Instagram, album ảnh
                 </p>
               </div>
@@ -355,8 +355,8 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
           {/* Preset Styles Section */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold flex items-center gap-1.5">
-                <Palette className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="text-xs uppercase tracking-wider text-[#495E35] dark:text-slate-400 font-bold flex items-center gap-1.5">
+                <Palette className="w-3.5 h-3.5 text-[#20A05A]" />
                 <span>Hoặc Chọn Phong Cách Thiết Kế Xu Hướng:</span>
               </span>
               <button
@@ -365,10 +365,10 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
                   setIsUnrelatedSimulation(prev => !prev);
                   triggerAnalysis();
                 }}
-                className={`text-[10px] font-mono px-2 py-1 rounded-lg border transition-colors cursor-pointer ${
+                className={`text-[10px] font-bold px-2.5 py-1 rounded-full border transition-colors cursor-pointer ${
                   isUnrelatedSimulation 
-                    ? 'bg-amber-500/20 text-amber-300 border-amber-500/50' 
-                    : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-slate-300'
+                    ? 'bg-amber-100 dark:bg-amber-500/20 text-amber-900 dark:text-amber-300 border-amber-300 dark:border-amber-500/50' 
+                    : 'bg-[#F2F5F0] dark:bg-slate-800 text-[#495E35] dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:text-[#163300]'
                 }`}
                 title="Bật/tắt mô phỏng ảnh không phải căn hộ để kiểm thử khả năng từ chối"
               >
@@ -386,8 +386,8 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
                     onClick={() => handleSelectPreset(preset)}
                     className={`group relative rounded-2xl overflow-hidden border text-left transition-all p-2 flex flex-col justify-between cursor-pointer ${
                       isSelected
-                        ? 'border-emerald-500 bg-emerald-950/40 ring-2 ring-emerald-500/40 shadow-lg shadow-emerald-500/20'
-                        : 'border-slate-800 bg-slate-900/60 hover:border-slate-700'
+                        ? 'border-[#163300] dark:border-[#9FE870] bg-[#E8F8EC] dark:bg-emerald-950/40 ring-2 ring-[#9FE870] shadow-sm'
+                        : 'border-slate-200/90 dark:border-slate-800 bg-[#F9FAF8] dark:bg-slate-800/60 hover:border-slate-300'
                     }`}
                   >
                     <div className="relative h-20 rounded-xl overflow-hidden mb-1.5">
@@ -399,16 +399,16 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       {isSelected && (
-                        <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center">
+                        <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-[#163300] text-[#9FE870] flex items-center justify-center">
                           <Check className="w-3 h-3 stroke-[3]" />
                         </div>
                       )}
                     </div>
                     <div className="space-y-0.5">
-                      <div className="text-xs font-serif font-bold text-slate-200 line-clamp-1">
+                      <div className="text-xs font-bold text-[#163300] dark:text-white line-clamp-1">
                         {preset.name}
                       </div>
-                      <div className="text-[10px] font-mono text-emerald-400">
+                      <div className="text-[10px] text-[#20A05A] dark:text-[#9FE870] font-bold">
                         #{preset.vibe}
                       </div>
                     </div>
@@ -419,26 +419,26 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
           </div>
 
           {/* AI Vision Scanner Result Card */}
-          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-3">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-              <span className="text-xs font-mono text-slate-400 flex items-center gap-1.5 font-bold">
-                <Sparkles className="w-4 h-4 text-emerald-400" />
+          <div className="p-4 rounded-2xl bg-[#F2F5F0] dark:bg-slate-800/60 border border-slate-200/90 dark:border-slate-700 space-y-3">
+            <div className="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-700 pb-2">
+              <span className="text-xs text-[#163300] dark:text-slate-200 flex items-center gap-1.5 font-bold">
+                <Sparkles className="w-4 h-4 text-[#20A05A]" />
                 <span>AI Vision Analysis (Quét Vector & Trích Xuất Bảng Màu)</span>
               </span>
               {isAnalyzing ? (
-                <span className="text-[10px] font-mono text-emerald-400 animate-pulse flex items-center gap-1">
+                <span className="text-[10px] font-bold text-[#20A05A] animate-pulse flex items-center gap-1">
                   <RefreshCw className="w-3 h-3 animate-spin" />
                   <span>Đang tính Cosine Similarity trên 818 vector...</span>
                 </span>
               ) : (
-                <span className="text-[10px] font-mono text-emerald-400">
+                <span className="text-[10px] font-bold text-[#20A05A]">
                   ✓ Vector Model: CLIP ViT-B/32 (512-D)
                 </span>
               )}
             </div>
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
-              <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0 border border-slate-700">
+              <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0 border border-slate-200 dark:border-slate-700">
                 <SmartImage
                   src={
                     isUnrelatedSimulation 
@@ -454,14 +454,14 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
 
               <div className="space-y-1.5 flex-1 text-xs">
                 <div>
-                  <div className="font-serif font-bold text-slate-100 text-sm">
+                  <div className="font-black text-[#163300] dark:text-white text-sm">
                     {isUnrelatedSimulation
                       ? 'Ảnh Ngoại Lai (Ví dụ: Xe Thể Thao / Đồ Chơi)'
                       : customImage 
                         ? 'Ảnh Người Dùng Tải Lên' 
                         : selectedPreset?.name}
                   </div>
-                  <p className="text-slate-400 text-[11px] leading-relaxed">
+                  <p className="text-[#495E35] dark:text-slate-400 text-[11px] leading-relaxed font-medium">
                     {isUnrelatedSimulation
                       ? 'Mô phỏng trường hợp người dùng nạp ảnh không phải kiến trúc căn hộ.'
                       : customImage 
@@ -472,11 +472,11 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
 
                 {/* Extracted Palette Swatches */}
                 <div className="flex items-center gap-2 pt-0.5">
-                  <span className="text-[10px] font-mono text-slate-500">Bảng màu:</span>
+                  <span className="text-[10px] font-bold text-[#738565] dark:text-slate-400">Bảng màu:</span>
                   {(selectedPreset?.palette || ['#C4A482', '#655442', '#CBD5E1', '#10B981']).map((color, idx) => (
                     <div 
                       key={idx}
-                      className="w-4 h-4 rounded-md border border-white/20 shadow-sm"
+                      className="w-4 h-4 rounded-md border border-black/10 shadow-xs"
                       style={{ backgroundColor: color }}
                       title={`Màu mã: ${color}`}
                     />
@@ -489,31 +489,31 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
           {/* REAL VECTOR MATCHING RESULTS OR ZERO-MATCH STATE */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-mono uppercase tracking-wider text-slate-300 font-semibold flex items-center gap-1.5">
-                <Building2 className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="text-xs uppercase tracking-wider text-[#495E35] dark:text-slate-300 font-bold flex items-center gap-1.5">
+                <Building2 className="w-3.5 h-3.5 text-[#20A05A]" />
                 <span>Kết Quả Đối Sánh Kiến Trúc Thực Tế:</span>
               </span>
-              <span className="text-[10px] font-mono text-slate-400">
+              <span className="text-[10px] font-bold text-[#738565] dark:text-slate-400">
                 Ngưỡng khớp: &gt;={Math.round(matchResults.threshold * 100)}%
               </span>
             </div>
 
             {/* CASE 1: NO MATCH FOUND (AS USER EXPLICITLY REQUESTED) */}
             {!matchResults.matched ? (
-              <div className="p-4 rounded-2xl bg-amber-950/20 border border-amber-500/40 text-left space-y-2 animate-in fade-in">
-                <div className="flex items-center gap-2 text-amber-400 font-serif font-bold text-sm">
+              <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-500/40 text-left space-y-2 animate-in fade-in">
+                <div className="flex items-center gap-2 text-amber-900 dark:text-amber-400 font-bold text-sm">
                   <AlertTriangle className="w-4 h-4 shrink-0" />
                   <span>Không tìm thấy căn hộ có phong cách/kiến trúc tương đồng trong cơ sở dữ liệu!</span>
                 </div>
-                <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                <p className="text-xs text-amber-900/80 dark:text-slate-300 leading-relaxed font-medium">
                   Độ khớp thẩm mỹ cao nhất trong toàn bộ 1,700 căn hộ chỉ đạt{' '}
-                  <strong className="text-amber-400 font-mono">
+                  <strong className="text-amber-950 dark:text-amber-300 font-black">
                     {Math.round(matchResults.topScore * 100)}%
                   </strong>{' '}
                   (dưới ngưỡng quy định {Math.round(matchResults.threshold * 100)}%). Ảnh của bạn có thể không chứa không gian phòng, nội thất hoặc không thuộc danh mục kiến trúc căn hộ.
                 </p>
-                <div className="pt-2 text-[11px] text-slate-400 flex flex-wrap gap-2">
-                  <span className="text-emerald-400 font-mono">Gợi ý:</span>
+                <div className="pt-2 text-[11px] text-[#738565] dark:text-slate-400 flex flex-wrap gap-2 font-medium">
+                  <span className="text-[#20A05A] font-bold">Gợi ý:</span>
                   <span>Chụp lại góc phòng khách</span>
                   <span>•</span>
                   <span>Ban công đón sáng</span>
@@ -535,9 +535,9 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
                         handleApply();
                       }
                     }}
-                    className="p-2.5 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500/60 hover:bg-slate-900 transition-all flex items-center gap-3 cursor-pointer group"
+                    className="p-2.5 rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200/90 dark:border-slate-700 hover:border-[#163300] dark:hover:border-[#9FE870] transition-all flex items-center gap-3 cursor-pointer group shadow-xs"
                   >
-                    <div className="relative w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-slate-700">
+                    <div className="relative w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-slate-200 dark:border-slate-700">
                       <SmartImage
                         src={item.photoUrl}
                         alt={item.name}
@@ -545,29 +545,29 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
                         quality={70}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
-                      <div className="absolute top-1 left-1 px-1.5 py-0.5 rounded-full bg-emerald-500/90 text-slate-950 font-mono text-[9px] font-black">
+                      <div className="absolute top-1 left-1 px-2 py-0.5 rounded-full bg-[#9FE870] text-[#163300] text-[9px] font-black shadow-xs">
                         {item.similarityPercent}%
                       </div>
                     </div>
 
                     <div className="flex-1 min-w-0 space-y-0.5">
-                      <div className="text-xs font-serif font-bold text-slate-200 truncate group-hover:text-emerald-300 transition-colors">
+                      <div className="text-xs font-bold text-[#163300] dark:text-white truncate group-hover:text-[#20A05A] transition-colors">
                         {item.name}
                       </div>
-                      <div className="flex items-center gap-1.5 text-[11px] text-slate-400">
-                        <MapPin className="w-3 h-3 text-emerald-400 shrink-0" />
+                      <div className="flex items-center gap-1.5 text-[11px] text-[#495E35] dark:text-slate-400 font-medium">
+                        <MapPin className="w-3 h-3 text-[#20A05A] shrink-0" />
                         <span className="truncate">{item.city}</span>
                         <span>•</span>
-                        <span className="font-mono text-emerald-400">
+                        <span className="font-black text-[#163300] dark:text-[#9FE870] tabular-nums">
                           {(item.rentVND / 1000000).toFixed(1)} tr/th
                         </span>
                       </div>
-                      <div className="text-[10px] font-mono text-slate-500">
+                      <div className="text-[10px] text-[#738565] dark:text-slate-500 font-medium">
                         Phong cách: {item.styleName}
                       </div>
                     </div>
 
-                    <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all shrink-0" />
+                    <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#163300] dark:group-hover:text-[#9FE870] group-hover:translate-x-1 transition-all shrink-0" />
                   </div>
                 ))}
               </div>
@@ -577,11 +577,11 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
         </div>
 
         {/* Modal Footer */}
-        <div className="px-6 py-4 border-t border-slate-800/80 bg-slate-900/60 flex items-center justify-between shrink-0">
+        <div className="px-6 py-4 border-t border-slate-100 dark:border-slate-800 bg-[#F2F5F0]/60 dark:bg-slate-900/60 flex items-center justify-between shrink-0">
           <button
             type="button"
             onClick={onClose}
-            className="text-xs font-mono text-slate-400 hover:text-white transition-colors cursor-pointer"
+            className="text-xs font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
           >
             Đóng
           </button>
@@ -590,10 +590,10 @@ export const VisualVibeModal: React.FC<VisualVibeModalProps> = ({
             type="button"
             onClick={handleApply}
             disabled={isAnalyzing || !matchResults.matched}
-            className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-xl font-mono text-xs font-bold transition-all shadow-lg cursor-pointer ${
+            className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-black transition-all shadow-sm cursor-pointer ${
               matchResults.matched
-                ? 'bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-emerald-500/25 hover:scale-105 active:scale-95'
-                : 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700'
+                ? 'bg-[#9FE870] hover:bg-[#8ee05c] text-[#163300] hover:scale-105 active:scale-95'
+                : 'bg-slate-200 dark:bg-slate-800 text-slate-400 cursor-not-allowed border border-slate-200 dark:border-slate-700'
             }`}
           >
             <span>

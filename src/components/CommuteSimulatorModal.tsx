@@ -37,22 +37,22 @@ export const CommuteSimulatorModal: React.FC<CommuteSimulatorModalProps> = ({
   const commute = ApartmentStore.calculateCommute(unit, selectedDestId);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-2xl rounded-3xl atmospheric-panel border border-emerald-500/40 p-6 md:p-8 space-y-6 shadow-2xl overflow-y-auto max-h-[90vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="relative w-full max-w-2xl rounded-[32px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-6 md:p-8 space-y-6 shadow-2xl overflow-y-auto max-h-[90vh]">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
           <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-2xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-              <Navigation className="w-5 h-5 text-emerald-400" />
+            <div className="w-10 h-10 rounded-2xl bg-[#E8F8EC] text-[#20A05A] flex items-center justify-center">
+              <Navigation className="w-5 h-5 text-[#20A05A]" />
             </div>
             <div>
-              <h3 className="font-serif text-xl text-slate-100 font-bold">Mô Phỏng Thời Gian Di Chuyển Đi Làm (Commute Simulator)</h3>
-              <p className="text-xs text-slate-400 font-mono">Từ căn hộ {unit.name || unit.id} đến các trung tâm việc làm / học tập</p>
+              <h3 className="text-lg md:text-xl text-[#163300] dark:text-white font-black">Mô Phỏng Thời Gian Di Chuyển Đi Làm (Commute Simulator)</h3>
+              <p className="text-xs text-[#738565] dark:text-slate-400 font-medium">Từ căn hộ {unit.name || unit.id} đến các trung tâm việc làm / học tập</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-full text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-2 rounded-full text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -60,7 +60,7 @@ export const CommuteSimulatorModal: React.FC<CommuteSimulatorModalProps> = ({
 
         {/* Destination Selector */}
         <div className="space-y-2">
-          <label className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">
+          <label className="text-xs text-[#495E35] dark:text-slate-400 uppercase tracking-wider font-bold">
             Chọn Địa Điểm Công Ty / Trường Học Đích:
           </label>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -70,16 +70,16 @@ export const CommuteSimulatorModal: React.FC<CommuteSimulatorModalProps> = ({
                 <button
                   key={dest.id}
                   onClick={() => setSelectedDestId(dest.id)}
-                  className={`p-3 rounded-xl text-left border transition-all text-xs font-mono flex items-start gap-2 ${
+                  className={`p-3.5 rounded-2xl text-left border transition-all text-xs flex items-start gap-2.5 cursor-pointer ${
                     isSelected
-                      ? 'bg-emerald-950/80 border-emerald-400 text-emerald-200 font-bold ring-2 ring-emerald-500/20'
-                      : 'bg-slate-900/80 border-slate-800 text-slate-300 hover:border-slate-700'
+                      ? 'bg-[#E8F8EC] border-[#20A05A] text-[#163300] dark:text-[#9FE870] font-bold shadow-xs'
+                      : 'bg-[#F9FAF8] dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 text-[#495E35] dark:text-slate-300 hover:border-slate-400'
                   }`}
                 >
-                  <MapPin className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#20A05A] shrink-0 mt-0.5" />
                   <div className="space-y-0.5">
-                    <span className="block truncate">{dest.name}</span>
-                    <span className="text-[10px] text-slate-400 font-normal">{dest.address}</span>
+                    <span className="block truncate font-bold">{dest.name}</span>
+                    <span className="text-[10px] text-[#738565] dark:text-slate-400 font-medium">{dest.address}</span>
                   </div>
                 </button>
               );
@@ -88,13 +88,13 @@ export const CommuteSimulatorModal: React.FC<CommuteSimulatorModalProps> = ({
         </div>
 
         {/* Transport Mode Switcher */}
-        <div className="flex items-center justify-between p-1.5 rounded-2xl bg-slate-900 border border-slate-800">
+        <div className="flex items-center justify-between p-1 rounded-2xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/90 dark:border-slate-700">
           <button
             onClick={() => setTransportMode('motorbike')}
-            className={`flex-1 py-2 rounded-xl text-xs font-mono flex items-center justify-center gap-2 transition-all ${
+            className={`flex-1 py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 transition-all cursor-pointer font-bold ${
               transportMode === 'motorbike'
-                ? 'bg-emerald-500 text-slate-950 font-bold shadow-md'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-[#163300] text-white shadow-xs'
+                : 'text-[#495E35] dark:text-slate-400 hover:text-[#163300]'
             }`}
           >
             <Bike className="w-4 h-4" />
@@ -102,10 +102,10 @@ export const CommuteSimulatorModal: React.FC<CommuteSimulatorModalProps> = ({
           </button>
           <button
             onClick={() => setTransportMode('car')}
-            className={`flex-1 py-2 rounded-xl text-xs font-mono flex items-center justify-center gap-2 transition-all ${
+            className={`flex-1 py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 transition-all cursor-pointer font-bold ${
               transportMode === 'car'
-                ? 'bg-emerald-500 text-slate-950 font-bold shadow-md'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-[#163300] text-white shadow-xs'
+                : 'text-[#495E35] dark:text-slate-400 hover:text-[#163300]'
             }`}
           >
             <Car className="w-4 h-4" />
@@ -113,10 +113,10 @@ export const CommuteSimulatorModal: React.FC<CommuteSimulatorModalProps> = ({
           </button>
           <button
             onClick={() => setTransportMode('bus')}
-            className={`flex-1 py-2 rounded-xl text-xs font-mono flex items-center justify-center gap-2 transition-all ${
+            className={`flex-1 py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 transition-all cursor-pointer font-bold ${
               transportMode === 'bus'
-                ? 'bg-emerald-500 text-slate-950 font-bold shadow-md'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-[#163300] text-white shadow-xs'
+                : 'text-[#495E35] dark:text-slate-400 hover:text-[#163300]'
             }`}
           >
             <Bus className="w-4 h-4" />
@@ -127,55 +127,55 @@ export const CommuteSimulatorModal: React.FC<CommuteSimulatorModalProps> = ({
         {/* Real-time Comparison: Normal vs Peak Hours */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Normal Hours */}
-          <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-2">
+          <div className="p-5 rounded-2xl bg-[#F2F5F0] dark:bg-slate-800/60 border border-slate-200/90 dark:border-slate-700 space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-mono text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-emerald-400" /> Giờ Thường (Thông Thoáng)
+              <span className="text-xs text-[#495E35] dark:text-slate-400 uppercase tracking-wider flex items-center gap-1.5 font-bold">
+                <Clock className="w-3.5 h-3.5 text-[#20A05A]" /> Giờ Thường (Thông Thoáng)
               </span>
-              <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-500/30">
+              <span className="text-[10px] font-bold text-[#163300] dark:text-[#9FE870] bg-[#E8F8EC] px-2.5 py-0.5 rounded-full border border-[#20A05A]/30">
                 09:30 - 16:30
               </span>
             </div>
-            <div className="text-3xl font-serif font-bold text-slate-100">
+            <div className="text-3xl font-black text-[#163300] dark:text-white tabular-nums">
               {transportMode === 'motorbike'
                 ? commute.motorbikeNormalMins
                 : transportMode === 'car'
                 ? commute.carNormalMins
                 : Math.round(commute.carNormalMins * 1.5)}{' '}
-              <span className="text-sm font-sans font-normal text-slate-400">Phút</span>
+              <span className="text-sm font-semibold text-[#738565] dark:text-slate-400">Phút</span>
             </div>
-            <p className="text-[11px] font-mono text-slate-400">
+            <p className="text-[11px] text-[#738565] dark:text-slate-400 font-medium">
               Khoảng cách: ~{commute.distanceKm} km • Tốc độ TB ~30km/h
             </p>
           </div>
 
           {/* Peak Hours (Rush Hour Traffic) */}
-          <div className="p-5 rounded-2xl bg-amber-950/20 border border-amber-500/30 space-y-2">
+          <div className="p-5 rounded-2xl bg-[#FFF6DB] dark:bg-amber-950/20 border border-[#FFC83B]/40 dark:border-amber-500/30 space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-mono text-amber-300 uppercase tracking-wider flex items-center gap-1.5 font-bold">
-                <AlertTriangle className="w-3.5 h-3.5 text-amber-400" /> Giờ Cao Điểm (Kẹt Xe)
+              <span className="text-xs text-[#7A5200] dark:text-amber-300 uppercase tracking-wider flex items-center gap-1.5 font-bold">
+                <AlertTriangle className="w-3.5 h-3.5 text-amber-500" /> Giờ Cao Điểm (Kẹt Xe)
               </span>
-              <span className="text-[10px] font-mono text-amber-400 bg-amber-950 px-2 py-0.5 rounded border border-amber-500/30">
+              <span className="text-[10px] font-bold text-[#7A5200] dark:text-amber-300 bg-amber-100 dark:bg-amber-950 px-2.5 py-0.5 rounded-full border border-amber-300 dark:border-amber-500/30">
                 07:30 - 08:45 | 17:30 - 19:00
               </span>
             </div>
-            <div className="text-3xl font-serif font-bold text-amber-300">
+            <div className="text-3xl font-black text-[#7A5200] dark:text-amber-300 tabular-nums">
               {transportMode === 'motorbike'
                 ? commute.motorbikePeakMins
                 : transportMode === 'car'
                 ? commute.carPeakMins
                 : Math.round(commute.carPeakMins * 1.4)}{' '}
-              <span className="text-sm font-sans font-normal text-slate-400">Phút</span>
+              <span className="text-sm font-semibold text-[#7A5200]/80 dark:text-slate-400">Phút</span>
             </div>
-            <p className="text-[11px] font-mono text-slate-400">
+            <p className="text-[11px] text-[#7A5200]/80 dark:text-slate-400 font-medium">
               Độ trễ tăng +{Math.round(((commute.motorbikePeakMins - commute.motorbikeNormalMins) / commute.motorbikeNormalMins) * 100)}% do nút giao đèn đỏ
             </p>
           </div>
         </div>
 
         {/* Transit Advice Tip */}
-        <div className="p-4 rounded-2xl bg-emerald-950/30 border border-emerald-500/30 text-xs font-mono text-emerald-300 flex items-start gap-2.5">
-          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+        <div className="p-4 rounded-2xl bg-[#E8F8EC] dark:bg-emerald-950/30 border border-[#20A05A]/30 text-xs text-[#163300] dark:text-emerald-300 flex items-start gap-2.5 font-medium leading-relaxed">
+          <CheckCircle2 className="w-4 h-4 text-[#20A05A] shrink-0 mt-0.5" />
           <span>
             💡 <strong>Mẹo di chuyển</strong>: Tuyến đường từ {unit.district} đến {currentDest.name} có làn đường xe máy ưu tiên và có thể đi qua tuyến {commute.busLine || 'Metro'} để tránh hoàn toàn kẹt xe vào sáng thứ Hai.
           </span>
@@ -185,7 +185,7 @@ export const CommuteSimulatorModal: React.FC<CommuteSimulatorModalProps> = ({
         <div className="flex justify-end">
           <button
             onClick={onClose}
-            className="px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono transition-colors"
+            className="px-6 py-2.5 rounded-full bg-[#163300] hover:bg-[#223D0D] text-white text-xs font-black transition-all shadow-xs cursor-pointer hover:scale-105 active:scale-95"
           >
             Đóng Mô Phỏng
           </button>

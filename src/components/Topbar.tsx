@@ -167,32 +167,32 @@ export const Topbar: React.FC<TopbarProps> = ({
             </button>
           )}
 
-          <div className="hidden sm:flex items-center gap-2 min-w-0 font-mono text-[11px]">
+          <div className="hidden sm:flex items-center gap-2.5 min-w-0 font-sans text-xs">
             <button
               onClick={() => {
                 if (onNavigate) onNavigate(isAdminView ? 'dashboard' : 'user_home');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="font-mono text-xs text-emerald-400 hover:text-emerald-300 hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-2 cursor-pointer group select-none px-2 py-1 rounded-lg hover:bg-emerald-500/10 border border-transparent hover:border-emerald-500/30"
+              className="flex items-center gap-2 cursor-pointer group select-none px-2 py-1 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               title={isAdminView ? "Quay về Bảng điều khiển" : "Quay về Trang Chủ"}
             >
-              <div className="w-5 h-5 rounded-md bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform shrink-0">
-                <Leaf className="w-3 h-3 text-emerald-400 fill-emerald-400/20" />
+              <div className="w-6 h-6 rounded-xl bg-[#9FE870] flex items-center justify-center text-[#163300] shadow-2xs group-hover:scale-105 transition-transform shrink-0">
+                <Leaf className="w-3.5 h-3.5 fill-current" />
               </div>
-              <div className="flex items-baseline gap-1.5 leading-none">
-                <span className="font-serif text-sm font-bold text-slate-100 [data-theme='light']_:text-slate-900 group-hover:text-emerald-300 transition-colors leading-none">
+              <div className="flex items-center gap-2 leading-none">
+                <span className="font-black text-base text-[#163300] dark:text-white tracking-tight">
                   HAVEN
                 </span>
-                <span className="text-[10px] text-emerald-400 [data-theme='light']_:text-emerald-700 font-mono tracking-widest font-bold hidden lg:inline leading-none">
-                  {isAdminView ? 'OPERATIONS' : 'RESIDENTIAL'}
+                <span className="px-2 py-0.5 rounded-full bg-[#9FE870]/25 text-[#163300] dark:text-[#9FE870] text-[9.5px] font-bold tracking-wide uppercase hidden lg:inline">
+                  {isAdminView ? 'Operations' : 'Residential'}
                 </span>
               </div>
             </button>
-            <span className="text-[var(--haven-text-muted)]">•</span>
-            <span className="flex items-center gap-1 text-[var(--haven-text-secondary)] font-medium">
-              <Clock className="w-3 h-3 text-[var(--haven-emerald-400)]" />
+            <span className="text-slate-300 dark:text-slate-700">•</span>
+            <span className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 font-medium tabular-nums">
+              <Clock className="w-3.5 h-3.5 text-[#20A05A] dark:text-[#9FE870]" />
               <span>{time || '--:--'}</span>
-              <span className="text-[9px] text-[var(--haven-text-muted)]">UTC+7</span>
+              <span className="text-[10px] text-slate-400">UTC+7</span>
             </span>
           </div>
         </div>

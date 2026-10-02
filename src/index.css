@@ -5,14 +5,20 @@
 @import "./styles/borderGlow.css";
 @import "./styles/wiseTheme.css";
 
+@theme {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *, .dark, .dark *));
 @custom-variant light (&:where([data-theme="light"], [data-theme="light"] *, .light, .light *));
 
 @layer base {
   :root {
     --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-serif: 'Playfair Display', Georgia, serif;
-    --font-mono-legacy: 'JetBrains Mono', ui-monospace, monospace;
+    --font-serif: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono-legacy: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --bg-canvas: #0B0F17;
     --text-primary: #F8FAFC;
     --text-secondary: #94A3B8;

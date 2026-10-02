@@ -137,10 +137,10 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
 
       {/* Leads Content List */}
       {filteredLeads.length === 0 ? (
-        <div className="p-12 text-center rounded-3xl atmospheric-panel border border-slate-800 space-y-3">
-          <Sparkles className="w-8 h-8 text-emerald-400 mx-auto" />
-          <h3 className="text-lg font-serif text-slate-100">Không có yêu cầu thuê nào trong mục này</h3>
-          <p className="text-xs text-slate-400">Các yêu cầu mới từ khách hàng sẽ xuất hiện tự động tại đây.</p>
+        <div className="p-12 text-center rounded-[32px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 space-y-3 shadow-xs font-sans">
+          <Sparkles className="w-8 h-8 text-[#20A05A] dark:text-[#9FE870] mx-auto" />
+          <h3 className="text-lg font-black text-[#163300] dark:text-white">Không có yêu cầu thuê nào trong mục này</h3>
+          <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Các yêu cầu mới từ khách hàng sẽ xuất hiện tự động tại đây.</p>
         </div>
       ) : activeTab === 'pipeline' ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -43,7 +43,7 @@ export const DocumentsView: React.FC<DocumentsViewProps> = ({
           <span className="text-[11px] font-mono-tech uppercase tracking-widest text-slate-400 font-medium block">
             PROPERTY DOCUMENT REPOSITORY / AUDIT & COMPLIANCE
           </span>
-          <h1 className="text-3xl sm:text-4xl font-serif-editorial text-white mt-1">
+          <h1 className="text-3xl sm:text-4xl font-sans font-black text-white mt-1">
             Documents Library
           </h1>
         </div>

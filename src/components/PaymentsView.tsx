@@ -99,7 +99,7 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({
                 <Wallet className="w-4 h-4" />
               </span>
             </div>
-            <div className="text-2xl lg:text-3xl font-bold font-mono text-[#163300] dark:text-[#9FE870]">
+            <div className="text-2xl lg:text-3xl font-extrabold tabular-nums text-[#163300] dark:text-[#9FE870]">
               {(totalCollectedVND / 1000000).toFixed(0)} Triệu VNĐ
             </div>
             <div className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
@@ -116,7 +116,7 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({
                 <Clock className="w-4 h-4" />
               </span>
             </div>
-            <div className="text-2xl lg:text-3xl font-bold font-mono text-[#7A5200] dark:text-[#FFC83B]">
+            <div className="text-2xl lg:text-3xl font-extrabold tabular-nums text-[#7A5200] dark:text-[#FFC83B]">
               {(pendingRevenueVND / 1000000).toFixed(0)} Triệu VNĐ
             </div>
             <div className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
@@ -133,7 +133,7 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({
                 <AlertCircle className="w-4 h-4" />
               </span>
             </div>
-            <div className="text-2xl lg:text-3xl font-bold font-mono text-[#FF5436]">
+            <div className="text-2xl lg:text-3xl font-extrabold tabular-nums text-[#FF5436]">
               {(overdueRevenueVND / 1000000).toFixed(0)} Triệu VNĐ
             </div>
             <div className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
@@ -198,10 +198,10 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({
                   className="hover:bg-[#F2F5F0]/60 dark:hover:bg-slate-800/40 transition-colors cursor-pointer"
                 >
                   <td className="p-4 whitespace-nowrap">
-                    <div className="inline-block px-3 py-1 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-bold text-[#163300] dark:text-slate-200 font-mono shadow-xs">
+                    <div className="inline-block px-3 py-1 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-bold text-[#163300] dark:text-slate-200 tabular-nums shadow-xs">
                       {inv.invoiceCode}
                     </div>
-                    <div className="text-slate-400 text-[10px] mt-1 flex items-center gap-1 font-mono">
+                    <div className="text-slate-400 text-[10px] mt-1 flex items-center gap-1">
                       <Clock className="w-3 h-3 text-slate-400" />
                       <span>{inv.monthYear} • Hạn {inv.dueDate}</span>
                     </div>
@@ -211,22 +211,22 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({
                   </td>
                   <td className="p-4 cursor-pointer" onClick={() => onSelectUnit(inv.unitId)}>
                     <div className="font-bold text-[#163300] dark:text-slate-200 hover:text-[#2570EB] line-clamp-1">{inv.unitName}</div>
-                    <div className="text-slate-400 text-[10px] font-mono">{inv.unitId}</div>
+                    <div className="text-slate-400 text-[10px]">{inv.unitId}</div>
                   </td>
-                  <td className="p-4 text-slate-700 dark:text-slate-200 whitespace-nowrap font-mono">
+                  <td className="p-4 text-slate-700 dark:text-slate-200 whitespace-nowrap tabular-nums font-medium">
                     {(inv.rentAmountVND / 1000000).toFixed(0)} Tr
                   </td>
-                  <td className="p-4 text-slate-500 dark:text-slate-400 whitespace-nowrap font-mono">
+                  <td className="p-4 text-slate-500 dark:text-slate-400 whitespace-nowrap tabular-nums font-medium">
                     <div>DV: {(inv.serviceFeeVND / 1000000).toFixed(1)} Tr</div>
                     <div className="text-[10px] text-slate-400">Đ/N: {(inv.electricityWaterVND / 1000000).toFixed(1)} Tr</div>
                   </td>
-                  <td className="p-4 font-bold text-[#163300] dark:text-[#9FE870] text-sm whitespace-nowrap font-mono">
+                  <td className="p-4 font-bold text-[#163300] dark:text-[#9FE870] text-sm whitespace-nowrap tabular-nums">
                     {(inv.totalAmountVND / 1000000).toFixed(1)} Triệu
                   </td>
                   <td className="p-4 whitespace-nowrap">
                     {getStatusBadge(inv.status)}
                     {inv.paidDate && (
-                      <div className="text-[10px] text-slate-400 mt-1 font-mono">Đã thu: {inv.paidDate}</div>
+                      <div className="text-[10px] text-slate-400 mt-1 tabular-nums">Đã thu: {inv.paidDate}</div>
                     )}
                   </td>
                   <td className="p-4 text-right whitespace-nowrap">

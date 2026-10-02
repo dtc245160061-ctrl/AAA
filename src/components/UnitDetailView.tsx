@@ -132,8 +132,8 @@ export const UnitDetailView: React.FC<UnitDetailViewProps> = ({
               <span>GRAND TOWER RESIDENCE</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif-editorial text-white leading-[1.12]">
-              {unit.id} — <em className="italic text-emerald-200 font-serif font-normal">{unit.type} Sky Residence</em>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-sans font-black text-white leading-[1.12]">
+              {unit.id} — <em className="italic text-emerald-200 font-sans font-normal">{unit.type} Sky Residence</em>
             </h1>
 
             {/* Core Residence Specs Bar */}
@@ -164,7 +164,7 @@ export const UnitDetailView: React.FC<UnitDetailViewProps> = ({
                 <span className="text-[10px] font-mono-tech uppercase text-slate-400 tracking-wider block">
                   MONTHLY LEASE RATE
                 </span>
-                <span className="text-2xl sm:text-3xl font-serif-editorial text-white font-mono-tech">
+                <span className="text-2xl sm:text-3xl font-extrabold text-white tabular-nums">
                   ${unit.monthlyRentUSD.toLocaleString()}
                   <span className="text-xs text-slate-400 font-sans font-normal"> / mo</span>
                 </span>
@@ -247,7 +247,7 @@ export const UnitDetailView: React.FC<UnitDetailViewProps> = ({
                     )}
                   </div>
                   <div>
-                    <h3 className="text-xl font-serif-editorial text-white">
+                    <h3 className="text-xl font-sans font-bold text-white">
                       {unit.resident ? unit.resident.name : 'Vacant Unit — Unassigned'}
                     </h3>
                     <p className="text-xs font-mono-tech text-slate-400">
@@ -408,7 +408,7 @@ export const UnitDetailView: React.FC<UnitDetailViewProps> = ({
           <div className="liquid-glass p-8 space-y-6">
             <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
               <div>
-                <h3 className="text-lg font-serif-editorial text-white">Monthly Rent Roll & Invoice Ledger</h3>
+                <h3 className="text-lg font-sans font-bold text-white">Monthly Rent Roll & Invoice Ledger</h3>
                 <p className="text-xs font-mono-tech text-slate-400 mt-0.5">Unit {unit.id} payment receipts & recurring monthly billing</p>
               </div>
 
@@ -452,7 +452,7 @@ export const UnitDetailView: React.FC<UnitDetailViewProps> = ({
           <div className="liquid-glass p-8 space-y-6">
             <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
               <div>
-                <h3 className="text-lg font-serif-editorial text-white">Work Orders & Maintenance Tickets</h3>
+                <h3 className="text-lg font-sans font-bold text-white">Work Orders & Maintenance Tickets</h3>
                 <p className="text-xs font-mono-tech text-slate-400 mt-0.5">Active tickets and repair logs for Unit {unit.id}</p>
               </div>
 
@@ -501,7 +501,7 @@ export const UnitDetailView: React.FC<UnitDetailViewProps> = ({
           <div className="liquid-glass p-8 space-y-6">
             <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
               <div>
-                <h3 className="text-lg font-serif-editorial text-white">Lease Contract & Verification Files</h3>
+                <h3 className="text-lg font-sans font-bold text-white">Lease Contract & Verification Files</h3>
                 <p className="text-xs font-mono-tech text-slate-400 mt-0.5">Signed PDFs and resident identity documentation</p>
               </div>
             </div>

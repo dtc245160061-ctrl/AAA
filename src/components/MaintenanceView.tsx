@@ -44,7 +44,7 @@ export const MaintenanceView: React.FC<MaintenanceViewProps> = ({
           <span className="text-[11px] font-mono-tech uppercase tracking-widest text-slate-400 font-medium block">
             OPERATIONS & DISPATCH / WORK ORDERS HUB
           </span>
-          <h1 className="text-3xl sm:text-4xl font-serif-editorial text-white mt-1">
+          <h1 className="text-3xl sm:text-4xl font-sans font-black text-white mt-1">
             Maintenance Work Orders
           </h1>
         </div>

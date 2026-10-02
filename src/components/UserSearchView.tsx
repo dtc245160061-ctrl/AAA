@@ -474,8 +474,8 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
         </div>
 
         {/* Quick City Filter Pills - Fast 1-click filtering without opening sidebar */}
-        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-1 text-xs font-mono">
-          <span className="text-[11px] text-slate-400 [data-theme='light']_:text-slate-500 font-semibold mr-1 shrink-0">Khu vực:</span>
+        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-1 text-xs">
+          <span className="text-[11px] text-[#495E35] dark:text-slate-400 font-bold mr-1 shrink-0">Khu vực:</span>
           {['All', 'Hà Nội', 'TP. Hồ Chí Minh', 'Đà Nẵng', 'Hải Phòng', 'Thái Nguyên', 'Bắc Ninh', 'Bình Dương', 'Quảng Ninh'].map((c) => {
             const isSelected = cityFilter === c;
             const label = c === 'All' ? 'Tất Cả' : c;
@@ -498,16 +498,16 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
 
         {/* AI Parsed Understanding Alert Box */}
         {aiUnderstoodText && (
-          <div className="p-4 rounded-2xl bg-emerald-950/30 border border-emerald-500/40 space-y-2 text-xs">
-            <div className="flex items-center gap-2 text-emerald-400 font-mono font-medium">
-              <Sparkles className="w-3.5 h-3.5" />
+          <div className="p-4 rounded-2xl bg-[#E8F8EC] dark:bg-emerald-950/30 border border-[#20A05A]/30 dark:border-emerald-500/30 space-y-2 text-xs">
+            <div className="flex items-center gap-2 text-[#163300] dark:text-emerald-300 font-bold">
+              <Sparkles className="w-4 h-4 text-[#20A05A]" />
               <span>HAVEN AI đã phân tích nhu cầu:</span>
             </div>
-            <p className="text-slate-200 font-sans leading-relaxed">
+            <p className="text-[#2D4A1D] dark:text-slate-200 leading-relaxed font-medium">
               {aiUnderstoodText}
             </p>
             {aiFollowUp && (
-              <p className="text-emerald-300/90 font-mono text-[11px] pt-1">
+              <p className="text-[#163300]/80 dark:text-emerald-300/90 text-[11px] font-medium pt-1">
                 💡 Gợi ý thêm: {aiFollowUp}
               </p>
             )}
@@ -522,13 +522,13 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
           <div className="lg:col-span-4 xl:col-span-3 space-y-6 animate-in slide-in-from-left-4 duration-200">
             <div className="p-5 rounded-[24px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 space-y-5 shadow-sm sticky top-20">
               <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3.5">
-                <h3 className="text-base text-[#163300] dark:text-white flex items-center gap-2 font-bold">
+                <h3 className="text-base text-[#163300] dark:text-white flex items-center gap-2 font-black">
                   <SlidersHorizontal className="w-4 h-4 text-[#20A05A]" />
                   <span>Bộ Lọc Tìm Kiếm</span>
                 </h3>
                 <button
                   onClick={() => setIsFilterOpen(false)}
-                  className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                  className="p-1 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
                   title="Thu gọn bộ lọc"
                 >
                   <X className="w-4 h-4" />
@@ -537,12 +537,12 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
 
               {/* City Filter */}
               <div className="space-y-1.5">
-                <label className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">Tỉnh / Thành Phố</label>
+                <label className="text-xs text-[#495E35] dark:text-slate-400 uppercase tracking-wider font-bold">Tỉnh / Thành Phố</label>
                 <select
                   value={cityFilter}
                   onChange={(e) => setCityFilter(e.target.value)}
                   aria-label="Chọn tỉnh thành phố"
-                  className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-slate-200 focus:outline-none focus:border-emerald-500 transition-colors"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/90 dark:border-slate-700 text-xs text-[#163300] dark:text-white font-medium focus:outline-none focus:border-[#163300] dark:focus:border-[#9FE870] transition-colors"
                 >
                   <option value="All">Tất cả ({units.length} căn hộ)</option>
                   {availableCities.map(c => {
@@ -558,16 +558,16 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
 
               {/* Bedrooms Filter */}
               <div className="space-y-1.5">
-                <label className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">Số Phòng Ngủ</label>
+                <label className="text-xs text-[#495E35] dark:text-slate-400 uppercase tracking-wider font-bold">Số Phòng Ngủ</label>
                 <div className="flex items-center gap-1.5">
                   {[0, 1, 2, 3, 4].map(b => (
                     <button
                       key={b}
                       onClick={() => setBedroomsFilter(b)}
-                      className={`flex-1 py-1.5 rounded-lg text-xs font-mono transition-all border ${
+                      className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
                         bedroomsFilter === b
-                          ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400 font-semibold'
-                          : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200'
+                          ? 'bg-[#9FE870] text-[#163300] border-[#9FE870] shadow-xs'
+                          : 'bg-[#F2F5F0] dark:bg-slate-800/80 border-slate-200/90 dark:border-slate-700 text-[#495E35] dark:text-slate-300 hover:border-slate-400'
                       }`}
                     >
                       {b === 0 ? 'Tất cả' : `${b}+ PN`}
@@ -579,24 +579,24 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
               {/* Budget & True Cost Filter Toggle */}
               <div className="space-y-2.5 pt-1">
                 <div className="flex items-center justify-between">
-                  <label className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">Chế Độ Ngân Sách</label>
-                  <div className="flex p-0.5 rounded-lg bg-slate-900 border border-slate-800 text-[10px] font-mono">
+                  <label className="text-xs text-[#495E35] dark:text-slate-400 uppercase tracking-wider font-bold">Chế Độ Ngân Sách</label>
+                  <div className="flex p-0.5 rounded-xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/90 dark:border-slate-700 text-[10px]">
                     <button
                       onClick={() => setFilterMode('trueCost')}
-                      className={`px-2 py-1 rounded-md transition-all ${
+                      className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer font-bold ${
                         filterMode === 'trueCost'
-                          ? 'bg-emerald-500 text-slate-950 font-bold shadow'
-                          : 'text-slate-400 hover:text-slate-200'
+                          ? 'bg-[#163300] text-white shadow-xs'
+                          : 'text-[#495E35] dark:text-slate-400 hover:text-[#163300]'
                       }`}
                     >
                       Tổng CP Thật
                     </button>
                     <button
                       onClick={() => setFilterMode('baseRent')}
-                      className={`px-2 py-1 rounded-md transition-all ${
+                      className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer font-bold ${
                         filterMode === 'baseRent'
-                          ? 'bg-emerald-500 text-slate-950 font-bold shadow'
-                          : 'text-slate-400 hover:text-slate-200'
+                          ? 'bg-[#163300] text-white shadow-xs'
+                          : 'text-[#495E35] dark:text-slate-400 hover:text-[#163300]'
                       }`}
                     >
                       Giá Gốc
@@ -605,14 +605,14 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                 </div>
 
                 {filterMode === 'trueCost' ? (
-                  <div className="space-y-2 p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/30">
-                    <div className="flex items-center justify-between text-xs font-mono">
-                      <span className="text-emerald-400 font-semibold flex items-center gap-1">
-                        <Calculator className="w-3.5 h-3.5 text-emerald-400" />
+                  <div className="space-y-2.5 p-3.5 rounded-2xl bg-[#F2F5F0] dark:bg-slate-800/60 border border-slate-200/90 dark:border-slate-700">
+                    <div className="flex items-center justify-between text-xs font-bold">
+                      <span className="text-[#163300] dark:text-[#9FE870] flex items-center gap-1.5">
+                        <Calculator className="w-3.5 h-3.5 text-[#20A05A]" />
                         <span>Tổng CP Tối Đa:</span>
                       </span>
-                      <span className="text-emerald-400 font-bold">
-                        {maxTrueCostVND >= 480000000 ? 'Không giới hạn' : `${(maxTrueCostVND / 1000000).toFixed(0)}Tr/tháng`}
+                      <span className="text-[#163300] dark:text-[#9FE870] tabular-nums font-black">
+                        {maxTrueCostVND >= 480000000 ? 'Không giới hạn' : `${(maxTrueCostVND / 1000000).toFixed(0)} Tr/tháng`}
                       </span>
                     </div>
                     <input
@@ -622,20 +622,22 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                       step={2000000}
                       value={maxTrueCostVND}
                       onChange={(e) => setMaxTrueCostVND(Number(e.target.value))}
-                      className="w-full accent-emerald-400 bg-slate-800 h-1.5 rounded-lg cursor-pointer"
+                      className="w-full accent-[#163300] dark:accent-[#9FE870] bg-slate-200 dark:bg-slate-700 h-2 rounded-lg cursor-pointer"
                     />
-                    <div className="flex justify-between text-[10px] font-mono text-slate-400">
-                      <span>10Tr</span>
-                      <span>120Tr</span>
-                      <span>480Tr+</span>
+                    <div className="flex justify-between text-[10px] font-bold text-[#738565] dark:text-slate-400 tabular-nums">
+                      <span>10 Tr</span>
+                      <span>120 Tr</span>
+                      <span>480 Tr+</span>
                     </div>
                   </div>
                 ) : (
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between text-xs font-mono">
-                      <span className="text-slate-400 uppercase tracking-wider font-semibold">Giá Thuê Tối Đa</span>
-                      <span className="text-emerald-400 font-bold">
-                        {maxRentVND >= 450000000 ? 'Không giới hạn' : `${(maxRentVND / 1000000).toFixed(0)}Tr/tháng`}
+                  <div className="space-y-2.5 p-3.5 rounded-2xl bg-[#F2F5F0] dark:bg-slate-800/60 border border-slate-200/90 dark:border-slate-700">
+                    <div className="flex items-center justify-between text-xs font-bold">
+                      <span className="text-[#163300] dark:text-[#9FE870] flex items-center gap-1.5">
+                        <span>Giá Thuê Tối Đa:</span>
+                      </span>
+                      <span className="text-[#163300] dark:text-[#9FE870] tabular-nums font-black">
+                        {maxRentVND >= 450000000 ? 'Không giới hạn' : `${(maxRentVND / 1000000).toFixed(0)} Tr/tháng`}
                       </span>
                     </div>
                     <input
@@ -645,9 +647,9 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                       step={2000000}
                       value={maxRentVND}
                       onChange={(e) => setMaxRentVND(Number(e.target.value))}
-                      className="w-full accent-emerald-500 bg-slate-800 h-1.5 rounded-lg cursor-pointer"
+                      className="w-full accent-[#163300] dark:accent-[#9FE870] bg-slate-200 dark:bg-slate-700 h-2 rounded-lg cursor-pointer"
                     />
-                    <div className="flex justify-between text-[10px] font-mono text-slate-400">
+                    <div className="flex justify-between text-[10px] font-bold text-[#738565] dark:text-slate-400 tabular-nums">
                       <span>8 Tr</span>
                       <span>100 Tr</span>
                       <span>450 Tr+</span>
@@ -657,84 +659,84 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
               </div>
 
               {/* Environmental & Verification Checklist */}
-              <div className="space-y-2 pt-2 border-t border-slate-800/80">
-                <label className="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold block">Tiêu Chuẩn Sống</label>
+              <div className="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                <label className="text-xs text-[#495E35] dark:text-slate-400 uppercase tracking-wider font-bold block">Tiêu Chuẩn Sống</label>
 
-                <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer p-1.5 rounded-lg hover:bg-slate-900/60 transition-colors">
+                <label className="flex items-center justify-between text-xs text-[#163300] dark:text-slate-200 font-semibold cursor-pointer p-2 rounded-xl hover:bg-[#F2F5F0] dark:hover:bg-slate-800/60 transition-colors">
                   <span className="flex items-center gap-2">
-                    <Flame className="w-3.5 h-3.5 text-rose-400" />
+                    <Flame className="w-3.5 h-3.5 text-[#FF5436]" />
                     <span>Chứng nhận PCCC chuẩn</span>
                   </span>
                   <input
                     type="checkbox"
                     checked={pcccCertifiedOnly}
                     onChange={(e) => setPcccCertifiedOnly(e.target.checked)}
-                    className="rounded border-slate-700 bg-slate-900 text-emerald-500 focus:ring-emerald-500/20"
+                    className="w-4 h-4 rounded accent-[#163300] dark:accent-[#9FE870] cursor-pointer"
                   />
                 </label>
 
-                <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer p-1.5 rounded-lg hover:bg-slate-900/60 transition-colors">
+                <label className="flex items-center justify-between text-xs text-[#163300] dark:text-slate-200 font-semibold cursor-pointer p-2 rounded-xl hover:bg-[#F2F5F0] dark:hover:bg-slate-800/60 transition-colors">
                   <span className="flex items-center gap-2">
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#20A05A]" />
                     <span>Chủ nhà đã xác minh uy tín</span>
                   </span>
                   <input
                     type="checkbox"
                     checked={verifiedLandlordOnly}
                     onChange={(e) => setVerifiedLandlordOnly(e.target.checked)}
-                    className="rounded border-slate-700 bg-slate-900 text-emerald-500 focus:ring-emerald-500/20"
+                    className="w-4 h-4 rounded accent-[#163300] dark:accent-[#9FE870] cursor-pointer"
                   />
                 </label>
 
-                <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer p-1.5 rounded-lg hover:bg-slate-900/60 transition-colors">
+                <label className="flex items-center justify-between text-xs text-[#163300] dark:text-slate-200 font-semibold cursor-pointer p-2 rounded-xl hover:bg-[#F2F5F0] dark:hover:bg-slate-800/60 transition-colors">
                   <span className="flex items-center gap-2">
-                    <CloudRain className="w-3.5 h-3.5 text-sky-400" />
+                    <CloudRain className="w-3.5 h-3.5 text-sky-500" />
                     <span>Không lo ngập lụt</span>
                   </span>
                   <input
                     type="checkbox"
                     checked={lowFloodOnly}
                     onChange={(e) => setLowFloodOnly(e.target.checked)}
-                    className="rounded border-slate-700 bg-slate-900 text-emerald-500 focus:ring-emerald-500/20"
+                    className="w-4 h-4 rounded accent-[#163300] dark:accent-[#9FE870] cursor-pointer"
                   />
                 </label>
 
-                <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer p-1.5 rounded-lg hover:bg-slate-900/60 transition-colors">
+                <label className="flex items-center justify-between text-xs text-[#163300] dark:text-slate-200 font-semibold cursor-pointer p-2 rounded-xl hover:bg-[#F2F5F0] dark:hover:bg-slate-800/60 transition-colors">
                   <span className="flex items-center gap-2">
-                    <Car className="w-3.5 h-3.5 text-indigo-400" />
+                    <Car className="w-3.5 h-3.5 text-indigo-500" />
                     <span>Chỗ đỗ ô tô trong hầm</span>
                   </span>
                   <input
                     type="checkbox"
                     checked={carParkingOnly}
                     onChange={(e) => setCarParkingOnly(e.target.checked)}
-                    className="rounded border-slate-700 bg-slate-900 text-emerald-500 focus:ring-emerald-500/20"
+                    className="w-4 h-4 rounded accent-[#163300] dark:accent-[#9FE870] cursor-pointer"
                   />
                 </label>
 
-                <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer p-1.5 rounded-lg hover:bg-slate-900/60 transition-colors">
+                <label className="flex items-center justify-between text-xs text-[#163300] dark:text-slate-200 font-semibold cursor-pointer p-2 rounded-xl hover:bg-[#F2F5F0] dark:hover:bg-slate-800/60 transition-colors">
                   <span className="flex items-center gap-2">
-                    <Zap className="w-3.5 h-3.5 text-amber-400" />
+                    <Zap className="w-3.5 h-3.5 text-amber-500" />
                     <span>Máy phát điện 100%</span>
                   </span>
                   <input
                     type="checkbox"
                     checked={backupPowerOnly}
                     onChange={(e) => setBackupPowerOnly(e.target.checked)}
-                    className="rounded border-slate-700 bg-slate-900 text-emerald-500 focus:ring-emerald-500/20"
+                    className="w-4 h-4 rounded accent-[#163300] dark:accent-[#9FE870] cursor-pointer"
                   />
                 </label>
 
-                <label className="flex items-center justify-between text-xs text-slate-300 cursor-pointer p-1.5 rounded-lg hover:bg-slate-900/60 transition-colors">
+                <label className="flex items-center justify-between text-xs text-[#163300] dark:text-slate-200 font-semibold cursor-pointer p-2 rounded-xl hover:bg-[#F2F5F0] dark:hover:bg-slate-800/60 transition-colors">
                   <span className="flex items-center gap-2">
-                    <ShieldCheck className="w-3.5 h-3.5 text-purple-400" />
+                    <ShieldCheck className="w-3.5 h-3.5 text-purple-500" />
                     <span>Cho phép thú cưng</span>
                   </span>
                   <input
                     type="checkbox"
                     checked={petFriendlyOnly}
                     onChange={(e) => setPetFriendlyOnly(e.target.checked)}
-                    className="rounded border-slate-700 bg-slate-900 text-emerald-500 focus:ring-emerald-500/20"
+                    className="w-4 h-4 rounded accent-[#163300] dark:accent-[#9FE870] cursor-pointer"
                   />
                 </label>
               </div>
@@ -745,15 +747,15 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
         {/* Right Property Results Listing */}
         <div className={isFilterOpen ? 'lg:col-span-8 xl:col-span-9 space-y-6' : 'lg:col-span-12 space-y-6'}>
           {filteredUnits.length === 0 ? (
-            <div className="p-12 text-center rounded-2xl border border-slate-800 atmospheric-panel space-y-4">
-              <AlertTriangle className="w-10 h-10 text-amber-400 mx-auto" />
-              <h3 className="text-xl font-serif text-slate-100 font-bold">Không Tìm Thấy Căn Hộ Khớp Chính Xác</h3>
-              <p className="text-sm text-slate-400 max-w-md mx-auto">
+            <div className="p-12 text-center rounded-[32px] border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm space-y-4">
+              <AlertTriangle className="w-10 h-10 text-amber-500 mx-auto" />
+              <h3 className="text-xl font-black text-[#163300] dark:text-white">Không Tìm Thấy Căn Hộ Khớp Chính Xác</h3>
+              <p className="text-sm text-[#495E35] dark:text-slate-400 max-w-md mx-auto font-medium">
                 Hãy thử mở rộng khoảng ngân sách, chọn thêm thành phố hoặc dùng trợ lý AI để đề xuất lựa chọn thay thế phù hợp.
               </p>
               <button
                 onClick={handleResetFilters}
-                className="px-6 py-2.5 rounded-xl bg-emerald-500 text-slate-950 font-mono text-xs font-medium hover:bg-emerald-400 transition-colors"
+                className="px-6 py-3 rounded-full bg-[#9FE870] hover:bg-[#8ee05c] text-[#163300] font-black text-xs transition-all shadow-sm hover:scale-105 active:scale-95 cursor-pointer"
               >
                 Đặt Lại Toàn Bộ Bộ Lọc
               </button>
@@ -919,20 +921,20 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
               {/* Continuous Infinite Scroll Sentinel */}
               {displayLimit < filteredUnits.length && (
                 <div ref={observerRef} className="col-span-full py-8 flex flex-col items-center justify-center gap-2">
-                  <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/80 [data-theme='light']_:bg-white border border-slate-800 [data-theme='light']_:border-slate-200 text-emerald-400 text-xs font-mono shadow-md">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                    <Sparkles className="w-3.5 h-3.5 animate-spin text-emerald-400" />
+                  <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200/90 dark:border-slate-700 text-[#163300] dark:text-[#9FE870] text-xs font-bold shadow-sm">
+                    <span className="w-2 h-2 rounded-full bg-[#20A05A] animate-ping" />
+                    <Sparkles className="w-3.5 h-3.5 animate-spin text-[#20A05A]" />
                     <span>Tự động tải thêm không gian sống tiếp theo...</span>
                   </div>
-                  <span className="text-[11px] font-mono text-slate-400 [data-theme='light']_:text-slate-500">
+                  <span className="text-[11px] font-semibold text-[#738565] dark:text-slate-400 tabular-nums">
                     Đã hiển thị {displayLimit} / {filteredUnits.length} căn hộ
                   </span>
                 </div>
               )}
 
               {displayLimit >= filteredUnits.length && filteredUnits.length > 0 && (
-                <div className="col-span-full py-6 text-center text-xs font-mono text-slate-400 [data-theme='light']_:text-slate-500 flex items-center justify-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                <div className="col-span-full py-6 text-center text-xs font-bold text-[#738565] dark:text-slate-400 flex items-center justify-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#20A05A]" />
                   <span>Đã tải toàn bộ {filteredUnits.length} căn hộ tuyển chọn</span>
                 </div>
               )}

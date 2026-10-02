@@ -32,7 +32,7 @@ export const AlertsView: React.FC<AlertsViewProps> = ({
           <span className="text-[11px] font-mono-tech uppercase tracking-widest text-slate-400 font-medium block">
             REAL-TIME DISPATCH / OPERATIONAL ALERTS CENTER
           </span>
-          <h1 className="text-3xl sm:text-4xl font-serif-editorial text-white mt-1 flex items-center gap-3">
+          <h1 className="text-3xl sm:text-4xl font-sans font-black text-white mt-1 flex items-center gap-3">
             <span>System Alerts & Notices</span>
             {unreadCount > 0 && (
               <span className="text-xs font-mono-tech px-2.5 py-1 rounded-full bg-rose-950/80 text-rose-300 border border-rose-500/40 font-normal">

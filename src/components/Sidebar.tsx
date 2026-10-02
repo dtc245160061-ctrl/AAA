@@ -130,19 +130,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {/* Brand details when expanded */}
           {!collapsed && (
             <div className="flex items-center gap-2 ml-2.5 min-w-0 animate-in fade-in duration-200">
-              <div className="w-8 h-8 rounded-xl bg-[var(--haven-emerald-muted)] border border-[rgba(16,185,129,0.25)] flex items-center justify-center shrink-0">
-                <Leaf className="w-4 h-4 text-[var(--haven-emerald-400)] fill-[rgba(16,185,129,0.2)]" />
+              <div className="w-8 h-8 rounded-xl bg-[#9FE870]/25 flex items-center justify-center shrink-0">
+                <Leaf className="w-4 h-4 text-[#163300] dark:text-[#9FE870] fill-current" />
               </div>
               <div className="min-w-0">
-                <h1 className="text-brand text-[13px] font-bold text-[var(--haven-text-primary)] tracking-wider truncate">
+                <h1 className="text-[13px] font-black text-[#163300] dark:text-white tracking-tight truncate">
                   {isAdminView ? 'HAVEN OPS' : 'HAVEN'}
                 </h1>
-                <div className="flex items-center gap-1 text-[9px] font-mono text-[var(--haven-text-tertiary)] truncate">
-                  <span className="text-[var(--haven-emerald-400)] font-semibold">
-                    {isAdminView ? 'QUẢN TRỊ' : 'SANCTUARY'}
+                <div className="flex items-center gap-1 text-[9.5px] font-semibold text-slate-500 dark:text-slate-400 truncate">
+                  <span className="text-[#20A05A] dark:text-[#9FE870] font-bold">
+                    {isAdminView ? 'QUẢN TRỊ' : 'RESIDENTIAL'}
                   </span>
                   <span>•</span>
-                  <span>{time || '--:--'}</span>
+                  <span className="tabular-nums">{time || '--:--'}</span>
                 </div>
               </div>
             </div>
@@ -164,7 +164,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   transition-all duration-150 relative cursor-pointer
                   ${isActive
                     ? 'bg-[#9FE870] text-[#163300] font-extrabold shadow-xs'
-                    : 'text-[var(--haven-text-secondary)] [data-theme="light"]_:text-[#495E35] hover:text-[var(--haven-text-primary)] [data-theme="light"]_:hover:text-[#163300] hover:bg-[var(--haven-surface-hover)] [data-theme="light"]_:hover:bg-[#E2F7D4]/60'
+                    : 'text-slate-600 dark:text-slate-300 hover:text-[#163300] dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
                   }
                 `}
               >
@@ -178,7 +178,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   <div className="flex-1 flex items-center justify-between pr-3.5 min-w-0 animate-in fade-in duration-150">
                     <span className="truncate text-[13px] font-sans font-bold">{item.label}</span>
                     {item.badge !== undefined && (
-                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-mono font-bold min-w-[20px] text-center shadow-xs ${
+                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold tabular-nums min-w-[20px] text-center shadow-xs ${
                         isActive ? 'bg-[#163300] text-[#9FE870]' : 'bg-[#FF5436] text-white'
                       }`}>
                         {item.badge}

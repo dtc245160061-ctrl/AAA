@@ -48,7 +48,7 @@ export const ExpensesView: React.FC<ExpensesViewProps> = ({
           <span className="text-[11px] font-mono-tech uppercase tracking-widest text-slate-400 font-medium block">
             FINANCIAL OPERATIONAL EXPENSES / ASSET LEDGER
           </span>
-          <h1 className="text-3xl sm:text-4xl font-serif-editorial text-white mt-1">
+          <h1 className="text-3xl sm:text-4xl font-sans font-black text-white mt-1">
             Property Expenses & Budget
           </h1>
         </div>
@@ -85,7 +85,7 @@ export const ExpensesView: React.FC<ExpensesViewProps> = ({
 
       {/* Category Breakdown (Liquid Glass) */}
       <div className="liquid-glass p-6 space-y-4">
-        <h3 className="text-base font-semibold text-white font-serif-editorial">Category Budget Allocation Breakdown</h3>
+        <h3 className="text-base font-bold text-white font-sans">Category Budget Allocation Breakdown</h3>
         <div className="space-y-3">
           {categorySummary.map((cat, idx) => (
             <div key={idx} className="space-y-1.5 font-mono-tech text-xs">

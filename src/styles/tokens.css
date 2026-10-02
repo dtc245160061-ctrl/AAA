@@ -61,8 +61,8 @@
   /* ─── Typography ─── */
   --font-display:           'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body:              'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono:              'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
-  --font-serif-brand:       'Playfair Display', Georgia, serif;
+  --font-mono:              'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif-brand:       'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Type Scale (modular: 1.25 ratio) */
   --text-xs:                0.6875rem;   /* 11px */

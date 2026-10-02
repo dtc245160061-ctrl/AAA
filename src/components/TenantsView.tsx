@@ -44,7 +44,7 @@ export const TenantsView: React.FC<TenantsViewProps> = ({
           <span className="text-[11px] font-mono-tech uppercase tracking-widest text-slate-400 font-medium block">
             RESIDENT DIRECTORY / VERIFIED LEASEHOLDERS
           </span>
-          <h1 className="text-3xl sm:text-4xl font-serif-editorial text-white mt-1">
+          <h1 className="text-3xl sm:text-4xl font-sans font-black text-white mt-1">
             Tenants & Verified Residents
           </h1>
         </div>
@@ -84,7 +84,7 @@ export const TenantsView: React.FC<TenantsViewProps> = ({
                 <div className="flex items-center gap-3">
                   <img src={r.avatar} alt={r.name} className="w-12 h-12 rounded-2xl object-cover border border-slate-700 shadow-md" />
                   <div>
-                    <h3 className="text-base font-serif-editorial text-white font-bold group-hover:text-emerald-300 transition-colors">
+                    <h3 className="text-base font-sans font-bold text-white group-hover:text-emerald-300 transition-colors">
                       {r.name}
                     </h3>
                     <p className="text-[11px] font-mono-tech text-slate-400">

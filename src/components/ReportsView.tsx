@@ -18,7 +18,7 @@ export const ReportsView: React.FC<ReportsViewProps> = () => {
           <span className="text-[11px] font-mono-tech uppercase tracking-widest text-slate-400 font-medium block">
             EXECUTIVE TELEMETRY / ANALYTICS & AUDIT WORKSPACE
           </span>
-          <h1 className="text-3xl sm:text-4xl font-serif-editorial text-white mt-1">
+          <h1 className="text-3xl sm:text-4xl font-sans font-black text-white mt-1">
             Analytics Reports & Insights
           </h1>
         </div>
@@ -60,7 +60,7 @@ export const ReportsView: React.FC<ReportsViewProps> = () => {
       <div className="liquid-glass p-8 space-y-6">
         <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
           <div>
-            <h3 className="text-xl font-serif-editorial text-white">Monthly Cash Flow & Occupancy Growth</h3>
+            <h3 className="text-xl font-sans font-bold text-white">Monthly Cash Flow & Occupancy Growth</h3>
             <p className="text-xs font-mono-tech text-slate-400 mt-0.5">Historical revenue velocity & tenant collection rate</p>
           </div>
 

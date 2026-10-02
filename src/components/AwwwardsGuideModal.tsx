@@ -19,7 +19,7 @@ export const AwwwardsGuideModal: React.FC<AwwwardsGuideModalProps> = ({ onClose 
               <span className="text-[10px] font-mono font-bold text-amber-400 uppercase tracking-widest">
                 AWWWARDS MASTERCLASS GUIDE
               </span>
-              <h2 className="text-2xl font-bold text-white font-['Cinzel']">
+              <h2 className="text-2xl font-black text-white font-sans">
                 Bí Kíp Xây Dựng Web App Xịn Chuẩn Awwwards
               </h2>
             </div>
@@ -52,7 +52,7 @@ export const AwwwardsGuideModal: React.FC<AwwwardsGuideModalProps> = ({ onClose 
 
           {/* Tech Stack Matrix */}
           <div className="space-y-4">
-            <h3 className="text-lg font-bold text-white flex items-center gap-2 font-['Cinzel']">
+            <h3 className="text-lg font-black text-white flex items-center gap-2 font-sans">
               <Layers className="w-5 h-5 text-cyan-400" />
               2. Bộ Công Cụ (Tech Stack) Của Chiếc App Bạn Đang Trải Nghiệm
             </h3>
@@ -86,7 +86,7 @@ export const AwwwardsGuideModal: React.FC<AwwwardsGuideModalProps> = ({ onClose 
 
           {/* 5 Step Roadmap */}
           <div className="space-y-4">
-            <h3 className="text-lg font-bold text-white flex items-center gap-2 font-['Cinzel']">
+            <h3 className="text-lg font-black text-white flex items-center gap-2 font-sans">
               <Rocket className="w-5 h-5 text-emerald-400" />
               3. Lộ Trình 5 Bước Làm App Quản Lý Căn Hộ Từ Con Số 0
             </h3>

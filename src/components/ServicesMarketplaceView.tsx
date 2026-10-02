@@ -152,10 +152,10 @@ export const ServicesMarketplaceView: React.FC<ServicesMarketplaceViewProps> = (
 
             <div className="pt-5 border-t border-slate-100 dark:border-slate-800 mt-6 flex items-center justify-between">
               <div>
-                <div className="text-xl font-bold font-mono text-[#163300] dark:text-[#9FE870]">
+                <div className="text-xl font-extrabold tabular-nums text-[#163300] dark:text-[#9FE870]">
                   {service.priceVND.toLocaleString('vi-VN')} đ
                 </div>
-                <div className="text-[10px] text-slate-400 font-mono">/ {service.unitLabel}</div>
+                <div className="text-[10px] text-slate-400 font-medium">/ {service.unitLabel}</div>
               </div>
 
               <button
@@ -190,7 +190,7 @@ export const ServicesMarketplaceView: React.FC<ServicesMarketplaceViewProps> = (
             <form onSubmit={handleConfirmBooking} className="space-y-4 text-xs font-sans">
               <div className="p-3.5 rounded-[16px] bg-[#9FE870]/15 border border-[#9FE870]/30 flex items-center justify-between">
                 <span className="text-[#163300] dark:text-[#9FE870] font-bold">Đơn giá trọn gói:</span>
-                <span className="text-base font-bold text-[#163300] dark:text-[#9FE870] font-mono">
+                <span className="text-base font-extrabold text-[#163300] dark:text-[#9FE870] tabular-nums">
                   {bookingService.priceVND.toLocaleString('vi-VN')} đ
                 </span>
               </div>
@@ -296,7 +296,7 @@ export const ServicesMarketplaceView: React.FC<ServicesMarketplaceViewProps> = (
                   className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
                 >
                   <td className="py-3.5 px-4 whitespace-nowrap">
-                    <span className="font-mono font-bold text-[#163300] dark:text-emerald-300 px-2.5 py-1 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                    <span className="font-bold text-[#163300] dark:text-emerald-300 px-2.5 py-1 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 tabular-nums">
                       {ord.id}
                     </span>
                   </td>

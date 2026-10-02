@@ -217,7 +217,7 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
               <span>1. Phí Môi Giới Chốt Thuê</span>
               <Percent className="w-3.5 h-3.5" />
             </div>
-            <div className="text-2xl font-bold font-mono text-[#163300] dark:text-slate-100">50% - 100%</div>
+            <div className="text-2xl font-extrabold tabular-nums text-[#163300] dark:text-slate-100">50% - 100%</div>
             <p className="text-[11px] text-slate-600 dark:text-slate-400">
               Thu từ chủ nhà khi khách ký hợp đồng thuê thành công (Tương đương 0.5 - 1 tháng tiền nhà).
             </p>
@@ -228,7 +228,7 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
               <span>2. Thuê Bao SaaS (MRR)</span>
               <TrendingUp className="w-3.5 h-3.5" />
             </div>
-            <div className="text-2xl font-bold font-mono text-[#163300] dark:text-slate-100">499.000 đ</div>
+            <div className="text-2xl font-extrabold tabular-nums text-[#163300] dark:text-slate-100">499.000 đ</div>
             <p className="text-[11px] text-slate-600 dark:text-slate-400">
               Gói Pro/Enterprise trả phí định kỳ hàng tháng để quản lý tài chính, hóa đơn và khách thuê tự động.
             </p>
@@ -239,7 +239,7 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
               <span>3. Hoa Hồng Dịch Vụ (VAS)</span>
               <ShieldCheck className="w-3.5 h-3.5" />
             </div>
-            <div className="text-2xl font-bold font-mono text-[#163300] dark:text-slate-100">15% - 25%</div>
+            <div className="text-2xl font-extrabold tabular-nums text-[#163300] dark:text-slate-100">15% - 25%</div>
             <p className="text-[11px] text-slate-600 dark:text-slate-400">
               Trích xuất chiết khấu từ các đối tác dọn dẹp, chuyển nhà, khóa cửa thông minh và bảo hiểm căn hộ.
             </p>
@@ -250,7 +250,7 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
               <span>4. Phí Ký Quỹ & Bảo Lãnh</span>
               <Layers className="w-3.5 h-3.5" />
             </div>
-            <div className="text-2xl font-bold font-mono text-[#163300] dark:text-slate-100">1.5% - 2%</div>
+            <div className="text-2xl font-extrabold tabular-nums text-[#163300] dark:text-slate-100">1.5% - 2%</div>
             <p className="text-[11px] text-slate-600 dark:text-slate-400">
               Phí dịch vụ trung gian tài chính giữ cọc an toàn (Escrow) và bảo lãnh rủi ro bùng cọc cho chủ nhà.
             </p>

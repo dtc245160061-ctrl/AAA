@@ -777,65 +777,70 @@ export function App() {
       )}
 
       {/* Consumer Booking / Rental Inquiry Modal */}
+      {/* Consumer Booking / Rental Inquiry Modal */}
       {bookingUnit && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in">
-          <div className="max-w-md w-full rounded-3xl atmospheric-panel border border-emerald-500/30 p-6 md:p-8 space-y-5 shadow-2xl backdrop-blur-2xl">
-            <h3 className="font-serif text-2xl text-slate-100 font-bold">Đặt Lịch Xem & Đăng Ký Thuê Căn Hộ</h3>
-            <p className="text-xs font-mono text-emerald-400">
-              {bookingUnit.name || bookingUnit.id} • {(bookingUnit.monthlyRentVND / 1000000).toFixed(0)} Triệu/tháng
-            </p>
-            <form onSubmit={handleSubmitBooking} className="space-y-3.5 text-xs font-mono">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/75 backdrop-blur-md animate-in fade-in font-sans">
+          <div className="max-w-md w-full rounded-[32px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-6 md:p-8 space-y-5 shadow-2xl text-slate-900 dark:text-slate-100">
+            <div>
+              <h3 className="text-xl sm:text-2xl font-black text-[#163300] dark:text-white leading-tight">
+                Đặt Lịch Xem & Đăng Ký Thuê Căn Hộ
+              </h3>
+              <p className="text-xs font-bold text-[#20A05A] dark:text-[#9FE870] mt-1">
+                {bookingUnit.name || bookingUnit.id} • {(bookingUnit.monthlyRentVND / 1000000).toFixed(0)} Triệu/tháng
+              </p>
+            </div>
+            <form onSubmit={handleSubmitBooking} className="space-y-3.5 text-xs font-medium">
               <div>
-                <label className="text-slate-400 block mb-1">Họ Và Tên Của Bạn *</label>
+                <label className="text-slate-600 dark:text-slate-300 font-bold block mb-1">Họ Và Tên Của Bạn *</label>
                 <input
                   type="text"
                   required
                   value={bookingName}
                   onChange={(e) => setBookingName(e.target.value)}
                   placeholder="Ví dụ: Nguyễn Văn An"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 font-sans"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-[#163300] dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40 focus:border-[#163300] transition-all"
                 />
               </div>
               <div>
-                <label className="text-slate-400 block mb-1">Số Điện Thoại / Zalo Liên Hệ *</label>
+                <label className="text-slate-600 dark:text-slate-300 font-bold block mb-1">Số Điện Thoại / Zalo Liên Hệ *</label>
                 <input
                   type="text"
                   required
                   value={bookingPhone}
                   onChange={(e) => setBookingPhone(e.target.value)}
                   placeholder="Ví dụ: 0987 654 321"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 font-sans"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-[#163300] dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40 focus:border-[#163300] transition-all"
                 />
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-slate-400 block mb-1">Ngày Dự Kiến Vào Ở</label>
+                  <label className="text-slate-600 dark:text-slate-300 font-bold block mb-1">Ngày Dự Kiến Vào Ở</label>
                   <input
                     type="date"
                     value={bookingMoveInDate}
                     onChange={(e) => setBookingMoveInDate(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-emerald-500 font-sans"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-[#163300] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40 focus:border-[#163300] transition-all"
                   />
                 </div>
                 <div>
-                  <label className="text-slate-400 block mb-1">Lịch Hẹn Xem Nhà</label>
+                  <label className="text-slate-600 dark:text-slate-300 font-bold block mb-1">Lịch Hẹn Xem Nhà</label>
                   <input
                     type="text"
                     value={bookingViewingDate}
                     onChange={(e) => setBookingViewingDate(e.target.value)}
                     placeholder="18/08 14:00"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 focus:outline-none focus:border-emerald-500 font-sans"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-[#163300] dark:text-white focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40 focus:border-[#163300] transition-all"
                   />
                 </div>
               </div>
               <div>
-                <label className="text-slate-400 block mb-1">Ghi Chú Nhu Cầu</label>
+                <label className="text-slate-600 dark:text-slate-300 font-bold block mb-1">Ghi Chú Nhu Cầu</label>
                 <textarea
                   rows={2}
                   value={bookingNotes}
                   onChange={(e) => setBookingNotes(e.target.value)}
                   placeholder="Ví dụ: Cần chỗ đỗ xe ô tô 7 chỗ, nuôi 1 bé mèo..."
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 font-sans"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-[#163300] dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40 focus:border-[#163300] transition-all"
                 />
               </div>
 
@@ -843,13 +848,13 @@ export function App() {
                 <button
                   type="button"
                   onClick={() => setBookingUnit(null)}
-                  className="flex-1 py-3 rounded-xl border border-slate-800 text-slate-400 hover:text-slate-200 text-xs font-mono transition-colors"
+                  className="flex-1 py-3 rounded-full border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-bold transition-colors cursor-pointer"
                 >
                   Hủy Bỏ
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold shadow-lg shadow-emerald-500/30 transition-all hover:scale-105"
+                  className="flex-1 py-3 rounded-full bg-[#9FE870] hover:bg-[#8ee05b] text-[#163300] text-xs font-bold shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                 >
                   Gửi Đơn Đặt Lịch
                 </button>
