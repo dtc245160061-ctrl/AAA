@@ -9,7 +9,8 @@ import {
   FileText,
   Wrench,
   Mic,
-  MicOff
+  MicOff,
+  Bot
 } from 'lucide-react';
 import { type RagRetrievalResult } from '../services/geminiRagService';
 import { askHavenLocalSlm } from '../services/localAiService';
@@ -78,7 +79,7 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
     }
   };
 
-  // Auto-scroll ONLY inside chat box (never scroll parent page / window)
+  // Auto-scroll ONLY inside chat box
   useEffect(() => {
     if (isOpen && messagesContainerRef.current) {
       messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
@@ -191,154 +192,167 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
           exit={{ opacity: 0, y: 24, scale: 0.96 }}
           transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
           style={{ position: 'fixed', bottom: '1.25rem', right: '1.25rem', zIndex: 9999 }}
-          className="fixed !fixed bottom-5 right-5 z-[9999] w-[400px] max-w-[calc(100vw-2.5rem)] h-[500px] max-h-[calc(100vh-5.5rem)] rounded-3xl haven-beam-active haven-beam-emerald shadow-2xl shadow-emerald-500/25 text-left flex flex-col"
+          className="fixed bottom-5 right-5 z-[9999] w-[420px] max-w-[calc(100vw-2.5rem)] h-[540px] max-h-[calc(100vh-5.5rem)] rounded-[28px] overflow-hidden shadow-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col text-slate-900 dark:text-slate-100 font-sans"
         >
-          {/* Main Inner Window Container with 100% Solid Opaque Backdrop */}
-          <div className="relative z-10 w-full h-full rounded-3xl bg-[#0B0F17] [data-theme='light']_:bg-white border border-slate-700/80 [data-theme='light']_:border-slate-200 flex flex-col justify-between overflow-hidden shadow-2xl">
+          {/* Main Inner Window Container */}
+          <div className="relative z-10 w-full h-full flex flex-col justify-between overflow-hidden">
             {/* Header */}
-            <div className="p-3 sm:p-3.5 border-b border-slate-800 [data-theme='light']_:border-slate-200 flex items-center justify-between bg-slate-900 [data-theme='light']_:bg-slate-50 shrink-0">
+            <div className="p-3.5 border-b border-slate-200/80 dark:border-slate-800 flex items-center justify-between bg-[#F2F5F0] dark:bg-slate-850 shrink-0">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
-                  <Sparkles className="w-4 h-4 animate-spin-slow" />
+                <div className="w-8 h-8 rounded-xl bg-[#9FE870] text-[#163300] flex items-center justify-center shrink-0 shadow-2xs">
+                  <Sparkles className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-[9px] font-mono text-emerald-400 font-bold uppercase tracking-wider block">
-                      TRỢ LÝ VẬN HÀNH AI
-                    </span>
-                    <span className="inline-flex items-center gap-1 px-1.5 py-0.2 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[8px] font-mono text-emerald-400 font-bold">
-                      <span className="w-1 h-1 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>Local Edge SLM</span>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-sm font-black text-[#163300] dark:text-white">
+                      Haven Copilot
+                    </h3>
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#9FE870]/25 text-[#163300] dark:text-[#9FE870] text-[10px] font-bold">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#20A05A] dark:bg-[#9FE870] animate-pulse" />
+                      <span>Admin Local SLM</span>
                     </span>
                   </div>
-                  <h3 className="text-sm font-bold text-white [data-theme='light']_:text-slate-900 font-serif">
-                    Haven Copilot <span className="text-[10px] font-sans font-normal text-slate-400">• Qwen2.5-0.5B</span>
-                  </h3>
+                  <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">
+                    Trợ lý Trí tuệ Vận hành • Qwen2.5-0.5B
+                  </p>
                 </div>
               </div>
 
               <button
                 onClick={onClose}
-                className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 [data-theme='light']_:hover:bg-slate-200 transition-colors"
+                className="w-7 h-7 rounded-full bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white border border-slate-200/80 dark:border-slate-700 flex items-center justify-center transition-colors cursor-pointer"
                 title="Đóng"
               >
-                <X className="w-4 h-4" />
+                <X className="w-3.5 h-3.5" />
               </button>
             </div>
 
             {/* Chat Messages Body */}
-            <div ref={messagesContainerRef} className="p-3.5 flex-1 overflow-y-auto space-y-3 text-xs font-mono">
+            <div ref={messagesContainerRef} className="p-3.5 flex-1 overflow-y-auto space-y-3 font-sans text-xs">
               {messages.map((m, idx) => (
                 <div
                   key={idx}
-                  className={`flex flex-col ${m.role === 'user' ? 'items-end' : 'items-start'} space-y-2`}
+                  className={`flex gap-2.5 ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div
-                    className={`p-3 rounded-2xl max-w-[88%] leading-relaxed ${
-                      m.role === 'user'
-                        ? 'bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20 rounded-br-none'
-                        : 'bg-slate-900/90 [data-theme=\'light\']_:bg-slate-100 text-slate-200 [data-theme=\'light\']_:text-slate-800 border border-slate-800 rounded-bl-none shadow-sm'
-                    }`}
-                  >
-                    <p className="whitespace-pre-line leading-relaxed text-[12px]">{m.text}</p>
-                  </div>
-
-                  {/* Data Cards inside AI Chat */}
-                  {m.dataCard && m.dataCard.type === 'overdue' && (
-                    <div className="w-full bg-rose-950/30 p-3 rounded-2xl border border-rose-500/40 space-y-2.5">
-                      <div className="flex justify-between items-center text-xs font-bold text-rose-300">
-                        <span className="flex items-center gap-1.5">
-                          <Receipt className="w-3.5 h-3.5" />
-                          <span>Tổng Nợ Cần Thu Hồi</span>
-                        </span>
-                        <span className="font-mono text-sm text-white">{m.dataCard.total}</span>
-                      </div>
-                      <div className="space-y-1.5">
-                        {m.dataCard.items.map((item: any, i: number) => (
-                          <div key={i} className="p-2 bg-slate-900/90 rounded-xl flex justify-between items-center text-[11px] border border-slate-800">
-                            <div>
-                              <strong className="text-white">{item.unit}</strong> — {item.tenant}
-                              <p className="text-slate-400 text-[10px]">Quá hạn: {item.daysOverdue} ngày</p>
-                            </div>
-                            <span className="font-bold text-rose-400">{item.amount}</span>
-                          </div>
-                        ))}
-                      </div>
+                  {m.role === 'assistant' && (
+                    <div className="w-7 h-7 rounded-xl bg-[#9FE870]/25 text-[#163300] dark:text-[#9FE870] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                      <Bot className="w-4 h-4" />
                     </div>
                   )}
 
-                  {m.dataCard && m.dataCard.type === 'contracts' && (
-                    <div className="w-full bg-sky-950/30 p-3 rounded-2xl border border-sky-500/40 space-y-2.5">
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-sky-300">
-                        <FileText className="w-3.5 h-3.5" />
-                        <span>Hợp Đồng Sắp Hết Hạn (60 ngày)</span>
-                      </div>
-                      <div className="space-y-1.5">
-                        {m.dataCard.items.map((item: any, i: number) => (
-                          <div key={i} className="p-2 bg-slate-900/90 rounded-xl flex justify-between items-center text-[11px] border border-slate-800">
-                            <div>
-                              <strong className="text-white">{item.unit}</strong> — {item.tenant}
-                              <p className="text-slate-400 text-[10px]">Hết hạn: {item.expires}</p>
-                            </div>
-                            <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold">
-                              {item.status}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
+                  <div className={`space-y-2 max-w-[88%] ${m.role === 'user' ? 'items-end' : 'items-start'}`}>
+                    <div
+                      className={`p-3 rounded-[20px] leading-relaxed ${
+                        m.role === 'user'
+                          ? 'bg-[#163300] text-white font-medium shadow-sm rounded-tr-xs'
+                          : 'bg-[#F7FAF6] dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700 rounded-tl-xs shadow-2xs'
+                      }`}
+                    >
+                      <p className="whitespace-pre-line leading-relaxed text-[12px]">{m.text}</p>
                     </div>
-                  )}
 
-                  {m.dataCard && m.dataCard.type === 'maintenance' && (
-                    <div className="w-full bg-amber-950/30 p-3 rounded-2xl border border-amber-500/40 space-y-2.5">
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-amber-300">
-                        <Wrench className="w-3.5 h-3.5" />
-                        <span>Sự Cố Bảo Trì Cần Xử Lý</span>
+                    {/* Data Cards inside AI Chat */}
+                    {m.dataCard && m.dataCard.type === 'overdue' && (
+                      <div className="w-full bg-rose-50 dark:bg-rose-950/30 p-3 rounded-2xl border border-rose-200 dark:border-rose-500/40 space-y-2.5">
+                        <div className="flex justify-between items-center text-xs font-bold text-rose-800 dark:text-rose-300">
+                          <span className="flex items-center gap-1.5">
+                            <Receipt className="w-3.5 h-3.5" />
+                            <span>Tổng Nợ Cần Thu Hồi</span>
+                          </span>
+                          <span className="text-sm font-black text-rose-700 dark:text-white">{m.dataCard.total}</span>
+                        </div>
+                        <div className="space-y-1.5">
+                          {m.dataCard.items.map((item: any, i: number) => (
+                            <div key={i} className="p-2 bg-white dark:bg-slate-900 rounded-xl flex justify-between items-center text-[11px] border border-rose-100 dark:border-slate-800">
+                              <div>
+                                <strong className="text-slate-900 dark:text-white">{item.unit}</strong> — {item.tenant}
+                                <p className="text-slate-500 dark:text-slate-400 text-[10px]">Quá hạn: {item.daysOverdue} ngày</p>
+                              </div>
+                              <span className="font-bold text-rose-600 dark:text-rose-400">{item.amount}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                      <div className="space-y-1.5">
-                        {m.dataCard.items.map((item: any, i: number) => (
-                          <div key={i} className="p-2 bg-slate-900/90 rounded-xl space-y-1 border border-slate-800">
-                            <div className="flex justify-between items-center">
-                              <strong className="text-white text-[11px]">{item.unit}</strong>
-                              <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300 font-bold">
-                                {item.priority}
+                    )}
+
+                    {m.dataCard && m.dataCard.type === 'contracts' && (
+                      <div className="w-full bg-sky-50 dark:bg-sky-950/30 p-3 rounded-2xl border border-sky-200 dark:border-sky-500/40 space-y-2.5">
+                        <div className="flex items-center gap-1.5 text-xs font-bold text-sky-800 dark:text-sky-300">
+                          <FileText className="w-3.5 h-3.5" />
+                          <span>Hợp Đồng Sắp Hết Hạn (60 ngày)</span>
+                        </div>
+                        <div className="space-y-1.5">
+                          {m.dataCard.items.map((item: any, i: number) => (
+                            <div key={i} className="p-2 bg-white dark:bg-slate-900 rounded-xl flex justify-between items-center text-[11px] border border-sky-100 dark:border-slate-800">
+                              <div>
+                                <strong className="text-slate-900 dark:text-white">{item.unit}</strong> — {item.tenant}
+                                <p className="text-slate-500 dark:text-slate-400 text-[10px]">Hết hạn: {item.expires}</p>
+                              </div>
+                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-500/30 font-bold">
+                                {item.status}
                               </span>
                             </div>
-                            <p className="text-slate-300 text-[11px]">{item.issue}</p>
-                            <p className="text-slate-500 text-[10px]">Phụ trách: {item.tech}</p>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+
+                    {m.dataCard && m.dataCard.type === 'maintenance' && (
+                      <div className="w-full bg-amber-50 dark:bg-amber-950/30 p-3 rounded-2xl border border-amber-200 dark:border-amber-500/40 space-y-2.5">
+                        <div className="flex items-center gap-1.5 text-xs font-bold text-amber-800 dark:text-amber-300">
+                          <Wrench className="w-3.5 h-3.5" />
+                          <span>Sự Cố Bảo Trì Cần Xử Lý</span>
+                        </div>
+                        <div className="space-y-1.5">
+                          {m.dataCard.items.map((item: any, i: number) => (
+                            <div key={i} className="p-2 bg-white dark:bg-slate-900 rounded-xl space-y-1 border border-amber-100 dark:border-slate-800">
+                              <div className="flex justify-between items-center">
+                                <strong className="text-slate-900 dark:text-white text-[11px]">{item.unit}</strong>
+                                <span className="text-[9px] px-2 py-0.5 rounded-full bg-rose-100 dark:bg-rose-500/20 text-rose-700 dark:text-rose-300 font-bold">
+                                  {item.priority}
+                                </span>
+                              </div>
+                              <p className="text-slate-700 dark:text-slate-300 text-[11px]">{item.issue}</p>
+                              <p className="text-slate-500 text-[10px]">Phụ trách: {item.tech}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               ))}
 
               {/* Typing Loader */}
               {isLoading && (
-                <div className="flex justify-start items-center gap-2 p-2.5 rounded-2xl bg-slate-900/90 border border-slate-800 text-slate-300 font-mono text-[11px] shadow-sm">
-                  <Loader2 className="w-3.5 h-3.5 text-emerald-400 animate-spin" />
-                  <span>Copilot đang phân tích số liệu...</span>
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-xl bg-[#9FE870]/25 text-[#163300] dark:text-[#9FE870] flex items-center justify-center shrink-0">
+                    <Bot className="w-4 h-4" />
+                  </div>
+                  <div className="px-3 py-1.5 rounded-full bg-[#F7FAF6] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 flex items-center gap-2 text-xs shadow-2xs">
+                    <Loader2 className="w-3.5 h-3.5 text-[#20A05A] animate-spin" />
+                    <span className="font-medium">Copilot đang phân tích số liệu...</span>
+                  </div>
                 </div>
               )}
             </div>
 
             {/* Quick Prompts Bar */}
-            <div className="px-2.5 py-1.5 border-t border-slate-800 [data-theme='light']_:border-slate-200 bg-slate-950/60 [data-theme='light']_:bg-slate-50 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex gap-1.5 shrink-0">
+            <div className="px-3 py-2 border-t border-slate-200/80 dark:border-slate-800 bg-[#F9FAF8] dark:bg-slate-850 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex gap-1.5 shrink-0">
               {quickPrompts.map((qp, i) => (
                 <button
                   key={i}
                   onClick={() => handleSend(qp)}
                   disabled={isLoading}
-                  className="px-2 py-1 rounded-lg bg-slate-900/90 [data-theme='light']_:bg-white hover:bg-slate-800 border border-slate-800 [data-theme='light']_:border-slate-200 hover:border-emerald-500/40 text-[11px] font-sans text-slate-300 [data-theme='light']_:text-slate-700 hover:text-emerald-300 transition-colors whitespace-nowrap shrink-0 disabled:opacity-50"
+                  className="px-2.5 py-1 rounded-full bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-[11px] font-medium text-slate-700 dark:text-slate-300 hover:text-[#163300] dark:hover:text-white transition-colors whitespace-nowrap shrink-0 disabled:opacity-50 shadow-2xs cursor-pointer"
                 >
                   {qp}
                 </button>
               ))}
             </div>
 
-            {/* Chat Input Bar with Voice Mic Button */}
-            <div className="p-2.5 border-t border-slate-800 [data-theme='light']_:border-slate-200 flex items-center gap-1.5 bg-slate-950 [data-theme='light']_:bg-white shrink-0">
+            {/* Chat Input Bar */}
+            <div className="p-2.5 border-t border-slate-200/80 dark:border-slate-800 flex items-center gap-2 bg-white dark:bg-slate-900 shrink-0">
               <input
                 type="text"
                 placeholder={isListening ? "Đang lắng nghe admin nói..." : "Hỏi về nợ quá hạn, hợp đồng, bảo trì..."}
@@ -346,17 +360,17 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && !isLoading && handleSend()}
                 disabled={isLoading}
-                className="flex-1 px-3 py-2 text-xs bg-slate-900 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-200 rounded-xl text-white [data-theme='light']_:text-slate-900 placeholder-slate-500 focus:outline-none focus:border-emerald-500/50 font-sans disabled:opacity-50"
+                className="flex-1 px-3.5 py-2 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40 focus:border-[#163300] transition-all disabled:opacity-50"
               />
               {/* Mic button */}
               <button
                 type="button"
                 onClick={toggleVoiceAdmin}
                 title={isListening ? "Đang lắng nghe... Bấm để dừng" : "Nói bằng giọng nói"}
-                className={`w-8 h-8 flex items-center justify-center rounded-xl transition-all shrink-0 ${
+                className={`w-8 h-8 flex items-center justify-center rounded-full transition-all shrink-0 cursor-pointer ${
                   isListening
                     ? 'bg-rose-500 text-white animate-pulse shadow-md shadow-rose-500/30'
-                    : 'bg-slate-800 hover:bg-slate-700 [data-theme="light"]_:bg-slate-200 [data-theme="light"]_:hover:bg-slate-300 text-slate-300 [data-theme="light"]_:text-slate-700'
+                    : 'bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300'
                 }`}
               >
                 {isListening ? <MicOff className="w-3.5 h-3.5" /> : <Mic className="w-3.5 h-3.5" />}
@@ -364,7 +378,7 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
               <button
                 onClick={() => handleSend()}
                 disabled={isLoading || !input.trim()}
-                className="w-8 h-8 flex items-center justify-center rounded-xl bg-emerald-500 hover:bg-emerald-400 disabled:bg-slate-800 text-slate-950 disabled:text-slate-500 transition-all shadow-md shadow-emerald-500/20 active:scale-95 shrink-0"
+                className="w-8 h-8 flex items-center justify-center rounded-full bg-[#9FE870] hover:bg-[#8ee05b] disabled:bg-slate-100 dark:disabled:bg-slate-800 text-[#163300] disabled:text-slate-400 transition-all shadow-xs active:scale-95 shrink-0 cursor-pointer"
               >
                 <Send className="w-3.5 h-3.5" />
               </button>

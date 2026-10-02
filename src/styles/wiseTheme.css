@@ -273,14 +273,33 @@
   border-radius: 0.75rem;
 }
 
-[data-theme="light"] input:focus,
+[data-theme="light"] input:not([class*="bg-transparent"]):not([class*="border-none"]):not([class*="focus:ring-0"]):focus,
 [data-theme="light"] select:focus,
 [data-theme="light"] textarea:focus,
-.light input:focus,
+.light input:not([class*="bg-transparent"]):not([class*="border-none"]):not([class*="focus:ring-0"]):focus,
 .light select:focus,
 .light textarea:focus {
   border-color: #163300 !important;
   box-shadow: 0 0 0 3px rgba(159, 232, 112, 0.35) !important;
+}
+
+/* Explicitly ensure transparent/borderless search inputs have ZERO inner outline/shadow */
+input[class*="bg-transparent"]:focus,
+input[class*="border-none"]:focus,
+input[class*="focus:ring-0"]:focus {
+  outline: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Hide number input spinners on demand */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 /* ── Wise Pill Tabs ── */
@@ -425,4 +444,42 @@
   filter: brightness(1.05);
   transform: translateY(-1px);
 }
+
+/* ─── 60 FPS Smooth Scrolling & Hardware Acceleration ─── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#haven-main-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+
+/* Dynamic Button & Card Micro-Interactions */
+button:not(:disabled).cursor-pointer {
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.18s ease, 
+              border-color 0.18s ease, 
+              box-shadow 0.18s ease;
+}
+
+button:not(:disabled).cursor-pointer:hover {
+  transform: translateY(-1px);
+}
+
+button:not(:disabled).cursor-pointer:active {
+  transform: scale(0.97);
+}
+
+header button:not(:disabled):hover {
+  transform: translateY(-0.5px);
+}
+
+header button:not(:disabled):active {
+  transform: scale(0.98);
+}
+
 

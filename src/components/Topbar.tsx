@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Search, Plus, Moon, Sun, Monitor, RotateCcw, Bookmark, Menu, Clock, Leaf, Shield, Calendar, CheckCircle2, ChevronDown, Mic, MicOff, Compass, LogIn, LogOut, Crown, UserCheck } from 'lucide-react';
 import type { ThemeMode } from '../App';
 import { VoiceRecognitionService } from '../services/voiceRecognitionService';
@@ -233,71 +234,99 @@ export const Topbar: React.FC<TopbarProps> = ({
         </form>
 
         {/* Right: Wise Pill Mode Switcher & Control Group */}
-        <div className="flex items-center gap-2">
-          {/* Wise Quick Switcher between Tenant & Admin Ops */}
+        <div className="flex items-center gap-3">
+          {/* Wise Quick Switcher between Tenant & Admin Ops with Smooth Sliding Pill */}
           {onToggleAdminView && (
-            <div className="hidden xl:inline-flex wise-pill-tabs">
+            <div className="hidden xl:inline-flex items-center p-1 bg-[#E8ECE5] dark:bg-slate-800 rounded-full border border-[#163300]/10 dark:border-slate-700/80 shadow-2xs">
               <button
                 type="button"
                 onClick={() => {
                   if (isAdminView) onToggleAdminView();
                 }}
-                className={`wise-pill-tab ${!isAdminView ? 'wise-pill-tab-active' : ''}`}
+                className={`relative px-4 py-1.5 text-xs font-bold transition-all cursor-pointer rounded-full select-none ${
+                  !isAdminView
+                    ? 'text-[#163300] dark:text-[#9FE870]'
+                    : 'text-[#495E35] dark:text-slate-400 hover:text-[#163300] dark:hover:text-white'
+                }`}
               >
-                Khách Thuê
+                {!isAdminView && (
+                  <motion.div
+                    layoutId="portal-active-pill"
+                    className="absolute inset-0 bg-white dark:bg-slate-900 rounded-full shadow-xs border border-black/5 dark:border-white/10"
+                    transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                  />
+                )}
+                <span className="relative z-10">Khách Thuê</span>
               </button>
+
               <button
                 type="button"
                 onClick={() => {
                   if (!isAdminView) onToggleAdminView();
                 }}
-                className={`wise-pill-tab ${isAdminView ? 'wise-pill-tab-active' : ''}`}
+                className={`relative px-4 py-1.5 text-xs font-bold transition-all cursor-pointer rounded-full select-none ${
+                  isAdminView
+                    ? 'text-[#163300] dark:text-[#9FE870]'
+                    : 'text-[#495E35] dark:text-slate-400 hover:text-[#163300] dark:hover:text-white'
+                }`}
               >
-                Quản Trị Sàn
+                {isAdminView && (
+                  <motion.div
+                    layoutId="portal-active-pill"
+                    className="absolute inset-0 bg-white dark:bg-slate-900 rounded-full shadow-xs border border-black/5 dark:border-white/10"
+                    transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                  />
+                )}
+                <span className="relative z-10">Quản Trị Sàn</span>
               </button>
             </div>
           )}
 
-          {/* Lifestyle Matchmaker AI (Consumer) - Wise Royal Violet Pill */}
-          {!isAdminView && onOpenLifestyleMatchmaker && (
-            <button
-              onClick={onOpenLifestyleMatchmaker}
-              className="h-8 flex items-center gap-1.5 px-3 text-xs font-bold text-[#431A7A] bg-[#F3E8FF] border border-[#8B5CF6]/30 rounded-full hover:bg-[#E9D5FF] transition-all focus-ring shrink-0 hover:scale-105 active:scale-95 shadow-xs cursor-pointer"
-              title="Khảo sát phong cách sống AI (Lifestyle Matchmaker)"
-            >
-              <Compass className="w-3.5 h-3.5 text-[#8B5CF6]" />
-              <span className="hidden sm:inline">Khảo Sát AI</span>
-            </button>
-          )}
+          {/* Dynamic Action Buttons with Stable Width Container to Prevent Layout Shift */}
+          <div className="flex items-center justify-end gap-2 min-w-[155px] shrink-0">
+            {!isAdminView ? (
+              <>
+                {/* Lifestyle Matchmaker AI (Consumer) - Wise Royal Violet Pill */}
+                {onOpenLifestyleMatchmaker && (
+                  <button
+                    onClick={onOpenLifestyleMatchmaker}
+                    className="h-8 flex items-center gap-1.5 px-3 text-xs font-bold text-[#431A7A] bg-[#F3E8FF] border border-[#8B5CF6]/30 rounded-full hover:bg-[#E9D5FF] transition-all shrink-0 hover:scale-105 active:scale-95 shadow-xs cursor-pointer"
+                    title="Khảo sát phong cách sống AI (Lifestyle Matchmaker)"
+                  >
+                    <Compass className="w-3.5 h-3.5 text-[#8B5CF6]" />
+                    <span className="hidden sm:inline">Khảo Sát AI</span>
+                  </button>
+                )}
 
-          {/* Saved Units (Consumer) - Wise Terracotta Coral Pill */}
-          {!isAdminView && (
-            <button
-              onClick={onOpenSaved}
-              className="h-8 flex items-center gap-1.5 px-3 text-xs font-bold text-[#8C1F08] bg-[#FFEAE5] border border-[#FF5436]/25 rounded-full hover:bg-[#FFD6CD] transition-colors focus-ring shrink-0"
-              title="Căn hộ đã lưu"
-            >
-              <Bookmark className="w-3.5 h-3.5 fill-current text-[#FF5436]" />
-              <span>{savedCount}</span>
-            </button>
-          )}
-
-          {/* Quick Action (Admin) - Wise Spring Lime Pill */}
-          {isAdminView && onOpenQuickAction && (
-            <button
-              onClick={onOpenQuickAction}
-              className="h-8 flex items-center gap-1.5 px-3.5 text-xs font-black text-[#163300] bg-[#9FE870] hover:bg-[#8CD85E] rounded-full transition-all shadow-xs focus-ring shrink-0 cursor-pointer hover:scale-105 active:scale-95"
-            >
-              <Plus className="w-3.5 h-3.5 text-[#163300]" />
-              <span className="hidden sm:inline">Tạo Mới</span>
-            </button>
-          )}
+                {/* Saved Units (Consumer) - Wise Terracotta Coral Pill */}
+                <button
+                  onClick={onOpenSaved}
+                  className="h-8 flex items-center gap-1.5 px-3 text-xs font-bold text-[#8C1F08] bg-[#FFEAE5] border border-[#FF5436]/25 rounded-full hover:bg-[#FFD6CD] transition-all shrink-0 hover:scale-105 active:scale-95 cursor-pointer shadow-xs"
+                  title="Căn hộ đã lưu"
+                >
+                  <Bookmark className="w-3.5 h-3.5 fill-current text-[#FF5436]" />
+                  <span>{savedCount}</span>
+                </button>
+              </>
+            ) : (
+              /* Quick Action (Admin) - Wise Spring Lime Pill */
+              onOpenQuickAction && (
+                <button
+                  onClick={onOpenQuickAction}
+                  className="h-8 flex items-center gap-1.5 px-4 text-xs font-black text-[#163300] bg-[#9FE870] hover:bg-[#8CD85E] rounded-full transition-all shadow-xs shrink-0 cursor-pointer hover:scale-105 active:scale-95"
+                >
+                  <Plus className="w-3.5 h-3.5 text-[#163300]" />
+                  <span>Tạo Mới</span>
+                </button>
+              )
+            )}
+          </div>
 
           {/* Theme Switcher with Clear Selection State */}
           <div ref={themeRef} className="relative">
             <button
               onClick={() => setThemeDropdownOpen(!themeDropdownOpen)}
-              className="h-8 w-8 flex items-center justify-center text-[#163300] dark:text-emerald-300 bg-white dark:bg-[#163300] border border-[#163300]/15 dark:border-[#9FE870]/30 rounded-full hover:bg-[#F2F5F0] transition-colors focus-ring relative shadow-xs"
+              className="h-8 w-8 flex items-center justify-center text-[#163300] dark:text-emerald-300 bg-white dark:bg-[#163300] border border-[#163300]/15 dark:border-[#9FE870]/30 rounded-full hover:bg-[#F2F5F0] transition-colors focus-ring relative shadow-xs cursor-pointer"
               title={`Giao diện hiện tại: ${themeMode === 'light' ? 'Sáng' : themeMode === 'dark' ? 'Tối' : 'Hệ thống'}`}
             >
               <CurrentThemeIcon className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
@@ -306,9 +335,9 @@ export const Topbar: React.FC<TopbarProps> = ({
 
             {themeDropdownOpen && (
               <div
-                className="absolute right-0 top-full mt-2 w-48 p-2 rounded-2xl bg-slate-900 [data-theme='light']_:bg-white shadow-2xl z-50 space-y-0.5 border border-slate-700 [data-theme='light']_:border-slate-200 animate-in fade-in duration-150"
+                className="absolute right-0 top-full mt-2 w-52 p-2 rounded-[22px] bg-white dark:bg-slate-900 shadow-xl z-50 space-y-1 border border-slate-200/90 dark:border-slate-800 animate-in fade-in duration-150"
               >
-                <span className="text-label text-[9px] px-2 py-1 block">
+                <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase px-3 py-1 block tracking-wider">
                   GIAO DIỆN
                 </span>
                 {themeOptions.map(({ mode, label, icon: Icon }) => (
@@ -318,233 +347,229 @@ export const Topbar: React.FC<TopbarProps> = ({
                       onThemeChange?.(mode);
                       setThemeDropdownOpen(false);
                     }}
-                    className={`
-                      w-full flex items-center justify-between px-2.5 py-1.5
-                      rounded-[var(--radius-md)] text-[var(--text-xs)] font-mono
-                      transition-colors
-                      ${themeMode === mode
-                        ? 'bg-[var(--haven-emerald-muted)] text-[var(--haven-emerald-400)] font-semibold border border-[var(--haven-border-accent)]'
-                        : 'text-[var(--haven-text-secondary)] hover:bg-[var(--haven-surface-hover)] hover:text-[var(--haven-text-primary)]'
-                      }
-                    `}
+                    className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                      themeMode === mode
+                        ? 'bg-[#E8F8EC] text-[#163300] dark:bg-emerald-950/40 dark:text-[#9FE870] font-bold'
+                        : 'text-[#495E35] dark:text-slate-300 hover:bg-[#F2F5F0] dark:hover:bg-slate-800 hover:text-[#163300]'
+                    }`}
                   >
-                    <div className="flex items-center gap-2">
-                      <Icon className="w-3.5 h-3.5" />
+                    <div className="flex items-center gap-2.5">
+                      <Icon className="w-4 h-4 text-[#20A05A]" />
                       <span>{label}</span>
                     </div>
-                    {themeMode === mode && <span className="status-dot status-dot-active" />}
+                    {themeMode === mode && <span className="w-2 h-2 rounded-full bg-[#20A05A]" />}
                   </button>
                 ))}
 
-                <div className="divider my-1" />
+                <div className="my-1 border-t border-slate-100 dark:border-slate-800" />
 
                 <button
                   onClick={handleResetDemo}
-                  className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-[var(--radius-md)] text-[var(--text-xs)] font-mono text-[var(--haven-rose-400)] hover:bg-[var(--haven-rose-muted)] transition-colors text-left"
+                  className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-[#FF5436] hover:bg-[#FFEAE5] dark:hover:bg-rose-950/30 transition-all text-left cursor-pointer"
                 >
-                  <RotateCcw className="w-3.5 h-3.5" />
-                  <span>Khôi phục Demo</span>
+                  <RotateCcw className="w-4 h-4 text-[#FF5436]" />
+                  <span>Khôi phục Dữ liệu Demo</span>
                 </button>
               </div>
             )}
           </div>
 
           {/* Interactive User Profile with Dropdown */}
-          <div ref={profileRef} className="relative pl-1 border-l border-[var(--haven-border)]">
+          <div ref={profileRef} className="relative pl-1 border-l border-slate-200 dark:border-slate-800">
             <button
               onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-              className="flex items-center gap-1.5 p-0.5 rounded-[var(--radius-lg)] hover:ring-2 hover:ring-[var(--haven-emerald-400)] transition-all focus-ring"
+              className="flex items-center gap-1.5 p-0.5 rounded-full hover:ring-2 hover:ring-[#9FE870] transition-all cursor-pointer"
               title="Xem hồ sơ cá nhân"
             >
               <img
                 src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150"
                 alt="Nguyễn An"
-                className="h-8 w-8 rounded-[var(--radius-lg)] object-cover border border-[var(--haven-border)]"
+                className="h-8 w-8 rounded-full object-cover border border-[#163300]/15 dark:border-[#9FE870]/30 shadow-2xs"
               />
-              <ChevronDown className="w-3 h-3 text-[var(--haven-text-muted)] hidden sm:block" />
+              <ChevronDown className="w-3 h-3 text-[#495E35] dark:text-slate-400 hidden sm:block" />
             </button>
 
             {profileDropdownOpen && (
-              <div className="absolute right-0 top-full mt-2 w-72 p-2.5 rounded-2xl bg-slate-900 [data-theme='light']_:bg-white shadow-2xl z-50 space-y-2 border border-slate-700 [data-theme='light']_:border-slate-200 animate-in fade-in">
-                  {/* User Profile Header */}
-                  <div className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-950/80 [data-theme='light']_:bg-slate-50 border border-slate-800 [data-theme='light']_:border-slate-200">
-                    <img
-                      src={currentUser?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150"}
-                      alt={currentUser?.name || "Nguyễn An"}
-                      className="h-10 w-10 rounded-xl object-cover border border-emerald-500/40"
-                    />
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-1">
-                        <span className="font-serif font-bold text-sm text-white [data-theme='light']_:text-slate-900 truncate">
-                          {currentUser?.name || 'Nguyễn An'}
-                        </span>
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                      </div>
-                      <div className="text-[10px] font-mono text-emerald-400 font-bold truncate">
-                        {isAdminView ? 'Ban Quản Trị Sàn' : (currentUser?.role || 'Sanctuary Member')}
-                      </div>
-                      <div className="text-[10px] font-mono text-slate-200 [data-theme='light']_:text-slate-600 font-medium truncate">
-                        {currentUser?.email || 'an.nguyen@haven.luxury'}
-                      </div>
+              <div className="absolute right-0 top-full mt-2 w-80 p-3 rounded-[28px] bg-white dark:bg-slate-900 shadow-2xl z-50 space-y-2.5 border border-slate-200/90 dark:border-slate-800 animate-in fade-in duration-150">
+                {/* User Profile Header Card */}
+                <div className="flex items-center gap-3 p-3 rounded-2xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700">
+                  <img
+                    src={currentUser?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150"}
+                    alt={currentUser?.name || "Nguyễn An"}
+                    className="h-10 w-10 rounded-full object-cover border-2 border-[#9FE870] shadow-xs"
+                  />
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-bold text-sm text-[#163300] dark:text-white truncate">
+                        {currentUser?.name || 'Nguyễn An'}
+                      </span>
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#20A05A] shrink-0" />
+                    </div>
+                    <div className="text-[11px] font-bold text-[#20A05A] dark:text-[#9FE870] truncate">
+                      {isAdminView ? 'Ban Quản Trị Sàn' : (currentUser?.role || 'Hội Viên Cư Dân Prime')}
+                    </div>
+                    <div className="text-[11px] font-medium text-slate-500 dark:text-slate-400 truncate">
+                      {currentUser?.email || 'an.nguyen@haven.luxury'}
                     </div>
                   </div>
+                </div>
 
-                  {/* Menu Items */}
-                  <div className="space-y-1 pt-1">
-                    {/* Auth Access Hub Modal Trigger */}
-                    {onOpenAuthModal && (
-                      <button
-                        onClick={() => {
-                          onOpenAuthModal();
-                          setProfileDropdownOpen(false);
-                        }}
-                        className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-mono text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 transition-colors text-left font-semibold cursor-pointer"
-                      >
-                        <div className="flex items-center gap-2">
-                          <LogIn className="w-3.5 h-3.5 text-emerald-400" />
-                          <span>{currentUser ? 'Đổi Tài Khoản / Định Danh' : 'Đăng Nhập / Đăng Ký'}</span>
-                        </div>
-                        <span className="px-1.5 py-0.5 rounded-md bg-emerald-500 text-slate-950 text-[9px] font-bold">
-                          AUTH
-                        </span>
-                      </button>
-                    )}
-
-                    {/* Role Switcher - Essential for Presentation */}
-                    {onToggleAdminView && (
-                      <button
-                        onClick={() => {
-                          onToggleAdminView();
-                          setProfileDropdownOpen(false);
-                        }}
-                        className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-mono text-emerald-300 [data-theme='light']_:text-emerald-800 bg-emerald-500/15 [data-theme='light']_:bg-emerald-100 hover:bg-emerald-500/25 border border-emerald-500/40 transition-all text-left font-bold shadow-xs group"
-                      >
-                        <div className="flex items-center gap-2">
-                          <Shield className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" />
-                          <span>{isAdminView ? 'Chuyển Chế Độ Khách (User)' : 'Chuyển Quản Trị (Admin Ops)'}</span>
-                        </div>
-                        <span className="px-1.5 py-0.5 rounded-md bg-emerald-500 text-slate-950 text-[9px] font-bold">
-                          ĐỔI
-                        </span>
-                      </button>
-                    )}
-
-                    {!isAdminView && (
-                      <>
-                        <button
-                          onClick={() => {
-                            onOpenSaved?.();
-                            setProfileDropdownOpen(false);
-                          }}
-                          className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-mono text-slate-200 [data-theme='light']_:text-slate-700 hover:text-white hover:bg-slate-800/80 transition-colors text-left"
-                        >
-                          <div className="flex items-center gap-2">
-                            <Bookmark className="w-3.5 h-3.5 text-emerald-400" />
-                            <span>Căn Hộ Đã Lưu</span>
-                          </div>
-                          <span className="px-1.5 py-0.5 rounded-full bg-emerald-500 text-slate-950 text-[10px] font-mono font-bold">
-                            {savedCount}
-                          </span>
-                        </button>
-
-                        <button
-                          onClick={() => {
-                            onNavigate?.('user_checklist');
-                            setProfileDropdownOpen(false);
-                          }}
-                          className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-mono text-slate-200 [data-theme='light']_:text-slate-700 hover:text-white hover:bg-slate-800/80 transition-colors text-left"
-                        >
-                          <Calendar className="w-3.5 h-3.5 text-sky-400" />
-                          <span>Lịch Hẹn & Bàn Giao</span>
-                        </button>
-                      </>
-                    )}
-                  </div>
-
-                  <div className="divider my-1 border-t border-slate-800 [data-theme='light']_:border-slate-200" />
-
-                  {/* 1-Click Fast Role Switcher */}
-                  <div className="space-y-1 pt-0.5">
-                    <span className="text-[10px] font-mono text-slate-400 [data-theme='light']_:text-slate-600 uppercase px-2 font-bold block">
-                      Chuyển Đổi Nhanh Tài Khoản
-                    </span>
+                {/* Menu Items */}
+                <div className="space-y-1 pt-0.5">
+                  {/* Auth Access Hub Modal Trigger */}
+                  {onOpenAuthModal && (
                     <button
                       onClick={() => {
-                        onSwitchUserAccount?.({
-                          name: 'Zee Cu Chuối (Admin)',
-                          email: 'zeecuchuoi@gmail.com',
-                          role: 'Quản Trị Viên (Admin Hệ Thống)',
-                          avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
-                          isAdmin: true
-                        });
+                        onOpenAuthModal();
                         setProfileDropdownOpen(false);
                       }}
-                      className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-mono transition-all text-left cursor-pointer ${
-                        currentUser?.email === 'zeecuchuoi@gmail.com'
-                          ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 font-bold'
-                          : 'text-slate-300 [data-theme="light"]_:text-slate-700 hover:bg-slate-800/80 hover:text-amber-300'
-                      }`}
+                      className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-[#163300] dark:text-slate-200 hover:bg-[#F2F5F0] dark:hover:bg-slate-800 transition-colors text-left cursor-pointer"
                     >
-                      <div className="flex items-center gap-1.5 truncate">
-                        <Crown className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                        <span className="truncate">zeecuchuoi@gmail.com</span>
+                      <div className="flex items-center gap-2.5">
+                        <LogIn className="w-4 h-4 text-[#20A05A]" />
+                        <span>{currentUser ? 'Đổi Tài Khoản / Định Danh' : 'Đăng Nhập / Đăng Ký'}</span>
                       </div>
-                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-500/30 text-amber-300 font-bold shrink-0">Admin</span>
-                    </button>
-
-                    <button
-                      onClick={() => {
-                        onSwitchUserAccount?.({
-                          name: 'DTC ICTU (Cư Dân)',
-                          email: 'dtc245160061@ictu.edu.vn',
-                          role: 'Khách Thuê Xác Thực (ICTU)',
-                          avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150',
-                          isAdmin: false
-                        });
-                        setProfileDropdownOpen(false);
-                      }}
-                      className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-mono transition-all text-left cursor-pointer ${
-                        currentUser?.email === 'dtc245160061@ictu.edu.vn'
-                          ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold'
-                          : 'text-slate-300 [data-theme="light"]_:text-slate-700 hover:bg-slate-800/80 hover:text-emerald-300'
-                      }`}
-                    >
-                      <div className="flex items-center gap-1.5 truncate">
-                        <UserCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                        <span className="truncate">dtc245160061@ictu.edu.vn</span>
-                      </div>
-                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/30 text-emerald-300 font-bold shrink-0">Thuê</span>
-                    </button>
-                  </div>
-
-                  <div className="divider my-1 border-t border-slate-800 [data-theme='light']_:border-slate-200" />
-
-                  {/* Logout if authenticated */}
-                  {currentUser && onLogout && (
-                    <button
-                      onClick={() => {
-                        onLogout();
-                        setProfileDropdownOpen(false);
-                      }}
-                      className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-mono text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition-colors text-left font-semibold cursor-pointer"
-                    >
-                      <LogOut className="w-3.5 h-3.5 text-slate-400" />
-                      <span>Đăng Xuất Tài Khoản</span>
+                      <span className="px-2 py-0.5 rounded-full bg-[#E8F8EC] text-[#163300] border border-[#9FE870] text-[10px] font-bold">
+                        CCCD
+                      </span>
                     </button>
                   )}
 
-                  {/* Reset Demo */}
+                  {/* Role Switcher */}
+                  {onToggleAdminView && (
+                    <button
+                      onClick={() => {
+                        onToggleAdminView();
+                        setProfileDropdownOpen(false);
+                      }}
+                      className="w-full flex items-center justify-between px-3 py-2.5 rounded-2xl bg-[#E8F8EC] dark:bg-emerald-950/40 hover:bg-[#D4F4DA] text-[#163300] dark:text-[#9FE870] border border-[#9FE870]/40 transition-all text-left font-bold cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <Shield className="w-4 h-4 text-[#20A05A]" />
+                        <span>{isAdminView ? 'Chuyển Chế Độ Khách Thuê' : 'Chuyển Quản Trị Sàn'}</span>
+                      </div>
+                      <span className="px-2 py-0.5 rounded-full bg-[#163300] text-[#9FE870] text-[10px] font-bold">
+                        ĐỔI
+                      </span>
+                    </button>
+                  )}
+
+                  {!isAdminView && (
+                    <>
+                      <button
+                        onClick={() => {
+                          onOpenSaved?.();
+                          setProfileDropdownOpen(false);
+                        }}
+                        className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-[#163300] dark:text-slate-200 hover:bg-[#F2F5F0] dark:hover:bg-slate-800 transition-colors text-left cursor-pointer"
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <Bookmark className="w-4 h-4 text-[#FF5436]" />
+                          <span>Căn Hộ Đã Lưu</span>
+                        </div>
+                        <span className="px-2 py-0.5 rounded-full bg-[#FFEAE5] text-[#8C1F08] font-bold text-[10px]">
+                          {savedCount}
+                        </span>
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          onNavigate?.('user_checklist');
+                          setProfileDropdownOpen(false);
+                        }}
+                        className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-[#163300] dark:text-slate-200 hover:bg-[#F2F5F0] dark:hover:bg-slate-800 transition-colors text-left cursor-pointer"
+                      >
+                        <Calendar className="w-4 h-4 text-[#2570EB]" />
+                        <span>Lịch Hẹn & Bàn Giao</span>
+                      </button>
+                    </>
+                  )}
+                </div>
+
+                <div className="my-1 border-t border-slate-100 dark:border-slate-800" />
+
+                {/* 1-Click Fast Role Switcher */}
+                <div className="space-y-1 pt-0.5">
+                  <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase px-3 tracking-wider block">
+                    CHUYỂN ĐỔI TÀI KHOẢN NHANH
+                  </span>
                   <button
                     onClick={() => {
-                      handleResetDemo();
+                      onSwitchUserAccount?.({
+                        name: 'Zee Cu Chuối (Admin)',
+                        email: 'zeecuchuoi@gmail.com',
+                        role: 'Quản Trị Viên (Admin Hệ Thống)',
+                        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
+                        isAdmin: true
+                      });
                       setProfileDropdownOpen(false);
                     }}
-                    className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-mono text-rose-400 hover:text-rose-300 hover:bg-rose-500/15 transition-colors text-left font-semibold"
+                    className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all text-left cursor-pointer ${
+                      currentUser?.email === 'zeecuchuoi@gmail.com'
+                        ? 'bg-[#FFF6DB] text-[#7A5200] border border-[#FFC83B]/40 font-bold'
+                        : 'text-[#495E35] dark:text-slate-300 hover:bg-[#F2F5F0] dark:hover:bg-slate-800 hover:text-[#163300]'
+                    }`}
                   >
-                    <RotateCcw className="w-3.5 h-3.5" />
-                    <span>Khôi phục Dữ liệu Demo</span>
+                    <div className="flex items-center gap-2 truncate">
+                      <Crown className="w-4 h-4 text-[#E5A000] shrink-0" />
+                      <span className="truncate">zeecuchuoi@gmail.com</span>
+                    </div>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#FFC83B] text-[#7A5200] font-bold shrink-0">Admin</span>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      onSwitchUserAccount?.({
+                        name: 'DTC ICTU (Cư Dân)',
+                        email: 'dtc245160061@ictu.edu.vn',
+                        role: 'Khách Thuê Xác Thực (ICTU)',
+                        avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150',
+                        isAdmin: false
+                      });
+                      setProfileDropdownOpen(false);
+                    }}
+                    className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all text-left cursor-pointer ${
+                      currentUser?.email === 'dtc245160061@ictu.edu.vn'
+                        ? 'bg-[#E8F8EC] text-[#163300] border border-[#9FE870] font-bold'
+                        : 'text-[#495E35] dark:text-slate-300 hover:bg-[#F2F5F0] dark:hover:bg-slate-800 hover:text-[#163300]'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 truncate">
+                      <UserCheck className="w-4 h-4 text-[#20A05A] shrink-0" />
+                      <span className="truncate">dtc245160061@ictu.edu.vn</span>
+                    </div>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#9FE870] text-[#163300] font-bold shrink-0">Thuê</span>
                   </button>
                 </div>
+
+                <div className="my-1 border-t border-slate-100 dark:border-slate-800" />
+
+                {/* Logout if authenticated */}
+                {currentUser && onLogout && (
+                  <button
+                    onClick={() => {
+                      onLogout();
+                      setProfileDropdownOpen(false);
+                    }}
+                    className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-[#F2F5F0] dark:hover:bg-slate-800 transition-colors text-left cursor-pointer"
+                  >
+                    <LogOut className="w-4 h-4 text-slate-400" />
+                    <span>Đăng Xuất Tài Khoản</span>
+                  </button>
+                )}
+
+                {/* Reset Demo */}
+                <button
+                  onClick={() => {
+                    handleResetDemo();
+                    setProfileDropdownOpen(false);
+                  }}
+                  className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-[#FF5436] hover:bg-[#FFEAE5] dark:hover:bg-rose-950/30 transition-colors text-left cursor-pointer"
+                >
+                  <RotateCcw className="w-4 h-4 text-[#FF5436]" />
+                  <span>Khôi phục Dữ liệu Demo</span>
+                </button>
+              </div>
             )}
           </div>
         </div>

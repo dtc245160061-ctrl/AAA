@@ -135,7 +135,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               e.preventDefault();
               onSearch(aiPromptInput.trim() || undefined);
             }} 
-            className="flex items-center gap-2 max-w-xl bg-white dark:bg-[#163300] p-1.5 rounded-full border border-[#163300]/15 dark:border-[#9FE870]/30 shadow-md"
+            className="flex items-center gap-2 max-w-xl bg-white dark:bg-[#163300] p-1.5 rounded-full border border-[#163300]/15 dark:border-[#9FE870]/30 shadow-md focus-within:border-[#163300] dark:focus-within:border-[#9FE870] focus-within:ring-4 focus-within:ring-[#9FE870]/25 transition-all duration-200"
           >
             <div className="pl-4 pr-1 text-[#163300] dark:text-[#9FE870]">
               <Sparkles className="w-5 h-5 animate-pulse" />
@@ -145,14 +145,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               value={aiPromptInput}
               onChange={(e) => setAiPromptInput(e.target.value)}
               placeholder='Nhập hoặc nói: "2 phòng ngủ Thái Nguyên 8 củ có ô tô"'
-              className="w-full bg-transparent border-none text-[#163300] dark:text-white placeholder:text-[#738565] dark:placeholder:text-emerald-200/50 text-sm sm:text-base font-medium focus:outline-none focus:ring-0"
+              className="w-full bg-transparent border-none text-[#163300] dark:text-white placeholder:text-[#738565] dark:placeholder:text-emerald-200/50 text-sm sm:text-base font-semibold focus:outline-none focus:ring-0 py-2.5 px-2"
             />
             {/* Mic Button */}
             <button
               type="button"
               onClick={toggleVoice}
               title={isListening ? "Đang lắng nghe... Bấm để dừng" : "Tìm kiếm bằng giọng nói tiếng Việt"}
-              className={`p-3 rounded-full transition-all flex items-center justify-center shrink-0 ${
+              className={`p-3 rounded-full transition-all flex items-center justify-center shrink-0 cursor-pointer ${
                 isListening
                   ? 'bg-rose-500 text-white animate-pulse shadow-md ring-2 ring-rose-300'
                   : 'bg-[#F2F5F0] dark:bg-[#0E1E09] text-[#163300] dark:text-[#9FE870] hover:bg-[#9FE870] hover:text-[#163300]'
@@ -162,7 +162,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </button>
             <button
               type="submit"
-              className="inline-flex items-center gap-1.5 px-5 py-3 rounded-full bg-[#9FE870] hover:bg-[#8CD85E] text-[#163300] font-bold text-sm transition-all duration-200 shadow-sm shrink-0 cursor-pointer active:scale-95"
+              className="inline-flex items-center gap-1.5 px-5 py-3 rounded-full bg-[#9FE870] hover:bg-[#8CD85E] text-[#163300] font-black text-sm transition-all duration-200 shadow-sm shrink-0 cursor-pointer active:scale-95"
             >
               <span>Tìm</span>
               <ArrowRight className="w-4 h-4" />
@@ -256,13 +256,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             <form onSubmit={handleCalculatorSubmit} className="space-y-4">
               
-              {/* Row 1: You Send (Your Budget) */}
-              <div className="space-y-1.5">
-                <label htmlFor={budgetInputId} className="block text-xs font-bold text-[#495E35] dark:text-emerald-200/80">
-                  Ngân sách thuê hàng tháng của bạn
-                </label>
-                <div className="flex items-center justify-between bg-[#F7FAF6] dark:bg-[#0E1E09] border border-[#163300]/15 dark:border-[#9FE870]/30 rounded-2xl p-3 focus-within:border-[#163300] focus-within:ring-2 focus-within:ring-[#9FE870]/40 transition-all">
-                  <div className="flex-1 pr-2">
+              {/* Row 1: You Send (Your Budget) - Wise Currency Card */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <label htmlFor={budgetInputId} className="block text-xs font-bold text-[#495E35] dark:text-emerald-200/80">
+                    Ngân sách thuê hàng tháng
+                  </label>
+                  <span className="text-[11px] font-bold text-[#20A05A] dark:text-[#9FE870]">
+                    ≈ {(budgetVND / 1000000).toFixed(1)} Triệu / tháng
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between bg-[#F7FAF6] dark:bg-[#0E1E09] border-2 border-slate-200/80 dark:border-[#9FE870]/30 rounded-[20px] p-3.5 focus-within:border-[#163300] dark:focus-within:border-[#9FE870] focus-within:ring-4 focus-within:ring-[#9FE870]/25 transition-all shadow-xs">
+                  <div className="flex-1 pr-2 min-w-0">
                     <input
                       id={budgetInputId}
                       type="number"
@@ -270,17 +276,33 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                       min={3000000}
                       max={100000000}
                       value={budgetVND}
-                      onChange={(e) => setBudgetVND(Number(e.target.value))}
-                      className="w-full bg-transparent text-xl sm:text-2xl font-black text-[#163300] dark:text-white focus:outline-none"
+                      onChange={(e) => setBudgetVND(Math.max(0, Number(e.target.value)))}
+                      className="w-full bg-transparent border-none text-2xl sm:text-3xl font-black text-[#163300] dark:text-white focus:outline-none focus:ring-0 p-0 m-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     />
-                    <div className="text-[11px] text-[#738565] dark:text-emerald-200/60 font-semibold">
-                      {(budgetVND / 1000000).toLocaleString('vi-VN')} triệu VNĐ/tháng
-                    </div>
                   </div>
                   {/* Currency / Unit Pill */}
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white dark:bg-[#163300] border border-[#163300]/10 dark:border-[#9FE870]/30 text-xs font-bold text-[#163300] dark:text-[#9FE870] shrink-0">
-                    <span>🇻🇳 VND</span>
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white dark:bg-[#163300] border border-[#163300]/15 dark:border-[#9FE870]/30 text-xs font-bold text-[#163300] dark:text-[#9FE870] shrink-0 shadow-2xs">
+                    <span>🇻🇳 VNĐ / tháng</span>
                   </div>
+                </div>
+
+                {/* Quick Budget Preset Buttons */}
+                <div className="flex items-center gap-1.5 pt-0.5">
+                  <span className="text-[10px] uppercase font-bold text-slate-400 mr-0.5">Mốc nhanh:</span>
+                  {[8000000, 15000000, 25000000, 45000000].map((preset) => (
+                    <button
+                      key={preset}
+                      type="button"
+                      onClick={() => setBudgetVND(preset)}
+                      className={`px-2.5 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                        budgetVND === preset
+                          ? 'bg-[#163300] text-[#9FE870] shadow-xs scale-105'
+                          : 'bg-[#F2F5F0] dark:bg-[#163300] text-[#495E35] dark:text-slate-300 hover:bg-[#E8F8EC] hover:text-[#163300]'
+                      }`}
+                    >
+                      {preset / 1000000} Tr
+                    </button>
+                  ))}
                 </div>
               </div>
 
@@ -323,7 +345,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <label className="block text-xs font-bold text-[#495E35] dark:text-emerald-200/80">
                   Số căn hộ AI gợi ý khớp chuẩn 100%
                 </label>
-                <div className="flex items-center justify-between bg-[#F7FAF6] dark:bg-[#0E1E09] border border-[#163300]/15 dark:border-[#9FE870]/30 rounded-2xl p-3 focus-within:border-[#163300] transition-all">
+                <div className="flex items-center justify-between bg-[#F7FAF6] dark:bg-[#0E1E09] border-2 border-slate-200/80 dark:border-[#9FE870]/30 rounded-[20px] p-3.5 focus-within:border-[#163300] transition-all shadow-xs">
                   <div className="flex-1 pr-2">
                     <div className="text-xl sm:text-2xl font-black text-[#163300] dark:text-[#9FE870]">
                       {estimatedMatches} Căn Hộ

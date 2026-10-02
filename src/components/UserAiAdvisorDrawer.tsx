@@ -204,7 +204,6 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
     const query = (textToSend || inputValue).trim();
     if (!query || isSubmittingRef.current || isLoading) return;
     
-    // Set synchronous locks immediately
     isSubmittingRef.current = true;
     setIsLoading(true);
 
@@ -217,7 +216,6 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
     setMessages(prev => [...prev, userMsg]);
     setInputValue('');
 
-    // Stop voice listening safely if active
     if (VoiceRecognitionService.getIsListening()) {
       VoiceRecognitionService.stop();
       setIsListening(false);
@@ -276,111 +274,101 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
             maxHeight: 'calc(100vh - 5rem)',
             zIndex: 9999 
           }}
-          className="fixed !fixed rounded-3xl p-[2px] overflow-visible shadow-2xl shadow-emerald-500/20 text-left flex flex-col select-none"
+          className="fixed rounded-[28px] overflow-hidden shadow-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col text-slate-900 dark:text-slate-100 font-sans select-none"
         >
-          {/* Continuous Running Laser Beam */}
-          <div className="animate-spin-beam pointer-events-none opacity-95 rounded-3xl" />
-
           {/* Top Resizing Handle */}
           <div 
             onMouseDown={(e) => handleResizeStart(e, 'top')}
-            className="absolute -top-1.5 left-6 right-6 h-3 cursor-ns-resize z-50 hover:bg-emerald-500/30 active:bg-emerald-500/50 rounded-full transition-colors flex items-center justify-center group"
+            className="absolute top-0 left-6 right-6 h-2 cursor-ns-resize z-50 hover:bg-[#9FE870]/40 rounded-full transition-colors flex items-center justify-center group"
             title="Kéo lên/xuống để đổi chiều cao"
           >
-            <div className="w-8 h-1 rounded-full bg-slate-500/40 group-hover:bg-emerald-400 transition-colors" />
+            <div className="w-8 h-1 rounded-full bg-slate-300 dark:bg-slate-600 group-hover:bg-[#163300] dark:group-hover:bg-[#9FE870] transition-colors" />
           </div>
 
           {/* Left Resizing Handle */}
           <div 
             onMouseDown={(e) => handleResizeStart(e, 'left')}
-            className="absolute top-6 bottom-6 -left-1.5 w-3 cursor-ew-resize z-50 hover:bg-emerald-500/30 active:bg-emerald-500/50 rounded-full transition-colors flex items-center justify-center group"
+            className="absolute top-6 bottom-6 left-0 w-2 cursor-ew-resize z-50 hover:bg-[#9FE870]/40 rounded-full transition-colors flex items-center justify-center group"
             title="Kéo sang trái/phải để đổi chiều rộng"
           >
-            <div className="w-1 h-8 rounded-full bg-slate-500/40 group-hover:bg-emerald-400 transition-colors" />
+            <div className="w-1 h-8 rounded-full bg-slate-300 dark:bg-slate-600 group-hover:bg-[#163300] dark:group-hover:bg-[#9FE870] transition-colors" />
           </div>
 
           {/* Top-Left Corner Resizing Handle */}
           <div 
             onMouseDown={(e) => handleResizeStart(e, 'corner')}
-            className="absolute -top-1.5 -left-1.5 w-5 h-5 cursor-nwse-resize z-50 flex items-center justify-center group"
+            className="absolute top-0 left-0 w-4 h-4 cursor-nwse-resize z-50 flex items-center justify-center group"
             title="Kéo góc để đổi cả rộng và cao"
           >
-            <div className="w-3 h-3 rounded-tl-md border-t-2 border-l-2 border-emerald-400/60 group-hover:border-emerald-400 group-hover:scale-125 transition-all" />
+            <div className="w-2.5 h-2.5 rounded-tl-sm border-t-2 border-l-2 border-slate-400 group-hover:border-[#163300] dark:group-hover:border-[#9FE870] group-hover:scale-125 transition-all" />
           </div>
 
           {/* Main Inner Window Container */}
-          <div className="relative z-10 w-full h-full rounded-[22px] bg-[#0B0F17] [data-theme='light']_:bg-white border border-slate-700/80 [data-theme='light']_:border-slate-200/90 flex flex-col justify-between overflow-hidden shadow-2xl select-text">
+          <div className="relative z-10 w-full h-full flex flex-col justify-between overflow-hidden select-text">
             {/* Top Bar Header */}
-            <div className="p-3 border-b border-slate-800 [data-theme='light']_:border-slate-200/80 flex items-center justify-between bg-slate-900/95 [data-theme='light']_:bg-slate-50/95 backdrop-blur-md shrink-0">
+            <div className="p-3.5 border-b border-slate-200/80 dark:border-slate-800 flex items-center justify-between bg-[#F2F5F0] dark:bg-slate-850 shrink-0">
               <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
-                  <Sparkles className="w-3.5 h-3.5 animate-pulse" />
+                <div className="w-8 h-8 rounded-xl bg-[#9FE870] text-[#163300] flex items-center justify-center shrink-0 shadow-2xs">
+                  <Sparkles className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="flex items-center gap-1.5">
-                    <h3 className="font-serif text-[13px] font-bold text-slate-100 [data-theme='light']_:text-slate-900">
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-black text-sm text-[#163300] dark:text-white">
                       Haven AI Advisor
                     </h3>
-                    <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full ${
+                    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full ${
                       slmStatus.isAvailable
-                        ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400'
-                        : 'bg-teal-500/15 border-teal-500/30 text-teal-300'
-                    } border text-[8.5px] font-mono font-bold`}>
-                      <span className={`w-1.5 h-1.5 rounded-full ${slmStatus.isAvailable ? 'bg-emerald-400' : 'bg-teal-400'} animate-pulse`} />
-                      <span>{slmStatus.isAvailable ? `Local SLM (${slmStatus.model || 'Active'})` : 'Hybrid Cloud Gateway'}</span>
+                        ? 'bg-[#9FE870]/25 text-[#163300] dark:text-[#9FE870] dark:bg-[#9FE870]/20'
+                        : 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300'
+                    } text-[10px] font-bold`}>
+                      <span className={`w-1.5 h-1.5 rounded-full ${slmStatus.isAvailable ? 'bg-[#20A05A] dark:bg-[#9FE870]' : 'bg-emerald-500'} animate-pulse`} />
+                      <span>{slmStatus.isAvailable ? `Local SLM (${slmStatus.model || 'Active'})` : 'Hybrid Gateway'}</span>
                     </span>
                   </div>
-                  <p className="text-[9.5px] font-mono text-slate-400 [data-theme='light']_:text-slate-500">
-                    {slmStatus.isAvailable ? 'Edge SLM On-Device • 1,700 Căn Hộ RAG' : 'Gemini 3.5/3.1 Flash-Lite & RAG 1,700 Căn Hộ'}
+                  <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">
+                    {slmStatus.isAvailable ? 'Edge SLM On-Device • 1,700 Căn Hộ RAG' : 'Gemini Flash-Lite & RAG 1,700 Căn Hộ'}
                   </p>
                 </div>
               </div>
 
               <div className="flex items-center gap-1.5">
-                {/* 100% Offline Edge Chip */}
-                <div className="hidden sm:flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/25 text-[9px] font-mono text-emerald-400">
-                  <span className="w-1 h-1 rounded-full bg-emerald-400" />
-                  <span>0ms Latency • 100% Private</span>
-                </div>
-
                 <div 
-                  className="p-1 rounded-lg text-slate-500 hover:text-slate-300 [data-theme='light']_:hover:text-slate-700 cursor-nwse-resize"
-                  title="Có thể kéo thả viền/góc để mở rộng cửa sổ"
+                  className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 cursor-nwse-resize"
+                  title="Có thể kéo viền/góc để mở rộng cửa sổ"
                 >
                   <Maximize2 className="w-3.5 h-3.5" />
                 </div>
-                {/* Single clean Close Button */}
                 <button
                   onClick={onClose}
-                  className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 [data-theme='light']_:hover:bg-slate-200 transition-colors"
+                  className="w-7 h-7 rounded-full bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white border border-slate-200/80 dark:border-slate-700 flex items-center justify-center transition-colors cursor-pointer"
                   title="Đóng cửa sổ"
                 >
-                  <X className="w-4 h-4" />
+                  <X className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
 
-            {/* Chat Messages Body with Refined Compact Typography */}
-            <div ref={messagesContainerRef} className="flex-1 p-3 overflow-y-auto space-y-2.5 font-sans text-xs">
+            {/* Chat Messages Body */}
+            <div ref={messagesContainerRef} className="flex-1 p-3.5 overflow-y-auto space-y-3 font-sans text-xs">
               {messages.map(msg => (
                 <div
                   key={msg.id}
-                  className={`flex gap-2 ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                  className={`flex gap-2.5 ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   {msg.sender === 'ai' && (
-                    <div className="w-6 h-6 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 mt-0.5 shadow-sm">
-                      <Bot className="w-3.5 h-3.5" />
+                    <div className="w-7 h-7 rounded-xl bg-[#9FE870]/25 text-[#163300] dark:text-[#9FE870] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                      <Bot className="w-4 h-4" />
                     </div>
                   )}
 
                   <div
-                    className={`max-w-[88%] px-3 py-2.5 rounded-2xl space-y-1.5 ${
+                    className={`max-w-[88%] px-3.5 py-2.5 rounded-[20px] space-y-1.5 ${
                       msg.sender === 'user'
-                        ? 'bg-emerald-500 text-slate-950 font-medium rounded-br-none shadow-md shadow-emerald-500/20'
-                        : 'bg-slate-900/90 [data-theme=\'light\']_:bg-slate-100/90 border border-slate-800/90 [data-theme=\'light\']_:border-slate-200 text-slate-200 [data-theme=\'light\']_:text-slate-800 rounded-bl-none shadow-sm'
+                        ? 'bg-[#163300] text-white font-medium rounded-tr-xs shadow-sm'
+                        : 'bg-[#F7FAF6] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-slate-800 dark:text-slate-200 rounded-tl-xs shadow-2xs'
                     }`}
                   >
-                    <p className="whitespace-pre-line leading-relaxed text-[11px] sm:text-[11.5px] font-normal tracking-wide">
+                    <p className="whitespace-pre-line leading-relaxed text-[12px]">
                       {msg.text}
                     </p>
 
@@ -391,7 +379,7 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
                           onApplyAiSearch(msg.suggestedAction!.queryText);
                           onClose();
                         }}
-                        className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/30 font-mono text-[9.5px] font-semibold transition-colors mt-1"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#9FE870] text-[#163300] hover:bg-[#8ee05b] font-bold text-[10px] transition-colors mt-1.5 shadow-2xs cursor-pointer"
                       >
                         <Filter className="w-2.5 h-2.5" />
                         <span>Áp dụng vào tìm kiếm</span>
@@ -403,26 +391,26 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
 
               {/* Typing Loader Indicator */}
               {isLoading && (
-                <div className="flex gap-2 justify-start items-center">
-                  <div className="w-6 h-6 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
-                    <Bot className="w-3.5 h-3.5" />
+                <div className="flex gap-2.5 justify-start items-center">
+                  <div className="w-7 h-7 rounded-xl bg-[#9FE870]/25 text-[#163300] dark:text-[#9FE870] flex items-center justify-center shrink-0">
+                    <Bot className="w-4 h-4" />
                   </div>
-                  <div className="px-2.5 py-1.5 rounded-2xl bg-slate-900/90 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-200 text-slate-300 [data-theme='light']_:text-slate-700 flex items-center gap-2 font-mono text-[10.5px] shadow-sm">
-                    <Loader2 className="w-3 h-3 text-emerald-400 animate-spin" />
-                    <span>Haven AI đang suy luận...</span>
+                  <div className="px-3 py-1.5 rounded-full bg-[#F7FAF6] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 flex items-center gap-2 text-xs shadow-2xs">
+                    <Loader2 className="w-3.5 h-3.5 text-[#20A05A] animate-spin" />
+                    <span className="font-medium">Haven AI đang phân tích dữ liệu...</span>
                   </div>
                 </div>
               )}
             </div>
 
             {/* Quick Prompts Bar */}
-            <div className="px-2 py-1.5 border-t border-slate-800/80 [data-theme='light']_:border-slate-200 bg-slate-950/70 [data-theme='light']_:bg-slate-50/80 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex gap-1.5 shrink-0">
+            <div className="px-3 py-2 border-t border-slate-200/80 dark:border-slate-800 bg-[#F9FAF8] dark:bg-slate-850 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex gap-1.5 shrink-0">
               {quickPrompts.map((qp, i) => (
                 <button
                   key={i}
                   onClick={() => handleSend(qp)}
                   disabled={isLoading}
-                  className="px-2 py-1 rounded-lg bg-slate-900/90 [data-theme='light']_:bg-white hover:bg-slate-800 border border-slate-800 [data-theme='light']_:border-slate-200 hover:border-emerald-500/40 text-[10.5px] font-sans text-slate-300 [data-theme='light']_:text-slate-700 hover:text-emerald-300 transition-colors whitespace-nowrap shrink-0 disabled:opacity-50 shadow-xs"
+                  className="px-2.5 py-1 rounded-full bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-[11px] font-medium text-slate-700 dark:text-slate-300 hover:text-[#163300] dark:hover:text-white transition-colors whitespace-nowrap shrink-0 disabled:opacity-50 shadow-2xs cursor-pointer"
                 >
                   {qp}
                 </button>
@@ -430,24 +418,24 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
             </div>
 
             {/* Chat Input Bar with Voice Mic Button */}
-            <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className="p-2 border-t border-slate-800/80 [data-theme='light']_:border-slate-200 flex items-center gap-1.5 bg-slate-950 [data-theme='light']_:bg-white shrink-0">
+            <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className="p-2.5 border-t border-slate-200/80 dark:border-slate-800 flex items-center gap-2 bg-white dark:bg-slate-900 shrink-0">
               <input
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 disabled={isLoading}
-                placeholder={isListening ? "Đang lắng nghe... Nói tự nhiên để AI hỗ trợ" : "Nhập câu hỏi hoặc nói bằng micro..."}
-                className="flex-1 px-2.5 py-1.5 rounded-xl bg-slate-900 [data-theme='light']_:bg-slate-100 border border-slate-800 [data-theme='light']_:border-slate-200 text-slate-100 [data-theme='light']_:text-slate-900 placeholder:text-slate-500 text-[11.5px] focus:outline-none focus:border-emerald-500/50 disabled:opacity-50"
+                placeholder={isListening ? "Đang lắng nghe... Hãy nói yêu cầu của bạn" : "Nhập câu hỏi hoặc nói bằng micro..."}
+                className="flex-1 px-3.5 py-2 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 text-xs focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40 focus:border-[#163300] transition-all disabled:opacity-50"
               />
               {/* Voice Microphone Button */}
               <button
                 type="button"
                 onClick={toggleVoiceChat}
                 title={isListening ? "Đang lắng nghe... Bấm để dừng và gửi" : "Nói bằng giọng nói"}
-                className={`w-7 h-7 flex items-center justify-center rounded-xl transition-all shrink-0 ${
+                className={`w-8 h-8 flex items-center justify-center rounded-full transition-all shrink-0 cursor-pointer ${
                   isListening
                     ? 'bg-rose-500 text-white animate-pulse shadow-md shadow-rose-500/30'
-                    : 'bg-slate-800 hover:bg-slate-700 [data-theme="light"]_:bg-slate-200 [data-theme="light"]_:hover:bg-slate-300 text-slate-300 [data-theme="light"]_:text-slate-700'
+                    : 'bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300'
                 }`}
               >
                 {isListening ? <MicOff className="w-3.5 h-3.5" /> : <Mic className="w-3.5 h-3.5" />}
@@ -455,7 +443,7 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
               <button
                 type="submit"
                 disabled={isLoading || !inputValue.trim()}
-                className="w-7 h-7 flex items-center justify-center rounded-xl bg-emerald-500 hover:bg-emerald-400 disabled:bg-slate-800 text-slate-950 disabled:text-slate-500 transition-all shadow-md shadow-emerald-500/20 active:scale-95 shrink-0"
+                className="w-8 h-8 flex items-center justify-center rounded-full bg-[#9FE870] hover:bg-[#8ee05b] disabled:bg-slate-100 dark:disabled:bg-slate-800 text-[#163300] disabled:text-slate-400 transition-all shadow-xs active:scale-95 shrink-0 cursor-pointer"
               >
                 <Send className="w-3.5 h-3.5" />
               </button>

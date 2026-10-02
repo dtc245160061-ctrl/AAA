@@ -66,9 +66,9 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
     {
       id: 'pet',
       icon: Dog,
-      badge: 'BƯỚC 1/6: BẠN ĐỒNG HÀNH',
+      badge: 'BƯỚC 1/6 • BẠN ĐỒNG HÀNH',
       title: 'Bạn có nuôi hoặc chuẩn bị đón thú cưng không?',
-      subtitle: 'HAVEN sẽ lọc các tòa nhà có chính sách thân thiện thú cưng và khuôn viên an toàn.',
+      subtitle: 'HAVEN sẽ lọc các tòa nhà có chính sách thân thiện thú cưng và khuôn viên dạo bộ an toàn.',
       options: [
         {
           key: 'dog_cat',
@@ -78,7 +78,7 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
         },
         {
           key: 'small_pet',
-          title: 'Chỉ nuôi cá cảnh, chim hoặc thú cưng nhỏ',
+          title: 'Chỉ nuôi cá cảnh, chim hoặc thú nhỏ',
           desc: 'Không gây tiếng ồn, không ảnh hưởng diện tích sinh hoạt chung.',
           icon: Footprints,
         },
@@ -93,9 +93,9 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
     {
       id: 'mobility',
       icon: Car,
-      badge: 'BƯỚC 2/6: PHƯƠNG TIỆN & GIAO THÔNG',
+      badge: 'BƯỚC 2/6 • PHƯƠNG TIỆN & GIAO THÔNG',
       title: 'Phương tiện di chuyển chính của bạn hàng ngày?',
-      subtitle: 'Đảm bảo chỗ đỗ xe an toàn, tránh ngập lụt và tắc đường giờ cao điểm.',
+      subtitle: 'Đảm bảo chỗ đỗ xe an toàn, hạ tầng thông thoáng và tránh ngập lụt.',
       options: [
         {
           key: 'car',
@@ -106,12 +106,12 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
         {
           key: 'ev',
           title: 'Xe máy điện / Ô tô điện (VinFast...)',
-          desc: 'Ưu tiên tòa nhà có trạm sạc điện chuyên dụng tại tầng hầm.',
+          desc: 'Ưu tiên tòa nhà có trạm sạc điện chuyên dụng an toàn tại tầng hầm.',
           icon: Sparkles,
         },
         {
           key: 'motorbike_public',
-          title: 'Xe máy xăng hoặc Tàu điện / Xe Buýt',
+          title: 'Xe máy xăng hoặc Metro / Xe Buýt',
           desc: 'Gần tuyến Metro Nhổn - Cát Linh hoặc trục đường lớn thuận tiện đón xe.',
           icon: Compass,
         },
@@ -126,7 +126,7 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
     {
       id: 'fitness',
       icon: Footprints,
-      badge: 'BƯỚC 3/6: THỂ THAO & KHÔNG GIAN XANH',
+      badge: 'BƯỚC 3/6 • THỂ THAO & KHÔNG GIAN XANH',
       title: 'Thói quen rèn luyện thể chất & lối sống ngoài trời?',
       subtitle: 'AI sẽ tính toán khoảng cách thực tế từ căn hộ đến các không gian vận động.',
       options: [
@@ -159,7 +159,7 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
     {
       id: 'acoustics',
       icon: VolumeX,
-      badge: 'BƯỚC 4/6: KHÔNG GIAN ÂM THANH',
+      badge: 'BƯỚC 4/6 • KHÔNG GIAN ÂM THANH',
       title: 'Mức độ nhạy cảm của bạn đối với tiếng ồn?',
       subtitle: 'Lựa chọn cao độ tầng và tiêu chuẩn kính cách âm phù hợp cho giấc ngủ.',
       options: [
@@ -186,7 +186,7 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
     {
       id: 'climate',
       icon: Sun,
-      badge: 'BƯỚC 5/6: VI KHÍ HẬU & HƯỚNG NẮNG',
+      badge: 'BƯỚC 5/6 • VI KHÍ HẬU & HƯỚNG NẮNG',
       title: 'Sở thích hướng ban công đón nắng & gió trời?',
       subtitle: 'Tối ưu nhiệt độ tự nhiên và giảm chi phí điện năng máy lạnh quanh năm.',
       options: [
@@ -204,7 +204,7 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
         },
         {
           key: 'high_breeze',
-          title: 'Tầng cao lộng gió, tầm nhìn Panorama thoáng đãng',
+          title: 'Tầng cao lộng gió, tầm nhìn Panorama',
           desc: 'Tầm nhìn không bị che chắn, đón gió lưu thông tự nhiên không khí trong lành.',
           icon: Compass,
         },
@@ -213,7 +213,7 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
     {
       id: 'budget',
       icon: Banknote,
-      badge: 'BƯỚC 6/6: NGÂN SÁCH THUÊ',
+      badge: 'BƯỚC 6/6 • NGÂN SÁCH THUÊ',
       title: 'Khoảng tài chính dự kiến dành cho tổ ấm mỗi tháng?',
       subtitle: 'HAVEN sẽ tự động tính toán tổng chi phí thực tế (True Cost) minh bạch.',
       options: [
@@ -253,12 +253,11 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
     if (currentStep < totalSteps - 1) {
       setCurrentStep(prev => prev + 1);
     } else {
-      // Trigger AI Analysis
       setIsScanning(true);
       setTimeout(() => {
         setIsScanning(false);
         setShowResults(true);
-      }, 1200);
+      }, 900);
     }
   };
 
@@ -280,14 +279,14 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
     if (!showResults) return [];
 
     const scored = units.map(unit => {
-      let score = 70; // Base score
+      let score = 70;
       const reasons: string[] = [];
 
       // 1. Thú cưng
       if (answers.pet === 'dog_cat') {
         if (unit.petFriendly) {
           score += 15;
-          reasons.push('Tòa nhà thân thiện, cho phép nuôi thú cưng & có ban công bảo vệ.');
+          reasons.push('Tòa nhà cho phép nuôi thú cưng & có ban công bảo vệ an toàn.');
         } else {
           score -= 30;
         }
@@ -305,10 +304,10 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
         }
       } else if (answers.mobility === 'ev') {
         score += 10;
-        reasons.push('Tòa nhà trang bị điểm sạc điện xe máy & an toàn cháy nổ cao.');
+        reasons.push('Trang bị điểm sạc điện xe máy an toàn tại tầng hầm.');
       }
 
-      // 3. Thể thao & Chạy bộ
+      // 3. Thể thao
       if (answers.fitness === 'running_park') {
         const parkKeywords = ['công viên', 'hồ', 'riverside', 'park', 'green', 'ven sông', 'biển', 'bãi sau', 'sông hàn', 'hồ tây', 'hồ xương rồng', 'danko', 'crown', 'sala', 'thảo điền'];
         const isParkNearby = parkKeywords.some(kw => 
@@ -318,7 +317,7 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
         );
         if (isParkNearby) {
           score += 18;
-          reasons.push(`Gần công viên ven hồ/mặt nước (${unit.district}, ${unit.city}), hoàn hảo cho chạy bộ.`);
+          reasons.push(`Gần công viên ven hồ (${unit.district}, ${unit.city}), hoàn hảo cho chạy bộ.`);
         }
       } else if (answers.fitness === 'gym_pool') {
         if (unit.monthlyRentVND >= 15000000 || unit.type === 'Deluxe Apartment' || unit.type === 'Penthouse' || unit.type === 'Sky Villa') {
@@ -327,31 +326,31 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
         }
       }
 
-      // 4. Âm thanh & Yên tĩnh
+      // 4. Âm thanh
       if (answers.acoustics === 'super_quiet') {
         if (unit.noiseLevel === 'Quiet' || unit.floor >= 15) {
           score += 15;
-          reasons.push(`Tầng cao ${unit.floor} tách biệt tiếng ồn phố thị, kính cách âm tiêu chuẩn.`);
+          reasons.push(`Tầng cao ${unit.floor} tách biệt tiếng ồn phố thị, kính cách âm cao cấp.`);
         } else {
           score -= 10;
         }
       }
 
-      // 5. Vi khí hậu & Nắng gió
+      // 5. Nắng gió
       if (answers.climate === 'morning_sun') {
         if (unit.orientation?.includes('Đông') || unit.orientation?.includes('Nam') || unit.balcony) {
           score += 12;
-          reasons.push('Ban công hướng đón nắng ban mai sáng sủa, thông gió đối lưu tự nhiên.');
+          reasons.push('Ban công đón nắng sớm tự nhiên, gió mát trưa hè.');
         }
       } else if (answers.climate === 'avoid_west_sun') {
         if (unit.orientation?.includes('Bắc') || unit.orientation?.includes('Nam')) {
           score += 12;
-          reasons.push('Không bị nắng Tây chiếu trực diện, giữ nhiệt độ phòng mát mẻ.');
+          reasons.push('Tránh nắng Tây trực diện, nhiệt độ phòng luôn mát mẻ.');
         }
       } else if (answers.climate === 'high_breeze') {
         if (unit.floor >= 18) {
           score += 15;
-          reasons.push(`Tầng ${unit.floor} đón gió mát lành, tầm nhìn khoáng đạt không bị che chắn.`);
+          reasons.push(`Tầng ${unit.floor} đón gió thoáng mát, tầm nhìn rộng thoáng.`);
         }
       }
 
@@ -370,7 +369,6 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
         if (priceM > 35) score += 18;
       }
 
-      // Clamp between 82% and 99% for top results
       const finalScore = Math.min(99, Math.max(65, Math.round(score)));
 
       return {
@@ -383,7 +381,7 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
     return scored.sort((a, b) => b.score - a.score).slice(0, 4);
   }, [showResults, answers, units]);
 
-  // Spider / Radar Chart Dimensions & Coordinates
+  // Spider / Radar Dimensions
   const radarDimensions = [
     { label: 'Không Gian Xanh', value: answers.fitness === 'running_park' ? 95 : 75 },
     { label: 'Thân Thiện Pet', value: answers.pet === 'dog_cat' ? 98 : 70 },
@@ -392,7 +390,6 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
     { label: 'Vi Khí Hậu', value: answers.climate === 'morning_sun' ? 92 : 80 },
   ];
 
-  // Radar chart SVG calculation (radius = 90, center = 110, 110)
   const cx = 110;
   const cy = 110;
   const r = 80;
@@ -420,36 +417,36 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-3xl rounded-3xl atmospheric-panel border border-emerald-500/40 bg-slate-950 shadow-2xl flex flex-col max-h-[92vh] overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 dark:bg-black/75 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="relative w-full max-w-3xl rounded-[32px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-2xl flex flex-col max-h-[92vh] overflow-hidden text-slate-900 dark:text-slate-100 font-sans">
         
         {/* Modal Top Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800/80 bg-slate-900/60 shrink-0">
-          <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400">
-              <Compass className="w-5 h-5 animate-spin-slow" />
+        <div className="flex items-center justify-between px-6 py-4.5 border-b border-slate-200/80 dark:border-slate-800 bg-[#F2F5F0] dark:bg-slate-850 shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-[#9FE870] text-[#163300] flex items-center justify-center shadow-xs shrink-0">
+              <Compass className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-serif font-bold text-base sm:text-lg text-slate-100">
-                  HAVEN Lifestyle & Spatial Matchmaker
+                <span className="font-black text-base sm:text-lg text-[#163300] dark:text-white tracking-tight">
+                  Khảo Sát Lối Sống & Không Gian Sống
                 </span>
-                <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[10px] font-mono font-bold">
-                  AI NEURAL
+                <span className="px-2.5 py-0.5 rounded-full bg-[#163300] text-[#9FE870] dark:bg-[#9FE870]/20 dark:text-[#9FE870] text-[10px] font-bold tracking-wider uppercase">
+                  AI Match
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400 font-mono">
-                Khảo sát tương thích phong cách sống độc bản & phân tích không gian
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+                Tìm căn hộ hoàn hảo dựa trên thói quen sinh hoạt và tiêu chuẩn cá nhân
               </p>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+            className="w-9 h-9 rounded-full bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white border border-slate-200/80 dark:border-slate-700 flex items-center justify-center transition-colors cursor-pointer"
             title="Đóng khảo sát"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
@@ -457,21 +454,21 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
         <div className="flex-1 overflow-y-auto p-5 sm:p-7 space-y-6">
           
           {isScanning ? (
-            /* AI Neural Scanning Animation Screen */
-            <div className="py-16 flex flex-col items-center justify-center text-center space-y-5 animate-in fade-in">
-              <div className="relative w-24 h-24">
-                <div className="absolute inset-0 rounded-full border-2 border-emerald-500/20 animate-ping" />
-                <div className="absolute inset-2 rounded-full border-2 border-dashed border-emerald-400 animate-spin" />
+            /* AI Scanning State */
+            <div className="py-16 flex flex-col items-center justify-center text-center space-y-4 animate-in fade-in">
+              <div className="relative w-20 h-20">
+                <div className="absolute inset-0 rounded-full border-4 border-[#9FE870]/30 animate-ping" />
+                <div className="absolute inset-2 rounded-full border-3 border-dashed border-[#20A05A] animate-spin" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <Sparkles className="w-10 h-10 text-emerald-400 animate-pulse" />
+                  <Sparkles className="w-8 h-8 text-[#163300] dark:text-[#9FE870]" />
                 </div>
               </div>
-              <div className="space-y-1.5">
-                <h3 className="text-xl font-serif font-bold text-slate-100">
-                  HAVEN AI Đang Tính Toán Chỉ Số Tương Thích...
+              <div className="space-y-1">
+                <h3 className="text-xl font-black text-[#163300] dark:text-white">
+                  Đang tính toán chỉ số tương thích...
                 </h3>
-                <p className="text-xs text-slate-400 font-mono max-w-md mx-auto">
-                  Quét 540 căn hộ • Phân tích vi khí hậu • Kiểm định bán kính công viên & hầm xe • Tổng hợp biểu đồ radar đa giác
+                <p className="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto">
+                  Tổng hợp phân tích vi khí hậu • Bán kính công viên • Hầm xe • Mức độ yên tĩnh
                 </p>
               </div>
             </div>
@@ -480,13 +477,13 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
             <div className="space-y-6 animate-in fade-in duration-300">
               
               {/* Radar Chart & Summary Card */}
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-5 p-5 rounded-2xl bg-slate-900/80 border border-emerald-500/30 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-5 p-6 rounded-[28px] bg-[#F7FAF6] dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700/80 items-center">
                 
-                {/* SVG Procedural Radar Chart */}
+                {/* SVG Radar Chart */}
                 <div className="md:col-span-5 flex flex-col items-center justify-center">
-                  <div className="relative w-[220px] h-[220px]">
-                    <svg viewBox="0 0 220 220" className="w-full h-full drop-shadow-[0_0_12px_rgba(16,185,129,0.3)]">
-                      {/* Background Concentric Circles */}
+                  <div className="relative w-[200px] h-[200px]">
+                    <svg viewBox="0 0 220 220" className="w-full h-full drop-shadow-sm">
+                      {/* Concentric Circles */}
                       {[0.25, 0.5, 0.75, 1].map((scale, i) => (
                         <circle
                           key={i}
@@ -494,12 +491,12 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
                           cy={cy}
                           r={r * scale}
                           fill="none"
-                          stroke="rgba(148, 163, 184, 0.15)"
-                          strokeDasharray={scale === 1 ? 'none' : '2,2'}
+                          stroke="rgba(148, 163, 184, 0.3)"
+                          strokeDasharray={scale === 1 ? 'none' : '3,3'}
                         />
                       ))}
 
-                      {/* Axes Lines */}
+                      {/* Axes */}
                       {radarDimensions.map((_, i) => {
                         const { x, y } = getCoordinates(i, 100);
                         return (
@@ -509,20 +506,20 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
                             y1={cy}
                             x2={x}
                             y2={y}
-                            stroke="rgba(148, 163, 184, 0.25)"
+                            stroke="rgba(148, 163, 184, 0.35)"
                           />
                         );
                       })}
 
-                      {/* Dynamic User Radar Polygon */}
+                      {/* Radar Area */}
                       <polygon
                         points={radarPolygonPoints}
-                        fill="rgba(16, 185, 129, 0.3)"
-                        stroke="#10B981"
-                        strokeWidth="2"
+                        fill="rgba(159, 232, 112, 0.45)"
+                        stroke="#163300"
+                        strokeWidth="2.5"
                       />
 
-                      {/* Points on Vertices */}
+                      {/* Radar Points */}
                       {radarDimensions.map((dim, i) => {
                         const { x, y } = getCoordinates(i, dim.value);
                         return (
@@ -530,54 +527,54 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
                             key={i}
                             cx={x}
                             cy={y}
-                            r="3.5"
-                            fill="#10B981"
-                            stroke="#047857"
-                            strokeWidth="1.5"
+                            r="4"
+                            fill="#163300"
+                            stroke="#9FE870"
+                            strokeWidth="2"
                           />
                         );
                       })}
                     </svg>
                   </div>
-                  <span className="text-[11px] font-mono text-emerald-400 font-bold mt-1">
-                    Bản đồ Radar Lối Sống (Spatial Balance)
+                  <span className="text-xs font-bold text-[#163300] dark:text-[#9FE870] mt-2">
+                    Biểu đồ cân bằng không gian sống
                   </span>
                 </div>
 
-                {/* Match Synthesis Description */}
+                {/* Match Description */}
                 <div className="md:col-span-7 space-y-3">
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-semibold">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#9FE870]/30 text-[#163300] dark:text-[#9FE870] text-xs font-bold">
                     <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>Khảo Sát Hoàn Tất • Tìm Thấy 4 Căn Hộ Lý Tưởng</span>
+                    <span>Tìm thấy 4 căn hộ tương thích cao</span>
                   </div>
-                  <h3 className="text-lg sm:text-xl font-serif font-bold text-slate-100">
-                    Hồ Sơ Không Gian Sống Của Bạn Đạt Độ Tương Thích Tuyệt Đối
+                  <h3 className="text-lg sm:text-xl font-black text-[#163300] dark:text-white leading-snug">
+                    Hồ sơ không gian sống đạt độ phù hợp xuất sắc
                   </h3>
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    Dựa trên sở thích ưu tiên về <strong className="text-emerald-400">thú cưng, chạy bộ ngoài trời, hầm xe và không gian yên tĩnh</strong>, HAVEN AI đã chọn lọc những căn hộ đáp ứng trọn vẹn cả tiêu chuẩn môi trường và chi phí thực tế.
+                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Dựa trên các ưu tiên của bạn, HAVEN đã lọc ra những lựa chọn tối ưu nhất về môi trường sống, giao thông thuận tiện và chi phí hợp lý.
                   </p>
                   <div className="flex flex-wrap gap-2 pt-1">
                     {radarDimensions.map((dim, idx) => (
                       <span
                         key={idx}
-                        className="px-2 py-0.5 rounded-md bg-slate-800 border border-slate-700 text-[10px] font-mono text-slate-300"
+                        className="px-2.5 py-1 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-[11px] font-semibold text-slate-700 dark:text-slate-300 shadow-2xs"
                       >
-                        {dim.label}: <strong className="text-emerald-400">{dim.value}%</strong>
+                        {dim.label}: <strong className="text-[#163300] dark:text-[#9FE870]">{dim.value}%</strong>
                       </span>
                     ))}
                   </div>
                 </div>
               </div>
 
-              {/* Matched Units List */}
+              {/* Matched Units Grid */}
               <div className="space-y-3.5">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-sm font-mono font-bold text-slate-200 uppercase tracking-wider">
-                    Top Căn Hộ Tương Thích Nhất ({matchedResults.length})
+                  <h4 className="text-sm font-black text-[#163300] dark:text-white uppercase tracking-wider">
+                    Căn Hộ Đề Xuất Phù Hợp ({matchedResults.length})
                   </h4>
                   <button
                     onClick={handleReset}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#20A05A] dark:text-[#9FE870] hover:underline cursor-pointer"
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
                     <span>Làm lại khảo sát</span>
@@ -590,72 +587,70 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
                     return (
                       <div
                         key={unit.id}
-                        className="group relative rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500/50 p-4 transition-all duration-300 flex flex-col justify-between space-y-3 shadow-lg"
+                        className="group relative rounded-[24px] bg-white dark:bg-slate-800/90 border border-slate-200/90 dark:border-slate-700 hover:border-[#163300] dark:hover:border-[#9FE870] p-4 transition-all duration-300 flex flex-col justify-between space-y-3 shadow-xs hover:shadow-md"
                       >
                         {/* Unit Card Header */}
                         <div className="flex gap-3.5">
-                          <div className="relative w-24 h-24 rounded-xl overflow-hidden shrink-0 border border-slate-700">
+                          <div className="relative w-24 h-24 rounded-2xl overflow-hidden shrink-0 border border-slate-200 dark:border-slate-700">
                             <SmartImage
                               src={unit.images[0]}
                               alt={unit.name || unit.id}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             />
-                            <div className="absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded-md bg-emerald-500/90 text-slate-950 font-mono text-[10px] font-bold shadow-md">
+                            <div className="absolute top-1.5 left-1.5 px-2 py-0.5 rounded-full bg-[#9FE870] text-[#163300] text-[10px] font-black shadow-xs">
                               {score}% MATCH
                             </div>
                           </div>
 
                           <div className="min-w-0 flex-1 space-y-1">
                             <div className="flex items-start justify-between gap-1">
-                              <h5 className="font-serif font-bold text-sm text-slate-100 group-hover:text-emerald-300 transition-colors line-clamp-1">
+                              <h5 className="font-bold text-sm text-[#163300] dark:text-white group-hover:text-[#20A05A] transition-colors line-clamp-1">
                                 {unit.name || unit.id}
                               </h5>
                               <button
                                 onClick={() => onToggleSaveUnit(unit.id)}
-                                className={`p-1.5 rounded-lg border transition-colors shrink-0 ${
+                                className={`p-1.5 rounded-xl border transition-colors shrink-0 ${
                                   isSaved
-                                    ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40'
-                                    : 'text-slate-400 border-slate-700 hover:text-white hover:bg-slate-800'
+                                    ? 'bg-[#9FE870]/20 text-[#163300] dark:text-[#9FE870] border-[#9FE870]'
+                                    : 'text-slate-400 border-slate-200 dark:border-slate-700 hover:text-slate-800 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-700'
                                 }`}
                                 title={isSaved ? 'Bỏ lưu' : 'Lưu căn hộ'}
                               >
-                                <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-emerald-400' : ''}`} />
+                                <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-current' : ''}`} />
                               </button>
                             </div>
 
-                            <p className="text-[11px] text-slate-400 line-clamp-1">
+                            <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1">
                               {unit.district}, {unit.city} • Tầng {unit.floor} • {unit.sqm} m²
                             </p>
 
-                            <div className="text-sm font-mono font-bold text-emerald-400">
+                            <div className="text-sm font-black text-[#163300] dark:text-[#9FE870]">
                               {(unit.monthlyRentVND / 1000000).toFixed(1)} Triệu/tháng
                             </div>
                           </div>
                         </div>
 
-                        {/* AI Match Reasons Badges */}
-                        <div className="space-y-1 bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80 text-[11px] font-sans">
+                        {/* Match Reasons */}
+                        <div className="space-y-1.5 bg-[#F9FAF8] dark:bg-slate-900/60 p-3 rounded-2xl border border-slate-200/70 dark:border-slate-800 text-[11px]">
                           {reasons.map((r, rIdx) => (
-                            <div key={rIdx} className="flex items-start gap-1.5 text-slate-300">
-                              <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                            <div key={rIdx} className="flex items-start gap-1.5 text-slate-600 dark:text-slate-300">
+                              <Check className="w-3.5 h-3.5 text-[#20A05A] shrink-0 mt-0.5" />
                               <span className="line-clamp-1">{r}</span>
                             </div>
                           ))}
                         </div>
 
-                        {/* Card Actions */}
-                        <div className="flex gap-2 pt-1">
-                          <button
-                            onClick={() => {
-                              onSelectUnit(unit.id);
-                              onClose();
-                            }}
-                            className="w-full py-2 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold transition-all shadow-md shadow-emerald-500/20 flex items-center justify-center gap-1.5 cursor-pointer"
-                          >
-                            <span>Xem Chi Tiết Căn Này</span>
-                            <ArrowRight className="w-3.5 h-3.5" />
-                          </button>
-                        </div>
+                        {/* Action CTA */}
+                        <button
+                          onClick={() => {
+                            onSelectUnit(unit.id);
+                            onClose();
+                          }}
+                          className="w-full py-2.5 px-4 rounded-full bg-[#163300] hover:bg-[#20A05A] text-white font-bold text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+                        >
+                          <span>Xem Chi Tiết Căn Này</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </button>
                       </div>
                     );
                   })}
@@ -665,17 +660,19 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
             </div>
           ) : (
             /* Multi-step Question View */
-            <div className="space-y-5 animate-in fade-in duration-200">
+            <div className="space-y-6 animate-in fade-in duration-200">
               
               {/* Progress Indicator */}
               <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="text-emerald-400 font-bold">{currentQ.badge}</span>
-                  <span className="text-slate-400">{currentStep + 1} / {totalSteps}</span>
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-[#163300] dark:text-[#9FE870] font-black uppercase tracking-wider">
+                    {currentQ.badge}
+                  </span>
+                  <span className="text-slate-500 font-semibold">{currentStep + 1} / {totalSteps}</span>
                 </div>
-                <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
+                <div className="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 transition-all duration-300"
+                    className="h-full bg-[#9FE870] transition-all duration-300 rounded-full"
                     style={{ width: `${((currentStep + 1) / totalSteps) * 100}%` }}
                   />
                 </div>
@@ -683,16 +680,16 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
 
               {/* Question Header */}
               <div className="space-y-1">
-                <h3 className="text-lg sm:text-xl font-serif font-bold text-slate-100">
+                <h3 className="text-xl sm:text-2xl font-black text-[#163300] dark:text-white leading-tight">
                   {currentQ.title}
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
                   {currentQ.subtitle}
                 </p>
               </div>
 
               {/* Options Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
                 {currentQ.options.map(opt => {
                   const isSelected = answers[currentQ.id as keyof Answers] === opt.key;
                   const Icon = opt.icon;
@@ -702,34 +699,34 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
                       key={opt.key}
                       type="button"
                       onClick={() => handleSelectOption(currentQ.id as keyof Answers, opt.key)}
-                      className={`p-4 rounded-2xl border text-left transition-all duration-200 flex flex-col justify-between space-y-3 cursor-pointer ${
+                      className={`p-4 sm:p-5 rounded-[22px] border-2 text-left transition-all duration-200 flex flex-col justify-between space-y-3 cursor-pointer ${
                         isSelected
-                          ? 'bg-emerald-500/15 border-emerald-500 text-emerald-300 ring-2 ring-emerald-500/40 shadow-lg shadow-emerald-500/20'
-                          : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:border-slate-700 hover:bg-slate-900 hover:text-slate-200'
+                          ? 'bg-white dark:bg-slate-800 border-[#163300] dark:border-[#9FE870] ring-2 ring-[#9FE870]/30 shadow-md'
+                          : 'bg-[#F9FAF8] dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 hover:bg-white dark:hover:bg-slate-800'
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <div className={`p-2 rounded-xl border ${
+                        <div className={`p-2.5 rounded-xl border ${
                           isSelected 
-                            ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-400' 
-                            : 'bg-slate-800/80 border-slate-700 text-slate-400'
+                            ? 'bg-[#163300] text-[#9FE870] dark:bg-[#9FE870] dark:text-[#163300] border-transparent' 
+                            : 'bg-slate-100 dark:bg-slate-700 border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300'
                         }`}>
                           <Icon className="w-4 h-4" />
                         </div>
-                        <div className={`w-5 h-5 rounded-full border flex items-center justify-center transition-all ${
+                        <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${
                           isSelected
-                            ? 'border-emerald-500 bg-emerald-500 text-slate-950'
-                            : 'border-slate-700 bg-transparent'
+                            ? 'border-[#163300] dark:border-[#9FE870] bg-[#163300] dark:bg-[#9FE870] text-[#9FE870] dark:text-[#163300]'
+                            : 'border-slate-300 dark:border-slate-600 bg-transparent'
                         }`}>
-                          {isSelected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+                          {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
                         </div>
                       </div>
 
                       <div className="space-y-1">
-                        <div className="font-serif font-bold text-sm text-slate-100">
+                        <div className="font-bold text-sm sm:text-base text-[#163300] dark:text-white">
                           {opt.title}
                         </div>
-                        <p className="text-[11px] text-slate-400 leading-snug">
+                        <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
                           {opt.desc}
                         </p>
                       </div>
@@ -745,14 +742,14 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
 
         {/* Modal Bottom Footer Navigation */}
         {!isScanning && !showResults && (
-          <div className="px-6 py-4 border-t border-slate-800/80 bg-slate-900/60 flex items-center justify-between shrink-0">
+          <div className="px-6 py-4 border-t border-slate-200/80 dark:border-slate-800 bg-[#F2F5F0] dark:bg-slate-850 flex items-center justify-between shrink-0">
             <button
               onClick={handlePrev}
               disabled={currentStep === 0}
-              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-mono transition-colors ${
+              className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-colors ${
                 currentStep === 0
-                  ? 'text-slate-600 cursor-not-allowed'
-                  : 'text-slate-300 hover:text-white hover:bg-slate-800 cursor-pointer'
+                  ? 'text-slate-400 cursor-not-allowed opacity-50'
+                  : 'text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 cursor-pointer'
               }`}
             >
               <ArrowLeft className="w-4 h-4" />
@@ -762,8 +759,7 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
             <button
               type="button"
               onClick={onClose}
-              className="text-xs font-mono text-slate-400 hover:text-emerald-400 transition-colors cursor-pointer px-3 py-1.5 rounded-lg hover:bg-slate-800/60"
-              title="Đóng và xem trực tiếp toàn bộ danh sách căn hộ"
+              className="text-xs font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition-colors cursor-pointer px-3 py-1.5 rounded-full"
             >
               Bỏ qua
             </button>
@@ -771,10 +767,10 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
             <button
               onClick={handleNext}
               disabled={!isCurrentAnswered}
-              className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-xl font-mono text-xs font-bold transition-all shadow-lg ${
+              className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold transition-all shadow-sm ${
                 isCurrentAnswered
-                  ? 'bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-emerald-500/25 hover:scale-105 active:scale-95 cursor-pointer'
-                  : 'bg-slate-800 text-slate-500 cursor-not-allowed shadow-none'
+                  ? 'bg-[#9FE870] hover:bg-[#8ee05b] text-[#163300] shadow-md hover:scale-[1.02] active:scale-[0.98] cursor-pointer'
+                  : 'bg-slate-200 dark:bg-slate-800 text-slate-400 cursor-not-allowed shadow-none'
               }`}
             >
               <span>{currentStep === totalSteps - 1 ? 'Phân Tích Bằng AI' : 'Câu Tiếp Theo'}</span>
