@@ -364,35 +364,34 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
 
   return (
     <div className="space-y-6 pb-16 animate-in fade-in duration-300 relative">
-      {/* Section Header: Luxury Ambient Banner */}
-      <div className="relative rounded-3xl p-[1.5px] overflow-hidden shadow-2xl border border-emerald-500/30 bg-gradient-to-b from-emerald-500/10 via-transparent to-transparent group">
-        <div className="p-4 md:p-6 rounded-[22px] atmospheric-panel haven-sheen-sweep space-y-3.5 shadow-2xl backdrop-blur-2xl relative overflow-hidden">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 relative z-10">
-            <div className="space-y-0.5">
-              <div className="inline-flex items-center gap-1.5 text-[11px] font-mono text-emerald-400 [data-theme='light']_:text-emerald-700 uppercase tracking-wider font-bold">
-                <Sparkles className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
-                <span>Kho Căn Hộ Tuyển Chọn HAVEN</span>
-              </div>
-              <h2 className="text-xl md:text-2xl font-serif text-slate-100 [data-theme='light']_:text-slate-900 font-bold">
-                {filteredUnits.length} Không Gian Sống Đã Kiểm Định Pháp Lý & Môi Trường
-              </h2>
+      {/* Section Header: Wise Clean Banner */}
+      <div className="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200/90 dark:border-slate-800 p-6 md:p-8 shadow-sm space-y-5">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8F8EC] text-[#163300] text-xs uppercase tracking-wider font-bold">
+              <Sparkles className="w-3.5 h-3.5 text-[#20A05A]" />
+              <span>Kho Căn Hộ Tuyển Chọn HAVEN</span>
             </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#163300] dark:text-white">
+              {filteredUnits.length} Không Gian Sống Đã Kiểm Định Pháp Lý & Môi Trường
+            </h2>
+          </div>
 
           <div className="flex items-center gap-2 self-start md:self-auto flex-wrap">
             {/* Collapsible Filter Phễu Toggle Button */}
             <button
               onClick={() => setIsFilterOpen(!isFilterOpen)}
-              className={`px-3 py-1.5 rounded-xl border text-xs font-mono font-semibold transition-all flex items-center gap-1.5 shadow-sm ${
+              className={`px-4 py-2 rounded-full border text-xs font-bold transition-all flex items-center gap-2 shadow-xs cursor-pointer ${
                 isFilterOpen || activeFiltersCount > 0
-                  ? 'bg-emerald-500 text-slate-950 border-emerald-400 shadow-emerald-500/20'
-                  : 'bg-slate-900/80 [data-theme="light"]_:bg-white border-slate-800 [data-theme="light"]_:border-slate-200 text-slate-300 [data-theme="light"]_:text-slate-700 hover:text-emerald-300'
+                  ? 'bg-[#163300] text-white border-[#163300]'
+                  : 'bg-[#F2F5F0] dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-[#163300] dark:text-slate-200 hover:border-[#163300]'
               }`}
               title="Mở hoặc thu gọn bộ lọc chi tiết"
             >
               <Filter className="w-3.5 h-3.5" />
               <span>{isFilterOpen ? 'Thu gọn bộ lọc' : 'Bộ lọc chi tiết'}</span>
               {activeFiltersCount > 0 && (
-                <span className="px-1.5 py-0.2 rounded-full bg-slate-950 text-emerald-400 text-[10px] font-bold">
+                <span className="px-2 py-0.5 rounded-full bg-[#9FE870] text-[#163300] text-[10px] font-black">
                   {activeFiltersCount}
                 </span>
               )}
@@ -401,7 +400,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
             <button
               onClick={handleResetFilters}
               title="Đặt lại bộ lọc"
-              className="p-2 rounded-xl bg-slate-900/60 [data-theme='light']_:bg-white border border-slate-800 [data-theme='light']_:border-slate-200 text-slate-400 [data-theme='light']_:text-slate-600 hover:text-rose-500 transition-all flex items-center gap-1 text-xs font-mono font-semibold"
+              className="px-3.5 py-2 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:text-rose-600 transition-all flex items-center gap-1 text-xs font-bold cursor-pointer"
             >
               <RefreshCw className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Đặt lại</span>
@@ -411,11 +410,11 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
 
         {/* Active AI Query Status Pill (Seamlessly Driven by Topbar Global Search) */}
         {searchInput && (
-          <div className="flex items-center justify-between gap-2 px-3.5 py-2 rounded-xl bg-emerald-950/40 dark:bg-emerald-950/40 light:bg-emerald-50 border border-emerald-500/30 text-xs font-mono shadow-sm">
+          <div className="flex items-center justify-between gap-2 px-4 py-2.5 rounded-2xl bg-[#E8F8EC] border border-[#9FE870] text-xs shadow-xs">
             <div className="flex items-center gap-2 min-w-0">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0 animate-pulse" />
-              <span className="text-emerald-300 dark:text-emerald-300 light:text-emerald-800 truncate">
-                Đang tìm kiếm: <strong className="font-bold text-white dark:text-white light:text-emerald-950">"{searchInput}"</strong>
+              <Sparkles className="w-3.5 h-3.5 text-[#20A05A] shrink-0" />
+              <span className="text-[#163300] truncate font-medium">
+                Đang tìm kiếm: <strong className="font-bold text-[#163300]">"{searchInput}"</strong>
               </span>
             </div>
             <button
@@ -424,7 +423,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                 setSearchInput('');
                 handleResetFilters();
               }}
-              className="text-slate-400 hover:text-rose-400 text-[11px] font-bold shrink-0 ml-2 cursor-pointer transition-colors"
+              className="text-[#163300] hover:text-rose-600 text-xs font-bold shrink-0 ml-2 cursor-pointer transition-colors"
               title="Xóa bộ lọc tìm kiếm"
             >
               ✕ Xóa bộ lọc
@@ -433,27 +432,27 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
         )}
 
         {/* Real-time In-Page Search Bar & Visual Vibe Button */}
-        <div className="flex items-center gap-2.5 w-full max-w-2xl">
+        <div className="flex items-center gap-3 w-full max-w-2xl">
           <div className="relative flex-1">
-            <Search className="w-4 h-4 text-emerald-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Search className="w-4 h-4 text-[#20A05A] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
               placeholder="Tìm theo tên căn hộ, quận huyện, dự án hoặc từ khóa..."
-              className="w-full pl-10 pr-24 py-2.5 text-xs sm:text-sm bg-slate-950/70 [data-theme='light']_:bg-white border border-slate-700/80 [data-theme='light']_:border-slate-300 rounded-xl text-slate-100 [data-theme='light']_:text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/50 transition-all font-mono shadow-inner"
+              className="w-full pl-10 pr-24 py-2.5 text-xs sm:text-sm bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 rounded-full text-[#163300] dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#9FE870] transition-all font-sans"
             />
             <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
               {searchInput && (
                 <button
                   type="button"
                   onClick={() => setSearchInput('')}
-                  className="px-2 py-0.5 text-[11px] font-mono rounded-md bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors cursor-pointer"
+                  className="px-2 py-0.5 text-[11px] rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-300 transition-colors cursor-pointer font-bold"
                 >
-                  ✕ Xóa
+                  ✕
                 </button>
               )}
-              <span className="px-2 py-0.5 text-[10px] font-mono font-bold rounded-md bg-emerald-950/80 border border-emerald-500/30 text-emerald-400">
+              <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-[#9FE870]">
                 {filteredUnits.length} căn
               </span>
             </div>
@@ -464,20 +463,11 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
               <button
                 type="button"
                 onClick={onOpenVisualVibeModal}
-                className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/35 text-emerald-300 text-xs font-mono font-bold transition-all shadow-sm hover:scale-105 active:scale-95 cursor-pointer"
-                title="Chụp ảnh phòng hoặc camera"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#E8F8EC] hover:bg-[#D4F4DA] text-[#163300] border border-[#9FE870] text-xs font-bold transition-all shadow-xs cursor-pointer"
+                title="Tìm kiếm bằng ảnh hoặc camera"
               >
-                <Camera className="w-4 h-4 text-emerald-400" />
-                <span className="hidden sm:inline">Camera</span>
-              </button>
-              <button
-                type="button"
-                onClick={onOpenVisualVibeModal}
-                className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-slate-200 text-xs font-mono font-bold transition-all shadow-sm hover:scale-105 active:scale-95 cursor-pointer"
-                title="Tải ảnh phòng từ thiết bị"
-              >
-                <Upload className="w-4 h-4 text-slate-300" />
-                <span className="hidden sm:inline">Tải ảnh</span>
+                <Camera className="w-4 h-4 text-[#20A05A]" />
+                <span className="hidden sm:inline">Visual Vibe</span>
               </button>
             </div>
           )}
@@ -523,7 +513,6 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
             )}
           </div>
         )}
-        </div>
       </div>
 
       {/* Main Filter & Results Container */}
@@ -531,10 +520,10 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
         {/* Left Filter Sidebar (Collapsible) */}
         {isFilterOpen && (
           <div className="lg:col-span-4 xl:col-span-3 space-y-6 animate-in slide-in-from-left-4 duration-200">
-            <div className="p-5 rounded-2xl atmospheric-panel border border-slate-800 space-y-5 shadow-xl sticky top-20">
-              <div className="flex items-center justify-between border-b border-slate-800/80 pb-3.5">
-                <h3 className="font-serif text-base text-slate-100 flex items-center gap-2 font-bold">
-                  <SlidersHorizontal className="w-4 h-4 text-emerald-400" />
+            <div className="p-5 rounded-[24px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 space-y-5 shadow-sm sticky top-20">
+              <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3.5">
+                <h3 className="text-base text-[#163300] dark:text-white flex items-center gap-2 font-bold">
+                  <SlidersHorizontal className="w-4 h-4 text-[#20A05A]" />
                   <span>Bộ Lọc Tìm Kiếm</span>
                 </h3>
                 <button
@@ -779,24 +768,13 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                 return (
                   <div
                     key={unit.id}
-                    className="group relative rounded-3xl p-[2.5px] shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5 apartment-card"
+                    className="group relative rounded-[28px] overflow-hidden flex flex-col justify-between bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer"
                   >
-                    {/* Dynamic Orbiting Dual Laser Beam */}
-                    <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
-                      <div
-                        className="animate-spin-beam pointer-events-none transition-opacity duration-300 opacity-75 group-hover:opacity-100"
-                      />
-                    </div>
-
-                    {/* Inner Container: Wise Pure Card */}
+                    {/* Image Area - TALL & MAJESTIC (h-64 sm:h-72) */}
                     <div
-                      className="wise-card relative z-10 w-full h-full rounded-[24px] overflow-hidden flex flex-col justify-between bg-white dark:bg-[#142605] border border-[#163300]/10 dark:border-[#9FE870]/20 shadow-sm hover:shadow-xl transition-all"
+                      className="relative h-64 sm:h-72 bg-[#F2F5F0] dark:bg-slate-800 cursor-pointer overflow-hidden rounded-t-[27px]"
+                      onClick={() => onSelectUnit(unit.id)}
                     >
-                      {/* Image Area - TALL & MAJESTIC (h-64 sm:h-72) */}
-                      <div
-                        className="relative h-64 sm:h-72 bg-[#F2F5F0] dark:bg-[#0E1B00] cursor-pointer overflow-hidden rounded-t-[23px]"
-                        onClick={() => onSelectUnit(unit.id)}
-                      >
                       <SmartImage
                         src={unit.images[0]}
                         alt={unit.name || unit.id}
@@ -933,8 +911,6 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                           </button>
                         </div>
                       </div>
-                    </div>
-                    </div>
                     </div>
                   </div>
                 );

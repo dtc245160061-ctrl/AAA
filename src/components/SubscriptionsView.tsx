@@ -65,14 +65,14 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
           <div className="wise-pill-tabs">
             <button
               onClick={() => setActiveTab('landlord')}
-              className={activeTab === 'landlord' ? 'wise-pill-tab-active' : 'wise-pill-tab'}
+              className={`wise-pill-tab ${activeTab === 'landlord' ? 'wise-pill-tab-active' : ''}`}
             >
               <Building2 className="w-4 h-4 inline-block mr-1.5" />
               <span>Dành Cho Chủ Nhà / Quản Lý</span>
             </button>
             <button
               onClick={() => setActiveTab('tenant')}
-              className={activeTab === 'tenant' ? 'wise-pill-tab-active' : 'wise-pill-tab'}
+              className={`wise-pill-tab ${activeTab === 'tenant' ? 'wise-pill-tab-active' : ''}`}
             >
               <Crown className="w-4 h-4 inline-block mr-1.5" />
               <span>Hội Viên Cư Dân (Prime Club)</span>
@@ -83,13 +83,13 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
           <div className="wise-pill-tabs">
             <button
               onClick={() => setBillingCycle('monthly')}
-              className={billingCycle === 'monthly' ? 'wise-pill-tab-active' : 'wise-pill-tab'}
+              className={`wise-pill-tab ${billingCycle === 'monthly' ? 'wise-pill-tab-active' : ''}`}
             >
               Hàng Tháng
             </button>
             <button
               onClick={() => setBillingCycle('yearly')}
-              className={billingCycle === 'yearly' ? 'wise-pill-tab-active' : 'wise-pill-tab'}
+              className={`wise-pill-tab ${billingCycle === 'yearly' ? 'wise-pill-tab-active' : ''}`}
             >
               <span>Theo Năm</span>
               <span className="ml-1.5 px-2 py-0.5 rounded-full bg-[#FFC83B] text-[#7A5200] font-bold text-[10px]">
@@ -100,7 +100,7 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
         </div>
       </div>
 
-      {/* Pricing Cards Grid with Wise Card Hierarchy */}
+      {/* Pricing Cards Grid with Wise Card Hierarchy (All Clean White Surfaces) */}
       <div className={`grid grid-cols-1 ${filteredPlans.length === 1 ? 'max-w-md mx-auto' : 'lg:grid-cols-3 max-w-7xl mx-auto'} gap-6 items-stretch`}>
         {filteredPlans.map((plan) => {
           const isCurrent = currentTier === plan.id;
@@ -110,28 +110,28 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
           return (
             <div
               key={plan.id}
-              className={`rounded-[28px] p-6 md:p-8 flex flex-col justify-between transition-all duration-200 shadow-sm hover:shadow-md ${
+              className={`rounded-[28px] p-6 md:p-8 flex flex-col justify-between transition-all duration-200 shadow-sm hover:shadow-md bg-white dark:bg-slate-900 ${
                 isHighlight
-                  ? 'bg-[#163300] text-white border-2 border-[#163300]'
-                  : 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border border-slate-200/90 dark:border-slate-800'
+                  ? 'border-2 border-[#163300] dark:border-[#9FE870] ring-4 ring-[#9FE870]/20'
+                  : 'border border-slate-200/90 dark:border-slate-800'
               }`}
             >
               <div className="space-y-4">
                 {/* Header: Title & Badge */}
                 <div className="flex items-start justify-between gap-2 min-h-[58px]">
                   <div>
-                    <h3 className={`text-xl font-bold tracking-tight ${isHighlight ? 'text-white' : 'text-[#163300] dark:text-slate-100'}`}>
+                    <h3 className="text-xl font-bold tracking-tight text-[#163300] dark:text-slate-100">
                       {plan.name}
                     </h3>
-                    <p className={`text-xs mt-1 leading-relaxed ${isHighlight ? 'text-white/70' : 'text-slate-500 dark:text-slate-400'}`}>
+                    <p className="text-xs mt-1 leading-relaxed text-slate-500 dark:text-slate-400">
                       {plan.tagline}
                     </p>
                   </div>
                   {plan.badge && (
                     <span className={`shrink-0 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
                       isHighlight
-                        ? 'bg-[#9FE870] text-[#163300]'
-                        : 'bg-[#2570EB]/10 text-[#2570EB] border border-[#2570EB]/20'
+                        ? 'bg-[#E8F8EC] text-[#163300] border border-[#9FE870]'
+                        : 'bg-[#EBF2FF] text-[#2570EB] border border-[#2570EB]/20'
                     }`}>
                       {plan.badge}
                     </span>
@@ -139,19 +139,15 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
                 </div>
 
                 {/* Price Display */}
-                <div className={`py-4 border-y min-h-[76px] flex flex-col justify-center ${
-                  isHighlight ? 'border-white/15' : 'border-slate-100 dark:border-slate-800'
-                }`}>
+                <div className="py-4 border-y border-slate-100 dark:border-slate-800 min-h-[76px] flex flex-col justify-center">
                   <div className="flex items-baseline gap-1.5">
-                    <span className={`text-3xl font-mono font-bold tracking-tight ${
-                      isHighlight ? 'text-[#9FE870]' : 'text-[#163300] dark:text-[#9FE870]'
-                    }`}>
+                    <span className="text-3xl font-bold tracking-tight text-[#163300] dark:text-[#9FE870]">
                       {discountedPrice === 0 ? '0 đ' : `${(discountedPrice).toLocaleString('vi-VN')} đ`}
                     </span>
-                    <span className={`text-xs font-bold ${isHighlight ? 'text-white/70' : 'text-slate-400'}`}>/ tháng</span>
+                    <span className="text-xs font-bold text-slate-400">/ tháng</span>
                   </div>
                   {billingCycle === 'yearly' && plan.priceVND > 0 ? (
-                    <p className={`text-[11px] mt-1 font-bold ${isHighlight ? 'text-[#9FE870]' : 'text-[#20A05A]'}`}>
+                    <p className="text-[11px] mt-1 font-bold text-[#20A05A]">
                       Tiết kiệm {(plan.priceVND * 0.2 * 12).toLocaleString('vi-VN')} đ / năm
                     </p>
                   ) : null}
@@ -159,20 +155,16 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
 
                 {/* Features Checklist */}
                 <div className="space-y-2.5 pt-2">
-                  <span className={`text-[11px] uppercase tracking-wider font-bold block ${
-                    isHighlight ? 'text-white/60' : 'text-slate-400'
-                  }`}>
+                  <span className="text-[11px] uppercase tracking-wider font-bold block text-slate-400">
                     Tính năng bao gồm:
                   </span>
                   <ul className="space-y-2">
                     {plan.features.map((feat, idx) => (
                       <li key={idx} className="flex items-start gap-2.5 text-xs font-sans">
-                        <div className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
-                          isHighlight ? 'bg-[#9FE870] text-[#163300]' : 'bg-[#20A05A]/15 text-[#20A05A]'
-                        }`}>
+                        <div className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-[#E8F8EC] text-[#20A05A]">
                           <Check className="w-3 h-3" />
                         </div>
-                        <span className={`leading-snug ${isHighlight ? 'text-white/90' : 'text-slate-700 dark:text-slate-300'}`}>
+                        <span className="leading-snug text-slate-700 dark:text-slate-300">
                           {feat}
                         </span>
                       </li>
@@ -188,10 +180,10 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
                   disabled={isCurrent}
                   className={`w-full py-3.5 px-4 rounded-full font-bold text-xs transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer ${
                     isCurrent
-                      ? 'bg-slate-200 dark:bg-slate-800 text-slate-500 cursor-default'
+                      ? 'bg-[#F2F5F0] dark:bg-slate-800 text-slate-500 cursor-default'
                       : isHighlight
                       ? 'bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] hover:scale-105 active:scale-95'
-                      : 'bg-[#163300] hover:bg-[#204500] text-[#9FE870] hover:scale-105 active:scale-95'
+                      : 'bg-[#163300] hover:bg-[#204500] text-white hover:scale-105 active:scale-95'
                   }`}
                 >
                   <span>{isCurrent ? 'Gói Bạn Đang Dùng' : 'Nâng Cấp Gói Này'}</span>

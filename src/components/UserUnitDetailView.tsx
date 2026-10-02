@@ -708,6 +708,5 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
           </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  };

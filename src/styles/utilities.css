@@ -406,18 +406,11 @@
   }
 }
 
-.fluid-orb-1 {
-  animation: fluid-orbit-1 20s ease-in-out infinite;
-  will-change: transform;
-}
-
-.fluid-orb-2 {
-  animation: fluid-orbit-2 24s ease-in-out infinite;
-  will-change: transform;
-}
-
+.fluid-orb-1,
+.fluid-orb-2,
 .fluid-orb-3 {
-  animation: fluid-orbit-3 16s ease-in-out infinite;
-  will-change: transform;
+  animation: none !important;
+  will-change: auto;
+  opacity: 0.35 !important;
 }
 

@@ -711,12 +711,9 @@ export function App() {
         </main>
       </div>
 
-      {/* PERSISTENT FLOATING LUXURY BIOPHILIC AI CIRCULAR ORB (HIDES WHEN DRAWER IS OPEN) */}
+      {/* PERSISTENT FLOATING WISE AI FAB BUTTON (HIDES WHEN DRAWER IS OPEN) */}
       {!isUserAiAdvisorOpen && !isAiCopilotOpen && (
-        <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40 group cursor-pointer">
-          {/* Soft Biophilic Ambient Breathing Aura */}
-          <div className="absolute -inset-2 rounded-full bg-emerald-500/25 blur-xl opacity-75 group-hover:opacity-100 animate-pulse transition-opacity duration-700 pointer-events-none" />
-
+        <div className="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-40">
           <button
             onClick={() => {
               if (isAdminView) {
@@ -725,17 +722,12 @@ export function App() {
                 setIsUserAiAdvisorOpen(prev => !prev);
               }
             }}
-            className="relative z-10 w-12 h-12 sm:w-14 sm:h-14 rounded-full p-[2px] overflow-hidden flex items-center justify-center bg-slate-950 [data-theme='light']_:bg-white shadow-[0_10px_28px_rgba(0,0,0,0.5),0_0_20px_rgba(16,185,129,0.25)] transition-all duration-300 group-hover:scale-110 active:scale-95 cursor-pointer haven-ai-breathing-aura"
+            className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#163300] hover:bg-[#223D0D] text-[#9FE870] border-2 border-[#9FE870] shadow-xl transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
             title={isAdminView ? "Mở Haven AI Copilot Quản Trị" : "Haven AI — Tư Vấn Căn Hộ 24/7"}
             aria-label="Haven AI"
           >
-            {/* Soft Circular Running Border Beam */}
-            <div className="floating-ai-beam pointer-events-none opacity-85 group-hover:opacity-100 transition-opacity" />
-
-            {/* Inner Circular Core with Pulsing AI Sparkle */}
-            <div className="relative z-10 w-full h-full rounded-full bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 [data-theme='light']_:from-emerald-500 [data-theme='light']_:via-teal-400 [data-theme='light']_:to-emerald-600 border border-emerald-500/40 [data-theme='light']_:border-emerald-300 flex items-center justify-center shadow-lg shadow-emerald-500/30">
-              <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400 [data-theme='light']_:text-slate-950 group-hover:text-emerald-300 [data-theme='light']_:group-hover:text-slate-900 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 animate-pulse" />
-            </div>
+            <Sparkles className="w-5 h-5 text-[#9FE870] shrink-0" />
+            <span className="font-extrabold text-xs tracking-wide">Haven AI</span>
           </button>
         </div>
       )}

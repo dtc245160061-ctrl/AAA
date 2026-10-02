@@ -1,6 +1,5 @@
 import React from 'react';
 import { ShieldCheck, CloudRain, Car, Zap, Compass, CheckCircle2 } from 'lucide-react';
-import { useScrollReveal } from '../../hooks/useScrollReveal';
 import type { FeatureBenefitKey } from './FeaturedProperties';
 
 interface FeatureStripProps {
@@ -15,8 +14,8 @@ interface EnvironmentalFeatureItem {
   title: string;
   description: string;
   proofMetric: string;
-  iconColor: string;
-  bgAccent: string;
+  badgeBg: string;
+  badgeText: string;
 }
 
 const features: EnvironmentalFeatureItem[] = [
@@ -26,8 +25,8 @@ const features: EnvironmentalFeatureItem[] = [
     title: 'Nguy Cơ Ngập Mùa Mưa',
     description: 'Kiểm tra cốt nền thực địa, hệ thống thoát nước hạ tầng và lịch sử ngập úng.',
     proofMetric: 'Cốt nền cao +0.8m so với vỉa hè',
-    iconColor: 'text-emerald-400',
-    bgAccent: 'rgba(16, 185, 129, 0.1)',
+    badgeBg: 'bg-[#EBF2FF]',
+    badgeText: 'text-[#2570EB]',
   },
   {
     key: 'power',
@@ -35,8 +34,8 @@ const features: EnvironmentalFeatureItem[] = [
     title: 'Máy Phát Điện Dự Phòng',
     description: 'Xác thực nguồn phát điện 100% công suất đảm bảo thang máy, ánh sáng và điều hòa.',
     proofMetric: 'Tự động kích hoạt sau 15 giây',
-    iconColor: 'text-emerald-400',
-    bgAccent: 'rgba(16, 185, 129, 0.1)',
+    badgeBg: 'bg-[#FFF8E6]',
+    badgeText: 'text-[#E5A000]',
   },
   {
     key: 'parking',
@@ -44,8 +43,8 @@ const features: EnvironmentalFeatureItem[] = [
     title: 'Chỗ Đỗ Xe Ô Tô SUV',
     description: 'Đo lường kích thước hầm xe thực tế, lối ram dốc xe gầm thấp và trạm sạc EV.',
     proofMetric: 'Hầm cao 2.2m • Sạc EV tiêu chuẩn',
-    iconColor: 'text-emerald-400',
-    bgAccent: 'rgba(16, 185, 129, 0.1)',
+    badgeBg: 'bg-[#E8F8EC]',
+    badgeText: 'text-[#20A05A]',
   },
   {
     key: 'quiet',
@@ -53,40 +52,34 @@ const features: EnvironmentalFeatureItem[] = [
     title: 'Yên Tĩnh & Cách Âm',
     description: 'Đo lường chỉ số tiếng ồn theo độ cao tầng và khả năng triệt tiêu âm thanh kính Low-E.',
     proofMetric: 'Dưới 42dB ban đêm (Tiêu chuẩn resort)',
-    iconColor: 'text-emerald-400',
-    bgAccent: 'rgba(16, 185, 129, 0.1)',
+    badgeBg: 'bg-[#E8F8EC]',
+    badgeText: 'text-[#163300]',
   },
 ];
 
 export const FeatureStrip: React.FC<FeatureStripProps> = ({
   activeFeatureKey,
   onSelectFeature,
-  activeUnitName = 'Căn hộ đang chọn',
+  activeUnitName = 'Căn hộ tiêu biểu'
 }) => {
-  const containerRef = useScrollReveal<HTMLDivElement>();
-
   return (
-    <section ref={containerRef} className="space-y-6" id="environmental-proof-strip">
+    <section className="space-y-6 pt-4 text-left">
       {/* Section Header */}
-      <div className="reveal-on-scroll space-y-2">
-        <div className="inline-flex items-center gap-2 text-xs font-mono text-[var(--haven-emerald-400)] uppercase tracking-wider font-semibold">
-          <Compass className="w-4 h-4" />
+      <div className="space-y-2">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F8EC] text-[#163300] text-xs font-bold uppercase tracking-wider">
+          <Compass className="w-3.5 h-3.5 text-[#20A05A]" />
           <span>Hệ Thống Phân Tích Môi Trường Sống • 4 Trụ Cột Độc Quyền</span>
         </div>
-        <h2
-          className="text-2xl md:text-3xl font-serif font-bold text-[var(--haven-text-primary)]"
-        >
+        <h2 className="text-2xl md:text-3xl font-bold text-[#163300] dark:text-white">
           Dữ Liệu Khí Hậu & Môi Trường Xác Thực
         </h2>
-        <p
-          className="text-sm max-w-2xl leading-relaxed text-[var(--haven-text-secondary)] font-sans"
-        >
-          Chúng tôi khảo sát trực tiếp từng rủi ro và cam kết tiện ích hạ tầng trước khi đăng ký xem nhà.
+        <p className="text-sm max-w-2xl leading-relaxed text-slate-600 dark:text-slate-400">
+          Chúng tôi khảo sát trực tiếp từng rủi ro và cam kết tiện ích hạ tầng trước khi bạn ký hợp đồng.
         </p>
       </div>
 
-      {/* Feature Cards Grid with Interactive Resonance */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* Feature Cards Grid with Wise Card Design */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {features.map((feature) => {
           const FeatIcon = feature.icon;
           const isActive = activeFeatureKey === feature.key;
@@ -96,77 +89,45 @@ export const FeatureStrip: React.FC<FeatureStripProps> = ({
               key={feature.key}
               onClick={() => onSelectFeature(feature.key)}
               onMouseEnter={() => onSelectFeature(feature.key)}
-              onFocus={() => onSelectFeature(feature.key)}
               tabIndex={0}
               role="button"
               aria-label={`Chi tiết minh chứng ${feature.title}`}
-              className={`group p-5 rounded-2xl transition-all duration-300 cursor-pointer outline-none relative flex flex-col justify-between overflow-hidden border border-[var(--haven-border)] ${
+              className={`p-6 rounded-[24px] transition-all duration-200 cursor-pointer outline-none flex flex-col justify-between bg-white dark:bg-slate-900 shadow-sm ${
                 isActive
-                  ? 'bg-[var(--haven-surface-elevated)] shadow-xl shadow-emerald-500/20 -translate-y-1.5 border-emerald-500/50'
-                  : 'bg-[var(--haven-surface-raised)] hover:shadow-xl hover:shadow-emerald-500/10 hover:-translate-y-1 hover:border-emerald-500/40'
+                  ? 'border-2 border-[#163300] dark:border-[#9FE870] ring-4 ring-[#9FE870]/20 -translate-y-1'
+                  : 'border border-slate-200/90 dark:border-slate-800 hover:border-[#9FE870] hover:-translate-y-0.5'
               }`}
             >
-              {/* Soft outer glow bloom - Subtle and refined */}
-              <div
-                className={`absolute -inset-2 rounded-2xl overflow-hidden pointer-events-none filter blur-xl transition-opacity duration-300 ${
-                  isActive ? 'opacity-40' : 'opacity-15 group-hover:opacity-30'
-                }`}
-                aria-hidden="true"
-              >
-                <div className="animate-spin-beam pointer-events-none" />
-              </div>
-
-              {/* Dynamic Orbiting Ambient Laser Beam strictly along border */}
-              <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
-                <div
-                  className={`animate-spin-beam pointer-events-none transition-opacity duration-300 ${
-                    isActive ? 'opacity-75' : 'opacity-25 group-hover:opacity-50'
-                  }`}
-                />
-              </div>
-
-              {/* Solid Opaque Backdrop Mask — Completely stops beam leaking into card center */}
-              <div className="absolute inset-[1.5px] rounded-[14.5px] bg-[#0B101B] dark:bg-[#0B101B] [data-theme='light']_:bg-white pointer-events-none z-0 transition-colors" />
-
-              <div className="relative z-10">
+              <div>
                 {/* Header Icon + Active Status */}
-                <div className="flex items-center justify-between mb-3.5">
-                  <div
-                    className={`w-10 h-10 rounded-xl flex items-center justify-center transition-transform duration-200 ${
-                      isActive ? 'scale-110 shadow-sm' : ''
-                    }`}
-                    style={{ background: feature.bgAccent }}
-                  >
-                    <FeatIcon className={`w-5 h-5 ${feature.iconColor}`} />
+                <div className="flex items-center justify-between mb-4">
+                  <div className={`w-11 h-11 rounded-2xl flex items-center justify-center ${feature.badgeBg} ${feature.badgeText}`}>
+                    <FeatIcon className="w-5 h-5" />
                   </div>
                   {isActive && (
-                    <span className="px-2 py-0.5 rounded-full bg-[var(--haven-emerald-muted)] border border-[var(--haven-border-accent)] text-[var(--haven-emerald-400)] text-[10px] font-mono font-bold animate-pulse">
+                    <span className="px-2.5 py-1 rounded-full bg-[#E8F8EC] border border-[#9FE870] text-[#163300] text-[11px] font-bold">
                       Đang liên kết
                     </span>
                   )}
                 </div>
 
-                <h3
-                  className="text-base font-serif font-bold mb-1.5 text-[var(--haven-text-primary)]"
-                >
+                <h3 className="text-base font-bold mb-2 text-[#163300] dark:text-white">
                   {feature.title}
                 </h3>
-                <p
-                  className="text-xs leading-relaxed text-[var(--haven-text-secondary)] mb-3 font-sans"
-                >
+                <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400 mb-4">
                   {feature.description}
                 </p>
               </div>
 
               {/* Verified Proof Metric */}
-              <div className="relative z-10 pt-3 border-t border-[var(--haven-border)]">
-                <div className="flex items-center gap-1.5 text-[11px] font-mono text-[var(--haven-emerald-400)] font-semibold">
-                  <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800">
+                <div className="flex items-center gap-1.5 text-xs text-[#20A05A] font-bold">
+                  <CheckCircle2 className="w-4 h-4 shrink-0" />
                   <span>{feature.proofMetric}</span>
                 </div>
                 {isActive && (
-                  <div className="text-[10px] font-mono text-[var(--haven-text-tertiary)] mt-1 truncate">
-                    Áp dụng cho: <span className="font-semibold text-[var(--haven-text-secondary)]">{activeUnitName}</span>
+                  <div className="text-[11px] text-slate-400 mt-1 truncate">
+                    Áp dụng cho: <span className="font-bold text-slate-700 dark:text-slate-300">{activeUnitName}</span>
                   </div>
                 )}
               </div>

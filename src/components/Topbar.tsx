@@ -236,17 +236,13 @@ export const Topbar: React.FC<TopbarProps> = ({
         <div className="flex items-center gap-2">
           {/* Wise Quick Switcher between Tenant & Admin Ops */}
           {onToggleAdminView && (
-            <div className="hidden xl:inline-flex items-center p-1 rounded-full bg-[#E8ECE5] dark:bg-[#122405] border border-[#163300]/10 dark:border-[#9FE870]/20">
+            <div className="hidden xl:inline-flex wise-pill-tabs">
               <button
                 type="button"
                 onClick={() => {
                   if (isAdminView) onToggleAdminView();
                 }}
-                className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                  !isAdminView
-                    ? 'bg-[#163300] text-white shadow-xs'
-                    : 'text-[#495E35] dark:text-emerald-200 hover:text-[#163300]'
-                }`}
+                className={`wise-pill-tab ${!isAdminView ? 'wise-pill-tab-active' : ''}`}
               >
                 Khách Thuê
               </button>
@@ -255,11 +251,7 @@ export const Topbar: React.FC<TopbarProps> = ({
                 onClick={() => {
                   if (!isAdminView) onToggleAdminView();
                 }}
-                className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                  isAdminView
-                    ? 'bg-[#9FE870] text-[#163300] shadow-xs'
-                    : 'text-[#495E35] dark:text-emerald-200 hover:text-[#163300]'
-                }`}
+                className={`wise-pill-tab ${isAdminView ? 'wise-pill-tab-active' : ''}`}
               >
                 Quản Trị Sàn
               </button>

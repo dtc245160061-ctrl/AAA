@@ -330,12 +330,7 @@
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.85), 0 4px 18px rgba(0, 0, 0, 0.6);
 }
 
-/* Light Mode Semantic Text Overrides */
-[data-theme="light"] .text-white:not(.always-white),
-.light .text-white:not(.always-white) {
-  color: #163300;
-}
-
+/* Light Mode Semantic Text Overrides (text-white is preserved for dark buttons & badges) */
 [data-theme="light"] .text-slate-100:not(.always-white),
 .light .text-slate-100:not(.always-white) {
   color: #163300;

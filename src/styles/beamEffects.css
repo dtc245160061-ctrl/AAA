@@ -312,62 +312,10 @@ input[type="radio"],
   cursor: pointer !important;
 }
 
-/* ── 5. ROTATING BEAM QUAD (Panels, Cards, Search Bars - Smooth Continuous Silk Glow) ── */
-.animate-spin-beam {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: max(300%, 1500px);
-  height: max(300%, 1500px);
-  aspect-ratio: 1 / 1;
-  pointer-events: none;
-  background: var(--beam-gradient-master);
-  animation: haven-spin-beam var(--beam-speed-card, 7.5s) cubic-bezier(0.42, 0, 0.58, 1) infinite !important;
-  animation-play-state: running !important;
-  opacity: 0.75 !important;
-  filter: blur(3px);
-  -webkit-filter: blur(3px);
-  transform: translate(-50%, -50%) rotate(0deg);
-  -webkit-transform: translate(-50%, -50%) rotate(0deg);
-  will-change: transform;
-  contain: strict;
-  transition: opacity 0.3s ease;
-}
-
-/* Universal bulletproof clipping strictly for direct containers harboring beam effects */
-:has(> .animate-spin-beam),
-.beam-container {
-  isolation: isolate;
-  contain: paint;
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
-  mask-image: radial-gradient(white, black);
-}
-
-/* Subtle, refined bloom on hover without harsh glare */
-.group:hover .animate-spin-beam,
-*:hover > .animate-spin-beam,
-.animate-spin-beam-active,
-.animate-spin-beam:hover {
-  animation-play-state: running !important;
-  opacity: 0.9 !important;
-}
-
-/* ── 6. FLOATING AI CHAT BUTTON BEAM (Soft Circular Aura, No Sharp Jitter) ── */
+/* ── 5. ROTATING BEAMS (Neutralized for 60 FPS Wise Design Performance) ── */
+.animate-spin-beam,
 .floating-ai-beam {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 320%;
-  height: 320%;
-  aspect-ratio: 1 / 1;
-  pointer-events: none;
-  background: var(--beam-gradient-ai-streak);
-  animation: haven-spin-beam var(--beam-speed-ai) linear infinite;
-  filter: blur(3px);
-  -webkit-filter: blur(3px);
-  will-change: transform;
-  transform: translate(-50%, -50%) rotate(0deg);
-  backface-visibility: hidden;
+  display: none !important;
 }
 
 /* ── 7. SLEEK RUNNING BEAM FOR BUTTONS (.haven-btn-beam) ── */

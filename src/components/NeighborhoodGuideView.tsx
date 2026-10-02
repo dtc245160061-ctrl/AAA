@@ -133,28 +133,28 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
               onClick={() => setSelectedNeighborhoodId(nh.id)}
               className={`text-left transition-all duration-200 cursor-pointer rounded-[20px] p-4 border shadow-sm ${
                 isSelected 
-                  ? 'bg-[#163300] border-[#163300] text-white -translate-y-1 shadow-md' 
-                  : 'bg-white dark:bg-slate-900 border-slate-200/90 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-[#9FE870] hover:-translate-y-0.5'
+                  ? 'bg-[#E8F8EC] dark:bg-emerald-950/40 border-2 border-[#20A05A] dark:border-[#9FE870] text-[#163300] dark:text-[#9FE870] -translate-y-1 shadow-sm' 
+                  : 'bg-white dark:bg-slate-900 border-slate-200/90 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-[#20A05A] hover:-translate-y-0.5'
               }`}
             >
               <div className="flex flex-col justify-between h-full gap-2">
                 <div>
                   <span className={`text-[10px] font-bold uppercase tracking-wider block ${
-                    isSelected ? 'text-[#9FE870]' : 'text-slate-400'
+                    isSelected ? 'text-[#20A05A] dark:text-[#9FE870]' : 'text-slate-400'
                   }`}>
                     {normalizeCity(nh.city)}
                   </span>
                   <h4 className={`font-bold text-sm line-clamp-1 mt-0.5 ${
-                    isSelected ? 'text-white' : 'text-[#163300] dark:text-white'
+                    isSelected ? 'text-[#163300] dark:text-white' : 'text-[#163300] dark:text-white'
                   }`}>
                     {nh.district}
                   </h4>
                 </div>
                 <div className={`text-xs pt-2 border-t flex items-center justify-between ${
-                  isSelected ? 'border-white/10' : 'border-slate-100 dark:border-slate-800'
+                  isSelected ? 'border-[#20A05A]/20 dark:border-[#9FE870]/20' : 'border-slate-100 dark:border-slate-800'
                 }`}>
-                  <span className={isSelected ? 'text-white/60' : 'text-slate-400'}>TB:</span>
-                  <span className={`font-bold ${isSelected ? 'text-[#9FE870]' : 'text-[#20A05A]'}`}>
+                  <span className={isSelected ? 'text-[#163300]/70 dark:text-slate-400' : 'text-slate-400'}>TB:</span>
+                  <span className={`font-bold ${isSelected ? 'text-[#163300] dark:text-[#9FE870]' : 'text-[#20A05A]'}`}>
                     {(nh.averageRentVND / 1000000).toFixed(0)} Triệu
                   </span>
                 </div>
@@ -256,13 +256,13 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
               </div>
 
               {/* Metric Card 4: Schools & Hospitals */}
-              <div className="p-4 rounded-[20px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700 space-y-1 border-l-4 border-l-[#8B5CF6]">
+              <div className="p-4 rounded-[20px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700 space-y-1 border-l-4 border-l-[#FF5436]">
                 <span className="text-slate-500 uppercase text-[10px] font-bold">Trường Học & Bệnh Viện</span>
-                <p className="text-[#8B5CF6] dark:text-purple-400 text-sm font-bold">
+                <p className="text-[#D92D20] dark:text-[#FF5436] text-sm font-bold">
                   {activeNeighborhood.schoolsCount} Trường • {activeNeighborhood.hospitalsCount} BV
                 </p>
                 <span className="text-[11px] text-slate-500 flex items-center gap-1 font-medium">
-                  <GraduationCap className="w-3 h-3 text-[#8B5CF6]" /> Bán kính 1.5km
+                  <GraduationCap className="w-3 h-3 text-[#FF5436]" /> Bán kính 1.5km
                 </span>
               </div>
             </div>

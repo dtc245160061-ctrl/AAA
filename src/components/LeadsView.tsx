@@ -182,17 +182,6 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
                     </div>
                   </div>
                 </div>
-                          <span>{lead.phone}</span>
-                        </a>
-                        {lead.email && (
-                          <span className="flex items-center gap-1 text-slate-400 [data-theme='light']_:text-slate-500 truncate max-w-[140px]">
-                            <Mail className="w-3.5 h-3.5 text-slate-500" />
-                            <span className="truncate">{lead.email}</span>
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
 
                   {/* Target Apartment Details */}
                   <div 
@@ -287,9 +276,8 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
                   )}
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
       ) : (
         /* Table View */
         <div className="bg-white dark:bg-slate-900 rounded-[24px] overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">

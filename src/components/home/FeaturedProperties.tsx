@@ -126,21 +126,21 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
     <section className="space-y-6" id="featured-sanctuary-properties">
       {/* Section Header with Narrative Context */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-        <div className="space-y-1">
-          <div className="inline-flex items-center gap-2 text-xs font-mono text-[var(--haven-emerald-400)] uppercase tracking-wider font-semibold">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Hành Trình Tổ Ấm Xác Thực • Căn Hộ → Dữ Liệu → Lợi Ích</span>
+        <div className="space-y-1.5">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F8EC] text-[#163300] font-bold text-xs uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5 text-[#20A05A]" />
+            <span>Căn Hộ Tuyển Chọn & Minh Chứng Môi Trường</span>
           </div>
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-[var(--haven-text-primary)]">
-            Căn Hộ Tuyển Chọn & Minh Chứng Môi Trường
+          <h2 className="text-2xl md:text-3xl font-bold text-[#163300] dark:text-white tracking-tight">
+            Trải Nghiệm Tổ Ấm Tiêu Biểu HAVEN
           </h2>
-          <p className="text-sm text-[var(--haven-text-secondary)] max-w-2xl font-sans">
-            Chọn hoặc di chuột qua từng căn hộ để theo dõi đường dẫn dữ liệu xác thực khí hậu, độ ồn và nguồn điện dự phòng.
+          <p className="text-sm text-slate-600 dark:text-slate-400 max-w-2xl font-medium">
+            Chọn hoặc di chuột qua từng căn hộ để theo dõi dữ liệu xác thực khí hậu, độ ồn và nguồn điện dự phòng.
           </p>
         </div>
         <button
           onClick={onNavigateSearch}
-          className="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--haven-emerald-400)] hover:underline font-semibold shrink-0 self-start sm:self-auto cursor-pointer"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#20A05A] hover:text-[#163300] dark:hover:text-[#9FE870] transition-colors shrink-0 self-start sm:self-auto cursor-pointer"
         >
           <span>Xem Tất Cả ({totalCount})</span>
           <ArrowRight className="w-3.5 h-3.5" />
@@ -170,36 +170,16 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
               tabIndex={0}
               role="button"
               aria-label={`Xem dữ liệu xác thực của căn hộ ${unit.name || unit.id}`}
-              className="group relative rounded-2xl p-[2px] cursor-pointer shadow-xl transition-all duration-300 overflow-visible"
+              className={`group relative rounded-[28px] cursor-pointer transition-all duration-300 overflow-visible bg-white dark:bg-slate-900 border shadow-sm ${
+                isFocal
+                  ? 'border-2 border-[#163300] dark:border-[#9FE870] ring-4 ring-[#9FE870]/20 shadow-md'
+                  : 'border-slate-200/90 dark:border-slate-800 hover:border-[#9FE870] hover:shadow-md'
+              }`}
             >
-              {/* Soft outer glow bloom (CodePen / LIYRO style) */}
-              <div
-                className={`absolute -inset-2 rounded-2xl overflow-hidden pointer-events-none filter blur-xl transition-opacity duration-300 ${
-                  isFocal ? 'opacity-75' : 'opacity-35 group-hover:opacity-65'
-                }`}
-                aria-hidden="true"
-              >
-                <div className="animate-spin-beam pointer-events-none" />
-              </div>
-
-              {/* Dynamic Orbiting Dual Laser Beam strictly contained in 2px border shell */}
-              <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
-                <div
-                  className={`animate-spin-beam pointer-events-none transition-opacity duration-300 ${
-                    isFocal ? 'opacity-100' : 'opacity-65 group-hover:opacity-95'
-                  }`}
-                />
-              </div>
-
-              {/* Card Inner Container - Pure Wise Card Design */}
-              <div
-                className={`wise-card relative z-10 w-full h-full rounded-[24px] flex flex-col justify-between transition-all duration-300 bg-white dark:bg-[#142605] border border-[#163300]/10 dark:border-[#9FE870]/25 overflow-visible ${
-                  isFocal ? 'ring-2 ring-[#9FE870] shadow-xl' : 'hover:shadow-lg'
-                }`}
-              >
+              <div className="relative z-10 w-full h-full rounded-[26px] flex flex-col justify-between overflow-visible">
                 {/* Photo & Overlays */}
                 <div
-                  className="relative h-52 lg:h-56 overflow-hidden rounded-t-[23px] cursor-pointer bg-[#F2F5F0] dark:bg-[#0E1B00]"
+                  className="relative h-52 lg:h-56 overflow-hidden rounded-t-[23px] cursor-pointer bg-[#F2F5F0] dark:bg-slate-800"
                   onClick={(e) => {
                     e.stopPropagation();
                     onSelectUnit(unit.id);
@@ -298,7 +278,7 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
                         } else if (feat.key === 'parking') {
                           pillClass = "bg-[#FFEAE5] text-[#8C1F08] border-[#FF5436]/30 hover:border-[#FF5436]";
                         } else if (feat.key === 'quiet') {
-                          pillClass = "bg-[#F3E8FF] text-[#431A7A] border-[#8B5CF6]/30 hover:border-[#8B5CF6]";
+                          pillClass = "bg-[#E8F8EC] text-[#163300] border-[#20A05A]/30 hover:border-[#20A05A]";
                         }
 
                         if (isFeatureActive) {
@@ -363,14 +343,6 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
                     </button>
                   </div>
                 </div>
-
-                {/* Bottom Anchor Node for Active Focal State */}
-                {isFocal && (
-                  <div className="hidden md:flex absolute -bottom-3 left-1/2 -translate-x-1/2 items-center gap-1.5 px-4 py-1 rounded-full bg-[#163300] text-[#9FE870] text-xs font-bold shadow-xl z-40 pointer-events-none border border-[#9FE870]/60 animate-in fade-in">
-                    <span>Dẫn truyền dữ liệu</span>
-                    <ArrowDown className="w-3 h-3 animate-bounce" />
-                  </div>
-                )}
               </div>
             </motion.div>
           );
