@@ -192,7 +192,7 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
           exit={{ opacity: 0, y: 24, scale: 0.96 }}
           transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
           style={{ position: 'fixed', bottom: '1.25rem', right: '1.25rem', zIndex: 9999 }}
-          className="fixed bottom-5 right-5 z-[9999] w-[420px] max-w-[calc(100vw-2.5rem)] h-[540px] max-h-[calc(100vh-5.5rem)] rounded-[28px] overflow-hidden shadow-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col text-slate-900 dark:text-slate-100 font-sans"
+          className="fixed bottom-5 right-5 z-[9999] w-[420px] max-w-[calc(100vw-2.5rem)] h-[540px] max-h-[calc(100vh-5.5rem)] rounded-[28px] overflow-hidden shadow-[0_12px_45px_rgba(0,0,0,0.18)] dark:shadow-[0_16px_50px_rgba(0,0,0,0.65)] border-2 border-slate-300 dark:border-slate-700 ring-1 ring-slate-400/25 bg-white dark:bg-slate-900 flex flex-col text-slate-900 dark:text-slate-100 font-sans"
         >
           {/* Main Inner Window Container */}
           <div className="relative z-10 w-full h-full flex flex-col justify-between overflow-hidden">
@@ -208,7 +208,7 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
                       Haven Copilot
                     </h3>
                     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#9FE870]/25 text-[#163300] dark:text-[#9FE870] text-[10px] font-bold">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#20A05A] dark:bg-[#9FE870] animate-pulse" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#163300] dark:bg-[#9FE870] dark:bg-[#9FE870] animate-pulse" />
                       <span>Admin Local SLM</span>
                     </span>
                   </div>
@@ -245,10 +245,19 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
                       className={`p-3 rounded-[20px] leading-relaxed ${
                         m.role === 'user'
                           ? 'bg-[#163300] text-white font-medium shadow-sm rounded-tr-xs'
-                          : 'bg-[#F7FAF6] dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700 rounded-tl-xs shadow-2xs'
+                          : 'bg-[#EAEFE8] dark:bg-slate-800/95 text-slate-850 dark:text-slate-100 border border-slate-300/80 dark:border-slate-600/80 rounded-tl-xs shadow-xs'
                       }`}
                     >
-                      <p className="whitespace-pre-line leading-relaxed text-[12px]">{m.text}</p>
+                      {(() => {
+                        const cleanDisplayMsg = m.text
+                          .replace(/```json[\s\S]*?```/gi, '')
+                          .replace(/```[\s\S]*?```/gi, '')
+                          .replace(/\{\s*"action"[\s\S]*?\}/gi, '')
+                          .trim();
+                        return cleanDisplayMsg ? (
+                          <p className="whitespace-pre-line leading-relaxed text-[12.5px]">{cleanDisplayMsg}</p>
+                        ) : null;
+                      })()}
                     </div>
 
                     {/* Data Cards inside AI Chat */}
@@ -330,7 +339,7 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
                     <Bot className="w-4 h-4" />
                   </div>
                   <div className="px-3 py-1.5 rounded-full bg-[#F7FAF6] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 flex items-center gap-2 text-xs shadow-2xs">
-                    <Loader2 className="w-3.5 h-3.5 text-[#20A05A] animate-spin" />
+                    <Loader2 className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870] animate-spin" />
                     <span className="font-medium">Copilot đang phân tích số liệu...</span>
                   </div>
                 </div>

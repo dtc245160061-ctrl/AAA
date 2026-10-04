@@ -20,8 +20,7 @@ import {
   Box,
   ArrowRight,
   Search,
-  Camera,
-  Upload
+  Camera
 } from 'lucide-react';
 import type { ApartmentUnit } from '../types/apartment';
 import { type ConsumerFilters, parseNaturalLanguageQuery, calculateMatchScore } from '../services/aiAdvisorService';
@@ -115,7 +114,6 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     verifiedLandlordOnly,
     searchInput
   ]);
-
 
 
   // Process initial AI query on mount if passed
@@ -369,7 +367,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="space-y-1">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8F8EC] text-[#163300] text-xs uppercase tracking-wider font-bold">
-              <Sparkles className="w-3.5 h-3.5 text-[#20A05A]" />
+              <Sparkles className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
               <span>Kho Căn Hộ Tuyển Chọn HAVEN</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-[#163300] dark:text-white">
@@ -412,7 +410,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
         {searchInput && (
           <div className="flex items-center justify-between gap-2 px-4 py-2.5 rounded-2xl bg-[#E8F8EC] border border-[#9FE870] text-xs shadow-xs">
             <div className="flex items-center gap-2 min-w-0">
-              <Sparkles className="w-3.5 h-3.5 text-[#20A05A] shrink-0" />
+              <Sparkles className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870] shrink-0" />
               <span className="text-[#163300] truncate font-medium">
                 Đang tìm kiếm: <strong className="font-bold text-[#163300]">"{searchInput}"</strong>
               </span>
@@ -434,7 +432,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
         {/* Real-time In-Page Search Bar & Visual Vibe Button */}
         <div className="flex items-center gap-3 w-full max-w-2xl">
           <div className="relative flex-1">
-            <Search className="w-4 h-4 text-[#20A05A] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Search className="w-4 h-4 text-[#163300] dark:text-[#9FE870] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               value={searchInput}
@@ -466,7 +464,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                 className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#E8F8EC] hover:bg-[#D4F4DA] text-[#163300] border border-[#9FE870] text-xs font-bold transition-all shadow-xs cursor-pointer"
                 title="Tìm kiếm bằng ảnh hoặc camera"
               >
-                <Camera className="w-4 h-4 text-[#20A05A]" />
+                <Camera className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
                 <span className="hidden sm:inline">Visual Vibe</span>
               </button>
             </div>
@@ -498,9 +496,9 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
 
         {/* AI Parsed Understanding Alert Box */}
         {aiUnderstoodText && (
-          <div className="p-4 rounded-2xl bg-[#E8F8EC] dark:bg-emerald-950/30 border border-[#20A05A]/30 dark:border-emerald-500/30 space-y-2 text-xs">
+          <div className="p-4 rounded-2xl bg-[#E8F8EC] dark:bg-emerald-950/30 border border-[#9FE870]/30 dark:border-emerald-500/30 space-y-2 text-xs">
             <div className="flex items-center gap-2 text-[#163300] dark:text-emerald-300 font-bold">
-              <Sparkles className="w-4 h-4 text-[#20A05A]" />
+              <Sparkles className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
               <span>HAVEN AI đã phân tích nhu cầu:</span>
             </div>
             <p className="text-[#2D4A1D] dark:text-slate-200 leading-relaxed font-medium">
@@ -523,7 +521,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
             <div className="p-5 rounded-[24px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 space-y-5 shadow-sm sticky top-20">
               <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3.5">
                 <h3 className="text-base text-[#163300] dark:text-white flex items-center gap-2 font-black">
-                  <SlidersHorizontal className="w-4 h-4 text-[#20A05A]" />
+                  <SlidersHorizontal className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
                   <span>Bộ Lọc Tìm Kiếm</span>
                 </h3>
                 <button
@@ -608,7 +606,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                   <div className="space-y-2.5 p-3.5 rounded-2xl bg-[#F2F5F0] dark:bg-slate-800/60 border border-slate-200/90 dark:border-slate-700">
                     <div className="flex items-center justify-between text-xs font-bold">
                       <span className="text-[#163300] dark:text-[#9FE870] flex items-center gap-1.5">
-                        <Calculator className="w-3.5 h-3.5 text-[#20A05A]" />
+                        <Calculator className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
                         <span>Tổng CP Tối Đa:</span>
                       </span>
                       <span className="text-[#163300] dark:text-[#9FE870] tabular-nums font-black">
@@ -677,7 +675,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
 
                 <label className="flex items-center justify-between text-xs text-[#163300] dark:text-slate-200 font-semibold cursor-pointer p-2 rounded-xl hover:bg-[#F2F5F0] dark:hover:bg-slate-800/60 transition-colors">
                   <span className="flex items-center gap-2">
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#20A05A]" />
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
                     <span>Chủ nhà đã xác minh uy tín</span>
                   </span>
                   <input
@@ -770,7 +768,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                 return (
                   <div
                     key={unit.id}
-                    className="group relative rounded-[28px] overflow-hidden flex flex-col justify-between bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer"
+                    className="group relative rounded-[28px] overflow-hidden flex flex-col justify-between bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-[#163300]/40 dark:hover:border-[#9FE870]/40 transition-all duration-300 ease-out cursor-pointer"
                   >
                     {/* Image Area - TALL & MAJESTIC (h-64 sm:h-72) */}
                     <div
@@ -782,7 +780,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                         alt={unit.name || unit.id}
                         width={600}
                         quality={75}
-                        className="transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
 
@@ -859,7 +857,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                       {/* AI Match Reasons */}
                       <div className="p-3 rounded-2xl bg-[#E2F7D4]/50 dark:bg-[#163300]/40 border border-[#9FE870]/40 text-xs space-y-1.5">
                         <span className="text-[10px] text-[#163300] dark:text-[#9FE870] uppercase tracking-wider font-extrabold flex items-center gap-1">
-                          <Sparkles className="w-3 h-3 text-[#20A05A] shrink-0" />
+                          <Sparkles className="w-3 h-3 text-[#163300] dark:text-[#9FE870] shrink-0" />
                           <span>Điểm Khớp Nhu Cầu:</span>
                         </span>
                         <ul className="space-y-1 text-[#495E35] dark:text-slate-200 text-xs">
@@ -868,7 +866,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
                             unit.hasCarParking ? 'Có chỗ đỗ ô tô hầm thông minh' : 'Tòa nhà văn minh, an ninh 24/7'
                           ]).map((reason, idx) => (
                             <li key={idx} className="flex items-center gap-1.5 leading-snug">
-                              <Check className="w-3 h-3 text-[#20A05A] shrink-0" />
+                              <Check className="w-3 h-3 text-[#163300] dark:text-[#9FE870] shrink-0" />
                               <span className="truncate font-medium">{reason}</span>
                             </li>
                           ))}
@@ -922,8 +920,8 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
               {displayLimit < filteredUnits.length && (
                 <div ref={observerRef} className="col-span-full py-8 flex flex-col items-center justify-center gap-2">
                   <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200/90 dark:border-slate-700 text-[#163300] dark:text-[#9FE870] text-xs font-bold shadow-sm">
-                    <span className="w-2 h-2 rounded-full bg-[#20A05A] animate-ping" />
-                    <Sparkles className="w-3.5 h-3.5 animate-spin text-[#20A05A]" />
+                    <span className="w-2 h-2 rounded-full bg-[#163300] dark:bg-[#9FE870] animate-ping" />
+                    <Sparkles className="w-3.5 h-3.5 animate-spin text-[#163300] dark:text-[#9FE870]" />
                     <span>Tự động tải thêm không gian sống tiếp theo...</span>
                   </div>
                   <span className="text-[11px] font-semibold text-[#738565] dark:text-slate-400 tabular-nums">
@@ -934,7 +932,7 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
 
               {displayLimit >= filteredUnits.length && filteredUnits.length > 0 && (
                 <div className="col-span-full py-6 text-center text-xs font-bold text-[#738565] dark:text-slate-400 flex items-center justify-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#20A05A]" />
+                  <CheckCircle2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
                   <span>Đã tải toàn bộ {filteredUnits.length} căn hộ tuyển chọn</span>
                 </div>
               )}

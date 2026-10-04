@@ -245,7 +245,7 @@ export interface ChatConversation {
   messages: ChatMessage[];
 }
 
-export type SubscriptionTier = 'starter' | 'pro' | 'enterprise' | 'resident_prime';
+export type SubscriptionTier = 'starter' | 'pro' | 'enterprise' | 'resident_basic' | 'resident_prime' | 'resident_vip';
 
 export interface SubscriptionPlan {
   id: SubscriptionTier;

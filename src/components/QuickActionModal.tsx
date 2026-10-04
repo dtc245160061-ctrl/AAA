@@ -41,7 +41,7 @@ export const QuickActionModal: React.FC<QuickActionModalProps> = ({ isOpen, onCl
         {/* Header */}
         <div className="p-6 md:p-8 border-b border-slate-200/80 dark:border-slate-800 flex items-center justify-between bg-[#F2F5F0]/60 dark:bg-slate-850">
           <div>
-            <span className="text-[11px] font-bold text-[#20A05A] dark:text-[#9FE870] uppercase tracking-wider block">
+            <span className="text-[11px] font-bold text-[#163300] dark:text-[#9FE870] uppercase tracking-wider block">
               Thao Tác Vận Hành Nhanh (Quick Dispatcher)
             </span>
             <h2 className="text-xl sm:text-2xl font-black text-[#163300] dark:text-white mt-1 leading-tight">

@@ -5,7 +5,9 @@ import {
   Star, 
   MessageSquare, 
   Bell, 
-  Award
+  Award,
+  MapPin,
+  ArrowRight
 } from 'lucide-react';
 import type { LandlordProfile, ApartmentUnit } from '../types/apartment';
 import { SmartImage } from './common/SmartImage';
@@ -54,7 +56,7 @@ export const LandlordProfileModal: React.FC<LandlordProfileModalProps> = ({
             <div className="space-y-1">
               <div className="flex items-center gap-2">
                 <h3 className="text-2xl text-[#163300] dark:text-white font-black">{landlord.name}</h3>
-                <span className="px-2.5 py-0.5 rounded-full bg-[#E8F8EC] border border-[#20A05A]/30 text-[#163300] dark:text-[#9FE870] text-[10px] font-bold">
+                <span className="px-2.5 py-0.5 rounded-full bg-[#E8F8EC] border border-[#9FE870]/30 text-[#163300] dark:text-[#9FE870] text-[10px] font-bold">
                   ✓ Verified SuperHost
                 </span>
               </div>
@@ -138,7 +140,7 @@ export const LandlordProfileModal: React.FC<LandlordProfileModalProps> = ({
 
               <div className="p-4 rounded-2xl bg-[#F2F5F0] dark:bg-slate-800/60 border border-slate-200/90 dark:border-slate-700 space-y-1">
                 <span className="text-[#738565] dark:text-slate-400 uppercase text-[10px] font-bold">Tỷ Lệ Phản Hồi</span>
-                <p className="text-2xl font-black text-[#20A05A] dark:text-[#9FE870] tabular-nums">
+                <p className="text-2xl font-black text-[#163300] dark:text-[#9FE870] tabular-nums">
                   {landlord.responseRatePercent}%
                 </p>
                 <span className="text-[10px] text-[#738565] dark:text-slate-400 font-medium">Rất tích cực</span>
@@ -154,7 +156,7 @@ export const LandlordProfileModal: React.FC<LandlordProfileModalProps> = ({
 
               <div className="p-4 rounded-2xl bg-[#F2F5F0] dark:bg-slate-800/60 border border-slate-200/90 dark:border-slate-700 space-y-1">
                 <span className="text-[#738565] dark:text-slate-400 uppercase text-[10px] font-bold">Tỷ Lệ Hủy Lịch</span>
-                <p className="text-2xl font-black text-[#20A05A] dark:text-[#9FE870] tabular-nums">
+                <p className="text-2xl font-black text-[#163300] dark:text-[#9FE870] tabular-nums">
                   0%
                 </p>
                 <span className="text-[10px] text-[#738565] dark:text-slate-400 font-medium">Chưa từng hủy khách</span>
@@ -165,13 +167,13 @@ export const LandlordProfileModal: React.FC<LandlordProfileModalProps> = ({
             <div className="p-5 rounded-2xl bg-[#F9FAF8] dark:bg-slate-800/40 border border-slate-200/90 dark:border-slate-700 space-y-3">
               <h4 className="text-xs uppercase tracking-wider text-[#495E35] dark:text-slate-400 font-bold flex items-center justify-between">
                 <span>Thuật Toán Xếp Hạng Uy Tín HAVEN (Trust Score):</span>
-                <span className="text-[#20A05A] dark:text-[#9FE870] font-black">{landlord.trustScore} / 5.0 (Xuất Sắc)</span>
+                <span className="text-[#163300] dark:text-[#9FE870] font-black">{landlord.trustScore} / 5.0 (Xuất Sắc)</span>
               </h4>
 
               <div className="space-y-2 text-xs">
                 <div className="flex items-center justify-between text-[#163300] dark:text-slate-300 font-medium">
                   <span>1. Xác minh CCCD & Sổ đỏ chính chủ (25%)</span>
-                  <span className="text-[#20A05A] font-bold">100% ✓ Đã Thẩm Định</span>
+                  <span className="text-[#163300] dark:text-[#9FE870] font-bold">100% ✓ Đã Thẩm Định</span>
                 </div>
                 <div className="flex items-center justify-between text-[#163300] dark:text-slate-300 font-medium">
                   <span>2. Đánh giá hài lòng cư dân thực tế (25%)</span>
@@ -179,19 +181,19 @@ export const LandlordProfileModal: React.FC<LandlordProfileModalProps> = ({
                 </div>
                 <div className="flex items-center justify-between text-[#163300] dark:text-slate-300 font-medium">
                   <span>3. Tốc độ & tỷ lệ phản hồi tin nhắn (20%)</span>
-                  <span className="text-[#20A05A] font-bold">98% (Phản hồi trong 15p)</span>
+                  <span className="text-[#163300] dark:text-[#9FE870] font-bold">98% (Phản hồi trong 15p)</span>
                 </div>
                 <div className="flex items-center justify-between text-[#163300] dark:text-slate-300 font-medium">
                   <span>4. Thâm niên hoạt động & Lịch sử giữ cọc (15%)</span>
-                  <span className="text-[#20A05A] font-bold">14 Tháng • 100% hoàn cọc 72h</span>
+                  <span className="text-[#163300] dark:text-[#9FE870] font-bold">14 Tháng • 100% hoàn cọc 72h</span>
                 </div>
                 <div className="flex items-center justify-between text-[#163300] dark:text-slate-300 font-medium">
                   <span>5. Tỷ lệ hủy lịch xem nhà (10%)</span>
-                  <span className="text-[#20A05A] font-bold">0%</span>
+                  <span className="text-[#163300] dark:text-[#9FE870] font-bold">0%</span>
                 </div>
                 <div className="flex items-center justify-between text-[#163300] dark:text-slate-300 font-medium">
                   <span>6. Báo cáo tranh chấp từ khách thuê (5%)</span>
-                  <span className="text-[#20A05A] font-bold">0 Báo cáo vi phạm</span>
+                  <span className="text-[#163300] dark:text-[#9FE870] font-bold">0 Báo cáo vi phạm</span>
                 </div>
               </div>
             </div>
@@ -199,8 +201,8 @@ export const LandlordProfileModal: React.FC<LandlordProfileModalProps> = ({
             {/* Badges List */}
             <div className="flex items-center gap-2 flex-wrap">
               {landlord.badges.map((b, idx) => (
-                <span key={idx} className="px-3.5 py-1.5 rounded-full bg-[#E8F8EC] border border-[#20A05A]/30 text-[#163300] dark:text-[#9FE870] text-xs font-bold flex items-center gap-1.5 shadow-xs">
-                  <Award className="w-3.5 h-3.5 text-[#20A05A]" />
+                <span key={idx} className="px-3.5 py-1.5 rounded-full bg-[#E8F8EC] border border-[#9FE870]/30 text-[#163300] dark:text-[#9FE870] text-xs font-bold flex items-center gap-1.5 shadow-xs">
+                  <Award className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
                   <span>{b}</span>
                 </span>
               ))}
@@ -208,10 +210,19 @@ export const LandlordProfileModal: React.FC<LandlordProfileModalProps> = ({
           </div>
         )}
 
-        {/* TAB 2: ACTIVE LISTINGS */}
+        {/* TAB 2: ACTIVE LISTINGS - MINI SEARCH CATALOG WITH SCROLLBAR */}
         {activeTab === 'units' && (
           <div className="space-y-4 animate-in fade-in duration-200">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="flex items-center justify-between px-1">
+              <span className="text-xs font-bold text-[#163300] dark:text-[#9FE870] uppercase tracking-wider">
+                Danh Sách Căn Hộ Đang Cho Thuê Của {landlord.name}
+              </span>
+              <span className="px-2.5 py-0.5 rounded-full bg-[#E8F8EC] text-[#163300] dark:bg-[#163300] dark:text-[#9FE870] font-bold text-[11px] border border-[#9FE870]/30">
+                {landlordUnits.length} căn hộ khả dụng
+              </span>
+            </div>
+
+            <div className="max-h-[460px] overflow-y-auto pr-2 space-y-3.5">
               {landlordUnits.map(unit => (
                 <div
                   key={unit.id}
@@ -219,27 +230,52 @@ export const LandlordProfileModal: React.FC<LandlordProfileModalProps> = ({
                     onSelectUnit?.(unit.id);
                     onClose();
                   }}
-                  className="p-3.5 rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-200/90 dark:border-slate-700 hover:border-[#163300] dark:hover:border-[#9FE870] transition-all cursor-pointer flex gap-3 group shadow-xs"
+                  className="p-4 rounded-2xl bg-[#FBFDF9] dark:bg-slate-800/50 border border-slate-200/90 dark:border-slate-700/80 hover:border-[#163300] dark:hover:border-[#9FE870] transition-all duration-200 cursor-pointer flex flex-col sm:flex-row gap-4 group shadow-xs hover:-translate-y-0.5 hover:shadow-md"
                 >
-                  <SmartImage
-                    src={unit.images[0]}
-                    alt={unit.name || unit.id}
-                    width={200}
-                    quality={70}
-                    containerClassName="w-24 h-24 rounded-xl shrink-0"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="space-y-1 overflow-hidden">
-                    <h5 className="font-bold text-sm text-[#163300] dark:text-white line-clamp-1 group-hover:text-[#20A05A] transition-colors">
-                      {unit.name || unit.id}
-                    </h5>
-                    <p className="text-[11px] text-[#738565] dark:text-slate-400 font-medium">{unit.district}</p>
-                    <p className="text-xs text-[#163300] dark:text-[#9FE870] font-black tabular-nums">
-                      {((unit.trueCost?.totalMonthlyEstimatedVND || unit.monthlyRentVND) / 1000000).toFixed(1)} Tr/tháng
-                    </p>
-                    <span className="text-[10px] text-[#738565] dark:text-slate-500 font-medium">
-                      {unit.bedrooms} PN • {unit.sqm} m²
-                    </span>
+                  <div className="w-full sm:w-44 h-32 rounded-xl overflow-hidden shrink-0 relative bg-slate-100 dark:bg-slate-800">
+                    <SmartImage
+                      src={unit.images[0]}
+                      alt={unit.name || unit.id}
+                      width={320}
+                      quality={75}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-md text-[10px] font-bold text-white">
+                      {unit.sqm} m²
+                    </div>
+                  </div>
+
+                  <div className="flex-1 flex flex-col justify-between space-y-2 min-w-0">
+                    <div>
+                      <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-medium">
+                        <MapPin className="w-3.5 h-3.5 text-[#2570EB] shrink-0" />
+                        <span>{unit.district}, {unit.city === 'Hanoi' ? 'Hà Nội' : unit.city === 'Ho Chi Minh City' ? 'TP.HCM' : unit.city}</span>
+                      </div>
+                      <h4 className="font-bold text-sm sm:text-base text-[#163300] dark:text-white line-clamp-1 group-hover:text-[#2570EB] transition-colors mt-0.5">
+                        {unit.name || unit.id}
+                      </h4>
+                      <div className="flex items-center gap-2 mt-1 flex-wrap text-xs text-slate-600 dark:text-slate-300">
+                        <span className="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 font-medium">
+                          {unit.bedrooms} Phòng ngủ
+                        </span>
+                        <span className="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 font-medium">
+                          {unit.bathrooms} WC
+                        </span>
+                        <span className="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 font-medium">
+                          Tầng {unit.floor}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                      <div className="text-base sm:text-lg font-black text-[#163300] dark:text-[#9FE870] tabular-nums">
+                        {((unit.trueCost?.totalMonthlyEstimatedVND || unit.monthlyRentVND) / 1000000).toFixed(1)} Tr<span className="text-xs font-normal text-slate-400">/tháng</span>
+                      </div>
+                      <span className="inline-flex items-center gap-1 text-xs font-bold text-[#163300] dark:text-[#9FE870] group-hover:translate-x-1 transition-transform">
+                        <span>Xem chi tiết</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </span>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -254,7 +290,7 @@ export const LandlordProfileModal: React.FC<LandlordProfileModalProps> = ({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="font-bold text-[#163300] dark:text-white">Nguyễn Phương Thảo</span>
-                  <span className="text-[10px] font-bold text-[#163300] dark:text-[#9FE870] bg-[#E8F8EC] px-2.5 py-0.5 rounded-full border border-[#20A05A]/30">
+                  <span className="text-[10px] font-bold text-[#163300] dark:text-[#9FE870] bg-[#E8F8EC] px-2.5 py-0.5 rounded-full border border-[#9FE870]/30">
                     Đã ở 12 tháng (Hồ Tây)
                   </span>
                 </div>
@@ -269,7 +305,7 @@ export const LandlordProfileModal: React.FC<LandlordProfileModalProps> = ({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="font-bold text-[#163300] dark:text-white">David Miller</span>
-                  <span className="text-[10px] font-bold text-[#163300] dark:text-[#9FE870] bg-[#E8F8EC] px-2.5 py-0.5 rounded-full border border-[#20A05A]/30">
+                  <span className="text-[10px] font-bold text-[#163300] dark:text-[#9FE870] bg-[#E8F8EC] px-2.5 py-0.5 rounded-full border border-[#9FE870]/30">
                     Đã ở 8 tháng (Expat)
                   </span>
                 </div>

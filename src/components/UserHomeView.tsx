@@ -207,8 +207,8 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
       <section className="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200/90 dark:border-slate-800 p-6 sm:p-8 md:p-10 space-y-6 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="space-y-1.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F8EC] text-[#163300] font-bold text-xs uppercase tracking-wider">
-              <Sliders className="w-3.5 h-3.5 text-[#20A05A]" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F8EC] dark:bg-[#163300] text-[#163300] dark:text-[#9FE870] font-bold text-xs uppercase tracking-wider">
+              <Sliders className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
               <span>Bộ Tinh Chỉnh Không Gian Sống</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-[#163300] dark:text-white">
@@ -224,9 +224,9 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
               <button
                 type="button"
                 onClick={onOpenLifestyleMatchmaker}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#F2F5F0] hover:bg-[#E4ECE0] text-[#163300] font-bold text-xs transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#F2F5F0] dark:bg-slate-800 hover:bg-[#E8F8EC] dark:hover:bg-[#163300] text-[#163300] dark:text-[#9FE870] font-bold text-xs transition-all cursor-pointer shadow-2xs"
               >
-                <Compass className="w-4 h-4 text-[#20A05A]" />
+                <Compass className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
                 <span>Khảo Sát Nhu Cầu Sống</span>
               </button>
             )}
@@ -240,21 +240,21 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           </div>
         </div>
 
-        {/* Sensory Dials Row (10 Criteria - 4 Harmonious Accents: Mint, Cobalt, Gold, Coral) */}
+        {/* Sensory Dials Row (10 Criteria - 10 100% Unique Harmonious Color Identities) */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-2">
-          {/* Dial 1: Yên tĩnh (Mint Green #20A05A) */}
+          {/* Dial 1: Yên tĩnh (Forest Green #163300) */}
           <button
             type="button"
             onClick={() => setTuningQuiet(!tuningQuiet)}
             className={`p-4 rounded-[22px] border text-left transition-all duration-200 flex flex-col justify-between h-28 sm:h-32 cursor-pointer ${
               tuningQuiet
-                ? 'bg-[#E8F8EC] border-2 border-[#20A05A] text-[#163300] -translate-y-1 shadow-sm'
+                ? 'bg-[#E8F8EC] dark:bg-[#163300]/40 border-2 border-[#163300] dark:border-[#9FE870] text-[#163300] dark:text-[#9FE870] -translate-y-1 shadow-sm'
                 : 'bg-[#F2F5F0] dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/80 hover:border-[#163300] dark:hover:border-[#9FE870] hover:-translate-y-0.5'
             }`}
           >
             <div className="flex items-center justify-between">
-              <VolumeX className={`w-5 h-5 transition-colors ${tuningQuiet ? 'text-[#20A05A]' : 'text-slate-500'}`} />
-              <span className={`w-2.5 h-2.5 rounded-full transition-colors ${tuningQuiet ? 'bg-[#20A05A]' : 'bg-slate-300 dark:bg-slate-600'}`} />
+              <VolumeX className={`w-5 h-5 transition-colors ${tuningQuiet ? 'text-[#163300] dark:text-[#9FE870]' : 'text-slate-500'}`} />
+              <span className={`w-2.5 h-2.5 rounded-full transition-colors ${tuningQuiet ? 'bg-[#163300] dark:bg-[#9FE870]' : 'bg-slate-300 dark:bg-slate-600'}`} />
             </div>
             <div>
               <div className="text-sm font-bold text-[#163300] dark:text-white">Yên Tĩnh Tuyệt Đối</div>
@@ -262,19 +262,19 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             </div>
           </button>
 
-          {/* Dial 2: Không ngập lụt (Mint Green #20A05A) */}
+          {/* Dial 2: Không ngập lụt (Ocean Cyan #0284C7) */}
           <button
             type="button"
             onClick={() => setTuningFloodSafe(!tuningFloodSafe)}
             className={`p-4 rounded-[22px] border text-left transition-all duration-200 flex flex-col justify-between h-28 sm:h-32 cursor-pointer ${
               tuningFloodSafe
-                ? 'bg-[#E8F8EC] border-2 border-[#20A05A] text-[#163300] -translate-y-1 shadow-sm'
-                : 'bg-[#F2F5F0] dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/80 hover:border-[#163300] dark:hover:border-[#9FE870] hover:-translate-y-0.5'
+                ? 'bg-[#E0F2FE] dark:bg-sky-950/40 border-2 border-[#0284C7] text-[#0369A1] dark:text-sky-300 -translate-y-1 shadow-sm'
+                : 'bg-[#F2F5F0] dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/80 hover:border-[#0284C7] hover:-translate-y-0.5'
             }`}
           >
             <div className="flex items-center justify-between">
-              <CloudRain className={`w-5 h-5 transition-colors ${tuningFloodSafe ? 'text-[#20A05A]' : 'text-slate-500'}`} />
-              <span className={`w-2.5 h-2.5 rounded-full transition-colors ${tuningFloodSafe ? 'bg-[#20A05A]' : 'bg-slate-300 dark:bg-slate-600'}`} />
+              <CloudRain className={`w-5 h-5 transition-colors ${tuningFloodSafe ? 'text-[#0284C7]' : 'text-slate-500'}`} />
+              <span className={`w-2.5 h-2.5 rounded-full transition-colors ${tuningFloodSafe ? 'bg-[#0284C7]' : 'bg-slate-300 dark:bg-slate-600'}`} />
             </div>
             <div>
               <div className="text-sm font-bold text-[#163300] dark:text-white">Không Lo Ngập Lụt</div>
@@ -288,7 +288,7 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             onClick={() => setTuningCarParking(!tuningCarParking)}
             className={`p-4 rounded-[22px] border text-left transition-all duration-200 flex flex-col justify-between h-28 sm:h-32 cursor-pointer ${
               tuningCarParking
-                ? 'bg-[#EBF2FF] border-2 border-[#2570EB] text-[#163300] -translate-y-1 shadow-sm'
+                ? 'bg-[#EBF2FF] dark:bg-blue-950/40 border-2 border-[#2570EB] text-[#1E40AF] dark:text-blue-300 -translate-y-1 shadow-sm'
                 : 'bg-[#F2F5F0] dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/80 hover:border-[#2570EB] hover:-translate-y-0.5'
             }`}
           >
@@ -302,19 +302,19 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             </div>
           </button>
 
-          {/* Dial 4: Tầng cao đón gió (Electric Cobalt #2570EB) */}
+          {/* Dial 4: Tầng cao đón gió (Sky Azure #0EA5E9) */}
           <button
             type="button"
             onClick={() => setTuningHighFloor(!tuningHighFloor)}
             className={`p-4 rounded-[22px] border text-left transition-all duration-200 flex flex-col justify-between h-28 sm:h-32 cursor-pointer ${
               tuningHighFloor
-                ? 'bg-[#EBF2FF] border-2 border-[#2570EB] text-[#163300] -translate-y-1 shadow-sm'
-                : 'bg-[#F2F5F0] dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/80 hover:border-[#2570EB] hover:-translate-y-0.5'
+                ? 'bg-[#F0F9FF] dark:bg-cyan-950/40 border-2 border-[#0EA5E9] text-[#0369A1] dark:text-cyan-300 -translate-y-1 shadow-sm'
+                : 'bg-[#F2F5F0] dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/80 hover:border-[#0EA5E9] hover:-translate-y-0.5'
             }`}
           >
             <div className="flex items-center justify-between">
-              <Wind className={`w-5 h-5 transition-colors ${tuningHighFloor ? 'text-[#2570EB]' : 'text-slate-500'}`} />
-              <span className={`w-2.5 h-2.5 rounded-full transition-colors ${tuningHighFloor ? 'bg-[#2570EB]' : 'bg-slate-300 dark:bg-slate-600'}`} />
+              <Wind className={`w-5 h-5 transition-colors ${tuningHighFloor ? 'text-[#0EA5E9]' : 'text-slate-500'}`} />
+              <span className={`w-2.5 h-2.5 rounded-full transition-colors ${tuningHighFloor ? 'bg-[#0EA5E9]' : 'bg-slate-300 dark:bg-slate-600'}`} />
             </div>
             <div>
               <div className="text-sm font-bold text-[#163300] dark:text-white">Tầng Cao Đón Gió</div>
@@ -322,19 +322,19 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             </div>
           </button>
 
-          {/* Dial 5: Nuôi thú cưng (Terracotta Coral #FF5436) */}
+          {/* Dial 5: Nuôi thú cưng (Terracotta Coral #EA580C) */}
           <button
             type="button"
             onClick={() => setTuningPetFriendly(!tuningPetFriendly)}
             className={`p-4 rounded-[22px] border text-left transition-all duration-200 flex flex-col justify-between h-28 sm:h-32 cursor-pointer ${
               tuningPetFriendly
-                ? 'bg-[#FEECEB] border-2 border-[#FF5436] text-[#163300] -translate-y-1 shadow-sm'
-                : 'bg-[#F2F5F0] dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/80 hover:border-[#FF5436] hover:-translate-y-0.5'
+                ? 'bg-[#FFF7ED] dark:bg-orange-950/40 border-2 border-[#EA580C] text-[#C2410C] dark:text-orange-300 -translate-y-1 shadow-sm'
+                : 'bg-[#F2F5F0] dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/80 hover:border-[#EA580C] hover:-translate-y-0.5'
             }`}
           >
             <div className="flex items-center justify-between">
-              <PawPrint className={`w-5 h-5 transition-colors ${tuningPetFriendly ? 'text-[#FF5436]' : 'text-slate-500'}`} />
-              <span className={`w-2.5 h-2.5 rounded-full transition-colors ${tuningPetFriendly ? 'bg-[#FF5436]' : 'bg-slate-300 dark:bg-slate-600'}`} />
+              <PawPrint className={`w-5 h-5 transition-colors ${tuningPetFriendly ? 'text-[#EA580C]' : 'text-slate-500'}`} />
+              <span className={`w-2.5 h-2.5 rounded-full transition-colors ${tuningPetFriendly ? 'bg-[#EA580C]' : 'bg-slate-300 dark:bg-slate-600'}`} />
             </div>
             <div>
               <div className="text-sm font-bold text-[#163300] dark:text-white">Cho Phép Thú Cưng</div>
@@ -342,19 +342,19 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             </div>
           </button>
 
-          {/* Dial 6: Gần Metro (Electric Cobalt #2570EB) */}
+          {/* Dial 6: Gần Metro (Royal Indigo #4F46E5) */}
           <button
             type="button"
             onClick={() => setTuningMetroNearby(!tuningMetroNearby)}
             className={`p-4 rounded-[22px] border text-left transition-all duration-200 flex flex-col justify-between h-28 sm:h-32 cursor-pointer ${
               tuningMetroNearby
-                ? 'bg-[#EBF2FF] border-2 border-[#2570EB] text-[#163300] -translate-y-1 shadow-sm'
-                : 'bg-[#F2F5F0] dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/80 hover:border-[#2570EB] hover:-translate-y-0.5'
+                ? 'bg-[#EEF2FF] dark:bg-indigo-950/40 border-2 border-[#4F46E5] text-[#3730A3] dark:text-indigo-300 -translate-y-1 shadow-sm'
+                : 'bg-[#F2F5F0] dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/80 hover:border-[#4F46E5] hover:-translate-y-0.5'
             }`}
           >
             <div className="flex items-center justify-between">
-              <Train className={`w-5 h-5 transition-colors ${tuningMetroNearby ? 'text-[#2570EB]' : 'text-slate-500'}`} />
-              <span className={`w-2.5 h-2.5 rounded-full transition-colors ${tuningMetroNearby ? 'bg-[#2570EB]' : 'bg-slate-300 dark:bg-slate-600'}`} />
+              <Train className={`w-5 h-5 transition-colors ${tuningMetroNearby ? 'text-[#4F46E5]' : 'text-slate-500'}`} />
+              <span className={`w-2.5 h-2.5 rounded-full transition-colors ${tuningMetroNearby ? 'bg-[#4F46E5]' : 'bg-slate-300 dark:bg-slate-600'}`} />
             </div>
             <div>
               <div className="text-sm font-bold text-[#163300] dark:text-white">Gần Trạm Metro</div>
@@ -362,19 +362,19 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             </div>
           </button>
 
-          {/* Dial 7: Ban công (Mint Green #20A05A) */}
+          {/* Dial 7: Ban công (Emerald Flora #059669) */}
           <button
             type="button"
             onClick={() => setTuningBalcony(!tuningBalcony)}
             className={`p-4 rounded-[22px] border text-left transition-all duration-200 flex flex-col justify-between h-28 sm:h-32 cursor-pointer ${
               tuningBalcony
-                ? 'bg-[#E8F8EC] border-2 border-[#20A05A] text-[#163300] -translate-y-1 shadow-sm'
-                : 'bg-[#F2F5F0] dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/80 hover:border-[#163300] dark:hover:border-[#9FE870] hover:-translate-y-0.5'
+                ? 'bg-[#ECFDF5] dark:bg-emerald-950/40 border-2 border-[#059669] text-[#065F46] dark:text-emerald-300 -translate-y-1 shadow-sm'
+                : 'bg-[#F2F5F0] dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/80 hover:border-[#059669] hover:-translate-y-0.5'
             }`}
           >
             <div className="flex items-center justify-between">
-              <Maximize2 className={`w-5 h-5 transition-colors ${tuningBalcony ? 'text-[#20A05A]' : 'text-slate-500'}`} />
-              <span className={`w-2.5 h-2.5 rounded-full transition-colors ${tuningBalcony ? 'bg-[#20A05A]' : 'bg-slate-300 dark:bg-slate-600'}`} />
+              <Maximize2 className={`w-5 h-5 transition-colors ${tuningBalcony ? 'text-[#059669]' : 'text-slate-500'}`} />
+              <span className={`w-2.5 h-2.5 rounded-full transition-colors ${tuningBalcony ? 'bg-[#059669]' : 'bg-slate-300 dark:bg-slate-600'}`} />
             </div>
             <div>
               <div className="text-sm font-bold text-[#163300] dark:text-white">Ban Công Rộng Rãi</div>
@@ -382,19 +382,19 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             </div>
           </button>
 
-          {/* Dial 8: Hồ bơi & Gym (Sunshine Gold #E5A000) */}
+          {/* Dial 8: Hồ bơi & Gym (Sunshine Gold #D97706) */}
           <button
             type="button"
             onClick={() => setTuningPoolGym(!tuningPoolGym)}
             className={`p-4 rounded-[22px] border text-left transition-all duration-200 flex flex-col justify-between h-28 sm:h-32 cursor-pointer ${
               tuningPoolGym
-                ? 'bg-[#FEF7E6] border-2 border-[#E5A000] text-[#163300] -translate-y-1 shadow-sm'
-                : 'bg-[#F2F5F0] dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/80 hover:border-[#E5A000] hover:-translate-y-0.5'
+                ? 'bg-[#FEF3C7] dark:bg-amber-950/40 border-2 border-[#D97706] text-[#92400E] dark:text-amber-300 -translate-y-1 shadow-sm'
+                : 'bg-[#F2F5F0] dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/80 hover:border-[#D97706] hover:-translate-y-0.5'
             }`}
           >
             <div className="flex items-center justify-between">
-              <Waves className={`w-5 h-5 transition-colors ${tuningPoolGym ? 'text-[#E5A000]' : 'text-slate-500'}`} />
-              <span className={`w-2.5 h-2.5 rounded-full transition-colors ${tuningPoolGym ? 'bg-[#E5A000]' : 'bg-slate-300 dark:bg-slate-600'}`} />
+              <Waves className={`w-5 h-5 transition-colors ${tuningPoolGym ? 'text-[#D97706]' : 'text-slate-500'}`} />
+              <span className={`w-2.5 h-2.5 rounded-full transition-colors ${tuningPoolGym ? 'bg-[#D97706]' : 'bg-slate-300 dark:bg-slate-600'}`} />
             </div>
             <div>
               <div className="text-sm font-bold text-[#163300] dark:text-white">Hồ Bơi & Phòng Gym</div>
@@ -402,19 +402,19 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             </div>
           </button>
 
-          {/* Dial 9: An ninh 24/7 (Terracotta Coral #FF5436) */}
+          {/* Dial 9: An ninh 24/7 (Ruby Crimson #DC2626) */}
           <button
             type="button"
             onClick={() => setTuningSecurity(!tuningSecurity)}
             className={`p-4 rounded-[22px] border text-left transition-all duration-200 flex flex-col justify-between h-28 sm:h-32 cursor-pointer ${
               tuningSecurity
-                ? 'bg-[#FEECEB] border-2 border-[#FF5436] text-[#163300] -translate-y-1 shadow-sm'
-                : 'bg-[#F2F5F0] dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/80 hover:border-[#FF5436] hover:-translate-y-0.5'
+                ? 'bg-[#FEF2F2] dark:bg-red-950/40 border-2 border-[#DC2626] text-[#991B1B] dark:text-red-300 -translate-y-1 shadow-sm'
+                : 'bg-[#F2F5F0] dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/80 hover:border-[#DC2626] hover:-translate-y-0.5'
             }`}
           >
             <div className="flex items-center justify-between">
-              <ShieldCheck className={`w-5 h-5 transition-colors ${tuningSecurity ? 'text-[#FF5436]' : 'text-slate-500'}`} />
-              <span className={`w-2.5 h-2.5 rounded-full transition-colors ${tuningSecurity ? 'bg-[#FF5436]' : 'bg-slate-300 dark:bg-slate-600'}`} />
+              <ShieldCheck className={`w-5 h-5 transition-colors ${tuningSecurity ? 'text-[#DC2626]' : 'text-slate-500'}`} />
+              <span className={`w-2.5 h-2.5 rounded-full transition-colors ${tuningSecurity ? 'bg-[#DC2626]' : 'bg-slate-300 dark:bg-slate-600'}`} />
             </div>
             <div>
               <div className="text-sm font-bold text-[#163300] dark:text-white">An Ninh Đa Lớp 24/7</div>
@@ -422,19 +422,19 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
             </div>
           </button>
 
-          {/* Dial 10: Gần trường & BV (Sunshine Gold #E5A000) */}
+          {/* Dial 10: Gần trường & BV (Amethyst Purple #7C3AED) */}
           <button
             type="button"
             onClick={() => setTuningSchoolHospital(!tuningSchoolHospital)}
             className={`p-4 rounded-[22px] border text-left transition-all duration-200 flex flex-col justify-between h-28 sm:h-32 cursor-pointer ${
               tuningSchoolHospital
-                ? 'bg-[#FEF7E6] border-2 border-[#E5A000] text-[#163300] -translate-y-1 shadow-sm'
-                : 'bg-[#F2F5F0] dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/80 hover:border-[#E5A000] hover:-translate-y-0.5'
+                ? 'bg-[#F5F3FF] dark:bg-purple-950/40 border-2 border-[#7C3AED] text-[#5B21B6] dark:text-purple-300 -translate-y-1 shadow-sm'
+                : 'bg-[#F2F5F0] dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/80 hover:border-[#7C3AED] hover:-translate-y-0.5'
             }`}
           >
             <div className="flex items-center justify-between">
-              <Building2 className={`w-5 h-5 transition-colors ${tuningSchoolHospital ? 'text-[#E5A000]' : 'text-slate-500'}`} />
-              <span className={`w-2.5 h-2.5 rounded-full transition-colors ${tuningSchoolHospital ? 'bg-[#E5A000]' : 'bg-slate-300 dark:bg-slate-600'}`} />
+              <Building2 className={`w-5 h-5 transition-colors ${tuningSchoolHospital ? 'text-[#7C3AED]' : 'text-slate-500'}`} />
+              <span className={`w-2.5 h-2.5 rounded-full transition-colors ${tuningSchoolHospital ? 'bg-[#7C3AED]' : 'bg-slate-300 dark:bg-slate-600'}`} />
             </div>
             <div>
               <div className="text-sm font-bold text-[#163300] dark:text-white">Gần Trường & BV</div>
@@ -457,7 +457,7 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           </div>
           <button
             onClick={() => onNavigateSearch()}
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#20A05A] hover:text-[#163300] transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#163300] dark:text-[#9FE870] hover:text-[#163300] transition-colors cursor-pointer"
           >
             <span>Xem Tất Cả</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -468,14 +468,14 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           {/* Hanoi */}
           <div
             onClick={() => onNavigateSearch("Hà Nội")}
-            className="group relative rounded-[28px] overflow-hidden cursor-pointer border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-64 sm:h-72"
+            className="group relative rounded-[28px] overflow-hidden cursor-pointer border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-[#163300]/40 dark:hover:border-[#9FE870]/40 transition-all duration-300 ease-out h-64 sm:h-72"
           >
             <SmartImage
               src="https://images.unsplash.com/photo-1509042239860-f550ce710b93"
               alt="Hà Nội"
               width={800}
               quality={75}
-              className="transition-transform duration-700 ease-out group-hover:scale-105 w-full h-full object-cover"
+              className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
             <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-[#163300] opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-sm">
@@ -491,14 +491,14 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           {/* Ho Chi Minh City */}
           <div
             onClick={() => onNavigateSearch("TP. Hồ Chí Minh")}
-            className="group relative rounded-[28px] overflow-hidden cursor-pointer border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-64 sm:h-72"
+            className="group relative rounded-[28px] overflow-hidden cursor-pointer border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-[#163300]/40 dark:hover:border-[#9FE870]/40 transition-all duration-300 ease-out h-64 sm:h-72"
           >
             <SmartImage
               src="https://images.unsplash.com/photo-1583417319070-4a69db38a482"
               alt="TP. Hồ Chí Minh"
               width={800}
               quality={75}
-              className="transition-transform duration-700 ease-out group-hover:scale-105 w-full h-full object-cover"
+              className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
             <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-[#163300] opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-sm">
@@ -514,14 +514,14 @@ export const UserHomeView: React.FC<UserHomeViewProps> = ({
           {/* Da Nang */}
           <div
             onClick={() => onNavigateSearch("Đà Nẵng")}
-            className="group relative rounded-[28px] overflow-hidden cursor-pointer border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-64 sm:h-72"
+            className="group relative rounded-[28px] overflow-hidden cursor-pointer border border-slate-200/90 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-[#163300]/40 dark:hover:border-[#9FE870]/40 transition-all duration-300 ease-out h-64 sm:h-72"
           >
             <SmartImage
               src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b"
               alt="Đà Nẵng"
               width={800}
               quality={75}
-              className="transition-transform duration-700 ease-out group-hover:scale-105 w-full h-full object-cover"
+              className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
             <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-[#163300] opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-sm">

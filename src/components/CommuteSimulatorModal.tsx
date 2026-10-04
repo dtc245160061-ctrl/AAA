@@ -42,8 +42,8 @@ export const CommuteSimulatorModal: React.FC<CommuteSimulatorModalProps> = ({
         {/* Header */}
         <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-[#E8F8EC] text-[#20A05A] flex items-center justify-center">
-              <Navigation className="w-5 h-5 text-[#20A05A]" />
+            <div className="w-10 h-10 rounded-2xl bg-[#E8F8EC] text-[#163300] dark:text-[#9FE870] flex items-center justify-center">
+              <Navigation className="w-5 h-5 text-[#163300] dark:text-[#9FE870]" />
             </div>
             <div>
               <h3 className="text-lg md:text-xl text-[#163300] dark:text-white font-black">Mô Phỏng Thời Gian Di Chuyển Đi Làm (Commute Simulator)</h3>
@@ -72,11 +72,11 @@ export const CommuteSimulatorModal: React.FC<CommuteSimulatorModalProps> = ({
                   onClick={() => setSelectedDestId(dest.id)}
                   className={`p-3.5 rounded-2xl text-left border transition-all text-xs flex items-start gap-2.5 cursor-pointer ${
                     isSelected
-                      ? 'bg-[#E8F8EC] border-[#20A05A] text-[#163300] dark:text-[#9FE870] font-bold shadow-xs'
+                      ? 'bg-[#E8F8EC] border-[#9FE870] text-[#163300] dark:text-[#9FE870] font-bold shadow-xs'
                       : 'bg-[#F9FAF8] dark:bg-slate-800/80 border-slate-200 dark:border-slate-700 text-[#495E35] dark:text-slate-300 hover:border-slate-400'
                   }`}
                 >
-                  <MapPin className="w-4 h-4 text-[#20A05A] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#163300] dark:text-[#9FE870] shrink-0 mt-0.5" />
                   <div className="space-y-0.5">
                     <span className="block truncate font-bold">{dest.name}</span>
                     <span className="text-[10px] text-[#738565] dark:text-slate-400 font-medium">{dest.address}</span>
@@ -130,9 +130,9 @@ export const CommuteSimulatorModal: React.FC<CommuteSimulatorModalProps> = ({
           <div className="p-5 rounded-2xl bg-[#F2F5F0] dark:bg-slate-800/60 border border-slate-200/90 dark:border-slate-700 space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-xs text-[#495E35] dark:text-slate-400 uppercase tracking-wider flex items-center gap-1.5 font-bold">
-                <Clock className="w-3.5 h-3.5 text-[#20A05A]" /> Giờ Thường (Thông Thoáng)
+                <Clock className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" /> Giờ Thường (Thông Thoáng)
               </span>
-              <span className="text-[10px] font-bold text-[#163300] dark:text-[#9FE870] bg-[#E8F8EC] px-2.5 py-0.5 rounded-full border border-[#20A05A]/30">
+              <span className="text-[10px] font-bold text-[#163300] dark:text-[#9FE870] bg-[#E8F8EC] px-2.5 py-0.5 rounded-full border border-[#9FE870]/30">
                 09:30 - 16:30
               </span>
             </div>
@@ -174,8 +174,8 @@ export const CommuteSimulatorModal: React.FC<CommuteSimulatorModalProps> = ({
         </div>
 
         {/* Transit Advice Tip */}
-        <div className="p-4 rounded-2xl bg-[#E8F8EC] dark:bg-emerald-950/30 border border-[#20A05A]/30 text-xs text-[#163300] dark:text-emerald-300 flex items-start gap-2.5 font-medium leading-relaxed">
-          <CheckCircle2 className="w-4 h-4 text-[#20A05A] shrink-0 mt-0.5" />
+        <div className="p-4 rounded-2xl bg-[#E8F8EC] dark:bg-emerald-950/30 border border-[#9FE870]/30 text-xs text-[#163300] dark:text-emerald-300 flex items-start gap-2.5 font-medium leading-relaxed">
+          <CheckCircle2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870] shrink-0 mt-0.5" />
           <span>
             💡 <strong>Mẹo di chuyển</strong>: Tuyến đường từ {unit.district} đến {currentDest.name} có làn đường xe máy ưu tiên và có thể đi qua tuyến {commute.busLine || 'Metro'} để tránh hoàn toàn kẹt xe vào sáng thứ Hai.
           </span>

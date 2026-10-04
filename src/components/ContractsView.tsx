@@ -70,6 +70,10 @@ export const ContractsView: React.FC<ContractsViewProps> = ({
     onClearLeadContractData?.();
   };
 
+  const activeCount = contracts.filter(c => c.status === 'active').length;
+  const expiringCount = contracts.filter(c => c.status === 'expiring_soon').length;
+  const terminatedCount = contracts.filter(c => c.status === 'terminated').length;
+
   const filteredContracts = contracts.filter(c => {
     const matchesSearch = c.tenantName.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           c.contractNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -123,14 +127,16 @@ export const ContractsView: React.FC<ContractsViewProps> = ({
           <div className="wise-pill-tabs overflow-x-auto max-w-full">
             {[
               { id: 'all', label: `Tất cả (${contracts.length})` },
-              { id: 'active', label: 'Đang hiệu lực' },
-              { id: 'expiring_soon', label: 'Sắp hết hạn' },
-              { id: 'terminated', label: 'Đã thanh lý' },
+              { id: 'active', label: `Đang hiệu lực (${activeCount})` },
+              { id: 'expiring_soon', label: `Sắp hết hạn (${expiringCount})` },
+              { id: 'terminated', label: `Đã thanh lý (${terminatedCount})` },
             ].map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setStatusFilter(tab.id)}
-                className={statusFilter === tab.id ? 'wise-pill-tab-active' : 'wise-pill-tab'}
+                className={`wise-pill-tab rounded-full cursor-pointer ${
+                  statusFilter === tab.id ? 'wise-pill-tab-active font-bold' : ''
+                }`}
               >
                 {tab.label}
               </button>

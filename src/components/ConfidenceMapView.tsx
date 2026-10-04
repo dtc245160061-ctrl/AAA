@@ -80,8 +80,8 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs text-[#20A05A] uppercase tracking-wider font-extrabold">
-            <Layers className="w-4 h-4 text-[#20A05A]" />
+          <div className="flex items-center gap-2 text-xs text-[#163300] dark:text-[#9FE870] uppercase tracking-wider font-extrabold">
+            <Layers className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
             <span>Bản Đồ PCCC & Ngập Lụt Đa Lớp (Environmental & Fire Safety Map)</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-black text-[#163300] dark:text-white mt-1">
@@ -130,7 +130,7 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
             onClick={() => toggleLayer('floodRisk')}
             className={`px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 border transition-all cursor-pointer ${
               activeLayers.floodRisk
-                ? 'bg-[#E8F8EC] border-[#20A05A]/40 text-[#163300] dark:text-[#9FE870] shadow-xs'
+                ? 'bg-[#E8F8EC] border-[#9FE870]/40 text-[#163300] dark:text-[#9FE870] shadow-xs'
                 : 'bg-[#F2F5F0] dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-[#495E35] dark:text-slate-400 hover:border-slate-400'
             }`}
           >
@@ -257,7 +257,7 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
                             {unit.name || unit.id}
                           </span>
                           {unit.floodingRisk === 'Low' && activeLayers.floodRisk && (
-                            <span className="w-2 h-2 rounded-full bg-[#20A05A] shrink-0" title="Không ngập" />
+                            <span className="w-2 h-2 rounded-full bg-[#163300] dark:bg-[#9FE870] shrink-0" title="Không ngập" />
                           )}
                         </div>
                         <div className="text-[11px] font-black text-[#163300] dark:text-[#9FE870] tabular-nums">
@@ -273,8 +273,8 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
             {/* Map Legend Overlay (Bottom Left) */}
             <div className="absolute bottom-4 left-4 p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 text-[11px] space-y-1.5 shadow-sm">
               <span className="text-[#163300] dark:text-white font-black uppercase text-[10px] block">Chú Giải Lớp An Tâm:</span>
-              <div className="flex items-center gap-2 text-[#20A05A] font-bold">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#20A05A]" />
+              <div className="flex items-center gap-2 text-[#163300] dark:text-[#9FE870] font-bold">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#163300] dark:bg-[#9FE870]" />
                 <span>Địa hình cao ráo, PCCC nghiệm thu ✓</span>
               </div>
               <div className="flex items-center gap-2 text-sky-600 dark:text-sky-400 font-bold">
@@ -312,7 +312,7 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
                   {activeUnit.name || activeUnit.id}
                 </h3>
                 <p className="text-xs text-[#738565] dark:text-slate-400 flex items-center gap-1.5 font-medium">
-                  <MapPin className="w-3.5 h-3.5 text-[#20A05A] shrink-0" />
+                  <MapPin className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870] shrink-0" />
                   <span>{activeUnit.address || `${activeUnit.district}, ${getCityName(activeUnit.city)}`}</span>
                 </p>
               </div>
@@ -339,7 +339,7 @@ export const ConfidenceMapView: React.FC<ConfidenceMapViewProps> = ({
                 {/* Flood Risk */}
                 <div className="p-3.5 rounded-2xl bg-[#F9FAF8] dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-700 flex items-start gap-3 text-xs">
                   <div className={`p-2 rounded-xl shrink-0 ${
-                    activeUnit.floodingRisk === 'Low' ? 'bg-[#E8F8EC] text-[#20A05A]' : 'bg-amber-100 text-amber-700'
+                    activeUnit.floodingRisk === 'Low' ? 'bg-[#E8F8EC] text-[#163300] dark:text-[#9FE870]' : 'bg-amber-100 text-amber-700'
                   }`}>
                     <CloudRain className="w-4 h-4" />
                   </div>

@@ -14,5 +14,12 @@ export default defineConfig({
     watch: {
       ignored: ['**/scripts/**', '**/*.tmp', '**/*.bak', '**/Ứng dụng trí tuệ nhân tạo**'],
     },
+    proxy: {
+      '/ollama': {
+        target: 'http://127.0.0.1:11434',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/ollama/, ''),
+      },
+    },
   },
 })

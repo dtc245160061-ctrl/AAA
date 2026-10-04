@@ -12,6 +12,9 @@ function optimizeUnsplashUrl(url?: string, width = 600, quality = 75): string {
   return `${baseUrl}?auto=format&fit=crop&w=${width}&q=${quality}`;
 }
 
+// Global In-Memory Cache for Loaded Images across the entire session
+const globalImageCache = new Set<string>();
+
 export interface SmartImageProps {
   src?: string;
   alt: string;
@@ -35,18 +38,19 @@ export const SmartImage: React.FC<SmartImageProps> = ({
   fallbackSrc = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=75&w=600',
   onClick
 }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const targetSrc = hasError ? fallbackSrc : optimizeUnsplashUrl(src, width, quality);
+  const [isLoaded, setIsLoaded] = useState(() => globalImageCache.has(targetSrc));
 
-  // Reset loading status if src changes
+  // Check cache immediately when src/targetSrc changes
   useEffect(() => {
-    setIsLoaded(false);
+    if (globalImageCache.has(targetSrc)) {
+      setIsLoaded(true);
+    } else {
+      setIsLoaded(false);
+    }
     setHasError(false);
-  }, [src]);
-
-  const targetSrc = hasError 
-    ? fallbackSrc 
-    : optimizeUnsplashUrl(src, width, quality);
+  }, [targetSrc]);
 
   return (
     <div 
@@ -68,7 +72,10 @@ export const SmartImage: React.FC<SmartImageProps> = ({
         alt={alt}
         loading={priority ? 'eager' : 'lazy'}
         decoding="async"
-        onLoad={() => setIsLoaded(true)}
+        onLoad={() => {
+          globalImageCache.add(targetSrc);
+          setIsLoaded(true);
+        }}
         onError={() => {
           if (!hasError) {
             setHasError(true);

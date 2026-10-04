@@ -81,7 +81,7 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F8EC] text-[#163300] font-bold text-xs uppercase tracking-wider mb-2">
-              <ClipboardCheck className="w-4 h-4 text-[#20A05A]" />
+              <ClipboardCheck className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
               <span>Biên Bản Bàn Giao Hiện Trạng 15 Hạng Mục (Move-in Condition Handover)</span>
             </div>
             <h1 className="text-2xl md:text-3xl font-bold text-[#163300] dark:text-white mt-1">
@@ -108,7 +108,7 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
         {/* Apartment Selection */}
         <div className="bg-white dark:bg-slate-900 rounded-[24px] border border-slate-200/90 dark:border-slate-800 p-5 shadow-sm space-y-2 border-l-4 border-l-[#9FE870]">
           <label className="text-xs font-bold text-[#163300] dark:text-[#9FE870] uppercase tracking-wider block flex items-center gap-1.5">
-            <Building className="w-3.5 h-3.5 text-[#20A05A]" /> Căn Hộ Bàn Giao
+            <Building className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" /> Căn Hộ Bàn Giao
           </label>
           <select
             value={selectedUnitId}
@@ -175,7 +175,7 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
       <div className="p-6 rounded-[28px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4 shadow-sm">
         <div className="flex items-center gap-3 flex-wrap">
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#E8F8EC] text-[#163300] text-xs font-bold border border-[#9FE870]">
-            <CheckCircle2 className="w-4 h-4 text-[#20A05A]" />
+            <CheckCircle2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
             <span>{goodCount} / 15 Đạt Chuẩn Tốt</span>
           </div>
 
@@ -284,7 +284,7 @@ export const MoveInChecklistView: React.FC<MoveInChecklistViewProps> = ({
                     }}
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#F2F5F0] hover:bg-slate-200 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-slate-200 text-[11px] font-bold transition-colors cursor-pointer"
                   >
-                    <Camera className="w-3.5 h-3.5 text-[#20A05A]" />
+                    <Camera className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
                     <span>{item.photoCount} ảnh</span>
                   </button>
                 </td>

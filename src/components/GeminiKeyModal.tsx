@@ -62,7 +62,7 @@ export const GeminiKeyModal: React.FC<GeminiKeyModalProps> = ({ isOpen, onClose,
               <Key className="w-5 h-5" />
             </div>
             <div>
-              <div className="inline-flex items-center gap-1.5 text-[10px] text-[#20A05A] dark:text-[#9FE870] uppercase tracking-wider font-bold">
+              <div className="inline-flex items-center gap-1.5 text-[10px] text-[#163300] dark:text-[#9FE870] uppercase tracking-wider font-bold">
                 <Sparkles className="w-3 h-3" />
                 <span>Google Gemini & RAG Setup</span>
               </div>
@@ -93,7 +93,7 @@ export const GeminiKeyModal: React.FC<GeminiKeyModalProps> = ({ isOpen, onClose,
                 href="https://aistudio.google.com/app/apikey"
                 target="_blank"
                 rel="noreferrer"
-                className="text-[#20A05A] dark:text-[#9FE870] hover:underline inline-flex items-center gap-1 text-[11px] font-bold"
+                className="text-[#163300] dark:text-[#9FE870] hover:underline inline-flex items-center gap-1 text-[11px] font-bold"
               >
                 <span>Lấy key miễn phí</span>
                 <ExternalLink className="w-3 h-3" />
@@ -116,19 +116,19 @@ export const GeminiKeyModal: React.FC<GeminiKeyModalProps> = ({ isOpen, onClose,
             <div
               className={`p-3.5 rounded-2xl border flex items-start gap-2.5 text-xs ${
                 testResult.valid
-                  ? 'bg-[#E8F8EC] border-[#20A05A]/30 text-[#163300]'
+                  ? 'bg-[#E8F8EC] border-[#9FE870]/30 text-[#163300]'
                   : 'bg-rose-50 dark:bg-rose-950/20 border-rose-200 dark:border-rose-800 text-rose-700 dark:text-rose-300'
               }`}
             >
               {testResult.valid ? (
-                <CheckCircle2 className="w-4 h-4 text-[#20A05A] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870] shrink-0 mt-0.5" />
               ) : (
                 <AlertCircle className="w-4 h-4 text-[#FF5436] shrink-0 mt-0.5" />
               )}
               <div className="space-y-0.5">
                 <div className="font-bold">{testResult.message}</div>
                 {testResult.model && (
-                  <div className="text-[11px] text-[#20A05A] dark:text-[#9FE870] font-bold">
+                  <div className="text-[11px] text-[#163300] dark:text-[#9FE870] font-bold">
                     Mô hình hoạt động: {testResult.model} + text-embedding-004
                   </div>
                 )}
@@ -138,7 +138,7 @@ export const GeminiKeyModal: React.FC<GeminiKeyModalProps> = ({ isOpen, onClose,
 
           {/* Security Note */}
           <div className="p-3.5 rounded-2xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-xs text-slate-500 dark:text-slate-400 flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-[#20A05A] shrink-0" />
+            <ShieldCheck className="w-4 h-4 text-[#163300] dark:text-[#9FE870] shrink-0" />
             <span>API Key được lưu an toàn trực tiếp trên trình duyệt của bạn (localStorage).</span>
           </div>
 

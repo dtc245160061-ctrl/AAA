@@ -14,7 +14,6 @@ import {
 } from 'lucide-react';
 import { SUBSCRIPTION_PLANS, ApartmentStore } from '../data/apartmentStore';
 import type { SubscriptionTier } from '../types/apartment';
-import { ShaderCard } from './ui/ShaderCard';
 
 interface SubscriptionsViewProps {
   onShowToast: (type: 'success' | 'info', title: string, desc?: string) => void;
@@ -100,71 +99,103 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
         </div>
       </div>
 
-      {/* Pricing Cards Grid with Wise Card Hierarchy (All Clean White Surfaces) */}
-      <div className={`grid grid-cols-1 ${filteredPlans.length === 1 ? 'max-w-md mx-auto' : 'lg:grid-cols-3 max-w-7xl mx-auto'} gap-6 items-stretch`}>
+      {/* Pricing Cards Grid with Wise 3-Tier Multi-Accent Palette (Green, Gold, Purple) */}
+      <motion.div 
+        key={`${activeTab}-${billingCycle}`}
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+        className="grid grid-cols-1 lg:grid-cols-3 max-w-7xl mx-auto gap-6 items-stretch"
+      >
         {filteredPlans.map((plan) => {
           const isCurrent = currentTier === plan.id;
           const discountedPrice = billingCycle === 'yearly' ? plan.priceVND * 0.8 : plan.priceVND;
-          const isHighlight = plan.isPopular || plan.id === 'pro' || plan.id === 'resident_prime';
+          const isTier2 = plan.id === 'pro' || plan.id === 'resident_prime';
+          const isTier3 = plan.id === 'enterprise' || plan.id === 'resident_vip';
+
+          // Color Palettes: Gói 1 = Xanh Lá Cây, Gói 2 = Vàng Sunshine, Gói 3 = Tím Hoàng Gia
+          const cardTheme = isTier2
+            ? 'bg-gradient-to-b from-[#FFFDF0] to-[#FFF6D6] dark:from-[#291E04] dark:to-[#171002] border-2 border-[#FFC83B] dark:border-[#FFC83B] ring-4 ring-[#FFC83B]/25 shadow-lg'
+            : isTier3
+            ? 'bg-gradient-to-b from-[#F9F5FF] to-[#EFE6FF] dark:from-[#1E0F38] dark:to-[#120824] border-2 border-[#8B5CF6]/50 dark:border-[#8B5CF6]/70 ring-4 ring-[#8B5CF6]/20 shadow-md'
+            : 'bg-gradient-to-b from-[#F2F8EE] to-[#E5F3DD] dark:from-[#0E1E09] dark:to-[#071304] border-2 border-[#163300]/25 dark:border-[#9FE870]/40 shadow-sm';
+
+          const badgeTheme = isTier2
+            ? 'bg-[#FFC83B] text-[#7A5200] font-black border border-[#7A5200]/20 shadow-xs'
+            : isTier3
+            ? 'bg-[#8B5CF6] text-white font-bold border border-[#7C3AED] shadow-xs'
+            : 'bg-[#9FE870] text-[#163300] font-black border border-[#163300]/20 shadow-xs';
+
+          const priceTheme = isTier2
+            ? 'text-[#92400E] dark:text-[#FFC83B]'
+            : isTier3
+            ? 'text-[#6D28D9] dark:text-[#C4B5FD]'
+            : 'text-[#163300] dark:text-[#9FE870]';
+
+          const checkBg = isTier2
+            ? 'bg-[#FFC83B] text-[#7A5200]'
+            : isTier3
+            ? 'bg-[#8B5CF6] text-white'
+            : 'bg-[#163300] text-[#9FE870]';
+
+          const buttonTheme = isCurrent
+            ? 'bg-[#E8ECE5] dark:bg-slate-800 text-slate-500 cursor-default'
+            : isTier2
+            ? 'bg-[#FFC83B] hover:bg-[#E5B435] text-[#7A5200] font-black shadow-md hover:scale-[1.02] active:scale-[0.98]'
+            : isTier3
+            ? 'bg-[#8B5CF6] hover:bg-[#7C3AED] text-white font-bold shadow-md hover:scale-[1.02] active:scale-[0.98]'
+            : 'bg-[#163300] hover:bg-[#204500] text-[#9FE870] font-black shadow-md hover:scale-[1.02] active:scale-[0.98]';
 
           return (
             <div
               key={plan.id}
-              className={`rounded-[28px] p-6 md:p-8 flex flex-col justify-between transition-all duration-200 shadow-sm hover:shadow-md bg-white dark:bg-slate-900 ${
-                isHighlight
-                  ? 'border-2 border-[#163300] dark:border-[#9FE870] ring-4 ring-[#9FE870]/20'
-                  : 'border border-slate-200/90 dark:border-slate-800'
-              }`}
+              className={`wise-card-hover rounded-[28px] p-6 md:p-8 flex flex-col justify-between h-[640px] cursor-pointer transition-all duration-300 ${cardTheme}`}
             >
-              <div className="space-y-4">
+              <div className="space-y-4 flex flex-col flex-1 min-h-0">
                 {/* Header: Title & Badge */}
-                <div className="flex items-start justify-between gap-2 min-h-[58px]">
+                <div className="flex items-start justify-between gap-2 min-h-[58px] shrink-0">
                   <div>
                     <h3 className="text-xl font-bold tracking-tight text-[#163300] dark:text-slate-100">
                       {plan.name}
                     </h3>
-                    <p className="text-xs mt-1 leading-relaxed text-slate-500 dark:text-slate-400">
+                    <p className="text-xs mt-1 leading-relaxed text-slate-600 dark:text-slate-400">
                       {plan.tagline}
                     </p>
                   </div>
                   {plan.badge && (
-                    <span className={`shrink-0 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
-                      isHighlight
-                        ? 'bg-[#E8F8EC] text-[#163300] border border-[#9FE870]'
-                        : 'bg-[#EBF2FF] text-[#2570EB] border border-[#2570EB]/20'
-                    }`}>
+                    <span className={`shrink-0 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${badgeTheme}`}>
                       {plan.badge}
                     </span>
                   )}
                 </div>
 
                 {/* Price Display */}
-                <div className="py-4 border-y border-slate-100 dark:border-slate-800 min-h-[76px] flex flex-col justify-center">
+                <div className="py-4 border-y border-slate-300/40 dark:border-slate-800 min-h-[76px] flex flex-col justify-center shrink-0">
                   <div className="flex items-baseline gap-1.5">
-                    <span className="text-3xl font-bold tracking-tight text-[#163300] dark:text-[#9FE870]">
+                    <span className={`text-3xl font-extrabold tracking-tight ${priceTheme}`}>
                       {discountedPrice === 0 ? '0 đ' : `${(discountedPrice).toLocaleString('vi-VN')} đ`}
                     </span>
-                    <span className="text-xs font-bold text-slate-400">/ tháng</span>
+                    <span className="text-xs font-bold text-slate-500">/ tháng</span>
                   </div>
                   {billingCycle === 'yearly' && plan.priceVND > 0 ? (
-                    <p className="text-[11px] mt-1 font-bold text-[#20A05A]">
-                      Tiết kiệm {(plan.priceVND * 0.2 * 12).toLocaleString('vi-VN')} đ / năm
+                    <p className="text-[11px] mt-1 font-bold text-[#163300] dark:text-[#9FE870]">
+                      Tiết kiệm {(plan.priceVND * 0.2 * 12).toLocaleString('vi-VN')} đ / năm (-20%)
                     </p>
                   ) : null}
                 </div>
 
-                {/* Features Checklist */}
-                <div className="space-y-2.5 pt-2">
-                  <span className="text-[11px] uppercase tracking-wider font-bold block text-slate-400">
+                {/* Features Checklist - Scrollable with locked height */}
+                <div className="space-y-2.5 pt-2 flex-1 overflow-y-auto pr-1">
+                  <span className="text-[11px] uppercase tracking-wider font-bold block text-slate-500">
                     Tính năng bao gồm:
                   </span>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2.5">
                     {plan.features.map((feat, idx) => (
                       <li key={idx} className="flex items-start gap-2.5 text-xs font-sans">
-                        <div className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 bg-[#E8F8EC] text-[#20A05A]">
-                          <Check className="w-3 h-3" />
+                        <div className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${checkBg}`}>
+                          <Check className="w-3 h-3 stroke-[3]" />
                         </div>
-                        <span className="leading-snug text-slate-700 dark:text-slate-300">
+                        <span className="leading-snug text-slate-700 dark:text-slate-300 font-medium">
                           {feat}
                         </span>
                       </li>
@@ -174,17 +205,11 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
               </div>
 
               {/* CTA Button */}
-              <div className="pt-6">
+              <div className="pt-5 shrink-0">
                 <button
                   onClick={() => handleSelectTier(plan.id)}
                   disabled={isCurrent}
-                  className={`w-full py-3.5 px-4 rounded-full font-bold text-xs transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer ${
-                    isCurrent
-                      ? 'bg-[#F2F5F0] dark:bg-slate-800 text-slate-500 cursor-default'
-                      : isHighlight
-                      ? 'bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] hover:scale-105 active:scale-95'
-                      : 'bg-[#163300] hover:bg-[#204500] text-white hover:scale-105 active:scale-95'
-                  }`}
+                  className={`w-full py-3.5 px-4 rounded-full font-bold text-xs transition-all flex items-center justify-center gap-2 cursor-pointer ${buttonTheme}`}
                 >
                   <span>{isCurrent ? 'Gói Bạn Đang Dùng' : 'Nâng Cấp Gói Này'}</span>
                   {!isCurrent && <ArrowRight className="w-4 h-4" />}
@@ -193,7 +218,7 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
             </div>
           );
         })}
-      </div>
+      </motion.div>
 
       {/* PropTech Monetization Breakdown - Wise Multi-Accent Cards */}
       <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-[28px] p-6 sm:p-8 space-y-6 max-w-7xl mx-auto shadow-sm">
@@ -213,7 +238,7 @@ export const SubscriptionsView: React.FC<SubscriptionsViewProps> = ({
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="p-5 rounded-[20px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-2">
-            <div className="flex items-center justify-between text-xs text-[#20A05A] font-bold">
+            <div className="flex items-center justify-between text-xs text-[#163300] dark:text-[#9FE870] font-bold">
               <span>1. Phí Môi Giới Chốt Thuê</span>
               <Percent className="w-3.5 h-3.5" />
             </div>

@@ -101,6 +101,24 @@ const INITIAL_CONTRACTS: LeaseContract[] = [
     termsSummary: 'Hợp đồng sắp hết hạn trong tháng 8. Cần liên hệ gia hạn trước 15 ngày.',
     createdAt: '2025-08-25',
     platformCommissionVND: 65000000
+  },
+  {
+    id: 'CTR-2026-090',
+    contractNumber: 'HDT-2025/DN-HC-1202',
+    unitId: 'DN-HC-1202',
+    unitName: 'Deluxe Residence Sông Hàn Ban Công Kính',
+    tenantName: 'Lê Hoàng Nam',
+    tenantPhone: '0918 765 432',
+    tenantIdCard: '048092008899',
+    startDate: '2025-01-01',
+    endDate: '2026-01-01',
+    monthlyRentVND: 45000000,
+    depositVND: 90000000,
+    paymentCycleMonths: 1,
+    status: 'terminated',
+    termsSummary: 'Hợp đồng đã hoàn tất thanh lý và hoàn trả tiền cọc bảo chứng ngày 01/01/2026.',
+    createdAt: '2024-12-25',
+    platformCommissionVND: 45000000
   }
 ];
 
@@ -281,12 +299,29 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
     badge: 'Doanh Nghiệp'
   },
   {
+    id: 'resident_basic',
+    targetAudience: 'tenant',
+    name: 'Cư Dân Tiêu Chuẩn',
+    tagline: 'Quản lý thuê nhà số & thanh toán tự động tiện lợi',
+    priceVND: 0,
+    billingCycle: 'monthly',
+    features: [
+      'Nhận thông báo hóa đơn tiền nhà & điện nước qua App',
+      'Thanh toán trực tuyến quét mã VietQR tự động',
+      'Gửi yêu cầu bảo dưỡng kỹ thuật 24/7 tới ban quản lý',
+      'Bảo vệ tiền cọc qua hợp đồng điện tử chuẩn pháp lý',
+      'Đánh giá và lưu trữ căn hộ yêu thích'
+    ],
+    badge: 'Miễn Phí'
+  },
+  {
     id: 'resident_prime',
     targetAudience: 'tenant',
     name: 'HAVEN Resident Prime',
     tagline: 'Đặc quyền phong cách sống thượng lưu cho khách thuê',
     priceVND: 99000,
     billingCycle: 'monthly',
+    isPopular: true,
     features: [
       'Thuê nhà 0đ Tiền Cọc (Bảo lãnh cọc ngân hàng)',
       'Tặng 02 buổi dọn dẹp buồng phòng miễn phí mỗi tháng',
@@ -294,7 +329,23 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
       'Giảm 25% phí dịch vụ chuyển nhà HAVEN Move',
       'Thẻ ra vào tích hợp Smart App mở khóa không chạm'
     ],
-    badge: 'Dành Cho Cư Dân'
+    badge: 'Khuyên Dùng'
+  },
+  {
+    id: 'resident_vip',
+    targetAudience: 'tenant',
+    name: 'HAVEN Diamond Living',
+    tagline: 'Trải nghiệm đỉnh cao phong cách sống khách sạn 5 sao',
+    priceVND: 299000,
+    billingCycle: 'monthly',
+    features: [
+      'Bao gồm toàn bộ quyền lợi của gói Resident Prime',
+      'Gói bảo hiểm tài sản nội thất 50.000.000 đ',
+      'Miễn phí 04 buổi dọn buồng phòng cao cấp hàng tháng',
+      'Xe sang đưa đón sân bay 01 chuyến / mỗi quý',
+      'Quản gia số Concierge riêng hỗ trợ đặt chỗ 24/7'
+    ],
+    badge: 'Thượng Lưu'
   }
 ];
 

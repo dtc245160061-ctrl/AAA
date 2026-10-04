@@ -103,7 +103,7 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({
               {(totalCollectedVND / 1000000).toFixed(0)} Triệu VNĐ
             </div>
             <div className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-[#20A05A]" />
+              <span className="w-2 h-2 rounded-full bg-[#163300] dark:bg-[#9FE870]" />
               <span>{invoices.filter(i => i.status === 'paid').length} hóa đơn đã hoàn tất thu</span>
             </div>
           </div>
@@ -239,8 +239,8 @@ export const PaymentsView: React.FC<PaymentsViewProps> = ({
                         <span>Thu Tiền</span>
                       </button>
                     ) : (
-                      <span className="text-xs text-[#20A05A] font-bold whitespace-nowrap flex items-center justify-end gap-1">
-                        <Check className="w-3.5 h-3.5" />
+                      <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#E8F8EC] text-[#163300] border border-[#9FE870] text-xs font-bold whitespace-nowrap shadow-2xs">
+                        <Check className="w-3.5 h-3.5 text-[#163300]" />
                         <span>Hoàn tất</span>
                       </span>
                     )}

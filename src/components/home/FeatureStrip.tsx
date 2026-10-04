@@ -44,7 +44,7 @@ const features: EnvironmentalFeatureItem[] = [
     description: 'Đo lường kích thước hầm xe thực tế, lối ram dốc xe gầm thấp và trạm sạc EV.',
     proofMetric: 'Hầm cao 2.2m • Sạc EV tiêu chuẩn',
     badgeBg: 'bg-[#E8F8EC]',
-    badgeText: 'text-[#20A05A]',
+    badgeText: 'text-[#163300] dark:text-[#9FE870]',
   },
   {
     key: 'quiet',
@@ -67,7 +67,7 @@ export const FeatureStrip: React.FC<FeatureStripProps> = ({
       {/* Section Header */}
       <div className="space-y-2">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F8EC] text-[#163300] text-xs font-bold uppercase tracking-wider">
-          <Compass className="w-3.5 h-3.5 text-[#20A05A]" />
+          <Compass className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
           <span>Hệ Thống Phân Tích Môi Trường Sống • 4 Trụ Cột Độc Quyền</span>
         </div>
         <h2 className="text-2xl md:text-3xl font-bold text-[#163300] dark:text-white">
@@ -121,7 +121,7 @@ export const FeatureStrip: React.FC<FeatureStripProps> = ({
 
               {/* Verified Proof Metric */}
               <div className="pt-3 border-t border-slate-100 dark:border-slate-800">
-                <div className="flex items-center gap-1.5 text-xs text-[#20A05A] font-bold">
+                <div className="flex items-center gap-1.5 text-xs text-[#163300] dark:text-[#9FE870] font-bold">
                   <CheckCircle2 className="w-4 h-4 shrink-0" />
                   <span>{feature.proofMetric}</span>
                 </div>

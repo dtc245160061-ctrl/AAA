@@ -40,10 +40,10 @@ export const DepositEscrowModal: React.FC<DepositEscrowModalProps> = ({
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/75 backdrop-blur-md animate-in fade-in duration-200 font-sans">
-      <div className="relative w-full max-w-3xl rounded-[32px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-2xl flex flex-col max-h-[92vh] overflow-hidden text-slate-900 dark:text-slate-100">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200 font-sans">
+      <div className="relative w-full max-w-3xl h-[620px] rounded-[32px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-2xl flex flex-col overflow-hidden text-slate-900 dark:text-slate-100">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4.5 border-b border-slate-200/80 dark:border-slate-800 bg-[#F2F5F0] dark:bg-slate-850 shrink-0">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200/80 dark:border-slate-800 bg-[#F2F5F0] dark:bg-slate-850 shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-2xl bg-[#9FE870] text-[#163300] flex items-center justify-center shadow-2xs shrink-0 font-bold">
               <ShieldCheck className="w-5 h-5 text-[#163300]" />
@@ -70,10 +70,10 @@ export const DepositEscrowModal: React.FC<DepositEscrowModalProps> = ({
           </button>
         </div>
 
-        {/* Modal Body */}
+        {/* Modal Body with locked scroll viewport */}
         <div className="p-6 md:p-8 space-y-6 overflow-y-auto flex-1">
           {/* Step Progress Bar */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 shrink-0">
             {steps.map((step) => {
               const isActive = currentStep === step.number;
               const isDone = currentStep > step.number;
@@ -91,7 +91,7 @@ export const DepositEscrowModal: React.FC<DepositEscrowModalProps> = ({
                 >
                   <div className="flex items-center gap-1.5 text-xs font-bold mb-1">
                     {isDone ? (
-                      <CheckCircle2 className="w-4 h-4 text-[#20A05A] dark:text-[#9FE870]" />
+                      <CheckCircle2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
                     ) : (
                       <span className={`w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-black ${
                         isActive ? 'bg-[#163300] dark:bg-[#9FE870] text-[#9FE870] dark:text-[#163300]' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300'
@@ -112,7 +112,7 @@ export const DepositEscrowModal: React.FC<DepositEscrowModalProps> = ({
             <div className="p-6 rounded-[24px] bg-[#F7FAF6] dark:bg-slate-800/80 border border-slate-200/90 dark:border-slate-700/80 space-y-5 animate-in fade-in duration-200">
               <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
                 <div className="space-y-3.5 flex-1">
-                  <span className="text-xs font-bold text-[#20A05A] dark:text-[#9FE870] uppercase tracking-wider">
+                  <span className="text-xs font-bold text-[#163300] dark:text-[#9FE870] uppercase tracking-wider">
                     Bước 1: Quét Mã VietQR Chuyển Tiền Cọc Vào Tài Khoản Bảo Chứng
                   </span>
                   <div className="space-y-0.5">
@@ -131,7 +131,7 @@ export const DepositEscrowModal: React.FC<DepositEscrowModalProps> = ({
                     </div>
                     <div className="flex justify-between">
                       <span className="text-slate-500 dark:text-slate-400">Số tài khoản:</span>
-                      <span className="text-[#20A05A] dark:text-[#9FE870] font-black">0988-888-HAVEN-ESCROW</span>
+                      <span className="text-[#163300] dark:text-[#9FE870] font-black">0988-888-HAVEN-ESCROW</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-slate-500 dark:text-slate-400">Nội dung chuyển khoản:</span>
@@ -148,7 +148,7 @@ export const DepositEscrowModal: React.FC<DepositEscrowModalProps> = ({
               </div>
 
               <div className="p-4 rounded-2xl bg-[#E8F8EC] dark:bg-emerald-950/30 border border-[#9FE870]/40 text-xs text-[#163300] dark:text-[#9FE870] flex items-center gap-2 font-medium">
-                <Lock className="w-4 h-4 text-[#20A05A] dark:text-[#9FE870] shrink-0" />
+                <Lock className="w-4 h-4 text-[#163300] dark:text-[#9FE870] shrink-0" />
                 <span>Tiền của bạn KHÔNG chuyển ngay cho chủ nhà. HAVEN giữ an toàn đến khi bạn nhận phòng.</span>
               </div>
             </div>
@@ -159,12 +159,25 @@ export const DepositEscrowModal: React.FC<DepositEscrowModalProps> = ({
             <div className="p-6 rounded-[24px] bg-[#F7FAF6] dark:bg-slate-800/80 border border-slate-200/90 dark:border-slate-700/80 space-y-4 animate-in fade-in duration-200 text-xs">
               <div className="p-4 rounded-2xl bg-[#E8F8EC] dark:bg-emerald-950/40 border border-[#9FE870]/40 space-y-2">
                 <div className="flex items-center gap-2 text-[#163300] dark:text-[#9FE870] font-bold text-sm">
-                  <CheckCircle2 className="w-4 h-4 text-[#20A05A] dark:text-[#9FE870]" />
+                  <CheckCircle2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
                   <span>Đã Ghi Nhận Ký Quỹ Cọc {(depositAmountVND / 1000000).toFixed(0)} Triệu VNĐ</span>
                 </div>
                 <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-                  Hệ thống HAVEN đã gửi thông báo xác nhận tiền cọc cho chủ nhà <strong>{unit.landlord?.name}</strong>. Căn hộ {unit.name || unit.id} đã tự động chuyển sang trạng thái <strong>[Đã Giữ Chỗ]</strong> trên sàn, không ai có thể tranh phòng của bạn.
+                  Hệ thống HAVEN đã gửi thông báo xác nhận tiền cọc cho chủ nhà <strong>{unit.landlord?.name || 'Nguyễn Văn Minh'}</strong>. Căn hộ {unit.name || unit.id} đã tự động chuyển sang trạng thái <strong>[Đã Giữ Chỗ]</strong> trên sàn, không ai có thể tranh phòng của bạn.
                 </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 space-y-1">
+                  <span className="text-slate-400 font-bold uppercase text-[10px]">Căn hộ giữ chỗ</span>
+                  <p className="font-bold text-[#163300] dark:text-white text-sm line-clamp-1">{unit.name || unit.id}</p>
+                  <p className="text-slate-500 text-[11px]">{unit.district} • {unit.sqm} m²</p>
+                </div>
+                <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 space-y-1">
+                  <span className="text-slate-400 font-bold uppercase text-[10px]">Thời gian giữ phòng an toàn</span>
+                  <p className="font-bold text-[#163300] dark:text-[#9FE870] text-sm">48 giờ tiếp theo</p>
+                  <p className="text-slate-500 text-[11px]">Được xem lại thực tế và đổi ý 100% không mất phí</p>
+                </div>
               </div>
             </div>
           )}
@@ -174,12 +187,31 @@ export const DepositEscrowModal: React.FC<DepositEscrowModalProps> = ({
             <div className="p-6 rounded-[24px] bg-[#F7FAF6] dark:bg-slate-800/80 border border-slate-200/90 dark:border-slate-700/80 space-y-4 animate-in fade-in duration-200 text-xs">
               <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 space-y-2 shadow-2xs">
                 <div className="flex items-center gap-2 text-[#163300] dark:text-white font-bold text-sm">
-                  <FileCheck2 className="w-4 h-4 text-[#20A05A] dark:text-[#9FE870]" />
+                  <FileCheck2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
                   <span>Biên Bản Bàn Giao 15 Hạng Mục Kèm Ảnh Chụp</span>
                 </div>
                 <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
                   Khi đến nhận phòng thực tế, bạn và chủ nhà sẽ mở mục <strong>[Biên Bản Bàn Giao]</strong> trên HAVEN, tick kiểm tra 15 hạng mục nội thất và chụp ảnh số công tơ điện nước ban đầu để khóa dữ liệu.
                 </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 text-[11px]">
+                <div className="p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
+                  <span>1. Khóa cửa vân tay IoT</span>
+                </div>
+                <div className="p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
+                  <span>2. Điều hòa Inverter 2 chiều</span>
+                </div>
+                <div className="p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
+                  <span>3. Tủ lạnh & Bếp từ âm</span>
+                </div>
+                <div className="p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
+                  <span>4. Công tơ điện nước ban đầu</span>
+                </div>
               </div>
             </div>
           )}
@@ -189,12 +221,27 @@ export const DepositEscrowModal: React.FC<DepositEscrowModalProps> = ({
             <div className="p-6 rounded-[24px] bg-[#E8F8EC] dark:bg-emerald-950/30 border border-[#9FE870]/40 space-y-4 animate-in fade-in duration-200 text-xs">
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-[#163300] dark:text-[#9FE870] font-bold text-base">
-                  <ShieldCheck className="w-5 h-5 text-[#20A05A] dark:text-[#9FE870]" />
+                  <ShieldCheck className="w-5 h-5 text-[#163300] dark:text-[#9FE870]" />
                   <span>Cam Kết Bảo Vệ Tiền Cọc Sanctuary 72 Giờ Hoạt Động</span>
                 </div>
                 <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
                   Khi hợp đồng kết thúc, hệ thống sẽ đối chiếu ảnh bàn giao ban đầu vs hiện trạng trả phòng. Tiền cọc được chuyển khoản hoàn trả tự động vào tài khoản ngân hàng của bạn trong vòng tối đa 72 giờ.
                 </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2">
+                <div className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-center space-y-1">
+                  <div className="text-lg font-black text-[#163300] dark:text-[#9FE870]">72 Giờ</div>
+                  <div className="text-[10px] text-slate-500 font-medium">Hoàn trả tự động</div>
+                </div>
+                <div className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-center space-y-1">
+                  <div className="text-lg font-black text-[#2570EB]">100%</div>
+                  <div className="text-[10px] text-slate-500 font-medium">Bảo vệ gian lận</div>
+                </div>
+                <div className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-center space-y-1">
+                  <div className="text-lg font-black text-[#7A5200] dark:text-[#FFC83B]">Trọng Tài</div>
+                  <div className="text-[10px] text-slate-500 font-medium">HAVEN bảo hộ pháp lý</div>
+                </div>
               </div>
             </div>
           )}
@@ -228,7 +275,7 @@ export const DepositEscrowModal: React.FC<DepositEscrowModalProps> = ({
                     onShowToast('success', 'Bảo chứng cọc kích hoạt thành công', `Căn hộ ${unit.name || unit.id} đã được bảo vệ bởi HAVEN Escrow.`);
                   }
                 }}
-                className="px-6 py-2.5 rounded-full bg-[#163300] hover:bg-[#20A05A] text-white font-bold text-xs shadow-sm transition-all flex items-center gap-1.5 cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
+                className="px-6 py-2.5 rounded-full bg-[#163300] hover:bg-[#163300] dark:bg-[#9FE870] text-white font-bold text-xs shadow-sm transition-all flex items-center gap-1.5 cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
               >
                 <CheckCircle2 className="w-4 h-4" />
                 <span>Hoàn Tất Kích Hoạt Bảo Chứng</span>

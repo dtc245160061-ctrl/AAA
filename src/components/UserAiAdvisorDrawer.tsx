@@ -9,12 +9,19 @@ import {
   Loader2,
   Mic,
   MicOff,
-  Maximize2
+  Maximize2,
+  FileText,
+  Handshake,
+  Calendar,
+  DollarSign,
+  ChevronRight
 } from 'lucide-react';
 import type { ApartmentUnit } from '../types/apartment';
 import { type RagRetrievalResult } from '../services/geminiRagService';
 import { askHavenLocalSlm, checkLocalSlmStatus } from '../services/localAiService';
 import { VoiceRecognitionService } from '../services/voiceRecognitionService';
+import { ApartmentStore } from '../data/apartmentStore';
+import { parseNaturalLanguageQuery } from '../services/aiAdvisorService';
 
 interface Message {
   id: string;
@@ -23,8 +30,9 @@ interface Message {
   modelUsed?: string;
   sources?: RagRetrievalResult[];
   suggestedAction?: {
-    type: 'apply_filters';
+    type: 'apply_filters' | 'negotiate_price' | 'draft_contract' | 'calculate_true_cost' | 'schedule_viewing' | 'fill_listing';
     queryText: string;
+    payload?: any;
   };
 }
 
@@ -33,13 +41,19 @@ interface UserAiAdvisorDrawerProps {
   onClose: () => void;
   units?: ApartmentUnit[];
   onApplyAiSearch: (queryText: string) => void;
+  onSelectUnit?: (unitId: string) => void;
+  initialPrompt?: string;
+  onClearInitialPrompt?: () => void;
 }
 
 export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
   isOpen,
   onClose,
-  units: _units,
-  onApplyAiSearch
+  units,
+  onApplyAiSearch,
+  onSelectUnit,
+  initialPrompt,
+  onClearInitialPrompt
 }) => {
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -56,27 +70,99 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
     model: ''
   });
 
-  // Dynamically check Local Edge SLM status when drawer opens
+  // Dynamically check Local Edge SLM status when drawer opens, with retry
   useEffect(() => {
-    if (isOpen) {
+    if (!isOpen) return;
+
+    let mounted = true;
+    let retries = 0;
+
+    const check = () => {
       checkLocalSlmStatus().then(st => {
+        if (!mounted) return;
         setSlmStatus({ isAvailable: st.isAvailable, model: st.model });
+        if (!st.isAvailable && retries < 4) {
+          retries++;
+          setTimeout(check, 2000);
+        }
       });
-    }
+    };
+
+    check();
+
+    return () => {
+      mounted = false;
+    };
   }, [isOpen]);
 
-  // Resizable drawer state (default 440px wide x 560px high)
+  // Resizable drawer state (default 520px wide x 620px high)
   const [dimensions, setDimensions] = useState<{ width: number; height: number }>({
-    width: 440,
-    height: 560
+    width: 520,
+    height: 620
   });
   const isResizingRef = useRef<'top' | 'left' | 'corner' | null>(null);
   const startPosRef = useRef<{ startX: number; startY: number; startW: number; startH: number }>({
     startX: 0,
     startY: 0,
-    startW: 440,
-    startH: 560
+    startW: 520,
+    startH: 620
   });
+
+  // Human-readable criteria summary formatter (No JSON)
+  const formatCriteriaSummary = (payload?: any): string => {
+    if (!payload) return 'Tất cả tiêu chí';
+    const parts: string[] = [];
+    if (payload.city) parts.push(`📍 ${payload.city}${payload.district ? ', ' + payload.district : ''}`);
+    else if (payload.district) parts.push(`📍 ${payload.district}`);
+    if (payload.bedrooms) parts.push(`🛏️ ${payload.bedrooms} Phòng ngủ`);
+    else if (payload.minBedrooms) parts.push(`🛏️ Từ ${payload.minBedrooms} Phòng ngủ`);
+    if (payload.maxRentVND) parts.push(`💰 Dưới ${(payload.maxRentVND / 1000000).toFixed(0)} Tr/tháng`);
+    if (payload.hasCarParking) parts.push(`🚗 Có chỗ đỗ ô tô`);
+    if (payload.petFriendly) parts.push(`🐾 Cho phép thú cưng`);
+    return parts.length > 0 ? parts.join('  •  ') : 'Tiêu chí tìm kiếm chuẩn';
+  };
+
+  // Find 3 to 5 matching apartments (Sweet spot = 5)
+  const getMatchingApartments = (msg: Message): ApartmentUnit[] => {
+    const all = units && units.length > 0 ? units : ApartmentStore.getUnits();
+    if (!all || all.length === 0) return [];
+
+    // ONLY render cards if this message is explicitly an apply_filters search action
+    if (msg.suggestedAction?.type !== 'apply_filters') return [];
+
+    const payload = msg.suggestedAction?.payload || {};
+    const parsed = parseNaturalLanguageQuery(msg.suggestedAction?.queryText || msg.text || '');
+    const filterCity = payload.city || parsed.extractedFilters.city;
+    const filterDistrict = payload.district || parsed.extractedFilters.district;
+    const filterBedrooms = payload.bedrooms || parsed.extractedFilters.minBedrooms;
+    const filterMaxRent = payload.maxRentVND || parsed.extractedFilters.maxRentVND;
+    const filterCar = payload.hasCarParking !== undefined ? payload.hasCarParking : parsed.classification.required.includes('car_parking');
+
+    const sourceIds = (msg.sources || [])
+      .filter(s => s.chunk.category === 'apartment')
+      .map(s => s.chunk.metadata?.unitId || s.chunk.id);
+
+    const scored = all.map(u => {
+      let score = 0;
+      if (sourceIds.includes(u.id)) score += 100;
+      if (filterCity && u.city.toLowerCase().includes(filterCity.toLowerCase())) score += 50;
+      if (filterDistrict && u.district.toLowerCase().includes(filterDistrict.toLowerCase())) score += 40;
+      if (filterBedrooms) {
+        if (u.bedrooms === filterBedrooms) score += 30;
+        else if (u.bedrooms > filterBedrooms) score += 10;
+      }
+      if (filterMaxRent) {
+        if (u.monthlyRentVND <= filterMaxRent) score += 25;
+        else score -= 30;
+      }
+      if (filterCar && u.hasCarParking) score += 20;
+      return { unit: u, score };
+    });
+
+    scored.sort((a, b) => b.score - a.score);
+    // Take sweet spot of 5 apartments
+    return scored.slice(0, 5).map(s => s.unit);
+  };
 
   // Guard against double submission and race condition from voice
   const isSubmittingRef = useRef<boolean>(false);
@@ -255,6 +341,16 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
     }
   };
 
+  // Trigger initial prompt if passed from apartment detail or comparison view
+  const lastAutoSentPromptRef = useRef<string>('');
+  useEffect(() => {
+    if (isOpen && initialPrompt && initialPrompt.trim() && initialPrompt !== lastAutoSentPromptRef.current) {
+      lastAutoSentPromptRef.current = initialPrompt;
+      handleSend(initialPrompt);
+      onClearInitialPrompt?.();
+    }
+  }, [isOpen, initialPrompt]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -274,7 +370,7 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
             maxHeight: 'calc(100vh - 5rem)',
             zIndex: 9999 
           }}
-          className="fixed rounded-[28px] overflow-hidden shadow-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col text-slate-900 dark:text-slate-100 font-sans select-none"
+          className="fixed rounded-[28px] overflow-hidden shadow-[0_12px_45px_rgba(0,0,0,0.18)] dark:shadow-[0_16px_50px_rgba(0,0,0,0.65)] border-2 border-slate-300 dark:border-slate-700 ring-1 ring-slate-400/25 bg-white dark:bg-slate-900 flex flex-col text-slate-900 dark:text-slate-100 font-sans select-none"
         >
           {/* Top Resizing Handle */}
           <div 
@@ -321,12 +417,12 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
                         ? 'bg-[#9FE870]/25 text-[#163300] dark:text-[#9FE870] dark:bg-[#9FE870]/20'
                         : 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300'
                     } text-[10px] font-bold`}>
-                      <span className={`w-1.5 h-1.5 rounded-full ${slmStatus.isAvailable ? 'bg-[#20A05A] dark:bg-[#9FE870]' : 'bg-emerald-500'} animate-pulse`} />
-                      <span>{slmStatus.isAvailable ? `Local SLM (${slmStatus.model || 'Active'})` : 'Hybrid Gateway'}</span>
+                      <span className={`w-1.5 h-1.5 rounded-full ${slmStatus.isAvailable ? 'bg-[#163300] dark:bg-[#9FE870]' : 'bg-emerald-500'} animate-pulse`} />
+                      <span>{slmStatus.isAvailable ? `Local Qwen (${slmStatus.model || '3B'})` : 'Offline RAG 1,700 Căn'}</span>
                     </span>
                   </div>
                   <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">
-                    {slmStatus.isAvailable ? 'Edge SLM On-Device • 1,700 Căn Hộ RAG' : 'Gemini Flash-Lite & RAG 1,700 Căn Hộ'}
+                    {slmStatus.isAvailable ? 'Local Edge SLM (Ollama:11434) • 100% Offline' : 'Hệ thống RAG Cục Bộ • 1,700 Căn Hộ'}
                   </p>
                 </div>
               </div>
@@ -350,44 +446,206 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
 
             {/* Chat Messages Body */}
             <div ref={messagesContainerRef} className="flex-1 p-3.5 overflow-y-auto space-y-3 font-sans text-xs">
-              {messages.map(msg => (
-                <div
-                  key={msg.id}
-                  className={`flex gap-2.5 ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  {msg.sender === 'ai' && (
-                    <div className="w-7 h-7 rounded-xl bg-[#9FE870]/25 text-[#163300] dark:text-[#9FE870] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
-                      <Bot className="w-4 h-4" />
-                    </div>
-                  )}
+              {messages.map(msg => {
+                const cleanDisplayMsg = msg.text
+                  .replace(/```json[\s\S]*?```/gi, '')
+                  .replace(/```[\s\S]*?```/gi, '')
+                  .replace(/\{\s*"action"[\s\S]*?\}/gi, '')
+                  .trim();
+                
+                const matchingApartments = msg.sender === 'ai' ? getMatchingApartments(msg) : [];
 
+                return (
                   <div
-                    className={`max-w-[88%] px-3.5 py-2.5 rounded-[20px] space-y-1.5 ${
-                      msg.sender === 'user'
-                        ? 'bg-[#163300] text-white font-medium rounded-tr-xs shadow-sm'
-                        : 'bg-[#F7FAF6] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-slate-800 dark:text-slate-200 rounded-tl-xs shadow-2xs'
-                    }`}
+                    key={msg.id}
+                    className={`flex gap-2.5 ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
-                    <p className="whitespace-pre-line leading-relaxed text-[12px]">
-                      {msg.text}
-                    </p>
-
-                    {/* Filter Action Chip */}
-                    {msg.suggestedAction && (
-                      <button
-                        onClick={() => {
-                          onApplyAiSearch(msg.suggestedAction!.queryText);
-                          onClose();
-                        }}
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#9FE870] text-[#163300] hover:bg-[#8ee05b] font-bold text-[10px] transition-colors mt-1.5 shadow-2xs cursor-pointer"
-                      >
-                        <Filter className="w-2.5 h-2.5" />
-                        <span>Áp dụng vào tìm kiếm</span>
-                      </button>
+                    {msg.sender === 'ai' && (
+                      <div className="w-7 h-7 rounded-xl bg-[#9FE870]/25 text-[#163300] dark:text-[#9FE870] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                        <Bot className="w-4 h-4" />
+                      </div>
                     )}
+
+                    <div
+                      className={`max-w-[94%] px-3.5 py-2.5 rounded-[22px] space-y-2 ${
+                        msg.sender === 'user'
+                          ? 'bg-[#163300] text-white font-medium rounded-tr-xs shadow-sm'
+                          : 'bg-[#EAEFE8] dark:bg-slate-800/95 border border-slate-300/80 dark:border-slate-600/80 text-slate-850 dark:text-slate-100 rounded-tl-xs shadow-xs'
+                      }`}
+                    >
+                      {cleanDisplayMsg && (
+                        <p className="whitespace-pre-line leading-relaxed text-[12.5px] sm:text-[13px]">
+                          {cleanDisplayMsg}
+                        </p>
+                      )}
+
+                      {/* Matching 3 to 5 Apartment Interactive Cards (Sweet spot: 5) */}
+                      {matchingApartments.length > 0 && (
+                        <div className="pt-2 space-y-2 select-none">
+                          <div className="flex items-center justify-between text-[11px] font-bold text-slate-500 dark:text-slate-400 px-0.5">
+                            <span>GỢI Ý CĂN HỘ PHÙ HỢP ({matchingApartments.length} CĂN)</span>
+                            <span className="text-[10px] text-[#163300] dark:text-[#9FE870] font-semibold">Bấm thẻ để xem chi tiết</span>
+                          </div>
+
+                          <div className="space-y-1.5">
+                            {matchingApartments.map(u => (
+                              <div
+                                key={u.id}
+                                onClick={() => {
+                                  onSelectUnit?.(u.id);
+                                  onClose();
+                                }}
+                                className="p-2 sm:p-2.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-700/80 hover:border-[#163300] dark:hover:border-[#9FE870] hover:shadow-md transition-all cursor-pointer flex items-center gap-2.5 sm:gap-3 group active:scale-[0.99]"
+                              >
+                                {/* Thumbnail Image */}
+                                <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-xl overflow-hidden shrink-0 bg-slate-100 dark:bg-slate-800 relative">
+                                  <img
+                                    src={(u.images && u.images[0]) || 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=300'}
+                                    alt={u.name || u.id}
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    loading="lazy"
+                                  />
+                                  <span className="absolute bottom-1 left-1 px-1 py-0.2 rounded-xs bg-black/70 text-[9px] font-bold text-white tabular-nums">
+                                    {u.id}
+                                  </span>
+                                </div>
+
+                                {/* Unit Specs & Details */}
+                                <div className="flex-1 min-w-0 space-y-0.5">
+                                  <div className="flex items-center justify-between gap-1">
+                                    <h4 className="font-bold text-xs text-slate-900 dark:text-white truncate group-hover:text-[#163300] dark:group-hover:text-[#9FE870] transition-colors">
+                                      {u.name || `Căn hộ ${u.id}`}
+                                    </h4>
+                                    <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#163300] dark:group-hover:text-[#9FE870] group-hover:translate-x-0.5 transition-all shrink-0" />
+                                  </div>
+                                  <div className="flex items-baseline gap-1.5">
+                                    <span className="font-black text-xs sm:text-sm text-[#163300] dark:text-[#9FE870] tabular-nums">
+                                      {(u.monthlyRentVND / 1000000).toFixed(1)} Tr/tháng
+                                    </span>
+                                    {u.trueCost?.totalMonthlyEstimatedVND && (
+                                      <span className="text-[10px] text-slate-400 dark:text-slate-500">
+                                        (True Cost ~{(u.trueCost.totalMonthlyEstimatedVND / 1000000).toFixed(1)} Tr)
+                                      </span>
+                                    )}
+                                  </div>
+                                  <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">
+                                    📍 {u.district}, {u.city}
+                                  </p>
+                                  <div className="flex items-center gap-1.5 flex-wrap pt-0.5 text-[10px]">
+                                    <span className="px-1.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium">
+                                      🛏️ {u.bedrooms} PN
+                                    </span>
+                                    <span className="px-1.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium">
+                                      🚿 {u.bathrooms} WC
+                                    </span>
+                                    <span className="px-1.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium">
+                                      📐 {u.sqm}m²
+                                    </span>
+                                    {u.hasCarParking && (
+                                      <span className="px-1.5 py-0.5 rounded-md bg-[#9FE870]/25 text-[#163300] dark:text-[#9FE870] font-semibold">
+                                        🚗 Đỗ ô tô
+                                      </span>
+                                    )}
+                                    {u.pcccReport?.inspectionCertificateStatus === 'certified' && (
+                                      <span className="px-1.5 py-0.5 rounded-md bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 font-medium">
+                                        🛡️ PCCC QCVN
+                                      </span>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Agentic Action Chips & Criteria Summary */}
+                      {msg.suggestedAction && (
+                        <div className="pt-2 space-y-2">
+                          {msg.suggestedAction.type === 'apply_filters' && (
+                            <div className="p-3 rounded-2xl bg-emerald-50/90 dark:bg-emerald-950/40 border border-emerald-200/90 dark:border-emerald-800/60 space-y-2.5">
+                              <div className="text-[11.5px] font-medium text-emerald-950 dark:text-emerald-200 flex flex-wrap items-center gap-1.5 leading-relaxed">
+                                <span className="font-bold text-emerald-800 dark:text-emerald-300">🔍 Tiêu chí áp dụng:</span>
+                                <span>{formatCriteriaSummary(msg.suggestedAction.payload)}</span>
+                              </div>
+                              <button
+                                onClick={() => {
+                                  onApplyAiSearch(msg.suggestedAction!.queryText);
+                                  onClose();
+                                }}
+                                className="w-full inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-[#163300] text-[#9FE870] hover:bg-[#204500] font-bold text-xs transition-all shadow-xs cursor-pointer active:scale-[0.99]"
+                              >
+                                <Filter className="w-3.5 h-3.5" />
+                                <span>Áp dụng vào bộ lọc tìm kiếm</span>
+                              </button>
+                            </div>
+                          )}
+
+                          {msg.suggestedAction.type === 'negotiate_price' && (
+                            <div className="p-3 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-700/60 text-[11px] space-y-2">
+                              <div className="font-bold text-amber-800 dark:text-amber-300 flex items-center gap-1.5">
+                                <Handshake className="w-3.5 h-3.5" />
+                                <span>Chiến Lược Đàm Phán Tiền Thuê</span>
+                              </div>
+                              <p className="text-amber-900 dark:text-amber-200 leading-relaxed font-medium">
+                                {msg.suggestedAction.payload?.strategy || 'Đề xuất ký hợp đồng 12 - 24 tháng hoặc thanh toán trước 3 - 6 tháng để nhận chiết khấu 5% - 10%'}
+                              </p>
+                              <button
+                                onClick={() => {
+                                  onApplyAiSearch(msg.suggestedAction!.queryText);
+                                  onClose();
+                                }}
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs transition-all cursor-pointer shadow-xs active:scale-95"
+                              >
+                                <span>Xem căn hộ & gửi đề xuất</span>
+                              </button>
+                            </div>
+                          )}
+
+                          {msg.suggestedAction.type === 'draft_contract' && (
+                            <button
+                              onClick={() => {
+                                onApplyAiSearch(msg.suggestedAction!.queryText);
+                                onClose();
+                              }}
+                              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#163300] text-[#9FE870] hover:bg-[#204500] font-bold text-xs transition-colors shadow-2xs cursor-pointer"
+                            >
+                              <FileText className="w-3 h-3" />
+                              <span>Mở Mẫu Hợp Đồng Thuê E-Sign</span>
+                            </button>
+                          )}
+
+                          {msg.suggestedAction.type === 'schedule_viewing' && (
+                            <button
+                              onClick={() => {
+                                onApplyAiSearch(msg.suggestedAction!.queryText);
+                                onClose();
+                              }}
+                              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-sky-600 text-white hover:bg-sky-700 font-bold text-xs transition-colors shadow-2xs cursor-pointer"
+                            >
+                              <Calendar className="w-3 h-3" />
+                              <span>Xác Nhận Đặt Lịch Xem Căn Hộ</span>
+                            </button>
+                          )}
+
+                          {msg.suggestedAction.type === 'calculate_true_cost' && (
+                            <button
+                              onClick={() => {
+                                onApplyAiSearch(msg.suggestedAction!.queryText);
+                                onClose();
+                              }}
+                              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-700 text-white hover:bg-emerald-800 font-bold text-xs transition-colors shadow-2xs cursor-pointer"
+                            >
+                              <DollarSign className="w-3 h-3" />
+                              <span>Bóc Tách Chi Phí True Cost Chi Tiết</span>
+                            </button>
+                          )}
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
 
               {/* Typing Loader Indicator */}
               {isLoading && (
@@ -396,7 +654,7 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
                     <Bot className="w-4 h-4" />
                   </div>
                   <div className="px-3 py-1.5 rounded-full bg-[#F7FAF6] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 flex items-center gap-2 text-xs shadow-2xs">
-                    <Loader2 className="w-3.5 h-3.5 text-[#20A05A] animate-spin" />
+                    <Loader2 className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870] animate-spin" />
                     <span className="font-medium">Haven AI đang phân tích dữ liệu...</span>
                   </div>
                 </div>

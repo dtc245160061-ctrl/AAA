@@ -143,6 +143,7 @@ export function App() {
   // Modals & Drawers
   const [isAiCopilotOpen, setIsAiCopilotOpen] = useState<boolean>(false);
   const [isUserAiAdvisorOpen, setIsUserAiAdvisorOpen] = useState<boolean>(false);
+  const [userAiAdvisorPrompt, setUserAiAdvisorPrompt] = useState<string>('');
   const [isQuickActionOpen, setIsQuickActionOpen] = useState<boolean>(false);
   const [bookingUnit, setBookingUnit] = useState<ApartmentUnit | null>(null);
   const [activeChatUnit, setActiveChatUnit] = useState<ApartmentUnit | null>(null);
@@ -299,11 +300,8 @@ export function App() {
 
   const handleInspectUnit = (unitId: string) => {
     setSelectedUnitId(unitId);
-    if (!isAdminView) {
-      navigateToModule('user_detail', unitId);
-    } else {
-      navigateToModule('units', unitId);
-    }
+    setIsAdminView(false);
+    navigateToModule('user_detail', unitId);
   };
 
   const handleNavigateSearch = (aiQuery?: string) => {
@@ -437,7 +435,7 @@ export function App() {
   const unreadMessagesCount = conversations.reduce((sum, c) => sum + c.unreadCount, 0);
 
   return (
-    <div className="h-screen w-screen overflow-hidden canvas-surface text-slate-200 flex relative selection:bg-emerald-500/20 selection:text-emerald-200 transition-colors duration-300">
+    <div className="h-screen w-screen overflow-hidden canvas-surface text-slate-200 flex relative selection:bg-[#163300] selection:text-[#9FE870] dark:selection:bg-[#9FE870] dark:selection:text-[#163300] transition-colors duration-300">
       {/* Glass-like cursor trail with refraction and blur (React Bits Pro) */}
       <GlassCursor />
 
@@ -558,6 +556,10 @@ export function App() {
               onOpenDepositEscrow={(u) => setActiveEscrowUnit(u)}
               onOpenVirtualTour={(u) => setActiveVirtualTourUnit(u)}
               onOpenLandlordProfile={(l) => setActiveLandlordProfile(l)}
+              onOpenAiAdvisorWithPrompt={(prompt) => {
+                setUserAiAdvisorPrompt(prompt);
+                setIsUserAiAdvisorOpen(true);
+              }}
               onShowToast={showToast}
             />
           )}
@@ -638,6 +640,7 @@ export function App() {
               onSelectUnit={handleInspectUnit}
               onUpdateUnitStatus={handleUpdateUnitStatus}
               onOpenQuickAction={() => setIsSmartListingOpen(true)}
+              onOpenVirtualTour={(u) => setActiveVirtualTourUnit(u)}
               onEditUnit={handleEditUnit}
               onDeleteUnit={handleDeleteUnit}
             />
@@ -722,12 +725,11 @@ export function App() {
                 setIsUserAiAdvisorOpen(prev => !prev);
               }
             }}
-            className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#163300] hover:bg-[#223D0D] text-[#9FE870] border-2 border-[#9FE870] shadow-xl transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
+            className="w-12 h-12 rounded-full bg-[#163300] hover:bg-[#223D0D] text-[#9FE870] border-2 border-[#9FE870] shadow-xl flex items-center justify-center p-0 transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
             title={isAdminView ? "Mở Haven AI Copilot Quản Trị" : "Haven AI — Tư Vấn Căn Hộ 24/7"}
             aria-label="Haven AI"
           >
             <Sparkles className="w-5 h-5 text-[#9FE870] shrink-0" />
-            <span className="font-extrabold text-xs tracking-wide">Haven AI</span>
           </button>
         </div>
       )}
@@ -737,10 +739,18 @@ export function App() {
         isOpen={isUserAiAdvisorOpen}
         onClose={() => setIsUserAiAdvisorOpen(false)}
         units={units}
+        initialPrompt={userAiAdvisorPrompt}
+        onClearInitialPrompt={() => setUserAiAdvisorPrompt('')}
         onApplyAiSearch={(queryText) => {
           setInitialAiQuery(queryText);
           setIsAdminView(false);
           setActiveModule('user_search');
+        }}
+        onSelectUnit={(unitId) => {
+          setSelectedUnitId(unitId);
+          setIsAdminView(false);
+          setActiveModule('user_detail');
+          setIsUserAiAdvisorOpen(false);
         }}
       />
 
@@ -785,7 +795,7 @@ export function App() {
               <h3 className="text-xl sm:text-2xl font-black text-[#163300] dark:text-white leading-tight">
                 Đặt Lịch Xem & Đăng Ký Thuê Căn Hộ
               </h3>
-              <p className="text-xs font-bold text-[#20A05A] dark:text-[#9FE870] mt-1">
+              <p className="text-xs font-bold text-[#163300] dark:text-[#9FE870] mt-1">
                 {bookingUnit.name || bookingUnit.id} • {(bookingUnit.monthlyRentVND / 1000000).toFixed(0)} Triệu/tháng
               </p>
             </div>

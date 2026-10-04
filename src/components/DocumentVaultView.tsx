@@ -82,8 +82,8 @@ export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
       <div className="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200/90 dark:border-slate-800 p-6 sm:p-8 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F8EC] text-[#163300] font-bold text-xs uppercase tracking-wider mb-2">
-              <FolderLock className="w-4 h-4 text-[#20A05A]" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F8EC] dark:bg-[#163300] text-[#163300] dark:text-[#9FE870] font-bold text-xs uppercase tracking-wider mb-2">
+              <FolderLock className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
               <span>Kho Lưu Trữ Tài Liệu Pháp Lý Số (Document Vault)</span>
             </div>
             <h1 className="text-2xl md:text-3xl font-bold text-[#163300] dark:text-white mt-1">
@@ -147,7 +147,7 @@ export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
           >
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-start gap-3">
-                <div className="p-3 rounded-2xl bg-[#E8F8EC] text-[#20A05A] shrink-0 mt-0.5">
+                <div className="p-3 rounded-2xl bg-[#E8F8EC] dark:bg-[#163300] text-[#163300] dark:text-[#9FE870] shrink-0 mt-0.5">
                   <FileText className="w-5 h-5" />
                 </div>
                 <div className="space-y-1">
@@ -155,7 +155,7 @@ export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
                     {doc.title}
                   </h4>
                   <p className="text-xs text-slate-500 flex items-center gap-1.5">
-                    <Building className="w-3.5 h-3.5 text-[#20A05A]" />
+                    <Building className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
                     <span>{doc.unitName} ({doc.unitId})</span>
                   </p>
                 </div>
@@ -179,7 +179,7 @@ export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
 
             <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-800">
               <span className="text-xs font-bold text-[#163300] dark:text-[#9FE870] flex items-center gap-1">
-                <ShieldCheck className="w-4 h-4 text-[#20A05A]" /> Đã xác thực bảo chứng sàn
+                <ShieldCheck className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" /> Đã xác thực bảo chứng sàn
               </span>
 
               <button
@@ -285,7 +285,7 @@ Văn bản này có giá trị pháp lý tương đương bản cứng theo quy 
               </div>
 
               <div className="p-6 rounded-[24px] border-2 border-dashed border-slate-200 dark:border-slate-700 text-center space-y-2 bg-[#F2F5F0]/50 dark:bg-slate-800/50">
-                <UploadCloud className="w-8 h-8 text-[#20A05A] mx-auto" />
+                <UploadCloud className="w-8 h-8 text-[#163300] dark:text-[#9FE870] mx-auto" />
                 <p className="text-slate-700 dark:text-slate-300 font-medium">Kéo thả file PDF hoặc ảnh scan vào đây</p>
                 <span className="text-[11px] text-slate-500 font-mono">Tự động mã hóa AES-256 khi lưu</span>
               </div>

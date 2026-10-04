@@ -183,14 +183,11 @@ export const Topbar: React.FC<TopbarProps> = ({
                 <span className="font-black text-base text-[#163300] dark:text-white tracking-tight">
                   HAVEN
                 </span>
-                <span className="px-2 py-0.5 rounded-full bg-[#9FE870]/25 text-[#163300] dark:text-[#9FE870] text-[9.5px] font-bold tracking-wide uppercase hidden lg:inline">
-                  {isAdminView ? 'Operations' : 'Residential'}
-                </span>
               </div>
             </button>
             <span className="text-slate-300 dark:text-slate-700">•</span>
-            <span className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 font-medium tabular-nums">
-              <Clock className="w-3.5 h-3.5 text-[#20A05A] dark:text-[#9FE870]" />
+            <span className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-neutral-400 font-medium tabular-nums bg-slate-100 dark:bg-neutral-800/80 px-2.5 py-1 rounded-full border border-slate-200/60 dark:border-neutral-700/60">
+              <Clock className="w-3.5 h-3.5 text-slate-400 dark:text-neutral-400" />
               <span>{time || '--:--'}</span>
               <span className="text-[10px] text-slate-400">UTC+7</span>
             </span>
@@ -198,14 +195,14 @@ export const Topbar: React.FC<TopbarProps> = ({
         </div>
 
         {/* Center: Global Search with Microphone Voice Input */}
-        <form onSubmit={handleSearchSubmit} className="flex-1 max-w-md mx-1.5 sm:mx-3">
+        <form onSubmit={handleSearchSubmit} className="flex-1 max-w-lg mx-2 sm:mx-4">
           <div className="relative flex items-center">
             <Search className="w-3.5 h-3.5 text-[#495E35] dark:text-emerald-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
-              placeholder={isVoiceListening ? "Đang lắng nghe bạn nói..." : (isAdminView ? "Tìm căn hộ, hợp đồng, cư dân..." : "Tìm thành phố, ngân sách... (Nhấn Enter)")}
+              placeholder={isVoiceListening ? "Đang lắng nghe..." : (isAdminView ? "Tìm căn hộ, hợp đồng, cư dân..." : "Tìm quận, mức giá, phòng ngủ... (Nhấn Enter)")}
               className="w-full pl-9 pr-16 py-2 text-xs sm:text-sm bg-white dark:bg-[#163300] border border-[#163300]/15 dark:border-[#9FE870]/30 rounded-full text-[#163300] dark:text-white placeholder-[#738565] dark:placeholder-emerald-200/60 focus:outline-none focus:ring-2 focus:ring-[#9FE870] transition-all font-sans shadow-xs"
             />
             {/* Topbar Action Buttons: Search & Voice */}
@@ -282,26 +279,26 @@ export const Topbar: React.FC<TopbarProps> = ({
             </div>
           )}
 
-          {/* Dynamic Action Buttons with Stable Width Container to Prevent Layout Shift */}
-          <div className="flex items-center justify-end gap-2 min-w-[155px] shrink-0">
+          {/* Dynamic Action Buttons with Locked Width Container to Prevent Any Layout Shift */}
+          <div className="flex items-center justify-end gap-2 w-[168px] shrink-0">
             {!isAdminView ? (
               <>
-                {/* Lifestyle Matchmaker AI (Consumer) - Wise Royal Violet Pill */}
+                {/* Gu Nhà Bạn (Consumer Lifestyle Matchmaker) - Wise Royal Violet Pill */}
                 {onOpenLifestyleMatchmaker && (
                   <button
                     onClick={onOpenLifestyleMatchmaker}
-                    className="h-8 flex items-center gap-1.5 px-3 text-xs font-bold text-[#431A7A] bg-[#F3E8FF] border border-[#8B5CF6]/30 rounded-full hover:bg-[#E9D5FF] transition-all shrink-0 hover:scale-105 active:scale-95 shadow-xs cursor-pointer"
-                    title="Khảo sát phong cách sống AI (Lifestyle Matchmaker)"
+                    className="h-8 flex items-center gap-1.5 px-3 text-xs font-bold text-[#431A7A] bg-[#F3E8FF] border border-[#8B5CF6]/30 rounded-full hover:bg-[#E9D5FF] transition-all shrink-0 active:scale-95 shadow-xs cursor-pointer"
+                    title="Khảo sát tìm gu nhà phù hợp"
                   >
                     <Compass className="w-3.5 h-3.5 text-[#8B5CF6]" />
-                    <span className="hidden sm:inline">Khảo Sát AI</span>
+                    <span className="hidden sm:inline">Gu Nhà Bạn</span>
                   </button>
                 )}
 
                 {/* Saved Units (Consumer) - Wise Terracotta Coral Pill */}
                 <button
                   onClick={onOpenSaved}
-                  className="h-8 flex items-center gap-1.5 px-3 text-xs font-bold text-[#8C1F08] bg-[#FFEAE5] border border-[#FF5436]/25 rounded-full hover:bg-[#FFD6CD] transition-all shrink-0 hover:scale-105 active:scale-95 cursor-pointer shadow-xs"
+                  className="h-8 flex items-center gap-1.5 px-3 text-xs font-bold text-[#8C1F08] bg-[#FFEAE5] border border-[#FF5436]/25 rounded-full hover:bg-[#FFD6CD] transition-all shrink-0 active:scale-95 cursor-pointer shadow-xs"
                   title="Căn hộ đã lưu"
                 >
                   <Bookmark className="w-3.5 h-3.5 fill-current text-[#FF5436]" />
@@ -313,7 +310,7 @@ export const Topbar: React.FC<TopbarProps> = ({
               onOpenQuickAction && (
                 <button
                   onClick={onOpenQuickAction}
-                  className="h-8 flex items-center gap-1.5 px-4 text-xs font-black text-[#163300] bg-[#9FE870] hover:bg-[#8CD85E] rounded-full transition-all shadow-xs shrink-0 cursor-pointer hover:scale-105 active:scale-95"
+                  className="h-8 flex items-center gap-1.5 px-4 text-xs font-black text-[#163300] bg-[#9FE870] hover:bg-[#8CD85E] rounded-full transition-all shadow-xs shrink-0 cursor-pointer active:scale-95"
                 >
                   <Plus className="w-3.5 h-3.5 text-[#163300]" />
                   <span>Tạo Mới</span>
@@ -354,10 +351,10 @@ export const Topbar: React.FC<TopbarProps> = ({
                     }`}
                   >
                     <div className="flex items-center gap-2.5">
-                      <Icon className="w-4 h-4 text-[#20A05A]" />
+                      <Icon className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
                       <span>{label}</span>
                     </div>
-                    {themeMode === mode && <span className="w-2 h-2 rounded-full bg-[#20A05A]" />}
+                    {themeMode === mode && <span className="w-2 h-2 rounded-full bg-[#163300] dark:bg-[#9FE870]" />}
                   </button>
                 ))}
 
@@ -403,9 +400,9 @@ export const Topbar: React.FC<TopbarProps> = ({
                       <span className="font-bold text-sm text-[#163300] dark:text-white truncate">
                         {currentUser?.name || 'Nguyễn An'}
                       </span>
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#20A05A] shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870] shrink-0" />
                     </div>
-                    <div className="text-[11px] font-bold text-[#20A05A] dark:text-[#9FE870] truncate">
+                    <div className="text-[11px] font-bold text-[#163300] dark:text-[#9FE870] truncate">
                       {isAdminView ? 'Ban Quản Trị Sàn' : (currentUser?.role || 'Hội Viên Cư Dân Prime')}
                     </div>
                     <div className="text-[11px] font-medium text-slate-500 dark:text-slate-400 truncate">
@@ -426,7 +423,7 @@ export const Topbar: React.FC<TopbarProps> = ({
                       className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-[#163300] dark:text-slate-200 hover:bg-[#F2F5F0] dark:hover:bg-slate-800 transition-colors text-left cursor-pointer"
                     >
                       <div className="flex items-center gap-2.5">
-                        <LogIn className="w-4 h-4 text-[#20A05A]" />
+                        <LogIn className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
                         <span>{currentUser ? 'Đổi Tài Khoản / Định Danh' : 'Đăng Nhập / Đăng Ký'}</span>
                       </div>
                       <span className="px-2 py-0.5 rounded-full bg-[#E8F8EC] text-[#163300] border border-[#9FE870] text-[10px] font-bold">
@@ -445,7 +442,7 @@ export const Topbar: React.FC<TopbarProps> = ({
                       className="w-full flex items-center justify-between px-3 py-2.5 rounded-2xl bg-[#E8F8EC] dark:bg-emerald-950/40 hover:bg-[#D4F4DA] text-[#163300] dark:text-[#9FE870] border border-[#9FE870]/40 transition-all text-left font-bold cursor-pointer"
                     >
                       <div className="flex items-center gap-2.5">
-                        <Shield className="w-4 h-4 text-[#20A05A]" />
+                        <Shield className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
                         <span>{isAdminView ? 'Chuyển Chế Độ Khách Thuê' : 'Chuyển Quản Trị Sàn'}</span>
                       </div>
                       <span className="px-2 py-0.5 rounded-full bg-[#163300] text-[#9FE870] text-[10px] font-bold">
@@ -535,7 +532,7 @@ export const Topbar: React.FC<TopbarProps> = ({
                     }`}
                   >
                     <div className="flex items-center gap-2 truncate">
-                      <UserCheck className="w-4 h-4 text-[#20A05A] shrink-0" />
+                      <UserCheck className="w-4 h-4 text-[#163300] dark:text-[#9FE870] shrink-0" />
                       <span className="truncate">dtc245160061@ictu.edu.vn</span>
                     </div>
                     <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#9FE870] text-[#163300] font-bold shrink-0">Thuê</span>

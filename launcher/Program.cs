@@ -9,6 +9,7 @@ namespace HavenLauncher
     static class Program
     {
         private const int Port = 5173;
+        private const int OllamaPort = 11434;
         private const string Url = "http://localhost:5173/";
         private const string ProjectDir = @"d:\HAVEN";
 
@@ -17,20 +18,29 @@ namespace HavenLauncher
         {
             try
             {
+                // 1. Ensure Local AI Engine (Ollama on port 11434) is running
+                if (!IsPortOpen(OllamaPort))
+                {
+                    StartOllama();
+                    for (int i = 0; i < 20; i++)
+                    {
+                        Thread.Sleep(300);
+                        if (IsPortOpen(OllamaPort)) break;
+                    }
+                }
+
+                // 2. Ensure Vite Web Server (port 5173) is running
                 if (!IsPortOpen(Port))
                 {
                     StartServer();
                     for (int i = 0; i < 20; i++)
                     {
                         Thread.Sleep(500);
-                        if (IsPortOpen(Port))
-                        {
-                            break;
-                        }
+                        if (IsPortOpen(Port)) break;
                     }
                 }
 
-                // Open default browser with HAVEN URL
+                // 3. Open default browser with HAVEN URL
                 Process.Start(new ProcessStartInfo
                 {
                     FileName = Url,
@@ -65,6 +75,33 @@ namespace HavenLauncher
             {
                 return false;
             }
+        }
+
+        static void StartOllama()
+        {
+            string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            string ollamaExe = Path.Combine(localAppData, @"Programs\Ollama\ollama.exe");
+            if (!File.Exists(ollamaExe))
+            {
+                ollamaExe = "ollama.exe";
+            }
+
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = ollamaExe,
+                Arguments = "serve",
+                WorkingDirectory = ProjectDir,
+                CreateNoWindow = true,
+                UseShellExecute = false,
+                WindowStyle = ProcessWindowStyle.Hidden
+            };
+            startInfo.EnvironmentVariables["OLLAMA_ORIGINS"] = "*";
+
+            try
+            {
+                Process.Start(startInfo);
+            }
+            catch { }
         }
 
         static void StartServer()

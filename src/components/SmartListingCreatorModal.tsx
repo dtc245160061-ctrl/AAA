@@ -68,7 +68,7 @@ export const SmartListingCreatorModal: React.FC<SmartListingCreatorModalProps> =
         {/* Header */}
         <div className="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-[#E8F8EC] text-[#20A05A] flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-2xl bg-[#E8F8EC] text-[#163300] dark:text-[#9FE870] flex items-center justify-center shrink-0">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
@@ -92,7 +92,7 @@ export const SmartListingCreatorModal: React.FC<SmartListingCreatorModalProps> =
         {step === 'upload' && (
           <div className="space-y-5 animate-in fade-in duration-200 text-xs">
             {/* Upload Box */}
-            <div className="p-8 rounded-[24px] border-2 border-dashed border-slate-300 dark:border-slate-700 bg-[#F2F5F0] dark:bg-slate-800/60 text-center space-y-3 cursor-pointer hover:border-[#20A05A] transition-colors">
+            <div className="p-8 rounded-[24px] border-2 border-dashed border-slate-300 dark:border-slate-700 bg-[#F2F5F0] dark:bg-slate-800/60 text-center space-y-3 cursor-pointer hover:border-[#163300] dark:hover:border-[#9FE870] transition-colors">
               <div className="w-12 h-12 rounded-2xl bg-[#9FE870] text-[#163300] flex items-center justify-center mx-auto shadow-xs">
                 <Upload className="w-6 h-6" />
               </div>
@@ -100,7 +100,7 @@ export const SmartListingCreatorModal: React.FC<SmartListingCreatorModalProps> =
                 <p className="text-[#163300] dark:text-white font-black text-sm">Tải lên 3-8 bức ảnh chụp thực tế căn hộ</p>
                 <p className="text-slate-500 dark:text-slate-400 text-xs mt-0.5">AI sẽ tự động nhận diện phòng khách, bếp, ban công và góc chụp</p>
               </div>
-              <span className="inline-block px-3 py-1 rounded-full bg-[#E8F8EC] text-[#20A05A] text-[11px] font-bold border border-[#20A05A]/20">
+              <span className="inline-block px-3 py-1 rounded-full bg-[#E8F8EC] text-[#163300] dark:text-[#9FE870] text-[11px] font-bold border border-[#9FE870]/20">
                 ✓ 5 ảnh mẫu đã sẵn sàng phân tích
               </span>
             </div>
@@ -164,7 +164,7 @@ export const SmartListingCreatorModal: React.FC<SmartListingCreatorModalProps> =
         {/* STEP 2: AI Loading Simulation */}
         {step === 'generating' && (
           <div className="py-16 text-center space-y-4 animate-in fade-in">
-            <RefreshCw className="w-12 h-12 text-[#20A05A] mx-auto animate-spin" />
+            <RefreshCw className="w-12 h-12 text-[#163300] dark:text-[#9FE870] mx-auto animate-spin" />
             <h4 className="text-xl font-black text-[#163300] dark:text-white">AI Đang Phân Tích Hình Ảnh & Thị Trường...</h4>
             <p className="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto leading-relaxed">
               Đang đối chiếu mức giá cho thuê trung bình tại {district}, bóc tách chi phí điện nước và lập tiêu đề chuẩn SEO.
@@ -176,12 +176,12 @@ export const SmartListingCreatorModal: React.FC<SmartListingCreatorModalProps> =
         {step === 'review' && (
           <div className="space-y-5 animate-in fade-in duration-200 text-xs">
             {/* AI Optimization Banner */}
-            <div className="p-4 rounded-2xl bg-[#E8F8EC] border border-[#20A05A]/30 flex items-center justify-between gap-3">
+            <div className="p-4 rounded-2xl bg-[#E8F8EC] border border-[#9FE870]/30 flex items-center justify-between gap-3">
               <div className="flex items-center gap-2 text-[#163300] font-black">
-                <CheckCircle2 className="w-4 h-4 text-[#20A05A] shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870] shrink-0" />
                 <span>Điểm Chất Lượng Tin Đăng: 96/100 (Tối Ưu Xuất Sắc)</span>
               </div>
-              <span className="text-[11px] text-[#20A05A] font-bold">Ước tính tăng +45% lượt liên hệ</span>
+              <span className="text-[11px] text-[#163300] dark:text-[#9FE870] font-bold">Ước tính tăng +45% lượt liên hệ</span>
             </div>
 
             {/* Generated Title */}

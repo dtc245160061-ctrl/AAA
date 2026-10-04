@@ -61,7 +61,7 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
     : `Căn hộ ${unit.id}`;
 
   return (
-    <div className="fixed inset-0 z-[99999] flex items-center justify-center p-2 sm:p-4 bg-slate-950/60 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-[99999] flex items-center justify-center p-2 sm:p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
       <div 
         className={`relative w-full rounded-[32px] border border-slate-200/90 dark:border-slate-800 overflow-hidden shadow-2xl flex flex-col bg-white dark:bg-slate-900 transition-all duration-300 ${
           isFullscreen 
@@ -72,7 +72,7 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
         {/* Top Header Bar */}
         <div className="p-3.5 sm:p-4 border-b border-slate-100 dark:border-slate-800 bg-[#F2F5F0]/60 dark:bg-slate-900/60 flex items-center justify-between z-20 shrink-0 gap-3">
           <div className="flex items-center gap-3 min-w-0">
-            <div className="w-10 h-10 rounded-2xl bg-[#E8F8EC] text-[#20A05A] flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-2xl bg-[#E8F8EC] dark:bg-[#163300] text-[#163300] dark:text-[#9FE870] flex items-center justify-center shrink-0">
               <Box className="w-5 h-5" />
             </div>
             <div className="min-w-0">
@@ -80,8 +80,8 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
                 <h3 className="font-black text-sm sm:text-base text-[#163300] dark:text-white truncate max-w-[220px] sm:max-w-xs md:max-w-md">
                   {cleanTitle}
                 </h3>
-                <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#E8F8EC] text-[#163300] dark:text-[#9FE870] text-[10px] font-bold shrink-0">
-                  <Sparkles className="w-3 h-3 text-[#20A05A]" />
+                <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#E8F8EC] text-[#163300] dark:bg-[#163300] dark:text-[#9FE870] text-[10px] font-bold shrink-0">
+                  <Sparkles className="w-3 h-3 text-[#163300] dark:text-[#9FE870]" />
                   <span>3D Twin Thực Địa</span>
                 </span>
               </div>
@@ -154,12 +154,12 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
               {/* Natural Professional HUD on Top */}
               <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none z-30">
                 <div className="flex items-center gap-2 bg-white/90 dark:bg-slate-900/90 px-3.5 py-2 rounded-full border border-slate-200 dark:border-slate-700 text-xs text-[#163300] dark:text-white pointer-events-auto backdrop-blur-md shadow-md font-bold">
-                  <CheckCircle2 className="w-4 h-4 text-[#20A05A] shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870] shrink-0" />
                   <span>Không gian thực tế căn hộ</span>
                   <span className="text-[#738565] dark:text-slate-400 hidden sm:inline font-normal">• Quét 3D Photogrammetry</span>
                 </div>
 
-                <div className="hidden md:flex items-center gap-2 bg-white/90 dark:bg-slate-900/90 px-3.5 py-2 rounded-full border border-slate-200 dark:border-slate-700 text-xs text-[#20A05A] pointer-events-auto backdrop-blur-md shadow-md font-bold">
+                <div className="hidden md:flex items-center gap-2 bg-white/90 dark:bg-slate-900/90 px-3.5 py-2 rounded-full border border-slate-200 dark:border-slate-700 text-xs text-[#163300] dark:text-[#9FE870] pointer-events-auto backdrop-blur-md shadow-md font-bold">
                   <Ruler className="w-3.5 h-3.5" />
                   <span>Hỗ trợ đo thước laser 3D trên tường</span>
                 </div>
@@ -170,7 +170,7 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
                 <div className="bg-white/90 dark:bg-slate-900/90 px-3.5 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-slate-200 pointer-events-auto backdrop-blur-md shadow-md font-medium">
                   <span>Bấm vào sàn nhà để di chuyển • Xoay 360° • Xem Floorplan / Dollhouse ở thanh công cụ góc dưới</span>
                 </div>
-                <div className="hidden sm:flex items-center gap-1.5 bg-white/90 dark:bg-slate-900/90 px-3.5 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 text-[#20A05A] pointer-events-auto backdrop-blur-md shadow-md font-bold">
+                <div className="hidden sm:flex items-center gap-1.5 bg-white/90 dark:bg-slate-900/90 px-3.5 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-[#9FE870] pointer-events-auto backdrop-blur-md shadow-md font-bold">
                   <ShieldCheck className="w-3.5 h-3.5" />
                   <span>Đã xác minh không gian thực địa 100%</span>
                 </div>
@@ -252,15 +252,15 @@ export const VirtualTourModal: React.FC<VirtualTourModalProps> = ({
               {/* Bottom Street View & Neighborhood Context */}
               <div className="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-slate-900/95 p-3 rounded-[24px] border border-slate-200 dark:border-slate-700 backdrop-blur-md text-xs text-[#163300] dark:text-slate-200 grid grid-cols-1 sm:grid-cols-3 gap-2 z-20 shadow-lg">
                 <div className="p-2.5 rounded-xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 flex items-center gap-2 font-medium">
-                  <ShieldCheck className="w-4 h-4 text-[#20A05A] shrink-0" />
+                  <ShieldCheck className="w-4 h-4 text-[#163300] dark:text-[#9FE870] shrink-0" />
                   <span>Đường vào: Ô tô tránh nhau thoải mái, có chỗ đỗ ngầm</span>
                 </div>
                 <div className="p-2.5 rounded-xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 flex items-center gap-2 font-medium">
-                  <Info className="w-4 h-4 text-sky-500 shrink-0" />
+                  <Info className="w-4 h-4 text-[#2570EB] shrink-0" />
                   <span>Ngập úng thực địa: An toàn tuyệt đối (Độ dốc thoát nước tốt)</span>
                 </div>
                 <div className="p-2.5 rounded-xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 flex items-center gap-2 font-medium">
-                  <Navigation className="w-4 h-4 text-amber-500 shrink-0" />
+                  <Navigation className="w-4 h-4 text-[#7A5200] dark:text-[#FFC83B] shrink-0" />
                   <span>Bán kính 500m: Trạm xe buýt/metro, siêu thị tiện lợi 24/7</span>
                 </div>
               </div>

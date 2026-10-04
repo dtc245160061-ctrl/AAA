@@ -138,7 +138,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   {isAdminView ? 'HAVEN OPS' : 'HAVEN'}
                 </h1>
                 <div className="flex items-center gap-1 text-[9.5px] font-semibold text-slate-500 dark:text-slate-400 truncate">
-                  <span className="text-[#20A05A] dark:text-[#9FE870] font-bold">
+                  <span className="text-[#163300] dark:text-[#9FE870] font-bold">
                     {isAdminView ? 'QUẢN TRỊ' : 'RESIDENTIAL'}
                   </span>
                   <span>•</span>

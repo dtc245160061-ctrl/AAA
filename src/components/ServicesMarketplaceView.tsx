@@ -59,11 +59,11 @@ export const ServicesMarketplaceView: React.FC<ServicesMarketplaceViewProps> = (
 
   const getIcon = (iconName: string) => {
     switch (iconName) {
-      case 'Sparkles': return <Sparkles className="w-5 h-5 text-emerald-400" />;
-      case 'ShieldCheck': return <ShieldCheck className="w-5 h-5 text-sky-400" />;
-      case 'Truck': return <Truck className="w-5 h-5 text-amber-400" />;
-      case 'KeyRound': return <KeyRound className="w-5 h-5 text-purple-400" />;
-      default: return <Shield className="w-5 h-5 text-emerald-400" />;
+      case 'Sparkles': return <Sparkles className="w-5 h-5 text-[#163300] dark:text-[#9FE870]" />;
+      case 'ShieldCheck': return <ShieldCheck className="w-5 h-5 text-[#163300] dark:text-[#9FE870]" />;
+      case 'Truck': return <Truck className="w-5 h-5 text-[#2570EB]" />;
+      case 'KeyRound': return <KeyRound className="w-5 h-5 text-[#7A5200] dark:text-[#FFC83B]" />;
+      default: return <Shield className="w-5 h-5 text-[#163300] dark:text-[#9FE870]" />;
     }
   };
 
@@ -265,7 +265,7 @@ export const ServicesMarketplaceView: React.FC<ServicesMarketplaceViewProps> = (
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-5">
           <div>
             <div className="flex items-center gap-2 text-xs font-bold text-[#163300] dark:text-[#9FE870] uppercase tracking-wider">
-              <Calendar className="w-4 h-4 text-[#20A05A]" />
+              <Calendar className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
               <span>Nhật Ký Dịch Vụ Cư Dân (Service Activity Log)</span>
             </div>
             <h2 className="text-xl font-bold text-[#163300] dark:text-white mt-1">
@@ -323,7 +323,7 @@ export const ServicesMarketplaceView: React.FC<ServicesMarketplaceViewProps> = (
                         ? 'bg-[#E8F8EC] text-[#163300] border border-[#9FE870]'
                         : 'bg-[#FFF8E6] text-[#9A6700] border border-[#FFC83B]'
                     }`}>
-                      <span className={`w-1.5 h-1.5 rounded-full ${ord.status === 'confirmed' ? 'bg-[#20A05A]' : 'bg-[#FFC83B]'}`} />
+                      <span className={`w-1.5 h-1.5 rounded-full ${ord.status === 'confirmed' ? 'bg-[#163300] dark:bg-[#9FE870]' : 'bg-[#FFC83B]'}`} />
                       <span>{ord.status === 'confirmed' ? 'Đã Xác Nhận' : 'Chờ Xử Lý'}</span>
                     </span>
                   </td>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, ArrowRight, Bookmark, CheckCircle2, Zap, CloudRain, Car, VolumeX, Sparkles, ArrowDown } from 'lucide-react';
+import { MapPin, ArrowRight, Bookmark, CheckCircle2, Zap, CloudRain, Car, VolumeX, Sparkles } from 'lucide-react';
 import type { ApartmentUnit } from '../../types/apartment';
 import { calculateMatchScore } from '../../services/aiAdvisorService';
 import { SmartImage } from '../common/SmartImage';
@@ -128,7 +128,7 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
         <div className="space-y-1.5">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F8EC] text-[#163300] font-bold text-xs uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5 text-[#20A05A]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
             <span>Căn Hộ Tuyển Chọn & Minh Chứng Môi Trường</span>
           </div>
           <h2 className="text-2xl md:text-3xl font-bold text-[#163300] dark:text-white tracking-tight">
@@ -140,7 +140,7 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
         </div>
         <button
           onClick={onNavigateSearch}
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#20A05A] hover:text-[#163300] dark:hover:text-[#9FE870] transition-colors shrink-0 self-start sm:self-auto cursor-pointer"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#163300] dark:text-[#9FE870] hover:underline transition-colors shrink-0 self-start sm:self-auto cursor-pointer"
         >
           <span>Xem Tất Cả ({totalCount})</span>
           <ArrowRight className="w-3.5 h-3.5" />
@@ -163,17 +163,16 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-40px' }}
-              whileHover={{ y: -4, transition: { duration: 0.2, ease: 'easeOut' } }}
               onClick={() => onSelectUnitFocal(unit.id, cardConfig.primary, index)}
               onMouseEnter={() => onSelectUnitFocal(unit.id, cardConfig.primary, index)}
               onFocus={() => onSelectUnitFocal(unit.id, cardConfig.primary, index)}
               tabIndex={0}
               role="button"
               aria-label={`Xem dữ liệu xác thực của căn hộ ${unit.name || unit.id}`}
-              className={`group relative rounded-[28px] cursor-pointer transition-all duration-300 overflow-visible bg-white dark:bg-slate-900 border shadow-sm ${
+              className={`wise-card-hover group relative rounded-[28px] cursor-pointer overflow-visible bg-white dark:bg-slate-900 border shadow-sm ${
                 isFocal
                   ? 'border-2 border-[#163300] dark:border-[#9FE870] ring-4 ring-[#9FE870]/20 shadow-md'
-                  : 'border-slate-200/90 dark:border-slate-800 hover:border-[#9FE870] hover:shadow-md'
+                  : 'border-slate-200/90 dark:border-slate-800 hover:border-[#9FE870]'
               }`}
             >
               <div className="relative z-10 w-full h-full rounded-[26px] flex flex-col justify-between overflow-visible">
@@ -190,7 +189,7 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
                     alt={unit.name || unit.id}
                     width={600}
                     quality={75}
-                    className="transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
 
@@ -278,7 +277,7 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
                         } else if (feat.key === 'parking') {
                           pillClass = "bg-[#FFEAE5] text-[#8C1F08] border-[#FF5436]/30 hover:border-[#FF5436]";
                         } else if (feat.key === 'quiet') {
-                          pillClass = "bg-[#E8F8EC] text-[#163300] border-[#20A05A]/30 hover:border-[#20A05A]";
+                          pillClass = "bg-[#E8F8EC] text-[#163300] border-[#9FE870]/40 hover:border-[#163300]";
                         }
 
                         if (isFeatureActive) {
@@ -312,7 +311,7 @@ export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({
                   {/* AI Insight Snippet in Wise Soft Tint Card */}
                   <div className="p-3 rounded-2xl text-xs space-y-1 bg-[#E2F7D4]/60 dark:bg-[#163300]/50 border border-[#9FE870]/40">
                     <div className="flex items-center gap-1.5 text-[#163300] dark:text-[#9FE870] font-bold text-xs">
-                      <CheckCircle2 className="w-3.5 h-3.5 shrink-0 text-[#20A05A]" />
+                      <CheckCircle2 className="w-3.5 h-3.5 shrink-0 text-[#163300] dark:text-[#9FE870]" />
                       <span>Lợi Ích Sống Nổi Bật</span>
                     </div>
                     <p className="line-clamp-2 leading-relaxed text-[#495E35] dark:text-emerald-200/90 text-xs font-medium">

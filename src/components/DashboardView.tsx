@@ -32,8 +32,6 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   // Metric Computations
   const totalUnits = units.length;
   const occupiedUnits = units.filter(u => u.status === 'occupied').length;
-  const vacantUnits = units.filter(u => u.status === 'vacant').length;
-  const reservedUnits = units.filter(u => u.status === 'reserved').length;
   const occupancyRate = totalUnits > 0 ? ((occupiedUnits / totalUnits) * 100).toFixed(1) : '0';
 
   const pendingLeads = leads.filter(l => l.status === 'new' || l.status === 'viewing_scheduled');
@@ -55,7 +53,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#E2F7D4] dark:bg-[#163300] border border-[#9FE870]/40 text-[#163300] dark:text-[#9FE870] text-xs font-bold">
-              <Sparkles className="w-3.5 h-3.5 text-[#20A05A]" />
+              <Sparkles className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
               <span>Hệ Thống Quản Trị Cho Thuê Căn Hộ HAVEN</span>
             </div>
             <h1 className="text-3xl lg:text-4xl font-black text-[#163300] dark:text-white tracking-tight">

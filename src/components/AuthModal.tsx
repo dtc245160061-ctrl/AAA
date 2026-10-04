@@ -321,14 +321,14 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         {/* Top Header Bar */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-slate-200/80 dark:border-slate-800 bg-[#F2F5F0]/60 dark:bg-slate-850 shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-[#E8F8EC] text-[#20A05A] flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-2xl bg-[#E8F8EC] text-[#163300] dark:text-[#9FE870] flex items-center justify-center shrink-0">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
               <h3 className="text-xl font-black text-[#163300] dark:text-white leading-tight">
                 HAVEN Sanctuary Access
               </h3>
-              <p className="text-xs font-semibold text-[#20A05A] dark:text-[#9FE870]">
+              <p className="text-xs font-semibold text-[#163300] dark:text-[#9FE870]">
                 Định danh cư dân & khách hàng bảo mật
               </p>
             </div>
@@ -446,7 +446,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           <div className="space-y-2 p-3.5 rounded-[22px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-[#163300] dark:text-[#9FE870] flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-[#20A05A]" />
+                <Sparkles className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
                 Tài khoản Demo Nhanh (Mật khẩu: 12345678):
               </span>
               <span className="text-[10px] text-slate-400 font-medium">Bấm để điền & lưu</span>
@@ -460,10 +460,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                     setPassword('12345678');
                     onShowToast('info', 'Đã nạp tài khoản Admin', 'Mật khẩu mẫu: 12345678. Nhấn "Xác Nhận Đăng Nhập" để trình duyệt ghi nhớ mật khẩu.');
                   }}
-                  className="flex items-center gap-2 text-left min-w-0 flex-1 hover:text-[#20A05A] cursor-pointer"
+                  className="flex items-center gap-2 text-left min-w-0 flex-1 hover:text-[#2570EB] cursor-pointer"
                   title="Bấm để điền zeecuchuoi@gmail.com & 12345678 vào ô nhập"
                 >
-                  <Crown className="w-4 h-4 text-[#20A05A] shrink-0" />
+                  <Crown className="w-4 h-4 text-[#163300] dark:text-[#9FE870] shrink-0" />
                   <div className="min-w-0">
                     <div className="text-xs font-bold truncate">zeecuchuoi@gmail.com</div>
                     <div className="text-[10px] text-slate-400 font-medium">Admin • 12345678</div>
@@ -487,10 +487,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                     setPassword('12345678');
                     onShowToast('info', 'Đã nạp tài khoản Khách thuê', 'Mật khẩu mẫu: 12345678. Nhấn "Xác Nhận Đăng Nhập" để trình duyệt ghi nhớ mật khẩu.');
                   }}
-                  className="flex items-center gap-2 text-left min-w-0 flex-1 hover:text-[#20A05A] cursor-pointer"
+                  className="flex items-center gap-2 text-left min-w-0 flex-1 hover:text-[#2570EB] cursor-pointer"
                   title="Bấm để điền dtc245160061@ictu.edu.vn & 12345678 vào ô nhập"
                 >
-                  <UserCheck className="w-4 h-4 text-[#20A05A] shrink-0" />
+                  <UserCheck className="w-4 h-4 text-[#163300] dark:text-[#9FE870] shrink-0" />
                   <div className="min-w-0">
                     <div className="text-xs font-bold truncate">dtc245160061@ictu...</div>
                     <div className="text-[10px] text-slate-400 font-medium">Khách thuê • 12345678</div>
@@ -545,7 +545,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                       setPassword('12345678');
                       onShowToast('info', 'Mật khẩu mẫu', 'Đã tự động điền mật khẩu demo 12345678.');
                     }}
-                    className="text-xs text-[#20A05A] dark:text-[#9FE870] font-bold hover:underline cursor-pointer"
+                    className="text-xs text-[#163300] dark:text-[#9FE870] font-bold hover:underline cursor-pointer"
                   >
                     Điền 12345678
                   </button>
@@ -670,7 +670,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                   <button
                     type="button"
                     onClick={handleAutoFillOtp}
-                    className="text-[#20A05A] dark:text-[#9FE870] font-bold hover:underline flex items-center gap-1 cursor-pointer"
+                    className="text-[#163300] dark:text-[#9FE870] font-bold hover:underline flex items-center gap-1 cursor-pointer"
                   >
                     <KeyRound className="w-3.5 h-3.5" />
                     <span>Điền nhanh mã Demo (888999)</span>

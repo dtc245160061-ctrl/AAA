@@ -112,7 +112,7 @@ export const UserCompareView: React.FC<UserCompareViewProps> = ({
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs text-[#20A05A] uppercase tracking-wider font-extrabold">
+          <div className="flex items-center gap-2 text-xs text-[#163300] dark:text-[#9FE870] uppercase tracking-wider font-extrabold">
             <Layers className="w-4 h-4" />
             <span>So Sánh Đa Chiều (Radar Chart)</span>
           </div>
@@ -128,7 +128,7 @@ export const UserCompareView: React.FC<UserCompareViewProps> = ({
           {savedUnits.length < 2 && (
             <button
               onClick={handleLoadSampleUnits}
-              className="px-4 py-2 rounded-full bg-[#E8F8EC] border border-[#20A05A]/30 text-[#163300] dark:text-[#9FE870] text-xs font-bold hover:bg-[#d5f3dc] transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
+              className="px-4 py-2 rounded-full bg-[#E8F8EC] border border-[#9FE870]/30 text-[#163300] dark:text-[#9FE870] text-xs font-bold hover:bg-[#d5f3dc] transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Nạp 3 Căn Mẫu So Sánh</span>
@@ -147,7 +147,7 @@ export const UserCompareView: React.FC<UserCompareViewProps> = ({
 
       {savedUnits.length === 0 ? (
         <div className="p-12 text-center rounded-[32px] border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-4 shadow-sm">
-          <Sparkles className="w-10 h-10 text-[#20A05A] mx-auto animate-pulse" />
+          <Sparkles className="w-10 h-10 text-[#163300] dark:text-[#9FE870] mx-auto animate-pulse" />
           <h3 className="text-xl font-black text-[#163300] dark:text-white">Chưa Có Căn Hộ Nào Trong Mục So Sánh</h3>
           <p className="text-sm text-[#495E35] dark:text-slate-400 max-w-md mx-auto font-medium">
             Hãy bấm vào biểu tượng Bookmark (Lưu) ở bất kỳ căn hộ nào bạn thích hoặc bấm nạp 3 căn mẫu có sẵn bên dưới.
@@ -175,7 +175,7 @@ export const UserCompareView: React.FC<UserCompareViewProps> = ({
             <div className="lg:col-span-5 p-6 rounded-[28px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 space-y-4 shadow-sm">
               <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
                 <h3 className="text-base font-black text-[#163300] dark:text-white flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-[#20A05A]" />
+                  <Sparkles className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
                   <span>Biểu Đồ Radar Đa Chiều</span>
                 </h3>
                 <span className="text-xs font-bold text-[#738565] dark:text-slate-400">{savedUnits.length} Căn hộ</span>
@@ -271,7 +271,7 @@ export const UserCompareView: React.FC<UserCompareViewProps> = ({
             <div className="lg:col-span-7 rounded-[28px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-6 md:p-8 space-y-4 shadow-sm flex flex-col justify-between">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-xs text-[#20A05A] uppercase tracking-wider font-extrabold">
+                  <div className="flex items-center gap-2 text-xs text-[#163300] dark:text-[#9FE870] uppercase tracking-wider font-extrabold">
                     <Sparkles className="w-4 h-4" />
                     <span>Trí Tuệ Quyết Định HAVEN AI</span>
                   </div>
@@ -288,17 +288,17 @@ export const UserCompareView: React.FC<UserCompareViewProps> = ({
                 </h2>
 
                 {aiComparison ? (
-                  <div className="p-5 rounded-2xl bg-[#E8F8EC] dark:bg-emerald-950/30 border border-[#20A05A]/30 dark:border-emerald-500/30 space-y-3 animate-in fade-in duration-300">
+                  <div className="p-5 rounded-2xl bg-[#E8F8EC] dark:bg-emerald-950/30 border border-[#9FE870]/30 dark:border-emerald-500/30 space-y-3 animate-in fade-in duration-300">
                     <h4 className="font-black text-lg text-[#163300] dark:text-[#9FE870]">{aiComparison.headline}</h4>
                     <p className="text-xs text-[#2D4A1D] dark:text-slate-200 font-medium leading-relaxed">{aiComparison.reasoning}</p>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-[#20A05A]/20 text-xs">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-[#9FE870]/20 text-xs">
                       {aiComparison.tradeOffs.map(item => (
                         <div key={item.unitId} className="p-3.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 space-y-1.5 shadow-xs">
                           <span className="font-bold text-[#163300] dark:text-white truncate block">{item.unitName}</span>
                           <div className="space-y-1 text-[11px] font-medium">
                             {item.pros.slice(0, 2).map((p, idx) => (
-                              <div key={idx} className="flex items-center gap-1 text-[#20A05A]">
+                              <div key={idx} className="flex items-center gap-1 text-[#163300] dark:text-[#9FE870]">
                                 <Check className="w-3 h-3 shrink-0 stroke-[3]" />
                                 <span>{p}</span>
                               </div>
@@ -323,8 +323,8 @@ export const UserCompareView: React.FC<UserCompareViewProps> = ({
                 )}
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-[#E8F8EC] dark:bg-emerald-950/20 border border-[#20A05A]/30 text-xs font-semibold text-[#163300] dark:text-emerald-300 flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#20A05A] shrink-0" />
+              <div className="p-3.5 rounded-2xl bg-[#E8F8EC] dark:bg-emerald-950/20 border border-[#9FE870]/30 text-xs font-semibold text-[#163300] dark:text-emerald-300 flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870] shrink-0" />
                 <span>Toàn bộ chi phí điện, nước, phí quản lý & gửi xe đã được chuẩn hóa so sánh chính xác.</span>
               </div>
             </div>
@@ -356,7 +356,7 @@ export const UserCompareView: React.FC<UserCompareViewProps> = ({
                 {/* 1. True Cost Row */}
                 <tr className="bg-[#E8F8EC]/50 dark:bg-emerald-950/20 font-bold">
                   <td className="p-4 text-[#163300] dark:text-emerald-300 flex items-center gap-1.5 font-black">
-                    <Calculator className="w-4 h-4 text-[#20A05A]" /> Tổng Chi Phí Thật / Tháng
+                    <Calculator className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" /> Tổng Chi Phí Thật / Tháng
                   </td>
                   {savedUnits.map(u => (
                     <td key={u.id} className="p-4 text-[#163300] dark:text-[#9FE870] text-base font-black tabular-nums">
@@ -382,7 +382,7 @@ export const UserCompareView: React.FC<UserCompareViewProps> = ({
                   {savedUnits.map(u => (
                     <td key={u.id} className="p-4">
                       {u.verificationLevel === 'full_ownership_verified' ? (
-                        <span className="text-[#20A05A] flex items-center gap-1 font-bold">
+                        <span className="text-[#163300] dark:text-[#9FE870] flex items-center gap-1 font-bold">
                           <ShieldCheck className="w-4 h-4" /> Cấp 3: Sổ đỏ & Ảnh thật
                         </span>
                       ) : (
@@ -415,7 +415,7 @@ export const UserCompareView: React.FC<UserCompareViewProps> = ({
                   <td className="p-4 text-[#738565] dark:text-slate-400 font-semibold">Rủi Ro Ngập Mùa Mưa</td>
                   {savedUnits.map(u => (
                     <td key={u.id} className="p-4">
-                      <span className={u.floodingRisk === 'Low' ? 'text-[#20A05A] font-bold' : 'text-amber-600 dark:text-amber-400 font-bold'}>
+                      <span className={u.floodingRisk === 'Low' ? 'text-[#163300] dark:text-[#9FE870] font-bold' : 'text-amber-600 dark:text-amber-400 font-bold'}>
                         {u.floodingRisk === 'Low' ? 'Không ngập (Cao ráo)' : 'Trung bình (Đọng nước)'}
                       </span>
                     </td>

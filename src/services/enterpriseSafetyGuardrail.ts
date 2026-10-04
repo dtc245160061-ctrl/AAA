@@ -18,6 +18,7 @@ export type SafetyCategory =
 export type UserIntent =
   | 'GREETING_CHITCHAT'
   | 'GRATITUDE_CLOSURE'
+  | 'GENERAL_CONVERSATION'
   | 'PROPERTY_SEARCH'
   | 'PROPERTY_INQUIRY'
   | 'POLICY_ESCROW'
@@ -151,54 +152,31 @@ export function evaluateEnterpriseSafety(query: string, roleMode: 'consumer' | '
     }
   }
 
-  // 3. Layer 2: Intent Classification - Greeting & Chitchat
-  // Check if the query is primarily a greeting
-  const cleanTokens = normalizedNoAccents.replace(/[^\w\s]/g, '').trim();
-  const isDirectGreeting = GREETING_WORDS.some(gw => {
-    return cleanTokens === gw || 
-           cleanTokens.startsWith(gw + ' ') || 
-           cleanTokens.endsWith(' ' + gw) ||
-           cleanTokens.includes(gw + ' ban') ||
-           cleanTokens.includes(gw + ' nhe') ||
-           cleanTokens.includes(gw + ' nha');
-  });
+  // 3. Layer 2: Intent Classification - Prioritize Domain-Specific Real Estate & Operational Intents
 
-  const isLifestyleChitChat = 
-    cleanTokens.includes('lam nghe gi') || cleanTokens.includes('lam nghe fgif') || cleanTokens.includes('nghe gi') || cleanTokens.includes('cong viec cua ban') ||
-    cleanTokens.includes('song o dau') || cleanTokens.includes('ban o dau') || cleanTokens.includes('o dau nhi') || cleanTokens.includes('nha o dau') || cleanTokens.includes('que o dau') || cleanTokens.includes('que quan') ||
-    cleanTokens.includes('an gi') || cleanTokens.includes('mua lanh') || cleanTokens.includes('troi mua') || cleanTokens.includes('troi lanh') || cleanTokens.includes('uong gi') || cleanTokens.includes('mon gi ngon') ||
-    cleanTokens.includes('may tuoi') || cleanTokens.includes('bao nhieu tuoi') || cleanTokens.includes('nguoi yeu') || cleanTokens.includes('co bo chua') ||
-    cleanTokens.includes('buon qua') || cleanTokens.includes('chan qua') || cleanTokens.includes('ke chuyen') || cleanTokens.includes('vui the');
-
-  if (isDirectGreeting || 
-      isLifestyleChitChat ||
-      /^(chao|xin chao|hello|helo|holo|hi|alo|hey|yo|morning)(\s+[a-z0-9]+){0,4}$/i.test(cleanTokens) ||
-      cleanTokens.includes('ban la ai') || cleanTokens.includes('ban ten gi') || cleanTokens.includes('ten gi') || cleanTokens.includes('ban lam duoc gi') ||
-      cleanTokens.includes('ban khoe khong') ||
-      cleanTokens.includes('may gio') || cleanTokens.includes('thoi gian') || cleanTokens.includes('bay gio la') ||
-      cleanTokens.includes('may h')) {
+  // 3.1 Negotiation & Price Strategy Intent (e.g., "Lập chiến lược đàm phán giảm giá thuê cho căn TN-0033...")
+  if (normalizedNoAccents.includes('dam phan') || normalizedNoAccents.includes('tra gia') || normalizedNoAccents.includes('giam gia') || normalizedNoAccents.includes('thuong luong') || (normalizedNoAccents.includes('chien luoc') && normalizedNoAccents.includes('gia'))) {
     return {
       isSafe: true,
       category: 'SAFE',
-      intent: 'GREETING_CHITCHAT',
-      confidence: 0.99,
+      intent: 'PROPERTY_INQUIRY',
+      confidence: 0.98,
       sanitizedQuery: trimmed
     };
   }
 
-  // 4. Layer 2: Intent Classification - Gratitude & Closure
-  const isGratitude = GRATITUDE_WORDS.some(gw => cleanTokens.includes(removeVietnameseAccents(gw)));
-  if (isGratitude && cleanTokens.length < 35) {
+  // 3.2 Unit-Specific Inquiry (by Unit ID or Apartment Reference)
+  if (/\b(hn|sg|dn|unit|tn|hp|bd)-[a-z0-9-]+/i.test(trimmed) || /\bunit-[0-9]+\b/i.test(trimmed) || normalizedNoAccents.includes('can so') || normalizedNoAccents.includes('can ho nay') || normalizedNoAccents.includes('can phong')) {
     return {
       isSafe: true,
       category: 'SAFE',
-      intent: 'GRATITUDE_CLOSURE',
-      confidence: 0.99,
+      intent: 'PROPERTY_INQUIRY',
+      confidence: 0.95,
       sanitizedQuery: trimmed
     };
   }
 
-  // 5. Layer 2: Policy & Trust Domains
+  // 3.3 Policy & Trust Domains (Escrow, True Cost, PCCC)
   if (normalizedNoAccents.includes('coc') || normalizedNoAccents.includes('escrow') || normalizedNoAccents.includes('bao chung') || normalizedNoAccents.includes('hoan coc')) {
     return {
       isSafe: true,
@@ -229,7 +207,7 @@ export function evaluateEnterpriseSafety(query: string, roleMode: 'consumer' | '
     };
   }
 
-  // 6. Admin Telemetry & Operations Intents
+  // 3.4 Admin Telemetry & Operations Intents
   if (roleMode === 'admin') {
     if (normalizedNoAccents.includes('no') || normalizedNoAccents.includes('hoa don') || normalizedNoAccents.includes('thu tien') || normalizedNoAccents.includes('qua han') || normalizedNoAccents.includes('overdue')) {
       return {
@@ -251,18 +229,7 @@ export function evaluateEnterpriseSafety(query: string, roleMode: 'consumer' | '
     }
   }
 
-  // 7. Unit-Specific Inquiry (by Unit ID or Apartment Name)
-  if (/\b(hn|sg|dn)-[a-z0-9]+-[0-9]+\b/i.test(trimmed) || normalizedNoAccents.includes('can so') || normalizedNoAccents.includes('can ho nay') || normalizedNoAccents.includes('can phong')) {
-    return {
-      isSafe: true,
-      category: 'SAFE',
-      intent: 'PROPERTY_INQUIRY',
-      confidence: 0.92,
-      sanitizedQuery: trimmed
-    };
-  }
-
-  // 8. Distinguish Genuine Property Search vs General Natural Conversation
+  // 3.5 Distinguish Genuine Property Search
   const hasHousingIntent = 
     normalizedNoAccents.includes('thue') || 
     normalizedNoAccents.includes('tim phong') || 
@@ -301,12 +268,46 @@ export function evaluateEnterpriseSafety(query: string, roleMode: 'consumer' | '
     };
   }
 
-  // If no housing intent detected, classify as general natural conversation so AI chats naturally without forcing apartment recommendations
+  // 4. Layer 2: Gratitude & Closure
+  const cleanTokens = normalizedNoAccents.replace(/[^\w\s]/g, '').trim();
+  const isGratitude = GRATITUDE_WORDS.some(gw => cleanTokens.includes(removeVietnameseAccents(gw)));
+  if (isGratitude && cleanTokens.length < 35) {
+    return {
+      isSafe: true,
+      category: 'SAFE',
+      intent: 'GRATITUDE_CLOSURE',
+      confidence: 0.99,
+      sanitizedQuery: trimmed
+    };
+  }
+
+  // 5. Layer 2: True Direct Greeting (Only when user explicitly greets the bot)
+  const isDirectGreeting = GREETING_WORDS.some(gw => {
+    return cleanTokens === gw || 
+           cleanTokens.startsWith(gw + ' ') || 
+           cleanTokens.endsWith(' ' + gw) ||
+           cleanTokens.includes(' ' + gw + ' ');
+  });
+
+  if (isDirectGreeting || 
+      /^(chao|xin chao|hello|helo|holo|hi|alo|hey|yo|morning)(\s+[a-z0-9]+){0,3}$/i.test(cleanTokens) ||
+      cleanTokens.includes('ban khoe khong')) {
+    return {
+      isSafe: true,
+      category: 'SAFE',
+      intent: 'GREETING_CHITCHAT',
+      confidence: 0.99,
+      sanitizedQuery: trimmed
+    };
+  }
+
+  // 6. Layer 2: General Knowledge & Natural Conversation (Time, Cultivation, Lifestyle, Food, Area Codes, etc.)
+  // Keeps user engaged without forcing apartment recommendations or canned greetings!
   return {
     isSafe: true,
     category: 'SAFE',
-    intent: 'GREETING_CHITCHAT',
-    confidence: 0.90,
+    intent: 'GENERAL_CONVERSATION',
+    confidence: 0.95,
     sanitizedQuery: trimmed
   };
 }

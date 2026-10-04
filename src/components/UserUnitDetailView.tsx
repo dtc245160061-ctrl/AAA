@@ -39,6 +39,7 @@ interface UserUnitDetailViewProps {
   onOpenDepositEscrow?: (unit: ApartmentUnit) => void;
   onOpenVirtualTour?: (unit: ApartmentUnit) => void;
   onOpenLandlordProfile?: (landlord: LandlordProfile) => void;
+  onOpenAiAdvisorWithPrompt?: (prompt: string) => void;
   onShowToast?: (type: 'success' | 'error' | 'info', title: string, desc?: string) => void;
 }
 
@@ -53,6 +54,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
   onOpenDepositEscrow,
   onOpenVirtualTour,
   onOpenLandlordProfile,
+  onOpenAiAdvisorWithPrompt,
   onShowToast
 }) => {
   const [selectedPhotoIdx, setSelectedPhotoIdx] = useState(0);
@@ -78,6 +80,19 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
     }
     return list.slice(0, 4);
   }, [unit.images]);
+
+  // Preload all gallery images immediately on mount so switching between photos is <10ms instantaneous
+  React.useEffect(() => {
+    galleryImages.forEach((imgUrl) => {
+      if (imgUrl) {
+        const preloader = new Image();
+        preloader.src = imgUrl.includes('images.unsplash.com')
+          ? `${imgUrl.split('?')[0]}?auto=format&fit=crop&w=900&q=75`
+          : imgUrl;
+      }
+    });
+  }, [galleryImages]);
+
 
   const getCityDisplayName = (city: string) => {
     switch (city) {
@@ -196,10 +211,10 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
           <SmartImage
             src={galleryImages[selectedPhotoIdx] || galleryImages[0]}
             alt={unit.name || unit.id}
-            width={1200}
-            quality={80}
+            width={900}
+            quality={75}
             priority={true}
-            className="transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
           
@@ -227,7 +242,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
               key={idx}
               onClick={() => setSelectedPhotoIdx(idx)}
               onMouseEnter={() => setSelectedPhotoIdx(idx)}
-              className={`relative rounded-[22px] overflow-hidden cursor-pointer border-2 transition-all group ${
+              className={`relative rounded-[22px] overflow-hidden cursor-pointer border-2 transition-all duration-200 group ${
                 selectedPhotoIdx === idx
                   ? 'border-[#163300] dark:border-[#9FE870] ring-2 ring-[#9FE870]/40 shadow-md'
                   : 'border-slate-200 dark:border-slate-800 opacity-85 hover:opacity-100 hover:border-slate-400'
@@ -238,7 +253,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
                 alt={`Ảnh ${idx + 1}`} 
                 width={480}
                 quality={70}
-                className="transition-transform duration-300 group-hover:scale-105" 
+                className="w-full h-full object-cover" 
               />
               <span className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-[10px] font-bold text-white border border-white/20 pointer-events-none tabular-nums">
                 #{idx + 1}
@@ -253,7 +268,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
         {/* Left Column: Residence Identity & Specs */}
         <div className="lg:col-span-2 space-y-8">
           <div className="space-y-2">
-            <div className="flex items-center gap-2 text-xs font-bold text-[#20A05A] dark:text-[#9FE870] uppercase tracking-wider">
+            <div className="flex items-center gap-2 text-xs font-bold text-[#163300] dark:text-[#9FE870] uppercase tracking-wider">
               <span>{getCityDisplayName(unit.city)}</span>
               <span>•</span>
               <span>{unit.district}</span>
@@ -266,7 +281,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
               {unit.name || unit.id}
             </h1>
             <p className="text-sm font-medium text-slate-500 dark:text-slate-400 flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-[#20A05A] shrink-0" />
+              <MapPin className="w-4 h-4 text-[#163300] dark:text-[#9FE870] shrink-0" />
               <span>{unit.address || `${unit.district}, ${getCityDisplayName(unit.city)}`}</span>
             </p>
           </div>
@@ -310,7 +325,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
 
               <button
                 onClick={() => setShowCostDetails(!showCostDetails)}
-                className="text-xs font-bold text-[#20A05A] dark:text-[#9FE870] hover:underline cursor-pointer"
+                className="text-xs font-bold text-[#163300] dark:text-[#9FE870] hover:underline cursor-pointer"
               >
                 {showCostDetails ? 'Thu gọn' : 'Xem chi tiết'}
               </button>
@@ -321,7 +336,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                   <div className="p-3.5 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
                     <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-medium">
-                      <Building className="w-4 h-4 text-[#20A05A]" /> Tiền thuê phòng niêm yết:
+                      <Building className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" /> Tiền thuê phòng niêm yết:
                     </span>
                     <span className="font-bold text-[#163300] dark:text-white tabular-nums">
                       {(trueCost.baseRentVND / 1000000).toFixed(1)} Tr
@@ -339,7 +354,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
 
                   <div className="p-3.5 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
                     <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-medium">
-                      <Droplets className="w-4 h-4 text-[#20A05A]" /> Nước sinh hoạt:
+                      <Droplets className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" /> Nước sinh hoạt:
                     </span>
                     <span className="font-bold text-[#163300] dark:text-white tabular-nums">
                       {(trueCost.waterFeeVND / 1000).toLocaleString()} đ
@@ -348,7 +363,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
 
                   <div className="p-3.5 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
                     <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-medium">
-                      <Wifi className="w-4 h-4 text-[#20A05A]" /> Internet cáp quang:
+                      <Wifi className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" /> Internet cáp quang:
                     </span>
                     <span className="font-bold text-[#163300] dark:text-white tabular-nums">
                       {(trueCost.internetFeeVND / 1000).toLocaleString()} đ
@@ -357,7 +372,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
 
                   <div className="p-3.5 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
                     <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-medium">
-                      <ShieldCheck className="w-4 h-4 text-[#20A05A]" /> Phí quản lý tòa nhà:
+                      <ShieldCheck className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" /> Phí quản lý tòa nhà:
                     </span>
                     <span className="font-bold text-[#163300] dark:text-white tabular-nums">
                       {(trueCost.managementFeeVND / 1000).toLocaleString()} đ
@@ -366,7 +381,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
 
                   <div className="p-3.5 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
                     <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-medium">
-                      <Car className="w-4 h-4 text-[#20A05A]" /> Phí gửi xe ({unit.hasCarParking ? 'Ô tô' : 'Xe máy'}):
+                      <Car className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" /> Phí gửi xe ({unit.hasCarParking ? 'Ô tô' : 'Xe máy'}):
                     </span>
                     <span className="font-bold text-[#163300] dark:text-white tabular-nums">
                       {(trueCost.parkingFeeVND / 1000).toLocaleString()} đ
@@ -427,7 +442,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
               <div className="p-4 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-1">
                 <span className="text-slate-400 uppercase text-[10px] font-bold">Thang Bộ Thoát Hiểm</span>
                 <p className="text-[#163300] dark:text-white font-bold text-sm flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#20A05A]" />
+                  <CheckCircle2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
                   <span>{pccc.fireEscapeCount} Thang thoát hiểm điều áp chống khói</span>
                 </p>
               </div>
@@ -435,7 +450,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
               <div className="p-4 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-1">
                 <span className="text-slate-400 uppercase text-[10px] font-bold">Chữa Cháy Tự Động</span>
                 <p className="text-[#163300] dark:text-white font-bold text-sm flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#20A05A]" />
+                  <CheckCircle2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
                   <span>Đầu phun Sprinkler áp lực cao trang bị từng phòng</span>
                 </p>
               </div>
@@ -443,7 +458,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
               <div className="p-4 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-1">
                 <span className="text-slate-400 uppercase text-[10px] font-bold">Cảm Biến Khói & Báo Cháy</span>
                 <p className="text-[#163300] dark:text-white font-bold text-sm flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#20A05A]" />
+                  <CheckCircle2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
                   <span>Hệ thống cảm biến nối tủ trung tâm 24/7</span>
                 </p>
               </div>
@@ -451,7 +466,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
               <div className="p-4 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-1">
                 <span className="text-slate-400 uppercase text-[10px] font-bold">Kiểm Định Lần Cuối</span>
                 <p className="text-[#163300] dark:text-white font-bold text-sm flex items-center gap-1.5">
-                  <FileCheck2 className="w-4 h-4 text-[#20A05A]" />
+                  <FileCheck2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
                   <span>Ngày {pccc.lastInspectionDate} (Hiệu lực 12 tháng)</span>
                 </p>
               </div>
@@ -485,7 +500,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
               <div className="p-4 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700">
                 <span className="text-slate-400 uppercase text-[10px] font-bold">Mức Tiền Cọc</span>
                 <p className="text-[#163300] dark:text-white font-bold text-base mt-1">{depositTerms.months} Tháng tiền nhà</p>
-                <span className="text-[#20A05A] font-bold text-[11px] tabular-nums">({(depositTerms.amountVND / 1000000).toFixed(0)} Triệu VNĐ)</span>
+                <span className="text-[#163300] dark:text-[#9FE870] font-bold text-[11px] tabular-nums">({(depositTerms.amountVND / 1000000).toFixed(0)} Triệu VNĐ)</span>
               </div>
 
               <div className="p-4 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700">
@@ -496,7 +511,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
 
               <div className="p-4 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700">
                 <span className="text-slate-400 uppercase text-[10px] font-bold">Bảo Chứng Sàn</span>
-                <p className="text-[#20A05A] font-bold text-base mt-1">HAVEN Escrow</p>
+                <p className="text-[#163300] dark:text-[#9FE870] font-bold text-base mt-1">HAVEN Escrow</p>
                 <span className="text-slate-500 dark:text-slate-400 text-[11px]">Trọng tài hòa giải 100%</span>
               </div>
             </div>
@@ -508,7 +523,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
               <ul className="space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
                 {depositTerms.deductionRules.map((rule, idx) => (
                   <li key={idx} className="flex items-start gap-2">
-                    <Check className="w-3.5 h-3.5 text-[#20A05A] shrink-0 mt-0.5" />
+                    <Check className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870] shrink-0 mt-0.5" />
                     <span>{rule}</span>
                   </li>
                 ))}
@@ -541,13 +556,13 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
               {/* Why This Fits You */}
               <div className="space-y-3 p-5 rounded-[22px] bg-[#F7FAF6] dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700/80 shadow-2xs">
                 <h4 className="text-xs uppercase tracking-wider text-[#163300] dark:text-[#9FE870] font-black flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#20A05A]" />
+                  <CheckCircle2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
                   <span>Điểm Mạnh Phù Hợp Nổi Bật</span>
                 </h4>
                 <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                   {(unit.aiInsights?.whyFit || []).map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#20A05A] shrink-0 mt-1.5" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#163300] dark:bg-[#9FE870] shrink-0 mt-1.5" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -575,21 +590,21 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
           {/* Environmental & Surrounding Infrastructure Panel */}
           <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-[28px] p-6 md:p-8 shadow-sm space-y-6">
             <h3 className="text-lg sm:text-xl font-black text-[#163300] dark:text-white flex items-center gap-2.5">
-              <Compass className="w-5 h-5 text-[#20A05A]" />
+              <Compass className="w-5 h-5 text-[#163300] dark:text-[#9FE870]" />
               <span>Đặc Tính Môi Trường & Hạ Tầng Xung Quanh</span>
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="p-4 rounded-[20px] bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 space-y-2">
                 <div className="flex items-center gap-2 text-xs text-[#163300] dark:text-slate-200 font-bold">
-                  <Wind className="w-4 h-4 text-[#20A05A]" /> Vi Khí Hậu & Hướng Gió
+                  <Wind className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" /> Vi Khí Hậu & Hướng Gió
                 </div>
                 <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{unit.environmentalData.weatherNotes}</p>
               </div>
 
               <div className="p-4 rounded-[20px] bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 space-y-2">
                 <div className="flex items-center gap-2 text-xs text-[#163300] dark:text-slate-200 font-bold">
-                  <CloudRain className="w-4 h-4 text-[#20A05A]" /> Đánh Giá An Toàn Ngập Lụt
+                  <CloudRain className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" /> Đánh Giá An Toàn Ngập Lụt
                 </div>
                 <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{unit.environmentalData.floodNotes}</p>
               </div>
@@ -603,10 +618,73 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
 
               <div className="p-4 rounded-[20px] bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 space-y-2">
                 <div className="flex items-center gap-2 text-xs text-[#163300] dark:text-slate-200 font-bold">
-                  <Car className="w-4 h-4 text-[#20A05A]" /> Giao Thông & Lối Vào Hầm Xe
+                  <Car className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" /> Giao Thông & Lối Vào Hầm Xe
                 </div>
                 <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{unit.environmentalData.trafficNotes}</p>
               </div>
+            </div>
+          </div>
+
+          {/* 4. HAVEN LOCAL AI AGENTIC COPILOT CARD */}
+          <div className="bg-[#F2F5F0] dark:bg-slate-850 border border-[#9FE870]/50 rounded-[28px] p-6 md:p-7 shadow-sm space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-[#9FE870] text-[#163300] flex items-center justify-center font-bold shadow-2xs">
+                  <Sparkles className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base sm:text-lg font-black text-[#163300] dark:text-white flex items-center gap-2">
+                    Haven AI Trợ Lý Căn Hộ
+                    <span className="px-2 py-0.5 rounded-full bg-[#163300] text-[#9FE870] text-[10px] font-bold">
+                      Local Qwen 2.5
+                    </span>
+                  </h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+                    Trí tuệ nhân tạo cục bộ hỗ trợ thẩm định, đàm phán và bóc tách tài chính 1-click
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+              <button
+                onClick={() => onOpenAiAdvisorWithPrompt?.(`Hãy thẩm định chi tiết ưu/nhược điểm, tiêu chuẩn an toàn PCCC và rủi ro ngập lụt của căn hộ ${unit.name || unit.id} tại ${unit.address || unit.district}, ${getCityDisplayName(unit.city)}`)}
+                className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-[#9FE870] hover:shadow-xs text-left transition-all group cursor-pointer"
+              >
+                <div className="flex items-center gap-2 text-xs font-bold text-[#163300] dark:text-white group-hover:text-[#163300] dark:group-hover:text-[#9FE870]">
+                  <ShieldCheck className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
+                  <span>Thẩm Định An Toàn</span>
+                </div>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">
+                  Đánh giá PCCC, ngập lụt mùa mưa & pháp lý
+                </p>
+              </button>
+
+              <button
+                onClick={() => onOpenAiAdvisorWithPrompt?.(`Lập chiến lược đàm phán giảm giá thuê cho căn ${unit.id} (giá niêm yết hiện tại ${(unit.monthlyRentVND / 1000000).toFixed(1)} triệu/tháng)`)}
+                className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-[#9FE870] hover:shadow-xs text-left transition-all group cursor-pointer"
+              >
+                <div className="flex items-center gap-2 text-xs font-bold text-[#163300] dark:text-white group-hover:text-[#163300] dark:group-hover:text-[#9FE870]">
+                  <Calculator className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
+                  <span>Chiến Lược Trả Giá</span>
+                </div>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">
+                  Gợi ý biên độ giảm 5-10% hoặc miễn phí gửi xe
+                </p>
+              </button>
+
+              <button
+                onClick={() => onOpenAiAdvisorWithPrompt?.(`Bóc tách chi tiết toàn bộ chi phí sinh hoạt thực tế hàng tháng True Cost cho căn ${unit.id}`)}
+                className="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-[#9FE870] hover:shadow-xs text-left transition-all group cursor-pointer"
+              >
+                <div className="flex items-center gap-2 text-xs font-bold text-[#163300] dark:text-white group-hover:text-[#163300] dark:group-hover:text-[#9FE870]">
+                  <Zap className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
+                  <span>Bóc Tách True Cost</span>
+                </div>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">
+                  Dự toán điện nước & chi phí dọn vào
+                </p>
+              </button>
             </div>
           </div>
         </div>
@@ -674,16 +752,16 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
                 <span className="text-slate-400 uppercase text-[10px] font-bold">Tiện Ích Đi Kèm</span>
                 <div className="grid grid-cols-2 gap-2 pt-1">
                   <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#20A05A]" /> Chỗ đỗ ô tô
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" /> Chỗ đỗ ô tô
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#20A05A]" /> Bãi xe máy
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" /> Bãi xe máy
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#20A05A]" /> Điện dự phòng
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" /> Điện dự phòng
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#20A05A]" /> Wi-Fi tốc độ cao
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" /> Wi-Fi tốc độ cao
                   </div>
                 </div>
               </div>
@@ -708,7 +786,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
                   className="w-12 h-12 rounded-full object-cover border-2 border-[#9FE870] transition-colors"
                 />
                 <div>
-                  <h4 className="text-sm font-bold text-[#163300] dark:text-white group-hover:text-[#20A05A] transition-colors">{landlord.name}</h4>
+                  <h4 className="text-sm font-bold text-[#163300] dark:text-white group-hover:text-[#2570EB] transition-colors">{landlord.name}</h4>
                   <div className="flex items-center gap-1 text-xs text-[#7A5200] dark:text-[#FFC83B] mt-0.5">
                     <Star className="w-3.5 h-3.5 fill-[#FFC83B] text-[#FFC83B]" />
                     <span className="font-bold">{landlord.trustScore}★</span>
@@ -720,7 +798,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
               <div className="grid grid-cols-2 gap-2 text-[11px] pt-2 border-t border-slate-100 dark:border-slate-800">
                 <div className="p-2.5 rounded-[16px] bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700">
                   <span className="text-slate-400 text-[10px]">Tỷ lệ phản hồi:</span>
-                  <p className="text-[#20A05A] font-bold">{landlord.responseRatePercent}%</p>
+                  <p className="text-[#163300] dark:text-[#9FE870] font-bold">{landlord.responseRatePercent}%</p>
                 </div>
                 <div className="p-2.5 rounded-[16px] bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700">
                   <span className="text-slate-400 text-[10px]">Tốc độ trả lời:</span>
@@ -728,7 +806,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
                 </div>
               </div>
 
-              <div className="text-[11px] font-bold text-center text-[#20A05A] dark:text-[#9FE870] pt-1 group-hover:underline">
+              <div className="text-[11px] font-bold text-center text-[#163300] dark:text-[#9FE870] pt-1 group-hover:underline">
                 Xem toàn bộ hồ sơ & các căn hộ khác ➔
               </div>
             </div>

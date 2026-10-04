@@ -26,6 +26,7 @@ interface UnitsViewProps {
   onSelectUnit: (unitId: string) => void;
   onUpdateUnitStatus?: (unitId: string, status: UnitStatus) => void;
   onOpenQuickAction?: () => void;
+  onOpenVirtualTour?: (unit: ApartmentUnit) => void;
   onEditUnit?: (unitId: string, updates: Partial<ApartmentUnit>) => void;
   onDeleteUnit?: (unitId: string) => void;
 }
@@ -35,6 +36,7 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
   onSelectUnit,
   onUpdateUnitStatus,
   onOpenQuickAction,
+  onOpenVirtualTour,
   onEditUnit,
   onDeleteUnit
 }) => {
@@ -175,7 +177,7 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
           return (
             <div
               key={unit.id}
-              className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-[24px] overflow-hidden shadow-sm hover:shadow-md hover:border-[#163300]/30 dark:hover:border-slate-700 transition-all duration-200 flex flex-col justify-between"
+              className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-[24px] overflow-hidden shadow-sm hover:shadow-lg hover:border-[#163300]/40 dark:hover:border-[#9FE870]/40 hover:-translate-y-1.5 transition-all duration-300 ease-out flex flex-col justify-between"
             >
               <div className="flex flex-col justify-between h-full">
                 {/* Image Area */}
@@ -188,7 +190,7 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                     alt={unit.name || unit.id}
                     width={600}
                     quality={75}
-                    className="transition-transform duration-500 hover:scale-105"
+                    className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
 
@@ -257,11 +259,11 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                     </span>
                     <ul className="space-y-1 text-slate-700 dark:text-slate-300 text-xs">
                       <li className="flex items-center gap-1.5 leading-snug">
-                        <Check className="w-3.5 h-3.5 text-[#20A05A] shrink-0" />
+                        <Check className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870] shrink-0" />
                         <span className="truncate">Đã kiểm định an toàn PCCC & Pháp lý</span>
                       </li>
                       <li className="flex items-center gap-1.5 leading-snug">
-                        <Check className="w-3.5 h-3.5 text-[#20A05A] shrink-0" />
+                        <Check className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870] shrink-0" />
                         <span className="truncate">{unit.hasCarParking ? 'Có chỗ đỗ ô tô hầm thông minh' : 'Tòa nhà văn minh, an ninh 24/7'}</span>
                       </li>
                     </ul>
@@ -284,9 +286,9 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
 
                     <div className="flex items-center gap-1.5 shrink-0">
                       <button
-                        onClick={() => onSelectUnit(unit.id)}
-                        className="px-3 py-1.5 rounded-full bg-[#8B5CF6]/10 text-[#8B5CF6] hover:bg-[#8B5CF6]/20 font-bold text-xs flex items-center gap-1 transition-all cursor-pointer"
-                        title="Xem phối cảnh 3D"
+                        onClick={() => onOpenVirtualTour ? onOpenVirtualTour(unit) : onSelectUnit(unit.id)}
+                        className="px-3 py-1.5 rounded-full bg-[#8B5CF6]/10 text-[#8B5CF6] hover:bg-[#8B5CF6]/20 font-bold text-xs flex items-center gap-1 transition-all cursor-pointer hover:scale-105 active:scale-95"
+                        title="Xem phối cảnh 3D thực địa"
                       >
                         <Box className="w-3.5 h-3.5 text-[#8B5CF6]" />
                         <span>3D</span>
@@ -316,7 +318,7 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
                         <option value="maintenance">Đang bảo trì</option>
                       </select>
                       <span className={`absolute left-2.5 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full pointer-events-none ${
-                        unit.status === 'vacant' ? 'bg-[#20A05A]' :
+                        unit.status === 'vacant' ? 'bg-[#163300] dark:bg-[#9FE870]' :
                         unit.status === 'occupied' ? 'bg-[#2570EB]' :
                         unit.status === 'reserved' ? 'bg-[#FFC83B]' : 'bg-[#FF5436]'
                       }`} />
@@ -375,7 +377,7 @@ export const UnitsView: React.FC<UnitsViewProps> = ({
           <div className="max-w-lg w-full rounded-[32px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-6 md:p-8 space-y-5 shadow-2xl text-slate-900 dark:text-slate-100 font-sans">
             <div className="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-3">
               <div className="flex items-center gap-2.5">
-                <div className="w-10 h-10 rounded-2xl bg-[#E8F8EC] text-[#20A05A] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-2xl bg-[#E8F8EC] text-[#163300] dark:text-[#9FE870] flex items-center justify-center shrink-0">
                   <Edit2 className="w-4 h-4" />
                 </div>
                 <div>

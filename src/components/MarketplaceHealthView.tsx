@@ -9,8 +9,7 @@ import {
   Check, 
   X, 
   Coins, 
-  RefreshCw,
-  Building
+  RefreshCw
 } from 'lucide-react';
 import type { MarketplaceModerationItem } from '../types/apartment';
 import { ApartmentStore } from '../data/apartmentStore';
@@ -53,7 +52,7 @@ export const MarketplaceHealthView: React.FC<MarketplaceHealthViewProps> = ({
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F8EC] text-[#163300] font-bold text-xs uppercase tracking-wider mb-2">
-              <Activity className="w-4 h-4 text-[#20A05A]" />
+              <Activity className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
               <span>Bảng Sức Khỏe Marketplace & Giám Sát Niềm Tin (Health & Governance)</span>
             </div>
             <h1 className="text-2xl md:text-3xl font-bold text-[#163300] dark:text-white mt-1">
@@ -74,7 +73,7 @@ export const MarketplaceHealthView: React.FC<MarketplaceHealthViewProps> = ({
             }}
             className="px-5 py-2.5 rounded-full bg-[#F2F5F0] hover:bg-slate-200 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white text-xs font-bold transition-all flex items-center gap-2 self-start md:self-auto shrink-0 whitespace-nowrap shadow-sm cursor-pointer hover:scale-105 active:scale-95"
           >
-            <RefreshCw className="w-3.5 h-3.5 text-[#20A05A]" />
+            <RefreshCw className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
             <span>Làm Mới Số Liệu</span>
           </button>
         </div>
@@ -86,7 +85,7 @@ export const MarketplaceHealthView: React.FC<MarketplaceHealthViewProps> = ({
         <div className="wise-kpi-card">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Tỷ Lệ Tin Xác Minh</span>
-            <div className="p-2.5 rounded-2xl bg-[#E8F8EC] text-[#20A05A]">
+            <div className="p-2.5 rounded-2xl bg-[#E8F8EC] text-[#163300] dark:text-[#9FE870]">
               <ShieldCheck className="w-4 h-4" />
             </div>
           </div>
@@ -152,7 +151,7 @@ export const MarketplaceHealthView: React.FC<MarketplaceHealthViewProps> = ({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-5">
           <div>
             <h3 className="text-xl font-bold text-[#163300] dark:text-white flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-[#20A05A]" />
+              <ShieldCheck className="w-5 h-5 text-[#163300] dark:text-[#9FE870]" />
               <span>Hàng Đợi Kiểm Duyệt Tin Đăng Tự Động (AI Moderation Queue)</span>
             </h3>
             <p className="text-xs text-slate-500 mt-1">
@@ -222,7 +221,7 @@ export const MarketplaceHealthView: React.FC<MarketplaceHealthViewProps> = ({
                         <AlertTriangle className="w-3.5 h-3.5" /> Giá ảo ({item.priceAnomalyPercent}%)
                       </span>
                     ) : (
-                      <span className="text-[#20A05A] flex items-center gap-1 font-bold">
+                      <span className="text-[#163300] dark:text-[#9FE870] flex items-center gap-1 font-bold">
                         <Check className="w-3.5 h-3.5" /> Hợp chuẩn thị trường
                       </span>
                     )}
@@ -246,7 +245,7 @@ export const MarketplaceHealthView: React.FC<MarketplaceHealthViewProps> = ({
                     <div className="flex items-center justify-end gap-2">
                       {item.status === 'approved' ? (
                         <span className="px-3 py-1 rounded-full bg-[#E8F8EC] text-[#163300] text-xs font-bold border border-[#9FE870] flex items-center gap-1">
-                          <Check className="w-3.5 h-3.5 text-[#20A05A]" />
+                          <Check className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
                           <span>Đã duyệt</span>
                         </span>
                       ) : item.status === 'flagged' ? (
@@ -286,7 +285,7 @@ export const MarketplaceHealthView: React.FC<MarketplaceHealthViewProps> = ({
       {/* Monetization Revenue Breakdown Section - 4 Multi-Currency Cards */}
       <div className="bg-white dark:bg-slate-900 rounded-[28px] border border-slate-200/90 dark:border-slate-800 p-6 md:p-8 space-y-6 shadow-sm">
         <h3 className="text-xl font-bold text-[#163300] dark:text-white flex items-center gap-2">
-          <Coins className="w-5 h-5 text-[#20A05A]" />
+          <Coins className="w-5 h-5 text-[#163300] dark:text-[#9FE870]" />
           <span>Cơ Cấu 4 Dòng Doanh Thu Thương Mại HAVEN (Revenue Streams)</span>
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 text-xs pt-1">

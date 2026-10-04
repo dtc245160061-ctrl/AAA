@@ -1,5 +1,4 @@
 import React, { useState, useId } from 'react';
-import { motion } from 'framer-motion';
 import { 
   ArrowRight, 
   ShieldCheck, 
@@ -8,10 +7,7 @@ import {
   MicOff, 
   Compass, 
   Camera, 
-  Upload,
   CheckCircle2,
-  ChevronDown,
-  Building,
   Sparkles
 } from 'lucide-react';
 import { VoiceRecognitionService } from '../../services/voiceRecognitionService';
@@ -135,7 +131,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               e.preventDefault();
               onSearch(aiPromptInput.trim() || undefined);
             }} 
-            className="flex items-center gap-2 max-w-xl bg-white dark:bg-[#163300] p-1.5 rounded-full border border-[#163300]/15 dark:border-[#9FE870]/30 shadow-md focus-within:border-[#163300] dark:focus-within:border-[#9FE870] focus-within:ring-4 focus-within:ring-[#9FE870]/25 transition-all duration-200"
+            className="flex items-center gap-2 w-full max-w-2xl lg:max-w-3xl bg-white dark:bg-[#163300] p-1.5 rounded-full border border-[#163300]/15 dark:border-[#9FE870]/30 shadow-md focus-within:border-[#163300] dark:focus-within:border-[#9FE870] focus-within:ring-4 focus-within:ring-[#9FE870]/25 transition-all duration-200"
           >
             <div className="pl-4 pr-1 text-[#163300] dark:text-[#9FE870]">
               <Sparkles className="w-5 h-5 animate-pulse" />
@@ -145,7 +141,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               value={aiPromptInput}
               onChange={(e) => setAiPromptInput(e.target.value)}
               placeholder='Nhập hoặc nói: "2 phòng ngủ Thái Nguyên 8 củ có ô tô"'
-              className="w-full bg-transparent border-none text-[#163300] dark:text-white placeholder:text-[#738565] dark:placeholder:text-emerald-200/50 text-sm sm:text-base font-semibold focus:outline-none focus:ring-0 py-2.5 px-2"
+              className="w-full bg-transparent border-none text-[#163300] dark:text-white placeholder:text-[#738565] dark:placeholder:text-emerald-200/50 text-sm sm:text-base font-semibold focus:outline-none focus:ring-0 py-2.5 px-3"
             />
             {/* Mic Button */}
             <button
@@ -154,7 +150,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               title={isListening ? "Đang lắng nghe... Bấm để dừng" : "Tìm kiếm bằng giọng nói tiếng Việt"}
               className={`p-3 rounded-full transition-all flex items-center justify-center shrink-0 cursor-pointer ${
                 isListening
-                  ? 'bg-rose-500 text-white animate-pulse shadow-md ring-2 ring-rose-300'
+                  ? 'bg-[#FF5436] text-white animate-pulse shadow-md ring-2 ring-[#FF5436]/40'
                   : 'bg-[#F2F5F0] dark:bg-[#0E1E09] text-[#163300] dark:text-[#9FE870] hover:bg-[#9FE870] hover:text-[#163300]'
               }`}
             >
@@ -162,7 +158,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </button>
             <button
               type="submit"
-              className="inline-flex items-center gap-1.5 px-5 py-3 rounded-full bg-[#9FE870] hover:bg-[#8CD85E] text-[#163300] font-black text-sm transition-all duration-200 shadow-sm shrink-0 cursor-pointer active:scale-95"
+              className="inline-flex items-center gap-1.5 px-6 py-3 rounded-full bg-[#9FE870] hover:bg-[#8CD85E] text-[#163300] font-black text-sm transition-all duration-200 shadow-sm shrink-0 cursor-pointer active:scale-95"
             >
               <span>Tìm</span>
               <ArrowRight className="w-4 h-4" />
@@ -262,7 +258,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   <label htmlFor={budgetInputId} className="block text-xs font-bold text-[#495E35] dark:text-emerald-200/80">
                     Ngân sách thuê hàng tháng
                   </label>
-                  <span className="text-[11px] font-bold text-[#20A05A] dark:text-[#9FE870]">
+                  <span className="text-[11px] font-bold text-[#163300] dark:text-[#9FE870]">
                     ≈ {(budgetVND / 1000000).toFixed(1)} Triệu / tháng
                   </span>
                 </div>
@@ -277,7 +273,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                       max={100000000}
                       value={budgetVND}
                       onChange={(e) => setBudgetVND(Math.max(0, Number(e.target.value)))}
-                      className="w-full bg-transparent border-none text-2xl sm:text-3xl font-black text-[#163300] dark:text-white focus:outline-none focus:ring-0 p-0 m-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                      className="w-full bg-transparent border-none text-2xl sm:text-3xl font-black text-[#163300] dark:text-white focus:outline-none focus:ring-0 py-0 pl-3 pr-1 m-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     />
                   </div>
                   {/* Currency / Unit Pill */}

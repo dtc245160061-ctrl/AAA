@@ -418,7 +418,7 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 dark:bg-black/75 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-3xl rounded-[32px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-2xl flex flex-col max-h-[92vh] overflow-hidden text-slate-900 dark:text-slate-100 font-sans">
+      <div className="relative w-full max-w-3xl rounded-[32px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-2xl flex flex-col h-[640px] max-h-[92vh] overflow-hidden text-slate-900 dark:text-slate-100 font-sans">
         
         {/* Modal Top Header */}
         <div className="flex items-center justify-between px-6 py-4.5 border-b border-slate-200/80 dark:border-slate-800 bg-[#F2F5F0] dark:bg-slate-850 shrink-0">
@@ -458,7 +458,7 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
             <div className="py-16 flex flex-col items-center justify-center text-center space-y-4 animate-in fade-in">
               <div className="relative w-20 h-20">
                 <div className="absolute inset-0 rounded-full border-4 border-[#9FE870]/30 animate-ping" />
-                <div className="absolute inset-2 rounded-full border-3 border-dashed border-[#20A05A] animate-spin" />
+                <div className="absolute inset-2 rounded-full border-3 border-dashed border-[#9FE870] animate-spin" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Sparkles className="w-8 h-8 text-[#163300] dark:text-[#9FE870]" />
                 </div>
@@ -574,7 +574,7 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
                   </h4>
                   <button
                     onClick={handleReset}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#20A05A] dark:text-[#9FE870] hover:underline cursor-pointer"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#163300] dark:text-[#9FE870] hover:underline cursor-pointer"
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
                     <span>Làm lại khảo sát</span>
@@ -595,7 +595,7 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
                             <SmartImage
                               src={unit.images[0]}
                               alt={unit.name || unit.id}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                              className="w-full h-full object-cover"
                             />
                             <div className="absolute top-1.5 left-1.5 px-2 py-0.5 rounded-full bg-[#9FE870] text-[#163300] text-[10px] font-black shadow-xs">
                               {score}% MATCH
@@ -604,7 +604,7 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
 
                           <div className="min-w-0 flex-1 space-y-1">
                             <div className="flex items-start justify-between gap-1">
-                              <h5 className="font-bold text-sm text-[#163300] dark:text-white group-hover:text-[#20A05A] transition-colors line-clamp-1">
+                              <h5 className="font-bold text-sm text-[#163300] dark:text-white group-hover:text-[#2570EB] transition-colors line-clamp-1">
                                 {unit.name || unit.id}
                               </h5>
                               <button
@@ -634,7 +634,7 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
                         <div className="space-y-1.5 bg-[#F9FAF8] dark:bg-slate-900/60 p-3 rounded-2xl border border-slate-200/70 dark:border-slate-800 text-[11px]">
                           {reasons.map((r, rIdx) => (
                             <div key={rIdx} className="flex items-start gap-1.5 text-slate-600 dark:text-slate-300">
-                              <Check className="w-3.5 h-3.5 text-[#20A05A] shrink-0 mt-0.5" />
+                              <Check className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870] shrink-0 mt-0.5" />
                               <span className="line-clamp-1">{r}</span>
                             </div>
                           ))}
@@ -646,7 +646,7 @@ export const LifestyleMatchmakerModal: React.FC<LifestyleMatchmakerModalProps> =
                             onSelectUnit(unit.id);
                             onClose();
                           }}
-                          className="w-full py-2.5 px-4 rounded-full bg-[#163300] hover:bg-[#20A05A] text-white font-bold text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+                          className="w-full py-2.5 px-4 rounded-full bg-[#163300] hover:bg-[#163300] dark:bg-[#9FE870] text-white font-bold text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
                         >
                           <span>Xem Chi Tiết Căn Này</span>
                           <ArrowRight className="w-3.5 h-3.5" />

@@ -58,7 +58,7 @@ export const AdminInboxView: React.FC<AdminInboxViewProps> = ({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="space-y-0.5">
             <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#163300] dark:text-[#9FE870] uppercase tracking-wider">
-              <MessageSquare className="w-3.5 h-3.5 text-[#20A05A]" />
+              <MessageSquare className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
               <span>Hộp Thư Trực Tiếp (Live Messaging Hub)</span>
             </div>
             <h1 className="text-xl md:text-2xl font-bold text-[#163300] dark:text-white">
@@ -119,7 +119,7 @@ export const AdminInboxView: React.FC<AdminInboxViewProps> = ({
                         </span>
                       )}
                     </div>
-                    <div className="text-xs text-[#20A05A] font-bold line-clamp-1 flex items-center gap-1">
+                    <div className="text-xs text-[#163300] dark:text-[#9FE870] font-bold line-clamp-1 flex items-center gap-1">
                       <Building className="w-3 h-3 shrink-0" />
                       <span>{conv.unitName}</span>
                     </div>
@@ -144,7 +144,7 @@ export const AdminInboxView: React.FC<AdminInboxViewProps> = ({
                 </div>
                 <div 
                   onClick={() => onSelectUnit(activeConv.unitId)}
-                  className="text-xs font-bold text-[#20A05A] hover:underline cursor-pointer flex items-center gap-1 mt-0.5"
+                  className="text-xs font-bold text-[#163300] dark:text-[#9FE870] hover:underline cursor-pointer flex items-center gap-1 mt-0.5"
                 >
                   <Building className="w-3.5 h-3.5" />
                   <span>{activeConv.unitName} ({activeConv.unitId})</span>
@@ -156,7 +156,7 @@ export const AdminInboxView: React.FC<AdminInboxViewProps> = ({
                   href={`tel:${activeConv.customerPhone}`}
                   className="px-3.5 py-1.5 rounded-full bg-[#F2F5F0] hover:bg-slate-200 dark:bg-slate-800 text-[#163300] dark:text-white text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
                 >
-                  <Phone className="w-3.5 h-3.5 text-[#20A05A]" />
+                  <Phone className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
                   <span className="hidden sm:inline">Gọi Điện</span>
                 </a>
                 <button

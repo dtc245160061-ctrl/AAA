@@ -98,7 +98,7 @@ export const SignContractModal: React.FC<SignContractModalProps> = ({
         {/* Header */}
         <div className="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-[#E8F8EC] text-[#20A05A] flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-2xl bg-[#E8F8EC] text-[#163300] dark:text-[#9FE870] flex items-center justify-center shrink-0">
               <FileText className="w-5 h-5" />
             </div>
             <div>
@@ -145,7 +145,7 @@ export const SignContractModal: React.FC<SignContractModalProps> = ({
 
           <div className="pt-3 border-t border-slate-200 dark:border-slate-700/80 text-[11px] text-slate-500 dark:text-slate-400 flex items-center justify-between">
             <span>Thời hạn: <strong className="text-slate-700 dark:text-slate-200">{contract.startDate}</strong> ➔ <strong className="text-slate-700 dark:text-slate-200">{contract.endDate}</strong></span>
-            <span className="text-[#20A05A] dark:text-[#9FE870] flex items-center gap-1 font-bold">
+            <span className="text-[#163300] dark:text-[#9FE870] flex items-center gap-1 font-bold">
               <Lock className="w-3 h-3" /> Hash: {signatureHash.slice(0, 16)}...
             </span>
           </div>
@@ -155,7 +155,7 @@ export const SignContractModal: React.FC<SignContractModalProps> = ({
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <label className="text-xs text-[#163300] dark:text-slate-300 font-bold flex items-center gap-1.5">
-              <PenTool className="w-4 h-4 text-[#20A05A]" />
+              <PenTool className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
               <span>Vẽ Chữ Ký Điện Tử Trực Tiếp (Dùng chuột hoặc cảm ứng):</span>
             </label>
             <button

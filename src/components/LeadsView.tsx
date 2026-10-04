@@ -29,7 +29,6 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
   onSelectUnit,
 }) => {
   const [selectedFilter, setSelectedFilter] = useState<string>('all');
-  const [activeTab, setActiveTab] = useState<'pipeline' | 'table'>('pipeline');
 
   const filteredLeads = leads.filter(l => {
     if (selectedFilter === 'all') return true;
@@ -40,6 +39,8 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
     switch (status) {
       case 'new':
         return <span className="wise-badge-coral font-bold text-xs">Yêu cầu mới</span>;
+      case 'contacted':
+        return <span className="px-2.5 py-1 rounded-full bg-[#EBF2FF] dark:bg-[#0F2E6B]/40 text-[#2570EB] border border-[#2570EB]/30 font-bold text-xs">Đã liên hệ</span>;
       case 'viewing_scheduled':
         return <span className="wise-badge-cobalt font-bold text-xs">Đã hẹn xem</span>;
       case 'approved':
@@ -54,8 +55,10 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
   };
 
   const newCount = leads.filter(l => l.status === 'new').length;
+  const contactedCount = leads.filter(l => l.status === 'contacted').length;
   const scheduledCount = leads.filter(l => l.status === 'viewing_scheduled').length;
   const approvedCount = leads.filter(l => l.status === 'approved').length;
+  const convertedCount = leads.filter(l => l.status === 'converted').length;
 
   return (
     <div className="space-y-8 text-left pb-16 animate-in fade-in duration-300">
@@ -64,7 +67,7 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="space-y-1">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E2F7D4] dark:bg-[#163300] border border-[#9FE870]/40 text-xs font-bold text-[#163300] dark:text-[#9FE870] uppercase tracking-wider">
-              <Users className="w-4 h-4 text-[#20A05A]" />
+              <Users className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
               <span>Quản Lý Yêu Cầu Thuê & Lịch Hẹn Xem Phòng (Leads Pipeline)</span>
             </div>
             <h1 className="text-2xl md:text-3xl font-black text-[#163300] dark:text-white tracking-tight">
@@ -76,17 +79,21 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
           </div>
 
           {/* Quick Metrics with Flag Accents */}
-          <div className="flex items-center gap-3">
-            <div className="px-4 py-2.5 rounded-2xl bg-[#FFEAE5] dark:bg-[#8C1F08]/30 border border-[#FF5436]/30 text-center min-w-[90px]">
-              <div className="text-2xl font-black text-[#8C1F08] dark:text-[#FF5436]">{newCount}</div>
+          <div className="flex items-center gap-2.5 flex-wrap">
+            <div className="px-3.5 py-2 rounded-2xl bg-[#FFEAE5] dark:bg-[#8C1F08]/30 border border-[#FF5436]/30 text-center min-w-[80px]">
+              <div className="text-xl font-black text-[#8C1F08] dark:text-[#FF5436]">{newCount}</div>
               <div className="text-[10px] font-bold text-[#8C1F08] dark:text-[#FF5436] uppercase">Yêu cầu mới</div>
             </div>
-            <div className="px-4 py-2.5 rounded-2xl bg-[#EBF2FF] dark:bg-[#0F2E6B]/30 border border-[#2570EB]/30 text-center min-w-[90px]">
-              <div className="text-2xl font-black text-[#0F2E6B] dark:text-[#2570EB]">{scheduledCount}</div>
+            <div className="px-3.5 py-2 rounded-2xl bg-[#F0F5FF] dark:bg-[#0F2E6B]/30 border border-[#2570EB]/30 text-center min-w-[80px]">
+              <div className="text-xl font-black text-[#2570EB] dark:text-[#60A5FA]">{contactedCount}</div>
+              <div className="text-[10px] font-bold text-[#2570EB] dark:text-[#60A5FA] uppercase">Đã liên hệ</div>
+            </div>
+            <div className="px-3.5 py-2 rounded-2xl bg-[#EBF2FF] dark:bg-[#0F2E6B]/30 border border-[#2570EB]/30 text-center min-w-[80px]">
+              <div className="text-xl font-black text-[#0F2E6B] dark:text-[#2570EB]">{scheduledCount}</div>
               <div className="text-[10px] font-bold text-[#0F2E6B] dark:text-[#2570EB] uppercase">Đã hẹn xem</div>
             </div>
-            <div className="px-4 py-2.5 rounded-2xl bg-[#FFF6DB] dark:bg-[#7A5200]/30 border border-[#FFC83B]/30 text-center min-w-[90px]">
-              <div className="text-2xl font-black text-[#7A5200] dark:text-[#FFC83B]">{approvedCount}</div>
+            <div className="px-3.5 py-2 rounded-2xl bg-[#FFF6DB] dark:bg-[#7A5200]/30 border border-[#FFC83B]/30 text-center min-w-[80px]">
+              <div className="text-xl font-black text-[#7A5200] dark:text-[#FFC83B]">{approvedCount}</div>
               <div className="text-[10px] font-bold text-[#7A5200] dark:text-[#FFC83B] uppercase">Chờ ký HĐ</div>
             </div>
           </div>
@@ -98,39 +105,21 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
             {[
               { id: 'all', label: `Tất cả (${leads.length})` },
               { id: 'new', label: `Mới nhận (${newCount})` },
+              { id: 'contacted', label: `Đã liên hệ (${contactedCount})` },
               { id: 'viewing_scheduled', label: `Đã hẹn xem (${scheduledCount})` },
               { id: 'approved', label: `Chờ ký HĐ (${approvedCount})` },
-              { id: 'converted', label: 'Đã ký HĐ' },
+              { id: 'converted', label: `Đã ký HĐ (${convertedCount})` },
             ].map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setSelectedFilter(tab.id)}
                 className={`wise-pill-tab cursor-pointer ${
-                  selectedFilter === tab.id ? 'wise-pill-tab-active' : ''
+                  selectedFilter === tab.id ? 'wise-pill-tab-active font-bold' : ''
                 }`}
               >
                 {tab.label}
               </button>
             ))}
-          </div>
-
-          <div className="wise-pill-tabs">
-            <button
-              onClick={() => setActiveTab('pipeline')}
-              className={`wise-pill-tab cursor-pointer ${
-                activeTab === 'pipeline' ? 'wise-pill-tab-active' : ''
-              }`}
-            >
-              Dạng Thẻ (Pipeline)
-            </button>
-            <button
-              onClick={() => setActiveTab('table')}
-              className={`wise-pill-tab cursor-pointer ${
-                activeTab === 'table' ? 'wise-pill-tab-active' : ''
-              }`}
-            >
-              Dạng Bảng (Table)
-            </button>
           </div>
         </div>
       </div>
@@ -138,11 +127,11 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
       {/* Leads Content List */}
       {filteredLeads.length === 0 ? (
         <div className="p-12 text-center rounded-[32px] bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 space-y-3 shadow-xs font-sans">
-          <Sparkles className="w-8 h-8 text-[#20A05A] dark:text-[#9FE870] mx-auto" />
+          <Sparkles className="w-8 h-8 text-[#163300] dark:text-[#9FE870] mx-auto" />
           <h3 className="text-lg font-black text-[#163300] dark:text-white">Không có yêu cầu thuê nào trong mục này</h3>
           <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Các yêu cầu mới từ khách hàng sẽ xuất hiện tự động tại đây.</p>
         </div>
-      ) : activeTab === 'pipeline' ? (
+      ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredLeads.map(lead => (
             <div
@@ -239,6 +228,25 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
                     </>
                   )}
 
+                  {lead.status === 'contacted' && (
+                    <>
+                      <button
+                        onClick={() => onUpdateLeadStatus(lead.id, 'viewing_scheduled')}
+                        className="flex-1 py-2 px-3 rounded-full bg-[#2570EB] hover:bg-[#1d58bc] text-white font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+                      >
+                        <Calendar className="w-3.5 h-3.5" />
+                        <span>Hẹn Xem Nhà</span>
+                      </button>
+                      <button
+                        onClick={() => onUpdateLeadStatus(lead.id, 'approved')}
+                        className="py-2 px-3.5 rounded-full bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] font-bold text-xs transition-all cursor-pointer shadow-sm"
+                        title="Duyệt hồ sơ"
+                      >
+                        <Check className="w-4 h-4" />
+                      </button>
+                    </>
+                  )}
+
                   {lead.status === 'viewing_scheduled' && (
                     <>
                       <button
@@ -278,60 +286,6 @@ export const LeadsView: React.FC<LeadsViewProps> = ({
               </div>
             ))}
           </div>
-      ) : (
-        /* Table View */
-        <div className="bg-white dark:bg-slate-900 rounded-[24px] overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs">
-              <thead className="bg-[#F7FAF6] dark:bg-slate-800/90 text-[#163300] dark:text-slate-300 font-bold uppercase text-[10px] tracking-wider border-b border-slate-200 dark:border-slate-800">
-                <tr>
-                  <th className="p-4">Khách Hàng</th>
-                  <th className="p-4">Căn Hộ</th>
-                  <th className="p-4">Giá Thuê</th>
-                  <th className="p-4">Ngày Dự Kiến</th>
-                  <th className="p-4">Trạng Thái</th>
-                  <th className="p-4 text-right">Thao Tác</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 text-slate-700 dark:text-slate-300">
-                {filteredLeads.map(lead => (
-                  <tr key={lead.id} className="hover:bg-[#F2F5F0]/50 dark:hover:bg-slate-800/40 transition-colors">
-                    <td className="p-4">
-                      <div className="font-bold text-[#163300] dark:text-slate-100 text-sm">{lead.customerName}</div>
-                      <div className="text-slate-500 font-mono text-[11px]">{lead.phone}</div>
-                    </td>
-                    <td className="p-4">
-                      <div className="font-bold text-[#163300] dark:text-slate-200 line-clamp-1">{lead.unitName}</div>
-                      <div className="text-slate-400 font-mono text-[11px]">{lead.unitId}</div>
-                    </td>
-                    <td className="p-4 text-[#163300] dark:text-[#9FE870] font-bold font-mono whitespace-nowrap">
-                      {(lead.unitPriceVND / 1000000).toFixed(0)} Tr/tháng
-                    </td>
-                    <td className="p-4 text-slate-600 dark:text-slate-300">{lead.desiredMoveInDate}</td>
-                    <td className="p-4">{getStatusBadge(lead.status)}</td>
-                    <td className="p-4 text-right">
-                      {lead.status === 'approved' ? (
-                        <button
-                          onClick={() => onCreateContractFromLead(lead)}
-                          className="px-4 py-1.5 rounded-full bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] font-bold text-xs transition-all shadow-sm"
-                        >
-                          Lập Hợp Đồng
-                        </button>
-                      ) : (
-                        <button
-                          onClick={() => onUpdateLeadStatus(lead.id, 'approved')}
-                          className="px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-[#163300] dark:text-slate-200 font-bold text-xs transition-all"
-                        >
-                          Duyệt
-                        </button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
       )}
     </div>
   );
