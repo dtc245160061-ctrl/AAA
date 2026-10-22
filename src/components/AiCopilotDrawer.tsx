@@ -107,18 +107,23 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
   }, [isOpen, onClose]);
 
   const quickPrompts = [
-    'Tra cứu hóa đơn nợ quá hạn',
+    '📊 Tối ưu giá thuê & Yield ROI chủ nhà',
+    '🛡️ Quét bẫy hợp đồng thuê (Legal Shield)',
+    '🧯 Kiểm định sinh tồn PCCC QCVN 06',
+    'Quét thu hồi nợ quá hạn',
+    'Đối soát chuyển khoản ngân hàng',
+    'Kiểm tra rò rỉ điện nước & IoT',
+    'Tự động duyệt tin đăng sàn',
     'Hợp đồng nào hết hạn trong 60 ngày tới?',
-    'Xem các sự cố bảo trì đang xử lý',
-    'Bây giờ là mấy giờ?',
   ];
 
   const handleSend = async (textToSend?: string) => {
     const query = (textToSend || input).trim();
     if (!query || isLoading) return;
 
-    const newMsgs: Message[] = [...messages, { role: 'user', text: query }];
-    setMessages(newMsgs);
+    const userMsg: Message = { role: 'user', text: query };
+    const placeholderMsg: Message = { role: 'assistant', text: '' };
+    setMessages(prev => [...prev, userMsg, placeholderMsg]);
     if (!textToSend) setInput('');
     setIsLoading(true);
 
@@ -128,7 +133,23 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
         text: m.text
       }));
 
-      const res = await askHavenLocalSlm(query, history, 'admin');
+      const res = await askHavenLocalSlm(
+        query, 
+        history, 
+        'admin',
+        (partialCleanText) => {
+          setMessages(prev => {
+            const next = [...prev];
+            if (next.length > 0) {
+              next[next.length - 1] = {
+                ...next[next.length - 1],
+                text: partialCleanText
+              };
+            }
+            return next;
+          });
+        }
+      );
 
       const q = query.toLowerCase();
       let extraDataCard: any = undefined;
@@ -161,22 +182,29 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
         };
       }
 
-      const assistantMsg: Message = {
-        role: 'assistant',
-        text: res.answer,
-        sources: res.sources,
-        dataCard: extraDataCard
-      };
-
-      setMessages(prev => [...prev, assistantMsg]);
-    } catch (err: any) {
-      setMessages(prev => [
-        ...prev,
-        {
-          role: 'assistant',
-          text: `Đã xảy ra lỗi khi xử lý yêu cầu. Vui lòng thử lại.`
+      setMessages(prev => {
+        const next = [...prev];
+        if (next.length > 0) {
+          next[next.length - 1] = {
+            role: 'assistant',
+            text: res.answer,
+            sources: res.sources,
+            dataCard: extraDataCard
+          };
         }
-      ]);
+        return next;
+      });
+    } catch (err: any) {
+      setMessages(prev => {
+        const next = [...prev];
+        if (next.length > 0) {
+          next[next.length - 1] = {
+            role: 'assistant',
+            text: `Đã xảy ra lỗi khi xử lý yêu cầu. Vui lòng thử lại.`
+          };
+        }
+        return next;
+      });
     } finally {
       setIsLoading(false);
     }
@@ -213,7 +241,7 @@ export const AiCopilotDrawer: React.FC<AiCopilotDrawerProps> = ({ isOpen, onClos
                     </span>
                   </div>
                   <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">
-                    Trợ lý Trí tuệ Vận hành • Qwen2.5-0.5B
+                    Trợ lý Trí tuệ Vận hành • Qwen 7B
                   </p>
                 </div>
               </div>

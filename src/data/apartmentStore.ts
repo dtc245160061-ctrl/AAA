@@ -1,9 +1,10 @@
-import { MOCK_UNITS } from './mockData';
+import { MOCK_UNITS, MOCK_TICKETS } from './mockData';
 import type { 
   ApartmentUnit, 
   RentalLead, 
   LeaseContract, 
   RentalInvoice, 
+  MaintenanceTicket,
   UnitStatus,
   LeadStatus,
   ChatMessage,
@@ -170,6 +171,98 @@ const INITIAL_INVOICES: RentalInvoice[] = [
     dueDate: '2026-08-15',
     status: 'pending',
     platformTakeRateVND: 2470000
+  },
+  // Pending Invoices for Bank SMS Auto-Reconciliation Demo
+  {
+    id: 'INV-HNTH-2401',
+    invoiceCode: 'HD-HNTH-2401',
+    unitId: 'HN-TH-2401',
+    unitName: 'Penthouse Hồ Tây Panorama',
+    tenantName: 'Trần Minh Tuấn',
+    monthYear: '10/2026',
+    rentAmountVND: 16500000,
+    serviceFeeVND: 800000,
+    electricityWaterVND: 1200000,
+    totalAmountVND: 18500000,
+    dueDate: '2026-10-25',
+    status: 'pending',
+    platformTakeRateVND: 925000
+  },
+  {
+    id: 'INV-SGBTH-0803',
+    invoiceCode: 'HD-202608-04',
+    unitId: 'SG-BTH-0803',
+    unitName: 'Saigon Pearl Luxury Studio',
+    tenantName: 'Lê Hoàng Sơn',
+    monthYear: '10/2026',
+    rentAmountVND: 19500000,
+    serviceFeeVND: 1000000,
+    electricityWaterVND: 1500000,
+    totalAmountVND: 22000000,
+    dueDate: '2026-10-24',
+    status: 'pending',
+    platformTakeRateVND: 1100000
+  },
+  {
+    id: 'INV-HNCG-1402',
+    invoiceCode: 'HD-202608-05',
+    unitId: 'HN-CG-1402',
+    unitName: 'Executive Suite Cầu Giấy',
+    tenantName: 'Nguyễn Thị Mai',
+    monthYear: '10/2026',
+    rentAmountVND: 11500000,
+    serviceFeeVND: 500000,
+    electricityWaterVND: 800000,
+    totalAmountVND: 12800000,
+    dueDate: '2026-10-26',
+    status: 'pending',
+    platformTakeRateVND: 640000
+  },
+  // Overdue Invoices for Multi-Stage Debt Collection (Levels 1, 2, 3)
+  {
+    id: 'INV-OVERDUE-LV1',
+    invoiceCode: 'HD-DN-HC12',
+    unitId: 'DN-HC-1202',
+    unitName: 'Deluxe Residence Sông Hàn',
+    tenantName: 'Hoàng Văn Bách',
+    monthYear: '10/2026',
+    rentAmountVND: 13500000,
+    serviceFeeVND: 700000,
+    electricityWaterVND: 1000000,
+    totalAmountVND: 15200000,
+    dueDate: '2026-10-20', // 2 days overdue (Level 1: 1-3 days)
+    status: 'overdue',
+    platformTakeRateVND: 760000
+  },
+  {
+    id: 'INV-OVERDUE-LV2',
+    invoiceCode: 'HD-SG-Q705',
+    unitId: 'SG-Q7-0504',
+    unitName: 'Midtown Phú Mỹ Hưng Garden Suite',
+    tenantName: 'Đặng Thùy Linh',
+    monthYear: '10/2026',
+    rentAmountVND: 12800000,
+    serviceFeeVND: 600000,
+    electricityWaterVND: 1100000,
+    totalAmountVND: 14500000,
+    dueDate: '2026-10-17', // 5 days overdue (Level 2: 4-7 days)
+    status: 'overdue',
+    platformTakeRateVND: 725000
+  },
+  {
+    id: 'INV-OVERDUE-LV3',
+    invoiceCode: 'HD-HN-TX09',
+    unitId: 'HN-TX-0901',
+    unitName: 'Golden Land Suite Thanh Xuân',
+    tenantName: 'Bùi Quốc Anh',
+    monthYear: '10/2026',
+    rentAmountVND: 25000000,
+    serviceFeeVND: 1200000,
+    electricityWaterVND: 1800000,
+    totalAmountVND: 28000000,
+    dueDate: '2026-10-10', // 12 days overdue (Level 3: >7 days)
+    status: 'overdue',
+    platformTakeRateVND: 1400000
   }
 ];
 
@@ -408,6 +501,7 @@ const STORAGE_KEYS = {
   LEADS: 'haven_rental_leads_v4',
   CONTRACTS: 'haven_lease_contracts_v4',
   INVOICES: 'haven_rental_invoices_v4',
+  MAINTENANCE_TICKETS: 'haven_maintenance_tickets_v4',
   SAVED: 'haven_saved_unit_ids_v4',
   CONVERSATIONS: 'haven_chat_conversations_v4',
   ACTIVE_SUBSCRIPTION: 'haven_active_subscription_v4',
@@ -1103,6 +1197,28 @@ export class ApartmentStore {
     }
   }
 
+  // Maintenance Tickets (IoT & Anomaly Driven)
+  static getMaintenanceTickets(): MaintenanceTicket[] {
+    try {
+      const data = localStorage.getItem(STORAGE_KEYS.MAINTENANCE_TICKETS);
+      if (data) return JSON.parse(data);
+    } catch (e) {
+      console.error(e);
+    }
+    return MOCK_TICKETS;
+  }
+
+  static saveMaintenanceTickets(tickets: MaintenanceTicket[]) {
+    safeSetItem(STORAGE_KEYS.MAINTENANCE_TICKETS, JSON.stringify(tickets));
+  }
+
+  static addMaintenanceTicket(ticket: MaintenanceTicket): MaintenanceTicket {
+    const tickets = this.getMaintenanceTickets();
+    tickets.unshift(ticket);
+    this.saveMaintenanceTickets(tickets);
+    return ticket;
+  }
+
   // Chat Conversations & Messages (Shopee-Style)
   static getConversations(): ChatConversation[] {
     try {
@@ -1671,7 +1787,10 @@ export class ApartmentStore {
   static getModerationQueue(): MarketplaceModerationItem[] {
     try {
       const data = localStorage.getItem('haven_moderation_queue_v3');
-      if (data) return JSON.parse(data);
+      if (data) {
+        const parsed: MarketplaceModerationItem[] = JSON.parse(data);
+        if (parsed.length > 0) return parsed;
+      }
     } catch (e) {
       console.error(e);
     }
@@ -1727,6 +1846,79 @@ export class ApartmentStore {
           noSpamKeywords: false,
           pcccDocAttached: false
         }
+      },
+      // Pending Queue Items for AI Autonomous Governance Sweep
+      {
+        id: 'MOD-2026-104',
+        unitId: 'HN-CG-302',
+        unitName: 'Studio Cao Cấp Duy Tân Cầu Giấy',
+        landlordName: 'Vũ Thị Hạnh',
+        landlordPhone: '0915 222 333',
+        monthlyRentVND: 9500000,
+        submittedAt: '2026-10-22 08:15',
+        status: 'pending',
+        priceAnomalyPercent: 2,
+        duplicateScorePercent: 5,
+        autoCheckResult: {
+          photoAuthenticityScore: 94,
+          priceWithinRange: true,
+          noSpamKeywords: true,
+          pcccDocAttached: true
+        }
+      },
+      {
+        id: 'MOD-2026-105',
+        unitId: 'SG-BT-SUSPECT-02',
+        unitName: 'Căn Hộ 2PN Bình Thạnh Giá 3.5Tr (Yêu cầu cọc 3 tháng)',
+        landlordName: 'Nguyễn Văn Lừa',
+        landlordPhone: '0944 666 888',
+        monthlyRentVND: 3500000,
+        submittedAt: '2026-10-22 08:45',
+        status: 'pending',
+        priceAnomalyPercent: -68,
+        duplicateScorePercent: 74,
+        autoCheckResult: {
+          photoAuthenticityScore: 35,
+          priceWithinRange: false,
+          noSpamKeywords: false,
+          pcccDocAttached: false
+        }
+      },
+      {
+        id: 'MOD-2026-106',
+        unitId: 'DN-ST-505',
+        unitName: 'Condotel Sơn Trà View Biển Mỹ Khê',
+        landlordName: 'Đỗ Hùng Dũng',
+        landlordPhone: '0905 123 789',
+        monthlyRentVND: 13500000,
+        submittedAt: '2026-10-22 09:05',
+        status: 'pending',
+        priceAnomalyPercent: -4,
+        duplicateScorePercent: 3,
+        autoCheckResult: {
+          photoAuthenticityScore: 91,
+          priceWithinRange: true,
+          noSpamKeywords: true,
+          pcccDocAttached: true
+        }
+      },
+      {
+        id: 'MOD-2026-107',
+        unitId: 'HN-HBT-HIGHRISE-09',
+        unitName: 'Penthouse Times City Giá Rẻ Giật Mình (Không PCCC)',
+        landlordName: 'Hoàng Môi Giới',
+        landlordPhone: '0987 111 222',
+        monthlyRentVND: 8000000,
+        submittedAt: '2026-10-22 09:20',
+        status: 'pending',
+        priceAnomalyPercent: -55,
+        duplicateScorePercent: 82,
+        autoCheckResult: {
+          photoAuthenticityScore: 40,
+          priceWithinRange: false,
+          noSpamKeywords: false,
+          pcccDocAttached: false
+        }
       }
     ];
   }
@@ -1766,6 +1958,7 @@ export class ApartmentStore {
       localStorage.removeItem(STORAGE_KEYS.LEADS);
       localStorage.removeItem(STORAGE_KEYS.CONTRACTS);
       localStorage.removeItem(STORAGE_KEYS.INVOICES);
+      localStorage.removeItem(STORAGE_KEYS.MAINTENANCE_TICKETS);
       localStorage.removeItem(STORAGE_KEYS.SAVED);
       localStorage.removeItem(STORAGE_KEYS.CONVERSATIONS);
       localStorage.removeItem(STORAGE_KEYS.ACTIVE_SUBSCRIPTION);

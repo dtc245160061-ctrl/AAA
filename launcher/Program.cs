@@ -11,7 +11,7 @@ namespace HavenLauncher
         private const int Port = 5173;
         private const int OllamaPort = 11434;
         private const string Url = "http://localhost:5173/";
-        private const string ProjectDir = @"d:\HAVEN";
+        private const string ProjectDir = @"D:\Workspace\Projects\AAA";
 
         [STAThread]
         static void Main()

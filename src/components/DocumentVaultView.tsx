@@ -9,10 +9,23 @@ import {
   Lock,
   Building,
   UploadCloud,
-  X
+  X,
+  AlertTriangle,
+  CheckCircle2,
+  Sparkles,
+  Copy,
+  Check,
+  ShieldAlert,
+  BookOpen
 } from 'lucide-react';
 import type { LegalDocumentItem, ApartmentUnit } from '../types/apartment';
 import { ApartmentStore } from '../data/apartmentStore';
+import { 
+  scanLeaseContractRedFlags, 
+  SAMPLE_PREDATORY_CONTRACT_TEXT, 
+  type ContractScanResult 
+} from '../services/aiSignatureFeaturesService';
+import { useAiCommand } from '../services/aiCommandBus';
 
 interface DocumentVaultViewProps {
   units: ApartmentUnit[];
@@ -33,6 +46,62 @@ export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
   const [docTitle, setDocTitle] = useState<string>('');
   const [docCategory, setDocCategory] = useState<LegalDocumentItem['category']>('contract');
   const [docUnitId, setDocUnitId] = useState<string>(units[0]?.id || '');
+
+  // AI Contract Red-Flag Scanner State
+  const [contractInputText, setContractInputText] = useState<string>(SAMPLE_PREDATORY_CONTRACT_TEXT);
+  const [isScanningContract, setIsScanningContract] = useState<boolean>(false);
+  const [scanResult, setScanResult] = useState<ContractScanResult | null>(null);
+  const [viewMode, setViewMode] = useState<'red_flags' | 'remedied_text'>('red_flags');
+  const [copiedClauseId, setCopiedClauseId] = useState<string | null>(null);
+
+  // Auto-trigger from aiCommandBus
+  useAiCommand((cmd) => {
+    if (cmd.type === 'scan_contract_traps') {
+      if (cmd.payload.contractText) {
+        setContractInputText(cmd.payload.contractText);
+      }
+      handleTriggerContractScan(cmd.payload.contractText || contractInputText);
+    }
+  });
+
+  const handleTriggerContractScan = (textToScan?: string) => {
+    setIsScanningContract(true);
+    const target = textToScan || contractInputText || SAMPLE_PREDATORY_CONTRACT_TEXT;
+    setTimeout(() => {
+      const res = scanLeaseContractRedFlags(target);
+      setScanResult(res);
+      setIsScanningContract(false);
+      if (onShowToast) {
+        onShowToast('info', 'AI Quét Hợp Đồng Hoàn Tất', `Điểm an toàn: ${res.legalSafetyScore}/100 — Phát hiện ${res.redFlags.length} điều khoản bẫy.`);
+      }
+    }, 450);
+  };
+
+  const handleCopyClause = (clauseId: string, text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedClauseId(clauseId);
+    setTimeout(() => setCopiedClauseId(null), 2000);
+    if (onShowToast) {
+      onShowToast('success', 'Đã sao chép điều khoản', 'Điều khoản đã được lưu vào clipboard.');
+    }
+  };
+
+  const handleSaveRemediedToVault = () => {
+    if (!scanResult) return;
+    const targetUnit = units[0];
+    const newDoc = ApartmentStore.addLegalDocument({
+      title: `Hợp Đồng Đã Khắc Phục (Shield Guard) — ${new Date().toLocaleDateString('vi-VN')}`,
+      category: 'contract',
+      unitId: targetUnit?.id || 'GEN-01',
+      unitName: targetUnit?.name || 'Hợp Đồng Chuẩn Hóa Pháp Lý',
+      fileSizeKb: Math.floor(Math.random() * 500) + 120,
+      verified: true
+    });
+    setDocuments(ApartmentStore.getLegalDocuments());
+    if (onShowToast) {
+      onShowToast('success', 'Đã lưu vào Document Vault', `Hợp đồng đã chuẩn hóa "${newDoc.title}" được bảo mật SHA-256.`);
+    }
+  };
 
   const filteredDocs = documents.filter(doc => {
     const matchesCategory = categoryFilter === 'all' || doc.category === categoryFilter;
@@ -84,24 +153,279 @@ export const DocumentVaultView: React.FC<DocumentVaultViewProps> = ({
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F8EC] dark:bg-[#163300] text-[#163300] dark:text-[#9FE870] font-bold text-xs uppercase tracking-wider mb-2">
               <FolderLock className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
-              <span>Kho Lưu Trữ Tài Liệu Pháp Lý Số (Document Vault)</span>
+              <span>Kho Lưu Trữ Tài Liệu & Khiên Pháp Lý (Legal Shield)</span>
             </div>
             <h1 className="text-2xl md:text-3xl font-bold text-[#163300] dark:text-white mt-1">
-              Bảo Mật Hợp Đồng, Giấy Tờ PCCC & Biên Lai Ký Quỹ
+              Máy Quét Bẫy Hợp Đồng & Lưu Trữ Pháp Lý Số
             </h1>
             <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 max-w-2xl leading-relaxed">
-              Toàn bộ hợp đồng điện tử, biên bản bàn giao và chứng nhận an toàn tòa nhà được mã hóa SHA-256 và lưu trữ vĩnh viễn trên nền tảng.
+              Tự động đối chiếu hợp đồng thuê nhà với Luật Nhà ở 2023, Bộ luật Dân sự 2015 và biểu giá EVN để phát hiện điều khoản chèn ép và bảo vệ tiền cọc của khách thuê.
             </p>
           </div>
 
-          <button
-            onClick={() => setIsUploadModalOpen(true)}
-            className="px-6 py-2.5 rounded-full bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] font-bold text-xs shadow-sm hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5 self-start md:self-auto cursor-pointer"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Tải Lên Tài Liệu Mới</span>
-          </button>
+          <div className="flex items-center gap-2 flex-wrap">
+            <button
+              onClick={() => handleTriggerContractScan()}
+              className="px-5 py-2.5 rounded-full bg-[#163300] text-[#9FE870] font-bold text-xs shadow-sm hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5 cursor-pointer"
+            >
+              <Sparkles className="w-4 h-4" />
+              <span>AI Quét Hợp Đồng Ngay</span>
+            </button>
+            <button
+              onClick={() => setIsUploadModalOpen(true)}
+              className="px-5 py-2.5 rounded-full bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] font-bold text-xs shadow-sm hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5 cursor-pointer"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Tải Lên Tài Liệu Mới</span>
+            </button>
+          </div>
         </div>
+      </div>
+
+      {/* FEATURE 12: INTERACTIVE AI CONTRACT RED-FLAG SCANNER & LEGAL SHIELD */}
+      <div className="bg-white dark:bg-slate-900 rounded-[28px] border-2 border-[#163300]/20 dark:border-slate-800 p-6 sm:p-8 shadow-sm space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-[#E8F8EC] text-[#163300] dark:text-[#9FE870] flex items-center justify-center font-bold">
+              <ShieldAlert className="w-5 h-5 text-[#163300] dark:text-[#9FE870]" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h3 className="text-lg sm:text-xl font-bold text-[#163300] dark:text-white">
+                  AI Máy Quét Hợp Đồng & Bắt Lỗi Bẫy (Legal Shield Scanner)
+                </h3>
+                <span className="px-2 py-0.5 rounded-full bg-[#9FE870] text-[#163300] text-[10px] font-black uppercase">
+                  Luật Nhà Ở 2023
+                </span>
+              </div>
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+                Dán văn bản hợp đồng thuê nhà để bóc tách 5 lỗi bẫy: điện giá cao, mất cọc vô lý, tự ý vào phòng, đẩy phí sửa chữa ngầm
+              </p>
+            </div>
+          </div>
+
+          {/* Quick Demo Preset Button */}
+          <div className="flex items-center gap-2 self-start sm:self-auto">
+            <button
+              onClick={() => {
+                setContractInputText(SAMPLE_PREDATORY_CONTRACT_TEXT);
+                handleTriggerContractScan(SAMPLE_PREDATORY_CONTRACT_TEXT);
+              }}
+              className="px-3.5 py-1.5 rounded-full bg-[#FFF8E6] border border-[#FFC83B] text-[#9A6700] hover:bg-[#ffefa8] font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs"
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              <span>Nạp Hợp Đồng Mẫu Có Cài Bẫy (Demo)</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Contract Input Textarea */}
+        <div className="space-y-2">
+          <div className="flex items-center justify-between text-xs">
+            <label className="font-bold text-slate-700 dark:text-slate-300">
+              Văn Bản Hợp Đồng Cần Rà Soát Pháp Lý:
+            </label>
+            <span className="text-slate-400 font-mono text-[11px]">
+              {contractInputText.length.toLocaleString('vi-VN')} ký tự
+            </span>
+          </div>
+          <textarea
+            rows={5}
+            value={contractInputText}
+            onChange={(e) => setContractInputText(e.target.value)}
+            placeholder="Dán nội dung hợp đồng thuê nhà tại đây..."
+            className="w-full p-4 rounded-2xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-slate-100 text-xs font-mono leading-relaxed focus:outline-none focus:ring-2 focus:ring-[#9FE870]"
+          />
+          <div className="flex justify-end gap-2 pt-1">
+            <button
+              onClick={() => handleTriggerContractScan()}
+              disabled={isScanningContract || !contractInputText.trim()}
+              className="px-6 py-2.5 rounded-full bg-[#9FE870] hover:bg-[#8CD860] text-[#163300] font-black text-xs shadow-sm transition-all flex items-center gap-2 cursor-pointer disabled:opacity-50"
+            >
+              <Sparkles className="w-4 h-4 text-[#163300]" />
+              <span>{isScanningContract ? 'AI Đang Rà Soát Pháp Lý...' : 'AI Quét Bẫy & Bắt Lỗi Hợp Đồng'}</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Scan Results Panel */}
+        {scanResult && (
+          <div className="space-y-6 pt-4 border-t border-slate-200 dark:border-slate-800 animate-in fade-in duration-300">
+            {/* Score & Verdict Banner */}
+            <div className={`p-5 rounded-2xl border flex flex-col md:flex-row md:items-center justify-between gap-4 ${
+              scanResult.legalSafetyScore < 50
+                ? 'bg-[#FEECEB] border-[#FF5436]/40 text-[#D92D20]'
+                : scanResult.legalSafetyScore < 80
+                ? 'bg-[#FFF8E6] border-[#FFC83B]/50 text-[#9A6700]'
+                : 'bg-[#E8F8EC] border-[#9FE870]/40 text-[#163300]'
+            }`}>
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-2xl bg-white dark:bg-slate-900 border border-current/20 flex flex-col items-center justify-center shrink-0 shadow-xs">
+                  <span className="text-xl font-black leading-none">{scanResult.legalSafetyScore}</span>
+                  <span className="text-[10px] font-bold opacity-75 uppercase">/ 100</span>
+                </div>
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <h4 className="font-black text-base tracking-tight">{scanResult.verdictTitle}</h4>
+                    <span className="px-2.5 py-0.5 rounded-full bg-white/70 dark:bg-black/30 text-[10px] font-black uppercase">
+                      {scanResult.verdict === 'high_risk' ? 'Cực Kỳ Bất Lợi' : scanResult.verdict === 'medium_risk' ? 'Cần Chỉnh Sửa' : 'An Toàn'}
+                    </span>
+                  </div>
+                  <p className="text-xs opacity-90 leading-relaxed font-medium">
+                    {scanResult.summary}
+                  </p>
+                </div>
+              </div>
+
+              <div className="md:text-right border-t md:border-t-0 md:border-l border-current/20 pt-3 md:pt-0 md:pl-5 space-y-0.5 shrink-0">
+                <span className="text-[11px] font-bold uppercase tracking-wider block opacity-75">
+                  Rủi Ro Tài Chính Tiềm Ẩn:
+                </span>
+                <span className="text-xl font-black tabular-nums">
+                  ~{(scanResult.totalFinancialRiskVND / 1000000).toFixed(1)} Triệu VNĐ
+                </span>
+              </div>
+            </div>
+
+            {/* View Mode Toggle & Remedy Actions */}
+            <div className="flex items-center justify-between gap-3 flex-wrap">
+              <div className="flex items-center gap-2 p-1 rounded-2xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs">
+                <button
+                  onClick={() => setViewMode('red_flags')}
+                  className={`px-4 py-1.5 rounded-xl font-bold transition-all cursor-pointer ${
+                    viewMode === 'red_flags'
+                      ? 'bg-white dark:bg-slate-900 text-[#163300] dark:text-[#9FE870] shadow-xs'
+                      : 'text-slate-600 dark:text-slate-400'
+                  }`}
+                >
+                  Danh Sách {scanResult.redFlags.length} Điều Khoản Bẫy
+                </button>
+                <button
+                  onClick={() => setViewMode('remedied_text')}
+                  className={`px-4 py-1.5 rounded-xl font-bold transition-all cursor-pointer ${
+                    viewMode === 'remedied_text'
+                      ? 'bg-white dark:bg-slate-900 text-[#163300] dark:text-[#9FE870] shadow-xs'
+                      : 'text-slate-600 dark:text-slate-400'
+                  }`}
+                >
+                  Toàn Văn Hợp Đồng Đã Khắc Phục Chuẩn Luật
+                </button>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleSaveRemediedToVault}
+                  className="px-4 py-2 rounded-full bg-[#163300] text-[#9FE870] font-bold text-xs hover:bg-[#234c03] transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
+                >
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  <span>Lưu Bản Đã Khắc Phục Vào Vault</span>
+                </button>
+              </div>
+            </div>
+
+            {/* TAB 1: Itemized Red Flag Cards */}
+            {viewMode === 'red_flags' && (
+              <div className="space-y-4">
+                {scanResult.redFlags.map((flag, idx) => (
+                  <div
+                    key={flag.id}
+                    className="p-5 rounded-2xl bg-[#F9FAF8] dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 space-y-3.5"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 text-[#163300] dark:text-white flex items-center justify-center text-xs font-black">
+                          {idx + 1}
+                        </span>
+                        <h5 className="font-bold text-sm text-[#163300] dark:text-white">
+                          {flag.clauseTitle}
+                        </h5>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase ${
+                          flag.severity === 'Critical'
+                            ? 'bg-[#FEECEB] text-[#D92D20] border border-[#FF5436]/30'
+                            : 'bg-[#FFF8E6] text-[#9A6700] border border-[#FFC83B]/40'
+                        }`}>
+                          {flag.severity === 'Critical' ? 'Bẫy Nghiêm Trọng' : 'Cảnh Báo Bất Lợi'}
+                        </span>
+                        <span className="text-[11px] font-bold text-slate-500 tabular-nums">
+                          Rủi ro: ~{(flag.financialRiskVND / 1000000).toFixed(1)}Tr
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Original vs Fair Side-by-side */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                      {/* Original predatory clause */}
+                      <div className="p-3.5 rounded-xl bg-[#FEECEB]/60 dark:bg-rose-950/20 border border-[#FF5436]/20 space-y-1.5">
+                        <span className="text-[10px] font-black text-[#D92D20] uppercase tracking-wider flex items-center gap-1">
+                          <AlertTriangle className="w-3 h-3 text-[#FF5436]" />
+                          <span>Điều Khoản Gốc (Bất Lợi):</span>
+                        </span>
+                        <p className="text-slate-800 dark:text-slate-200 italic leading-relaxed">
+                          "{flag.originalExcerpt}"
+                        </p>
+                      </div>
+
+                      {/* AI Rewritten Fair Clause */}
+                      <div className="p-3.5 rounded-xl bg-[#E8F8EC] dark:bg-emerald-950/20 border border-[#9FE870]/40 space-y-1.5">
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px] font-black text-[#163300] dark:text-[#9FE870] uppercase tracking-wider flex items-center gap-1">
+                            <CheckCircle2 className="w-3 h-3 text-[#163300] dark:text-[#9FE870]" />
+                            <span>AI Viết Lại (Đúng Luật & Bảo Vệ Khách Thuê):</span>
+                          </span>
+                          <button
+                            onClick={() => handleCopyClause(flag.id, flag.rewrittenFairClause)}
+                            className="p-1 rounded-md text-[#163300] dark:text-[#9FE870] hover:bg-white/60 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+                            title="Sao chép điều khoản"
+                          >
+                            {copiedClauseId === flag.id ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                          </button>
+                        </div>
+                        <p className="text-[#163300] dark:text-emerald-200 font-medium leading-relaxed">
+                          {flag.rewrittenFairClause}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Legal citation & Explanation */}
+                    <div className="text-[11px] text-slate-600 dark:text-slate-300 flex items-start gap-2 pt-1 border-t border-slate-200/60 dark:border-slate-700/60">
+                      <BookOpen className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870] shrink-0 mt-0.5" />
+                      <div>
+                        <strong className="text-[#163300] dark:text-white">Căn cứ pháp lý:</strong> {flag.legalCitation}.
+                        <p className="mt-0.5 text-slate-500 dark:text-slate-400">{flag.riskExplanation}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* TAB 2: Remedied Full Contract Text */}
+            {viewMode === 'remedied_text' && (
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                    Bản Hợp Đồng Đã Tự Động Thay Thế Các Điều Khoản Bẫy:
+                  </span>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(scanResult.remediedContractFullText);
+                      if (onShowToast) onShowToast('success', 'Đã sao chép toàn văn hợp đồng');
+                    }}
+                    className="px-3 py-1.5 rounded-full bg-[#E8F8EC] border border-[#9FE870] text-[#163300] font-bold text-xs flex items-center gap-1.5 cursor-pointer hover:scale-105"
+                  >
+                    <Copy className="w-3.5 h-3.5" />
+                    <span>Sao Chép Toàn Bộ Hợp Đồng Đã Sửa</span>
+                  </button>
+                </div>
+                <div className="p-4 rounded-2xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-mono text-slate-800 dark:text-slate-200 whitespace-pre-wrap leading-relaxed max-h-96 overflow-y-auto">
+                  {scanResult.remediedContractFullText}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Filter Toolbar - Wise Style */}

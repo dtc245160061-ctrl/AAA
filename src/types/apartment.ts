@@ -345,6 +345,7 @@ export interface MarketplaceModerationItem {
   landlordName: string;
   landlordPhone: string;
   submittedAt: string;
+  monthlyRentVND?: number;
   status: 'pending' | 'approved' | 'flagged' | 'rejected';
   flagReason?: string;
   priceAnomalyPercent?: number; // e.g. -35% (below market)

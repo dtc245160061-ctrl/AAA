@@ -192,7 +192,7 @@ export const AdminInboxView: React.FC<AdminInboxViewProps> = ({
                       <div className="text-[10px] text-slate-400 px-1 font-medium">
                         {msg.senderName} • {msg.timestamp}
                       </div>
-                      <div className={`p-4 rounded-[20px] leading-relaxed shadow-sm ${
+                      <div className={`p-4 rounded-[20px] leading-relaxed shadow-sm whitespace-pre-line ${
                         isLandlord
                           ? 'bg-[#9FE870] text-[#163300] font-medium rounded-tr-sm'
                           : isBot

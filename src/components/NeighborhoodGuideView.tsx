@@ -71,15 +71,15 @@ export const NeighborhoodGuideView: React.FC<NeighborhoodGuideViewProps> = ({
     switch (level) {
       case 'full_ownership_verified':
         return (
-          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#E8F8EC] border border-[#9FE870] text-[#163300] text-[11px] font-bold backdrop-blur-md shadow-sm">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870] shrink-0" />
+          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#163300] border border-[#9FE870]/40 text-[#9FE870] text-[11px] font-bold backdrop-blur-md shadow-sm">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#9FE870] shrink-0" />
             <span>✓✓ Sổ Đỏ & Ảnh Thật</span>
           </span>
         );
       case 'id_verified':
         return (
-          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#EBF2FF] border border-[#2570EB] text-[#2570EB] text-[11px] font-bold backdrop-blur-md shadow-sm">
-            <CheckCircle2 className="w-3.5 h-3.5 text-[#2570EB] shrink-0" />
+          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#E8F8EC] border border-[#9FE870] text-[#163300] text-[11px] font-bold backdrop-blur-md shadow-sm">
+            <CheckCircle2 className="w-3.5 h-3.5 text-[#163300] shrink-0" />
             <span>✓ Xác Minh CCCD</span>
           </span>
         );

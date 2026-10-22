@@ -130,8 +130,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {/* Brand details when expanded */}
           {!collapsed && (
             <div className="flex items-center gap-2 ml-2.5 min-w-0 animate-in fade-in duration-200">
-              <div className="w-8 h-8 rounded-xl bg-[#9FE870]/25 flex items-center justify-center shrink-0">
-                <Leaf className="w-4 h-4 text-[#163300] dark:text-[#9FE870] fill-current" />
+              <div className="w-8 h-8 rounded-xl bg-[#9FE870] flex items-center justify-center shrink-0 shadow-2xs">
+                <Leaf className="w-4.5 h-4.5 text-[#163300] fill-current" />
               </div>
               <div className="min-w-0">
                 <h1 className="text-[13px] font-black text-[#163300] dark:text-white tracking-tight truncate">

@@ -35,6 +35,7 @@ import { AiCopilotDrawer } from './components/AiCopilotDrawer';
 import { QuickActionModal } from './components/QuickActionModal';
 import { ToastContainer, type ToastMessage } from './components/Toast';
 import { ApartmentStore } from './data/apartmentStore';
+import { useAiCommand } from './services/aiCommandBus';
 import type {
   ApartmentUnit,
   RentalLead,
@@ -139,6 +140,78 @@ export function App() {
   const dismissToast = (id: string) => {
     setToasts(prev => prev.filter(t => t.id !== id));
   };
+
+  // Subscribe to Autonomous AI Action Bus (Zero-Click programmatic UI manipulation)
+  useAiCommand((cmd) => {
+    if (cmd.type === 'apply_filters') {
+      setIsAdminView(false);
+      setActiveModule('user_search');
+    } else if (cmd.type === 'compare_units') {
+      if (cmd.payload.unitIds && cmd.payload.unitIds.length > 0) {
+        setSavedUnitIds(cmd.payload.unitIds);
+        ApartmentStore.saveSavedUnitIds(cmd.payload.unitIds);
+      }
+      setIsAdminView(false);
+      setActiveModule('user_compare');
+      showToast('info', 'AI So Sánh Căn Hộ', cmd.payload.summaryBadge || 'Đã nạp các căn hộ vào bảng so sánh Radar.');
+    } else if (cmd.type === 'open_unit_detail') {
+      setSelectedUnitId(cmd.payload.unitId);
+      setIsAdminView(false);
+      setActiveModule('user_detail');
+    } else if (cmd.type === 'navigate_module') {
+      const targetModule = cmd.payload.module.replace('#', '').replace('/', '');
+      const adminModules = ['dashboard', 'units', 'contracts', 'billing', 'leads', 'analytics', 'audit_log', 'admin_health'];
+      const isAdmin = adminModules.includes(targetModule);
+      setIsAdminView(isAdmin);
+      setActiveModule(targetModule);
+      showToast('info', 'AI Điều Hướng', cmd.payload.summaryBadge || `Đã chuyển sang ${targetModule}`);
+    } else if (cmd.type === 'draft_contract') {
+      setIsAdminView(true);
+      setActiveModule('contracts');
+      showToast('info', 'AI Soạn Hợp Đồng', cmd.payload.summaryBadge || 'Đang mở biểu mẫu hợp đồng với dữ liệu tự điền...');
+    } else if (cmd.type === 'fill_listing') {
+      setIsSmartListingOpen(true);
+      showToast('info', 'AI Đăng Tin Căn Hộ', cmd.payload.summaryBadge || 'Đang mở biểu mẫu đăng tin với dữ liệu tự điền...');
+    } else if (cmd.type === 'reconcile_payments') {
+      setIsAdminView(true);
+      setActiveModule('billing');
+      showToast('info', 'AI Đối Soát Chuyển Khoản', cmd.payload.summaryBadge || 'Đang mở Sổ Quỹ Thu Tiền & kích hoạt đối soát tin nhắn ngân hàng...');
+    } else if (cmd.type === 'collect_debts') {
+      setIsAdminView(true);
+      setActiveModule('billing');
+      showToast('info', 'AI Thu Hồi Công Nợ', cmd.payload.summaryBadge || 'Đang mở Chiến dịch thu hồi công nợ đa tầng (Level 1, 2, 3)...');
+    } else if (cmd.type === 'scan_iot_leaks') {
+      setIsAdminView(true);
+      setActiveModule('dashboard');
+      showToast('info', 'AI Radar Rò Rỉ IoT', cmd.payload.summaryBadge || 'Đang quét cảm biến điện nước & pin khóa thông minh toàn tòa nhà...');
+    } else if (cmd.type === 'moderate_marketplace') {
+      setIsAdminView(true);
+      setActiveModule('admin_health');
+      showToast('info', 'AI Governance Sweeper', cmd.payload.summaryBadge || 'Đang mở Trung tâm Kiểm duyệt Sàn & quét chống lừa đảo cọc...');
+    } else if (cmd.type === 'scan_contract_traps') {
+      setIsAdminView(false);
+      setActiveModule('documents');
+      showToast('info', 'AI Legal Shield Scanner', cmd.payload.summaryBadge || 'Đang mở Kho Pháp Lý & Quét bẫy hợp đồng...');
+    } else if (cmd.type === 'audit_pccc') {
+      if (cmd.payload.unitId) {
+        setSelectedUnitId(cmd.payload.unitId);
+      }
+      setIsAdminView(false);
+      setActiveModule('user_detail');
+      showToast('info', 'AI Kiểm Định Sinh Tồn PCCC', cmd.payload.summaryBadge || 'Đang kiểm định quy chuẩn an toàn QCVN 06:2022...');
+    } else if (cmd.type === 'open_negotiation_war_room') {
+      if (cmd.payload.unitId) {
+        setSelectedUnitId(cmd.payload.unitId);
+      }
+      setIsAdminView(false);
+      setActiveModule('user_detail');
+      showToast('info', 'AI Negotiation War-Room', cmd.payload.summaryBadge || 'Đang mở Phòng đấu trí đàm phán giá...');
+    } else if (cmd.type === 'optimize_unit_yield') {
+      setIsAdminView(true);
+      setActiveModule('units');
+      showToast('info', 'AI Yield Optimizer', cmd.payload.summaryBadge || 'Đang mở công cụ tối ưu giá thuê & lợi suất sinh lời...');
+    }
+  });
 
   // Modals & Drawers
   const [isAiCopilotOpen, setIsAiCopilotOpen] = useState<boolean>(false);
@@ -631,6 +704,7 @@ export function App() {
               onSelectUnit={handleInspectUnit}
               onNavigateTab={setActiveModule}
               onOpenAiCopilot={() => setIsAiCopilotOpen(true)}
+              onShowToast={showToast}
             />
           )}
 
@@ -643,6 +717,7 @@ export function App() {
               onOpenVirtualTour={(u) => setActiveVirtualTourUnit(u)}
               onEditUnit={handleEditUnit}
               onDeleteUnit={handleDeleteUnit}
+              onShowToast={showToast}
             />
           )}
 
@@ -683,6 +758,8 @@ export function App() {
               onMarkInvoicePaid={handleMarkInvoicePaid}
               onSelectUnit={handleInspectUnit}
               onOpenQuickAction={() => setIsQuickActionOpen(true)}
+              onRefreshInvoices={() => setInvoices(ApartmentStore.getInvoices())}
+              onShowToast={showToast}
             />
           )}
 

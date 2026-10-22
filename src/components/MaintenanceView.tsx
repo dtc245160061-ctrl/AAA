@@ -6,7 +6,7 @@ import {
   List, 
   Plus
 } from 'lucide-react';
-import { MOCK_TICKETS } from '../data/mockData';
+import { ApartmentStore } from '../data/apartmentStore';
 import type { MaintenanceTicket } from '../types/apartment';
 
 interface MaintenanceViewProps {
@@ -18,14 +18,16 @@ export const MaintenanceView: React.FC<MaintenanceViewProps> = ({
   onSelectUnit,
   onOpenQuickAction,
 }) => {
-  const [tickets, setTickets] = useState<MaintenanceTicket[]>(MOCK_TICKETS);
+  const [tickets, setTickets] = useState<MaintenanceTicket[]>(() => ApartmentStore.getMaintenanceTickets());
   const [viewMode, setViewMode] = useState<'kanban' | 'table'>('kanban');
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleStatusChange = (id: string, newStatus: 'Open' | 'In Progress' | 'Resolved') => {
-    setTickets((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, status: newStatus } : t))
-    );
+    setTickets((prev) => {
+      const updated = prev.map((t) => (t.id === id ? { ...t, status: newStatus } : t));
+      ApartmentStore.saveMaintenanceTickets(updated);
+      return updated;
+    });
   };
 
   const filteredTickets = tickets.filter(

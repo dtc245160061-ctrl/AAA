@@ -26,6 +26,7 @@ import type { ApartmentUnit } from '../types/apartment';
 import { type ConsumerFilters, parseNaturalLanguageQuery, calculateMatchScore } from '../services/aiAdvisorService';
 import { normalizeCity } from '../data/apartmentStore';
 import { SmartImage } from './common/SmartImage';
+import { useAiCommand } from '../services/aiCommandBus';
 
 const getCityPriorityWeight = (cityName?: string): number => {
   if (!cityName) return 50;
@@ -85,8 +86,11 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
   const [districtFilter, setDistrictFilter] = useState<string>('');
   const [bedroomsFilter, setBedroomsFilter] = useState<number>(0);
   const [filterMode, setFilterMode] = useState<'baseRent' | 'trueCost'>('trueCost');
+  const [minRentVND, setMinRentVND] = useState<number>(0);
   const [maxRentVND, setMaxRentVND] = useState<number>(450000000);
+  const [minTrueCostVND, setMinTrueCostVND] = useState<number>(0);
   const [maxTrueCostVND, setMaxTrueCostVND] = useState<number>(480000000);
+  const [minFloorFilter, setMinFloorFilter] = useState<number>(0);
   const [carParkingOnly, setCarParkingOnly] = useState<boolean>(false);
   const [lowFloodOnly, setLowFloodOnly] = useState<boolean>(false);
   const [backupPowerOnly, setBackupPowerOnly] = useState<boolean>(false);
@@ -104,8 +108,11 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     districtFilter,
     bedroomsFilter,
     filterMode,
+    minRentVND,
     maxRentVND,
+    minTrueCostVND,
     maxTrueCostVND,
+    minFloorFilter,
     carParkingOnly,
     lowFloodOnly,
     backupPowerOnly,
@@ -124,6 +131,42 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     }
   }, [initialAiQuery]);
 
+  // Subscribe to Autonomous AI Action Bus for live zero-click UI filtering
+  useAiCommand((cmd) => {
+    if (cmd.type === 'apply_filters') {
+      const p = cmd.payload;
+      if (p.city !== undefined) setCityFilter(p.city || 'All');
+      if (p.district !== undefined) setDistrictFilter(p.district || '');
+      if (p.bedrooms !== undefined) setBedroomsFilter(p.bedrooms || 0);
+      if (p.minRentVND !== undefined && p.minRentVND > 0) {
+        setMinRentVND(p.minRentVND);
+        setMinTrueCostVND(Math.round(p.minRentVND * 1.05));
+      } else if (p.minRentVND === 0) {
+        setMinRentVND(0);
+        setMinTrueCostVND(0);
+      }
+      if (p.maxRentVND !== undefined && p.maxRentVND > 0) {
+        setMaxRentVND(p.maxRentVND);
+        setMaxTrueCostVND(Math.round(p.maxRentVND * 1.15));
+      }
+      if (p.minFloor !== undefined) {
+        setMinFloorFilter(p.minFloor || 0);
+      }
+      if (p.filterMode !== undefined) setFilterMode(p.filterMode);
+      if (p.carParkingOnly !== undefined) setCarParkingOnly(p.carParkingOnly);
+      if (p.lowFloodOnly !== undefined) setLowFloodOnly(p.lowFloodOnly);
+      if (p.backupPowerOnly !== undefined) setBackupPowerOnly(p.backupPowerOnly);
+      if (p.petFriendlyOnly !== undefined) setPetFriendlyOnly(p.petFriendlyOnly);
+      if (p.pcccCertifiedOnly !== undefined) setPcccCertifiedOnly(p.pcccCertifiedOnly);
+      if (p.verifiedLandlordOnly !== undefined) setVerifiedLandlordOnly(p.verifiedLandlordOnly);
+      if (p.queryText) setSearchInput(p.queryText);
+      if (p.summaryBadge) {
+        setAiUnderstoodText(p.summaryBadge);
+        setIsFilterOpen(true);
+      }
+    }
+  });
+
   const handleApplyAiPrompt = (promptText: string) => {
     if (!promptText.trim()) return;
     const parsed = parseNaturalLanguageQuery(promptText);
@@ -139,9 +182,21 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     if (parsed.extractedFilters.minBedrooms) {
       setBedroomsFilter(parsed.extractedFilters.minBedrooms);
     }
+    if (parsed.extractedFilters.minRentVND) {
+      setMinRentVND(parsed.extractedFilters.minRentVND);
+      setMinTrueCostVND(Math.round(parsed.extractedFilters.minRentVND * 1.05));
+    } else {
+      setMinRentVND(0);
+      setMinTrueCostVND(0);
+    }
     if (parsed.extractedFilters.maxRentVND) {
       setMaxRentVND(parsed.extractedFilters.maxRentVND);
       setMaxTrueCostVND(Math.round(parsed.extractedFilters.maxRentVND * 1.15));
+    }
+    if (parsed.extractedFilters.minFloor) {
+      setMinFloorFilter(parsed.extractedFilters.minFloor);
+    } else {
+      setMinFloorFilter(0);
     }
     if (parsed.extractedFilters.hasCarParking) {
       setCarParkingOnly(true);
@@ -170,12 +225,15 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     city: cityFilter,
     district: districtFilter || undefined,
     minBedrooms: bedroomsFilter || undefined,
+    exactBedrooms: bedroomsFilter || undefined,
+    minRentVND: minRentVND > 0 ? minRentVND : undefined,
     maxRentVND: maxRentVND < 450000000 ? maxRentVND : undefined,
+    minFloor: minFloorFilter > 0 ? minFloorFilter : undefined,
     hasCarParking: carParkingOnly || undefined,
     floodingRisk: lowFloodOnly ? 'Low' : undefined,
     hasBackupPower: backupPowerOnly || undefined,
     petFriendly: petFriendlyOnly || undefined
-  }), [cityFilter, districtFilter, bedroomsFilter, maxRentVND, carParkingOnly, lowFloodOnly, backupPowerOnly, petFriendlyOnly]);
+  }), [cityFilter, districtFilter, bedroomsFilter, minRentVND, maxRentVND, minFloorFilter, carParkingOnly, lowFloodOnly, backupPowerOnly, petFriendlyOnly]);
 
   // Active filter count
   const activeFiltersCount = useMemo(() => {
@@ -183,6 +241,8 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     if (cityFilter !== 'All') count++;
     if (districtFilter) count++;
     if (bedroomsFilter > 0) count++;
+    if (minRentVND > 0) count++;
+    if (minFloorFilter > 0) count++;
     if (carParkingOnly) count++;
     if (lowFloodOnly) count++;
     if (backupPowerOnly) count++;
@@ -192,9 +252,8 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     if (filterMode === 'trueCost' && maxTrueCostVND < 480000000) count++;
     if (filterMode === 'baseRent' && maxRentVND < 450000000) count++;
     return count;
-  }, [cityFilter, districtFilter, bedroomsFilter, carParkingOnly, lowFloodOnly, backupPowerOnly, petFriendlyOnly, pcccCertifiedOnly, verifiedLandlordOnly, filterMode, maxTrueCostVND, maxRentVND]);
+  }, [cityFilter, districtFilter, bedroomsFilter, minRentVND, minFloorFilter, carParkingOnly, lowFloodOnly, backupPowerOnly, petFriendlyOnly, pcccCertifiedOnly, verifiedLandlordOnly, filterMode, maxTrueCostVND, maxRentVND]);
 
-  // Filtered and Scored units
   // Filtered and Scored units (Optimized: Filter first, score only candidates for instantaneous 60fps tab switching)
   const filteredUnits = useMemo(() => {
     return units
@@ -205,15 +264,28 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
           if (normUnitCity !== normFilterCity && unit.city !== cityFilter) return false;
         }
         if (districtFilter && !unit.district.toLowerCase().includes(districtFilter.toLowerCase())) return false;
-        if (bedroomsFilter > 0 && unit.bedrooms < bedroomsFilter) return false;
         
-        // Filter by True Cost or Base Rent
+        // Strict bedroom count matching: ONLY units with requested bedroom count pass
+        if (bedroomsFilter > 0) {
+          if (bedroomsFilter === 4) {
+            if (unit.bedrooms < 4) return false;
+          } else {
+            if (unit.bedrooms !== bedroomsFilter) return false;
+          }
+        }
+        
+        // Filter by True Cost or Base Rent with strict min and max bounds
         if (filterMode === 'trueCost') {
           const totalCost = unit.trueCost?.totalMonthlyEstimatedVND || unit.monthlyRentVND;
+          if (minTrueCostVND > 0 && totalCost < minTrueCostVND) return false;
           if (totalCost > maxTrueCostVND) return false;
         } else {
+          if (minRentVND > 0 && unit.monthlyRentVND < minRentVND) return false;
           if (unit.monthlyRentVND > maxRentVND) return false;
         }
+
+        // High floor constraint (e.g. floor >= 8 for "tầng cao / thoáng mát")
+        if (minFloorFilter > 0 && unit.floor < minFloorFilter) return false;
 
         if (carParkingOnly && !unit.hasCarParking) return false;
         if (lowFloodOnly && unit.floodingRisk !== 'Low') return false;
@@ -301,8 +373,11 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     setDistrictFilter('');
     setBedroomsFilter(0);
     setFilterMode('trueCost');
+    setMinRentVND(0);
     setMaxRentVND(450000000);
+    setMinTrueCostVND(0);
     setMaxTrueCostVND(480000000);
+    setMinFloorFilter(0);
     setCarParkingOnly(false);
     setLowFloodOnly(false);
     setBackupPowerOnly(false);
@@ -339,8 +414,8 @@ export const UserSearchView: React.FC<UserSearchViewProps> = ({
     switch (level) {
       case 'full_ownership_verified':
         return (
-          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#2570EB] text-white text-[10px] font-bold shadow-md">
-            <ShieldCheck className="w-3 h-3 text-white shrink-0" />
+          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#163300] text-[#9FE870] border border-[#9FE870]/40 text-[10px] font-bold shadow-md">
+            <ShieldCheck className="w-3 h-3 text-[#9FE870] shrink-0" />
             <span>✓✓ Sổ Đỏ & Ảnh Thật</span>
           </span>
         );

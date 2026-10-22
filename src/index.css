@@ -709,3 +709,19 @@ select, .wise-select {
 .wise-entrance {
   animation: wiseFadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* ── Smart OCR Laser Sweep Animation ── */
+@keyframes laser {
+  0% {
+    top: 0%;
+    opacity: 0.8;
+  }
+  50% {
+    top: 100%;
+    opacity: 1;
+  }
+  100% {
+    top: 0%;
+    opacity: 0.8;
+  }
+}

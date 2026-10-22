@@ -9,10 +9,17 @@ import {
   Check, 
   X, 
   Coins, 
-  RefreshCw
+  RefreshCw,
+  Sparkles,
+  Bot
 } from 'lucide-react';
 import type { MarketplaceModerationItem } from '../types/apartment';
 import { ApartmentStore } from '../data/apartmentStore';
+import { 
+  runAutonomousModerationSweep,
+  type ModerationSweepResult 
+} from '../services/aiAdminOperationsService';
+import { useAiCommand } from '../services/aiCommandBus';
 
 interface MarketplaceHealthViewProps {
   onShowToast?: (type: 'success' | 'error' | 'info', title: string, desc?: string) => void;
@@ -25,9 +32,22 @@ export const MarketplaceHealthView: React.FC<MarketplaceHealthViewProps> = ({
   const [moderationQueue, setModerationQueue] = useState<MarketplaceModerationItem[]>(() => ApartmentStore.getModerationQueue());
   const [selectedQueueStatus, setSelectedQueueStatus] = useState<string>('all');
 
+  // AI Autonomous Governance Sweep State
+  const [isSweeping, setIsSweeping] = useState<boolean>(false);
+  const [sweepResult, setSweepResult] = useState<ModerationSweepResult | null>(null);
+
+  // Listen to Global AI Command Bus
+  useAiCommand((cmd) => {
+    if (cmd.type === 'moderate_marketplace') {
+      handleRunAiSweep();
+    }
+  });
+
   const filteredQueue = moderationQueue.filter(item => 
     selectedQueueStatus === 'all' || item.status === selectedQueueStatus
   );
+
+  const pendingCount = moderationQueue.filter(i => i.status === 'pending').length;
 
   const handleApprove = (id: string) => {
     ApartmentStore.updateModerationStatus(id, 'approved');
@@ -45,6 +65,26 @@ export const MarketplaceHealthView: React.FC<MarketplaceHealthViewProps> = ({
     }
   };
 
+  // Autonomous 1-click Governance Sweep
+  const handleRunAiSweep = () => {
+    setIsSweeping(true);
+    setTimeout(() => {
+      const result = runAutonomousModerationSweep();
+      setSweepResult(result);
+      setModerationQueue(ApartmentStore.getModerationQueue());
+      setKpis(ApartmentStore.getMarketplaceHealthKPIs());
+      setIsSweeping(false);
+
+      if (onShowToast) {
+        onShowToast(
+          'success',
+          `AI Governance Sweep Hoàn Tất (${result.totalProcessed} tin)`,
+          `Đã phê duyệt ${result.approvedCount} tin đạt chuẩn Verified Plus & gắn cờ cách ly ${result.flaggedCount} tin nghi vấn bẫy cọc/ảnh trùng.`
+        );
+      }
+    }, 700);
+  };
+
   return (
     <div className="space-y-8 pb-16 animate-in fade-in duration-300 text-left">
       {/* Header Banner - Wise Signature Style */}
@@ -59,24 +99,95 @@ export const MarketplaceHealthView: React.FC<MarketplaceHealthViewProps> = ({
               Giám Sát Kiểm Duyệt, Chống Lừa Đảo & Tỷ Lệ Hoàn Cọc
             </h1>
             <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 max-w-2xl leading-relaxed">
-              Theo dõi thời gian thực tỷ lệ tin xác minh, thuật toán phát hiện ảnh trùng/giá ảo và hiệu quả giải quyết tranh chấp bảo chứng.
+              Thuật toán đối chiếu giá thuê với phân phối median 1.700 căn hộ toàn thành phố, nhận diện ảnh trùng lặp nguồn mạng và tự động cách ly tin mồi nhử bẫy cọc.
             </p>
           </div>
 
-          <button
-            onClick={() => {
-              setKpis(ApartmentStore.getMarketplaceHealthKPIs());
-              setModerationQueue(ApartmentStore.getModerationQueue());
-              if (onShowToast) {
-                onShowToast('info', 'Dữ liệu đã cập nhật', 'Chỉ số sức khỏe marketplace đã được làm mới.');
-              }
-            }}
-            className="px-5 py-2.5 rounded-full bg-[#F2F5F0] hover:bg-slate-200 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white text-xs font-bold transition-all flex items-center gap-2 self-start md:self-auto shrink-0 whitespace-nowrap shadow-sm cursor-pointer hover:scale-105 active:scale-95"
-          >
-            <RefreshCw className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
-            <span>Làm Mới Số Liệu</span>
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => {
+                setKpis(ApartmentStore.getMarketplaceHealthKPIs());
+                setModerationQueue(ApartmentStore.getModerationQueue());
+                if (onShowToast) {
+                  onShowToast('info', 'Dữ liệu đã cập nhật', 'Chỉ số sức khỏe marketplace đã được làm mới.');
+                }
+              }}
+              className="px-4 py-2.5 rounded-full bg-[#F2F5F0] hover:bg-slate-200 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white text-xs font-bold transition-all flex items-center gap-2 self-start md:self-auto shrink-0 whitespace-nowrap shadow-sm cursor-pointer hover:scale-105 active:scale-95"
+            >
+              <RefreshCw className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
+              <span>Làm Mới Số Liệu</span>
+            </button>
+          </div>
         </div>
+
+        {/* ========================================================================= */}
+        {/* NEW HIGH-IMPACT: AI AUTO-GOVERNANCE ACTION BAR */}
+        {/* ========================================================================= */}
+        <div className="mt-6 pt-5 border-t border-slate-100 dark:border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 rounded-2xl bg-[#F7FAF6] dark:bg-slate-800/60 border border-[#9FE870]/40">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-2xl bg-[#163300] text-[#9FE870]">
+              <Bot className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-sm font-bold text-[#163300] dark:text-white flex items-center gap-2">
+                <span>AI Tự Động Duyệt & Chặn Tin Rác/Lừa Đảo Cọc (Auto-Governance Sweep)</span>
+                <span className="px-2 py-0.5 rounded-full bg-[#163300] text-[#9FE870] text-[10px] font-mono font-bold">
+                  Qwen 2.5 7B
+                </span>
+              </div>
+              <p className="text-xs text-slate-500">
+                Hiện có <span className="font-bold text-[#FF5436] font-mono">{pendingCount}</span> tin đăng đang chờ thẩm định hồ sơ PCCC, đối soát giá median & ảnh thật.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              onClick={handleRunAiSweep}
+              disabled={isSweeping || pendingCount === 0}
+              className="px-6 py-3 rounded-full bg-[#163300] hover:bg-[#204900] text-[#9FE870] font-black text-xs transition-all shadow-sm flex items-center gap-2 cursor-pointer hover:scale-105 active:scale-95 disabled:opacity-50"
+            >
+              <Sparkles className={`w-4 h-4 ${isSweeping ? 'animate-spin' : ''}`} />
+              <span>{isSweeping ? 'Đang Quét & Thẩm Định...' : 'AI Quét & Xử Lý Toàn Bộ Hàng Đợi'}</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Sweep Results Notification */}
+        {sweepResult && (
+          <div className="mt-4 p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-300 dark:border-emerald-800 space-y-3 animate-in fade-in">
+            <div className="flex items-center justify-between text-xs font-bold text-emerald-800 dark:text-emerald-200">
+              <span className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-[#9FE870]" />
+                <span>Báo Cáo Kiểm Duyệt Tự Động Vừa Thực Hiện:</span>
+              </span>
+              <span className="font-mono">
+                {sweepResult.approvedCount} Đã Duyệt • {sweepResult.flaggedCount} Đã Gắn Cờ Cách Ly
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
+              {sweepResult.auditNotes.map((note) => (
+                <div 
+                  key={note.id}
+                  className={`p-2.5 rounded-xl border flex items-start gap-2 ${
+                    note.action === 'approved'
+                      ? 'bg-white dark:bg-slate-900 border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200'
+                      : 'bg-rose-50/80 dark:bg-rose-950/30 border-rose-200 dark:border-rose-800 text-rose-900 dark:text-rose-200'
+                  }`}
+                >
+                  <span className={`w-2 h-2 rounded-full mt-1.5 shrink-0 ${
+                    note.action === 'approved' ? 'bg-emerald-500' : 'bg-rose-500'
+                  }`} />
+                  <div>
+                    <span className="font-bold">{note.unitName}: </span>
+                    <span className="text-[11px] opacity-90">{note.reason}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Top 4 Core Health KPIs - Wise KPI Cards with Multi-Currency Flag Accents */}
@@ -152,20 +263,20 @@ export const MarketplaceHealthView: React.FC<MarketplaceHealthViewProps> = ({
           <div>
             <h3 className="text-xl font-bold text-[#163300] dark:text-white flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-[#163300] dark:text-[#9FE870]" />
-              <span>Hàng Đợi Kiểm Duyệt Tin Đăng Tự Động (AI Moderation Queue)</span>
+              <span>Hàng Đợi Thẩm Định & Kiểm Duyệt Tin Đăng (Moderation Queue)</span>
             </h3>
             <p className="text-xs text-slate-500 mt-1">
-              Phát hiện gian lận hình ảnh AI, phát hiện giá ảo và đối soát quyền sở hữu theo thời gian thực.
+              Phát hiện gian lận hình ảnh AI, phát hiện giá ảo mồi nhử và đối soát an toàn PCCC.
             </p>
           </div>
 
           {/* Status Filter Tabs - Wise Pill Tabs */}
           <div className="wise-pill-tabs flex items-center gap-1.5 flex-wrap">
             {[
-              { id: 'all', label: 'Tất cả' },
-              { id: 'pending', label: 'Chờ duyệt' },
+              { id: 'all', label: `Tất cả (${moderationQueue.length})` },
+              { id: 'pending', label: `Chờ duyệt (${pendingCount})` },
               { id: 'approved', label: 'Đã duyệt' },
-              { id: 'flagged', label: 'Cảnh báo' }
+              { id: 'flagged', label: 'Cảnh báo/Chặn' }
             ].map(tab => (
               <button
                 key={tab.id}
@@ -183,10 +294,10 @@ export const MarketplaceHealthView: React.FC<MarketplaceHealthViewProps> = ({
           <table className="w-full text-left text-xs border-collapse min-w-[700px]">
             <thead>
               <tr className="bg-[#F2F5F0] dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 font-bold uppercase text-[11px] tracking-wider rounded-xl">
-                <th className="py-3.5 px-4 rounded-l-xl w-56">Căn Hộ & Chủ Nhà</th>
-                <th className="py-3.5 px-4">Thời Gian Nộp</th>
+                <th className="py-3.5 px-4 rounded-l-xl w-60">Căn Hộ & Chủ Nhà</th>
+                <th className="py-3.5 px-4">Giá Thuê Đăng</th>
                 <th className="py-3.5 px-4">Điểm Ảnh Thật (AI)</th>
-                <th className="py-3.5 px-4">Phát Hiện Bất Thường</th>
+                <th className="py-3.5 px-4">Phân Tích Gian Lận / Giá Ảo</th>
                 <th className="py-3.5 px-4">Trạng Thái</th>
                 <th className="py-3.5 px-4 rounded-r-xl text-right">Thao Tác Duyệt</th>
               </tr>
@@ -202,10 +313,12 @@ export const MarketplaceHealthView: React.FC<MarketplaceHealthViewProps> = ({
                       {item.unitName}
                     </div>
                     <div className="text-xs text-slate-500">
-                      {item.landlordName} ({item.landlordPhone})
+                      {item.landlordName} ({item.landlordPhone}) • Mã: {item.id}
                     </div>
                   </td>
-                  <td className="py-4 px-4 text-slate-500">{item.submittedAt}</td>
+                  <td className="py-4 px-4 font-mono font-bold text-sm text-[#163300] dark:text-[#9FE870]">
+                    {item.monthlyRentVND ? `${(item.monthlyRentVND / 1000000).toFixed(1)} Tr/tháng` : 'Theo thỏa thuận'}
+                  </td>
                   <td className="py-4 px-4">
                     <span className={`px-3 py-1 rounded-full font-bold text-xs ${
                       item.autoCheckResult.photoAuthenticityScore > 80
@@ -215,44 +328,47 @@ export const MarketplaceHealthView: React.FC<MarketplaceHealthViewProps> = ({
                       {item.autoCheckResult.photoAuthenticityScore} / 100
                     </span>
                   </td>
-                  <td className="py-4 px-4">
-                    {item.priceAnomalyPercent && item.priceAnomalyPercent < -30 ? (
+                  <td className="py-4 px-4 space-y-1">
+                    {item.priceAnomalyPercent && item.priceAnomalyPercent < -25 ? (
                       <span className="text-[#D92D20] flex items-center gap-1 font-bold">
-                        <AlertTriangle className="w-3.5 h-3.5" /> Giá ảo ({item.priceAnomalyPercent}%)
+                        <AlertTriangle className="w-3.5 h-3.5" /> Nghi vấn bẫy cọc ({item.priceAnomalyPercent}%)
                       </span>
                     ) : (
                       <span className="text-[#163300] dark:text-[#9FE870] flex items-center gap-1 font-bold">
-                        <Check className="w-3.5 h-3.5" /> Hợp chuẩn thị trường
+                        <Check className="w-3.5 h-3.5" /> Khớp median khu vực
                       </span>
+                    )}
+
+                    {item.flagReason && (
+                      <div className="text-[10px] text-rose-600 dark:text-rose-400 font-mono bg-rose-50 dark:bg-rose-950/30 p-1 rounded">
+                        {item.flagReason}
+                      </div>
                     )}
                   </td>
                   <td className="py-4 px-4">
                     {item.status === 'approved' ? (
-                      <span className="px-3 py-1 rounded-full bg-[#E8F8EC] text-[#163300] text-xs font-bold border border-[#9FE870]">
-                        Đã Phê Duyệt
+                      <span className="px-3 py-1 rounded-full bg-[#E8F8EC] text-[#163300] text-xs font-bold border border-[#9FE870] flex items-center gap-1 w-fit">
+                        <Check className="w-3.5 h-3.5 text-[#163300]" />
+                        <span>Đã Phê Duyệt</span>
                       </span>
                     ) : item.status === 'flagged' ? (
-                      <span className="px-3 py-1 rounded-full bg-[#FEECEB] text-[#D92D20] text-xs font-bold border border-[#FF5436]">
-                        Cảnh Báo Gian Lận
+                      <span className="px-3 py-1 rounded-full bg-[#FEECEB] text-[#D92D20] text-xs font-bold border border-[#FF5436] flex items-center gap-1 w-fit">
+                        <AlertTriangle className="w-3.5 h-3.5" />
+                        <span>Đã Cách Ly</span>
                       </span>
                     ) : (
-                      <span className="px-3 py-1 rounded-full bg-[#FFF8E6] text-[#9A6700] text-xs font-bold border border-[#FFC83B]">
-                        Chờ Kiểm Tra
+                      <span className="px-3 py-1 rounded-full bg-[#FFF8E6] text-[#9A6700] text-xs font-bold border border-[#FFC83B] flex items-center gap-1 w-fit">
+                        <Clock className="w-3.5 h-3.5" />
+                        <span>Chờ Thẩm Định</span>
                       </span>
                     )}
                   </td>
                   <td className="py-4 px-4 text-right">
                     <div className="flex items-center justify-end gap-2">
                       {item.status === 'approved' ? (
-                        <span className="px-3 py-1 rounded-full bg-[#E8F8EC] text-[#163300] text-xs font-bold border border-[#9FE870] flex items-center gap-1">
-                          <Check className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
-                          <span>Đã duyệt</span>
-                        </span>
+                        <span className="text-slate-400 text-xs">Đang hiển thị</span>
                       ) : item.status === 'flagged' ? (
-                        <span className="px-3 py-1 rounded-full bg-[#FEECEB] text-[#D92D20] text-xs font-bold border border-[#FF5436] flex items-center gap-1">
-                          <AlertTriangle className="w-3.5 h-3.5" />
-                          <span>Đã chặn</span>
-                        </span>
+                        <span className="text-rose-500 text-xs font-bold">Đã ẩn khỏi sàn</span>
                       ) : (
                         <>
                           <button

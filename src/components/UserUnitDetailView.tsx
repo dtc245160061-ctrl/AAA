@@ -17,16 +17,33 @@ import {
   ShieldCheck,
   Flame,
   Star,
-  FileCheck2,
   Lock,
-  Wifi,
   Droplets,
   Building,
   Box,
-  Check
+  Check,
+  Bike,
+  Clock,
+  Coins,
+  Send,
+  Swords,
+  Timer,
+  ChevronDown,
+  ChevronUp,
+  Navigation,
+  Activity
 } from 'lucide-react';
 import type { ApartmentUnit, LandlordProfile } from '../types/apartment';
 import { SmartImage } from './common/SmartImage';
+import { 
+  auditUnitPcccSafety, 
+  calculateHyperRealisticLivingCost, 
+  buildNegotiationWarRoomStrategy, 
+  runAutoBargainingTurn,
+  COMMUTE_DESTINATION_PRESETS,
+  type CommuteVehicleType,
+  type NegotiationPackage
+} from '../services/aiSignatureFeaturesService';
 
 interface UserUnitDetailViewProps {
   unit: ApartmentUnit;
@@ -59,6 +76,48 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
 }) => {
   const [selectedPhotoIdx, setSelectedPhotoIdx] = useState(0);
   const [showCostDetails, setShowCostDetails] = useState(true);
+
+  // Engine 3: Hyper-Realistic True Living Cost & Commute State
+  const cityPresets = useMemo(() => {
+    const list = COMMUTE_DESTINATION_PRESETS.filter(
+      p => p.city.toLowerCase() === unit.city.toLowerCase()
+    );
+    return list.length > 0 ? list : COMMUTE_DESTINATION_PRESETS;
+  }, [unit.city]);
+
+  const [selectedDestId, setSelectedDestId] = useState<string>(() => {
+    const matched = COMMUTE_DESTINATION_PRESETS.find(p => p.city.toLowerCase() === unit.city.toLowerCase());
+    return matched?.id || COMMUTE_DESTINATION_PRESETS[0].id;
+  });
+  const [vehicleType, setVehicleType] = useState<CommuteVehicleType>('motorbike');
+  const [userIncomeVND, setUserIncomeVND] = useState<number>(35000000);
+
+  const livingCostResult = useMemo(() => {
+    return calculateHyperRealisticLivingCost(unit, selectedDestId, vehicleType, userIncomeVND);
+  }, [unit, selectedDestId, vehicleType, userIncomeVND]);
+
+  // Engine 2: PCCC QCVN 06:2022 Fire Survival Auditor
+  const pcccAuditResult = useMemo(() => {
+    return auditUnitPcccSafety(unit);
+  }, [unit]);
+  const [showPcccDetails, setShowPcccDetails] = useState<boolean>(false);
+
+  // Engine 4: AI Negotiation War-Room & Auto-Bargaining Agent
+  const warRoomStrategy = useMemo(() => {
+    return buildNegotiationWarRoomStrategy(unit);
+  }, [unit]);
+  const [selectedPackageId, setSelectedPackageId] = useState<'package_commitment' | 'package_service_waiver' | 'package_price_match'>('package_commitment');
+  const [isBargainingSent, setIsBargainingSent] = useState<boolean>(false);
+  const [bargainingFeedback, setBargainingFeedback] = useState<string>('');
+
+  const handleAutoBargain = (pkg: NegotiationPackage) => {
+    setIsBargainingSent(true);
+    const res = runAutoBargainingTurn(unit, pkg, 'Khách Thuê HAVEN', '0988 888 888');
+    setBargainingFeedback(res.responseNotice);
+    if (onShowToast) {
+      onShowToast('success', 'AI Đã Gửi Lời Đề Nghị Đàm Phán', `Đã chuyển tiếp phương án "${pkg.title}" đến Chủ nhà.`);
+    }
+  };
 
   // Distinct verified architectural photos pool
   const fallbackArchitecturalImages = [
@@ -115,18 +174,6 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
     depositVND: unit.monthlyRentVND * (unit.monthlyRentVND > 30000000 ? 2 : 1),
     moveInTotalRequiredVND: unit.monthlyRentVND * 2 + 2500000,
     electricityRatePerKwh: 3500
-  };
-
-  const pccc = unit.pcccReport || {
-    hasFireEscapes: true,
-    fireEscapeCount: unit.floor > 15 ? 3 : 2,
-    hasAutomaticSprinklers: true,
-    hasSmokeDetectors: true,
-    hasFireExtinguishers: true,
-    inspectionCertificateStatus: 'certified' as const,
-    lastInspectionDate: '2025-11-15',
-    emergencyExitWidthMeters: 1.4,
-    disclaimer: 'Dữ liệu tham chiếu hồ sơ nghiệm thu PCCC tòa nhà. Khuyến nghị kiểm tra thực tế khi xem phòng.'
   };
 
   const landlord = unit.landlord || {
@@ -306,19 +353,24 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
             </div>
           </div>
 
-          {/* 1. TRUE COST BREAKDOWN PANEL - Wise Calculator Style */}
+          {/* 1. HYPER-REALISTIC TRUE COST OF LIVING & COMMUTE FUEL ENGINE (#14) */}
           <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-[28px] p-6 md:p-8 shadow-sm space-y-6">
             <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-2xl bg-[#9FE870] text-[#163300] flex items-center justify-center font-bold shadow-2xs">
-                  <Calculator className="w-5 h-5" />
+                  <Calculator className="w-5 h-5 text-[#163300]" />
                 </div>
                 <div>
-                  <h3 className="text-lg sm:text-xl font-black text-[#163300] dark:text-white">
-                    Bảng Tính Tổng Chi Phí Thực Tế (Wise True Cost)
-                  </h3>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-lg sm:text-xl font-black text-[#163300] dark:text-white">
+                      Bảng Tính Tổng Chi Phí Thực Tế & Nhiên Liệu Đi Làm (True Cost)
+                    </h3>
+                    <span className="px-2 py-0.5 rounded-full bg-[#9FE870] text-[#163300] text-[10px] font-black uppercase">
+                      Chuẩn EVN & Xăng Xe
+                    </span>
+                  </div>
                   <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-                    Bóc tách toàn bộ chi phí sinh hoạt hàng tháng — Cam kết 100% không phí ẩn
+                    Bóc tách tiền nhà, điện nước, gửi xe, nhiên liệu di chuyển và trù bị rủi ro ngập nước
                   </p>
                 </div>
               </div>
@@ -332,72 +384,175 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
             </div>
 
             {showCostDetails && (
-              <div className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                  <div className="p-3.5 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
-                    <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-medium">
-                      <Building className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" /> Tiền thuê phòng niêm yết:
-                    </span>
-                    <span className="font-bold text-[#163300] dark:text-white tabular-nums">
-                      {(trueCost.baseRentVND / 1000000).toFixed(1)} Tr
-                    </span>
+              <div className="space-y-5">
+                {/* Workplace & Vehicle Controls Bar */}
+                <div className="p-4 rounded-2xl bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-3">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                    <div>
+                      <label className="text-slate-500 dark:text-slate-400 font-bold block mb-1.5 flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
+                        <span>Nơi Làm Việc / Đại Học:</span>
+                      </label>
+                      <select
+                        value={selectedDestId}
+                        onChange={(e) => setSelectedDestId(e.target.value)}
+                        className="w-full px-3.5 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white font-bold focus:outline-none focus:ring-2 focus:ring-[#9FE870] cursor-pointer text-xs"
+                      >
+                        {cityPresets.map(p => (
+                          <option key={p.id} value={p.id}>{p.name} ({p.city})</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="text-slate-500 dark:text-slate-400 font-bold block mb-1.5 flex items-center gap-1.5">
+                        <Car className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
+                        <span>Phương Tiện Đi Lại:</span>
+                      </label>
+                      <div className="flex gap-1.5">
+                        <button
+                          type="button"
+                          onClick={() => setVehicleType('motorbike')}
+                          className={`flex-1 py-1.5 px-2 rounded-xl border text-xs font-bold transition-all flex items-center justify-center gap-1 cursor-pointer ${
+                            vehicleType === 'motorbike'
+                              ? 'bg-[#163300] text-white border-[#163300]'
+                              : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300'
+                          }`}
+                        >
+                          <Bike className="w-3.5 h-3.5" />
+                          <span>Xe Máy</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setVehicleType('car_gas')}
+                          className={`flex-1 py-1.5 px-2 rounded-xl border text-xs font-bold transition-all flex items-center justify-center gap-1 cursor-pointer ${
+                            vehicleType === 'car_gas'
+                              ? 'bg-[#163300] text-white border-[#163300]'
+                              : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300'
+                          }`}
+                        >
+                          <Car className="w-3.5 h-3.5" />
+                          <span>Ô Tô</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setVehicleType('car_ev')}
+                          className={`flex-1 py-1.5 px-2 rounded-xl border text-xs font-bold transition-all flex items-center justify-center gap-1 cursor-pointer ${
+                            vehicleType === 'car_ev'
+                              ? 'bg-[#163300] text-white border-[#163300]'
+                              : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300'
+                          }`}
+                        >
+                          <Zap className="w-3.5 h-3.5 text-[#9FE870]" />
+                          <span>EV</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="text-slate-500 dark:text-slate-400 font-bold block mb-1.5 flex items-center gap-1.5">
+                        <Coins className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
+                        <span>Mức Thu Nhập Hàng Tháng:</span>
+                      </label>
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="number"
+                          step={1000000}
+                          value={userIncomeVND}
+                          onChange={(e) => setUserIncomeVND(Number(e.target.value) || 20000000)}
+                          className="w-full px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-[#9FE870] font-black text-xs tabular-nums focus:outline-none focus:ring-2 focus:ring-[#9FE870]"
+                        />
+                        <span className="text-[10px] text-slate-500 font-bold shrink-0">đ/tháng</span>
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="p-3.5 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
-                    <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-medium">
-                      <Zap className="w-4 h-4 text-[#FF6740]" /> Điện ước tính (~3.500đ/kWh):
+                  {/* Commute metrics strip */}
+                  <div className="pt-2 border-t border-slate-200/60 dark:border-slate-700/60 flex items-center justify-between text-[11px] text-slate-600 dark:text-slate-300 flex-wrap gap-2">
+                    <span className="flex items-center gap-1">
+                      <Navigation className="w-3.5 h-3.5 text-[#163300] dark:text-[#9FE870]" />
+                      <span>Khoảng cách: <strong>{livingCostResult.commuteOneWayKm} km</strong>/chiều (~{livingCostResult.monthlyRoundTripKm} km/tháng)</span>
                     </span>
-                    <span className="font-bold text-[#163300] dark:text-white tabular-nums">
-                      {(trueCost.estimatedElectricityVND / 1000).toLocaleString()} đ
+                    <span className="flex items-center gap-1">
+                      <Clock className="w-3.5 h-3.5 text-amber-600" />
+                      <span>Giờ tắc đường: <strong>{livingCostResult.monthlyHoursLostInTraffic} giờ/tháng</strong></span>
                     </span>
-                  </div>
-
-                  <div className="p-3.5 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
-                    <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-medium">
-                      <Droplets className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" /> Nước sinh hoạt:
-                    </span>
-                    <span className="font-bold text-[#163300] dark:text-white tabular-nums">
-                      {(trueCost.waterFeeVND / 1000).toLocaleString()} đ
-                    </span>
-                  </div>
-
-                  <div className="p-3.5 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
-                    <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-medium">
-                      <Wifi className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" /> Internet cáp quang:
-                    </span>
-                    <span className="font-bold text-[#163300] dark:text-white tabular-nums">
-                      {(trueCost.internetFeeVND / 1000).toLocaleString()} đ
-                    </span>
-                  </div>
-
-                  <div className="p-3.5 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
-                    <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-medium">
-                      <ShieldCheck className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" /> Phí quản lý tòa nhà:
-                    </span>
-                    <span className="font-bold text-[#163300] dark:text-white tabular-nums">
-                      {(trueCost.managementFeeVND / 1000).toLocaleString()} đ
-                    </span>
-                  </div>
-
-                  <div className="p-3.5 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
-                    <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-medium">
-                      <Car className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" /> Phí gửi xe ({unit.hasCarParking ? 'Ô tô' : 'Xe máy'}):
-                    </span>
-                    <span className="font-bold text-[#163300] dark:text-white tabular-nums">
-                      {(trueCost.parkingFeeVND / 1000).toLocaleString()} đ
+                    <span className="flex items-center gap-1">
+                      <Coins className="w-3.5 h-3.5 text-emerald-600" />
+                      <span>Xăng/Sạc điện: <strong>{livingCostResult.monthlyCommuteFuelCostVND.toLocaleString()} đ/tháng</strong></span>
                     </span>
                   </div>
                 </div>
 
-                {/* Total True Cost Summary Box */}
+                {/* Living Cost Components Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs">
+                  <div className="p-3.5 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
+                    <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-medium">
+                      <Building className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" /> Tiền thuê phòng:
+                    </span>
+                    <span className="font-bold text-[#163300] dark:text-white tabular-nums">
+                      {(livingCostResult.baseRentVND / 1000000).toFixed(1)} Tr
+                    </span>
+                  </div>
+
+                  <div className="p-3.5 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
+                    <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-medium">
+                      <Zap className="w-4 h-4 text-[#FF6740]" /> Điện sinh hoạt EVN:
+                    </span>
+                    <span className="font-bold text-[#163300] dark:text-white tabular-nums">
+                      {livingCostResult.electricityVND.toLocaleString()} đ
+                    </span>
+                  </div>
+
+                  <div className="p-3.5 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
+                    <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-medium">
+                      <Droplets className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" /> Nước & Cáp quang:
+                    </span>
+                    <span className="font-bold text-[#163300] dark:text-white tabular-nums">
+                      {(livingCostResult.waterVND + livingCostResult.internetFeeVND).toLocaleString()} đ
+                    </span>
+                  </div>
+
+                  <div className="p-3.5 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
+                    <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-medium">
+                      <ShieldCheck className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" /> Phí quản lý & Gửi xe:
+                    </span>
+                    <span className="font-bold text-[#163300] dark:text-white tabular-nums">
+                      {(livingCostResult.managementFeeVND + livingCostResult.parkingFeeVND).toLocaleString()} đ
+                    </span>
+                  </div>
+
+                  <div className="p-3.5 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
+                    <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-medium">
+                      <Car className="w-4 h-4 text-[#2570EB]" /> Xăng / Sạc EV đi làm:
+                    </span>
+                    <span className="font-bold text-[#2570EB] tabular-nums">
+                      {livingCostResult.monthlyCommuteFuelCostVND.toLocaleString()} đ
+                    </span>
+                  </div>
+
+                  <div className="p-3.5 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
+                    <span className="text-slate-700 dark:text-slate-300 flex items-center gap-2 font-medium">
+                      <CloudRain className="w-4 h-4 text-amber-500" /> Trù bị rủi ro ngập:
+                    </span>
+                    <span className="font-bold text-amber-600 tabular-nums">
+                      {livingCostResult.floodRiskExposureVND.toLocaleString()} đ
+                    </span>
+                  </div>
+                </div>
+
+                {/* Grand Total Living Cost Banner */}
                 <div className="p-6 rounded-[22px] bg-[#163300] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
                   <div>
                     <span className="text-xs uppercase tracking-wider font-bold text-[#9FE870]">
-                      Tổng Chi Phí Thực Tế Hàng Tháng:
+                      Tổng Chi Phí Sinh Hoạt Thực Tế (True Living Cost):
                     </span>
                     <div className="text-3xl font-black text-[#9FE870] mt-1 tracking-tight tabular-nums">
-                      {(trueCost.totalMonthlyEstimatedVND / 1000000).toFixed(2)} Triệu <span className="text-xs text-white/70 font-normal">/tháng</span>
+                      {(livingCostResult.grandTotalTrueLivingCostVND / 1000000).toFixed(2)} Triệu <span className="text-xs text-white/70 font-normal">/tháng</span>
                     </div>
+                    <span className="text-[11px] text-white/80 font-medium">
+                      Chiếm {livingCostResult.incomeRatioPercent}% thu nhập hàng tháng ({livingCostResult.financialHealthVerdictText})
+                    </span>
                   </div>
 
                   <div className="sm:text-right border-t sm:border-t-0 sm:border-l border-white/20 pt-3 sm:pt-0 sm:pl-6">
@@ -416,71 +571,280 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
             )}
           </div>
 
-          {/* 2. PCCC TRANSPARENCY CARD */}
+          {/* 2. PCCC QCVN 06:2022/BXD FIRE SURVIVAL & EVACUATION AUDITOR (#15) */}
           <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-[28px] p-6 md:p-8 shadow-sm space-y-6">
-            <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-2xl bg-[#FFEAE5] text-[#FF5436] flex items-center justify-center font-bold shadow-2xs">
                   <Flame className="w-5 h-5 text-[#FF5436]" />
                 </div>
                 <div>
-                  <h3 className="text-lg sm:text-xl font-black text-[#163300] dark:text-white">
-                    Minh Bạch An Toàn PCCC & Thoát Hiểm
-                  </h3>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-lg sm:text-xl font-black text-[#163300] dark:text-white">
+                      AI Kiểm Định Sinh Tồn Cháy Nổ & Thoát Hiểm QCVN 06:2022
+                    </h3>
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#FFEAE5] text-[#D92D20] text-[10px] font-black uppercase">
+                      Quy Chuẩn Quốc Gia
+                    </span>
+                  </div>
                   <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-                    Tiêu chuẩn an toàn theo quy chuẩn quốc gia QCVN 06:2022
+                    Đánh giá khả năng thoát nạn từ tầng {unit.floor}, buồng thang điều áp chống khói và hệ thống chữa cháy
                   </p>
                 </div>
               </div>
 
-              <span className="px-3.5 py-1 rounded-full bg-[#9FE870] text-[#163300] text-xs font-bold shadow-2xs">
-                ✓ Đã Nghiệm Thu PCCC
-              </span>
+              {/* Survival Score Badge */}
+              <div className="flex items-center gap-3 self-start sm:self-auto">
+                <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E8F8EC] border border-[#9FE870] text-[#163300] text-xs font-black shadow-2xs">
+                  <Activity className="w-4 h-4 text-[#163300]" />
+                  <span>Điểm Sinh Tồn: {pcccAuditResult.survivalScore}/100</span>
+                </div>
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-              <div className="p-4 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-1">
+            {/* Top Metrics Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+              <div className="p-4 rounded-[20px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-1">
+                <span className="text-slate-400 uppercase text-[10px] font-bold">Thời Gian Thoát Nạn</span>
+                <p className="text-[#163300] dark:text-white font-black text-base flex items-center gap-1.5">
+                  <Timer className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
+                  <span>~{pcccAuditResult.evacuationMinutesLabel}</span>
+                </p>
+                <span className="text-[10px] text-slate-500 font-medium">({pcccAuditResult.estimatedEvacuationSeconds}s từ Tầng {unit.floor})</span>
+              </div>
+
+              <div className="p-4 rounded-[20px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-1">
                 <span className="text-slate-400 uppercase text-[10px] font-bold">Thang Bộ Thoát Hiểm</span>
-                <p className="text-[#163300] dark:text-white font-bold text-sm flex items-center gap-1.5">
+                <p className="text-[#163300] dark:text-white font-black text-base flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
-                  <span>{pccc.fireEscapeCount} Thang thoát hiểm điều áp chống khói</span>
+                  <span>{pcccAuditResult.equipmentSummary.fireEscapeCount} Lối độc lập</span>
                 </p>
+                <span className="text-[10px] text-slate-500 font-medium">Buồng thang điều áp ngăn khói</span>
               </div>
 
-              <div className="p-4 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-1">
+              <div className="p-4 rounded-[20px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-1">
                 <span className="text-slate-400 uppercase text-[10px] font-bold">Chữa Cháy Tự Động</span>
-                <p className="text-[#163300] dark:text-white font-bold text-sm flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
-                  <span>Đầu phun Sprinkler áp lực cao trang bị từng phòng</span>
+                <p className="text-[#163300] dark:text-white font-black text-base flex items-center gap-1.5">
+                  {pcccAuditResult.equipmentSummary.hasAutomaticSprinklers ? (
+                    <CheckCircle2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
+                  ) : (
+                    <AlertTriangle className="w-4 h-4 text-amber-500" />
+                  )}
+                  <span>{pcccAuditResult.equipmentSummary.hasAutomaticSprinklers ? 'Đầu phun Sprinkler' : 'Bình xịt CO2'}</span>
                 </p>
+                <span className="text-[10px] text-slate-500 font-medium">Trang bị sẵn tại các phòng</span>
               </div>
 
-              <div className="p-4 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-1">
-                <span className="text-slate-400 uppercase text-[10px] font-bold">Cảm Biến Khói & Báo Cháy</span>
-                <p className="text-[#163300] dark:text-white font-bold text-sm flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
-                  <span>Hệ thống cảm biến nối tủ trung tâm 24/7</span>
+              <div className="p-4 rounded-[20px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-1">
+                <span className="text-slate-400 uppercase text-[10px] font-bold">Điện Khẩn Cấp Bơm PCCC</span>
+                <p className="text-[#163300] dark:text-white font-black text-base flex items-center gap-1.5">
+                  {pcccAuditResult.equipmentSummary.hasBackupPower ? (
+                    <CheckCircle2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
+                  ) : (
+                    <AlertTriangle className="w-4 h-4 text-amber-500" />
+                  )}
+                  <span>{pcccAuditResult.equipmentSummary.hasBackupPower ? 'Máy phát 100%' : 'Chưa có máy phát'}</span>
                 </p>
-              </div>
-
-              <div className="p-4 rounded-[18px] bg-[#F2F5F0] dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 space-y-1">
-                <span className="text-slate-400 uppercase text-[10px] font-bold">Kiểm Định Lần Cuối</span>
-                <p className="text-[#163300] dark:text-white font-bold text-sm flex items-center gap-1.5">
-                  <FileCheck2 className="w-4 h-4 text-[#163300] dark:text-[#9FE870]" />
-                  <span>Ngày {pccc.lastInspectionDate} (Hiệu lực 12 tháng)</span>
-                </p>
+                <span className="text-[10px] text-slate-500 font-medium">Duy trì quạt hút khói & bơm áp</span>
               </div>
             </div>
 
-            <div className="p-4 rounded-[18px] bg-[#FFEAE5]/60 border border-[#FF5436]/20 text-[11px] text-[#8C1F08] dark:text-rose-300 flex items-start gap-2.5">
-              <AlertTriangle className="w-4 h-4 text-[#FF5436] shrink-0 mt-0.5" />
-              <span>
-                ⚖️ <strong>Khuyến nghị an toàn</strong>: {pccc.disclaimer}
+            {/* QCVN 06:2022 Checklist Toggle */}
+            <div className="pt-2">
+              <button
+                onClick={() => setShowPcccDetails(!showPcccDetails)}
+                className="w-full py-2.5 px-4 rounded-xl bg-[#F2F5F0] hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-750 text-xs font-bold text-[#163300] dark:text-white flex items-center justify-between transition-all cursor-pointer"
+              >
+                <span>Xem Báo Cáo Kiểm Định Chi Tiết 4 Tiêu Chuẩn QCVN 06:2022</span>
+                {showPcccDetails ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              </button>
+
+              {showPcccDetails && (
+                <div className="mt-3 space-y-2.5 animate-in fade-in">
+                  {pcccAuditResult.qcvnComplianceDetails.map((detail, idx) => (
+                    <div
+                      key={idx}
+                      className="p-3.5 rounded-xl bg-[#F9FAF8] dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-xs space-y-1"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-bold text-[#163300] dark:text-white flex items-center gap-1.5">
+                          {detail.passed ? (
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                          ) : (
+                            <AlertTriangle className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                          )}
+                          <span>{detail.title} ({detail.ruleCode})</span>
+                        </span>
+                        <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                          detail.passed ? 'bg-[#E8F8EC] text-[#163300]' : 'bg-[#FFF8E6] text-[#9A6700]'
+                        }`}>
+                          {detail.passed ? 'ĐẠT CHUẨN' : 'CẦN LƯU Ý'}
+                        </span>
+                      </div>
+                      <p className="text-slate-600 dark:text-slate-300 text-[11px] leading-relaxed">
+                        • Tiêu chuẩn: {detail.standardReq} | Hiện trạng: <strong>{detail.currentValue}</strong>
+                      </p>
+                      <p className="text-slate-500 dark:text-slate-400 text-[10px] italic">
+                        💡 {detail.advice}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Survival Recommendations Alert */}
+            <div className="p-4 rounded-[20px] bg-[#FFEAE5]/60 border border-[#FF5436]/20 text-[11px] text-[#8C1F08] dark:text-rose-300 space-y-1.5">
+              <span className="font-bold uppercase tracking-wider flex items-center gap-1.5">
+                <AlertTriangle className="w-4 h-4 text-[#FF5436]" />
+                <span>Khuyến Nghị Sinh Tồn Khẩn Cấp Cho Cư Dân:</span>
               </span>
+              <ul className="space-y-1 list-disc pl-5 text-slate-700 dark:text-slate-300">
+                {pcccAuditResult.survivalRecommendations.map((rec, i) => (
+                  <li key={i}>{rec}</li>
+                ))}
+              </ul>
             </div>
           </div>
 
-          {/* 3. DEPOSIT TERMS & SANCTUARY COMMITMENT */}
+          {/* 3. AI DYNAMIC NEGOTIATION WAR-ROOM & AUTO-BARGAINING AGENT (#13) */}
+          <div className="bg-white dark:bg-slate-900 border-2 border-[#163300]/20 dark:border-slate-800 rounded-[28px] p-6 md:p-8 shadow-sm space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-[#E8F8EC] text-[#163300] dark:text-[#9FE870] flex items-center justify-center font-bold shadow-2xs">
+                  <Swords className="w-5 h-5 text-[#163300] dark:text-[#9FE870]" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-lg sm:text-xl font-black text-[#163300] dark:text-white">
+                      Phòng Đấu Trí Đàm Phán Giá AI (Negotiation War-Room)
+                    </h3>
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#9FE870] text-[#163300] text-[10px] font-black uppercase">
+                      Đối Soát 1,700 Căn
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+                    AI phân tích đòn bẩy thương lượng với chủ nhà và tính toán 3 phương án counter-offer tối ưu
+                  </p>
+                </div>
+              </div>
+
+              {/* Percentile Status */}
+              <div className="flex items-center gap-2 self-start sm:self-auto">
+                <span className="px-3 py-1 rounded-full bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-[#163300] dark:text-white">
+                  Phân vị giá: Top {warRoomStrategy.unitPricePercentile}% quận {unit.district}
+                </span>
+              </div>
+            </div>
+
+            {/* Market Leverage Context Box */}
+            <div className="p-4 rounded-2xl bg-[#F7FAF6] dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 space-y-2 text-xs">
+              <div className="flex items-center justify-between">
+                <span className="font-bold text-[#163300] dark:text-white flex items-center gap-1.5">
+                  <Coins className="w-4 h-4 text-emerald-600" />
+                  <span>Giá Trung Bình Phân Khúc {unit.bedrooms}PN tại {unit.district}:</span>
+                </span>
+                <span className="font-black text-sm text-[#163300] dark:text-[#9FE870] tabular-nums">
+                  {(warRoomStrategy.districtMedianRentVND / 1000000).toFixed(1)} Triệu/tháng
+                </span>
+              </div>
+              <p className="text-slate-600 dark:text-slate-300 text-[11px] leading-relaxed">
+                ⚖️ <strong>Đòn bẩy đàm phán:</strong> {warRoomStrategy.leverageExplanation}
+              </p>
+            </div>
+
+            {/* 3 Strategy Packages */}
+            <div className="space-y-3">
+              <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block">
+                Chọn Chiến Lược Đàm Phán Phù Hợp Với Bạn:
+              </label>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                {warRoomStrategy.packages.map((pkg) => {
+                  const isSelected = pkg.id === selectedPackageId;
+                  return (
+                    <div
+                      key={pkg.id}
+                      onClick={() => setSelectedPackageId(pkg.id)}
+                      className={`p-4 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between gap-3 text-xs ${
+                        isSelected
+                          ? 'bg-[#E8F8EC] dark:bg-emerald-950/40 border-[#9FE870] shadow-sm ring-2 ring-[#9FE870]/40'
+                          : 'bg-[#F9FAF8] dark:bg-slate-800/70 border-slate-200 dark:border-slate-700 hover:border-slate-400'
+                      }`}
+                    >
+                      <div className="space-y-1.5">
+                        <div className="flex items-center justify-between">
+                          <span className="px-2 py-0.5 rounded-full bg-[#163300] text-[#9FE870] font-black text-[10px]">
+                            {pkg.badge}
+                          </span>
+                          <span className="font-black text-[#163300] dark:text-white tabular-nums">
+                            {(pkg.recommendedCounterPriceVND / 1000000).toFixed(1)} Tr/tháng
+                          </span>
+                        </div>
+                        <h5 className="font-bold text-xs text-[#163300] dark:text-white">
+                          {pkg.title}
+                        </h5>
+                        <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+                          {pkg.landlordValueProposition}
+                        </p>
+                      </div>
+
+                      <div className="pt-2 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between text-[11px]">
+                        <span className="text-emerald-700 dark:text-emerald-300 font-bold">
+                          Tiết kiệm: ~{(pkg.annualSavingVND / 1000000).toFixed(1)}Tr/năm
+                        </span>
+                        <span className={`text-[11px] font-bold ${isSelected ? 'text-[#163300] dark:text-[#9FE870]' : 'text-slate-400'}`}>
+                          {isSelected ? '✓ Đang chọn' : 'Bấm chọn'}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Selected Strategy Proposal & Auto-Bargain Trigger */}
+            {(() => {
+              const activePkg = warRoomStrategy.packages.find(p => p.id === selectedPackageId) || warRoomStrategy.packages[0];
+              return (
+                <div className="p-4 rounded-2xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 space-y-3 text-xs">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-slate-700 dark:text-slate-300">
+                      Tin Nhắn Đàm Phán Tự Động Soạn Thảo (Chuẩn Văn Hóa Việt Nam):
+                    </span>
+                    <span className="text-[10px] text-slate-500 font-mono">Tự động gửi vào hộp thư chủ nhà</span>
+                  </div>
+
+                  <p className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 italic text-slate-700 dark:text-slate-300 leading-relaxed">
+                    "{activePkg.proposedMessageToLandlord}"
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+                    <div className="text-[11px] text-slate-600 dark:text-slate-400">
+                      Mục tiêu: Đàm phán giảm <strong>{(activePkg.monthlySavingVND / 1000000).toFixed(1)} triệu/tháng</strong> (Tiết kiệm {(activePkg.annualSavingVND / 1000000).toFixed(1)}Tr/năm)
+                    </div>
+
+                    <button
+                      onClick={() => handleAutoBargain(activePkg)}
+                      className="px-5 py-2.5 rounded-full bg-[#163300] hover:bg-[#234c03] text-[#9FE870] font-black text-xs shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer hover:scale-105 active:scale-95"
+                    >
+                      <Send className="w-3.5 h-3.5" />
+                      <span>AI Tự Động Đàm Phán & Chốt Giá Giảm</span>
+                    </button>
+                  </div>
+
+                  {isBargainingSent && (
+                    <div className="p-3 rounded-xl bg-[#E8F8EC] border border-[#9FE870] text-[#163300] flex items-center gap-2 text-xs font-bold animate-in fade-in">
+                      <CheckCircle2 className="w-4 h-4 text-[#163300] shrink-0" />
+                      <span>{bargainingFeedback || 'Đã gửi lời đề nghị đàm phán thành công vào hộp thư của Chủ Nhà!'}</span>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
+          </div>
+
+          {/* 4. DEPOSIT TERMS & SANCTUARY COMMITMENT */}
           <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-[28px] p-6 md:p-8 shadow-sm space-y-5">
             <div className="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
               <div className="w-10 h-10 rounded-2xl bg-[#FFF6DB] text-[#7A5200] flex items-center justify-center font-bold shadow-2xs">
@@ -636,7 +1000,7 @@ export const UserUnitDetailView: React.FC<UserUnitDetailViewProps> = ({
                   <h3 className="text-base sm:text-lg font-black text-[#163300] dark:text-white flex items-center gap-2">
                     Haven AI Trợ Lý Căn Hộ
                     <span className="px-2 py-0.5 rounded-full bg-[#163300] text-[#9FE870] text-[10px] font-bold">
-                      Local Qwen 2.5
+                      Local Qwen 7B
                     </span>
                   </h3>
                   <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">

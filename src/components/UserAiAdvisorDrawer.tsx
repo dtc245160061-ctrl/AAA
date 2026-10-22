@@ -14,11 +14,13 @@ import {
   Handshake,
   Calendar,
   DollarSign,
-  ChevronRight
+  ChevronRight,
+  RotateCcw,
+  Bookmark
 } from 'lucide-react';
 import type { ApartmentUnit } from '../types/apartment';
 import { type RagRetrievalResult } from '../services/geminiRagService';
-import { askHavenLocalSlm, checkLocalSlmStatus } from '../services/localAiService';
+import { askHavenLocalSlm, checkLocalSlmStatus, resetAiFilterMemory } from '../services/localAiService';
 import { VoiceRecognitionService } from '../services/voiceRecognitionService';
 import { ApartmentStore } from '../data/apartmentStore';
 import { parseNaturalLanguageQuery } from '../services/aiAdvisorService';
@@ -30,9 +32,10 @@ interface Message {
   modelUsed?: string;
   sources?: RagRetrievalResult[];
   suggestedAction?: {
-    type: 'apply_filters' | 'negotiate_price' | 'draft_contract' | 'calculate_true_cost' | 'schedule_viewing' | 'fill_listing';
+    type: 'apply_filters' | 'compare_units' | 'open_unit_detail' | 'navigate_module' | 'negotiate_price' | 'draft_contract' | 'calculate_true_cost' | 'schedule_viewing' | 'fill_listing';
     queryText: string;
     payload?: any;
+    summaryBadge?: string;
   };
 }
 
@@ -59,7 +62,7 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
     {
       id: 'msg-1',
       sender: 'ai',
-      text: `Xin chào bạn! Tôi là HAVEN Local AI — Trợ lý Không Gian Sống Cục Bộ vận hành trên mô hình SLM Qwen2.5 (100% Offline, bảo mật tối đa).\n\nBạn có thể hỏi tôi bất kỳ điều gì: tư vấn trong số 1,700 căn hộ toàn quốc (Thái Nguyên, Hà Nội, TP.HCM, Đà Nẵng...), tính toán chi phí True Cost, hoặc cơ chế bảo chứng cọc Escrow an toàn nhé!`
+      text: `Xin chào bạn! Tôi là HAVEN Local AI — Trợ lý Không Gian Sống Cục Bộ vận hành trên mô hình SLM Qwen 7B (100% Offline, bảo mật tối đa).\n\nBạn có thể hỏi tôi bất kỳ điều gì: tư vấn trong số 1,700 căn hộ toàn quốc (Thái Nguyên, Hà Nội, TP.HCM, Đà Nẵng...), tính toán chi phí True Cost, hoặc cơ chế bảo chứng cọc Escrow an toàn nhé!`
     }
   ]);
   const [inputValue, setInputValue] = useState('');
@@ -279,12 +282,26 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
   }, [isOpen, onClose]);
 
   const quickPrompts = [
+    '🛡️ Quét bẫy hợp đồng thuê (Legal Shield)',
+    '🧯 Kiểm định sinh tồn PCCC QCVN 06',
+    '⚔️ Phòng đàm phán giá AI (War-Room)',
+    '⛽ Tính True Cost & chi phí xăng xe đi làm',
+    'Lập hợp đồng cho khách Nguyễn Hoàng Nam thuê căn HN-TH-2401',
     'Căn hộ Tecco Elite Thái Nguyên 2PN giá tốt',
     'Tìm căn 2PN Tây Hồ yên tĩnh có đỗ ô tô',
-    'Căn nào tại Đà Nẵng không lo ngập lụt?',
-    'Chính sách bảo chứng tiền cọc Escrow?',
-    'Tiêu chuẩn PCCC QCVN 06 gồm những gì?'
+    'Chính sách bảo chứng tiền cọc Escrow?'
   ];
+
+  const handleClearChat = () => {
+    resetAiFilterMemory();
+    setMessages([
+      {
+        id: `msg-${Date.now()}`,
+        sender: 'ai',
+        text: `Đã làm mới bộ lọc và phiên hội thoại. Tôi sẵn sàng hỗ trợ bạn tìm kiếm trong 1,700 căn hộ hoặc giải đáp thắc mắc!`
+      }
+    ]);
+  };
 
   const handleSend = async (textToSend?: string) => {
     const query = (textToSend || inputValue).trim();
@@ -299,7 +316,15 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
       text: query
     };
 
-    setMessages(prev => [...prev, userMsg]);
+    const aiMsgId = `ai-${Date.now()}`;
+    const initialAiMsg: Message = {
+      id: aiMsgId,
+      sender: 'ai',
+      text: '',
+      modelUsed: slmStatus.isAvailable ? `Local Qwen 2.5 7B (${slmStatus.model || '7B'} • Đang kết nối...)` : 'Local Qwen 2.5 7B (Đang khởi tạo...)'
+    };
+
+    setMessages(prev => [...prev, userMsg, initialAiMsg]);
     setInputValue('');
 
     if (VoiceRecognitionService.getIsListening()) {
@@ -313,25 +338,27 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
         text: m.text
       }));
 
-      const res = await askHavenLocalSlm(query, history, 'consumer');
+      const res = await askHavenLocalSlm(
+        query, 
+        history, 
+        'consumer',
+        (partialCleanText) => {
+          setMessages(prev => prev.map(m => m.id === aiMsgId ? { ...m, text: partialCleanText } : m));
+        }
+      );
 
-      const aiMsg: Message = {
-        id: `ai-${Date.now()}`,
-        sender: 'ai',
+      setMessages(prev => prev.map(m => m.id === aiMsgId ? {
+        ...m,
         text: res.answer,
         modelUsed: res.modelUsed,
         sources: res.sources,
         suggestedAction: res.suggestedAction
-      };
-
-      setMessages(prev => [...prev, aiMsg]);
+      } : m));
     } catch (err: any) {
-      const errorMsg: Message = {
-        id: `ai-err-${Date.now()}`,
-        sender: 'ai',
+      setMessages(prev => prev.map(m => m.id === aiMsgId ? {
+        ...m,
         text: `Chào bạn, hiện tại kết nối đang bận một chút. Bạn có thể thử lại câu hỏi nhé!`
-      };
-      setMessages(prev => [...prev, errorMsg]);
+      } : m));
     } finally {
       setIsLoading(false);
       isSubmittingRef.current = false;
@@ -418,7 +445,7 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
                         : 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300'
                     } text-[10px] font-bold`}>
                       <span className={`w-1.5 h-1.5 rounded-full ${slmStatus.isAvailable ? 'bg-[#163300] dark:bg-[#9FE870]' : 'bg-emerald-500'} animate-pulse`} />
-                      <span>{slmStatus.isAvailable ? `Local Qwen (${slmStatus.model || '3B'})` : 'Offline RAG 1,700 Căn'}</span>
+                      <span>{slmStatus.isAvailable ? `Local Qwen (${slmStatus.model || '7B'})` : 'Offline RAG 1,700 Căn'}</span>
                     </span>
                   </div>
                   <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">
@@ -428,6 +455,13 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
               </div>
 
               <div className="flex items-center gap-1.5">
+                <button
+                  onClick={handleClearChat}
+                  className="w-7 h-7 rounded-full bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white border border-slate-200/80 dark:border-slate-700 flex items-center justify-center transition-colors cursor-pointer"
+                  title="Làm mới hội thoại & Đặt lại bộ lọc"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                </button>
                 <div 
                   className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 cursor-nwse-resize"
                   title="Có thể kéo viền/góc để mở rộng cửa sổ"
@@ -562,6 +596,33 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
                       {/* Agentic Action Chips & Criteria Summary */}
                       {msg.suggestedAction && (
                         <div className="pt-2 space-y-2">
+                          {/* Autonomous Live Action Badge */}
+                          {msg.suggestedAction.summaryBadge && (
+                            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/25 text-[11px] font-semibold shadow-2xs">
+                              <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-[#9FE870] shrink-0" />
+                              <span>{msg.suggestedAction.summaryBadge}</span>
+                            </div>
+                          )}
+
+                          {msg.suggestedAction.type === 'compare_units' && (
+                            <div className="p-3 rounded-2xl bg-indigo-50/90 dark:bg-indigo-950/40 border border-indigo-200/90 dark:border-indigo-800/60 space-y-2">
+                              <div className="text-[11.5px] font-bold text-indigo-950 dark:text-indigo-200 flex items-center gap-1.5">
+                                <Bookmark className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+                                <span>Đã tự động nạp vào Bảng so sánh Radar</span>
+                              </div>
+                              <p className="text-[11px] text-indigo-800/80 dark:text-indigo-300/80">
+                                Hệ thống đã tự động chuyển sang màn hình so sánh và đối chiếu đa chiều 5 trục sống.
+                              </p>
+                              <button
+                                onClick={onClose}
+                                className="w-full inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-indigo-700 text-white hover:bg-indigo-800 font-bold text-xs transition-all shadow-xs cursor-pointer active:scale-[0.99]"
+                              >
+                                <span>Xem Biểu Đồ Radar</span>
+                                <ChevronRight className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                          )}
+
                           {msg.suggestedAction.type === 'apply_filters' && (
                             <div className="p-3 rounded-2xl bg-emerald-50/90 dark:bg-emerald-950/40 border border-emerald-200/90 dark:border-emerald-800/60 space-y-2.5">
                               <div className="text-[11.5px] font-medium text-emerald-950 dark:text-emerald-200 flex flex-wrap items-center gap-1.5 leading-relaxed">
@@ -576,7 +637,7 @@ export const UserAiAdvisorDrawer: React.FC<UserAiAdvisorDrawerProps> = ({
                                 className="w-full inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-[#163300] text-[#9FE870] hover:bg-[#204500] font-bold text-xs transition-all shadow-xs cursor-pointer active:scale-[0.99]"
                               >
                                 <Filter className="w-3.5 h-3.5" />
-                                <span>Áp dụng vào bộ lọc tìm kiếm</span>
+                                <span>Xem danh sách căn hộ phù hợp</span>
                               </button>
                             </div>
                           )}

@@ -5,9 +5,22 @@ import {
   Upload, 
   CheckCircle2, 
   AlertTriangle, 
-  RefreshCw
+  RefreshCw,
+  Car,
+  Dog,
+  ShieldCheck,
+  Check,
+  TrendingUp,
+  Zap,
+  Award
 } from 'lucide-react';
 import type { ApartmentUnit } from '../types/apartment';
+import { 
+  extractListingEntitiesFromText, 
+  type ListingFormAutoFillPayload 
+} from '../services/aiOcrAndFormService';
+import { useAiCommand } from '../services/aiCommandBus';
+import { optimizeUnitPricingAndYield } from '../services/aiSignatureFeaturesService';
 
 interface SmartListingCreatorModalProps {
   isOpen: boolean;
@@ -28,11 +41,126 @@ export const SmartListingCreatorModal: React.FC<SmartListingCreatorModalProps> =
   const [sqm, setSqm] = useState<number>(85);
   const [bedrooms, setBedrooms] = useState<number>(2);
 
+  // Amenities Toggles
+  const [hasCarParking, setHasCarParking] = useState<boolean>(true);
+  const [petFriendly, setPetFriendly] = useState<boolean>(false);
+  const [lowFlood, setLowFlood] = useState<boolean>(true);
+
   // AI Generated Results State
   const [generatedTitle, setGeneratedTitle] = useState<string>('Căn Hộ 2PN Phú Mỹ Hưng View Sông Thoáng Mát — Đã Nghiệm Thu PCCC');
   const [generatedDesc, setGeneratedDesc] = useState<string>('Căn hộ thiết kế hiện đại tràn ngập ánh sáng tự nhiên với ban công hướng Đông Nam đón gió mát. Trang bị đầy đủ nội thất cao cấp (điều hòa Daikin, bếp từ Bosch). Tòa nhà trang bị 2 thang thoát hiểm chống khói và đầu phun Sprinkler tự động.');
   const [suggestedRentVND, setSuggestedRentVND] = useState<number>(18500000);
   const [parkingFeeVND, setParkingFeeVND] = useState<number>(1200000);
+
+  // Raw Description NER Auto-Fill State
+  const [rawDescriptionInput, setRawDescriptionInput] = useState<string>('');
+  const [isExtractingListing, setIsExtractingListing] = useState<boolean>(false);
+  const [autoFilledKeys, setAutoFilledKeys] = useState<string[]>([]);
+
+  // AI Dynamic Pricing & Yield Optimization calculation for Step 3
+  const yieldOptimization = React.useMemo(() => {
+    const mockUnit: Partial<ApartmentUnit> = {
+      id: 'DRAFT',
+      city: selectedCity,
+      district,
+      sqm,
+      bedrooms,
+      monthlyRentVND: suggestedRentVND,
+      petFriendly,
+      hasCarParking,
+      floodingRisk: lowFlood ? 'Low' : 'High'
+    };
+    return optimizeUnitPricingAndYield(mockUnit as ApartmentUnit);
+  }, [selectedCity, district, sqm, bedrooms, suggestedRentVND, petFriendly, hasCarParking, lowFlood]);
+
+  // Listen to Global aiCommandBus for 'fill_listing'
+  useAiCommand((cmd) => {
+    if (cmd.type === 'fill_listing') {
+      const p = cmd.payload;
+      applyListingPayload(p);
+    }
+  });
+
+  const applyListingPayload = (p: Partial<ListingFormAutoFillPayload>) => {
+    const filled: string[] = [];
+
+    if (p.city) {
+      if (p.city.toLowerCase().includes('hà nội') || p.city.toLowerCase().includes('hanoi')) {
+        setSelectedCity('Hanoi');
+      } else if (p.city.toLowerCase().includes('đà nẵng') || p.city.toLowerCase().includes('da nang')) {
+        setSelectedCity('Da Nang');
+      } else {
+        setSelectedCity('Ho Chi Minh City');
+      }
+      filled.push('city');
+    }
+
+    if (p.district) {
+      setDistrict(p.district);
+      filled.push('district');
+    }
+    if (p.bedrooms) {
+      setBedrooms(p.bedrooms);
+      filled.push('bedrooms');
+    }
+    if (p.sqm) {
+      setSqm(p.sqm);
+      filled.push('sqm');
+    }
+    if (p.monthlyRentVND) {
+      setSuggestedRentVND(p.monthlyRentVND);
+      filled.push('monthlyRentVND');
+    }
+    if (p.hasCarParking !== undefined) {
+      setHasCarParking(p.hasCarParking);
+      filled.push('hasCarParking');
+    }
+    if (p.petFriendly !== undefined) {
+      setPetFriendly(p.petFriendly);
+      filled.push('petFriendly');
+    }
+    if (p.lowFlood !== undefined) {
+      setLowFlood(p.lowFlood);
+      filled.push('lowFlood');
+    }
+    if (p.title) {
+      setGeneratedTitle(p.title);
+      filled.push('title');
+    }
+    if (p.description) {
+      setGeneratedDesc(p.description);
+      filled.push('description');
+    }
+
+    setAutoFilledKeys(filled);
+    setTimeout(() => setAutoFilledKeys([]), 4500);
+
+    if (onShowToast) {
+      onShowToast(
+        'success',
+        'AI Tự Điền Tin Đăng',
+        `Đã tự động trích xuất ${filled.length} thông số căn hộ từ mô tả!`
+      );
+    }
+  };
+
+  const handleAutoFillFromDescription = async (textToProcess?: string) => {
+    const text = (textToProcess || rawDescriptionInput).trim();
+    if (!text) {
+      if (onShowToast) onShowToast('info', 'Chưa có mô tả', 'Vui lòng nhập mô tả hoặc chọn câu mẫu.');
+      return;
+    }
+
+    setIsExtractingListing(true);
+    try {
+      const extracted = await extractListingEntitiesFromText(text);
+      applyListingPayload(extracted);
+    } catch {
+      if (onShowToast) onShowToast('error', 'Lỗi phân tích', 'Không thể trích xuất thông số. Vui lòng thử lại.');
+    } finally {
+      setIsExtractingListing(false);
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -60,6 +188,13 @@ export const SmartListingCreatorModal: React.FC<SmartListingCreatorModalProps> =
       onShowToast('success', 'Xuất bản tin đăng thành công', 'Tin đăng đã được AI tối ưu hóa và hiển thị trên sàn HAVEN.');
     }
     onClose();
+  };
+
+  const getFieldPulseStyle = (key: string) => {
+    if (autoFilledKeys.includes(key)) {
+      return 'ring-2 ring-[#9FE870] bg-[#E8F8EC] dark:bg-emerald-950/40 border-[#9FE870] transition-all duration-500';
+    }
+    return 'bg-[#F2F5F0] dark:bg-slate-800 border-slate-200 dark:border-slate-700';
   };
 
   return (
@@ -91,6 +226,79 @@ export const SmartListingCreatorModal: React.FC<SmartListingCreatorModalProps> =
         {/* STEP 1: Upload Photos & Basic Info */}
         {step === 'upload' && (
           <div className="space-y-5 animate-in fade-in duration-200 text-xs">
+            {/* AI NATURAL LANGUAGE AUTO-FILLER BAR */}
+            <div className="p-5 rounded-[24px] bg-gradient-to-r from-[#F7FAF6] via-white to-[#F2F5F0] dark:from-slate-900 dark:via-slate-800/60 dark:to-slate-900 border-2 border-[#9FE870]/70 dark:border-[#9FE870]/40 space-y-3 shadow-xs">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-xl bg-[#9FE870] text-[#163300] flex items-center justify-center font-bold">
+                    <Sparkles className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="font-bold text-[#163300] dark:text-white text-xs sm:text-sm">
+                    AI Tự Điền Từ Mô Tả Thô (Quick NER Auto-Filler)
+                  </span>
+                </div>
+                <span className="text-[10px] font-bold text-[#163300] dark:text-[#9FE870] px-2.5 py-0.5 rounded-full bg-[#E8F8EC] dark:bg-emerald-950/40 border border-[#9FE870]/30">
+                  1-Click Fill
+                </span>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-2">
+                <input
+                  type="text"
+                  value={rawDescriptionInput}
+                  onChange={(e) => setRawDescriptionInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      handleAutoFillFromDescription();
+                    }
+                  }}
+                  placeholder="Gõ mô tả ngắn (VD: Đăng căn hộ 2PN ở Cầu Giấy 75m2 giá 14 triệu có chỗ đỗ ô tô và nuôi thú cưng)..."
+                  className="flex-1 px-4 py-2.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#9FE870] text-xs font-sans shadow-xs"
+                />
+                <button
+                  type="button"
+                  onClick={() => handleAutoFillFromDescription()}
+                  disabled={isExtractingListing}
+                  className="px-5 py-2.5 rounded-full bg-[#163300] hover:bg-[#204900] text-[#9FE870] font-bold text-xs transition-all shadow-sm flex items-center justify-center gap-1.5 cursor-pointer hover:scale-105 active:scale-95 shrink-0 disabled:opacity-50"
+                >
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>{isExtractingListing ? 'Đang trích xuất...' : 'AI Điền Thông Số'}</span>
+                </button>
+              </div>
+
+              {/* Sample Chips for Live Classroom Presentation */}
+              <div className="flex items-center gap-2 flex-wrap text-[11px] pt-1">
+                <span className="text-slate-500 font-bold">Thử mô tả mẫu:</span>
+                {[
+                  {
+                    label: '2PN Cầu Giấy 75m², 14tr, đỗ ô tô, pet',
+                    text: 'Đăng căn hộ 2PN ở Cầu Giấy 75m2 giá 14 triệu có chỗ đỗ ô tô và nuôi thú cưng'
+                  },
+                  {
+                    label: '3PN Tây Hồ 110m², 22tr, không ngập',
+                    text: 'Căn hộ 3 phòng ngủ Tây Hồ 110m2 giá 22 triệu full nội thất có chỗ đỗ ô tô và không ngập'
+                  },
+                  {
+                    label: 'Studio Quận 7 45m², 9.5tr, nuôi thú cưng',
+                    text: 'Studio cao cấp Quận 7 45m2 giá 9.5 triệu cho nuôi mèo'
+                  }
+                ].map((sample, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => {
+                      setRawDescriptionInput(sample.text);
+                      handleAutoFillFromDescription(sample.text);
+                    }}
+                    className="px-2.5 py-1 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-[#9FE870] text-[#163300] dark:text-slate-200 font-medium transition-all shadow-xs cursor-pointer hover:scale-105 active:scale-95"
+                  >
+                    ⚡ {sample.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Upload Box */}
             <div className="p-8 rounded-[24px] border-2 border-dashed border-slate-300 dark:border-slate-700 bg-[#F2F5F0] dark:bg-slate-800/60 text-center space-y-3 cursor-pointer hover:border-[#163300] dark:hover:border-[#9FE870] transition-colors">
               <div className="w-12 h-12 rounded-2xl bg-[#9FE870] text-[#163300] flex items-center justify-center mx-auto shadow-xs">
@@ -112,7 +320,7 @@ export const SmartListingCreatorModal: React.FC<SmartListingCreatorModalProps> =
                 <select
                   value={selectedCity}
                   onChange={(e) => setSelectedCity(e.target.value as any)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white font-medium focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40"
+                  className={`w-full px-3.5 py-2.5 rounded-xl border text-[#163300] dark:text-white font-medium focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40 ${getFieldPulseStyle('city')}`}
                 >
                   <option value="Ho Chi Minh City">TP. Hồ Chí Minh</option>
                   <option value="Hanoi">Hà Nội</option>
@@ -126,8 +334,8 @@ export const SmartListingCreatorModal: React.FC<SmartListingCreatorModalProps> =
                   type="text"
                   value={district}
                   onChange={(e) => setDistrict(e.target.value)}
-                  placeholder="Quận 7, Quận 1..."
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white font-medium focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40"
+                  placeholder="Quận 7, Cầu Giấy..."
+                  className={`w-full px-3.5 py-2.5 rounded-xl border text-[#163300] dark:text-white font-medium focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40 ${getFieldPulseStyle('district')}`}
                 />
               </div>
 
@@ -138,17 +346,68 @@ export const SmartListingCreatorModal: React.FC<SmartListingCreatorModalProps> =
                     type="number"
                     value={sqm}
                     onChange={(e) => setSqm(Number(e.target.value))}
-                    className="w-1/2 px-3 py-2.5 rounded-xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white font-medium focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40"
+                    className={`w-1/2 px-3 py-2.5 rounded-xl border text-[#163300] dark:text-white font-medium focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40 ${getFieldPulseStyle('sqm')}`}
                   />
                   <input
                     type="number"
                     value={bedrooms}
                     onChange={(e) => setBedrooms(Number(e.target.value))}
                     placeholder="PN"
-                    className="w-1/2 px-3 py-2.5 rounded-xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white font-medium focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40"
+                    className={`w-1/2 px-3 py-2.5 rounded-xl border text-[#163300] dark:text-white font-medium focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40 ${getFieldPulseStyle('bedrooms')}`}
                   />
                 </div>
               </div>
+            </div>
+
+            {/* Amenities & Characteristics Toggles */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+              <button
+                type="button"
+                onClick={() => setHasCarParking(prev => !prev)}
+                className={`p-3 rounded-2xl border flex items-center justify-between transition-all cursor-pointer ${
+                  hasCarParking 
+                    ? 'bg-[#E8F8EC] dark:bg-emerald-950/40 border-[#9FE870] text-[#163300] dark:text-[#9FE870]' 
+                    : 'bg-[#F2F5F0] dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-500'
+                }`}
+              >
+                <div className="flex items-center gap-2 font-bold text-xs">
+                  <Car className="w-4 h-4" />
+                  <span>Có Chỗ Đỗ Ô Tô</span>
+                </div>
+                {hasCarParking ? <Check className="w-4 h-4" /> : <span className="text-[10px] font-mono">TẮT</span>}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setPetFriendly(prev => !prev)}
+                className={`p-3 rounded-2xl border flex items-center justify-between transition-all cursor-pointer ${
+                  petFriendly 
+                    ? 'bg-[#E8F8EC] dark:bg-emerald-950/40 border-[#9FE870] text-[#163300] dark:text-[#9FE870]' 
+                    : 'bg-[#F2F5F0] dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-500'
+                }`}
+              >
+                <div className="flex items-center gap-2 font-bold text-xs">
+                  <Dog className="w-4 h-4" />
+                  <span>Nuôi Thú Cưng</span>
+                </div>
+                {petFriendly ? <Check className="w-4 h-4" /> : <span className="text-[10px] font-mono">TẮT</span>}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setLowFlood(prev => !prev)}
+                className={`p-3 rounded-2xl border flex items-center justify-between transition-all cursor-pointer ${
+                  lowFlood 
+                    ? 'bg-[#E8F8EC] dark:bg-emerald-950/40 border-[#9FE870] text-[#163300] dark:text-[#9FE870]' 
+                    : 'bg-[#F2F5F0] dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-500'
+                }`}
+              >
+                <div className="flex items-center gap-2 font-bold text-xs">
+                  <ShieldCheck className="w-4 h-4" />
+                  <span>Không Ngập Nước</span>
+                </div>
+                {lowFlood ? <Check className="w-4 h-4" /> : <span className="text-[10px] font-mono">TẮT</span>}
+              </button>
             </div>
 
             <button
@@ -191,7 +450,7 @@ export const SmartListingCreatorModal: React.FC<SmartListingCreatorModalProps> =
                 type="text"
                 value={generatedTitle}
                 onChange={(e) => setGeneratedTitle(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[#163300] dark:text-white font-bold text-sm focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40"
+                className={`w-full px-4 py-2.5 rounded-xl border text-[#163300] dark:text-white font-bold text-sm focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40 ${getFieldPulseStyle('title')}`}
               />
             </div>
 
@@ -202,7 +461,7 @@ export const SmartListingCreatorModal: React.FC<SmartListingCreatorModalProps> =
                 rows={3}
                 value={generatedDesc}
                 onChange={(e) => setGeneratedDesc(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40 leading-relaxed"
+                className={`w-full px-4 py-2.5 rounded-xl border text-slate-700 dark:text-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-[#9FE870]/40 leading-relaxed ${getFieldPulseStyle('description')}`}
               />
             </div>
 
@@ -235,6 +494,75 @@ export const SmartListingCreatorModal: React.FC<SmartListingCreatorModalProps> =
               </div>
             </div>
 
+            {/* AI Dynamic Pricing Tiers */}
+            <div className="p-3.5 rounded-2xl bg-[#E8F8EC]/70 dark:bg-emerald-950/20 border border-[#9FE870]/30 space-y-2.5">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-1.5 font-black text-[#163300] dark:text-[#9FE870]">
+                  <TrendingUp className="w-4 h-4" />
+                  <span>AI Dynamic Pricing — 3 Kịch Bản Lợi Nhuận:</span>
+                </div>
+                <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Bấm chọn để áp dụng</span>
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                <button
+                  type="button"
+                  onClick={() => setSuggestedRentVND(yieldOptimization.fastOccupancyPriceVND)}
+                  className={`p-2 rounded-xl border text-left transition-all cursor-pointer ${
+                    suggestedRentVND === yieldOptimization.fastOccupancyPriceVND
+                      ? 'bg-[#163300] text-[#9FE870] border-[#163300]'
+                      : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:border-[#9FE870]'
+                  }`}
+                >
+                  <div className="flex items-center gap-1 text-[10px] font-bold text-emerald-600 dark:text-[#9FE870]">
+                    <Zap className="w-3 h-3" />
+                    <span>Thuê Nhanh</span>
+                  </div>
+                  <div className="font-black text-xs sm:text-sm tabular-nums mt-0.5">
+                    {(yieldOptimization.fastOccupancyPriceVND / 1000000).toFixed(1)} Tr
+                  </div>
+                  <div className="text-[9px] opacity-75">3-5 ngày</div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setSuggestedRentVND(yieldOptimization.optimalYieldPriceVND)}
+                  className={`p-2 rounded-xl border text-left transition-all cursor-pointer ${
+                    suggestedRentVND === yieldOptimization.optimalYieldPriceVND
+                      ? 'bg-[#163300] text-[#9FE870] border-[#163300]'
+                      : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:border-[#9FE870]'
+                  }`}
+                >
+                  <div className="flex items-center gap-1 text-[10px] font-bold text-amber-600 dark:text-amber-400">
+                    <TrendingUp className="w-3 h-3" />
+                    <span>Tối Ưu Yield</span>
+                  </div>
+                  <div className="font-black text-xs sm:text-sm tabular-nums mt-0.5">
+                    {(yieldOptimization.optimalYieldPriceVND / 1000000).toFixed(1)} Tr
+                  </div>
+                  <div className="text-[9px] opacity-75">Điểm ngọt ROI</div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setSuggestedRentVND(yieldOptimization.premiumTargetPriceVND)}
+                  className={`p-2 rounded-xl border text-left transition-all cursor-pointer ${
+                    suggestedRentVND === yieldOptimization.premiumTargetPriceVND
+                      ? 'bg-[#163300] text-[#9FE870] border-[#163300]'
+                      : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:border-[#9FE870]'
+                  }`}
+                >
+                  <div className="flex items-center gap-1 text-[10px] font-bold text-purple-600 dark:text-purple-400">
+                    <Award className="w-3 h-3" />
+                    <span>Cao Cấp</span>
+                  </div>
+                  <div className="font-black text-xs sm:text-sm tabular-nums mt-0.5">
+                    {(yieldOptimization.premiumTargetPriceVND / 1000000).toFixed(1)} Tr
+                  </div>
+                  <div className="text-[9px] opacity-75">Full tiện ích</div>
+                </button>
+              </div>
+            </div>
+
             {/* AI Quality Inspector Suggestions */}
             <div className="p-4 rounded-2xl bg-[#FFFBF0] dark:bg-amber-950/20 border border-amber-200 dark:border-amber-700/60 space-y-1.5 text-xs text-amber-900 dark:text-amber-300">
               <div className="flex items-center gap-1.5 font-black text-amber-800 dark:text-amber-400">
@@ -243,7 +571,12 @@ export const SmartListingCreatorModal: React.FC<SmartListingCreatorModalProps> =
               </div>
               <ul className="space-y-1 pl-5 list-disc text-slate-700 dark:text-slate-300 text-xs">
                 <li>Bổ sung ảnh giấy nghiệm thu PCCC để nhận huy hiệu <strong>Verified Cấp 3</strong>.</li>
-                <li>Thêm thông tin vật nuôi (Pet-Friendly) để tiếp cận thêm 35% khách thuê trẻ.</li>
+                <li>{petFriendly ? '✓ Đã bật chế độ thân thiện thú cưng (Pet-Friendly).' : 'Thêm thông tin vật nuôi (Pet-Friendly) để tiếp cận thêm 35% khách thuê trẻ.'}</li>
+                {yieldOptimization.capExUpgrades.slice(0, 1).map((upg, i) => (
+                  <li key={i} className="text-[#163300] dark:text-[#9FE870] font-semibold">
+                    💡 Gợi ý CapEx ROI: {upg.title} (Chi phí ~{(upg.estimatedCostVND / 1000000).toFixed(1)}Tr, tăng thu +{(upg.monthlyRentIncreaseVND / 1000000).toFixed(1)}Tr/tháng, hoàn vốn {upg.paybackPeriodMonths} tháng).
+                  </li>
+                ))}
               </ul>
             </div>
 

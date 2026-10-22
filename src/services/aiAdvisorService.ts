@@ -5,6 +5,7 @@ export interface ConsumerFilters {
   district?: string;
   minBedrooms?: number;
   maxBedrooms?: number;
+  exactBedrooms?: number;
   maxRentVND?: number;
   minRentVND?: number;
   hasCarParking?: boolean;
@@ -49,10 +50,19 @@ export interface ComparisonResult {
 export function parseNaturalLanguageQuery(queryText: string): AIParsedQuery {
   const raw = queryText.toLowerCase();
 
+  // 0. Pre-normalize Vietnamese number words before room keywords:
+  // "một / mot" -> "1", "hai" -> "2", "ba" -> "3", "bốn / bon / tư" -> "4", "năm / nam" -> "5"
+  const preprocessed = raw
+    .replace(/\b(?:một|mot)\s*(?:phòng\s*ngủ|phong\s*ngu|buồng\s*ngủ|buong\s*ngu|phòng|phong|pn|bed|br)\b/gi, '1 pn')
+    .replace(/\b(?:hai)\s*(?:phòng\s*ngủ|phong\s*ngu|buồng\s*ngủ|buong\s*ngu|phòng|phong|pn|bed|br)\b/gi, '2 pn')
+    .replace(/\b(?:ba)\s*(?:phòng\s*ngủ|phong\s*ngu|buồng\s*ngủ|buong\s*ngu|phòng|phong|pn|bed|br)\b/gi, '3 pn')
+    .replace(/\b(?:bốn|bon|tư|tu)\s*(?:phòng\s*ngủ|phong\s*ngu|buồng\s*ngủ|buong\s*ngu|phòng|phong|pn|bed|br)\b/gi, '4 pn')
+    .replace(/\b(?:năm|nam)\s*(?:phòng\s*ngủ|phong\s*ngu|buồng\s*ngủ|buong\s*ngu|phòng|phong|pn|bed|br)\b/gi, '5 pn');
+
   // Normalize common shorthand tokens
-  const normalized = raw
-    .replace(/triệu|củ|tr|m\b/g, 'củ')
+  const normalized = preprocessed
     .replace(/phòng ngủ|phong ngu|phòng|pn|bed|br\b/g, 'pn')
+    .replace(/triệu|củ|tr|m\b/g, 'củ')
     .replace(/ô tô|xe hơi|de oto|oto|car\b/g, 'oto')
     .replace(/thang máy|thang may|elevator\b/g, 'thangmay')
     .replace(/hà nội|ha noi|hanoi|hn\b/g, 'hanoi')
@@ -202,23 +212,57 @@ export function parseNaturalLanguageQuery(queryText: string): AIParsedQuery {
     classification.preferred.push('Gần trung tâm thành phố');
   }
 
-  // 3. Bedrooms Detection ("2pn", "2 phòng", "2 phong ngu", "2 vợ chồng 1 con")
+  // 3. Bedrooms Detection ("2pn", "2 phòng", "hai phòng ngủ", "2 vợ chồng 1 con")
   const pnMatch = normalized.match(/(\d+)\s*pn/);
   if (pnMatch) {
     const beds = parseInt(pnMatch[1], 10);
     filters.minBedrooms = beds;
-    classification.required.push(`Từ ${beds} phòng ngủ trở lên`);
+    filters.maxBedrooms = beds;
+    filters.exactBedrooms = beds;
+    classification.required.push(`Đúng ${beds} phòng ngủ`);
   } else if (raw.includes('vợ chồng 1 con') || raw.includes('hai vợ chồng') || raw.includes('gia đình') || raw.includes('family')) {
     filters.minBedrooms = 2;
-    classification.preferred.push('Từ 2 phòng ngủ trở lên (phù hợp gia đình)');
+    filters.maxBedrooms = 2;
+    filters.exactBedrooms = 2;
+    classification.preferred.push('2 phòng ngủ (phù hợp gia đình)');
   }
 
-  // 4. Budget Regex (e.g. "tầm 18 củ", "dưới 20 củ", "duoi 20tr", "18m", "15 triệu")
-  const cuMatch = normalized.match(/(tầm|dưới|duoi|dưới\s*tầm)?\s*(\d+)\s*củ/);
-  if (cuMatch) {
-    const num = parseInt(cuMatch[2], 10);
-    filters.maxRentVND = num * 1000000;
-    classification.preferred.push(`Ngân sách tối đa: ~${num} Triệu VNĐ/tháng`);
+  // 4. Budget Range Detection (e.g. "40 80 triệu", "40-80tr", "từ 40 đến 80 triệu", "40 đến 80 tr", "tầm 18 củ", "dưới 20 củ")
+  const priceRangeMatch = raw.match(
+    /(?:từ|tu|khoảng|khoang|tầm|tam)?\s*(\d+(?:[.,]\d+)?)\s*(?:tr|triệu|trieu|củ|cu|m)?\s*(?:đến|den|tới|toi|to|-|\s+)\s*(\d+(?:[.,]\d+)?)\s*(?:tr|triệu|trieu|củ|cu|m\b)/i
+  );
+
+  if (priceRangeMatch) {
+    const n1 = parseFloat(priceRangeMatch[1].replace(',', '.'));
+    const n2 = parseFloat(priceRangeMatch[2].replace(',', '.'));
+    if (!isNaN(n1) && !isNaN(n2) && n1 > 0 && n2 > 0 && n1 <= 500 && n2 <= 500) {
+      const minVal = Math.min(n1, n2);
+      const maxVal = Math.max(n1, n2);
+      filters.minRentVND = Math.round(minVal * 1000000);
+      filters.maxRentVND = Math.round(maxVal * 1000000);
+      classification.preferred.push(`Ngân sách: Từ ${minVal} đến ${maxVal} Triệu VNĐ/tháng`);
+    }
+  } else {
+    // Single upper budget
+    const singleMaxMatch = raw.match(/(?:dưới|duoi|tầm|tam|khoảng|khoang|tối\s*đa|toi\s*da|<=|≤|<)\s*(\d+(?:[.,]\d+)?)\s*(?:tr|triệu|trieu|củ|cu|m\b)/i)
+      || normalized.match(/(\d+)\s*củ/);
+    // Single lower budget
+    const singleMinMatch = raw.match(/(?:trên|tren|từ|tu|tối\s*thiểu|toi\s*thieu|>=|≥|>)\s*(\d+(?:[.,]\d+)?)\s*(?:tr|triệu|trieu|củ|cu|m\b)/i);
+
+    if (singleMinMatch) {
+      const minNum = parseFloat(singleMinMatch[1].replace(',', '.'));
+      if (minNum > 0 && minNum <= 500) {
+        filters.minRentVND = Math.round(minNum * 1000000);
+        classification.preferred.push(`Ngân sách tối thiểu: Từ ${minNum} Triệu VNĐ/tháng`);
+      }
+    }
+    if (singleMaxMatch) {
+      const maxNum = parseFloat(singleMaxMatch[1].replace(',', '.'));
+      if (maxNum > 0 && maxNum <= 500) {
+        filters.maxRentVND = Math.round(maxNum * 1000000);
+        classification.preferred.push(`Ngân sách tối đa: ~${maxNum} Triệu VNĐ/tháng`);
+      }
+    }
   }
 
   // 5. Car Parking ("oto", "đỗ xe ô tô", "de oto", "car")
@@ -233,11 +277,22 @@ export function parseNaturalLanguageQuery(queryText: string): AIParsedQuery {
     classification.required.push('Có thang máy di chuyển');
   }
 
-  // 7. Floor Height Preference ("tầng cao", "không tầng thấp", "đừng tầng thấp quá")
-  if (normalized.includes('tầng cao') || normalized.includes('không tầng thấp') || normalized.includes('đừng tầng thấp')) {
-    filters.minFloor = 5;
-    classification.preferred.push('Tầng cao thoáng mát (Tầng 5 trở lên)');
-    classification.avoid.push('Tránh tầng thấp sát mặt đất');
+  // 7. Floor Height Preference ("tầng cao", "thoáng mát", "thông thoáng", "không tầng thấp")
+  if (
+    raw.includes('tầng cao') || 
+    raw.includes('tang cao') || 
+    raw.includes('thoáng mát') || 
+    raw.includes('thoang mat') || 
+    raw.includes('thông thoáng') || 
+    raw.includes('thong thoang') || 
+    raw.includes('view thoáng') || 
+    raw.includes('view thoang') ||
+    normalized.includes('không tầng thấp') || 
+    normalized.includes('đừng tầng thấp')
+  ) {
+    filters.minFloor = 8;
+    classification.preferred.push('Tầng cao thoáng mát (Tầng 8 trở lên)');
+    classification.avoid.push('Tránh tầng thấp dưới tầng 8');
   }
 
   // 8. Flooding & Monsoon Rain ("không ngập", "đừng ngập", "mưa")
@@ -307,10 +362,16 @@ export function calculateMatchScore(unit: ApartmentUnit, filters: ConsumerFilter
     matchReasons.push(`Nằm ngay khu vực ${unit.district}`);
   }
 
-  if (filters.minBedrooms && unit.bedrooms < filters.minBedrooms) {
+  if (filters.exactBedrooms && unit.bedrooms !== filters.exactBedrooms) {
+    score -= 40;
+  } else if (filters.minBedrooms && unit.bedrooms < filters.minBedrooms) {
     score -= 30;
   } else if (filters.minBedrooms && unit.bedrooms >= filters.minBedrooms) {
     matchReasons.push(`${unit.bedrooms} phòng ngủ đúng nhu cầu`);
+  }
+
+  if (filters.minRentVND && unit.monthlyRentVND < filters.minRentVND) {
+    score -= 35;
   }
 
   if (filters.maxRentVND && unit.monthlyRentVND > filters.maxRentVND) {
@@ -337,6 +398,8 @@ export function calculateMatchScore(unit: ApartmentUnit, filters: ConsumerFilter
 
   if (filters.minFloor && unit.floor >= filters.minFloor) {
     matchReasons.push(`Tầng ${unit.floor} cao ráo, thoáng mát`);
+  } else if (filters.minFloor && unit.floor < filters.minFloor) {
+    score -= 30;
   }
 
   if (filters.floodingRisk === 'Low' && unit.floodingRisk === 'Low') {

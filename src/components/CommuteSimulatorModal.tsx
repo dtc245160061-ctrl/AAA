@@ -8,7 +8,8 @@ import {
   Clock, 
   MapPin, 
   AlertTriangle, 
-  CheckCircle2 
+  CheckCircle2,
+  Coins
 } from 'lucide-react';
 import type { ApartmentUnit } from '../types/apartment';
 import { ApartmentStore } from '../data/apartmentStore';
@@ -172,6 +173,52 @@ export const CommuteSimulatorModal: React.FC<CommuteSimulatorModalProps> = ({
             </p>
           </div>
         </div>
+
+        {/* Monthly Fuel & Financial Living Cost Impact (#14) */}
+        {(() => {
+          const monthlyKm = Math.round(commute.distanceKm * 2 * 22);
+          const monthlyFuelVND = transportMode === 'motorbike'
+            ? Math.round((monthlyKm / 100) * 2.3 * 23800)
+            : transportMode === 'car'
+            ? Math.round((monthlyKm / 100) * 8.5 * 23800)
+            : 220000;
+          const monthlyHoursInTraffic = Math.round(((commute.motorbikePeakMins * 2 * 22) / 60) * 10) / 10;
+          const timeValueVND = Math.round(monthlyHoursInTraffic * (35000000 / 176) * 0.5);
+
+          return (
+            <div className="p-4 rounded-2xl bg-[#F2F5F0] dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 space-y-3 text-xs">
+              <div className="flex items-center justify-between border-b border-slate-200/60 dark:border-slate-700/60 pb-2">
+                <span className="font-bold text-[#163300] dark:text-white flex items-center gap-1.5">
+                  <Coins className="w-4 h-4 text-emerald-600" />
+                  <span>Chi Phí Nhiên Liệu & Thời Gian Di Chuyển Đi Làm / Tháng:</span>
+                </span>
+                <span className="px-2.5 py-0.5 rounded-full bg-[#E8F8EC] text-[#163300] font-black text-[10px]">
+                  22 Ngày Làm Việc
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                  <span className="text-[10px] text-slate-500 font-bold uppercase">Tổng Quãng Đường</span>
+                  <p className="text-base font-black text-[#163300] dark:text-white mt-0.5">{monthlyKm} km/tháng</p>
+                  <span className="text-[10px] text-slate-400">Khứ hồi 2 lượt/ngày</span>
+                </div>
+
+                <div className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                  <span className="text-[10px] text-slate-500 font-bold uppercase">Tiền Xăng / Vé Tháng</span>
+                  <p className="text-base font-black text-emerald-600 mt-0.5">~{(monthlyFuelVND / 1000).toLocaleString()} đ</p>
+                  <span className="text-[10px] text-slate-400">Giá xăng RON 95 ~23.8k/L</span>
+                </div>
+
+                <div className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                  <span className="text-[10px] text-slate-500 font-bold uppercase">Thời Gian Chôn Chân</span>
+                  <p className="text-base font-black text-amber-600 mt-0.5">{monthlyHoursInTraffic} giờ/tháng</p>
+                  <span className="text-[10px] text-slate-400">~{(timeValueVND / 1000).toLocaleString()}đ giá trị thời gian</span>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
 
         {/* Transit Advice Tip */}
         <div className="p-4 rounded-2xl bg-[#E8F8EC] dark:bg-emerald-950/30 border border-[#9FE870]/30 text-xs text-[#163300] dark:text-emerald-300 flex items-start gap-2.5 font-medium leading-relaxed">
