@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BẢNG TEST 25 TÍNH NĂNG AI HAVEN — DÀNH CHO BẠN CÙNG NHÓM (RTX 3060)</title>
+  <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --haven-lime: #9FE870;
+      --haven-forest: #163300;
+      --haven-forest-deep: #0E1B00;
+      --haven-bg: #F2F5F0;
+      --haven-surface: #FFFFFF;
+      --haven-border: rgba(22, 51, 0, 0.12);
+      --haven-text: #163300;
+      --haven-text-subtle: #495E35;
+      --danger: #E11D48;
+      --danger-bg: #FFE4E6;
+      --warning: #D97706;
+      --warning-bg: #FEF3C7;
+      --success: #15803D;
+      --success-bg: #DCFCE7;
+    }
+
+    [data-theme="dark"] {
+      --haven-bg: #0A1202;
+      --haven-surface: #121F08;
+      --haven-border: rgba(159, 232, 112, 0.18);
+      --haven-text: #F1F5F9;
+      --haven-text-subtle: #A3B899;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--haven-bg);
+      color: var(--haven-text);
+      line-height: 1.5;
+      padding: 24px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--haven-surface);
+      border: 1px solid var(--haven-border);
+      border-radius: 28px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      background: var(--haven-lime);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--haven-forest);
+      box-shadow: 0 4px 12px rgba(159, 232, 112, 0.4);
+    }
+
+    .brand-text h1 {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--haven-text);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-text p {
+      font-size: 13px;
+      color: var(--haven-text-subtle);
+      font-weight: 600;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 10px 18px;
+      border-radius: 9999px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-primary {
+      background: var(--haven-lime);
+      color: var(--haven-forest);
+      box-shadow: 0 2px 8px rgba(159, 232, 112, 0.35);
+    }
+
+    .btn-secondary {
+      background: var(--haven-forest);
+      color: #FFFFFF;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--haven-border);
+      color: var(--haven-text);
+    }
+
+    .btn-outline:hover {
+      background: rgba(159, 232, 112, 0.15);
+    }
+
+    .metrics-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      padding-top: 20px;
+      border-top: 1px solid var(--haven-border);
+    }
+
+    .metric-card {
+      background: rgba(159, 232, 112, 0.08);
+      border: 1px solid var(--haven-border);
+      border-radius: 18px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .metric-label {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--haven-text-subtle);
+    }
+
+    .metric-value {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--haven-text);
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .metric-value small {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--haven-text-subtle);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: rgba(0,0,0,0.06);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--haven-lime);
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+
+    .filter-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .tab-btn {
+      padding: 8px 16px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--haven-border);
+      background: var(--haven-surface);
+      color: var(--haven-text-subtle);
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active {
+      background: var(--haven-forest);
+      color: var(--haven-lime);
+      border-color: var(--haven-forest);
+    }
+
+    .test-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .test-card {
+      background: var(--haven-surface);
+      border: 1px solid var(--haven-border);
+      border-radius: 24px;
+      padding: 24px 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+      transition: border-color 0.2s;
+    }
+
+    .test-card:hover {
+      border-color: rgba(159, 232, 112, 0.6);
+    }
+
+    .test-card.status-pass {
+      border-left: 6px solid var(--success);
+    }
+
+    .test-card.status-fail {
+      border-left: 6px solid var(--danger);
+    }
+
+    .test-card.status-pending {
+      border-left: 6px solid var(--warning);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .card-id-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .badge-id {
+      font-family: monospace;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: var(--haven-forest);
+      color: var(--haven-lime);
+    }
+
+    .badge-category {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(159, 232, 112, 0.18);
+      color: var(--haven-forest);
+    }
+
+    [data-theme="dark"] .badge-category {
+      color: var(--haven-lime);
+    }
+
+    .test-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--haven-text);
+      margin-top: 4px;
+    }
+
+    .test-location {
+      font-size: 12px;
+      color: var(--haven-text-subtle);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .status-selector {
+      display: inline-flex;
+      background: rgba(0,0,0,0.04);
+      padding: 4px;
+      border-radius: 999px;
+      gap: 4px;
+    }
+
+    .status-btn {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 800;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--haven-text-subtle);
+      transition: all 0.15s ease;
+    }
+
+    .status-btn.active.pass {
+      background: var(--success);
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(21, 128, 61, 0.35);
+    }
+
+    .status-btn.active.fail {
+      background: var(--danger);
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(225, 29, 72, 0.35);
+    }
+
+    .status-btn.active.pending {
+      background: var(--warning);
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(217, 119, 6, 0.35);
+    }
+
+    .prompt-box {
+      background: rgba(159, 232, 112, 0.1);
+      border: 1px dashed rgba(159, 232, 112, 0.5);
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin: 12px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .prompt-text {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--haven-text);
+      word-break: break-word;
+    }
+
+    .copy-btn {
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: var(--haven-forest);
+      color: var(--haven-lime);
+      border: none;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .copy-btn:hover {
+      opacity: 0.9;
+    }
+
+    .criteria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+      margin: 12px 0;
+    }
+
+    .criteria-box {
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .criteria-pass {
+      background: var(--success-bg);
+      border: 1px solid rgba(21, 128, 61, 0.2);
+      color: var(--success);
+    }
+
+    .criteria-fail {
+      background: var(--danger-bg);
+      border: 1px solid rgba(225, 29, 72, 0.2);
+      color: var(--danger);
+    }
+
+    .criteria-label {
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .notes-input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--haven-border);
+      background: var(--haven-bg);
+      color: var(--haven-text);
+      font-size: 12px;
+      font-family: inherit;
+      outline: none;
+      margin-top: 8px;
+      transition: border-color 0.2s;
+    }
+
+    .notes-input:focus {
+      border-color: var(--haven-lime);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--haven-forest);
+      color: var(--haven-lime);
+      padding: 12px 20px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 100;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Top Header Banner -->
+  <header>
+    <div class="header-top">
+      <div class="brand-title">
+        <div class="brand-logo">🌿</div>
+        <div class="brand-text">
+          <h1>HAVEN AI — BẢNG TEST 25 TÍNH NĂNG TOÀN DIỆN</h1>
+          <p>Dành riêng cho bạn cùng nhóm chạy trên máy tính Windows (RTX 3060 6GB VRAM)</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="themeToggle" class="btn btn-outline" title="Chuyển chế độ sáng/tối">🌓 Giao Diện</button>
+        <button id="exportCsvBtn" class="btn btn-primary" title="Tải xuống tệp Excel CSV mới nhất">📥 Xuất File Excel (.CSV)</button>
+        <button id="copyBugReportBtn" class="btn btn-secondary" title="Sao chép báo cáo lỗi dạng văn bản gửi cho Sơn">📋 Copy Báo Cáo Lỗi</button>
+        <button id="resetProgressBtn" class="btn btn-outline" style="color: var(--danger);" title="Đặt lại trạng thái test">↺ Reset Tiến Độ</button>
+      </div>
+    </div>
+
+    <!-- Live Counters & Progress Bar -->
+    <div class="metrics-bar">
+      <div class="metric-card">
+        <span class="metric-label">Tổng Số Ca Kiểm Thử</span>
+        <div class="metric-value">25 <small>Test Cases</small></div>
+      </div>
+
+      <div class="metric-card" style="background: rgba(21, 128, 61, 0.08);">
+        <span class="metric-label" style="color: var(--success);">Số Ca Đạt (Pass)</span>
+        <div class="metric-value" style="color: var(--success);" id="countPass">0 <small>/ 25</small></div>
+      </div>
+
+      <div class="metric-card" style="background: rgba(225, 29, 72, 0.08);">
+        <span class="metric-label" style="color: var(--danger);">Số Ca Bị Lỗi (Fail)</span>
+        <div class="metric-value" style="color: var(--danger);" id="countFail">0 <small>/ 25</small></div>
+      </div>
+
+      <div class="metric-card" style="background: rgba(217, 119, 6, 0.08);">
+        <span class="metric-label" style="color: var(--warning);">Tiến Độ Hoàn Thành</span>
+        <div class="metric-value" style="color: var(--warning);" id="progressPercent">0%</div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressBar" style="width: 0%;"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Filter & Navigation Tabs -->
+  <div class="filter-bar">
+    <div class="tabs" id="filterTabs">
+      <button class="tab-btn active" data-filter="all">Tất Cả (25)</button>
+      <button class="tab-btn" data-filter="pass">Đạt ✅</button>
+      <button class="tab-btn" data-filter="fail">Lỗi ❌</button>
+      <button class="tab-btn" data-filter="pending">Chưa Test ⏳</button>
+      <button class="tab-btn" data-filter="Phase 1">Phase 1 (Search & Actions)</button>
+      <button class="tab-btn" data-filter="Phase 2">Phase 2 (OCR & Forms)</button>
+      <button class="tab-btn" data-filter="Phase 3">Phase 3 (Admin Ops)</button>
+      <button class="tab-btn" data-filter="Phase 4">Phase 4 (Signature AI)</button>
+    </div>
+  </div>
+
+  <!-- Test Cases Interactive Cards List -->
+  <div class="test-list" id="testCaseList">
+    <!-- Rendered dynamically via JavaScript from testCasesData -->
+  </div>
+</div>
+
+<div class="toast" id="toast">Đã sao chép prompt vào bộ nhớ tạm!</div>
+
+<script>
+// Master 25 Test Cases Dataset
+const testCasesData = [
+  {
+    id: "TC-01",
+    phase: "Phase 1",
+    category: "Phase 1: NLP Search & Filtering",
+    title: "NLP Search — Số phòng bằng chữ & Khoảng giá & Tầng cao",
+    location: "Trang Tìm Kiếm (http://localhost:5173/#/user_search) hoặc Thanh Search Topbar",
+    prompt: "hello cho tìm căn hộ 40 80 triệu hai phòng ngủ hồ chí minh thông thoáng tầng cao",
+    passCriteria: "1. Nhận diện 'hai phòng ngủ' thành 2PN (loại bỏ toàn bộ căn 1PN và 4PN, không hỏi lại). 2. Nhận diện khoảng giá 40 - 80 triệu (loại bỏ căn < 40 triệu). 3. Áp dụng tầng cao >= 8.",
+    failCriteria: "Xuất hiện căn 1PN hoặc 4PN; hiển thị căn giá rẻ < 40 triệu (vd căn 16.5 Tr); hoặc hiện câu hỏi 'Bạn đang cần tìm căn hộ có mấy phòng ngủ?'"
+  },
+  {
+    id: "TC-02",
+    phase: "Phase 1",
+    category: "Phase 1: NLP Search & Filtering",
+    title: "NLP Search — Ngân sách sinh viên Thái Nguyên / Hà Nội",
+    location: "Trang Tìm Kiếm (#/user_search) hoặc AI Advisor Drawer",
+    prompt: "tìm phòng thái nguyên dưới 5 triệu gần trường có chỗ để xe",
+    passCriteria: "1. Lọc đúng thành phố Thái Nguyên. 2. Giá thuê <= 5,000,000 VNĐ. 3. Bật điều kiện có chỗ để xe. Kết quả chỉ hiển thị các căn đáp ứng đồng thời 3 tiêu chí.",
+    failCriteria: "Ra căn hộ ở Hà Nội hoặc căn trên 5 triệu hoặc căn không có chỗ để xe."
+  },
+  {
+    id: "TC-03",
+    phase: "Phase 1",
+    category: "Phase 1: NLP Search & Filtering",
+    title: "Real-Time Token Streaming Qwen 2.5:7b (<0.4s)",
+    location: "Bong bóng chat AI Advisor (UserAiAdvisorDrawer) - Nút FAB góc phải",
+    prompt: "Tư vấn cho tôi kinh nghiệm thuê căn hộ chung cư lần đầu",
+    passCriteria: "Chữ phản hồi của AI hiện ra từng từ liên tục (streaming) với độ trễ từ đầu tiên < 0.4s trên RTX 3060, giao diện mượt không giật lag.",
+    failCriteria: "Chờ lâu > 3 giây mới hiện nguyên cụm text hoặc UI bị đơ cứng (freeze)."
+  },
+  {
+    id: "TC-04",
+    phase: "Phase 1",
+    category: "Phase 1: Autonomous UI Actions",
+    title: "Autonomous UI Auto-Filter Turn 1 (Zero-Click Navigation)",
+    location: "Bong bóng chat AI Advisor (UserAiAdvisorDrawer)",
+    prompt: "Tìm căn hộ ở Hà Nội dưới 15 triệu",
+    passCriteria: "AI tự động phát lệnh qua aiCommandBus, tự động đóng drawer hoặc chuyển màn hình sang user_search, thiết lập City = Hà Nội và Giá tối đa = 15 triệu mà không cần người dùng click tay.",
+    failCriteria: "Không tự chuyển trang hoặc không áp dụng bộ lọc 15 triệu."
+  },
+  {
+    id: "TC-05",
+    phase: "Phase 1",
+    category: "Phase 1: Autonomous UI Actions",
+    title: "Multi-Turn Filter Memory Accumulation Turn 2",
+    location: "Bong bóng chat AI Advisor (UserAiAdvisorDrawer)",
+    prompt: "Thêm điều kiện có chỗ để ô tô và nuôi thú cưng",
+    passCriteria: "Bộ nhớ AI ghi nhớ ngữ cảnh Turn 1 (Hà Nội, <15 Tr) và cộng dồn thêm 2 cờ: Có chỗ để ô tô = Bật, Thú cưng = Bật.",
+    failCriteria: "Mất điều kiện Hà Nội hoặc mất mức giá 15 triệu của lượt trước."
+  },
+  {
+    id: "TC-06",
+    phase: "Phase 1",
+    category: "Phase 1: Autonomous UI Actions",
+    title: "Multi-Turn Filter Memory Budget Update Turn 3",
+    location: "Bong bóng chat AI Advisor (UserAiAdvisorDrawer)",
+    prompt: "Tăng ngân sách lên 22 triệu ở Tây Hồ",
+    passCriteria: "AI cập nhật quận Tây Hồ và trần giá 22 triệu, đồng thời giữ nguyên cờ ô tô và thú cưng đã chọn ở lượt trước.",
+    failCriteria: "Bộ lọc bị reset về mặc định hoặc không nhận diện được quận Tây Hồ."
+  },
+  {
+    id: "TC-07",
+    phase: "Phase 1",
+    category: "Phase 1: Autonomous UI Actions",
+    title: "Conversational Memory Reset",
+    location: "Bong bóng chat AI Advisor (UserAiAdvisorDrawer)",
+    prompt: "Xóa bộ lọc tìm lại từ đầu",
+    passCriteria: "Toàn bộ cờ bộ lọc và bộ nhớ ngữ cảnh quay về trạng thái mặc định, danh sách căn hộ hiển thị đầy đủ ban đầu.",
+    failCriteria: "Vẫn còn sót điều kiện lọc cũ trong memory."
+  },
+  {
+    id: "TC-08",
+    phase: "Phase 1",
+    category: "Phase 1: Autonomous UI Actions",
+    title: "Autonomous 3-Unit Radar Comparison",
+    location: "Bong bóng chat AI Advisor (UserAiAdvisorDrawer)",
+    prompt: "So sánh 3 căn tốt nhất giúp tôi",
+    passCriteria: "AI tự động tìm 3 căn điểm cao nhất, kích hoạt lệnh compare_units, tự điều hướng sang màn hình So Sánh (#/user_compare) và vẽ biểu đồ Radar 6 trục.",
+    failCriteria: "Không tự chuyển sang màn hình compare hoặc biểu đồ Radar trống."
+  },
+  {
+    id: "TC-09",
+    phase: "Phase 1",
+    category: "Phase 1: Statistical Grounding",
+    title: "1,700-Unit Statistical Grounding Query",
+    location: "Bong bóng chat AI Advisor (UserAiAdvisorDrawer)",
+    prompt: "Thống kê giá thuê trung bình, thấp nhất và cao nhất của các căn 2 phòng ngủ ở Cầu Giấy",
+    passCriteria: "AI trích xuất chính xác số lượng căn, giá min, giá max, giá trung bình từ kho dữ liệu 1,700 căn và trích dẫn cụ thể.",
+    failCriteria: "AI trả lời chung chung hoặc bịa đặt con số không có căn cứ từ dataset."
+  },
+  {
+    id: "TC-10",
+    phase: "Phase 1",
+    category: "Phase 1: Voice Recognition",
+    title: "Voice Recognition Hands-Free Command",
+    location: "Thanh Search Topbar hoặc AI Advisor Drawer",
+    prompt: "Bấm vào icon Micro trên Topbar và nói: 'Tìm căn hộ hai phòng ngủ tại Cầu Giấy'",
+    passCriteria: "Giọng nói được chuyển thành chữ tiếng Việt chính xác và tự động trigger tìm kiếm căn hộ 2PN tại Cầu Giấy.",
+    failCriteria: "Trình duyệt báo lỗi không nhận diện được hoặc chuyển sai thành tiếng Anh."
+  },
+  {
+    id: "TC-11",
+    phase: "Phase 1",
+    category: "Phase 1: Visual Vibe Search",
+    title: "Visual Vibe & CLIP Vector Search",
+    location: "Trang Tìm Kiếm (#/user_search) -> Nút 'Visual Vibe Search'",
+    prompt: "Bấm 'Visual Vibe Search', chọn ảnh phong cách 'Wabi-Sabi Tối Giản' hoặc 'Indochine Đông Dương'",
+    passCriteria: "Hệ thống tính Cosine Similarity trên vector đặc trưng và trả về các căn hộ có phong cách kiến trúc tương đồng > 80%.",
+    failCriteria: "Không ra kết quả hoặc báo lỗi vector không tồn tại."
+  },
+  {
+    id: "TC-12",
+    phase: "Phase 2",
+    category: "Phase 2: OCR Vision & Forms",
+    title: "Laser OCR Utility Meter Scanner & EVN Breakdown",
+    location: "Bàn Giao Căn Hộ (#/user_checklist) -> Quét Công Tơ",
+    prompt: "Bấm nút 'AI Quét Công Tơ Điện Nước', nạp ảnh công tơ điện hoặc bấm 'Nạp Ảnh Mẫu'",
+    passCriteria: "AI OCR đọc chính xác chỉ số kWh và m3, tự động điền vào form và hiển thị bảng tính tiền điện bậc thang 6 bậc EVN minh bạch.",
+    failCriteria: "Chỉ số đọc sai hoàn toàn hoặc không hiển thị bảng bóc tách EVN."
+  },
+  {
+    id: "TC-13",
+    phase: "Phase 2",
+    category: "Phase 2: OCR Vision & Forms",
+    title: "Natural Language 15-Item Auto-Evaluator",
+    location: "Bàn Giao Căn Hộ (#/user_checklist) -> Voice / Text Đánh Giá",
+    prompt: "Tất cả đều tốt trừ điều hòa phòng ngủ cần vệ sinh và tường bếp hơi xước nhẹ",
+    passCriteria: "Hệ thống tự động bật 'Đạt' cho các mục khác, riêng Điều hòa bật 'Cần bảo trì' và Tường bật 'Hơi xước' kèm ghi chú tương ứng.",
+    failCriteria: "Các hạng mục không đổi trạng thái hoặc nhận diện nhầm lẫn."
+  },
+  {
+    id: "TC-14",
+    phase: "Phase 4",
+    category: "Phase 4: Signature PropTech AI",
+    title: "AI Contract Red-Flag & Legal Shield Scanner",
+    location: "Tài Liệu / Pháp Lý (#/user_documents)",
+    prompt: "Bấm 'Nạp Hợp Đồng Mẫu Có Cài Bẫy (Demo)' rồi bấm 'AI Quét Bẫy & Bắt Lỗi Hợp Đồng'",
+    passCriteria: "AI phát hiện đủ 5 bẫy (điện 4.500đ/kWh vi phạm NĐ 134, tịch thu 100% cọc vi phạm Luật Nhà ở 2023, tự ý vào phòng, đẩy sửa chữa âm tường), chấm điểm an toàn pháp lý <50/100 và hiển thị cột 'AI Viết Lại Bảo Vệ Người Thuê'.",
+    failCriteria: "Không phát hiện ra bẫy giá điện 4.500đ hoặc không trích dẫn được Luật Nhà ở 2023."
+  },
+  {
+    id: "TC-15",
+    phase: "Phase 4",
+    category: "Phase 4: Signature PropTech AI",
+    title: "PCCC QCVN 06:2022 Fire Survival Auditor",
+    location: "Chi Tiết Căn Hộ (#/user_detail) -> Cuộn xuống mục PCCC",
+    prompt: "Bấm vào bất kỳ căn hộ nào (ví dụ căn tầng 24), xem mục 'AI Kiểm Định Sinh Tồn Cháy Nổ & Thoát Hiểm QCVN 06:2022'",
+    passCriteria: "Hiển thị Điểm Sinh Tồn (0-100), thời gian thoát nạn ước tính theo tầng (ví dụ Tầng 24 ~5.9 phút), số lối thang bộ điều áp độc lập, kiểm định đầu phun Sprinkler tự động và khuyến nghị mặt nạ chống ngạt.",
+    failCriteria: "Không hiển thị thẻ PCCC hoặc thời gian thoát hiểm không tính theo tầng của căn hộ."
+  },
+  {
+    id: "TC-16",
+    phase: "Phase 4",
+    category: "Phase 4: Signature PropTech AI",
+    title: "AI Dynamic Negotiation War-Room & Auto-Bargaining",
+    location: "Chi Tiết Căn Hộ (#/user_detail) -> Mục War-Room",
+    prompt: "Tại 'Phòng Đấu Trí Đàm Phán Giá AI', chọn Gói 1 và bấm 'AI Tự Động Đàm Phán & Chốt Giá Với Chủ Nhà'",
+    passCriteria: "AI đối chiếu giá căn hộ với trung vị quận, tạo 3 phương án counter-offer. Bấm nút tự gửi tin nhắn vào hộp chat với chủ nhà và nhận phản hồi đồng ý sau 1.2s.",
+    failCriteria: "Không hiển thị 3 gói đàm phán hoặc bấm nút không gửi tin nhắn vào chat."
+  },
+  {
+    id: "TC-17",
+    phase: "Phase 4",
+    category: "Phase 4: Signature PropTech AI",
+    title: "Hyper-Realistic Living Cost & Commute Fuel",
+    location: "Chi Tiết Căn Hộ (#/user_detail) -> Bảng True Living Cost",
+    prompt: "Đổi nơi làm việc sang 'Keangnam Landmark 72' hoặc 'ICTU Thái Nguyên', chọn 'Ô tô xăng' và nhập thu nhập 35 triệu",
+    passCriteria: "Tính chuẩn xác khoảng cách GPS km, tiền xăng đi làm 22 ngày/tháng, số giờ kẹt xe, trù bị rủi ro ngập nước và tính tỷ lệ % chi phí trên thu nhập (Verdit: Khỏe mạnh/Cân bằng/Gánh nặng).",
+    failCriteria: "Tiền xăng không đổi khi đổi phương tiện hoặc khoảng cách km = 0."
+  },
+  {
+    id: "TC-18",
+    phase: "Phase 3",
+    category: "Phase 3: Landlord Operations",
+    title: "IoT Utility Leak & Battery Anomaly Detector",
+    location: "Bảng Điều Khiển Admin (#/dashboard)",
+    prompt: "Tại card 'Radar Phát Hiện Rò Rỉ IoT', bấm 'Nạp Dữ Liệu IoT Bất Thường' rồi bấm 'Tự Động Tạo Phiếu Sửa Chữa Khẩn Cấp'",
+    passCriteria: "AI phát hiện rò rỉ nước 2.8x (Căn HN-TH-2401), điện đột biến 2.4x và pin khóa <15%. Bấm nút tự động tạo phiếu sửa chữa khẩn cấp vào hệ thống Maintenance.",
+    failCriteria: "Không hiển thị cảnh báo rò rỉ hoặc không tạo được phiếu bảo trì."
+  },
+  {
+    id: "TC-19",
+    phase: "Phase 2",
+    category: "Phase 2: OCR Vision & Forms",
+    title: "Zalo Message NER Auto-Filler for Contracts",
+    location: "Hợp Đồng Admin (#/contracts) -> Nút 'Tạo Hợp Đồng Bằng AI'",
+    prompt: "Bấm 'Nạp Tin Nhắn Zalo Mẫu' rồi bấm 'AI Điền Biểu Mẫu Tự Động'",
+    passCriteria: "AI bóc tách chính xác: Họ tên, Số điện thoại, CCCD 12 số, Mã căn hộ, Tiền thuê, Tiền cọc, Ngày bắt đầu và tự điền 100% vào form hợp đồng.",
+    failCriteria: "Bỏ sót CCCD 12 số hoặc nhận diện sai tiền thuê nhà."
+  },
+  {
+    id: "TC-20",
+    phase: "Phase 2",
+    category: "Phase 2: OCR Vision & Forms",
+    title: "Citizen ID (CCCD) Photo OCR Scanner",
+    location: "Hợp Đồng Admin (#/contracts) -> Form Tạo Hợp Đồng",
+    prompt: "Bấm 'Quét Ảnh CCCD Bằng AI', nạp ảnh thẻ căn cước mẫu",
+    passCriteria: "AI quét và nhận diện đúng số CCCD 12 chữ số, họ tên có dấu tiếng Việt, tự động điền vào trường Bên Thuê.",
+    failCriteria: "Đọc thiếu số CCCD hoặc bị lỗi font tiếng Việt."
+  },
+  {
+    id: "TC-21",
+    phase: "Phase 2",
+    category: "Phase 2: OCR Vision & Forms",
+    title: "1-Sentence Raw Description Auto-Filler",
+    location: "Kho Căn Hộ (#/units) -> Nút 'Đăng Tin Mới Bằng AI'",
+    prompt: "Cho thuê căn 2 ngủ 75m2 ở Cầu Giấy 16 triệu đầy đủ nội thất có chỗ để ô tô cho nuôi mèo",
+    passCriteria: "AI điền tự động: Thành phố Hà Nội, Quận Cầu Giấy, 2PN, 75m2, 16 triệu, bật cờ Có Chỗ Ô Tô, Bật cờ Cho Thú Cưng và viết sẵn đoạn văn mô tả SEO chuyên nghiệp.",
+    failCriteria: "Không tự bật các switch toggle ô tô / thú cưng hoặc điền sai quận."
+  },
+  {
+    id: "TC-22",
+    phase: "Phase 3",
+    category: "Phase 3: Landlord Operations",
+    title: "Bank Transfer SMS Batch Auto-Reconciliation",
+    location: "Thu Tiền Admin (#/billing)",
+    prompt: "Bấm 'Nạp 3 Tin Nhắn SMS Ngân Hàng (VCB, TCB, MB)', sau đó bấm 'AI Tự Động Đối Soát & Gạch Nợ'",
+    passCriteria: "AI đối chiếu nội dung chuyển khoản với danh sách hóa đơn, tự động chuyển trạng thái hóa đơn sang 'Đã thanh toán', tính phí nền tảng 5% và gửi biên lai vào chat.",
+    failCriteria: "Hóa đơn không được gạch nợ thành 'paid' hoặc không tính được phí sàn."
+  },
+  {
+    id: "TC-23",
+    phase: "Phase 3",
+    category: "Phase 3: Landlord Operations",
+    title: "3-Stage Debt Collector & EVN Bill Shock Explainer",
+    location: "Thu Tiền Admin (#/billing) -> Tab 'Chiến Dịch Nhắc Nợ AI'",
+    prompt: "Chọn 'Chiến dịch thu hồi công nợ Đa Tầng', bấm 'Khởi Chạy Nhắc Nợ Toàn Diện'",
+    passCriteria: "AI phân loại khách nợ thành 3 cấp độ (Level 1: Nhẹ nhàng; Level 2: Cảnh báo phí phạt; Level 3: Tạm dừng dịch vụ) và tự gửi tin nhắn nhắc nợ tương ứng vào hộp thư AdminInboxView.",
+    failCriteria: "Không phân loại được cấp độ nợ hoặc không gửi tin vào inbox."
+  },
+  {
+    id: "TC-24",
+    phase: "Phase 3",
+    category: "Phase 3: Landlord Operations",
+    title: "Marketplace Scam & Duplicate Auto-Moderator",
+    location: "Sức Khỏe Sàn Admin (#/admin_health)",
+    prompt: "Cuộn xuống 'Bộ Lọc Kiểm Duyệt AI', bấm 'Khởi Chạy Quét Tự Động (Auto-Sweep)'",
+    passCriteria: "AI tự động duyệt các tin có độ tin cậy > 90%, đồng thời gắn cờ 'LỪA ĐẢO CỌC' cho tin đăng giá rẻ bất thường (>25% dưới giá thị trường) và chặn hiển thị.",
+    failCriteria: "Tin lừa đảo cọc giá 3.5 triệu không bị phát hiện hoặc bị duyệt nhầm."
+  },
+  {
+    id: "TC-25",
+    phase: "Phase 4",
+    category: "Phase 4: Signature PropTech AI",
+    title: "Dynamic Pricing & Landlord CapEx Yield ROI Optimizer",
+    location: "Kho Căn Hộ (#/units) -> Nút 'AI Tối Ưu Yield ROI (Demo)'",
+    prompt: "Bấm nút 'AI Tối Ưu Yield ROI (Demo)' trên thanh công cụ hoặc trên bất kỳ thẻ căn hộ nào",
+    passCriteria: "Hiển thị modal phân tích 3 mức giá (Cho thuê nhanh 3 ngày, Giá tối ưu lợi suất năm, Giá VIP) kèm 4 đề xuất nâng cấp vi mô (khóa vân tay, lưới an toàn thú cưng, bộ lưu điện, bàn WFH) tính sẵn tháng hoàn vốn. Bấm 'Áp Dụng Giá Tối Ưu' sẽ cập nhật ngay giá trong kho.",
+    failCriteria: "Không mở được modal tối ưu hoặc bấm áp dụng giá không thay đổi giá căn hộ trong danh sách."
+  }
+];
+
+// State persistence via localStorage
+const STORAGE_KEY = 'haven_qa_suite_v2';
+let testState = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+
+// Initialize state if empty
+testCasesData.forEach(tc => {
+  if (!testState[tc.id]) {
+    testState[tc.id] = {
+      status: 'pending', // 'pass' | 'fail' | 'pending'
+      notes: ''
+    };
+  }
+});
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(testState));
+  updateMetrics();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+function copyToClipboard(text, successMsg = 'Đã sao chép prompt vào bộ nhớ tạm!') {
+  navigator.clipboard.writeText(text).then(() => {
+    showToast(successMsg);
+  });
+}
+
+function updateMetrics() {
+  let pass = 0;
+  let fail = 0;
+  let pending = 0;
+
+  testCasesData.forEach(tc => {
+    const s = testState[tc.id]?.status || 'pending';
+    if (s === 'pass') pass++;
+    else if (s === 'fail') fail++;
+    else pending++;
+  });
+
+  document.getElementById('countPass').innerHTML = `${pass} <small>/ 25</small>`;
+  document.getElementById('countFail').innerHTML = `${fail} <small>/ 25</small>`;
+  
+  const pct = Math.round(((pass + fail) / 25) * 100);
+  document.getElementById('progressPercent').textContent = `${pct}%`;
+  document.getElementById('progressBar').style.width = `${pct}%`;
+}
+
+let activeFilter = 'all';
+
+function renderCards() {
+  const container = document.getElementById('testCaseList');
+  container.innerHTML = '';
+
+  const filtered = testCasesData.filter(tc => {
+    const state = testState[tc.id] || { status: 'pending' };
+    if (activeFilter === 'all') return true;
+    if (activeFilter === 'pass') return state.status === 'pass';
+    if (activeFilter === 'fail') return state.status === 'fail';
+    if (activeFilter === 'pending') return state.status === 'pending';
+    if (activeFilter.startsWith('Phase')) return tc.phase === activeFilter;
+    return true;
+  });
+
+  if (filtered.length === 0) {
+    container.innerHTML = `<div style="text-align: center; padding: 48px; color: var(--haven-text-subtle); font-weight: 700;">Không có ca test nào trong bộ lọc này!</div>`;
+    return;
+  }
+
+  filtered.forEach(tc => {
+    const state = testState[tc.id] || { status: 'pending', notes: '' };
+    const card = document.createElement('div');
+    card.className = `test-card status-${state.status}`;
+    card.id = `card-${tc.id}`;
+
+    card.innerHTML = `
+      <div class="card-header">
+        <div>
+          <div class="card-id-group">
+            <span class="badge-id">${tc.id}</span>
+            <span class="badge-category">${tc.category}</span>
+          </div>
+          <h2 class="test-title">${tc.title}</h2>
+          <div class="test-location">📍 <strong>Vị trí:</strong> ${tc.location}</div>
+        </div>
+
+        <div class="status-selector">
+          <button class="status-btn pass ${state.status === 'pass' ? 'active pass' : ''}" onclick="setStatus('${tc.id}', 'pass')">ĐẠT ✅</button>
+          <button class="status-btn fail ${state.status === 'fail' ? 'active fail' : ''}" onclick="setStatus('${tc.id}', 'fail')">LỖI ❌</button>
+          <button class="status-btn pending ${state.status === 'pending' ? 'active pending' : ''}" onclick="setStatus('${tc.id}', 'pending')">CHƯA TEST ⏳</button>
+        </div>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt-text"><strong>Thao Tác / Câu Prompt Cần Nhập:</strong> "${tc.prompt}"</div>
+        <button class="copy-btn" onclick="copyToClipboard('${tc.prompt.replace(/'/g, "\\'")}', 'Đã copy câu prompt!')">📋 Sao Chép Prompt</button>
+      </div>
+
+      <div class="criteria-grid">
+        <div class="criteria-box criteria-pass">
+          <span class="criteria-label">✅ ĐIỀU KIỆN ĐẠT (PASS CRITERIA)</span>
+          ${tc.passCriteria}
+        </div>
+        <div class="criteria-box criteria-fail">
+          <span class="criteria-label">❌ ĐIỀU KIỆN KHÔNG ĐẠT (FAIL CRITERIA)</span>
+          ${tc.failCriteria}
+        </div>
+      </div>
+
+      <div>
+        <input 
+          type="text" 
+          class="notes-input" 
+          placeholder="Nhập ghi chú lỗi hoặc quan sát thực tế tại đây (tự động lưu)..." 
+          value="${state.notes ? state.notes.replace(/"/g, '&quot;') : ''}"
+          oninput="updateNotes('${tc.id}', this.value)"
+        />
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+window.setStatus = function(id, status) {
+  if (!testState[id]) testState[id] = { status: 'pending', notes: '' };
+  testState[id].status = status;
+  saveState();
+  renderCards();
+};
+
+window.updateNotes = function(id, val) {
+  if (!testState[id]) testState[id] = { status: 'pending', notes: '' };
+  testState[id].notes = val;
+  saveState();
+};
+
+// Filter tabs
+document.getElementById('filterTabs').addEventListener('click', (e) => {
+  if (e.target.classList.contains('tab-btn')) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    activeFilter = e.target.getAttribute('data-filter');
+    renderCards();
+  }
+});
+
+// Theme toggle
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('haven_qa_theme', next);
+});
+
+// Load saved theme
+if (localStorage.getItem('haven_qa_theme') === 'dark') {
+  document.documentElement.setAttribute('data-theme', 'dark');
+}
+
+// Reset Progress
+document.getElementById('resetProgressBtn').addEventListener('click', () => {
+  if (confirm('Bạn có chắc muốn đặt lại toàn bộ trạng thái 25 ca test về "CHƯA TEST"?')) {
+    testCasesData.forEach(tc => {
+      testState[tc.id] = { status: 'pending', notes: '' };
+    });
+    saveState();
+    renderCards();
+    showToast('Đã đặt lại tiến độ về mặc định!');
+  }
+});
+
+// Copy Bug Report
+document.getElementById('copyBugReportBtn').addEventListener('click', () => {
+  let report = `# BÁO CÁO KIỂM THỬ HAVEN AI (RTX 3060)\n`;
+  report += `Thời gian xuất: ${new Date().toLocaleString('vi-VN')}\n\n`;
+
+  let passCount = 0, failCount = 0, pendingCount = 0;
+  let failedCases = [];
+
+  testCasesData.forEach(tc => {
+    const s = testState[tc.id] || { status: 'pending', notes: '' };
+    if (s.status === 'pass') passCount++;
+    else if (s.status === 'fail') {
+      failCount++;
+      failedCases.push({ ...tc, notes: s.notes });
+    } else pendingCount++;
+  });
+
+  report += `## TỔNG QUAN KẾT QUẢ:\n- Tổng số: 25\n- Đạt ✅: ${passCount}\n- Lỗi ❌: ${failCount}\n- Chưa test ⏳: ${pendingCount}\n\n`;
+
+  if (failedCases.length > 0) {
+    report += `## CHI TIẾT CÁC CA BỊ LỖI (${failedCases.length} CA):\n`;
+    failedCases.forEach((fc, i) => {
+      report += `${i + 1}. [${fc.id}] ${fc.title}\n`;
+      report += `   - Vị trí: ${fc.location}\n`;
+      report += `   - Prompt test: "${fc.prompt}"\n`;
+      report += `   - Ghi chú lỗi thực tế: ${fc.notes || 'Chưa ghi chú'}\n\n`;
+    });
+  } else {
+    report += `🎉 KHÔNG CÓ LỖI NÀO! Tất cả các ca đã test đều ĐẠT chuẩn.\n`;
+  }
+
+  copyToClipboard(report, 'Đã sao chép Báo cáo lỗi Markdown! Hãy dán gửi cho Sơn.');
+});
+
+// Export CSV with UTF-8 BOM
+document.getElementById('exportCsvBtn').addEventListener('click', () => {
+  let csvContent = '\uFEFF"Mã Test (ID)","Nhóm Tính Năng","Tên Chức Năng","Màn Hình / Vị Trí Trên App","Thao Tác & Câu Prompt Cần Nhập (Copy-Paste)","Điều Kiện ĐẠT (Pass Criteria)","Điều Kiện KHÔNG ĐẠT (Fail Criteria)","Kết Quả (Đạt / Lỗi)","Ghi Chú Lỗi Chi Tiết"\n';
+
+  testCasesData.forEach(tc => {
+    const s = testState[tc.id] || { status: 'pending', notes: '' };
+    const statusLabel = s.status === 'pass' ? 'Đạt' : s.status === 'fail' ? 'Lỗi' : 'Chưa test';
+    
+    const escapeCsv = (str) => `"${(str || '').replace(/"/g, '""')}"`;
+
+    csvContent += [
+      escapeCsv(tc.id),
+      escapeCsv(tc.category),
+      escapeCsv(tc.title),
+      escapeCsv(tc.location),
+      escapeCsv(tc.prompt),
+      escapeCsv(tc.passCriteria),
+      escapeCsv(tc.failCriteria),
+      escapeCsv(statusLabel),
+      escapeCsv(s.notes)
+    ].join(',') + '\n';
+  });
+
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `BANG_TEST_25_TINH_NANG_AI_HAVEN_${new Date().toISOString().slice(0,10)}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('Đã tải xuống file CSV kết quả!');
+});
+
+// Initial run
+updateMetrics();
+renderCards();
+</script>
+
+</body>
+</html>

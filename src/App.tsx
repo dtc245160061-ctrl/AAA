@@ -190,7 +190,7 @@ export function App() {
       showToast('info', 'AI Governance Sweeper', cmd.payload.summaryBadge || 'Đang mở Trung tâm Kiểm duyệt Sàn & quét chống lừa đảo cọc...');
     } else if (cmd.type === 'scan_contract_traps') {
       setIsAdminView(false);
-      setActiveModule('documents');
+      setActiveModule('user_documents');
       showToast('info', 'AI Legal Shield Scanner', cmd.payload.summaryBadge || 'Đang mở Kho Pháp Lý & Quét bẫy hợp đồng...');
     } else if (cmd.type === 'audit_pccc') {
       if (cmd.payload.unitId) {
